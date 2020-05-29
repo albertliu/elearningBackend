@@ -68,10 +68,12 @@
 			arr.push("<th width='6%'>性别</th>");
 			arr.push("<th width='6%'>年龄</th>");
 			if(currHost==""){
-				arr.push("<th width='14%'>公司</th>");
+				arr.push("<th width='12%'>公司</th>");
+				arr.push("<th width='12%'>部门</th>");
+			}else{
+				arr.push("<th width='12%'>部门</th>");
+				arr.push("<th width='10%'>二级部门</th>");
 			}
-			arr.push("<th width='10%'>部门</th>");
-			arr.push("<th width='10%'>二级部门</th>");
 			arr.push("<th width='8%'>类型</th>");
 			arr.push("<th width='6%'>状态</th>");
 			arr.push("<th width='6%'>资料</th>");
@@ -98,9 +100,11 @@
 					arr.push("<td class='left'>" + ar1[9] + "</td>");
 					if(currHost==""){
 						arr.push("<td class='left'>" + ar1[12] + "</td>");
+						arr.push("<td class='left'>" + ar1[13] + "</td>");
+					}else{
+						arr.push("<td class='left'>" + ar1[13] + "</td>");
+						arr.push("<td class='left'>" + ar1[14] + "</td>");
 					}
-					arr.push("<td class='left'>" + ar1[13] + "</td>");
-					arr.push("<td class='left'>" + ar1[14] + "</td>");
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
 					arr.push("<td class='left'>" + ar1[4] + "</td>");
 					arr.push("<td class='left'>" + ar1[15] + "</td>");
@@ -115,9 +119,6 @@
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
-			if(currHost==""){
-				arr.push("<th>&nbsp;</th>");
-			}
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
