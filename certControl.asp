@@ -1,0 +1,104 @@
+﻿<!--#include file="js/doc.js" -->
+
+<%
+
+if(op == "getCertList"){
+	var s = "";
+	//如果有条件，按照条件查询
+	if(where > ""){ // 有条件
+		where = "(certName like('%" + where + "%'))";
+	}
+	//如果有机构
+	if(String(Request.QueryString("agency")) > ""){ // 
+		s = "agencyID='" + String(Request.QueryString("agency")) + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//如果有分类
+	if(kindID < 99 && kindID > ""){ // 
+		s = "kindID=" + kindID;
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//如果有状态
+	if(status > ""){ // 
+		s = "status=" + status;
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+
+	if(where>""){
+		where = " where " + where;
+	}
+
+	sql = " FROM v_certificateInfo " + where;
+	result = getBasketTip(sql,"");
+	ssql = "SELECT certID,certName,hours,statusName,kindName,agencyName,term,memo,regDate,registerName" + sql + " order by certID";
+	sql = "SELECT top " + basket + " *" + sql + " order by certID";
+
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("ID").value + "|" + rs("certID").value + "|" + rs("certName").value + "|" + rs("term").value + "|" + rs("kindID").value + "|" + rs("status").value + "|" + rs("kindName").value + "|" + rs("statusName").value;
+		//8
+		result += "|" + rs("agencyID").value + "|" + rs("agencyName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("hours").value + "|" + rs("host").value + "|" + rs("hostName").value;
+		rs.MoveNext();
+	}
+/**/
+	Session(op) = ssql;
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}	
+
+if(op == "getNodeInfo"){
+	sql = "SELECT * FROM v_certificateInfo where ID=" + nodeID;
+	rs = conn.Execute(sql);
+	if (!rs.EOF){
+		result = rs("ID").value + "|" + rs("certID").value + "|" + rs("certName").value + "|" + rs("term").value + "|" + rs("kindID").value + "|" + rs("status").value + "|" + rs("kindName").value + "|" + rs("statusName").value;
+		//8
+		result += "|" + rs("agencyID").value + "|" + rs("agencyName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("hours").value + "|" + rs("host").value + "|" + rs("hostName").value;
+		execSQL(sql);
+	}
+	rs.Close();
+	Response.Write(escape(result));
+}
+
+if(op == "update"){
+	result = 0;
+	if(result == 0){
+		sql = "exec updateCertificateInfo " + nodeID + ",'" + String(Request.QueryString("certID")) + "','" + unescape(String(Request.QueryString("certName"))) + "','" + String(Request.QueryString("term")) + "'," + String(Request.QueryString("agencyID")) + "," + kindID + "," + status + ",'" + host + "','" + memo + "','" + currUser + "'";
+
+		execSQL(sql);
+		if(nodeID == 0){
+			//这是一个新增的记录
+			sql = "SELECT max(ID) as maxID FROM certificateInfo where registerID='" + currUser + "'";
+			rs = conn.Execute(sql);
+			nodeID = rs("maxID");
+		}
+	}
+
+	result += "|" + nodeID;
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}
+
+if(op == "cancelNode"){
+	sql = "exec doCancelCert " + nodeID;
+	execSQL(sql);
+	Response.Write(nodeID);
+}
+
+if(op == "delNode"){
+	sql = "exec delCertInfo '" + nodeID + "','" + where + "','" + currUser + "'";
+	execSQL(sql);
+	Response.Write(nodeID);
+}
+%>
