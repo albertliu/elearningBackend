@@ -46,10 +46,10 @@ if (String(Request.QueryString("msg")) != "undefined" &&
 			n = url[1].length;
 		}
 	}
-	if((url.length == 3 && url[1] == "shznxxfx") || (url.length == 2 && url[1].substr(0,n) == "localhost")){
+	if((url.length == 3 && url[1] == "shznxfxx") || (url.length == 2 && url[1].substr(0,n) == "localhost")){
 		currHost = url[0];
 	}
-	//alert(currHost);
+	//alert(currHost + ":" + url.length + ":" + url);
 	$(document).ready(function (){
 		event = "<%=event%>";
 		msg = "<%=msg%>";
