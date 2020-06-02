@@ -21,12 +21,13 @@
 		  </span>
 		</div>    
 		<br>
-				  			<div id="upload" align="left" style="border:solid 1px #e0e060;background:#ffffff;width:400;height:300;">
+				  			<div id="upload" align="left" style="border:solid 1px #e0e060;background:#ffffff;width:450;height:300;">
 									<div align="center" style="background:#f0f0f0;vertical-align:middle;height:9;">文件上传</div>
 									<div style="margin: 10px;">
 										<input style="border:0px;" type="radio" id="uploadKind0" name="uploadKind" value="student_photo" />照片&nbsp;
 										<input style="border:0px;" type="radio" id="uploadKind1" name="uploadKind" value="student_IDcardA" />身份证正面&nbsp;
-										<input style="border:0px;" type="radio" id="uploadKind2" name="uploadKind" value="student_IDcardB" />身份证背面
+										<input style="border:0px;" type="radio" id="uploadKind2" name="uploadKind" value="student_IDcardB" />身份证背面&nbsp;
+										<input style="border:0px;" type="radio" id="uploadKind2" name="uploadKind" value="student_education" />学历证书&nbsp;
 										<input style="border:0px;" type="radio" id="uploadKind3" name="uploadKind" value="student_diploma" />证书&nbsp;
 										<input style="border:0px;" type="radio" id="uploadKind4" name="uploadKind" value="course_video" />视频&nbsp;
 										<input style="border:0px;" type="radio" id="uploadKind5" name="uploadKind" value="course_courseware" />课件

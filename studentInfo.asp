@@ -81,7 +81,7 @@
 				$("#studentID").val(ar[0]);
 				$("#name").val(ar[2]);
 				$("#username").val(ar[1]);
-				$("#upload1").html("<a href='javascript:showLoadFile(\"student_photo\",\"" + ar[1] + "\");'>上传</a>");
+				$("#upload1").html("<a href='javascript:showLoadFile(\"student_photo\",\"" + ar[1] + "\");' style='padding:3px;'>上传</a>");
 				$("#sexName").val(ar[8]);
 				$("#age").val(ar[9]);
 				$("#mobile").val(ar[7]);
@@ -99,13 +99,16 @@
 				$("#regDate").val(ar[11]);
 				var c = "";
 				if(ar[21] > ""){
-					c += "&nbsp;&nbsp;<a href='/users" + ar[21] + "' target='_blank'>查看照片</a>";
+					c += "<a href='/users" + ar[21] + "' target='_blank'>照片</a>";
 				}
 				if(ar[22] > ""){
 					c += "&nbsp;&nbsp;<a href='/users" + ar[22] + "' target='_blank'>身份证正面</a>";
 				}
 				if(ar[23] > ""){
 					c += "&nbsp;&nbsp;<a href='/users" + ar[23] + "' target='_blank'>身份证反面</a>";
+				}
+				if(ar[24] > ""){
+					c += "&nbsp;&nbsp;<a href='/users" + ar[24] + "' target='_blank'>学历证书</a>";
 				}
 				if(c == ""){c = "&nbsp;&nbsp;还未上传";}
 				$("#photo").html(c);
@@ -219,8 +222,8 @@
 				<td><input class="readOnly" type="text" id="regDate" size="25" readOnly="true" /></td>
 				<td align="right">资料</td>
 				<td>
-					<span id="upload1" style="margin-left:20px;"></span>
-					<span id="photo" style="margin-left:20px;"></span>
+					<span id="upload1" style="margin-left:10px;border:1px solid orange;"></span>
+					<span id="photo" style="margin-left:10px;"></span>
 				</td>
 			</tr>
 			</table>
