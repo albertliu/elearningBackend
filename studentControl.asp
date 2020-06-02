@@ -102,7 +102,7 @@ if(op == "getNodeInfo"){
 		//16
 		result += "|" + rs("email").value + "|" + rs("phone").value + "|" + rs("job").value + "|" + rs("dept3Name").value + "|" + rs("limitDate").value;
 		//21
-		result += "|" + rs("photo_filename").value + "|" + rs("IDa_filename").value + "|" + rs("IDb_filename").value;
+		result += "|" + rs("photo_filename").value + "|" + rs("IDa_filename").value + "|" + rs("IDb_filename").value + "|" + rs("edu_filename").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
