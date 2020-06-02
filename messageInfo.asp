@@ -110,7 +110,7 @@
 			ar = unescape(re).split("|");
 			if(ar[0] == 0){
 				if(op == 1){
-					op == 0;
+					op = 0;
 					getNodeInfo(ar[1]);
 					jAlert("发送成功！","信息提示");
 				}else{

@@ -32,6 +32,7 @@
 	var currPage = "";
 	var uploadURL = "";
 	var token_user = new Array();
+	var ctree = 0;
 	
 	var pickupID = 0;			//选择项目编号
 	var pickupName = "";	//选择项目名称
@@ -888,6 +889,37 @@
 　　　		}
 		});
 	}
+	
+	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表; keyID: student's username
+	function showDeptInfo(nodeID,refID,op,mark){
+		asyncbox.open({
+			id: "dept",
+			url:"deptInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
+			title: "机构信息",
+			width: 600,
+			height: 380,
+			cover : {
+	          //透明度
+	          opacity : 0,
+	          //背景颜色
+	           background : '#000'
+	          },
+
+			btnsbar : false,
+			callback : function(action,iframe){
+				setReturnLog("diploma",iframe.nodeID);	
+				var re = iframe.updateCount;
+				if(re>0 && mark==1){
+					getDeptList();
+				}
+				//alert(re + ":" + mark);
+				if(re>0 && mark==2){
+					//alert(iframe.getValList());
+					setObjValue("diploma",iframe.getValList(),0,0);  //根据请求，返回任意个数的项目，为相应的对象赋值。objList:传入的Object列表；valList：输出的值；mark：0 不动作 1 关闭本窗口（与objList同名）; loc: 0 同级别  1 父窗体
+				}
+　　　		}
+		});
+	}
 
 	//nodeID: ID; refID: project ID; op: 0 浏览 1 新增  2 编辑  3 删除  4 审批; mark: 0 不动作  1 有修改时刷新列表  2 有修改时刷新对象
 	function showAttachDocInfo(nodeID,refID,kindID,op,mark){
@@ -1265,32 +1297,52 @@
 　　　}
 		});
 	}
-	
-	// 根据给定身份证，返回员工姓名。
-	function getEmployeeNameBySID(id){
-		var result = "";
-		$.get("employeeControl.asp?op=getEmployeeNameBySID&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
-			result = unescape(re);
+
+	function getDeptTree(id){
+		ctree = 0;
+		var bk = [];
+		$.get("deptControl.asp?op=getDeptJson&qf=0&nodeID=" + id + "&dk=0&times=" + (new Date().getTime()),function(re){
+			//alert(unescape(re));
+			var dt = eval("(" + unescape(re) + ")");
+			//bk = getDeptJsonTree(dt.list,id);
+			bk = transTreeData(dt.list, 'id', 'pID', 'nodes');
 		});
-		return result;
+		return bk;
 	}
 	
-	// 根据给定身份证，返回法人姓名。
-	function getBossNameBySID(id){
-		var result = "";
-		$.get("bossControl.asp?op=getBossNameBySID&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
-			//jAlert(unescape(re));
-			result = unescape(re);
-		});
-		return result;
+	function getDeptJsonTree(data,parentId){
+	  var itemArr = [];
+	  for(var i=0;i<data.length;i++){ 
+		var node=data[i];
+		//data.splice(i, 1)
+		if(node.pID==parentId && ctree<data.length){ 
+			ctree += 1;
+			var newNode={id:node.id,text:node.text,pid:node.pID,chindren:getDeptJsonTree(data,node.id)};
+			itemArr.push(newNode);              
+		}
+	  }
+	  return itemArr;
 	}
 
-	function checkUnitName(unitName){
-		var result = "";
-		$.get("unitControl.asp?op=checkUnitName&where=" + escape(unitName) + "&times=" + (new Date().getTime()),function(re){
-			result =  re;
-		});
-		return result;
+	//将给定的转换成json数据，用于tree
+	//var jsonData = eval('[{"belongsname":"","id":901,"isleaf":0,"name":"XJBHX-2标项目部","pid":"","type":""},{"belongsname":"","id":902,"isleaf":1,"name":"综合部(办公室)","pid":"901","type":""},{"belongsname":"","id":903,"isleaf":1,"name":"工程部(工技部/技术部)","pid":"901","type":""},{"belongsname":"","id":904,"isleaf":1,"name":"安质部","pid":"901","type":""},{"belongsname":"","id":905,"isleaf":1,"name":"计财部","pid":"901","type":""},{"belongsname":"","id":906,"isleaf":1,"name":"物设部(物机部)","pid":"901","type":""},{"belongsname":"","id":907,"isleaf":1,"name":"中心试验室","pid":"901","type":""}]');
+	//绑定的字段
+	//var jsonDataTree = transTreeData(jsonData, 'id', 'pid', 'chindren');
+	function transTreeData(a, idStr, pidStr, chindrenStr) {
+		var r = [], hash = {}, id = idStr, pid = pidStr, children = chindrenStr, i = 0, j = 0, len = a.length;
+		for (; i < len; i++) {
+			hash[a[i][id]] = a[i];
+		}
+		for (; j < len; j++) {
+			var aVal = a[j], hashVP = hash[aVal[pid]];
+			if (hashVP) {
+				!hashVP[children] && (hashVP[children] = []);
+				hashVP[children].push(aVal);
+			} else {
+				r.push(aVal);
+			}
+		}
+		return r;
 	}
 
 	//为指定（input）输入框设置多用户选择器，初始化备选数据和已选数据，结果保存在token_user数组中。w:输入框宽度，如果=0，设为默认值

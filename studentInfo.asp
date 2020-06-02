@@ -99,7 +99,7 @@
 				$("#regDate").val(ar[11]);
 				var c = "";
 				if(ar[21] > ""){
-					c += "&nbsp;&nbsp;<a href='/users" + ar[21] + "' target='_blank'>照片</a>";
+					c += "<a href='/users" + ar[21] + "' target='_blank'>照片</a>";
 				}
 				if(ar[22] > ""){
 					c += "&nbsp;&nbsp;<a href='/users" + ar[22] + "' target='_blank'>身份证正面</a>";

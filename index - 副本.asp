@@ -28,9 +28,16 @@
 <link rel="stylesheet" type="text/css" href="css/fullcalendar.print.css" media="print">
 <link href="css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
 		<link href="css/tabStyle.css" rel="stylesheet" type="text/css">
-	<link href="css/bootstrap.min.css?v=1.1" rel="stylesheet">
-		<link href="css/bootstrap-treeview.min.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="js/easyui/themes/default/easyui.css?v=1.3">
+	<link rel="stylesheet" type="text/css" href="js/easyui/themes/icon.css?v=1.0">
+	<link rel="stylesheet" type="text/css" href="js/easyui/demo.css?v=1.3">
 		<script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/ddaccordion.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.7.2.custom.min.js"></script>
+	<script type="text/javascript" src="js/easyui/jquery.easyui.min.js?v=1.1"></script>
+	<script type="text/javascript" src="js/easyui/locale/easyui-lang-zh_CN.js?v=1.0"></script>
+<script type="text/javascript" src="js/jquery.jmpopups-0.5.1.js"></script>
+        <script src="js/jquery.history_remote.pack.js" type="text/javascript"></script>
         <script src="js/jquery.tabs.pack.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/AsyncBox.v1.4.js"></script>
 <script language="javascript" type="text/javascript" src="js/jquery.dataTables.min.js"></script>
@@ -41,7 +48,6 @@
 <script src="js/datepicker/WdatePicker.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/ajax.js"></script>
 	<script type="text/javascript" src="js/tab-view.js"></script>
-	<script type="text/javascript" src="js/bootstrap-treeview.min.js"></script>
 <!--#include file="js/correctPng.js"-->
 <!--#include file="js/clickMenu.js"-->
 

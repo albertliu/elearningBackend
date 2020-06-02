@@ -21,7 +21,7 @@
 		  </span>
 		</div>    
 		<br>
-				  			<div id="upload" align="left" style="border:solid 1px #e0e060;background:#ffffff;width:400;height:300;">
+				  			<div id="upload" align="left" style="border:solid 1px #e0e060;background:#ffffff;width:450;height:300;">
 									<div align="center" style="background:#f0f0f0;vertical-align:middle;height:9;">文件上传</div>
 									<div style="margin: 10px;">
 										<input style="border:0px;" type="radio" id="uploadKind0" name="uploadKind" value="student_photo" />照片&nbsp;
