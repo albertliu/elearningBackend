@@ -40,8 +40,8 @@
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
 			arr.push("<th width='9%'>编号</th>");
-			arr.push("<th width='25%'>证书名称</th>");
-			arr.push("<th width='25%'>发证机构</th>");
+			arr.push("<th width='22%'>证书名称</th>");
+			arr.push("<th width='22%'>发证机构</th>");
 			arr.push("<th width='9%'>期限</th>");
 			arr.push("<th width='9%'>类型</th>");
 			arr.push("<th width='9%'>状态</th>");
