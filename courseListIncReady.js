@@ -37,9 +37,9 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
-			arr.push("<th width='12%'>编号</th>");
-			arr.push("<th width='49%'>课程名称</th>");
-			arr.push("<th width='12%'>课时</th>");
+			arr.push("<th width='13%'>编号</th>");
+			arr.push("<th width='45%'>课程名称</th>");
+			arr.push("<th width='13%'>课时</th>");
 			arr.push("<th width='12%'>状态</th>");
 			arr.push("<th width='12%'>课表</th>");
 			arr.push("</tr>");
