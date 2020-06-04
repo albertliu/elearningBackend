@@ -92,6 +92,7 @@
 	<!--#include file="coursewareListIncReady.js"-->
 	<!--#include file="userListIncReady.js"-->
 	<!--#include file="deptListIncReady.js"-->
+	<!--#include file="hostListIncReady.js"-->
 
 	unitListLong = 0;
 	memoListLong = 0;
@@ -303,7 +304,6 @@
 						<li><a href="#fragment-4"><span>课程管理</span></a></li>
 						<li id="menu5"><a href="#fragment-5"><span>题库管理</span></a></li>
 						<li><a href="#fragment-6"><span>统计查询</span></a></li>
-						<li><a href="#fragment-7"><span>单位管理</span></a></li>
 						<li><a href="#fragment-8"><span>用户管理</span></a></li>
 						<li><a href="#fragment-9"><span>基础数据</span></a></li>
 					</ul>
@@ -412,10 +412,10 @@
 								</div>
 							</div>
 							<div id="dtab1" class="dhtmlgoodies_aTab">
-								<div style="float:left;width:50%;">
+								<div style="float:left;width:55%;">
 									<!--#include file="courseListIncDetail.js"-->
 								</div>
-								<div style="float:right;width:49%;">
+								<div style="float:right;width:44%;">
 									<!--#include file="courseLessonListIncDetail.js"-->
 								</div>
 							</div>
@@ -437,9 +437,15 @@
 								<div style="float:right;width:55%;">
 								</div>
 							</div>
+							<div id="dtab3" class="dhtmlgoodies_aTab">
+								<!--#include file="hostListIncDetail.js"-->
+							</div>
+							<div id="dtab3" class="dhtmlgoodies_aTab">
+								<!--#include file="deptListIncDetail.js"-->
+							</div>
 						</div>
 						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView1',Array("认证项目","培训课程","视频管理","课件管理","知识点","发证机构"),0,960,400);
+							initTabs('dhtmlgoodies_tabView1',Array("认证项目","培训课程","视频管理","课件管理","知识点","发证机构","公司单位","公司部门"),0,960,400);
 						</script>
 					</div>
 					
@@ -449,13 +455,6 @@
 					<div id="fragment-6">
 					</div>
 					
-					<div id="fragment-7">
-						<div style="float:left;width:44%;">
-							<!--#include file="deptListIncDetail.js"-->
-						</div>
-						<div style="float:right;width:55%;">
-						</div>
-					</div>
 					
 					<div id="fragment-8">
 						<!--#include file="userListIncDetail.js"-->

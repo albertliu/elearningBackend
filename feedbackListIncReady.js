@@ -41,11 +41,11 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='4%'>No</th>");
-			arr.push("<th width='50%'>消息内容</th>");
+			arr.push("<th width='45%'>消息内容</th>");
 			arr.push("<th width='12%'>类型</th>");
 			arr.push("<th width='12%'>发送日期</th>");
 			arr.push("<th width='10%'>发送人</th>");
-			arr.push("<th width='8%'>处理</th>");
+			arr.push("<th width='9%'>处理</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");

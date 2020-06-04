@@ -13,7 +13,7 @@
 <link href="css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="css/data_table.css" rel="stylesheet" type="text/css" />
 <link href="css/asyncbox/asyncbox.css" type="text/css" rel="stylesheet" />
-<script language="javascript" src="js/jquery-3.3.1.min.js"></script>
+<script language="javascript" src="js/jquery-1.7.2.min.js"></script>
 <script language="javascript" src="js/jquery.form.js"></script>
 <script type="text/javascript" src="js/jquery.easyui.min.js"></script>
 <script src="js/jquery.alerts.js" type="text/javascript"></script>
@@ -268,14 +268,14 @@
 				asyncbox.open({
 					url:'userRoleList.asp?times=' + (new Date().getTime()),
 					title: '角色分配',
-		　　　width : 730,
-		　　　height : 520,
-		　　　callback : function(action){
-	　　　　　if(action == 'close'){
-				    	getRoleListByUser();
-				    	getAllPermissionListByUser();
-	　　　　　}
-		　　　}
+					width : 730,
+					height : 520,
+					callback : function(action){
+						if(action == 'close'){
+							getRoleListByUser();
+							getAllPermissionListByUser();
+	　　　　　			}
+		　　		}
 				});
 			});
 		}

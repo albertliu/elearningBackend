@@ -10,14 +10,19 @@
 <link href="css/style_inner1.css"  rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/easyui/easyui.css">
 <link rel="stylesheet" type="text/css" href="css/easyui/icon.css">
-<link rel="stylesheet" type="text/css" href="css/comment.css">
-<link href="css/data_table.css" rel="stylesheet" type="text/css" />
+<link href="css/data_table_mini.css?v=20150411" rel="stylesheet" type="text/css" />
 <link href="css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="css/asyncbox/asyncbox.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
 <script language="javascript" src="js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
 <script language="javascript" src="js/jquery.form.js"></script>
-<script language="javascript" type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
 <script src="js/jquery.alerts.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/AsyncBox.v1.4.js"></script>
+<script language="javascript" type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+<script src="js/datepicker/WdatePicker.js" type="text/javascript"></script>
+<script type='text/javascript' src='js/jquery.autocomplete.js'></script>
+<!--#include file="js/clickMenu.js"-->
 
 <script language="javascript">
 	var refID = "";
