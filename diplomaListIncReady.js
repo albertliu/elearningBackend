@@ -62,9 +62,9 @@
 			arr.push("<th width='3%'>No</th>");
 			arr.push("<th width='13%'>身份证</th>");
 			arr.push("<th width='7%'>姓名</th>");
-			arr.push("<th width='5%'>性别</th>");
-			arr.push("<th width='5%'>年龄</th>");
-			arr.push("<th width='15%'>证书名称</th>");
+			arr.push("<th width='7%'>性别</th>");
+			arr.push("<th width='7%'>年龄</th>");
+			arr.push("<th width='13%'>证书名称</th>");
 			arr.push("<th width='12%'>证书编号</th>");
 			if(currHost==""){
 				arr.push("<th width='12%'>公司</th>");

@@ -49,12 +49,12 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
-			arr.push("<th width='40%'>消息内容</th>");
-			arr.push("<th width='9%'>接收人</th>");
+			arr.push("<th width='36%'>消息内容</th>");
+			arr.push("<th width='10%'>接收人</th>");
 			arr.push("<th width='13%'>" + a1 + "</th>");
 			arr.push("<th width='12%'>发送日期</th>");
-			arr.push("<th width='9%'>发送人</th>");
-			arr.push("<th width='7%'>阅读</th>");
+			arr.push("<th width='10%'>发送人</th>");
+			arr.push("<th width='8%'>阅读</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
