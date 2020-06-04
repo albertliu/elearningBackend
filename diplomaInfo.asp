@@ -56,11 +56,11 @@
 			var c = "";
 			ar = unescape(re).split("|");
 			if(ar > ""){
-				$("#diplomaID").val(ar[0]);
+				$("#ID").val(ar[0]);
+				$("#diplomaID").val(ar[7]);
 				$("#username").val(ar[1]);
 				$("#name").val(ar[2]);
 				$("#statusName").val(ar[4]);
-				$("#certID").val(ar[5]);
 				$("#certName").val(ar[6]);
 				$("#sexName").val(ar[8]);
 				$("#age").val(ar[9]);
@@ -72,12 +72,13 @@
 				$("#term").val(ar[18] + '年');
 				$("#memo").val(ar[19]);
 				$("#agencyName").val(ar[20]);
+				$("#upload1").html("<a href='javascript:showLoadFile(\"student_diploma\",\"" + ar[7] + "\",\"diploma\");' style='padding:3px;'>上传</a>");
 				c = "";
 				if(ar[24] > ""){
-					c += "&nbsp;&nbsp;<a href='/users" + ar[24] + "' target='_blank'>查看证书</a>";
+					c += "&nbsp;&nbsp;<a href='/users" + ar[24] + "' target='_blank'>证书</a>";
 				}
-				if(c == ""){c = "&nbsp;&nbsp;证书还未上传";}
-				$("#filename").html(c);
+				if(c == ""){c = "&nbsp;&nbsp;还未上传";}
+				$("#photo").html(c);
 				//getDownloadFile("diplomaID");
 				setButton();
 			}else{
@@ -136,10 +137,10 @@
 			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
-				<td align="right">证书名称</td><input type="hidden" id="diplomaID" />
+				<td align="right">证书名称</td><input type="hidden" id="ID" />
 				<td><input class="readOnly" type="text" id="certName" size="25" readOnly="true" /></td>
 				<td align="right">证书编号</td>
-				<td><input class="readOnly" type="text" id="certID" size="25" readOnly="true" /></td>
+				<td><input class="readOnly" type="text" id="diplomaID" size="25" readOnly="true" /></td>
 			</tr>
 			<tr>
 				<td align="right">状态</td>
@@ -183,7 +184,10 @@
 			</tr>
 			<tr>
 				<td align="right">资料</td>
-				<td colspan="5"><div id="filename"></div></td>
+				<td colspan="5">
+					<span id="upload1" style="margin-left:10px;border:1px solid orange;"></span>
+					<span id="photo" style="margin-left:10px;"></span>
+				</td>
 			</tr>
 			</table>
 			</form>

@@ -65,7 +65,6 @@
 			if(ar > ""){
 				$("#ID").val(ar[0]);
 				$("#coursewareID").val(ar[1]);
-				$("#upload1").html("<a href='javascript:showLoadFile(\"course_courseware\",\"" + ar[1] + "\");'>上传</a>");
 				$("#coursewareName").val(ar[2]);
 				$("#pages").val(ar[3]);
 				$("#kindID").val(ar[4]);
@@ -77,6 +76,7 @@
 				$("#memo").val(ar[12]);
 				$("#regDate").val(ar[13]);
 				//$("#registerName").val(ar[15]);
+				$("#upload1").html("<a href='javascript:showLoadFile(\"course_courseware\",\"" + ar[1] + "\",\"course\");'>上传</a>");
 				var c = "";
 				if(ar[7] > ""){
 					c += "&nbsp;&nbsp;<a href='/users" + ar[7] + "' target='_blank'>查看课件</a>";

@@ -10,12 +10,16 @@
 <link href="css/style_inner1.css"  rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/easyui/easyui.css">
 <link rel="stylesheet" type="text/css" href="css/easyui/icon.css">
+<link href="css/data_table_mini.css?v=20150411" rel="stylesheet" type="text/css" />
 <link href="css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="css/asyncbox/asyncbox.css" type="text/css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
 <script language="javascript" src="js/jquery-1.7.2.min.js"></script>
 <script language="javascript" src="js/jquery.form.js"></script>
 <script type="text/javascript" src="js/jquery.easyui.min.js"></script>
 <script src="js/jquery.alerts.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/AsyncBox.v1.4.js"></script>
+<script language="javascript" type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 <script src="js/datepicker/WdatePicker.js" type="text/javascript"></script>
 <script type='text/javascript' src='js/jquery.autocomplete.js'></script>
 <!--#include file="js/clickMenu.js"-->
@@ -23,12 +27,10 @@
 <script language="javascript">
 	var nodeID = 0;
 	var op = 0;
-	var refID = 0;
 	var updateCount = 0;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";
-		refID = "<%=refID%>";
 		op = "<%=op%>";
 		
 		getDicList("student","kindID",0);
@@ -66,9 +68,9 @@
 		
 		$("#btnAdd").click(function(){
 			op = 1;
-			refID = nodeID;	//添加下级部门
 			setButton();
 		});
+	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
 	function getNodeInfo(id){
@@ -87,10 +89,19 @@
 				$("#phone").val(ar[9]);
 				$("#email").val(ar[10]);
 				$("#address").val(ar[11]);
-				$("#logo").val(ar[12]);
 				$("#memo").val(ar[13]);
 				$("#regDate").val(ar[14]);
 				$("#registerName").val(ar[16]);
+				$("#upload1").html("<a href='javascript:showLoadFile(\"host_logo\",\"" + ar[1] + "\",1);' style='padding:3px;'>上传</a>");
+				var c = "";
+				if(ar[12] > ""){
+					c += "<a href='/users" + ar[12] + "' target='_blank'>LOGO</a>";
+				}
+				if(ar[17] > ""){
+					c += "&nbsp;&nbsp;<a href='/users" + ar[17] + "' target='_blank'>登录二维码</a>";
+				}
+				if(c == ""){c = "&nbsp;&nbsp;还未上传";}
+				$("#photo").html(c);
 				
 				//getDownloadFile("hostID");
 				setButton();
@@ -184,8 +195,11 @@
 			<tr>
 				<td align="right">标识</td><input id="hostID" type="hidden" />
 				<td><input type="text" id="hostNo" size="25" /></td>
-				<td align="right">logo</td>
-				<td><input type="text" id="logo" size="25" /></td>
+				<td align="right">资料</td>
+				<td>
+					<span id="upload1" style="margin-left:10px;border:1px solid orange;"></span>
+					<span id="photo" style="margin-left:10px;"></span>
+				</td>
 			</tr>
 			<tr>
 				<td align="right">类型</td>
@@ -224,7 +238,7 @@
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
   	<input class="button" type="button" id="btnSave" value="保存" />&nbsp;
-  	<input class="button" type="button" id="btnAdd" value="添加下级" />&nbsp;
+  	<input class="button" type="button" id="btnAdd" value="添加" />&nbsp;
   	<input class="button" type="button" id="btnDel" value="删除" />&nbsp;
   </div>
 </div>

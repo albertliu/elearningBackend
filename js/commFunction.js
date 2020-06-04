@@ -617,7 +617,7 @@
 		});
 	}
 	
-	//nodeID: ID; refID: unit ID; op: 0 浏览 1 新增  2 编辑  3 删除  4 审批; mark: 0 不动作  1 有修改时刷新列表  2 有修改时刷新对象
+	//nodeID: ID; refID: unit ID; op: 0 浏览 1 新增  2 编辑  3 删除  4 审批; mark: 0 不动作  1 有修改时刷新列表  2 有修改时刷新对象 
 	function showStudentInfo(nodeID,refID,op,mark){
 		asyncbox.open({
 			id: "student",
@@ -921,7 +921,7 @@
 		});
 	}
 	
-	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表; keyID: student's username
+	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
 	function showHostInfo(nodeID,refID,op,mark){
 		asyncbox.open({
 			id: "host",
