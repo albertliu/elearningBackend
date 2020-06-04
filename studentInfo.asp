@@ -96,7 +96,7 @@
 				$("#job").val(ar[18]);
 				$("#memo").val(ar[10]);
 				$("#regDate").val(ar[11]);
-				$("#upload1").html("<a href='javascript:showLoadFile(\"student_photo\",\"" + ar[1] + "\",0);' style='padding:3px;'>上传</a>");
+				$("#upload1").html("<a href='javascript:showLoadFile(\"student_photo\",\"" + ar[1] + "\",\"student\");' style='padding:3px;'>上传</a>");
 				var c = "";
 				if(ar[21] > ""){
 					c += "<a href='/users" + ar[21] + "' target='_blank'>照片</a>";
