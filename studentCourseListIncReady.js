@@ -54,7 +54,7 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
-			arr.push("<th width='12%'>身份证</th>");
+			arr.push("<th width='11%'>身份证</th>");
 			arr.push("<th width='8%'>姓名</th>");
 			arr.push("<th width='7%'>年龄</th>");
 			arr.push("<th width='13%'>课程名称</th>");
@@ -67,7 +67,7 @@
 			arr.push("<th width='5%'>进度</th>");
 			arr.push("<th width='6%'>状态</th>");
 			arr.push("<th width='9%'>选课</th>");
-			arr.push("<th width='5%'>成绩</th>");
+			arr.push("<th width='6%'>成绩</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
