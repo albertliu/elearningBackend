@@ -1,0 +1,56 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  background: #E2E2E2;
+}
+
+body {
+  background: #E2E2E2;
+  margin: 0;
+  padding: 0;
+  font-family: '宋体', sans-serif;
+}
+
+.login-form-wrap {
+  position: relative;
+  width: 180mm;
+  height: 119mm;
+  margin: 0;
+  padding: 0;
+  text-align: left; 
+  border: 1px solid #eee;
+}
+h1 {
+  margin: 0;
+  padding: 10px;
+  font-size: 44px;
+  color: #000;
+}
+h2 {
+  margin: 0;
+  padding: 10px;
+  font-size: 33px;
+  color: #000;
+}
+h3 {
+  margin: 0;
+  padding-top: 12px;
+  padding-bottom: 3px;
+  padding-left: 15px;
+  font-size: 28px;
+  color: #222;
+}
+td.foot {
+  border-bottom:#888 solid 1px;
+}
+.login-form-wrap > h5 > a {
+  font-size: 14px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 400;
+}
+
