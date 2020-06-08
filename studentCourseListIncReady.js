@@ -2,11 +2,14 @@
 	var studentCourseListChk = 0;
 
 	$(document).ready(function (){
-		var w = "status=0 and hostNo='" + currHost + "'";
+		var w1 = "status=0 and hostNo='" + currHost + "'";
+		var w2 = "status=0 and (kindID=0 or host='" + currHost + "')";
 		if(currHost==""){	//公司用户只能看自己公司内容
 			getComList("searchStudentCourseHost","hostInfo","hostNo","title","status=0 order by hostName",1);
+			getComList("searchStudentCourseID","courseInfo","courseID","courseName","status=0 order by courseID",1);
 		}else{
-			getComList("searchStudentCourseHost","hostInfo","hostNo","title",w,0);
+			getComList("searchStudentCourseHost","hostInfo","hostNo","title",w1,0);
+			getComList("searchStudentCourseID","courseInfo","courseID","courseName",w2,1);
 		}
 		getDicList("student","searchStudentCourseKind",1);
 		getDicList("planStatus","searchStudentCourseStatus",1);
@@ -30,7 +33,7 @@
 		$("#searchStudentCourseOld").change(function(){
 			getStudentCourseList();
 		});
-
+		//$("#studentCourseListLongItem1").hide();
 		getStudentCourseList();
 	});
 
@@ -39,7 +42,7 @@
 		var Old = 0;
 		if($("#searchStudentCourseOld").attr("checked")){Old = 1;}
 		//alert((sWhere) + "&kindID=" + $("#searchStudentCourseKind").val() + "&status=" + $("#searchStudentCourseStatus").val() + "&host=" + $("#searchStudentCourseHost").val() + "&Old=" + Old + "&fStart=" + $("#searchStudentCourseStartDate").val() + "&fEnd=" + $("#searchStudentCourseEndDate").val());
-		$.get("studentCourseControl.asp?op=getStudentCourseList&where=" + escape(sWhere) + "&kindID=" + $("#searchStudentCourseKind").val() + "&status=" + $("#searchStudentCourseStatus").val() + "&host=" + $("#searchStudentCourseHost").val() + "&Old=" + Old + "&fStart=" + $("#searchStudentCourseStartDate").val() + "&fEnd=" + $("#searchStudentCourseEndDate").val() + "&dk=13&times=" + (new Date().getTime()),function(data){
+		$.get("studentCourseControl.asp?op=getStudentCourseList&where=" + escape(sWhere) + "&kindID=" + $("#searchStudentCourseKind").val() + "&status=" + $("#searchStudentCourseStatus").val() + "&courseID=" + $("#searchStudentCourseID").val() + "&host=" + $("#searchStudentCourseHost").val() + "&Old=" + Old + "&fStart=" + $("#searchStudentCourseStartDate").val() + "&fEnd=" + $("#searchStudentCourseEndDate").val() + "&dk=13&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");

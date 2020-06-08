@@ -60,8 +60,8 @@ if(op == "getStudentCourseList"){
 		}
 	}
 	//课程
-	if(String(Request.QueryString("courseID")) > 0){
-		s = "courseID=" + String(Request.QueryString("courseID"));
+	if(String(Request.QueryString("courseID")) > ""){
+		s = "courseID='" + String(Request.QueryString("courseID")) + "'";
 		if(where > ""){
 			where = where + " and " + s;
 		}else{

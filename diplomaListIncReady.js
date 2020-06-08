@@ -46,7 +46,7 @@
 		sWhere = $("#txtSearchDiploma").val();
 		//alert((sWhere) + "&kindID=" + $("#searchDiplomaKind").val() + "&status=" + $("#searchDiplomaStatus").val() + "&host=" + $("#searchDiplomaHost").val() + "&fStart=" + $("#searchDiplomaStartDate").val() + "&fEnd=" + $("#searchDiplomaEndDate").val());
 		$.get("diplomaControl.asp?op=getDiplomaList&where=" + escape(sWhere) + "&kindID=" + $("#searchDiplomaKind").val() + "&status=" + $("#searchDiplomaStatus").val() + "&host=" + $("#searchDiplomaHost").val() + "&fStart=" + $("#searchDiplomaStartDate").val() + "&fEnd=" + $("#searchDiplomaEndDate").val() + "&dk=12&times=" + (new Date().getTime()),function(data){
-			//jAlert(unescape(data));
+			//alert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
 			$("#diplomaCover").empty();

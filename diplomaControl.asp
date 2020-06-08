@@ -66,11 +66,11 @@ if(op == "getDiplomaList"){
 		//8
 		result += "|" + rs("sexName").value + "|" + rs("age").value + "|" + rs("mobile").value + "|" + rs("email").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value;
 		//16
-		result += "|" + rs("startDate").value + "|" + rs("endDate").value + "|" + rs("term").value + "|" + rs("memo").value + "|" + rs("agencyName").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("filename").value + "|" + rs("title").value;
+		result += "|" + rs("startDate").value + "|" + rs("endDate").value + "|" + rs("term").value + "|" + rs("memo").value + "|" + rs("agencyName").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("filename").value;
 		rs.MoveNext();
 	}
 	rs.Close();
-/*	*/
+	
 	Session(op) = ssql;
 	Response.Write(escape(result));
 	//Response.Write(escape(sql));
@@ -85,7 +85,7 @@ if(op == "getNodeInfo"){
 		//8
 		result += "|" + rs("sexName").value + "|" + rs("age").value + "|" + rs("mobile").value + "|" + rs("email").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value;
 		//16
-		result += "|" + rs("startDate").value + "|" + rs("endDate").value + "|" + rs("term").value + "|" + rs("memo").value + "|" + rs("agencyName").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("filename").value + "|" + rs("title").value;
+		result += "|" + rs("startDate").value + "|" + rs("endDate").value + "|" + rs("term").value + "|" + rs("memo").value + "|" + rs("agencyName").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("filename").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -95,14 +95,14 @@ if(op == "getNodeInfo"){
 if(op == "getDiplomaListByBatchID"){
 	result = "";
 	sql = "SELECT * FROM v_diplomaInfo where batchID=" + refID;
-	/*rs = conn.Execute(sql);
+	rs = conn.Execute(sql);
 	while (!rs.EOF){
 		result += "%%" + rs("name").value + "|" + rs("certName").value + "|" + rs("diplomaID").value + "|" + rs("dept1Name").value + "|" + rs("job").value;
 		//5
 		result += "|" + rs("startDate").value + "|" + rs("term").value + "|" + rs("title").value + "|" + rs("photo_filename").value + "|" + rs("logo").value + "|" + rs("certID").value;
 		rs.MoveNext();
 	}
-	rs.Close();*/
+	rs.Close();
 	Response.Write(escape(sql));
 }	
 
@@ -134,7 +134,7 @@ if(op == "delNode"){
 	execSQL(sql);
 	Response.Write(nodeID);
 }
-
+/*
 if(op == "generateDiploma"){
 	result = "";
 	sql = "SELECT * FROM dbo.getDiplomaData('" + refID + "','" + host + "')";
@@ -148,6 +148,6 @@ if(op == "generateDiploma"){
 	Response.Write(escape(result));
 	//Response.Write(escape(sql));
 }	
-
+*/
 
 %>
