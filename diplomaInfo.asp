@@ -68,7 +68,7 @@
 				$("#email").val(ar[11]);
 				$("#hostName").val(ar[12]);
 				$("#dept1Name").val(ar[13]);
-				$("#endDate").val(ar[17]);
+				$("#startDate").val(ar[16]);
 				$("#term").val(ar[18] + '年');
 				$("#memo").val(ar[19]);
 				$("#agencyName").val(ar[20]);
@@ -145,11 +145,11 @@
 			<tr>
 				<td align="right">状态</td>
 				<td><input class="readOnly" type="text" id="statusName" size="25" readOnly="true" /></td>
-				<td align="right">有效日期</td>
-				<td><input class="readOnly" type="text" id="endDate" size="25" readOnly="true" /></td>
+				<td align="right">发证日期</td>
+				<td><input class="readOnly" type="text" id="startDate" size="25" readOnly="true" /></td>
 			</tr>
 			<tr>
-				<td align="right">期限</td>
+				<td align="right">有效期</td>
 				<td><input class="readOnly" type="text" id="term" size="25" readOnly="true" /></td>
 				<td align="right">发证机构</td>
 				<td><input class="readOnly" type="text" id="agencyName" size="25" readOnly="true" /></td>

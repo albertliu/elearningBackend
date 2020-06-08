@@ -7,25 +7,106 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title></title>
 <meta name="viewport" content="width=device-width">
-<link rel="stylesheet" href="css/normalize.css">
 
 <!--必要样式-->
-<link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+<link href="css/style.css?ver=1.0"  rel="stylesheet" type="text/css" id="css" />
+<script language="javascript" src="js/jquery-1.7.2.min.js"></script>
+
+
+<script language="javascript">
+	var item = "";
+	var updateCount = 0;
+	$(document).ready(function (){
+		item = "<%=kindID%>";
+		$.ajaxSetup({ 
+			async: false 
+		}); 
+		//$("#test").html(item);
+		$("#test").hide();
+		getNodeInfo();
+	});
+
+	function getNodeInfo(){
+		//$.get("diplomaControl.asp?op=getNodeInfoShort&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
+			var ar = new Array();
+			//var c = "";
+			ar = item.split(",");
+			if(ar > ""){
+				$("#diplomaID").html(ar[2]);
+				$("#name").html(ar[0]);
+				$("#certName").html(ar[1]);
+				if(ar[11]=='spc' && ar[3]=="公司本部"){
+					$("#dept1Name").html("上海石油分公司");
+				}else{
+					$("#dept1Name").html(ar[3]);
+				}
+				if(ar[10]=='C5'){	//施工作业上岗证
+					//显示工种
+					$("#item_job").show();
+					//减小行距和字体
+					$("h3").css({'padding-top': '9px', 'font-size': '24px'});
+				}else{
+					$("#item_job").hide();
+				}
+				$("#job").html(ar[4]);
+				$("#startDate").html(ar[5]);
+				$("#term").html(ar[6] + '年');
+				$("#title").html(ar[7]);
+				if(ar[8]==''){
+					$("#photo_filename").attr("src","/images/blankphoto.png");
+				}else{
+					$("#photo_filename").attr("src","/users" + ar[8]);
+				}
+				$("#logo").attr("src","/users" + ar[9]);
+			}/**/
+		//});
+	}
+</script>
 
 </head>
-<body>
 
+<body>
+<p id="test"></p>
 <section class="login-form-wrap">
-  <h1 style="text-align:center;">Facebook</h1>
-<div style="text-align:center;">xxxx</div>
-<hr size="1" noshadow>
-<div style="float:left;width:40%;">
-	  <div style="text-align:center;"><img src="<%=keyID%>" style="width:50mm;"></div>
-    <div style="text-align:center;">照&nbsp;片：</div>
+<div style="float:left;width:10%;">
+	<img id="logo" src="" style="width:93px;padding-top:10px;padding-left:20px;">
 </div>
-<div style="float:right;width:49%;">
-	  <div><span>姓&nbsp;名：</span><span><%=nodeID%></span></div>
-	  <div><span>身份证：</span><span><%=refID%></span></div>
+<div style="float:right;width:89%;">
+	<div style="text-align:center;"><h2 id="title"></h2></div>
+	<div style="text-align:center;"><h1 id="certName"></h1></div>
+</div>
+<div style="clear: both;"></div>
+<hr size=2 color="red">
+<div style="float:left;width:32%;">
+	<img id="photo_filename" src="" style="width:180px;padding-top:50px;padding-left:30px;">
+</div>
+<div style="float:right;width:67%;">
+	<table>
+		<tr>
+			<td><h3>单&nbsp;位：</h3></td>
+			<td class="foot"><h3 id="dept1Name"></h3></td>
+		</tr>
+		<tr>
+			<td><h3>姓&nbsp;名：</h3></td>
+			<td class="foot"><h3 id="name"></h3></td>
+		</tr>
+		<tr id="item_job">
+			<td><h3>工&nbsp;种：</h3></td>
+			<td class="foot"><h3 id="job"></h3></td>
+		</tr>
+		<tr>
+			<td><h3>证&nbsp;号：</h3></td>
+			<td class="foot"><h3 id="diplomaID"></h3></td>
+		</tr>
+		<tr>
+			<td><h3>发证日期：</h3></td>
+			<td class="foot"><h3 id="startDate"></h3></td>
+		</tr>
+		<tr>
+			<td><h3>有效期：</h3></td>
+			<td class="foot"><h3 id="term"></h3></td>
+		</tr>
+	</table>
 </div>
 </section>
 </body>
