@@ -242,8 +242,8 @@ if(op == "getGenerateDiplomaList"){
 	}
 	sql = " FROM v_generateDiplomaInfo " + where;
 	result = getBasketTip(sql,"");
-	ssql = "SELECT username,name,sexName,age,certName,hostName,dept1Name,dept2Name,mobile,email,endDate,agencyName,memo" + sql + " order by name";
-	sql = "SELECT top " + basket + " *" + sql + " order by ID";
+	ssql = "SELECT certName,qty,firstID,lastID,hostName,memo,regDate,registerName" + sql + " order by ID";
+	sql = "SELECT top " + basket + " *" + sql + " order by ID desc";
 	
 	rs = conn.Execute(sql);
 	while (!rs.EOF){

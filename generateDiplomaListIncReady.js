@@ -52,9 +52,9 @@
 			arr.push("<th width='8%'>数量</th>");
 			arr.push("<th width='24%'>编号范围</th>");
 			arr.push("<th width='15%'>公司</th>");
-			arr.push("<th width='10%'>说明</th>");
+			arr.push("<th width='9%'>说明</th>");
 			arr.push("<th width='10%'>制作日期</th>");
-			arr.push("<th width='8%'>制作人</th>");
+			arr.push("<th width='9%'>制作人</th>");
 			arr.push("<th width='6%'>文件</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
