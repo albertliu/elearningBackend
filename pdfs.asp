@@ -16,6 +16,7 @@
 <script language="javascript">
 	var refID = 0;
 	var updateCount = 0;
+	var uploadURL = "<%=uploadURL%>";
 	$(document).ready(function (){
 		refID = "<%=refID%>";
 		$.ajaxSetup({ 
@@ -27,7 +28,7 @@
 	});
 
 	function getNodeInfo(id){
-		$.getJSON("http://127.0.0.1:8081/public/getDiplomaListByBatchID?refID=" + id,function(data){
+		$.getJSON(uploadURL + "/public/getDiplomaListByBatchID?refID=" + id,function(data){
 			//jAlert(unescape(data));
 			var ar0 = new Array();
 			var c = "";
@@ -41,7 +42,7 @@
 				var certID = "";
 				$.each(data,function(iNum,val){
 					if(i == 0){
-						arr.push('<table>');
+						arr.push('<table style="margin-top:15mm;margin-left:15mm;">');
 					}
 					if(i%n == 0){
 						arr.push('<tr>');
@@ -109,7 +110,7 @@
 					}
 					if(i%(n*m) == 0){
 						i = 0;
-						arr.push('</table><hr style="page-break-after:always">');	//分页
+						arr.push('</table><hr style="page-break-after:always; border:none;">');	//分页
 					}
 				});
 				$("#cover").html(arr.join(""));

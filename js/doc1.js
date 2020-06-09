@@ -11,7 +11,7 @@ var item = "";
 var memo = "";
 var currHost = Session("user_host");
 var host = "";
-
+var uploadURL = getSysEnv("NODE_ENV_UPLOAD_URL");
 
 if (String(Request.QueryString("op")) != "undefined" && 
     String(Request.QueryString("op")) != "") { 

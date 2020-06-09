@@ -28,7 +28,6 @@
 	var nodeID = "";
 	var op = 0;
 	var updateCount = 0;
-	var username = "";
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";
@@ -47,72 +46,37 @@
 		$("#save").click(function(){
 			saveNode();
 		});
-		$("#close").click(function(){
-			jConfirm('你确定要禁用这个学员用户吗?', '确认对话框', function(r) {
-				if(r){
-					$.get("studentControl.asp?op=setStatus&nodeID=" + $("#studentID").val() + "&status=1&times=" + (new Date().getTime()),function(data){
-						jAlert("成功禁用！","信息提示");
-						getNodeInfo(nodeID);
-						updateCount += 1;
-					});
-				}
-			});
-		});
-		$("#open").click(function(){
-			jConfirm('你确定要解禁这个学员用户吗?', '确认对话框', function(r) {
-				if(r){
-					$.get("studentControl.asp?op=setStatus&nodeID=" + $("#studentID").val() + "&status=0&times=" + (new Date().getTime()),function(data){
-						jAlert("成功解禁！","信息提示");
-						getNodeInfo(nodeID);
-						updateCount += 1;
-					});
-				}
-			});
-		});
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
 	function getNodeInfo(id){
-		$.get("studentControl.asp?op=getNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
+		$.get("diplomaControl.asp?op=getNeedDiplomaNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
+			var c = "";
 			ar = unescape(re).split("|");
 			if(ar > ""){
-				$("#studentID").val(ar[0]);
-				$("#name").val(ar[2]);
+				$("#ID").val(ar[0]);
 				$("#username").val(ar[1]);
-				$("#sexName").val(ar[8]);
-				$("#age").val(ar[9]);
-				$("#mobile").val(ar[7]);
-				$("#phone").val(ar[17]);
-				$("#email").val(ar[16]);
-				$("#kindName").val(ar[6]);
-				$("#status").val(ar[3]);
-				$("#statusName").val(ar[4]);
-				$("#limitDate").val(ar[20]);
-				$("#hostName").val(ar[12]);
-				$("#dept1Name").val(ar[13]);
-				$("#dept2Name").val(ar[14]);
-				$("#job").val(ar[18]);
-				$("#memo").val(ar[10]);
-				$("#regDate").val(ar[11]);
+				$("#name").val(ar[2]);
+				$("#kindName").val(ar[15]);
+				$("#certName").val(ar[4]);
+				$("#sexName").val(ar[5]);
+				$("#age").val(ar[6]);
+				$("#job").val(ar[10]);
+				$("#endDate").val(ar[11]);
+				$("#hostName").val(ar[8]);
+				$("#dept1Name").val(ar[9]);
+				$("#memo").val(ar[16]);
+				$("#mobile").val(ar[14]);
 				$("#upload1").html("<a href='javascript:showLoadFile(\"student_photo\",\"" + ar[1] + "\",\"student\");' style='padding:3px;'>上传</a>");
 				var c = "";
-				if(ar[21] > ""){
-					c += "<a href='/users" + ar[21] + "' target='_blank'>照片</a>";
-				}
-				if(ar[22] > ""){
-					c += "&nbsp;&nbsp;<a href='/users" + ar[22] + "' target='_blank'>身份证正面</a>";
-				}
-				if(ar[23] > ""){
-					c += "&nbsp;&nbsp;<a href='/users" + ar[23] + "' target='_blank'>身份证反面</a>";
-				}
-				if(ar[24] > ""){
-					c += "&nbsp;&nbsp;<a href='/users" + ar[24] + "' target='_blank'>学历证书</a>";
+				if(ar[13] > ""){
+					c += "<a href='/users" + ar[13] + "' target='_blank'>照片</a>";
 				}
 				if(c == ""){c = "&nbsp;&nbsp;还未上传";}
 				$("#photo").html(c);
-				//getDownloadFile("studentID");
+				//getDownloadFile("studentNeedDiplomaID");
 				setButton();
 			}else{
 				jAlert("该信息未找到！","信息提示");
@@ -127,7 +91,7 @@
 			return false;
 		}
 		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-		$.get("studentControl.asp?op=setMemo&nodeID=" + $("#studentID").val() + "&item=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("diplomaControl.asp?op=setNeedDiplomaMemo&nodeID=" + $("#ID").val() + "&item=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -141,27 +105,13 @@
 	
 	function setButton(){
 		$("#reply").hide();
-		$("#save").hide();
-		$("#open").hide();
-		$("#close").hide();
 		$("#upload1").hide();
 		if(checkPermission("messageAdd")){
 			$("#reply").show();
 		}
-		if(checkPermission("studentAdd")){
-			$("#open").show();
-			$("#close").show();
-			$("#save").show();
-		}
 		if(checkPermission("studentPhoto")){
 			$("#upload1").show();
 		}
-		if($("#status").val()==0){
-			$("#open").hide();
-		}else{
-			$("#close").hide();
-		}
-
 	}
 	
 	function setEmpty(){
@@ -186,9 +136,9 @@
 			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
-				<td align="right">姓名</td><input type="hidden" id="studentID" />
+				<td align="right">姓名</td><input type="hidden" id="ID" />
 				<td><input class="readOnly" type="text" id="name" size="25" readOnly="true" /></td>
-				<td align="right">身份证</td><input type="hidden" id="status" />
+				<td align="right">身份证</td>
 				<td><input class="readOnly" type="text" id="username" size="25" readOnly="true" /></td>
 			</tr>
 			<tr>
@@ -198,47 +148,35 @@
 				<td><input class="readOnly" type="text" id="age" size="25" readOnly="true" /></td>
 			</tr>
 			<tr>
-				<td align="right">手机</td>
-				<td><input class="readOnly" type="text" id="mobile" size="25" readOnly="true" /></td>
-				<td align="right">电话</td>
-				<td><input class="readOnly" type="text" id="phone" size="25" readOnly="true" /></td>
-			</tr>
-			<tr>
-				<td align="right">邮箱</td>
-				<td><input class="readOnly" type="text" id="email" size="25" readOnly="true" /></td>
-				<td align="right">类型</td>
-				<td><input class="readOnly" type="text" id="kindName" size="25" readOnly="true" /></td>
-			</tr>
-			<tr>
-				<td align="right">状态</td>
-				<td><input class="readOnly" type="text" id="statusName" size="25" readOnly="true" /></td>
-				<td align="right">有效期</td>
-				<td><input class="readOnly" type="text" id="limitDate" size="25" readOnly="true" /></td>
-			</tr>
-			<tr>
 				<td align="right">公司</td>
 				<td><input class="readOnly" type="text" id="hostName" size="25" readOnly="true" /></td>
-				<td align="right">一级部门</td>
+				<td align="right">部门</td>
 				<td><input class="readOnly" type="text" id="dept1Name" size="25" readOnly="true" /></td>
 			</tr>
 			<tr>
-				<td align="right">二级部门</td>
-				<td><input class="readOnly" type="text" id="dept2Name" size="25" readOnly="true" /></td>
-				<td align="right">岗位</td>
+				<td align="right">工种</td>
 				<td><input class="readOnly" type="text" id="job" size="25" readOnly="true" /></td>
+				<td align="right">手机</td>
+				<td><input class="readOnly" type="text" id="mobile" size="25" readOnly="true" /></td>
+			</tr>
+			<tr>
+				<td align="right">类别</td>
+				<td><input class="readOnly" type="text" id="kindName" size="25" readOnly="true" /></td>
+				<td align="right">证书</td>
+				<td><input class="readOnly" type="text" id="certName" size="25" readOnly="true" /></td>
+			</tr>
+			<tr>
+				<td align="right">结束日期</td>
+				<td><input class="readOnly" type="text" id="endDate" size="25" readOnly="true" /></td>
+				<td align="right">资料</td>
+				<td>
+					<span id="upload1" style="margin-left:10px;border:1px solid orange;"></span>
+					<span id="photo" style="margin-left:10px;"></span>
+				</td>
 			</tr>
 			<tr>
 				<td align="right">备注</td>
 				<td colspan="5"><input type="text" id="memo" size="70" /></td>
-			</tr>
-			<tr>
-				<td align="right">注册日期</td>
-				<td><input class="readOnly" type="text" id="regDate" size="25" readOnly="true" /></td>
-				<td align="right">资料</td>
-				<td>
-					<span id="upload1" style="margin-left:20px;border:1px solid orange;"></span>
-					<span id="photo" style="margin-left:20px;"></span>
-				</td>
 			</tr>
 			</table>
 			</form>
@@ -250,8 +188,6 @@
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
   	<input class="button" type="button" id="reply" name="reply" value="发通知" />&nbsp;
   	<input class="button" type="button" id="save" name="save" value="保存备注" />&nbsp;
-  	<input class="button" type="button" id="open" name="open" value="解禁" />&nbsp;
-  	<input class="button" type="button" id="close" name="close" value="禁用" />&nbsp;
   </div>
 </div>
 </body>
