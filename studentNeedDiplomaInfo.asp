@@ -64,7 +64,7 @@
 				$("#sexName").val(ar[5]);
 				$("#age").val(ar[6]);
 				$("#job").val(ar[10]);
-				$("#endDate").val(ar[11]);
+				$("#closeDate").val(ar[11]);
 				$("#hostName").val(ar[8]);
 				$("#dept1Name").val(ar[9]);
 				$("#memo").val(ar[16]);
@@ -167,7 +167,7 @@
 			</tr>
 			<tr>
 				<td align="right">结束日期</td>
-				<td><input class="readOnly" type="text" id="endDate" size="25" readOnly="true" /></td>
+				<td><input class="readOnly" type="text" id="closeDate" size="25" readOnly="true" /></td>
 				<td align="right">资料</td>
 				<td>
 					<span id="upload1" style="margin-left:10px;border:1px solid orange;"></span>
