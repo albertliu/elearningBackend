@@ -16,6 +16,7 @@
 <script language="javascript">
 	var refID = 0;
 	var updateCount = 0;
+	var uploadURL = "<%=uploadURL%>";
 	$(document).ready(function (){
 		refID = "<%=refID%>";
 		$.ajaxSetup({ 
