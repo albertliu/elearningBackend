@@ -27,7 +27,7 @@
 	});
 
 	function getNodeInfo(id){
-		$.getJSON("http://127.0.0.1:8081/public/getDiplomaListByBatchID?refID=" + id,function(data){
+		$.getJSON(uploadURL + "/public/getDiplomaListByBatchID?refID=" + id,function(data){
 			//jAlert(unescape(data));
 			var ar0 = new Array();
 			var c = "";

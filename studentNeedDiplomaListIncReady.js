@@ -22,7 +22,7 @@
 				return false;
 			}
 			//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
-			$.getJSON("http://127.0.0.1:8081/outfiles/generate_diploma_byCertID?certID=" + $("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser ,function(data){
+			$.getJSON(uploadURL + "/outfiles/generate_diploma_byCertID?certID=" + $("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser ,function(data){
 				jAlert("证书颁发成功 <a href='users/" + data["filename"] + "'>下载文件</a>");
 				getStudentNeedDiplomaList();
 			});
