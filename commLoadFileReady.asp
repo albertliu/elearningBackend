@@ -20,7 +20,7 @@
  					document.getElementById("lightLoadFile").style.display="none";
 					document.getElementById("fadeLoadFile").style.display="none";
 					getNodeInfo(nodeID);
-	                //alert(data);
+	                updateCount += 1;
                 },
                 error:function(e){
 					document.getElementById("lightLoadFile").style.display="none";

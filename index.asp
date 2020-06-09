@@ -93,6 +93,8 @@
 	<!--#include file="userListIncReady.js"-->
 	<!--#include file="deptListIncReady.js"-->
 	<!--#include file="hostListIncReady.js"-->
+	<!--#include file="studentNeedDiplomaListIncReady.js"-->
+	<!--#include file="generateDiplomaListIncReady.js"-->
 
 	unitListLong = 0;
 	memoListLong = 0;
@@ -398,7 +400,22 @@
 					</div>
 					
 					<div id="fragment-3">
-						<!--#include file="diplomaListIncDetail.js"-->
+						<div id="dhtmlgoodies_tabView2" style="float:left;width:44%;">
+							<div id="dtab20" class="dhtmlgoodies_aTab">
+								<!--#include file="diplomaListIncDetail.js"-->
+							</div>
+							<div id="dtab21" class="dhtmlgoodies_aTab">
+								<!--#include file="studentNeedDiplomaListIncDetail.js"-->
+							</div>
+							<div id="dtab22" class="dhtmlgoodies_aTab">
+								<!--#include file="generateDiplomaListIncDetail.js"-->
+							</div>
+							<div id="dtab23" class="dhtmlgoodies_aTab">
+							</div>
+						</div>
+						<script type="text/javascript">
+							initTabs('dhtmlgoodies_tabView2',Array("证书查询","证书制作","打印证书","换证提醒"),0,960,400);
+						</script>
 					</div>
 					
 					<div id="fragment-4">
@@ -437,10 +454,10 @@
 								<div style="float:right;width:55%;">
 								</div>
 							</div>
-							<div id="dtab3" class="dhtmlgoodies_aTab">
+							<div id="dtab6" class="dhtmlgoodies_aTab">
 								<!--#include file="hostListIncDetail.js"-->
 							</div>
-							<div id="dtab3" class="dhtmlgoodies_aTab">
+							<div id="dtab7" class="dhtmlgoodies_aTab">
 								<!--#include file="deptListIncDetail.js"-->
 							</div>
 						</div>
