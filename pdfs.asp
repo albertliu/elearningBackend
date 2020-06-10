@@ -58,24 +58,24 @@
 					arr.push('</div>');
 					arr.push('<div style="clear: both;"></div>');
 					arr.push('<hr size=2 color="red">');
-					arr.push('<div style="float:left;width:32%;">');
+					arr.push('<div style="float:left;width:30%;">');
 					if(val["photo_filename"]==''){
 						c = '/images/blankphoto.png';
 					}else{
 						c = "/users" + val["photo_filename"];
 					}
-					arr.push('	<img src="' + c + '" style="width:180px;padding-top:50px;padding-left:30px;">');
+					arr.push('	<img src="' + c + '" style="width:50mm;padding-top:10mm;padding-left:7mm;">');
 					arr.push('</div>');
-					arr.push('<div style="float:right;width:67%;">');
+					arr.push('<div style="float:right;width:69%;">');
 					arr.push('	<table>');
 					arr.push('		<tr>');
-					arr.push('			<td><h3>单&nbsp;位：</h3></td>');
+					arr.push('			<td width="28%"><h3>单&nbsp;位：</h3></td>');
 					if(val["host"]=='spc' && val["dept1Name"]=="公司本部"){
 						c = "上海石油分公司";
 					}else{
 						c = val["dept1Name"];
 					}
-					arr.push('			<td class="foot"><h3>' + c + '</h3></td>');
+					arr.push('			<td class="foot" width="72%"><h3>' + c + '</h3></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
 					arr.push('			<td><h3>姓&nbsp;名：</h3></td>');
@@ -116,7 +116,7 @@
 				$("#cover").html(arr.join(""));
 				if(certID=='C5'){	//施工作业上岗证
 					//减小行距和字体
-					$("h3").css({'padding-top': '9px', 'font-size': '24px'});
+					$("h3").css({'padding-top': '7px', 'font-size': '22px'});
 				}
 			}
 		});

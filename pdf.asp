@@ -44,7 +44,7 @@
 					//显示工种
 					$("#item_job").show();
 					//减小行距和字体
-					$("h3").css({'padding-top': '9px', 'font-size': '24px'});
+					$("h3").css({'padding-top': '7px', 'font-size': '22px'});
 				}else{
 					$("#item_job").hide();
 				}
@@ -77,14 +77,14 @@
 </div>
 <div style="clear: both;"></div>
 <hr size=2 color="red">
-<div style="float:left;width:32%;">
-	<img id="photo_filename" src="" style="width:180px;padding-top:50px;padding-left:30px;">
+<div style="float:left;width:30%;">
+	<img id="photo_filename" src="" style="width:50mm;padding-top:10mm;padding-left:7mm;">
 </div>
-<div style="float:right;width:67%;">
+<div style="float:right;width:69%;">
 	<table>
 		<tr>
-			<td><h3>单&nbsp;位：</h3></td>
-			<td class="foot"><h3 id="dept1Name"></h3></td>
+			<td width="28%"><h3>单&nbsp;位：</h3></td>
+			<td class="foot" width="72%"><h3 id="dept1Name"></h3></td>
 		</tr>
 		<tr>
 			<td><h3>姓&nbsp;名：</h3></td>
