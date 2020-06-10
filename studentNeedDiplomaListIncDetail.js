@@ -9,7 +9,7 @@
 						    <span style="float:right;">
 								<input class="button" type="button" id="btnStudentNeedDiplomaIssue" value="发放证书">
 								&nbsp;&nbsp;
-								<input class="button" type="button" id="btnDownLoad13" onClick="outputFloat(13,'file')" value="下载">
+								<input class="button" type="button" id="btnDownLoad32" onClick="outputFloat(32,'file')" value="下载">
 							</span>
 				        </form>
 							</div>

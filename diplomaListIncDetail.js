@@ -11,7 +11,7 @@
 				          </span>
 							    &nbsp;有效日期&nbsp;<input type="text" id="searchDiplomaStartDate" size="8" />-<input type="text" id="searchDiplomaEndDate" size="8" />
 						      <span style="float:right;">
-								    <input class="button" type="button" name="btnDownLoad21" id="btnDownLoad21" onClick="outputFloat(12,'file')" value="下载">
+								    <input class="button" type="button" id="btnDownLoad31" onClick="outputFloat(31,'file')" value="下载">
 							    </span>
 				        </form>
 							</div>

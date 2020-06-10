@@ -57,7 +57,7 @@ if(op == "getDiplomaList"){
 	}
 	sql = " FROM v_studentDiplomaList " + where;
 	result = getBasketTip(sql,"");
-	ssql = "SELECT diplomaID,certName,statusName,term,startDate,endDate,agencyName,username,name,sexName,age,hostName,dept1Name,dept2Name,mobile,email,memo,regDate,registerName" + sql + " order by diplomaID";
+	ssql = "SELECT diplomaID,certName,statusName,term,startDate,endDate,agencyName,username,name,sexName,age,hostName,dept1Name,dept2Name,job,mobile,email,memo,regDate,registerName" + sql + " order by diplomaID";
 	sql = "SELECT top " + basket + " *" + sql + " order by diplomaID";
 	
 	rs = conn.Execute(sql);
@@ -160,7 +160,7 @@ if(op == "getStudentNeedDiplomaList"){
 	}
 	sql = " FROM v_studentCertList where type=1 and result=1 and diplomaID=''" + where;
 	result = getBasketTip(sql,"");
-	ssql = "SELECT username,name,sexName,age,certName,hostName,dept1Name,dept2Name,mobile,email,endDate,agencyName,memo" + sql + " order by name";
+	ssql = "SELECT username,name,sexName,age,certName,agencyName,hostName,dept1Name,dept2Name,job,mobile,closeDate,examScore,memo" + sql + " order by name";
 	sql = "SELECT top " + basket + " *" + sql + " order by ID";
 	
 	rs = conn.Execute(sql);
