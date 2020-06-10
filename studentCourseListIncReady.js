@@ -67,7 +67,6 @@
 				arr.push("<th width='12%'>部门</th>");
 			}
 			arr.push("<th width='7%'>课时</th>");
-			arr.push("<th width='5%'>进度</th>");
 			arr.push("<th width='6%'>状态</th>");
 			arr.push("<th width='9%'>选课</th>");
 			arr.push("<th width='6%'>成绩</th>");
@@ -98,7 +97,6 @@
 						arr.push("<td class='left'>" + ar1[13] + "</td>");
 					}
 					arr.push("<td class='left'>" + ar1[9] + "</td>");
-					arr.push("<td class='left'>" + ar1[10] + "%</td>");
 					arr.push("<td class='left'>" + ar1[4] + "</td>");
 					arr.push("<td class='left'>" + ar1[11] + "</td>");
 					arr.push("<td class='left'>" + ar1[15] + "</td>");
@@ -108,7 +106,6 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
-			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
