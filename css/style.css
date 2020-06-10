@@ -46,6 +46,7 @@ h3 {
 }
 td.foot {
   border-bottom:#888 solid 1px;
+  text-align: center;
 }
 .login-form-wrap > h5 > a {
   font-size: 14px;
