@@ -18,7 +18,7 @@
 <link href="css/data_table.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/ddaccordion.css">
 <link href="css/asyncbox/asyncbox.css" type="text/css" rel="stylesheet" />
-	<link rel="stylesheet" href="css/tab-view.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="css/tab-view.css?v=1.0" type="text/css" media="screen">
         <link rel="stylesheet" href="css/jquery.tabs.css" type="text/css" media="print, projection, screen">
         <!-- Additional IE/Win specific style sheet (Conditional Comments) -->
         <!--[if lte IE 7]>

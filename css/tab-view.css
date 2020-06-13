@@ -3,9 +3,9 @@
 		border-bottom:1px solid #919b9c;
 	}
 	.dhtmlgoodies_aTab{
-		border-left:1px solid #919b9c;
-		border-right:1px solid #919b9c;
-		border-bottom:1px solid #919b9c;
+		border-left:0px solid #919b9c;
+		border-right:0px solid #919b9c;
+		border-bottom:0px solid #919b9c;
 		font-family: Trebuchet MS, Lucida Sans Unicode, Arial, sans-serif;
 		padding:5px;		
 	}
