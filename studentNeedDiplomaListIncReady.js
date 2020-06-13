@@ -107,6 +107,9 @@
 					}
 					arr.push("<td class='left'>" + ar1[10] + "</td>");
 					arr.push("<td class='left'>" + ar1[11] + "</td>");
+					if($("#searchStudentNeedDiplomaShowPhoto").attr("checked")){
+						imgChk = "<img src='users" + ar1[13] + "' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'>";
+					}
 					if(ar1[13]==0){
 						arr.push("<td class='center'>&nbsp;</td>");
 					}else{

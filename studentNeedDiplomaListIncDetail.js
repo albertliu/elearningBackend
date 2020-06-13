@@ -6,6 +6,7 @@
 					          &nbsp;&nbsp;公司&nbsp;<select id="searchStudentNeedDiplomaHost" style="width:150px"></select>&nbsp;&nbsp;
 					          证书&nbsp;<select id="searchStudentNeedDiplomaCert" style="width:120px"></select>&nbsp;&nbsp;
 		          			<input style="border:0px;" type="checkbox" id="searchStudentNeedDiplomaPhoto" value="">&nbsp;缺照片&nbsp;&nbsp;
+		          			<input style="border:0px;" type="checkbox" id="searchStudentNeedDiplomaShowPhoto" value="">&nbsp;显示照片&nbsp;&nbsp;
 						    <span style="float:right;">
 								<input class="button" type="button" id="btnStudentNeedDiplomaIssue" value="发放证书">
 								&nbsp;&nbsp;
