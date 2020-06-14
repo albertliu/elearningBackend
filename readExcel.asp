@@ -24,7 +24,7 @@ conn1.ConnectionString = "Data Source=" + fileName + ";Extended Properties=Excel
 conn1.CursorLocation = 1;
 conn1.Open;
 
-if (kindID=="getNoUnitDismissList"){	//导入退工单
+if (kindID=="getStudentList"){	//导入学员名单
 	fCount = 19;
 	sql = "select * from [ListView$]";
 	rs.ActiveConnection = conn1;

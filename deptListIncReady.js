@@ -2,7 +2,11 @@
 	var deptListChk = 0;
 
 	$(document).ready(function (){
-		getDeptList(8);
+		$.get("deptControl.asp?op=getRootDeptByHost&refID=" + currHost + "&times=" + (new Date().getTime()),function(re){
+			if(re>0){
+				getDeptList(re);
+			}
+		});
 	});
 
 	function getDeptList(id){

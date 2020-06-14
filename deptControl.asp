@@ -62,4 +62,14 @@ if(op == "getDeptJson"){
 	//Response.Write(escape(sql));
 }
 
+if(op == "getRootDeptByHost"){
+	result = 0;
+	sql = "SELECT deptID as ID FROM deptInfo a where pID=0 and host='" + refID + "'";
+	rs = conn.Execute(sql);
+	if(!rs.EOF){
+		result = rs("ID").value;
+	}
+	rs.Close();
+	Response.Write(result);
+}	
 %>

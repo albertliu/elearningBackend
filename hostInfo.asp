@@ -33,7 +33,7 @@
 		nodeID = "<%=nodeID%>";
 		op = "<%=op%>";
 		
-		getDicList("student","kindID",0);
+		getDicList("hostKind","kindID",0);
 		getDicList("statusEffect","status",0);
 		
 		$.ajaxSetup({ 
@@ -159,6 +159,7 @@
 		$("#hostID").val(0);
 		$("#hostName").val("");
 		$("#status").val(0);
+		$("#kindID").val(0);
 		$("#linker").val("");
 		$("#phone").val("");
 		$("#email").val("");

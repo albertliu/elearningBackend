@@ -4,6 +4,12 @@
 	$(document).ready(function (){
 		getDicList("statusEffect","searchHostStatus",1);
 		getDicList("hostKind","searchHostKind",1);
+		if(checkPermission("hostAdd")){
+			$("#btnAddHost").show();
+		}
+		$("#btnAddHost").click(function(){
+			showHostInfo(0,0,1,1);	//showHostInfo(nodeID,refID,op,mark) op:0 浏览 1 新增  2 编辑  3 删除  4 审批; mark:0 不动作  1 有修改时刷新列表
+		});
 		
 		$("#btnSearchHost").click(function(){
 			getHostList();
@@ -39,10 +45,10 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
-			arr.push("<th width='24%'>公司名称</th>");
+			arr.push("<th width='20%'>公司名称</th>");
 			arr.push("<th width='12%'>公司简称</th>");
 			arr.push("<th width='8%'>标识</th>");
-			arr.push("<th width='8%'>类型</th>");
+			arr.push("<th width='10%'>类型</th>");
 			arr.push("<th width='8%'>状态</th>");
 			arr.push("<th width='10%'>联系人</th>");
 			arr.push("<th width='12%'>电话</th>");

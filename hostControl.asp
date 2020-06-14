@@ -37,6 +37,25 @@ if(op == "getNodeInfo"){
 	Response.Write(escape(result));
 }
 
+if(op == "update"){
+	result = 0;
+	if(result == 0){
+		sql = "exec updateHostInfo " + nodeID + "," + refID + ",'" + unescape(String(Request.QueryString("hostName"))) + "','" + unescape(String(Request.QueryString("title"))) + "'," + kindID + "," + status + ",'" + unescape(String(Request.QueryString("linker"))) + "','" + unescape(String(Request.QueryString("phone"))) + "','" + unescape(String(Request.QueryString("email"))) + "','" + unescape(String(Request.QueryString("address"))) + "','" + memo + "','" + currUser + "'";
+
+		execSQL(sql);
+		if(nodeID == 0){
+			//这是一个新增的记录
+			sql = "SELECT hostID as maxID FROM hostInfo where hostNo='" + refID + "'";
+			rs = conn.Execute(sql);
+			nodeID = rs("maxID");
+		}
+	}
+
+	result += "|" + nodeID;
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}
+
 if(op == "delNode"){
 	sql = "exec delHostInfo '" + nodeID + "','" + item + "','" + currUser + "'";
 	execSQL(sql);
