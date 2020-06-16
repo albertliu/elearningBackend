@@ -24,16 +24,32 @@ conn1.ConnectionString = "Data Source=" + fileName + ";Extended Properties=Excel
 conn1.CursorLocation = 1;
 conn1.Open;
 
-if (kindID=="getStudentList"){	//导入学员名单
-	fCount = 19;
-	sql = "select * from [ListView$]";
+if (kindID=="importStudentList"){	//导入学员名单
+	fCount = 10;
+	//get companyID for current host
+	var companyID = 0;
+	sql = "select deptID from deptInfo where host='" + currHost + "' and pID=0";
+	var rs2 = conn.Execute(sql);
+	if(!rs2.EOF){
+		companyID = rs2("deptID").value;
+	}
+	rs2.close();
+
+	var password = "";
+	sql = "select item from dictionaryDoc where kind='studentPasswd' and status=0";
+	rs2 = conn.Execute(sql);
+	if(!rs2.EOF){
+		password = rs2("item").value;
+	}
+	rs2.close();
+
+	sql = "select * from [Sheet$]";
 	rs.ActiveConnection = conn1;
 	rs.Open(sql);
 
 	result = "";
 	var b = 0;		//重复的数据
 	var c = 0;		//实际导入的数据
-	var d = 0;		//无匹配单位的数据
 	var rs1;
 	if(!rs.EOF){
 		try{
@@ -41,17 +57,22 @@ if (kindID=="getStudentList"){	//导入学员名单
 				b = -1;		//格式错误
 			}
 			while(!rs.EOF && rs(3).value != null && b > -1){
-				sql = "select ID from archivesMerge where archiveID='" + rs(3).value + "' and dismissDate='" + rs(6).value + "'";
+				//查找学员信息
+				sql = "select 1 from studentInfo where username='" + rs(2).value + "'";
 				rs1 = conn.Execute(sql);
 				if(!rs1.EOF){
-					//the record has existed in current table, don't recover it, but tell an alert message to program.
-					result += ",&nbsp;" + rs(3).value + "&nbsp;" + rs(2).value;
-					//result += ",&nbsp;" + rs("证件号码").value + "&nbsp;" + rs("姓名").value;
+					//the record has existed in studentInfo table, ignore it, and tell an message to program.
+					result += ",&nbsp;" + rs(2).value + "&nbsp;" + rs(1).value;
 					b += 1;
 				}else{
-					if(rs(3).value > "" && rs(3).value != "证件号码"){
-						//sql = "insert into archivesMerge(kind,archiveID,name,unitName,dismissDate,regLinker,memo,item,regOperator) values(1,'" + rs("证件号码").value + "','" + rs("姓名").value + "','" + rs("单位名称").value + "','" + rs("退工登记日期").value + "','" + rs("工作结束日期").value + "','" + rs("档案所在地备注").value + "','退工单','" + currUser + "')";
-						sql = "insert into archivesMerge(kind,archiveID,name,unitName,dismissDate,regLinker,memo,subKind,note,item,regOperator) values(1,'" + rs(3).value + "','" + rs(2).value + "','" + rs(5).value + "','" + rs(6).value + "','" + rs(17).value + " " + rs(18).value + "','" + rs(16).value + "','退工单',1,'" + rs(5).value + "(退工单)','" + currUser + "')";
+					if(rs(2).value > "" && rs(2).value != "身份证"){
+						//add a new student to system
+						//@mark int,@username varchar(50),@name nvarchar(50),@password varchar(50),@kindID int,@companyID varchar(50),@dept1 varchar(50),@dept1Name nvarchar(100),@dept2 varchar(50),@dept3 varchar(50),@job varchar(50),@mobile nvarchar(50),@phone nvarchar(50),@email nvarchar(50),@limitDate varchar(50),@memo nvarchar(500),@host varchar(50),@registerID varchar(50)
+						//@mark:0 new user; 1 update user
+						sql = "exec updateStudentInfo 0,'" + rs(2).value + "','" + rs(1).value + "','" + password + "',0," + companyID + ",dbo.getDeptIDbyName('" + rs(3).value + "','" + currHost + "'),'','','','" + rs(4).value + "','" + rs(5).value + "','" + rs(6).value + "','" + rs(7).value + "','','" + rs(8).value + "','" + currHost + "','" + currUser + "')";
+						execSQL(sql);
+						//add course info to this student
+						sql = "exec addnewStudentCert '" + rs(2).value + "',0,'" + rs(9).value + "'";
 						execSQL(sql);
 						c += 1;
 					}
@@ -62,19 +83,7 @@ if (kindID=="getStudentList"){	//导入学员名单
 		}catch(e){
 			b = -1;
 			c = 0;
-			d = 0;
 		}
-	}
-	
-	if(c > 0){		//如果有数据导入，需要进一步处理
-		sql = "exec dealDismissOrder '" + currUser + "'";
-		execSQL(sql);
-		sql = "select count(*) as count from archivesMerge where mark=0 and unitID=0 and status=0 and regOperator= '" + currUser + "'";
-		var rs2 = conn.Execute(sql);
-		if(!rs2.EOF){
-			d = rs2("count").value;
-		}
-		rs2.close();
 	}
 	
 	if(result > ""){
@@ -83,8 +92,7 @@ if (kindID=="getStudentList"){	//导入学员名单
 	rs.close();
 	conn1.close();
 	
-	result = b + "|" + c + "|" + d + "|" + result;
-	Session(kindID) = "select archiveID,name,unitName,dismissDate,memo from archivesMerge where mark=0 and unitID=0 and status=0 and regOperator= '" + currUser + "'";
+	result = b + "|" + c + "|" + result;
 	Response.Write(escape(result));
 }
 

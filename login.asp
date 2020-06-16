@@ -39,6 +39,7 @@ if(op == "login"){
 			Session("user_id") = rs("userID").value;
 			Session("user_host") = currHost;
 			Session("user_hostName") = rs("hostName").value;
+			Session("user_hostKind") = rs("hostKind").value;
 			Session.Timeout=360; //SEESION有效时间为360分钟
 		}
 		result = rs("e").value + "|" + rs("msg").value+"|"+currHost;

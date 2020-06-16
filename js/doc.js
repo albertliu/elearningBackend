@@ -27,6 +27,7 @@ var item = "";
 var memo = "";
 var mySection = 0;	//本区编号
 var currHost = Session("user_host");
+var currHostKind = Session("user_hostKind");
 var host = "";
 
 

@@ -194,7 +194,6 @@ if(op == "getNeedDiplomaNodeInfo"){
 	//Response.Write(escape(sql));
 }	
 
-
 if(op == "getGenerateDiplomaList"){
 	result = "";
 	var s = "";
@@ -298,25 +297,12 @@ if(op == "setGenerateDiplomaMemo"){
 		execSQL(sql);
 	}
 	Response.Write(escape(result));
+}
+
 }if(op == "delNode"){
 	sql = "exec delDiplomaList '" + nodeID + "','" + where + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(nodeID);
 }
-/*
-if(op == "generateDiploma"){
-	result = "";
-	sql = "SELECT * FROM dbo.getDiplomaData('" + refID + "','" + host + "')";
-	rs = conn.Execute(sql);
-	if(!rs.EOF){
-		result = rs("diplomaID").value + "|" + rs("username").value + "|" + rs("certName").value + "|" + rs("term").value + "|" + rs("startDate").value + "|" + rs("endDate").value;
-		//6
-		result += "|" + rs("hostName").value + "|" + rs("dept1Name").value "|" + rs("job").value + "|" + rs("logo").value + "|" + rs("photo").value;
-	}
-	rs.Close();
-	Response.Write(escape(result));
-	//Response.Write(escape(sql));
-}	
-*/
 
 %>

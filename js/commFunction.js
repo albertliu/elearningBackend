@@ -14,6 +14,7 @@
 	var currUnitID = 0;
 	var currUnitName = "";
 	var currHost = "";
+	var currHostKind = "";
 	var floatTitle = "";	//excel file's title in the 1st row, if it's blank then keep the excel's present one.
 	var floatItem = "";		//write to excel file's 2nd row
 	var floatLog = "";		//write to excel file's 3rd row
@@ -58,7 +59,8 @@
 		currMonth = ar[4];
 		currWeek = ar[5];
 		currHost = ar[6];
-		uploadURL = ar[7];
+		currHostKind = ar[7];
+		uploadURL = ar[8];
 	});
 		
 	function chkUserActive(){
@@ -1009,6 +1011,37 @@
 				if(re>0 && mark==2){
 					//alert(iframe.getValList());
 					setObjValue("generateDiploma",iframe.getValList(),0,0);  //根据请求，返回任意个数的项目，为相应的对象赋值。objList:传入的Object列表；valList：输出的值；mark：0 不动作 1 关闭本窗口（与objList同名）; loc: 0 同级别  1 父窗体
+				}
+　　　		}
+		});
+	}
+	
+	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
+	function showGenerateStudentInfo(nodeID,refID,op,mark){
+		asyncbox.open({
+			id: "generateStudent",
+			url:"generateStudentInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
+			title: "单位信息",
+			width: 600,
+			height: 380,
+			cover : {
+	          //透明度
+	          opacity : 0,
+	          //背景颜色
+	           background : '#000'
+	          },
+
+			btnsbar : false,
+			callback : function(action,iframe){
+				setReturnLog("generateStudent",iframe.nodeID);	
+				var re = iframe.updateCount;
+				if(re>0 && mark==1){
+					getGenerateStudentList();
+				}
+				//alert(re + ":" + mark);
+				if(re>0 && mark==2){
+					//alert(iframe.getValList());
+					setObjValue("generateStudent",iframe.getValList(),0,0);  //根据请求，返回任意个数的项目，为相应的对象赋值。objList:传入的Object列表；valList：输出的值；mark：0 不动作 1 关闭本窗口（与objList同名）; loc: 0 同级别  1 父窗体
 				}
 　　　		}
 		});

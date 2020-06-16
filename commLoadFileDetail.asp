@@ -9,14 +9,14 @@
 		username = loadID;
 		mark = ref;
 		//alert(action + ":" + loadID + ":" + loadOp);
-		$("#formUpload").attr("action", action + "?upID=" + loadOp + "&username=" + loadID);
+		$("#formUpload").attr("action", action + "?upID=" + loadOp + "&username=" + loadID + "&currUser=" + currUser);
 		
 		if(mark=='student'){
 			//student material
 			arr.push('<input style="border:0px;" type="radio" id="uploadKind0" name="uploadKind" value="student_photo" />照片&nbsp;');
 			arr.push('<input style="border:0px;" type="radio" id="uploadKind1" name="uploadKind" value="student_IDcardA" />身份证正面&nbsp;');
 			arr.push('<input style="border:0px;" type="radio" id="uploadKind2" name="uploadKind" value="student_IDcardB" />身份证背面&nbsp;');
-			arr.push('<input style="border:0px;" type="radio" id="uploadKind2" name="uploadKind" value="student_education" />学历证书&nbsp;');
+			arr.push('<input style="border:0px;" type="radio" id="uploadKind3" name="uploadKind" value="student_education" />学历证书&nbsp;');
 		}
 		if(mark=='host'){
 			//host material
@@ -25,12 +25,16 @@
 		}
 		if(mark=='course'){
 			//course material
-			arr.push('<input style="border:0px;" type="radio" id="uploadKind4" name="uploadKind" value="course_video" />视频&nbsp;');
-			arr.push('<input style="border:0px;" type="radio" id="uploadKind5" name="uploadKind" value="course_courseware" />课件');
+			arr.push('<input style="border:0px;" type="radio" id="uploadKind0" name="uploadKind" value="course_video" />视频&nbsp;');
+			arr.push('<input style="border:0px;" type="radio" id="uploadKind1" name="uploadKind" value="course_courseware" />课件');
 		}
 		if(mark=='diploma'){
 			//diploma material
-			arr.push('<input style="border:0px;" type="radio" id="uploadKind3" name="uploadKind" value="student_diploma" />证书&nbsp;');
+			arr.push('<input style="border:0px;" type="radio" id="uploadKind0" name="uploadKind" value="student_diploma" />证书&nbsp;');
+		}
+		if(mark=='studentList'){
+			//student material
+			arr.push('<input style="border:0px;" type="radio" id="uploadKind0" name="uploadKind" value="student_list" />学员报名表&nbsp;');
 		}
 		$("#radioCover").html(arr.join(""));
 		$("input[value='" + loadOp + "']").attr("checked",true);
