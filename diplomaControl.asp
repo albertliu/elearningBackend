@@ -299,7 +299,7 @@ if(op == "setGenerateDiplomaMemo"){
 	Response.Write(escape(result));
 }
 
-}if(op == "delNode"){
+if(op == "delNode"){
 	sql = "exec delDiplomaList '" + nodeID + "','" + where + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(nodeID);
