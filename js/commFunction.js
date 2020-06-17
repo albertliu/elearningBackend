@@ -959,9 +959,9 @@
 		asyncbox.open({
 			id: "studentNeedDiploma",
 			url:"studentNeedDiplomaInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
-			title: "单位信息",
-			width: 600,
-			height: 380,
+			title: "学员培训信息",
+			width: 640,
+			height: 400,
 			cover : {
 	          //透明度
 	          opacity : 0,
