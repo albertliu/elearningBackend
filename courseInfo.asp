@@ -72,6 +72,10 @@
 				$("#registerName").val(ar[10]);
 				$("#host").val(ar[11]);
 				$("#certID").val(ar[13]);
+				$("#completionPass").val(ar[14]);
+				$("#deadline").val(ar[15]);
+				$("#deadday").val(ar[16]);
+				$("#period").val(ar[17]);
 				
 				//getDownloadFile("courseID");
 				setButton();
@@ -84,7 +88,7 @@
 	
 	function saveNode(){
 		//alert("nodeID=" + $("#ID").val() + "&courseID=" + $("#courseID").val() + "&courseName=" + ($("#courseName").val()) + "&hours=" + $("#hours").val() + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&memo=" + ($("#memo").val()));
-		$.get("courseControl.asp?op=update&nodeID=" + $("#ID").val() + "&courseID=" + $("#courseID").val() + "&courseName=" + escape($("#courseName").val()) + "&hours=" + $("#hours").val() + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&refID=" + $("#certID").val() + "&status=" + $("#status").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("courseControl.asp?op=update&nodeID=" + $("#ID").val() + "&courseID=" + $("#courseID").val() + "&courseName=" + escape($("#courseName").val()) + "&hours=" + $("#hours").val() + "&completionPass=" + $("#completionPass").val() + "&deadline=" + $("#deadline").val() + "&period=" + $("#period").val() + "&deadday=" + $("#deadday").val() + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&refID=" + $("#certID").val() + "&status=" + $("#status").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -159,6 +163,18 @@
 				<td><select id="kindID" style="width:100px;"></select></td>
 				<td align="right">专属公司</td>
 				<td><select id="host" style="width:180px;"></select></td>
+			</tr>
+			<tr>
+				<td align="right">培训周期</td>
+				<td><input type="text" id="period" size="15" />天</td>
+				<td align="right">完成率</td>
+				<td><input type="text" id="completionPass" size="5" />% (无证书课程)</td>
+			</tr>
+			<tr>
+				<td align="right">退课限制</td>
+				<td><input type="text" id="deadline" size="5" />% 完成率</td>
+				<td align="right">退课限制</td>
+				<td><input type="text" id="deadday" size="5" />开始天数</td>
 			</tr>
 			<tr>
 				<td align="right">说明</td>

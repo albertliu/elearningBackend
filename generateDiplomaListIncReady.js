@@ -27,7 +27,7 @@
 				}
 			}
 		});
-		getGenerateDiplomaList();
+		//getGenerateDiplomaList();
 	});
 
 	function getGenerateDiplomaList(){

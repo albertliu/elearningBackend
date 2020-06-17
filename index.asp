@@ -406,11 +406,11 @@
 					
 					<div id="fragment-3">
 						<div id="dhtmlgoodies_tabView2" style="float:left;width:44%;">
-							<div id="dtab20" class="dhtmlgoodies_aTab">
-								<!--#include file="diplomaListIncDetail.js"-->
-							</div>
 							<div id="dtab21" class="dhtmlgoodies_aTab">
 								<!--#include file="studentNeedDiplomaListIncDetail.js"-->
+							</div>
+							<div id="dtab20" class="dhtmlgoodies_aTab">
+								<!--#include file="diplomaListIncDetail.js"-->
 							</div>
 							<div id="dtab22" class="dhtmlgoodies_aTab">
 								<!--#include file="generateDiplomaListIncDetail.js"-->
@@ -419,7 +419,7 @@
 							</div>
 						</div>
 						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView2',Array("证书查询","证书制作","打印证书","换证提醒"),0,960,400);
+							initTabs('dhtmlgoodies_tabView2',Array("证书制作","证书查询","打印证书","换证提醒"),0,960,400);
 						</script>
 					</div>
 					

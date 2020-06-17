@@ -16,7 +16,7 @@
 			showCourseInfo(0,0,1,1);	//showCourseInfo(nodeID,refID,op,mark) op:0 浏览 1 新增; mark:0 不动作  1 有修改时刷新列表
 		});
 		
-		getCourseList();
+		//getCourseList();
 	});
 
 	function getCourseList(){

@@ -18,7 +18,7 @@
 			showCertInfo(0,0,1,1);	//showCertInfo(nodeID,refID,op,mark) op:0 浏览 1 新增; mark:0 不动作  1 有修改时刷新列表
 		});
 		
-		getCertList();
+		//getCertList();
 	});
 
 	function getCertList(){

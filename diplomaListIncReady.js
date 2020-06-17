@@ -39,7 +39,7 @@
 			getDiplomaList();
 		});
 
-		getDiplomaList();
+		//getDiplomaList();
 	});
 
 	function getDiplomaList(){

@@ -36,7 +36,7 @@
 			getStudentList();
 		});
 
-		getStudentList();
+		//getStudentList();
 	});
 
 	function getStudentList(){

@@ -22,7 +22,7 @@
 			$("#messageListLongItem1").hide();
 		}
 		
-		getMessageList();
+		//getMessageList();
 	});
 
 	function getMessageList(){

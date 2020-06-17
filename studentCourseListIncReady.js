@@ -34,7 +34,7 @@
 			getStudentCourseList();
 		});
 		//$("#studentCourseListLongItem1").hide();
-		getStudentCourseList();
+		//getStudentCourseList();
 	});
 
 	function getStudentCourseList(){

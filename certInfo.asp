@@ -7,7 +7,7 @@
 
 <title></title>
 
-<link href="css/style_inner1.css"  rel="stylesheet" type="text/css" />
+<link href="css/style_inner1.css?ver=1.1"  rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/easyui/easyui.css">
 <link rel="stylesheet" type="text/css" href="css/easyui/icon.css">
 <link href="css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
@@ -61,6 +61,7 @@
 				$("#certID").val(ar[1]);
 				$("#certName").val(ar[2]);
 				$("#term").val(ar[3]);
+				$("#termExt").val(ar[17]);
 				$("#kindID").val(ar[4]);
 				$("#status").val(ar[5]);
 				$("#agencyID").val(ar[8]);
@@ -81,7 +82,7 @@
 	
 	function saveNode(){
 		//alert($("#certID").val() + "&item=" + ($("#memo").val()));
-		$.get("certControl.asp?op=update&nodeID=" + $("#ID").val() + "&certID=" + $("#certID").val() + "&certName=" + escape($("#certName").val()) + "&term=" + $("#term").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&host=" + $("#host").val() + "&agencyID=" + $("#agencyID").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("certControl.asp?op=update&nodeID=" + $("#ID").val() + "&certID=" + $("#certID").val() + "&certName=" + escape($("#certName").val()) + "&term=" + $("#term").val() + "&termExt=" + $("#termExt").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&host=" + $("#host").val() + "&agencyID=" + $("#agencyID").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -160,8 +161,8 @@
 			<tr>
 				<td align="right">状态</td>
 				<td><select id="status" style="width:100px;"></select></td>
-				<td align="right">期限</td>
-				<td><input type="text" id="term" size="15" />年</td>
+				<td align="right">有效期限</td>
+				<td><input type="text" id="term" size="3" />年&nbsp;&nbsp;&nbsp;&nbsp;系统外<input type="text" id="termExt" size="3" />年</td>
 			</tr>
 			<tr>
 				<td align="right">说明</td>

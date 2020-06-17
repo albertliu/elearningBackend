@@ -15,7 +15,7 @@
 			getUserList();
 		});
 		
-		getUserList();
+		//getUserList();
 	});
 
 	function getUserList(){
