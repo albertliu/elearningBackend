@@ -21,10 +21,19 @@
 				jAlert("请选择一个证书项目。");
 				return false;
 			}
-			//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
-			$.getJSON(uploadURL + "/outfiles/generate_diploma_byCertID?certID=" + $("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser ,function(data){
-				jAlert("证书颁发成功 <a href='" + data["filename"] + "' target='_blank'>下载文件</a>");
-				getStudentNeedDiplomaList();
+			jConfirm("确定要发放证书吗？","确认",function(r){
+				if(r){
+					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
+					$.getJSON(uploadURL + "/outfiles/generate_diploma_byCertID?certID=" + $("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser ,function(data){
+						if(data["status"]==0){
+							jAlert("证书颁发成功 <a href='" + data["filename"] + "' target='_blank'>下载文件</a>");
+							getStudentNeedDiplomaList();
+						}
+						if(data["status"]==1){
+							jAlert(data["msg"]);
+						}
+					});
+				}
 			});
 	
 		});

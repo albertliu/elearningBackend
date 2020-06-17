@@ -96,6 +96,7 @@
 	<!--#include file="studentNeedDiplomaListIncReady.js"-->
 	<!--#include file="generateDiplomaListIncReady.js"-->
 	<!--#include file="generateStudentListIncReady.js"-->
+	<!--#include file="generateScoreListIncReady.js"-->
 
 	unitListLong = 0;
 	memoListLong = 0;
@@ -208,6 +209,8 @@
 		if(currHostKind==0 && currHost > ""){	//集团用户不使用导入报名表功能
 			$("#generateStudent_Tab").hide();
 			$("#tab3").hide();
+			$("#generateScore_Tab").hide();
+			$("#tab4").hide();
 		}
 		if(!checkPermission("courseAdd")){
 			deleteTab("视频管理");
@@ -349,12 +352,14 @@
 							    <li id="mTab1"><a href="#" name="#tab1">学员反馈</a></li>
 							    <li><a href="#" name="#tab2">回复信息</a></li>
 							    <li id="generateStudent_Tab"><a href="#" name="#tab3">学员报名</a></li> 
+							    <li id="generateScore_Tab"><a href="#" name="#tab4">成绩导入</a></li> 
 							</ul>
 							
 							<div id="content"> 
 							    <div id="tab1"><!--#include file="feedbackListIncDetail.js"--></div>
 							    <div id="tab2"><!--#include file="messageListIncDetail.js"--></div>
 							    <div id="tab3"><!--#include file="generateStudentListIncDetail.js"--></div>
+							    <div id="tab4"><!--#include file="generateScoreListIncDetail.js"--></div>
 							</div>
 						</div>
 						<script type="text/javascript">

@@ -1,58 +1,62 @@
-﻿	var generateStudentListLong = 0;		//0: 标准栏目  1：短栏目
-	var generateStudentListChk = 0;
+﻿	var generateScoreListLong = 0;		//0: 标准栏目  1：短栏目
+	var generateScoreListChk = 0;
 
 	$(document).ready(function (){
 		var w3 = "status=0 and hostNo='" + currHost + "'";
+		var w4 = "status=0 and (kindID=0 or host='" + currHost + "')";
 		if(currHost==""){	//公司用户只能看自己公司内容
-			getComList("searchGenerateStudentHost","hostInfo","hostNo","title","status=0 order by hostName",1);
+			getComList("searchGenerateScoreHost","hostInfo","hostNo","title","status=0 order by hostName",1);
+			getComList("searchGenerateScoreCert","certificateInfo","certID","certName","status=0 order by certID",1);
 		}else{
-			getComList("searchGenerateStudentHost","hostInfo","hostNo","title",w3,0);
+			getComList("searchGenerateScoreHost","hostInfo","hostNo","title",w3,0);
+			getComList("searchGenerateScoreCert","certificateInfo","certID","certName",w4,1);
 		}
-		$("#searchGenerateStudentStart").click(function(){WdatePicker();});
-		$("#searchGenerateStudentEnd").click(function(){WdatePicker();});
+		$("#searchGenerateScoreStart").click(function(){WdatePicker();});
+		$("#searchGenerateScoreEnd").click(function(){WdatePicker();});
 		
-		$("#btnSearchGenerateStudent").click(function(){
-			getGenerateStudentList();
+		$("#btnSearchGenerateScore").click(function(){
+			getGenerateScoreList();
 		});
 		
-		$("#btnGenerateStudentAdd").click(function(){
-			showGenerateStudentInfo(0,0,1,1);
+		$("#btnGenerateScoreAdd").click(function(){
+			showGenerateScoreInfo(0,0,1,1);
 		});
 		
-		$("#txtSearchGenerateStudent").keypress(function(event){
+		$("#txtSearchGenerateScore").keypress(function(event){
 			if(event.keyCode==13){
-				if($("#txtSearchGenerateStudent").val()>""){
-					getGenerateStudentList();
+				if($("#txtSearchGenerateScore").val()>""){
+					getGenerateScoreList();
 				}else{
 					jAlert("请输入查询条件");
 				}
 			}
 		});
-		if(!checkPermission("studentUpload")){	
-			$("#btnGenerateStudentAdd").hide();
+		if(!checkPermission("diplomaUpload")){	
+			$("#btnGenerateScoreAdd").hide();
 		}
-		//getGenerateStudentList();
+		//getGenerateScoreList();
 	});
 
-	function getGenerateStudentList(){
-		sWhere = $("#txtSearchGenerateStudent").val();
-		//alert((sWhere) + "&host=" + $("#searchGenerateStudentHost").val() + "&fStart=" + $("#searchGenerateStudentStart").val() + "&fEnd=" + $("#searchGenerateStudentEnd").val());
-		$.get("studentControl.asp?op=getGenerateStudentList&where=" + escape(sWhere) + "&host=" + $("#searchGenerateStudentHost").val() + "&fStart=" + $("#searchGenerateStudentStart").val() + "&fEnd=" + $("#searchGenerateStudentEnd").val() + "&dk=3&times=" + (new Date().getTime()),function(data){
+	function getGenerateScoreList(){
+		sWhere = $("#txtSearchGenerateScore").val();
+		//alert((sWhere) + "&kindID=" + $("#searchGenerateScoreCert").val() + "&host=" + $("#searchGenerateScoreHost").val() + "&fStart=" + $("#searchGenerateScoreStart").val() + "&fEnd=" + $("#searchGenerateScoreEnd").val());
+		$.get("studentControl.asp?op=getGenerateScoreList&where=" + escape(sWhere) + "&kindID=" + $("#searchGenerateScoreCert").val() + "&host=" + $("#searchGenerateScoreHost").val() + "&fStart=" + $("#searchGenerateScoreStart").val() + "&fEnd=" + $("#searchGenerateScoreEnd").val() + "&dk=4&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
-			$("#generateStudentCover").empty();
+			$("#generateScoreCover").empty();
 			var ar0 = new Array();
 			ar0 = ar.shift().split("|");
 			floatCount = ar0[0];
 			floatSum = "";
 			arr = [];
 			arr.push("<div>" + ar.shift() + "</div>");					
-			arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='generateStudentTab' width='99%'>");
+			arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='generateScoreTab' width='99%'>");
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
 			arr.push("<th width='15%'>标题</th>");
+			arr.push("<th width='15%'>证书名称</th>");
 			arr.push("<th width='8%'>数量</th>");
 			arr.push("<th width='15%'>公司</th>");
 			arr.push("<th width='9%'>说明</th>");
@@ -72,7 +76,8 @@
 					i += 1;
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
-					arr.push("<td class='link1'><a href='javascript:showGenerateStudentInfo(\"" + ar1[0] + "\",0,0,1);'>" + ar1[1] + "</a></td>");
+					arr.push("<td class='link1'><a href='javascript:showGenerateScoreInfo(\"" + ar1[0] + "\",0,0,1);'>" + ar1[1] + "</a></td>");
+					arr.push("<td class='left'>" + ar1[11] + "</td>");
 					arr.push("<td class='left'>" + ar1[2] + "</td>");
 					arr.push("<td class='left'>" + ar1[5] + "</td>");
 					arr.push("<td class='left'>" + ar1[7] + "</td>");
@@ -97,12 +102,13 @@
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("</tr>");
 			arr.push("</tfoot>");
 			arr.push("</table>");
-			$("#generateStudentCover").html(arr.join(""));
+			$("#generateScoreCover").html(arr.join(""));
 			arr = [];
-			$('#generateStudentTab').dataTable({
+			$('#generateScoreTab').dataTable({
 				"aaSorting": [],
 				"bFilter": true,
 				"bPaginate": true,

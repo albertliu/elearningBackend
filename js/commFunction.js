@@ -990,7 +990,7 @@
 		asyncbox.open({
 			id: "generateDiploma",
 			url:"generateDiplomaInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
-			title: "单位信息",
+			title: "发放证书",
 			width: 600,
 			height: 380,
 			cover : {
@@ -1021,7 +1021,7 @@
 		asyncbox.open({
 			id: "generateStudent",
 			url:"generateStudentInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
-			title: "单位信息",
+			title: "报名表",
 			width: 600,
 			height: 380,
 			cover : {
@@ -1042,6 +1042,37 @@
 				if(re>0 && mark==2){
 					//alert(iframe.getValList());
 					setObjValue("generateStudent",iframe.getValList(),0,0);  //根据请求，返回任意个数的项目，为相应的对象赋值。objList:传入的Object列表；valList：输出的值；mark：0 不动作 1 关闭本窗口（与objList同名）; loc: 0 同级别  1 父窗体
+				}
+　　　		}
+		});
+	}
+	
+	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
+	function showGenerateScoreInfo(nodeID,refID,op,mark){
+		asyncbox.open({
+			id: "generateScore",
+			url:"generateScoreInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
+			title: "成绩单",
+			width: 600,
+			height: 380,
+			cover : {
+	          //透明度
+	          opacity : 0,
+	          //背景颜色
+	           background : '#000'
+	          },
+
+			btnsbar : false,
+			callback : function(action,iframe){
+				setReturnLog("generateScore",iframe.nodeID);	
+				var re = iframe.updateCount;
+				if(re>0 && mark==1){
+					getGenerateScoreList();
+				}
+				//alert(re + ":" + mark);
+				if(re>0 && mark==2){
+					//alert(iframe.getValList());
+					setObjValue("generateScore",iframe.getValList(),0,0);  //根据请求，返回任意个数的项目，为相应的对象赋值。objList:传入的Object列表；valList：输出的值；mark：0 不动作 1 关闭本窗口（与objList同名）; loc: 0 同级别  1 父窗体
 				}
 　　　		}
 		});
