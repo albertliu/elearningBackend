@@ -76,7 +76,7 @@
 				$("#memo").val(ar[12]);
 				$("#regDate").val(ar[13]);
 				//$("#registerName").val(ar[15]);
-				$("#upload1").html("<a href='javascript:showLoadFile(\"course_video\",\"" + ar[1] + "\",\"course\");'>上传</a>");
+				$("#upload1").html("<a href='javascript:showLoadFile(\"course_video\",\"" + ar[1] + "\",\"course\",\"\");'>上传</a>");
 				var c = "";
 				if(ar[7] > ""){
 					c += "&nbsp;&nbsp;<a href='/users" + ar[7] + "' target='_blank'>视频</a>";

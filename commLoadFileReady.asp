@@ -9,7 +9,7 @@
 		*/
 		$("#restore").click(function(){
             var form = new FormData(document.getElementById("formUpload"));
-			var act = action + "?upID=" + $("input[name='uploadKind']:checked").val() + "&username=" + username + "&currUser=" + currUser;
+			var act = action + "?upID=" + $("input[name='uploadKind']:checked").val() + "&username=" + username + "&currUser=" + currUser + "&host=" + host;
             $.ajax({
                 url: act,
                 type:"post",

@@ -72,7 +72,7 @@
 				$("#term").val(ar[18] + '年');
 				$("#memo").val(ar[19]);
 				$("#agencyName").val(ar[20]);
-				$("#upload1").html("<a href='javascript:showLoadFile(\"student_diploma\",\"" + ar[7] + "\",\"diploma\");' style='padding:3px;'>上传</a>");
+				$("#upload1").html("<a href='javascript:showLoadFile(\"student_diploma\",\"" + ar[7] + "\",\"diploma\",\"\");' style='padding:3px;'>上传</a>");
 				c = "";
 				if(ar[24] > ""){
 					c += "&nbsp;&nbsp;<a href='/users" + ar[24] + "' target='_blank'>证书</a>";

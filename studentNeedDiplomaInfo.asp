@@ -69,7 +69,7 @@
 				$("#dept1Name").val(ar[9]);
 				$("#memo").val(ar[16]);
 				$("#mobile").val(ar[14]);
-				$("#upload1").html("<a href='javascript:showLoadFile(\"student_photo\",\"" + ar[1] + "\",\"student\");' style='padding:3px;'>上传</a>");
+				$("#upload1").html("<a href='javascript:showLoadFile(\"student_photo\",\"" + ar[1] + "\",\"student\",\"\");' style='padding:3px;'>上传</a>");
 				var c = "";
 				if(ar[13] > ""){
 					c += "<a href='/users" + ar[13] + "' target='_blank'>照片</a>";

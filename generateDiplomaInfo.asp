@@ -65,7 +65,7 @@
 				$("#memo").val(ar[10]);
 				$("#regDate").val(ar[11]);
 				$("#registerName").val(ar[12]);
-				$("#upload1").html("<a href='javascript:showLoadFile(\"gen_diploma\",\"" + ar[0] + "\",\"diploma\");' style='padding:3px;'>上传</a>");
+				$("#upload1").html("<a href='javascript:showLoadFile(\"gen_diploma\",\"" + ar[0] + "\",\"diploma\",\"\");' style='padding:3px;'>上传</a>");
 				var c = "";
 				if(ar[7] > ""){
 					c += "<a href='/users" + ar[7] + "' target='_blank'>证书打印版</a>";

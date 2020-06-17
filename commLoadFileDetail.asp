@@ -1,15 +1,15 @@
 <script language="javascript">
 	var username = "";
 	var action = uploadURL + "/outfiles/uploadSingle";
-	var mark = 0;
+	var host = "";
 	arr = [];
 	//alert(action);
 	//mark:student,host,course
-	function showLoadFile(loadOp,loadID,ref){
+	function showLoadFile(loadOp,loadID,mark,p_host){
 		username = loadID;
-		mark = ref;
+		host = p_host;
 		//alert(action + ":" + loadID + ":" + loadOp);
-		$("#formUpload").attr("action", action + "?upID=" + loadOp + "&username=" + loadID + "&currUser=" + currUser);
+		//$("#formUpload").attr("action", action + "?upID=" + loadOp + "&username=" + loadID + "&currUser=" + currUser);
 		
 		if(mark=='student'){
 			//student material

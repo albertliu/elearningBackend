@@ -92,7 +92,7 @@
 				$("#memo").val(ar[13]);
 				$("#regDate").val(ar[14]);
 				$("#registerName").val(ar[16]);
-				$("#upload1").html("<a href='javascript:showLoadFile(\"host_logo\",\"" + ar[1] + "\",\"host\");' style='padding:3px;'>上传</a>");
+				$("#upload1").html("<a href='javascript:showLoadFile(\"host_logo\",\"" + ar[1] + "\",\"host\",\"\");' style='padding:3px;'>上传</a>");
 				var c = "";
 				if(ar[12] > ""){
 					c += "<a href='/users" + ar[12] + "' target='_blank'>LOGO</a>";

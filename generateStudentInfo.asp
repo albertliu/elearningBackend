@@ -67,6 +67,13 @@
 				}
 			});
 		});
+		$("#upload1").click(function(){
+			if($("#host").val()==""){
+				jAlert("请选择一个公司。");
+				return false;
+			}
+			showLoadFile("student_list",$("#ID").val(),"studentList",$("#host").val());
+		});
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -84,7 +91,7 @@
 				$("#memo").val(ar[7]);
 				$("#regDate").val(ar[8]);
 				$("#registerName").val(ar[9]);
-				$("#upload1").html("<a href='javascript:showLoadFile(\"student_list\",\"" + ar[0] + "\",\"studentList\");' style='padding:3px;'>上传</a>");
+				$("#upload1").html("上传");
 				var c = "";
 				if(ar[6] > ""){
 					c += "<a href='/users" + ar[6] + "' target='_blank'>报名表</a>";
@@ -189,7 +196,7 @@
 				<td><select id="host" style="width:150px;"></select></td>
 				<td align="right">名单</td>
 				<td>
-					<span id="upload1" style="margin-left:10px;border:1px solid orange;"></span>
+					<span id="upload1" style="padding:3px;margin-left:10px;border:1px solid orange;"></span>
 					<span id="photo" style="margin-left:10px;"></span>
 				</td>
 			</tr>
