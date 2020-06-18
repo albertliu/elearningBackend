@@ -55,7 +55,8 @@ if(op == "getDiplomaList"){
 	if(where > ""){
 		where = " where " + where;
 	}
-	sql = " FROM v_studentDiplomaList " + where;
+	//sql = " FROM v_studentDiplomaList " + where;
+	sql = " FROM v_diplomaInfo " + where;
 	result = getBasketTip(sql,"");
 	ssql = "SELECT diplomaID,certName,statusName,term,startDate,endDate,agencyName,username,name,sexName,age,hostName,dept1Name,dept2Name,job,mobile,email,memo,regDate,registerName" + sql + " order by diplomaID";
 	sql = "SELECT top " + basket + " *" + sql + " order by diplomaID";
@@ -90,20 +91,6 @@ if(op == "getNodeInfo"){
 	rs.Close();
 	Response.Write(escape(result));
 	//Response.Write(escape(sql));
-}	
-
-if(op == "getDiplomaListByBatchID"){
-	result = "";
-	sql = "SELECT * FROM v_diplomaInfo where batchID=" + refID;
-	rs = conn.Execute(sql);
-	while (!rs.EOF){
-		result += "%%" + rs("name").value + "|" + rs("certName").value + "|" + rs("diplomaID").value + "|" + rs("dept1Name").value + "|" + rs("job").value;
-		//5
-		result += "|" + rs("startDate").value + "|" + rs("term").value + "|" + rs("title").value + "|" + rs("photo_filename").value + "|" + rs("logo").value + "|" + rs("certID").value;
-		rs.MoveNext();
-	}
-	rs.Close();
-	Response.Write(escape(sql));
 }	
 
 if(op == "getNodeInfoShort"){
@@ -274,6 +261,84 @@ if(op == "getGenerateDiplomaNodeInfo"){
 	Response.Write(escape(result));
 	//Response.Write(escape(sql));
 }	
+
+if(op == "getGenerateMaterialList"){
+	result = "";
+	var s = "";
+	//如果有条件，按照条件查询
+	if(where > ""){ // 有条件
+		where = "(item like('%" + where + "%'))";
+	}
+	//如果有公司
+	if(host > ""){ // 
+		s = "host='" + host + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//如果有分类
+	if(kindID > ""){ // 
+		s = "kindID='" + kindID + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	if(fStart > ""){
+		s = "regDate>='" + fStart + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	if(fEnd > ""){
+		s = "regDate<='" + fEnd + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+
+	if(where > ""){
+		where = " where " + where;
+	}
+	sql = " FROM v_generateMaterialInfo " + where;
+	result = getBasketTip(sql,"");
+	ssql = "SELECT kindName,qty,hostName,memo,regDate,registerName" + sql + " order by ID";
+	sql = "SELECT top " + basket + " *" + sql + " order by ID desc";
+	
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("ID").value + "|" + rs("kindID").value + "|" + rs("kindName").value + "|" + rs("qty").value;
+		//4
+		result += "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("title").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value;
+		rs.MoveNext();
+	}
+	rs.Close();
+	
+	Session(op) = ssql;
+	Response.Write(escape(result));
+}	
+
+if(op == "getGenerateMaterialNodeInfo"){
+	result = "";
+	sql = "SELECT * FROM v_generateMaterialInfo where ID=" + nodeID;
+	rs = conn.Execute(sql);
+	if(!rs.EOF){
+		result = rs("ID").value + "|" + rs("kindID").value + "|" + rs("kindName").value + "|" + rs("qty").value;
+		//4
+		result += "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("title").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value;
+	}
+	rs.Close();
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}	
+
 if(op == "setMemo"){
 	result = 0;
 	if(result == 0){
@@ -294,6 +359,14 @@ if(op == "setGenerateDiplomaMemo"){
 	result = 0;
 	if(result == 0){
 		sql = "exec setGenerateDiplomaMemo " + nodeID + ",'" + item + "'";
+		execSQL(sql);
+	}
+	Response.Write(escape(result));
+}
+if(op == "setGenerateMaterialMemo"){
+	result = 0;
+	if(result == 0){
+		sql = "exec setGenerateMaterialMemo " + nodeID + ",'" + item + "'";
 		execSQL(sql);
 	}
 	Response.Write(escape(result));

@@ -13,7 +13,7 @@
 		
 		if(mark=='student'){
 			//student material
-			arr.push('<input style="border:0px;" type="radio" id="uploadKind0" name="uploadKind" value="student_photo" />照片&nbsp;');
+			arr.push('<input style="border:0px;" type="radio" id="uploadKind0" name="uploadKind" value="student_photo" />学员照片&nbsp;');
 			arr.push('<input style="border:0px;" type="radio" id="uploadKind1" name="uploadKind" value="student_IDcardA" />身份证正面&nbsp;');
 			arr.push('<input style="border:0px;" type="radio" id="uploadKind2" name="uploadKind" value="student_IDcardB" />身份证背面&nbsp;');
 			arr.push('<input style="border:0px;" type="radio" id="uploadKind3" name="uploadKind" value="student_education" />学历证书&nbsp;');
@@ -30,16 +30,25 @@
 		}
 		if(mark=='diploma'){
 			//diploma material
-			arr.push('<input style="border:0px;" type="radio" id="uploadKind0" name="uploadKind" value="student_diploma" />证书&nbsp;');
+			arr.push('<input style="border:0px;" type="radio" id="uploadKind0" name="uploadKind" value="student_diploma" />认证证书&nbsp;');
 		}
 		if(mark=='studentList'){
 			//student material
 			arr.push('<input style="border:0px;" type="radio" id="uploadKind0" name="uploadKind" value="student_list" />学员报名表&nbsp;');
 			arr.push('<input style="border:0px;" type="radio" id="uploadKind1" name="uploadKind" value="score_list" />考试成绩单&nbsp;');
 		}
+		if(mark=='mulitple'){
+			//student material
+			arr.push('<input style="border:0px;" type="radio" id="uploadKind0" name="uploadKind" value="student_photo" />学员照片&nbsp;');
+			arr.push('<input style="border:0px;" type="radio" id="uploadKind1" name="uploadKind" value="student_IDcardA" />身份证正面&nbsp;');
+			arr.push('<input style="border:0px;" type="radio" id="uploadKind2" name="uploadKind" value="student_IDcardB" />身份证背面&nbsp;');
+			arr.push('<input style="border:0px;" type="radio" id="uploadKind3" name="uploadKind" value="student_education" />学历证书&nbsp;');
+			arr.push('<input style="border:0px;" type="radio" id="uploadKind4" name="uploadKind" value="student_diploma" />认证证书&nbsp;');
+			$("#avatar").attr("multiple","mulitple");
+		}
 		$("#radioCover").html(arr.join(""));
 		$("input[value='" + loadOp + "']").attr("checked",true);
-		
+
 		document.getElementById("lightLoadFile").style.display="block";
 		document.getElementById("fadeLoadFile").style.display="block";
 	}
@@ -56,8 +65,10 @@
 			<div align="center" style="background:#f0f0f0;vertical-align:middle;height:9;">文件上传</div>
 			<div id="radioCover" style="margin: 10px;"></div>
 			<form class="comm" action="" id="formUpload" name="formUpload" encType="multipart/form-data"  method="post" target="hidden_frame" >
-				<div style="margin: 10px;"><input type="file" id="avatar" name="avatar" style="width:200px;">
-				&nbsp;&nbsp;<input name="restore" type="button"  id="restore" value="上传" style="cursor:hand;margin:10px;"></div>
+				<div style="margin: 10px;">
+					<input type="file" id="avatar" name="avatar" style="width:300px;">
+					&nbsp;&nbsp;<input name="restore" type="button"  id="restore" value="上传" style="cursor:hand;margin:10px;">
+				</div>
 			</form>
 		</div>
 	</div> 
