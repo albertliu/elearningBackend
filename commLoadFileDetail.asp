@@ -5,6 +5,7 @@
 	arr = [];
 	//alert(action);
 	//mark:student,host,course
+	//etc. ("student_photo","310102199209090021","student","spc"),  ("student_photo","0","mulitple","spc")
 	function showLoadFile(loadOp,loadID,mark,p_host){
 		username = loadID;
 		host = p_host;
@@ -45,6 +46,7 @@
 			arr.push('<input style="border:0px;" type="radio" id="uploadKind3" name="uploadKind" value="student_education" />学历证书&nbsp;');
 			arr.push('<input style="border:0px;" type="radio" id="uploadKind4" name="uploadKind" value="student_diploma" />认证证书&nbsp;');
 			$("#avatar").attr("multiple","mulitple");
+			action = uploadURL + "/outfiles/uploadMultiple";
 		}
 		$("#radioCover").html(arr.join(""));
 		$("input[value='" + loadOp + "']").attr("checked",true);
