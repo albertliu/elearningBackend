@@ -98,6 +98,7 @@
 	<!--#include file="generateStudentListIncReady.js"-->
 	<!--#include file="generateScoreListIncReady.js"-->
 	<!--#include file="generateMaterialListIncReady.js"-->
+	<!--#include file="rptStudentIncReady.js"-->
 
 	unitListLong = 0;
 	memoListLong = 0;
@@ -314,7 +315,7 @@
 						<li><a href="#fragment-3"><span>证书管理</span></a></li>
 						<li><a href="#fragment-4"><span>课程管理</span></a></li>
 						<li id="menu5"><a href="#fragment-5"><span>题库管理</span></a></li>
-						<li><a href="#fragment-6"><span>统计查询</span></a></li>
+						<li><a href="#fragment-6"><span>统计报表</span></a></li>
 						<li><a href="#fragment-8"><span>用户管理</span></a></li>
 						<li><a href="#fragment-9"><span>基础数据</span></a></li>
 					</ul>
@@ -483,6 +484,22 @@
 					</div>
 					
 					<div id="fragment-6">
+						<div id="dhtmlgoodies_tabView6" style="float:left;width:44%;">
+							<div id="dtab60" class="dhtmlgoodies_aTab">
+								<!--#include file="rptStudentIncDetail.js"-->
+							</div>
+							<div id="dtab61" class="dhtmlgoodies_aTab">
+								
+							</div>
+							<div id="dtab62" class="dhtmlgoodies_aTab">
+								
+							</div>
+							<div id="dtab63" class="dhtmlgoodies_aTab">
+							</div>
+						</div>
+						<script type="text/javascript">
+							initTabs('dhtmlgoodies_tabView6',Array("学员注册","学员培训","证书发放","换证提醒"),0,960,400);
+						</script>
 					</div>
 					
 					

@@ -30,7 +30,6 @@
 	function getNodeInfo(id){
 		$.getJSON(uploadURL + "/public/getDiplomaListByBatchID?refID=" + id,function(data){
 			//jAlert(unescape(data));
-			var ar0 = new Array();
 			var c = "";
 			$("#cover").empty();
 			var arr = new Array();

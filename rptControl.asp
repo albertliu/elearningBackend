@@ -1,231 +1,345 @@
 ﻿<!--#include file="js/doc.js" -->
 
 <%
-var type = 0;
-var mark = 0;
-var user = "";
-var unit = "";
-var group = "";
 
-if (String(Request.QueryString("type")) != "undefined" && 
-    String(Request.QueryString("type")) != "" && String(Request.QueryString("type")) != "null") { 
-  type = String(Request.QueryString("type"));
-}
-if (String(Request.QueryString("mark")) != "undefined" && 
-    String(Request.QueryString("mark")) != "" && String(Request.QueryString("mark")) != "null") { 
-  mark = String(Request.QueryString("mark"));
-}
-if (String(Request.QueryString("user")) != "undefined" && 
-    String(Request.QueryString("user")) != "" && String(Request.QueryString("user")) != "null") { 
-  user = String(Request.QueryString("user"));
-}
-if (String(Request.QueryString("group")) != "undefined" && 
-    String(Request.QueryString("group")) != "" && String(Request.QueryString("group")) != "null") { 
-  group = String(Request.QueryString("group"));
-}
-
-if(op == "getDailyStatStore"){
-	sql = "SELECT * from dbo.getDailyStatStore('" + fStart + "','" + fEnd + "','" + user + "')";
-	
-	rs = conn.Execute(sql);
-	while (!rs.EOF){
-		result += "%%" + rs.Fields("item").value + "|" + rs("cAgent").value + "|" + rs("cSelf").value + "|" + rs("cMail").value + "|" + rs("cSum").value + "|" + rs("kind").value;
-		rs.MoveNext();
-	}
-	if(result > ""){
-		result = result.substr(2);
-	}
-	rs.Close();
-	Response.Write(escape(result));
-}
-
-if(op == "getTodayCount"){
-	sql = "SELECT * from dbo.getDailyStatStore('" + currDate + "','" + currDate + "','" + user + "')";
-	
-	rs = conn.Execute(sql);
-	while (!rs.EOF){
-		result += "%%" + rs("kind").value + "|" + rs("cSum").value;
-		rs.MoveNext();
-	}
-
-	sql = "SELECT * from dbo.getBackOpCountDaily('" + currDate + "','" + currDate + "','" + user + "')";
-	
-	rs = conn.Execute(sql);
-	if (!rs.EOF){
-		result += "%%" + "Dismiss" + "|" + rs("rcDismiss").value + "%%" + "Payment" + "|" + rs("rcPayment").value + "%%" + "RegUnit" + "|" + rs("rcRegUnit").value + "%%" + "NewAccount" + "|" + rs("rcNewAccount").value;
-	}
-	rs.Close();
-	if(result > ""){
-		result = result.substr(2);
-	}
-	Response.Write(escape(result));
-}
-
-if(op == "getUserNewsStat"){
-	sql = "SELECT * from dbo.getUserNewsStat('" + currUser + "')";
-	rs = conn.Execute(sql);
-	//item varchar(50),title varchar(50),pNew int,pEffect int,pAlert int
-	while (!rs.EOF){
-		result += "%%" + rs("item").value + "|" + rs("title").value + "|" + rs("pNew").value + "|" + rs("pEffect").value + "|" + rs("pAlert").value;
-		rs.MoveNext();
-	}
-	rs.Close();
-	if(result > ""){
-		result = result.substr(2);
-	}
-	Response.Write(escape(result));
-}	
-
-if(op == "getArchiveStat"){
-	result = "";
-	sql = "select * from dbo.getArchiveStat()";
-	rs = conn.Execute(sql);
-	while (!rs.EOF){
-		result += "%%" + rs("item").value + "|" + rs("title").value + "|" + rs("icount").value;
-		rs.MoveNext();
-	}
-	rs.Close();
-	if(result > ""){
-		result = result.substr(2);
-	}
-	Response.Write(escape(result));
-}
-
-//超期保存档案
-if(op == "getReportListExp"){
-	result = "";
-	sql = " FROM v_archiveInfo where expDate>'" + currDate.substring(0,7) + "'";
+if(op == "getRptStudentList"){
 	var s = "";
 	//如果有条件，按照条件查询
 	if(where > ""){ // 有条件
-		where = " and (item like('%" + where + "%') or archiveNo='" + where + "')";
+		where = "(name like('%" + where + "%') or username='" + where + "')";
+	}
+	//如果有公司
+	if(host > ""){ // 
+		s = "host='" + host + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
 	}
 	//如果有分类
 	if(kindID > ""){ // 
-		s = "kindID='" + kindID + "'";
-		where = where + " and " + s;
-	}
-	//如果有科目
-	if(kindID > "" && String(Request.QueryString("type"))>""){ // 
-		s = "type='" + String(Request.QueryString("type")) + "'";
-		where = where + " and " + s;
-	}
-	//如果有状态，按照状态查询
-	if(status < 99 && status > ""){ // 
-		s = "status=" + status;
-		where = where + " and " + s;
+		s = "kindID=" + kindID;
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
 	}
 	if(fStart > ""){
-		s = " archiveDate>='" + fStart + "'";
-		where = where + " and " + s;
+		s = "regDate>='" + fStart + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
 	}
 	if(fEnd > ""){
-		s = " archiveDate<='" + fEnd + "'";
-		where = where + " and " + s;
+		s = "regDate<='" + fEnd + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
 	}
-	sql += where;
-	result = getBasketTip(sql,"");
-	ssql = "SELECT archiveNo,item,kindName,typeName,year,month,location,page,archiveDate,statusName,expDate,memo,registorName" + sql + " order by ID";
-	sql = "SELECT top " + basket + " *" + sql + " order by ID";
-	rs = conn.Execute(sql);
-	
-	while (!rs.EOF){
-		result += "%%" + rs("ID").value + "|" + rs("archiveNo").value + "|" + rs("item").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("kindID").value + "|" + rs("kindName").value + "|" + rs("type").value + "|" + rs("archiveDate").value + "|" + rs("page").value + "|" + rs("location").value;
-		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("regOperator").value + "|" + rs("registorName").value + "|" + rs("year").value + "|" + rs("month").value + "|" + rs("typeName").value + "|" + rs("expDate").value;
-		rs.MoveNext();
+	if(String(Request.QueryString("old"))==1){
+		s = "age>=55";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
 	}
-	rs.Close();/**/
-	Session(op) = ssql;
-	Response.Write(escape(result));
-	//Response.Write(escape(sql));
-}
+	//缺照片
+	if(String(Request.QueryString("photo"))==1){
+		s = "photo_filename=''";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//缺身份证
+	if(String(Request.QueryString("IDcard"))==1){
+		s = "(IDa_filename='' or IDb_filename='')";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 
-//分类汇总统计
-if(op == "getReportListGroup"){
-	result = "";
-	var s = "";
-	where = "";
-	//如果有分类
-	if(kindID > ""){ // 
-		s = "kindID='" + kindID + "'";
-		where = where + " and " + s;
-	}
-	//如果有科目
-	if(kindID > "" && String(Request.QueryString("type"))>""){ // 
-		s = "type='" + String(Request.QueryString("type")) + "'";
-		where = where + " and " + s;
-	}
-	//如果有状态，按照状态查询
-	if(status < 99 && status > ""){ // 
-		s = "status=" + status;
-		where = where + " and " + s;
-	}
-	if(fStart > ""){
-		s = " archiveDate>='" + fStart + "'";
-		where = where + " and " + s;
-	}
-	if(fEnd > ""){
-		s = " archiveDate<='" + fEnd + "'";
-		where = where + " and " + s;
-	}
 	if(where>""){
-		where = " where " + where.substr(4);
+		where = " where " + where;
 	}
-	sql = "SELECT a.item as kindName,b.item as typeName,c.year,c.count from archiveKind a,archiveSubKind b,(select kindID,type,year,count(*) as count from archiveInfo " + where + " group by kindID,type,year) c where a.kindID=b.kindID and b.kindID=c.kindID and b.subKindID=c.type";
-	ssql = sql;
-	rs = conn.Execute(sql);
+	sql = " FROM v_studentInfo " + where;
+	result = getBasketTip(sql,"");
+	ssql = "SELECT username,name,sexName,age,birthday,kindName,statusName,hostName,dept1Name,dept2Name,mobile,phone,email,memo,regDate,(case when photo_filename>'' then '+' else '' end) as photo,(case when IDa_filename>'' then '+' else '' end) as ida,(case when IDb_filename>'' then '+' else '' end) as idb" + sql + " order by username";
+	sql = "SELECT top " + basket + " *" + sql + " order by userID desc";
 	
+	rs = conn.Execute(sql);
 	while (!rs.EOF){
-		result += "%%" + rs("kindName").value + "|" + rs("typeName").value + "|" + rs("year").value + "|" + rs("count").value;
+		result += "%%" + rs("userID").value + "|" + rs("username").value + "|" + rs("name").value + "|" + rs("user_status").value + "|" + rs("statusName").value + "|" + rs("kindID").value + "|" + rs("kindName").value;
+		//7
+		result += "|" + rs("mobile").value + "|" + rs("sexName").value + "|" + rs("age").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("hostName").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value + "|" + rs("photo").value;
 		rs.MoveNext();
 	}
-	rs.Close();/**/
-	if(result > ""){
-		result = result.substr(2);
-	}
+	rs.Close();
+/*	*/
 	Session(op) = ssql;
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}	
+
+if(op == "getNodeInfo"){
+	result = "";
+	sql = "SELECT * FROM v_studentInfo where userID=" + nodeID;
+	rs = conn.Execute(sql);
+	if(!rs.EOF){
+		result = rs("userID").value + "|" + rs("username").value + "|" + rs("name").value + "|" + rs("user_status").value + "|" + rs("statusName").value + "|" + rs("kindID").value + "|" + rs("kindName").value;
+		//7
+		result += "|" + rs("mobile").value + "|" + rs("sexName").value + "|" + rs("age").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("hostName").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value + "|" + rs("photo").value;
+		//16
+		result += "|" + rs("email").value + "|" + rs("phone").value + "|" + rs("job").value + "|" + rs("dept3Name").value + "|" + rs("limitDate").value;
+		//21
+		result += "|" + rs("photo_filename").value + "|" + rs("IDa_filename").value + "|" + rs("IDb_filename").value + "|" + rs("edu_filename").value;
+	}
+	rs.Close();
+	Response.Write(escape(result));
+}	
+
+if(op == "getGenerateStudentList"){
+	result = "";
+	var s = "";
+	//如果有条件，按照条件查询
+	if(where > ""){ // 有条件
+		where = "(item like('%" + where + "%'))";
+	}
+	//如果有公司
+	if(host > ""){ // 
+		s = "host='" + host + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	if(fStart > ""){
+		s = "regDate>='" + fStart + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	if(fEnd > ""){
+		s = "regDate<='" + fEnd + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+
+	if(where > ""){
+		where = " where " + where;
+	}
+	sql = " FROM v_generateStudentInfo " + where;
+	result = getBasketTip(sql,"");
+	ssql = "SELECT item,qty,hostName,memo,regDate,registerName" + sql + " order by ID";
+	sql = "SELECT top " + basket + " *" + sql + " order by ID desc";
+	
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("ID").value + "|" + rs("item").value + "|" + rs("qty").value;
+		//3
+		result += "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("title").value + "|" + rs("filename").value;
+		//7
+		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value;
+		rs.MoveNext();
+	}
+	rs.Close();
+	/**/
+	Session(op) = ssql;
+	Response.Write(escape(result));
+}	
+
+if(op == "getGenerateStudentNodeInfo"){
+	result = "";
+	sql = "SELECT * FROM v_generateStudentInfo where ID=" + nodeID;
+	rs = conn.Execute(sql);
+	if(!rs.EOF){
+		result = rs("ID").value + "|" + rs("item").value + "|" + rs("qty").value;
+		//3
+		result += "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("title").value + "|" + rs("filename").value;
+		//7
+		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value;
+	}
+	rs.Close();
 	Response.Write(escape(result));
 	//Response.Write(escape(sql));
 }
 
-//分类汇总统计
-if(op == "getReportListDaily"){
-	result = "";
-	var s = "";
-	where = "";
-	//如果有分类
-	if(kindID > ""){ // 
-		s = "b.kindID='" + kindID + "'";
-		where = where + " and " + s;
+if(op == "updateGenerateStudent"){
+	result = 0;
+	if(result == 0){
+		sql = "exec updateGenerateStudentInfo " + nodeID + ",'" + item + "'," + String(Request.QueryString("qty")) + ",'" + host + "','" + memo + "','" + currUser + "'";
+
+		execSQL(sql);
+		if(nodeID == 0){
+			//这是一个新增的记录
+			sql = "SELECT ID as maxID FROM generateStudentInfo where registerID='" + currUser + "'";
+			rs = conn.Execute(sql);
+			nodeID = rs("maxID");
+		}
 	}
-	//如果有科目
-	if(kindID > "" && String(Request.QueryString("type"))>""){ // 
-		s = "b.type='" + String(Request.QueryString("type")) + "'";
-		where = where + " and " + s;
-	}
-	if(fStart > ""){
-		s = " a.opDate>='" + fStart + "'";
-		where = where + " and " + s;
-	}
-	if(fEnd > ""){
-		s = " a.opDate<='" + fEnd + "'";
-		where = where + " and " + s;
-	}
-	sql = "SELECT k.item as kindName,s.item as typeName,c.event,c.count from archiveKind k,archiveSubKind s,(SELECT event,b.kindID,b.type,count(*) as count from archivesOpLog a,archiveInfo b where a.archiveID=b.ID" + where + " group by a.event,b.kindID,b.type) c where k.kindID=s.kindID and s.kindID=c.kindID and s.subKindID=c.type";
-	ssql = sql;
-	rs = conn.Execute(sql);
-	
-	while (!rs.EOF){
-		result += "%%" + rs("kindName").value + "|" + rs("typeName").value + "|" + rs("event").value + "|" + rs("count").value;
-		rs.MoveNext();
-	}
-	rs.Close();/**/
-	if(result > ""){
-		result = result.substr(2);
-	}
-	Session(op) = ssql;
+
+	result += "|" + nodeID;
 	Response.Write(escape(result));
 	//Response.Write(escape(sql));
+}
+
+if(op == "delGenerateStudentNode"){
+	sql = "exec delGenerateStudentInfo '" + nodeID + "','" + where + "','" + currUser + "'";
+	execSQL(sql);
+	Response.Write(nodeID);
+}
+
+if(op == "getGenerateScoreList"){
+	result = "";
+	var s = "";
+	//如果有条件，按照条件查询
+	if(where > ""){ // 有条件
+		where = "(item like('%" + where + "%'))";
+	}
+	//如果有公司
+	if(host > ""){ // 
+		s = "host='" + host + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//如果有分类(证书类型)
+	if(kindID > ""){ // 
+		s = "certID='" + kindID + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	if(fStart > ""){
+		s = "regDate>='" + fStart + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	if(fEnd > ""){
+		s = "regDate<='" + fEnd + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+
+	if(where > ""){
+		where = " where " + where;
+	}
+	sql = " FROM v_generateScoreInfo " + where;
+	result = getBasketTip(sql,"");
+	ssql = "SELECT item,certID,certName,qty,hostName,memo,regDate,registerName" + sql + " order by ID";
+	sql = "SELECT top " + basket + " *" + sql + " order by ID desc";
+	
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("ID").value + "|" + rs("item").value + "|" + rs("qty").value;
+		//3
+		result += "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("title").value + "|" + rs("filename").value;
+		//7
+		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value + "|" + rs("certID").value + "|" + rs("certName").value;
+		rs.MoveNext();
+	}
+	rs.Close();
+	/**/
+	Session(op) = ssql;
+	Response.Write(escape(result));
+}	
+
+if(op == "getGenerateScoreNodeInfo"){
+	result = "";
+	sql = "SELECT * FROM v_generateScoreInfo where ID=" + nodeID;
+	rs = conn.Execute(sql);
+	if(!rs.EOF){
+		result = rs("ID").value + "|" + rs("item").value + "|" + rs("qty").value;
+		//3
+		result += "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("title").value + "|" + rs("filename").value;
+		//7
+		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value + "|" + rs("certID").value + "|" + rs("certName").value;
+	}
+	rs.Close();
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}
+
+if(op == "updateGenerateScore"){
+	result = 0;
+	if(result == 0){
+		sql = "exec updateGenerateScoreInfo " + nodeID + ",'" + item + "','" + String(Request.QueryString("certID")) + "'," + String(Request.QueryString("qty")) + ",'" + host + "','" + memo + "','" + currUser + "'";
+		execSQL(sql);
+		if(nodeID == 0){
+			//这是一个新增的记录
+			sql = "SELECT ID as maxID FROM generateScoreInfo where registerID='" + currUser + "'";
+			rs = conn.Execute(sql);
+			nodeID = rs("maxID");
+		}
+	}
+	result += "|" + nodeID;
+	//Response.Write(escape(result));
+	Response.Write(escape(sql));
+}
+
+if(op == "delGenerateScoreNode"){
+	sql = "exec delGenerateScoreInfo '" + nodeID + "','" + where + "','" + currUser + "'";
+	execSQL(sql);
+	Response.Write(nodeID);
+}
+
+if(op == "setGenerateStudentMemo"){
+	result = 0;
+	if(result == 0){
+		sql = "exec setGenerateStudentMemo " + nodeID + ",'" + item + "'";
+		execSQL(sql);
+	}
+	Response.Write(escape(result));
+}
+
+if(op == "setMemo"){
+	result = 0;
+	if(result == 0){
+		sql = "exec setStudentMemo " + nodeID + ",'" + item + "'";
+		execSQL(sql);
+	}
+	Response.Write(escape(result));
+}
+
+if(op == "setStatus"){
+	result = 0;
+	if(result == 0){
+		sql = "exec setStudentStatus " + nodeID + "," + status;
+		execSQL(sql);
+	}
+	Response.Write(escape(result));
+}
+
+if(op == "delNode"){
+	sql = "exec delStudentInfo '" + nodeID + "','" + where + "','" + currUser + "'";
+	execSQL(sql);
+	Response.Write(nodeID);
 }
 
 %>
