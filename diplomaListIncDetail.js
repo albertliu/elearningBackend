@@ -7,9 +7,8 @@
 					          &nbsp;&nbsp;公司&nbsp;<select id="searchDiplomaHost" style="width:100px"></select>&nbsp;&nbsp;
 					          类别&nbsp;<select id="searchDiplomaKind" style="width:60px"></select>&nbsp;&nbsp;
 					          状态&nbsp;<select id="searchDiplomaStatus" style="width:60px"></select>&nbsp;&nbsp;
-		          			<input style="border:0px;" type="checkbox" name="searchDiplomaWarning" id="searchDiplomaWarning" value="">&nbsp;30天内过期&nbsp;&nbsp;
 				          </span>
-							    &nbsp;有效日期&nbsp;<input type="text" id="searchDiplomaStartDate" size="8" />-<input type="text" id="searchDiplomaEndDate" size="8" />
+							    &nbsp;发证日期&nbsp;<input type="text" id="searchDiplomaStartDate" size="8" />-<input type="text" id="searchDiplomaEndDate" size="8" />
 						      <span style="float:right;">
 								    <input class="button" type="button" id="btnDownLoad20" onClick="outputFloat(20,'file')" value="下载">
 							    </span>

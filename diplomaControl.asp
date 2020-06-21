@@ -36,7 +36,7 @@ if(op == "getDiplomaList"){
 		}
 	}
 	if(fStart > ""){
-		s = "endDate>='" + fStart + "'";
+		s = "startDate>='" + fStart + "'";
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
@@ -44,7 +44,7 @@ if(op == "getDiplomaList"){
 		}
 	}
 	if(fEnd > ""){
-		s = "endDate<='" + fEnd + "'";
+		s = "startDate<='" + fEnd + "'";
 		if(where > ""){
 			where = where + " and " + s;
 		}else{

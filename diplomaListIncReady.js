@@ -28,17 +28,6 @@
 			}
 		});
 		
-		$("#searchDiplomaWarning").change(function(){
-			if($("#searchDiplomaWarning").attr("checked")){
-				$("#searchDiplomaStartDate").val(currDate);
-				$("#searchDiplomaEndDate").val(addDays(currDate,30));
-			}else{
-				$("#searchDiplomaStartDate").val('');
-				$("#searchDiplomaEndDate").val('');
-			}
-			getDiplomaList();
-		});
-
 		//getDiplomaList();
 	});
 
