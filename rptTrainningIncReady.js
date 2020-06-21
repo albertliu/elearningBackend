@@ -2,14 +2,14 @@
 	var trainningListChk = 0;
 
 	$(document).ready(function (){
-		var w621 = "status=0 and hostNo='" + currHost + "'";
-		var w622 = "status=0 and (kindID=0 or host='" + currHost + "')";
+		var w611 = "status=0 and hostNo='" + currHost + "'";
+		var w612 = "status=0 and (kindID=0 or host='" + currHost + "')";
 		if(currHost==""){	//公司用户只能看自己公司内容
 			getComList("rptTrainningHost","hostInfo","hostNo","title","status=0 order by hostName",1);
 			getComList("rptTrainningCourse","courseInfo","courseID","courseName","status=0 order by courseID",1);
 		}else{
-			getComList("rptTrainningHost","hostInfo","hostNo","title",w621,0);
-			getComList("rptTrainningCourse","courseInfo","courseID","courseName",w622,1);
+			getComList("rptTrainningHost","hostInfo","hostNo","title",w611,0);
+			getComList("rptTrainningCourse","courseInfo","courseID","courseName",w612,1);
 		}
 		getDicList("student","rptTrainningKind",1);
 		getDicList("planStatus","rptTrainningStatus",1);
@@ -46,6 +46,9 @@
 		//@host varchar(50),@startDate varchar(50),@endDate varchar(50),@kindID varchar(20),@groupHost int,@groupDept1 int,@groupKindID int,@groupDate
 		$.getJSON(uploadURL + "/public/getRptList?op=trainning&mark=" + mark + "&host=" + $("#rptTrainningHost").val() + "&kindID=" + $("#rptTrainningKind").val() + "&courseID=" + $("#rptTrainningCourse").val() + "&status=" + $("#rptTrainningStatus").val() + "&startDate=" + $("#rptTrainningStartDate").val() + "&endDate=" + $("#rptTrainningEndDate").val() + "&groupHost=" + g1 + "&groupDept1=" + g2 + "&groupKindID=" + g3 + "&groupCourseID=" + g4 + "&groupStatus=" + g5 + "&groupDate=" + g11,function(data){
 			//jAlert(data);
+			if(data==""){
+				jAlert("没有符合要求的数据。","提示")
+			}
 			if(mark=="file" && data>""){
 				jAlert("点击右侧链接，下载<a href='" + data + "'>统计报告</a>","下载文件");
 			}

@@ -2,11 +2,11 @@
 	var studentListChk = 0;
 
 	$(document).ready(function (){
-		var w611 = "status=0 and hostNo='" + currHost + "'";
+		var w601 = "status=0 and hostNo='" + currHost + "'";
 		if(currHost==""){	//公司用户只能看自己公司内容
 			getComList("rptStudentHost","hostInfo","hostNo","title","status=0 order by hostName",1);
 		}else{
-			getComList("rptStudentHost","hostInfo","hostNo","title",w611,0);
+			getComList("rptStudentHost","hostInfo","hostNo","title",w601,0);
 		}
 		getDicList("student","rptStudentKind",1);
 		$("#rptStudentStartDate").click(function(){WdatePicker();});
@@ -38,6 +38,9 @@
 		//@host varchar(50),@startDate varchar(50),@endDate varchar(50),@kindID varchar(20),@groupHost int,@groupDept1 int,@groupKindID int,@groupDate
 		$.getJSON(uploadURL + "/public/getRptList?op=student&mark=" + mark + "&host=" + $("#rptStudentHost").val() + "&kindID=" + $("#rptStudentKind").val() + "&startDate=" + $("#rptStudentStartDate").val() + "&endDate=" + $("#rptStudentEndDate").val() + "&groupHost=" + g1 + "&groupDept1=" + g2 + "&groupKindID=" + g3 + "&groupDate=" + g4,function(data){
 			//jAlert(data);
+			if(data==""){
+				jAlert("没有符合要求的数据。","提示")
+			}
 			if(mark=="file" && data>""){
 				jAlert("点击右侧链接，下载<a href='" + data + "'>统计报告</a>","下载文件");
 			}

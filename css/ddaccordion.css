@@ -6,7 +6,7 @@ width: 190px; /*width of menu*/
 .urbangreymenu .headerbar{
 font: bold 13px Verdana;
 color: white;
-background: #606060 url(arrowstop.gif) no-repeat 8px 6px; /*last 2 values are the x and y coordinates of bullet image*/
+background: #606060 url(arrowbullet.png) no-repeat 8px 6px; /*last 2 values are the x and y coordinates of bullet image*/
 margin-bottom: 0; /*bottom spacing between header and rest of content*/
 text-transform: uppercase;
 padding: 7px 0 7px 31px; /*31px is left indentation of header text*/

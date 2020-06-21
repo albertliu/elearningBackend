@@ -10,7 +10,7 @@
 				          	-
 				          	<input type="text" id="searchGenerateDiplomaEnd" size="8" title="截止日期" style="background:#AAFFAA;" />
 						    <span style="float:right;">
-								<input class="button" type="button" id="btnDownLoad33" onClick="outputFloat(33,'file')" value="下载">
+								<input class="button" type="button" id="btnDownLoad22" onClick="outputFloat(22,'file')" value="下载">
 							</span>
 				        </form>
 							</div>

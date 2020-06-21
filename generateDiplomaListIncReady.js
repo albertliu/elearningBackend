@@ -33,7 +33,7 @@
 	function getGenerateDiplomaList(){
 		sWhere = $("#txtSearchGenerateDiploma").val();
 		//alert((sWhere) + "&kindID=" + $("#searchGenerateDiplomaCert").val() + "&host=" + $("#searchGenerateDiplomaHost").val() + "&keyID=" + photo);
-		$.get("diplomaControl.asp?op=getGenerateDiplomaList&where=" + escape(sWhere) + "&kindID=" + $("#searchGenerateDiplomaCert").val() + "&host=" + $("#searchGenerateDiplomaHost").val() + "&fStart=" + $("#searchGenerateDiplomaStart").val() + "&fEnd=" + $("#searchGenerateDiplomaEnd").val() + "&dk=33&times=" + (new Date().getTime()),function(data){
+		$.get("diplomaControl.asp?op=getGenerateDiplomaList&where=" + escape(sWhere) + "&kindID=" + $("#searchGenerateDiplomaCert").val() + "&host=" + $("#searchGenerateDiplomaHost").val() + "&fStart=" + $("#searchGenerateDiplomaStart").val() + "&fEnd=" + $("#searchGenerateDiplomaEnd").val() + "&dk=22&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");

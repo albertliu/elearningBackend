@@ -42,7 +42,6 @@
 	<script type="text/javascript" src="js/ajax.js"></script>
 	<script type="text/javascript" src="js/tab-view.js"></script>
 	<script type="text/javascript" src="js/bootstrap-treeview.min.js"></script>
-<!--#include file="js/correctPng.js"-->
 <!--#include file="js/clickMenu.js"-->
 
 <script type="text/javascript">
@@ -84,6 +83,7 @@
 	<!--#include file="studentListIncReady.js"-->
 	<!--#include file="studentCourseListIncReady.js"-->
 	<!--#include file="diplomaListIncReady.js"-->
+	<!--#include file="diplomaLastListIncReady.js"-->
 	<!--#include file="certListIncReady.js"-->
 	<!--#include file="courseListIncReady.js"-->
 	<!--#include file="certCourseListIncReady.js"-->
@@ -101,6 +101,7 @@
 	<!--#include file="rptStudentIncReady.js"-->
 	<!--#include file="rptTrainningIncReady.js"-->
 	<!--#include file="rptDiplomaIncReady.js"-->
+	<!--#include file="rptDiplomaLastIncReady.js"-->
 
 	unitListLong = 0;
 	memoListLong = 0;
@@ -427,6 +428,7 @@
 								<!--#include file="generateDiplomaListIncDetail.js"-->
 							</div>
 							<div id="dtab23" class="dhtmlgoodies_aTab">
+								<!--#include file="diplomaLastListIncDetail.js"-->
 							</div>
 						</div>
 						<script type="text/javascript">
@@ -496,9 +498,12 @@
 							<div id="dtab62" class="dhtmlgoodies_aTab">
 								<!--#include file="rptDiplomaIncDetail.js"-->
 							</div>
+							<div id="dtab63" class="dhtmlgoodies_aTab">
+								<!--#include file="rptDiplomaLastIncDetail.js"-->
+							</div>
 						</div>
 						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView6',Array("学员注册","学员培训","证书发放"),0,960,400);
+							initTabs('dhtmlgoodies_tabView6',Array("学员注册","学员培训","证书发放","证书到期"),0,960,400);
 						</script>
 					</div>
 					

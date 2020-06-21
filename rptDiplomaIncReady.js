@@ -2,14 +2,14 @@
 	var diplomaListChk = 0;
 
 	$(document).ready(function (){
-		var w631 = "status=0 and hostNo='" + currHost + "'";
-		var w632 = "status=0 and (kindID=0 or host='" + currHost + "')";
+		var w621 = "status=0 and hostNo='" + currHost + "'";
+		var w622 = "status=0 and (kindID=0 or host='" + currHost + "')";
 		if(currHost==""){	//公司用户只能看自己公司内容
 			getComList("rptDiplomaHost","hostInfo","hostNo","title","status=0 order by hostName",1);
 			getComList("rptDiplomaCert","certificateInfo","certID","certName","status=0 order by certID",1);
 		}else{
-			getComList("rptDiplomaHost","hostInfo","hostNo","title",w631,0);
-			getComList("rptDiplomaCert","certificateInfo","certID","certName",w632,1);
+			getComList("rptDiplomaHost","hostInfo","hostNo","title",w621,0);
+			getComList("rptDiplomaCert","certificateInfo","certID","certName",w622,1);
 		}
 		getDicList("student","rptDiplomaKind",1);
 		getDicList("statusExpire","rptDiplomaStatus",1);
@@ -49,6 +49,9 @@
 		//@host varchar(50),@startDate varchar(50),@endDate varchar(50),@kindID varchar(20),@groupHost int,@groupDept1 int,@groupKindID int,@groupDate
 		$.getJSON(uploadURL + "/public/getRptList?op=diploma&mark=" + mark + "&host=" + $("#rptDiplomaHost").val() + "&kindID=" + $("#rptDiplomaKind").val() + "&certID=" + $("#rptDiplomaCert").val() + "&status=" + $("#rptDiplomaStatus").val() + "&agencyID=" + $("#rptDiplomaAgency").val() + "&startDate=" + $("#rptDiplomaStartDate").val() + "&endDate=" + $("#rptDiplomaEndDate").val() + "&groupHost=" + g1 + "&groupDept1=" + g2 + "&groupKindID=" + g3 + "&groupCertID=" + g4 + "&groupStatus=" + g5 + "&groupAgencyID=" + g6 + "&groupDate=" + g11,function(data){
 			//jAlert(data);
+			if(data==""){
+				jAlert("没有符合要求的数据。","提示")
+			}
 			if(mark=="file" && data>""){
 				jAlert("点击右侧链接，下载<a href='" + data + "'>统计报告</a>","下载文件");
 			}

@@ -1,62 +1,64 @@
-﻿	var diplomaListLong = 0;		//0: 标准栏目  1：短栏目
-	var diplomaListChk = 0;
+﻿	var diplomalastListLong = 0;		//0: 标准栏目  1：短栏目
+	var diplomalastListChk = 0;
 
 	$(document).ready(function (){
 		var w = "status=0 and hostNo='" + currHost + "'";
 		if(currHost==""){	//公司用户只能看自己公司内容
-			getComList("searchDiplomaHost","hostInfo","hostNo","title","status=0 order by hostName",1);
+			getComList("searchDiplomaLastHost","hostInfo","hostNo","title","status=0 order by hostName",1);
 		}else{
-			getComList("searchDiplomaHost","hostInfo","hostNo","title",w,0);
+			getComList("searchDiplomaLastHost","hostInfo","hostNo","title",w,0);
 		}
 		
-		getComList("searchDiplomaKind","certificateInfo","certID","certName","status=0 order by certName",1);
-		getDicList("statusExpire","searchDiplomaStatus",1);
-		$("#searchDiplomaStartDate").click(function(){WdatePicker();});
-		$("#searchDiplomaEndDate").click(function(){WdatePicker();});
+		getComList("searchDiplomaLastKind","certificateInfo","certID","certName","status=0 order by certName",1);
+		getDicList("statusExpire","searchDiplomaLastStatus",1);
+		$("#searchDiplomaLastStartDate").click(function(){WdatePicker();});
+		$("#searchDiplomaLastEndDate").click(function(){WdatePicker();});
 		
-		$("#btnSearchDiploma").click(function(){
-			getDiplomaList();
+		$("#btnSearchDiplomaLast").click(function(){
+			getDiplomaLastList();
 		});
 		
-		$("#txtSearchDiploma").keypress(function(event){
+		$("#txtSearchDiplomaLast").keypress(function(event){
 			if(event.keyCode==13){
-				if($("#txtSearchDiploma").val()>""){
-					getDiplomaList();
+				if($("#txtSearchDiplomaLast").val()>""){
+					getDiplomaLastList();
 				}else{
 					jAlert("请输入查询条件");
 				}
 			}
 		});
 		
-		$("#searchDiplomaWarning").change(function(){
-			if($("#searchDiplomaWarning").attr("checked")){
-				$("#searchDiplomaStartDate").val(currDate);
-				$("#searchDiplomaEndDate").val(addDays(currDate,30));
+		$("#searchDiplomaLastStartDate").val(currDate);
+		$("#searchDiplomaLastEndDate").val(addDays(currDate,30));
+		$("#searchDiplomaLastWarning").change(function(){
+			if($("#searchDiplomaLastWarning").attr("checked")){
+				$("#searchDiplomaLastStartDate").val(currDate);
+				$("#searchDiplomaLastEndDate").val(addDays(currDate,30));
 			}else{
-				$("#searchDiplomaStartDate").val('');
-				$("#searchDiplomaEndDate").val('');
+				$("#searchDiplomaLastStartDate").val('');
+				$("#searchDiplomaLastEndDate").val('');
 			}
-			getDiplomaList();
+			getDiplomaLastList();
 		});
 
-		//getDiplomaList();
+		//getDiplomaLastList();
 	});
 
-	function getDiplomaList(){
-		sWhere = $("#txtSearchDiploma").val();
-		//alert((sWhere) + "&kindID=" + $("#searchDiplomaKind").val() + "&status=" + $("#searchDiplomaStatus").val() + "&host=" + $("#searchDiplomaHost").val() + "&fStart=" + $("#searchDiplomaStartDate").val() + "&fEnd=" + $("#searchDiplomaEndDate").val());
-		$.get("diplomaControl.asp?op=getDiplomaList&where=" + escape(sWhere) + "&kindID=" + $("#searchDiplomaKind").val() + "&status=" + $("#searchDiplomaStatus").val() + "&host=" + $("#searchDiplomaHost").val() + "&fStart=" + $("#searchDiplomaStartDate").val() + "&fEnd=" + $("#searchDiplomaEndDate").val() + "&dk=20&times=" + (new Date().getTime()),function(data){
+	function getDiplomaLastList(){
+		sWhere = $("#txtSearchDiplomaLast").val();
+		//alert((sWhere) + "&kindID=" + $("#searchDiplomaLastKind").val() + "&status=" + $("#searchDiplomaLastStatus").val() + "&host=" + $("#searchDiplomaLastHost").val() + "&fStart=" + $("#searchDiplomaLastStartDate").val() + "&fEnd=" + $("#searchDiplomaLastEndDate").val());
+		$.get("diplomaControl.asp?op=getDiplomaLastList&where=" + escape(sWhere) + "&kindID=" + $("#searchDiplomaLastKind").val() + "&status=" + $("#searchDiplomaLastStatus").val() + "&host=" + $("#searchDiplomaLastHost").val() + "&fStart=" + $("#searchDiplomaLastStartDate").val() + "&fEnd=" + $("#searchDiplomaLastEndDate").val() + "&dk=23&times=" + (new Date().getTime()),function(data){
 			//alert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
-			$("#diplomaCover").empty();
+			$("#diplomalastCover").empty();
 			var ar0 = new Array();
 			ar0 = ar.shift().split("|");
 			floatCount = ar0[0];
 			floatSum = "";
 			arr = [];
 			arr.push("<div>" + ar.shift() + "</div>");					
-			arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='diplomaTab' width='99%'>");
+			arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='diplomalastTab' width='99%'>");
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
@@ -122,9 +124,9 @@
 			arr.push("</tr>");
 			arr.push("</tfoot>");
 			arr.push("</table>");
-			$("#diplomaCover").html(arr.join(""));
+			$("#diplomalastCover").html(arr.join(""));
 			arr = [];
-			$('#diplomaTab').dataTable({
+			$('#diplomalastTab').dataTable({
 				"aaSorting": [],
 				"bFilter": true,
 				"bPaginate": true,
