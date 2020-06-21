@@ -13,11 +13,15 @@
 		$("#rptStudentEndDate").click(function(){WdatePicker();});
 		
 		$("#btnRptStudent").click(function(){
-			getRptStudentList();
+			getRptStudentList("data");
+		});
+		
+		$("#btnRptStudentDownLoad").click(function(){
+			getRptStudentList("file");
 		});
 	});
 
-	function getRptStudentList(){
+	function getRptStudentList(mark){
 		var g1 = 0;
 		var g2 = 0;
 		var g3 = 0;
@@ -30,22 +34,25 @@
 			jAlert("请至少指定一个汇总项目。")
 			return false;
 		}
-		alert("host=" + $("#rptStudentHost").val() + "&kindID=" + $("#rptStudentKind").val() + "&startDate=" + $("#rptStudentStartDate").val() + "&endDate=" + $("#rptStudentEndDate").val() + "&groupHost=" + g1 + "&groupDept1=" + g2 + "&groupKindID=" + g3 + "&groupDate=" + g4);
+		//alert("op=student&mark=" + mark + "&host=" + $("#rptStudentHost").val() + "&kindID=" + $("#rptStudentKind").val() + "&startDate=" + $("#rptStudentStartDate").val() + "&endDate=" + $("#rptStudentEndDate").val() + "&groupHost=" + g1 + "&groupDept1=" + g2 + "&groupKindID=" + g3 + "&groupDate=" + g4);
 		//@host varchar(50),@startDate varchar(50),@endDate varchar(50),@kindID varchar(20),@groupHost int,@groupDept1 int,@groupKindID int,@groupDate
-		$.getJSON(uploadURL + "/public/getRptStudentList?host=" + $("#rptStudentHost").val() + "&kindID=" + $("#rptStudentKind").val() + "&startDate=" + $("#rptStudentStartDate").val() + "&endDate=" + $("#rptStudentEndDate").val() + "&groupHost=" + g1 + "&groupDept1=" + g2 + "&groupKindID=" + g3 + "&groupDate=" + g4,function(data){
-			jAlert(data);
-			if(data.length>0){
-				/*
+		$.getJSON(uploadURL + "/public/getRptList?op=student&mark=" + mark + "&host=" + $("#rptStudentHost").val() + "&kindID=" + $("#rptStudentKind").val() + "&startDate=" + $("#rptStudentStartDate").val() + "&endDate=" + $("#rptStudentEndDate").val() + "&groupHost=" + g1 + "&groupDept1=" + g2 + "&groupKindID=" + g3 + "&groupDate=" + g4,function(data){
+			//jAlert(data);
+			if(mark=="file" && data>""){
+				jAlert("请下载<a href='" + data + "'>统计报告</a>","下载文件");
+			}
+
+			if(mark=="data" && data.length>0){
+				let ar = new Array();
 				arr = [];
 				arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='rptStudentTab' width='99%'>");
 				arr.push("<thead>");
 				arr.push("<tr align='center'>");
 				arr.push("<th width='3%'>No</th>");
-				arr.push("<th width='15%'>身份证</th>");
-				arr.push("<th width='8%'>姓名</th>");
-				arr.push("<th width='6%'>性别</th>");
-				arr.push("<th width='6%'>状态</th>");
-				arr.push("<th width='6%'>数量</th>");
+				let line = data[0];
+				for(let key in line){
+					arr.push("<th class='center'>" + key + "</th>");
+				}
 				arr.push("</tr>");
 				arr.push("</thead>");
 				arr.push("<tbody id='tbody'>");
@@ -57,37 +64,31 @@
 					c = 0;
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
-					arr.push("<td class='left'>" + val[2] + "</td>");
-					arr.push("<td class='left'>" + val[8] + "</td>");
-					arr.push("<td class='left'>" + val[9] + "</td>");
-					arr.push("<td class='left'>" + val[4] + "</td>");
-					arr.push("<td class='left'>" + val[15] + "</td>");
+					for(let key in val){
+						arr.push("<td class='left'>" + val[key] + "</td>");
+					}
 					arr.push("</tr>");
 				});
 				arr.push("</tbody>");
 				arr.push("<tfoot>");
 				arr.push("<tr>");
-				arr.push("<th>&nbsp;</th>");
-				arr.push("<th>&nbsp;</th>");
-				arr.push("<th>&nbsp;</th>");
-				arr.push("<th>&nbsp;</th>");
-				arr.push("<th>&nbsp;</th>");
-				arr.push("<th>&nbsp;</th>");
+				for(let j=0; j<data[0].length+1; j++){
+					arr.push("<th>&nbsp;</th>");
+				}
 				arr.push("</tr>");
 				arr.push("</tfoot>");
 				arr.push("</table>");
-				*/
+				$("#rptStudentCover").html(arr.join(""));
+				arr = [];
+				$('#rptStudentTab').dataTable({
+					"aaSorting": [],
+					"bFilter": true,
+					"bPaginate": true,
+					"bLengthChange": true,
+					"bInfo": true,
+					"aoColumnDefs": []
+				});
 			}
-			$("#rptStudentCover").html(arr.join(""));
-			arr = [];
-			$('#rptStudentTab').dataTable({
-				"aaSorting": [],
-				"bFilter": true,
-				"bPaginate": true,
-				"bLengthChange": true,
-				"bInfo": true,
-				"aoColumnDefs": []
-			});
 		});
 	}
 	

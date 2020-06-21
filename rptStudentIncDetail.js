@@ -1,7 +1,6 @@
 ﻿				<div style="width:100%;float:right;margin:0;">
 					<div class="comm" align='left' style="background:#fdfdfd;">
 						<form>
-							<input class="button" type="button" id="btnRptStudent" value="查找">
 							<span >
 								&nbsp;&nbsp;公司&nbsp;<select id="rptStudentHost" style="width:100px"></select>&nbsp;&nbsp;
 								类别&nbsp;<select id="rptStudentKind" style="width:60px"></select>&nbsp;&nbsp;
@@ -15,7 +14,8 @@
 								<input style="border:0px;" type="radio" id="rptStudentGroupDate3" name="rptStudentGroupDate" value="year" />年度
 							</span>
 							<span style="float:right;">
-								<input class="button" type="button" id="btnDownLoad61" onClick="outputFloat(61,'file')" value="下载">
+								<input class="button" type="button" id="btnRptStudent" value="查看">&nbsp;&nbsp;
+								<input class="button" type="button" id="btnRptStudentDownLoad" value="下载">
 							</span>
 				        </form>
 					</div>
