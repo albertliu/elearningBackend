@@ -5,8 +5,10 @@
 		var w601 = "status=0 and hostNo='" + currHost + "'";
 		if(currHost==""){	//公司用户只能看自己公司内容
 			getComList("rptStudentHost","hostInfo","hostNo","title","status=0 order by hostName",1);
+			$("#rptStudentGroupHost").attr("checked","checked");
 		}else{
 			getComList("rptStudentHost","hostInfo","hostNo","title",w601,0);
+			$("#rptStudentGroupDept").attr("checked","checked");
 		}
 		getDicList("student","rptStudentKind",1);
 		$("#rptStudentStartDate").click(function(){WdatePicker();});

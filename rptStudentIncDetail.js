@@ -19,9 +19,9 @@
 								<input style="border:0px;" type="checkbox" id="rptStudentGroupHost" value="">&nbsp;公司&nbsp;&nbsp;
 								<input style="border:0px;" type="checkbox" id="rptStudentGroupDept" value="">&nbsp;部门&nbsp;&nbsp;
 								<input style="border:0px;" type="checkbox" id="rptStudentGroupKind" value="">&nbsp;类别&nbsp;&nbsp;
-								<input style="border:0px;" type="radio" id="rptStudentGroupDate1" name="rptStudentGroupDate" value="month" checked />月度
+								<input style="border:0px;" type="radio" id="rptStudentGroupDate1" name="rptStudentGroupDate" value="month" />月度
 								<input style="border:0px;" type="radio" id="rptStudentGroupDate2" name="rptStudentGroupDate" value="quarter" />季度
-								<input style="border:0px;" type="radio" id="rptStudentGroupDate3" name="rptStudentGroupDate" value="year" />年度
+								<input style="border:0px;" type="radio" id="rptStudentGroupDate3" name="rptStudentGroupDate" value="year" checked />年度
 							</td>
 							</tr></table>
 				        </form>

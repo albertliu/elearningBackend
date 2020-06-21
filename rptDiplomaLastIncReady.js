@@ -7,9 +7,11 @@
 		if(currHost==""){	//公司用户只能看自己公司内容
 			getComList("rptDiplomaLastHost","hostInfo","hostNo","title","status=0 order by hostName",1);
 			getComList("rptDiplomaLastCert","certificateInfo","certID","certName","status=0 order by certID",1);
+			$("#rptDiplomaLastGroupHost").attr("checked","checked");
 		}else{
 			getComList("rptDiplomaLastHost","hostInfo","hostNo","title",w631,0);
 			getComList("rptDiplomaLastCert","certificateInfo","certID","certName",w632,1);
+			$("#rptDiplomaLastGroupDept").attr("checked","checked");
 		}
 		getDicList("student","rptDiplomaLastKind",1);
 		getDicList("statusExpire","rptDiplomaLastStatus",1);

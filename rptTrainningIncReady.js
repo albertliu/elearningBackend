@@ -7,9 +7,11 @@
 		if(currHost==""){	//公司用户只能看自己公司内容
 			getComList("rptTrainningHost","hostInfo","hostNo","title","status=0 order by hostName",1);
 			getComList("rptTrainningCourse","courseInfo","courseID","courseName","status=0 order by courseID",1);
+			$("#rptTrainningGroupHost").attr("checked","checked");
 		}else{
 			getComList("rptTrainningHost","hostInfo","hostNo","title",w611,0);
 			getComList("rptTrainningCourse","courseInfo","courseID","courseName",w612,1);
+			$("#rptTrainningGroupDept").attr("checked","checked");
 		}
 		getDicList("student","rptTrainningKind",1);
 		getDicList("planStatus","rptTrainningStatus",1);

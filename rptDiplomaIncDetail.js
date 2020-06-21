@@ -25,9 +25,9 @@
 								<input style="border:0px;" type="checkbox" id="rptDiplomaGroupAgency" value="">&nbsp;认证机构&nbsp;&nbsp;
 								<input style="border:0px;" type="checkbox" id="rptDiplomaGroupCert" value="">&nbsp;证书&nbsp;&nbsp;
 								<input style="border:0px;" type="checkbox" id="rptDiplomaGroupStatus" value="">&nbsp;状态&nbsp;&nbsp;
-								<input style="border:0px;" type="radio" id="rptDiplomaGroupDate1" name="rptDiplomaGroupDate" value="month" checked />月度
+								<input style="border:0px;" type="radio" id="rptDiplomaGroupDate1" name="rptDiplomaGroupDate" value="month" />月度
 								<input style="border:0px;" type="radio" id="rptDiplomaGroupDate2" name="rptDiplomaGroupDate" value="quarter" />季度
-								<input style="border:0px;" type="radio" id="rptDiplomaGroupDate3" name="rptDiplomaGroupDate" value="year" />年度
+								<input style="border:0px;" type="radio" id="rptDiplomaGroupDate3" name="rptDiplomaGroupDate" value="year" checked />年度
 							</td>
 							</tr></table>
 				        </form>
