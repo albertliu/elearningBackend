@@ -41,7 +41,7 @@
 			getDiplomaLastList();
 		});
 
-		//getDiplomaLastList();
+		getDiplomaLastList();
 	});
 
 	function getDiplomaLastList(){
