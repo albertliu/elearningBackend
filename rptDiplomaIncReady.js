@@ -8,8 +8,8 @@
 			getComList("rptDiplomaHost","hostInfo","hostNo","title","status=0 order by hostName",1);
 			getComList("rptDiplomaCert","certificateInfo","certID","certName","status=0 order by certID",1);
 		}else{
-			getComList("rptDiplomaHost","hostInfo","hostNo","title",w621,0);
-			getComList("rptDiplomaCert","certificateInfo","certID","certName",w622,1);
+			getComList("rptDiplomaHost","hostInfo","hostNo","title",w631,0);
+			getComList("rptDiplomaCert","certificateInfo","certID","certName",w632,1);
 		}
 		getDicList("student","rptDiplomaKind",1);
 		getDicList("statusExpire","rptDiplomaStatus",1);

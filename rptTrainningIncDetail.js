@@ -7,7 +7,7 @@
 								类别&nbsp;<select id="rptTrainningKind" style="width:60px"></select>&nbsp;&nbsp;
 								课程&nbsp;<select id="rptTrainningCourse" style="width:100px"></select>&nbsp;&nbsp;
 								状态&nbsp;<select id="rptTrainningStatus" style="width:50px"></select>&nbsp;&nbsp;
-								&nbsp;注册日期&nbsp;<input type="text" id="rptTrainningStartDate" size="8" />-<input type="text" id="rptTrainningEndDate" size="8" />
+								&nbsp;选课日期&nbsp;<input type="text" id="rptTrainningStartDate" size="8" />-<input type="text" id="rptTrainningEndDate" size="8" />
 								</td>
 							<td rowspan="2">
 								<div style="float:right;padding-left:15px;">

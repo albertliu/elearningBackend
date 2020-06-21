@@ -2,11 +2,11 @@
 	var studentListChk = 0;
 
 	$(document).ready(function (){
-		var w = "status=0 and hostNo='" + currHost + "'";
+		var w611 = "status=0 and hostNo='" + currHost + "'";
 		if(currHost==""){	//公司用户只能看自己公司内容
 			getComList("rptStudentHost","hostInfo","hostNo","title","status=0 order by hostName",1);
 		}else{
-			getComList("rptStudentHost","hostInfo","hostNo","title",w,0);
+			getComList("rptStudentHost","hostInfo","hostNo","title",w611,0);
 		}
 		getDicList("student","rptStudentKind",1);
 		$("#rptStudentStartDate").click(function(){WdatePicker();});
