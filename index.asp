@@ -99,6 +99,8 @@
 	<!--#include file="generateScoreListIncReady.js"-->
 	<!--#include file="generateMaterialListIncReady.js"-->
 	<!--#include file="rptStudentIncReady.js"-->
+	<!--#include file="rptTrainningIncReady.js"-->
+	<!--#include file="rptDiplomaIncReady.js"-->
 
 	unitListLong = 0;
 	memoListLong = 0;
@@ -489,16 +491,14 @@
 								<!--#include file="rptStudentIncDetail.js"-->
 							</div>
 							<div id="dtab61" class="dhtmlgoodies_aTab">
-								
+								<!--#include file="rptTrainningIncDetail.js"-->
 							</div>
 							<div id="dtab62" class="dhtmlgoodies_aTab">
-								
-							</div>
-							<div id="dtab63" class="dhtmlgoodies_aTab">
+								<!--#include file="rptDiplomaIncDetail.js"-->
 							</div>
 						</div>
 						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView6',Array("学员注册","学员培训","证书发放","换证提醒"),0,960,400);
+							initTabs('dhtmlgoodies_tabView6',Array("学员注册","学员培训","证书发放"),0,960,400);
 						</script>
 					</div>
 					

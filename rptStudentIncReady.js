@@ -39,7 +39,7 @@
 		$.getJSON(uploadURL + "/public/getRptList?op=student&mark=" + mark + "&host=" + $("#rptStudentHost").val() + "&kindID=" + $("#rptStudentKind").val() + "&startDate=" + $("#rptStudentStartDate").val() + "&endDate=" + $("#rptStudentEndDate").val() + "&groupHost=" + g1 + "&groupDept1=" + g2 + "&groupKindID=" + g3 + "&groupDate=" + g4,function(data){
 			//jAlert(data);
 			if(mark=="file" && data>""){
-				jAlert("请下载<a href='" + data + "'>统计报告</a>","下载文件");
+				jAlert("点击右侧链接，下载<a href='" + data + "'>统计报告</a>","下载文件");
 			}
 
 			if(mark=="data" && data.length>0){
