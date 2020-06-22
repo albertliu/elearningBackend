@@ -2,21 +2,31 @@
 	var deptListChk = 0;
 
 	$(document).ready(function (){
-		$.get("deptControl.asp?op=getRootDeptByHost&refID=" + currHost + "&times=" + (new Date().getTime()),function(re){
-			if(re>0){
-				getDeptList(re);
-			}
+		var w = "status=0 and hostNo='" + currHost + "'";
+		if(currHost==""){	//公司用户只能看自己公司内容
+			getComList("searchDeptHost","hostInfo","hostNo","title","status=0 order by hostName",1);
+		}else{
+			getComList("searchDeptHost","hostInfo","hostNo","title",w,0);
+			getDeptList(currHost);
+		}
+		$("#searchDeptHost").change(function(){
+			getDeptList($("#searchDeptHost").val());
 		});
 	});
 
-	function getDeptList(id){
-		var dtree = getDeptTree(id);
-		//jAlert(dtree);
-		$("#tree1").treeview({
-			data: dtree,
-			onNodeSelected: function(event, data) {
-				//alert(data.id);
-				showDeptInfo(data.id,data.pID,0,1);
+	function getDeptList(host){
+		$.get("deptControl.asp?op=getRootDeptByHost&refID=" + host + "&times=" + (new Date().getTime()),function(re){
+			if(re>0){
+				getDeptList(re);
+				var dtree = getDeptTree(re);
+				//jAlert(dtree);
+				$("#tree1").treeview({
+					data: dtree,
+					onNodeSelected: function(event, data) {
+						//alert(data.id);
+						showDeptInfo(data.id,data.pID,0,1);
+					}
+				});
 			}
 		});
 	}

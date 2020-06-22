@@ -42,7 +42,7 @@
 			arr.push("<th width='8%'>编号</th>");
 			arr.push("<th width='30%'>题目内容</th>");
 			arr.push("<th width='10%'>答案</th>");
-			arr.push("<th width='8%'>知识点</th>");
+			arr.push("<th width='9%'>知识点</th>");
 			arr.push("<th width='8%'>题型</th>");
 			arr.push("<th width='8%'>状态</th>");
 			arr.push("<th width='12%'>登记日期</th>");

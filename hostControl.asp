@@ -4,9 +4,36 @@
 
 if(op == "getHostList"){
 	var s = "";
+	//如果有条件，按照条件查询
+	if(where > ""){ // 有条件
+		where = "(agencyID ='" + where + "' or agencyName like('%" + where + "%')";
+	}
+	//如果有状态
+	if(status > ""){ // 
+		s = "status=" + status;
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//如果有分类
+	if(kindID > ""){ // 
+		s = "kindID=" + kindID;
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	if(where>""){
+		where = " where " + where;
+	}
 	sql = " FROM v_hostInfo ";
 	if(currHost > ""){
 		sql += "where hostNo='" + currHost + "'";
+	}else{
+		sql += where;
 	}
 	result = getBasketTip(sql,"");
 	ssql = "SELECT hostNo,hostName,title,kindName,statusName,linker,phone,email,address,memo,regDate,registerName" + sql + " order by hostName";

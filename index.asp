@@ -95,6 +95,7 @@
 	<!--#include file="userListIncReady.js"-->
 	<!--#include file="deptListIncReady.js"-->
 	<!--#include file="hostListIncReady.js"-->
+	<!--#include file="agencyListIncReady.js"-->
 	<!--#include file="studentNeedDiplomaListIncReady.js"-->
 	<!--#include file="generateDiplomaListIncReady.js"-->
 	<!--#include file="generateStudentListIncReady.js"-->
@@ -466,10 +467,7 @@
 								<!--#include file="knowPointListIncDetail.js"-->
 							</div>
 							<div id="dtab5" class="dhtmlgoodies_aTab">
-								<div style="float:left;width:44%;">
-								</div>
-								<div style="float:right;width:55%;">
-								</div>
+								<!--#include file="agencyListIncDetail.js"-->
 							</div>
 							<div id="dtab6" class="dhtmlgoodies_aTab">
 								<!--#include file="hostListIncDetail.js"-->
@@ -479,7 +477,7 @@
 							</div>
 						</div>
 						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView1',Array("认证项目","培训课程","视频管理","课件管理","知识点","发证机构","公司单位","公司部门"),0,960,400);
+							initTabs('dhtmlgoodies_tabView1',Array("认证项目","培训课程","视频管理","课件管理","知识点","认证机构","公司单位","公司部门"),0,960,400);
 						</script>
 					</div>
 					
