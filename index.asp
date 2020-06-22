@@ -90,6 +90,8 @@
 	<!--#include file="courseLessonListIncReady.js"-->
 	<!--#include file="videoListIncReady.js"-->
 	<!--#include file="coursewareListIncReady.js"-->
+	<!--#include file="knowPointListIncReady.js"-->
+	<!--#include file="questionListIncReady.js"-->
 	<!--#include file="userListIncReady.js"-->
 	<!--#include file="deptListIncReady.js"-->
 	<!--#include file="hostListIncReady.js"-->
@@ -461,10 +463,7 @@
 								<!--#include file="coursewareListIncDetail.js"-->
 							</div>
 							<div id="dtab4" class="dhtmlgoodies_aTab">
-								<div style="float:left;width:44%;">
-								</div>
-								<div style="float:right;width:55%;">
-								</div>
+								<!--#include file="knowPointListIncDetail.js"-->
 							</div>
 							<div id="dtab5" class="dhtmlgoodies_aTab">
 								<div style="float:left;width:44%;">
@@ -485,6 +484,7 @@
 					</div>
 					
 					<div id="fragment-5">
+						<!--#include file="questionListIncDetail.js"-->
 					</div>
 					
 					<div id="fragment-6">

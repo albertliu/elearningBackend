@@ -1,51 +1,50 @@
-﻿	var videoListLong = 0;		//0: 标准栏目  1：短栏目
+﻿	var knowpointListLong = 0;		//0: 标准栏目  1：短栏目
 
 	$(document).ready(function (){
-		getComList("searchVideoLesson","lessonInfo","lessonID","lessonName","status=0 order by lessonID",1);
-		getDicList("statusEffect","searchVideoStatus",1);
+		getComList("searchKnowPointCourse","courseInfo","courseID","courseName","status=0 order by courseID",1);
+		getDicList("statusEffect","searchKnowPointStatus",1);
 		
 		if(checkPermission("courseAdd")){
-			$("#btnAddVideo").show();
+			$("#btnAddKnowPoint").show();
 		}else{
-			$("#btnAddVideo").hide();
+			$("#btnAddKnowPoint").hide();
 		}
-		$("#btnSearchVideo").click(function(){
-			getVideoList();
+		$("#btnSearchKnowPoint").click(function(){
+			getKnowPointList();
 		});
 		
-		$("#btnAddVideo").click(function(){
-			showVideoInfo(0,0,1,1);	//showVideoInfo(nodeID,refID,op,mark) op:0 浏览 1 新增; mark:0 不动作  1 有修改时刷新列表
+		$("#btnAddKnowPoint").click(function(){
+			showKnowPointInfo(0,0,1,1);	//showKnowPointInfo(nodeID,refID,op,mark) op:0 浏览 1 新增; mark:0 不动作  1 有修改时刷新列表
 		});
 		
-		//getVideoList();
+		//getKnowPointList();
 	});
 
-	function getVideoList(){
-		sWhere = $("#txtSearchVideo").val();
-		//alert((sWhere) + "&status=" + $("#searchVideoStatus").val() + "&refID=" + $("#searchVideoLesson").val());
-		$.get("videoControl.asp?op=getVideoList&where=" + escape(sWhere) + "&kindID=&status=" + $("#searchVideoStatus").val() + "&refID=" + $("#searchVideoLesson").val() + "&dk=17&times=" + (new Date().getTime()),function(data){
+	function getKnowPointList(){
+		sWhere = $("#txtSearchKnowPoint").val();
+		//alert((sWhere) + "&status=" + $("#searchKnowPointStatus").val() + "&refID=" + $("#searchKnowPointCourse").val());
+		$.get("knowPointControl.asp?op=getKnowPointList&where=" + escape(sWhere) + "&status=" + $("#searchKnowPointStatus").val() + "&refID=" + $("#searchKnowPointCourse").val() + "&dk=44&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
-			$("#videoCover").empty();
+			$("#knowpointCover").empty();
 			var ar0 = new Array();
 			ar0 = ar.shift().split("|");
 			floatCount = ar0[0];
 			floatSum = "";
 			arr = [];
 			arr.push("<div>" + ar.shift() + "</div>");					
-			arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='videoTab' width='98%'>");
+			arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='knowpointTab' width='98%'>");
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
 			arr.push("<th width='8%'>编号</th>");
-			arr.push("<th width='30%'>名称</th>");
-			arr.push("<th width='9%'>时长</th>");
-			arr.push("<th width='9%'>比重(%)</th>");
-			arr.push("<th width='8%'>类型</th>");
-			arr.push("<th width='15%'>作者</th>");
-			arr.push("<th width='8%'>课节</th>");
+			arr.push("<th width='20%'>名称</th>");
+			arr.push("<th width='20%'>所属课程</th>");
 			arr.push("<th width='8%'>状态</th>");
+			arr.push("<th width='15%'>备注</th>");
+			arr.push("<th width='12%'>登记日期</th>");
+			arr.push("<th width='10%'>登记人</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
@@ -61,13 +60,12 @@
 					arr.push("<tr class='grade0'>");
 					arr.push("<td class='center'>" + i + "</td>");
 					arr.push("<td class='left'>" + ar1[1] + "</td>");
-					arr.push("<td class='link1'><a href='javascript:showVideoInfo(" + ar1[0] + ",0,0,1);'>" + ar1[2] + "</a></td>");
-					arr.push("<td class='left'>" + ar1[3] + "</td>");
-					arr.push("<td class='left'>" + ar1[11] + "</td>");
-					arr.push("<td class='left'>" + ar1[9] + "</td>");
-					arr.push("<td class='left'>" + ar1[10] + "</td>");
-					arr.push("<td class='left'>" + ar1[8] + "</td>");
+					arr.push("<td class='link1'><a href='javascript:showKnowPointInfo(" + ar1[0] + ",0,0,1);'>" + ar1[2] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
+					arr.push("<td class='left'>" + ar1[4] + "</td>");
+					arr.push("<td class='left'>" + ar1[7] + "</td>");
+					arr.push("<td class='left'>" + ar1[8] + "</td>");
+					arr.push("<td class='left'>" + ar1[10] + "</td>");
 					arr.push("</tr>");
 				});
 			}
@@ -82,13 +80,12 @@
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
-			arr.push("<th>&nbsp;</th>");
 			arr.push("</tr>");
 			arr.push("</tfoot>");
 			arr.push("</table>");
-			$("#videoCover").html(arr.join(""));
+			$("#knowpointCover").html(arr.join(""));
 			arr = [];
-			$('#videoTab').dataTable({
+			$('#knowpointTab').dataTable({
 				"aaSorting": [],
 				"bFilter": true,
 				"bPaginate": true,

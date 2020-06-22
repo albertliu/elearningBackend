@@ -85,15 +85,16 @@ body { background:#fff url(../images/bg0.gif); }
 .comm {padding:1px;margin:0;}
 .comm h2 {float:center; height:20px;margin:2px 0;border-bottom:1px solid #c0c0c0;font-size:13px;text-align:center;color: #3F410F;}
 .comm h3 {float:center; height:20px;margin:2px 0;font-size:13px;text-align:center;color: #3F410F;}
-.comm input {height:18px;vertical-align:middle;padding-left: 2px;border:solid 1px #c0c0c0; background: #fcfcfc;margin:0;}
-.comm select {height:20px;vertical-align:middle;border:solid 1px #c0c0c0; background: #fcfcfc;}
+.comm input {height:18px;vertical-align:middle;padding-left:3px;border:solid 1px #c0c0c0; background: #fcfcfc;margin:3px;}
+.comm select {height:20px;vertical-align:middle;border:solid 1px #c0c0c0; background: #fcfcfc;margin:3px;}
 .comm label {vertical-align:middle;border:0px; text-align:center;color: #3F410F;}
 .comm td {line-height:26px;vertical-align:middle; padding:0;margin:1px;}
-.comm input.button {height:18px;vertical-align:middle;text-align:center;border:solid 1px #AAAAAA; background: #edeecd;padding:1px;margin:0;}
-.comm input.readOnly {height:18px;vertical-align:middle;border:solid 1px #f8f8ff; background: #e8e8e8;}
-.comm textarea.readOnly {border:solid 1px #f8f8ff; background: #e8e8e8;}
-.comm input.mustFill {height:18px;vertical-align:middle;border:solid 1px #c0c0c0; background: #fff0f0;}
-.comm textarea.mustFill {border:solid 1px #c0c0c0; background: #fff0f0;}
+.comm textarea {line-height:20px;padding-left:3px;border:solid 1px #c0c0c0; background:#fcfcfc;vertical-align:middle;margin:3px;}
+.comm input.button {height:18px;vertical-align:middle;text-align:center;border:solid 1px #AAAAAA; background: #edeecd;padding:1px;margin:3px;}
+.comm input.readOnly {height:18px;vertical-align:middle;border:solid 1px #f8f8ff; background: #e8e8e8;margin:3px;}
+.comm textarea.readOnly {border:solid 1px #f8f8ff; background: #e8e8e8;margin:3px;}
+.comm input.mustFill {height:18px;vertical-align:middle;border:solid 1px #c0c0c0; background: #fff0f0;margin:3px;}
+.comm textarea.mustFill {border:solid 1px #c0c0c0; background: #fff0f0;margin:3px;}
 
 .blueText {color: blue;}
 .redText {color: red;}

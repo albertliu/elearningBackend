@@ -221,8 +221,8 @@
 	
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
-  	<input class="button" type="button" id="cancel" name="cancel" value="撤回" />&nbsp;
   	<input class="button" type="button" id="save" name="save" value="保存" />&nbsp;
+  	<input class="button" type="button" id="cancel" name="cancel" value="撤回" />&nbsp;
   </div>
 </div>
 </body>

@@ -7,7 +7,7 @@
 
 <title></title>
 
-<link href="css/style_inner1.css"  rel="stylesheet" type="text/css" />
+<link href="css/style_inner1.css?v=1.0"  rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/easyui/easyui.css">
 <link rel="stylesheet" type="text/css" href="css/easyui/icon.css">
 <link href="css/data_table_mini.css?v=20150411" rel="stylesheet" type="text/css" />
@@ -34,9 +34,10 @@
 		nodeID = "<%=nodeID%>";
 		refID = "<%=refID%>";
 		op = "<%=op%>";
-		
-		getComList("lessonID","lessonInfo","lessonID","lessonName","status=0 order by lessonID",1);
+
+		getComList("knowpointID","knowPointInfo","knowPointID","knowPointName","status=0 order by knowPointID",1);
 		getDicList("statusEffect","status",0);
+		getDicList("questionType","kindID",0);
 		
 		$.ajaxSetup({ 
 			async: false 
@@ -54,37 +55,30 @@
 		$("#save").click(function(){
 			saveNode();
 		});
-		<!--#include file="commLoadFileReady.asp"-->
+	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
 	function getNodeInfo(id){
-		$.get("coursewareControl.asp?op=getNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
+		$.get("questionControl.asp?op=getNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar > ""){
 				$("#ID").val(ar[0]);
-				$("#coursewareID").val(ar[1]);
-				$("#coursewareName").val(ar[2]);
-				$("#pages").val(ar[3]);
-				$("#kindID").val(ar[4]);
-				$("#status").val(ar[5]);
-				$("#lessonID").val(ar[8]);
-				$("#type").val(ar[9]);
-				$("#author").val(ar[10]);
-				$("#proportion").val(ar[11]);
-				$("#memo").val(ar[12]);
-				$("#regDate").val(ar[13]);
-				//$("#registerName").val(ar[15]);
-				$("#upload1").html("<a href='javascript:showLoadFile(\"course_courseware\",\"" + ar[1] + "\",\"course\",\"\");'>上传</a>");
-				var c = "";
-				if(ar[7] > ""){
-					c += "&nbsp;&nbsp;<a href='/users" + ar[7] + "' target='_blank'>查看课件</a>";
-				}
-				if(c == ""){c = "&nbsp;&nbsp;还未上传";}
-				$("#photo").html(c);
-				
-				//getDownloadFile("coursewareID");
+				$("#questionID").val(ar[1]);
+				$("#questionName").val(ar[2]);
+				$("#answer").val(ar[7]);
+				$("#A").val(ar[8]);
+				$("#B").val(ar[9]);
+				$("#C").val(ar[10]);
+				$("#D").val(ar[11]);
+				$("#E").val(ar[12]);
+				$("#knowpointID").val(ar[13]);
+				$("#kindID").val(ar[5]);
+				$("#status").val(ar[3]);
+				$("#memo").val(ar[15]);
+				$("#regDate").val(ar[16]);
+				$("#registerName").val(ar[18]);
 				setButton();
 			}else{
 				jAlert("该信息未找到！","信息提示");
@@ -94,8 +88,8 @@
 	}
 	
 	function saveNode(){
-		//alert($("#coursewareID").val() + "&item=" + ($("#memo").val()));
-		$.get("coursewareControl.asp?op=update&nodeID=" + $("#ID").val() + "&coursewareID=" + $("#coursewareID").val() + "&coursewareName=" + escape($("#coursewareName").val()) + "&pages=" + $("#pages").val() + "&type=" + $("#type").val() + "&refID=" + $("#lessonID").val() + "&proportion=" + $("#proportion").val() + "&author=" + $("#author").val() + "&kindID=0&status=" + $("#status").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		//alert($("#questionID").val() + "&item=" + ($("#memo").val()));
+		$.get("questionControl.asp?op=update&nodeID=" + $("#ID").val() + "&questionID=" + $("#questionID").val() + "&questionName=" + escape($("#questionName").val()) + "&answer=" + $("#answer").val() + "&A=" + escape($("#A").val()) + "&B=" + escape($("#B").val()) + "&C=" + escape($("#C").val()) + "&D=" + escape($("#D").val()) + "&E=" + escape($("#E").val()) + "&refID=" + $("#knowpointID").val() + "&status=" + $("#status").val() + "&kindID=" + $("#kindID").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -117,7 +111,7 @@
 	function setButton(){
 		$("#save").hide();
 		$("#add").hide();
-		if(checkPermission("courseAdd")){
+		if(checkPermission("examAdd")){
 			$("#save").show();
 			$("#add").show();
 		}
@@ -129,9 +123,8 @@
 	
 	function setEmpty(){
 		$("#ID").val(0);
-		$("#kindID").val(0);
-		$("#coursewareID").val("");
-		$("#coursewareName").val("");
+		$("#questionID").val("");
+		$("#questionName").val("");
 		$("#memo").val("");
 		$("#status").val(0);
 		$("#regDate").val(currDate);
@@ -157,41 +150,52 @@
 			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
-				<td align="right">课件编号</td><input id="ID" type="hidden" />
-				<td><input type="text" id="coursewareID" size="25" /></td>
-				<td align="right">课件名称</td><input id="kindID" type="hidden" />
-				<td><input type="text" id="coursewareName" size="25" /></td>
+				<td align="right">编号</td><input id="ID" type="hidden" />
+				<td><input type="text" id="questionID" size="25" /></td>
+				<td align="right">知识点</td>
+				<td><select id="knowpointID" style="width:200px;"></select></td>
 			</tr>
 			<tr>
-				<td align="right">课节</td>
-				<td><select id="lessonID" style="width:100px;"></select></td>
-				<td align="right">页数</td>
-				<td><input type="text" id="pages" size="15" />页</td>
-			</tr>
-			<tr>
-				<td align="right">比重</td>
-				<td><input type="text" id="proportion" size="15" />%</td>
-				<td align="right">类型</td>
-				<td><input type="text" id="type" size="15" /></td>
-			</tr>
-			<tr>
-				<td align="right">作者</td>
-				<td><input type="text" id="author" size="25" /></td>
+				<td align="right">题型</td>
+				<td><select id="kindID" style="width:100px;"></select></td>
 				<td align="right">状态</td>
 				<td><select id="status" style="width:100px;"></select></td>
 			</tr>
 			<tr>
-				<td align="right">说明</td>
-				<td colspan="5"><textarea id="memo" style="padding:2px;" rows="5" cols="75"></textarea></td>
+				<td align="right">题干</td>
+				<td colspan="5"><textarea id="questionName" rows="5" cols="75"></textarea></td>
+			</tr>
+			<tr>
+				<td align="right">选项A</td>
+				<td colspan="5"><textarea id="A" rows="1" cols="75"></textarea></td>
+			</tr>
+			<tr>
+				<td align="right">选项B</td>
+				<td colspan="5"><textarea id="B" rows="1" cols="75"></textarea></td>
+			</tr>
+			<tr>
+				<td align="right">选项C</td>
+				<td colspan="5"><textarea id="C" rows="1" cols="75"></textarea></td>
+			</tr>
+			<tr>
+				<td align="right">选项D</td>
+				<td colspan="5"><textarea id="D" rows="1" cols="75"></textarea></td>
+			</tr>
+			<tr>
+				<td align="right">选项E</td>
+				<td colspan="5"><textarea id="E" rows="1" cols="75"></textarea></td>
+			</tr>
+			<tr>
+				<td align="right">答案</td>
+				<td><input type="text" id="answer" size="25" /></td>
+				<td align="right">备注</td>
+				<td><input type="text" id="memo" size="25" /></td>
 			</tr>
 			<tr>
 				<td align="right">登记日期</td>
 				<td><input class="readOnly" type="text" id="regDate" size="25" readOnly="true" /></td>
-				<td align="right">文件</td>
-				<td>
-					<span id="upload1" style="margin-left:20px;"></span>
-					<span id="photo" style="margin-left:20px;"></span>
-				</td>
+				<td align="right">登记人</td>
+				<td><input class="readOnly" type="text" id="registerName" size="25" readOnly="true" /></td>
 			</tr>
 			</table>
 			</form>
