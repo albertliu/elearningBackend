@@ -24,18 +24,16 @@
 			jConfirm("确定要发放证书吗？","确认",function(r){
 				if(r){
 					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
-					$.getJSON(uploadURL + "/outfiles/generate_diploma_byCertID?certID=" + $("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser ,function(data){
-						if(data["status"]==0){
-							jAlert("证书颁发成功 <a href='" + data["filename"] + "' target='_blank'>下载文件</a>");
+					$.getJSON(uploadURL + "/outfiles/generate_diploma_byCertID?certID=" + $("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&batchID=0" + "&username=" + currUser ,function(data){
+						if(data>""){
+							jAlert("证书重新制作成功 <a href='" + data + "' target='_blank'>下载文件</a>");
 							getStudentNeedDiplomaList();
-						}
-						if(data["status"]==1){
-							jAlert(data["msg"]);
+						}else{
+							jAlert("没有可供处理的数据。");
 						}
 					});
 				}
 			});
-	
 		});
 		
 		$("#txtSearchStudentNeedDiploma").keypress(function(event){

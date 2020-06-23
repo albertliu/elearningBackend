@@ -18,11 +18,11 @@ body {
 .login-form-wrap {
   position: relative;
   width: 180mm;
-  height: 119mm;
+  height: 120mm;
   margin: 0;
   padding: 0;
   text-align: left; 
-  border: 1px solid #eee;
+  border: 1px solid #555;
 }
 h1 {
   margin: 0;
@@ -40,7 +40,7 @@ h3 {
   margin: 0;
   padding-top: 10px;
   padding-bottom: 3px;
-  padding-left: 10px;
+  padding-left: 3px;
   font-size: 26px;
   color: #222;
 }

@@ -63,10 +63,10 @@
 					}else{
 						c = "/users" + val["photo_filename"];
 					}
-					arr.push('	<img src="' + c + '" style="width:50mm;padding-top:10mm;padding-left:7mm;">');
+					arr.push('	<img src="' + c + '" style="width:50mm;max-height:75mm;padding-top:10mm;padding-left:7mm;">');
 					arr.push('</div>');
 					arr.push('<div style="float:right;width:69%;">');
-					arr.push('	<table>');
+					arr.push('	<table style="width:100%;">');
 					arr.push('		<tr>');
 					arr.push('			<td width="28%"><h3>单&nbsp;位：</h3></td>');
 					if(val["host"]=='spc' && val["dept1Name"]=="公司本部"){
@@ -74,7 +74,7 @@
 					}else{
 						c = val["dept1Name"];
 					}
-					arr.push('			<td class="foot" width="72%"><h3>' + c + '</h3></td>');
+					arr.push('			<td class="foot" width="71%"><h3>' + c + '</h3></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
 					arr.push('			<td><h3>姓&nbsp;名：</h3></td>');
@@ -92,7 +92,7 @@
 					arr.push('			<td class="foot"><h3>' + val["diplomaID"] + '</h3></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
-					arr.push('			<td><h3>发证日期：</h3></td>');
+					arr.push('			<td><h3>发证日期</h3></td>');
 					arr.push('			<td class="foot"><h3>' + val["startDate"] + '</h3></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');

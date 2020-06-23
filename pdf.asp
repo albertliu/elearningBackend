@@ -78,13 +78,13 @@
 <div style="clear: both;"></div>
 <hr size=2 color="red">
 <div style="float:left;width:30%;">
-	<img id="photo_filename" src="" style="width:50mm;padding-top:10mm;padding-left:7mm;">
+	<img id="photo_filename" src="" style="width:50mm;max-height:75mm;padding-top:10mm;padding-left:7mm;">
 </div>
 <div style="float:right;width:69%;">
-	<table>
+	<table style="width:100%;">
 		<tr>
 			<td width="28%"><h3>单&nbsp;位：</h3></td>
-			<td class="foot" width="72%"><h3 id="dept1Name"></h3></td>
+			<td class="foot" width="71%"><h3 id="dept1Name"></h3></td>
 		</tr>
 		<tr>
 			<td><h3>姓&nbsp;名：</h3></td>
@@ -99,7 +99,7 @@
 			<td class="foot"><h3 id="diplomaID"></h3></td>
 		</tr>
 		<tr>
-			<td><h3>发证日期：</h3></td>
+			<td><h3>发证日期</h3></td>
 			<td class="foot"><h3 id="startDate"></h3></td>
 		</tr>
 		<tr>

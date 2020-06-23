@@ -40,8 +40,20 @@
 		
 		getNodeInfo(nodeID);
 
-		$("#reply").click(function(){
-			showMessageInfo(0,0,1,0,$("#username").val());
+		$("#redo").click(function(){
+			jConfirm("确定要重新制作证书吗？证书编号将保持不变。","确认",function(r){
+				if(r){
+					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
+					$.getJSON(uploadURL + "/outfiles/generate_diploma_byCertID?certID=" + $("#certID").val() + "&host=" + $("#host").val() + "&batchID=" + $("#ID").val() + "&username=" + currUser ,function(data){
+						if(data>""){
+							jAlert("证书重新制作成功 <a href='" + data + "' target='_blank'>下载文件</a>");
+							getGenerateDiplomaList();
+						}else{
+							jAlert("没有可供处理的数据。");
+						}
+					});
+				}
+			});
 		});
 		$("#save").click(function(){
 			saveNode();
@@ -57,8 +69,10 @@
 			ar = unescape(re).split("|");
 			if(ar > ""){
 				$("#ID").val(ar[0]);
+				$("#certID").val(ar[1]);
 				$("#certName").val(ar[2]);
 				$("#qty").val(ar[3]);
+				$("#host").val(ar[4]);
 				$("#firstID").val(ar[8]);
 				$("#lastID").val(ar[9]);
 				$("#title").val(ar[6]);
@@ -103,6 +117,7 @@
 		$("#upload1").hide();
 		if(checkPermission("diplomaAdd")){
 			$("#upload1").show();
+			$("#redo").show();
 		}
 	}
 	
@@ -128,9 +143,9 @@
 			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
-				<td align="right">证书</td><input type="hidden" id="ID" />
+				<td align="right">证书</td><input type="hidden" id="ID" /><input type="hidden" id="certID" />
 				<td><input class="readOnly" type="text" id="certName" size="25" readOnly="true" /></td>
-				<td align="right">数量</td>
+				<td align="right">数量</td><input type="hidden" id="host" />
 				<td><input class="readOnly" type="text" id="qty" size="25" readOnly="true" /></td>
 			</tr>
 			<tr>
@@ -167,6 +182,7 @@
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
   	<input class="button" type="button" id="save" name="save" value="保存备注" />&nbsp;
+  	<input class="button" type="button" id="redo" name="redo" value="重新生成" />&nbsp;
   </div>
 </div>
 </body>
