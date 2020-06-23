@@ -61,7 +61,8 @@
 		<div style="align:right;">
 		  <span style="align:right;" onclick="document.getElementById('lightLoadFile').style.display='none';document.getElementById('fadeLoadFile').style.display='none'"><img src="../Images/close3.gif" />
 		  </span>
-		</div>    
+		</div>   
+		<div>公司&nbsp;<select id="commLoadFileHost" style="width:200px"></select></div> 
 		<br>
 		<div id="upload" align="left" style="border:solid 1px #e0e060;background:#ffffff;width:500;height:300;">
 			<div align="center" style="background:#f0f0f0;vertical-align:middle;height:9;">文件上传</div>

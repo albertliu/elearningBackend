@@ -50,29 +50,19 @@
 	});
 
 	function getNodeInfo(id){
-		$.get("materialControl.asp?op=getGenerateMaterialNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
+		$.get("diplomaControl.asp?op=getGenerateMaterialNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			var c = "";
 			ar = unescape(re).split("|");
 			if(ar > ""){
 				$("#ID").val(ar[0]);
-				$("#certName").val(ar[2]);
+				$("#kindName").val(ar[2]);
 				$("#qty").val(ar[3]);
-				$("#firstID").val(ar[8]);
-				$("#lastID").val(ar[9]);
-				$("#title").val(ar[6]);
-				$("#memo").val(ar[10]);
-				$("#regDate").val(ar[11]);
-				$("#registerName").val(ar[12]);
-				$("#upload1").html("<a href='javascript:showLoadFile(\"gen_material\",\"" + ar[0] + "\",\"material\",\"\");' style='padding:3px;'>上传</a>");
-				var c = "";
-				if(ar[7] > ""){
-					c += "<a href='/users" + ar[7] + "' target='_blank'>证书打印版</a>";
-				}
-				if(c == ""){c = "&nbsp;&nbsp;还未上传";}
-				$("#photo").html(c);
-				//getDownloadFile("generateMaterialID");
+				$("#title").val(ar[5]);
+				$("#memo").val(ar[7]);
+				$("#regDate").val(ar[8]);
+				$("#registerName").val(ar[9]);
 				setButton();
 			}else{
 				jAlert("该信息未找到！","信息提示");
@@ -87,7 +77,7 @@
 			return false;
 		}
 		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-		$.get("materialControl.asp?op=setGenerateMaterialMemo&nodeID=" + $("#ID").val() + "&item=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("diplomaControl.asp?op=setGenerateMaterialMemo&nodeID=" + $("#ID").val() + "&item=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -100,9 +90,9 @@
 	}
 	
 	function setButton(){
-		$("#upload1").hide();
-		if(checkPermission("materialAdd")){
-			$("#upload1").show();
+		$("#save").hide();
+		if(checkPermission("studentUpload")){
+			$("#save").show();
 		}
 	}
 	
@@ -128,30 +118,21 @@
 			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
-				<td align="right">证书</td><input type="hidden" id="ID" />
+				<td align="right">材料名称</td><input type="hidden" id="ID" />
 				<td><input class="readOnly" type="text" id="certName" size="25" readOnly="true" /></td>
 				<td align="right">数量</td>
 				<td><input class="readOnly" type="text" id="qty" size="25" readOnly="true" /></td>
 			</tr>
 			<tr>
-				<td align="right">最小序号</td>
-				<td><input class="readOnly" type="text" id="firstID" size="25" readOnly="true" /></td>
-				<td align="right">最大序号</td>
-				<td><input class="readOnly" type="text" id="lastID" size="25" readOnly="true" /></td>
-			</tr>
-			<tr>
 				<td align="right">公司</td>
 				<td><input class="readOnly" type="text" id="title" size="25" readOnly="true" /></td>
-				<td align="right">资料</td>
-				<td>
-					<span id="upload1" style="margin-left:10px;border:1px solid orange;"></span>
-					<span id="photo" style="margin-left:10px;"></span>
-				</td>
+				<td align="right"></td>
+				<td></td>
 			</tr>
 			<tr>
-				<td align="right">制作日期</td>
+				<td align="right">上传日期</td>
 				<td><input class="readOnly" type="text" id="regDate" size="25" readOnly="true" /></td>
-				<td align="right">制作人</td>
+				<td align="right">操作人</td>
 				<td><input class="readOnly" type="text" id="registerName" size="25" readOnly="true" /></td>
 			</tr>
 			<tr>

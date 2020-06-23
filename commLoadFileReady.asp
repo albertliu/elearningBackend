@@ -1,15 +1,21 @@
 
 		document.getElementById("lightLoadFile").style.display="none";
 		document.getElementById("fadeLoadFile").style.display="none";
-		/*
-		$("input[name='uploadKind']").change(function(){
-			alert($("input[name='uploadKind']:checked").val());
-			$("#formUpload").attr("action", action + "?upID=" + $("input[name='uploadKind']:checked").val() + "&username=" + username);
-		});
-		*/
+
+		var commw1 = "status=0 and hostNo='" + currHost + "'";
+		if(currHost==""){	//公司用户只能看自己公司内容
+			getComList("commLoadFileHost","hostInfo","hostNo","title","status=0 order by hostName",1);
+		}else{
+			getComList("commLoadFileHost","hostInfo","hostNo","title",commw1,0);
+		}
+
 		$("#restore").click(function(){
+			if($("#commLoadFileHost").val()==""){
+				jAlert("请选择一个公司。");
+				return false;
+			}
             var form = new FormData(document.getElementById("formUpload"));
-			var act = action + "?upID=" + $("input[name='uploadKind']:checked").val() + "&username=" + username + "&currUser=" + currUser + "&host=" + host;
+			var act = action + "?upID=" + $("input[name='uploadKind']:checked").val() + "&username=" + username + "&currUser=" + currUser + "&host=" + $("#commLoadFileHost").val();
             $.ajax({
                 url: act,
                 type:"post",
@@ -19,7 +25,11 @@
                 success:function(data){
 					var msg = data.msg;
 					if(msg == ""){
-						msg = "共上传" + data.count + "个文件。";
+						if(data.count>0){
+							msg = "成功上传" + data.count + "个文件。";
+						}else{
+							msg = "没有上传有效文件。";
+						}
 					}
 					jAlert(msg, "上传结果");
 					if(mark != "mulitple"){

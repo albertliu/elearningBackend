@@ -1172,6 +1172,37 @@
 	}
 	
 	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
+	function showGenerateMaterialInfo(nodeID,refID,op,mark){
+		asyncbox.open({
+			id: "generateMaterial",
+			url:"generateMaterialInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
+			title: "学员材料",
+			width: 600,
+			height: 380,
+			cover : {
+	          //透明度
+	          opacity : 0,
+	          //背景颜色
+	           background : '#000'
+	          },
+
+			btnsbar : false,
+			callback : function(action,iframe){
+				setReturnLog("generateMaterial",iframe.nodeID);	
+				var re = iframe.updateCount;
+				if(re>0 && mark==1){
+					getGenerateMaterialList();
+				}
+				//alert(re + ":" + mark);
+				if(re>0 && mark==2){
+					//alert(iframe.getValList());
+					setObjValue("generateMaterial",iframe.getValList(),0,0);  //根据请求，返回任意个数的项目，为相应的对象赋值。objList:传入的Object列表；valList：输出的值；mark：0 不动作 1 关闭本窗口（与objList同名）; loc: 0 同级别  1 父窗体
+				}
+　　　		}
+		});
+	}
+	
+	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
 	function showCommLoadFile(nodeID,refID,op,mark,keyID){
 		asyncbox.open({
 			id: "commLoadFile",
