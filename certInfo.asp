@@ -35,6 +35,7 @@
 		getComList("agencyID","agencyInfo","agencyID","agencyName","status=0 order by agencyID",1);
 		getDicList("certKind","kindID",0);
 		getDicList("statusEffect","status",0);
+		getDicList("certType","type",0);
 		
 		$.ajaxSetup({ 
 			async: false 
@@ -70,6 +71,7 @@
 				$("#registerName").val(ar[13]);
 				$("#hours").val(ar[14]);
 				$("#host").val(ar[15]);
+				$("#type").val(ar[18]);
 				
 				//getDownloadFile("certID");
 				setButton();
@@ -82,7 +84,7 @@
 	
 	function saveNode(){
 		//alert($("#certID").val() + "&item=" + ($("#memo").val()));
-		$.get("certControl.asp?op=update&nodeID=" + $("#ID").val() + "&certID=" + $("#certID").val() + "&certName=" + escape($("#certName").val()) + "&term=" + $("#term").val() + "&termExt=" + $("#termExt").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&host=" + $("#host").val() + "&agencyID=" + $("#agencyID").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("certControl.asp?op=update&nodeID=" + $("#ID").val() + "&certID=" + $("#certID").val() + "&certName=" + escape($("#certName").val()) + "&term=" + $("#term").val() + "&termExt=" + $("#termExt").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&type=" + $("#type").val() + "&host=" + $("#host").val() + "&agencyID=" + $("#agencyID").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -161,8 +163,14 @@
 			<tr>
 				<td align="right">状态</td>
 				<td><select id="status" style="width:100px;"></select></td>
+				<td align="right">认证方式</td>
+				<td><select id="type" style="width:100px;"></select></td>
+			</tr>
+			<tr>
 				<td align="right">有效期限</td>
-				<td><input type="text" id="term" size="3" />年&nbsp;&nbsp;&nbsp;&nbsp;系统外<input type="text" id="termExt" size="3" />年</td>
+				<td><input type="text" id="term" size="3" />年&nbsp;&nbsp;&nbsp;系统内</td>
+				<td align="right">有效期限</td>
+				<td><input type="text" id="termExt" size="3" />年&nbsp;&nbsp;&nbsp;系统外</td>
 			</tr>
 			<tr>
 				<td align="right">说明</td>
