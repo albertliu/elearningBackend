@@ -1270,7 +1270,7 @@
 			url:"userInfo.asp?nodeID=" + nodeID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "用户信息",
 			width: 780,
-			height: 590,
+			height: 610,
 			cover : {
 	          //透明度
 	          opacity : 0,
