@@ -214,6 +214,7 @@
 		if(!checkPermission("examBrowse")){
 			$("#menu5").hide();
 		}
+		alert(currHostKind + ":" + currHost);
 		if(currHostKind==0 && currHost > ""){	//集团用户不使用导入报名表, 照片批量上传，成绩导入功能
 			$("#generateStudent_Tab").hide();
 			$("#tab3").hide();
