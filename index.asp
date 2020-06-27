@@ -214,11 +214,13 @@
 		if(!checkPermission("examBrowse")){
 			$("#menu5").hide();
 		}
-		if(currHostKind==0 && currHost > ""){	//集团用户不使用导入报名表功能
+		if(currHostKind==0 && currHost > ""){	//集团用户不使用导入报名表, 照片批量上传，成绩导入功能
 			$("#generateStudent_Tab").hide();
 			$("#tab3").hide();
 			$("#generateScore_Tab").hide();
 			$("#tab4").hide();
+			$("#generatePhoto_Tab").hide();
+			$("#tab5").hide();
 		}
 		if(!checkPermission("courseAdd")){
 			deleteTab("视频管理");
@@ -361,7 +363,7 @@
 							    <li><a href="#" name="#tab2">回复信息</a></li>
 							    <li id="generateStudent_Tab"><a href="#" name="#tab3">学员报名</a></li> 
 							    <li id="generateScore_Tab"><a href="#" name="#tab4">成绩导入</a></li> 
-							    <li id="generateScore_Tab"><a href="#" name="#tab5">图片上传</a></li> 
+							    <li id="generatePhoto_Tab"><a href="#" name="#tab5">图片上传</a></li> 
 							</ul>
 							
 							<div id="content"> 
