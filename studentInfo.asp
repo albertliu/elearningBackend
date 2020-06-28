@@ -232,7 +232,7 @@
 				<td align="right">状态</td>
 				<td><input class="readOnly" readOnly="true" type="text" id="statusName" size="25" /></td>
 				<td align="right">类型</td>
-				<td><select id="kindID" style="width:100px;"></select></td>
+				<td><select id="kindID" style="width:180px;"></select></td>
 			</tr>
 			<tr>
 				<td align="right">公司</td>

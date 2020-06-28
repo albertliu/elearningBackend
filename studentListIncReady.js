@@ -74,7 +74,7 @@
 				arr.push("<th width='12%'>部门</th>");
 				arr.push("<th width='10%'>二级部门</th>");
 			}
-			arr.push("<th width='8%'>类型</th>");
+			arr.push("<th width='10%'>类型</th>");
 			arr.push("<th width='6%'>状态</th>");
 			arr.push("<th width='6%'>资料</th>");
 			arr.push("</tr>");
