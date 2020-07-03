@@ -128,7 +128,7 @@
 					});
 				break;
 				case 'prompt':
-					$("#popup_message").append('<br /><input type="text" size="23" id="popup_prompt" style="height:20px;width:330px;vertical-align:middle;border:solid 1px #c0c0c0; background: yellow;margin:3px;" />').after('<div id="popup_panel" class="comm"><input type="button" value="' + $.alerts.okButton + '" id="popup_ok" /> <input type="button" value="' + $.alerts.cancelButton + '" id="popup_cancel" /></div>');
+					$("#popup_message").append('<br /><input type="text" size="20" id="popup_prompt" style="height:20px;width:300px;vertical-align:middle;border:solid 1px #c0c0c0; background: yellow;" />').after('<div id="popup_panel" class="comm"><input type="button" value="' + $.alerts.okButton + '" id="popup_ok" /> <input type="button" value="' + $.alerts.cancelButton + '" id="popup_cancel" /></div>');
 					$("#popup_prompt").width( $("#popup_message").width() );
 					$("#popup_ok").click( function() {
 						var val = $("#popup_prompt").val();
