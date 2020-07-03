@@ -26,10 +26,9 @@
         <![endif]-->
 <link rel="stylesheet" type="text/css" href="css/fullcalendar.min.css">
 <link rel="stylesheet" type="text/css" href="css/fullcalendar.print.css" media="print">
-<link href="css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
 		<link href="css/tabStyle.css" rel="stylesheet" type="text/css">
 	<link href="css/bootstrap-3.3.4.css" rel="stylesheet">
-		<link href="css/bootstrap-treeview.min.css" rel="stylesheet" type="text/css">
+<link href="css/jquery.alerts.css?v=1.1" rel="stylesheet" type="text/css" media="screen" />
 		<script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
         <script src="js/jquery.tabs.pack.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/AsyncBox.v1.4.js"></script>

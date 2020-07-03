@@ -39,7 +39,7 @@
 				if(n==0){
 					//合并
 					t = t.replace("*","");
-					jPrompt('请填写合并后的部门名称', t, '合并确认', function (r) {
+					jPrompt('请确认合并后的部门名称:<br />', t, '合并确认', function (r) {
 						if(r){
 							if(t.length<2){
 								jAlert("请填写合并后的部门名称");
