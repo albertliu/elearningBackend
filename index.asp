@@ -28,7 +28,7 @@
 <link rel="stylesheet" type="text/css" href="css/fullcalendar.print.css" media="print">
 <link href="css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
 		<link href="css/tabStyle.css" rel="stylesheet" type="text/css">
-	<link href="css/bootstrap.min.css?v=1.1" rel="stylesheet">
+	<link href="css/bootstrap-3.3.4.css" rel="stylesheet">
 		<link href="css/bootstrap-treeview.min.css" rel="stylesheet" type="text/css">
 		<script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
         <script src="js/jquery.tabs.pack.js" type="text/javascript"></script>
@@ -37,7 +37,7 @@
 <script type="text/javascript" src="js/moment.min.js"></script>
 <script type="text/javascript" src="js/fullcalendar.min.js"></script>
 <script type="text/javascript" src="js/zh-cn.js"></script>
-<script src="js/jquery.alerts.js" type="text/javascript"></script>
+<script src="js/jquery.alerts.js?v=1.0" type="text/javascript"></script>
 <script src="js/datepicker/WdatePicker.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/ajax.js"></script>
 	<script type="text/javascript" src="js/tab-view.js"></script>

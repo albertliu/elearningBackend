@@ -1,6 +1,7 @@
 ﻿				  	<div style="width:100%;float:right;margin:0;">
 						<div style="margin:10px;">
 							公司&nbsp;<select id="searchDeptHost" style="width:200px"></select>
+							<input class="button" type="button" id="btnMergeDepts" value="合并部门">
 						</div>
 						<div class="container" style="float:left;width:800px;">
 							<div class="row">

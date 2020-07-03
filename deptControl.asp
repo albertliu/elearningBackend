@@ -72,4 +72,10 @@ if(op == "getRootDeptByHost"){
 	rs.Close();
 	Response.Write(result);
 }	
+
+if(op == "mergeDepts"){
+	sql = "exec mergeDepts '" + nodeID + "','" + item + "','" + currUser + "'";
+	execSQL(sql);
+	Response.Write(0);
+}
 %>
