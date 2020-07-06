@@ -26,6 +26,7 @@
 				var p = x[0]['pID'];
 				var n = 0;
 				var a = new Array();
+				var b = new Array();
 				var t = "";
 				for(let i in x){
 					if(k !== x[i]['kindID'] || p !== x[i]['pID']){
@@ -35,6 +36,7 @@
 						t = x[i]["text"];	//deptName
 					}
 					a.push(x[i]['id']);
+					b.push('<li>' + x[i]['text'].replace("*","") + '</li>');
 				}
 				if(n==0){
 					//合并
@@ -45,13 +47,17 @@
 								jAlert("请填写合并后的部门名称");
 								return false;
 							}
-							//alert(r + ":" + a.join(","));
-							$.get("deptControl.asp?op=mergeDepts&nodeID=" + a.join(",") + "&item=" + escape(t) + "&times=" + (new Date().getTime()),function(re){
-								if(re==0){
-									jAlert("合并成功。");
-									getDeptList(deptRoot);
+							jConfirm('确定要将以下' + x.length + '个部门合并为[<a style="color:red;">' + t + '</a>]吗？<hr><ul style="color:green;">' + b.join("") + "</ul>", '合并确认', function (z) {
+								if(z){
+									//alert(r + ":" + a.join(","));
+									$.get("deptControl.asp?op=mergeDepts&nodeID=" + a.join(",") + "&item=" + escape(t) + "&times=" + (new Date().getTime()),function(re){
+										if(re==0){
+											jAlert("合并成功。");
+											getDeptList(deptRoot);
+										}
+									});/**/
 								}
-							});/**/
+							});
 						}
 					});
 				}else{
