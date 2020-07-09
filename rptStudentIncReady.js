@@ -55,8 +55,10 @@
 				arr.push("<tr align='center'>");
 				arr.push("<th width='3%'>No</th>");
 				let line = data[0];
+				let colspan = 0;
 				for(let key in line){
 					arr.push("<th class='center'>" + key + "</th>");
+					colspan += 1;
 				}
 				arr.push("</tr>");
 				arr.push("</thead>");
@@ -64,6 +66,7 @@
 				var i = 0;
 				var c = 0;
 				var h = "";
+				var qty = 0;
 				$.each(data,function(iNum,val){
 					i += 1;
 					c = 0;
@@ -73,7 +76,12 @@
 						arr.push("<td class='left'>" + val[key] + "</td>");
 					}
 					arr.push("</tr>");
+					qty += val['数量'];
 				});
+				arr.push("<tr class='grade" + c + "'>");
+				arr.push("<td class='center' colspan=" + colspan + ">合计</td>");
+				arr.push("<td class='left'>" + qty + "</td>");
+				arr.push("</tr>");
 				arr.push("</tbody>");
 				arr.push("<tfoot>");
 				arr.push("<tr>");
