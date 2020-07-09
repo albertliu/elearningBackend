@@ -86,7 +86,7 @@
 					arr.push("</tr>");
 					qty += val['数量'];
 				});
-				arr.push("<tr class='grade" + c + "'>");
+				arr.push("<tr class='grade" + c + "' style='color:red;'>");
 				arr.push("<td class='center' colspan=" + colspan + ">合计</td>");
 				arr.push("<td class='left'>" + qty + "</td>");
 				arr.push("</tr>");
