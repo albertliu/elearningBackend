@@ -82,7 +82,7 @@
 					showCheckbox: true,
 					onNodeSelected: function(event, data) {
 						//alert(data.id);
-						showDeptInfo(data.id,data.pID,0,1);
+						showDeptInfo(data.id,data.pID,0,1,host);
 					},
 					onNodeChecked: function(event, data) {
 						//alert(data.id);

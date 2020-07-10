@@ -955,7 +955,7 @@
 	}
 	
 	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表; keyID: student's username
-	function showDeptInfo(nodeID,refID,op,mark){
+	function showDeptInfo(nodeID,refID,op,mark,host){
 		asyncbox.open({
 			id: "dept",
 			url:"deptInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
@@ -974,7 +974,7 @@
 				setReturnLog("dept",iframe.nodeID);	
 				var re = iframe.updateCount;
 				if(re>0 && mark==1){
-					getDeptList();
+					getDeptList(host);
 				}
 				//alert(re + ":" + mark);
 				if(re>0 && mark==2){
