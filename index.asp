@@ -422,7 +422,7 @@
 					</div>
 					
 					<div id="fragment-3">
-						<div id="dhtmlgoodies_tabView2" style="float:left;width:44%;">
+						<div id="dhtmlgoodies_tabView2">
 							<div id="dtab21" class="dhtmlgoodies_aTab">
 								<!--#include file="studentNeedDiplomaListIncDetail.js"-->
 							</div>
@@ -442,7 +442,7 @@
 					</div>
 					
 					<div id="fragment-4">
-						<div id="dhtmlgoodies_tabView1" style="float:left;width:44%;">
+						<div id="dhtmlgoodies_tabView1">
 							<div id="dtab0" class="dhtmlgoodies_aTab">
 								<div style="float:left;width:72%;">
 									<!--#include file="certListIncDetail.js"-->
@@ -488,7 +488,7 @@
 					</div>
 					
 					<div id="fragment-6">
-						<div id="dhtmlgoodies_tabView6" style="float:left;width:44%;">
+						<div id="dhtmlgoodies_tabView6">
 							<div id="dtab60" class="dhtmlgoodies_aTab">
 								<!--#include file="rptStudentIncDetail.js"-->
 							</div>
