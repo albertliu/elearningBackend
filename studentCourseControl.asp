@@ -93,12 +93,14 @@ if(op == "getStudentCourseList"){
 
 if(op == "getNodeInfo"){
 	result = "";
-	sql = "SELECT * FROM v_studentCourseList where ID=" + nodeID;
+	sql = "SELECT *,[dbo].[getPassCondition](ID) as pass_condition FROM v_studentCourseList where ID=" + nodeID;
 	rs = conn.Execute(sql);
 	if(!rs.EOF){
 		result = rs("ID").value + "|" + rs("username").value + "|" + rs("name").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("courseID").value + "|" + rs("courseName").value;
 		//7
 		result += "|" + rs("sexName").value + "|" + rs("age").value + "|" + rs("hours").value + "|" + rs("completion").value + "|" + rs("regDate").value + "|" + rs("hostName").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value + "|" + rs("examScore").value + "|" + rs("memo").value + "|" + rs("mobile").value + "|" + rs("email").value;
+		//19
+		result += "|" + rs("startDate").value + "|" + rs("endDate").value + "|" + rs("job").value + "|" + rs("pass_condition").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

@@ -72,6 +72,10 @@
 				$("#memo").val(ar[16]);
 				$("#mobile").val(ar[17]);
 				$("#email").val(ar[18]);
+				$("#startDate").val(ar[19]);
+				$("#endDate").val(ar[20]);
+				$("#job").val(ar[21]);
+				$("#pass_condition").val(ar[22]);
 				//getDownloadFile("studentCourseID");
 				setButton();
 			}else{
@@ -161,10 +165,22 @@
 				<td><input class="readOnly" type="text" id="dept1Name" size="25" readOnly="true" /></td>
 			</tr>
 			<tr>
+				<td align="right">岗位</td>
+				<td><input class="readOnly" type="text" id="job" size="25" readOnly="true" /></td>
 				<td align="right">状态</td>
 				<td><input class="readOnly" type="text" id="statusName" size="25" readOnly="true" /></td>
+			</tr>
+			<tr>
+				<td align="right">完成条件</td>
+				<td><input class="readOnly" type="text" id="pass_condition" size="25" readOnly="true" /></td>
 				<td align="right">选课日期</td>
 				<td><input class="readOnly" type="text" id="regDate" size="25" readOnly="true" /></td>
+			</tr>
+			<tr>
+				<td align="right">开始日期</td>
+				<td><input class="readOnly" type="text" id="startDate" size="25" readOnly="true" /></td>
+				<td align="right">结束日期</td>
+				<td><input class="readOnly" type="text" id="endDate" size="25" readOnly="true" /></td>
 			</tr>
 			<tr>
 				<td align="right">备注</td>
