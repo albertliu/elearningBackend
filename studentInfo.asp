@@ -134,6 +134,9 @@
 				if(c == ""){c = "&nbsp;&nbsp;还未上传";}
 				$("#photo").html(c);
 				//getDownloadFile("studentID");
+				if(ar[29] !== "spc"){
+					$("#kindID").hide();
+				}
 				setButton();
 			}else{
 				jAlert("该信息未找到！","信息提示");
