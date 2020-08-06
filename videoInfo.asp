@@ -79,7 +79,7 @@
 				$("#upload1").html("<a href='javascript:showLoadFile(\"course_video\",\"" + ar[1] + "\",\"course\",\"\");'>上传</a>");
 				var c = "";
 				if(ar[7] > ""){
-					c += "&nbsp;&nbsp;<a href='/users" + ar[7] + "' target='_blank'>视频</a>";
+					c += "&nbsp;&nbsp;<a href='/users" + ar[7] + "' target='_blank'>查看视频</a>";
 				}
 				if(c == ""){c = "&nbsp;&nbsp;还未上传";}
 				$("#photo").html(c);

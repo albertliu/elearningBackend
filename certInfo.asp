@@ -36,6 +36,7 @@
 		getDicList("certKind","kindID",0);
 		getDicList("statusEffect","status",0);
 		getDicList("certType","type",0);
+		getDicList("courseMark","mark",0);
 		
 		$.ajaxSetup({ 
 			async: false 
@@ -72,6 +73,7 @@
 				$("#hours").val(ar[14]);
 				$("#host").val(ar[15]);
 				$("#type").val(ar[18]);
+				$("#mark").val(ar[19]);
 				
 				//getDownloadFile("certID");
 				setButton();
@@ -84,7 +86,7 @@
 	
 	function saveNode(){
 		//alert($("#certID").val() + "&item=" + ($("#memo").val()));
-		$.get("certControl.asp?op=update&nodeID=" + $("#ID").val() + "&certID=" + $("#certID").val() + "&certName=" + escape($("#certName").val()) + "&term=" + $("#term").val() + "&termExt=" + $("#termExt").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&type=" + $("#type").val() + "&host=" + $("#host").val() + "&agencyID=" + $("#agencyID").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("certControl.asp?op=update&nodeID=" + $("#ID").val() + "&certID=" + $("#certID").val() + "&certName=" + escape($("#certName").val()) + "&term=" + $("#term").val() + "&termExt=" + $("#termExt").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&type=" + $("#type").val() + "&mark=" + $("#mark").val() + "&host=" + $("#host").val() + "&agencyID=" + $("#agencyID").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -171,6 +173,12 @@
 				<td><input type="text" id="term" size="3" />年&nbsp;&nbsp;&nbsp;系统内</td>
 				<td align="right">有效期限</td>
 				<td><input type="text" id="termExt" size="3" />年&nbsp;&nbsp;&nbsp;系统外</td>
+			</tr>
+			<tr>
+				<td align="right">可选人员</td>
+				<td><select id="mark" style="width:180px;"></select></td>
+				<td align="right">&nbsp;</td>
+				<td>&nbsp;</td>
 			</tr>
 			<tr>
 				<td align="right">说明</td>

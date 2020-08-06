@@ -87,6 +87,8 @@
 	<!--#include file="courseListIncReady.js"-->
 	<!--#include file="certCourseListIncReady.js"-->
 	<!--#include file="courseLessonListIncReady.js"-->
+	<!--#include file="examListIncReady.js"-->
+	<!--#include file="examRuleListIncReady.js"-->
 	<!--#include file="videoListIncReady.js"-->
 	<!--#include file="coursewareListIncReady.js"-->
 	<!--#include file="knowPointListIncReady.js"-->
@@ -212,6 +214,7 @@
 		//alert(checkPermission("examBrowse") + currUser);
 		if(!checkPermission("examBrowse")){
 			$("#menu5").hide();
+			deleteTab("试卷管理");
 		}
 		
 		if(currHostKind==0 && currHost > ""){	//集团用户不使用导入报名表, 照片批量上传，成绩导入功能
@@ -469,17 +472,25 @@
 								<!--#include file="knowPointListIncDetail.js"-->
 							</div>
 							<div id="dtab5" class="dhtmlgoodies_aTab">
-								<!--#include file="agencyListIncDetail.js"-->
+								<div style="float:left;width:65%;">
+									<!--#include file="examListIncDetail.js"-->
+								</div>
+								<div style="float:right;width:34%;">
+									<!--#include file="examRuleListIncDetail.js"-->
+								</div>
 							</div>
 							<div id="dtab6" class="dhtmlgoodies_aTab">
-								<!--#include file="hostListIncDetail.js"-->
+								<!--#include file="agencyListIncDetail.js"-->
 							</div>
 							<div id="dtab7" class="dhtmlgoodies_aTab">
+								<!--#include file="hostListIncDetail.js"-->
+							</div>
+							<div id="dtab8" class="dhtmlgoodies_aTab">
 								<!--#include file="deptListIncDetail.js"-->
 							</div>
 						</div>
 						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView1',Array("认证项目","培训课程","视频管理","课件管理","知识点","认证机构","公司单位","公司部门"),0,960,400);
+							initTabs('dhtmlgoodies_tabView1',Array("认证项目","培训课程","视频管理","课件管理","知识点","试卷管理","认证机构","公司单位","公司部门"),0,960,400);
 						</script>
 					</div>
 					

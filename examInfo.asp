@@ -7,7 +7,7 @@
 
 <title></title>
 
-<link href="css/style_inner1.css"  rel="stylesheet" type="text/css" />
+<link href="css/style_inner1.css?ver=1.1"  rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/easyui/easyui.css">
 <link rel="stylesheet" type="text/css" href="css/easyui/icon.css">
 <link href="css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
@@ -31,7 +31,8 @@
 		refID = "<%=refID%>";
 		op = "<%=op%>";
 		
-		getDicList("student","kindID",0);
+		getComList("certID","certificateInfo","certID","certName","status=0 order by certID",1);
+		getComList("courseID","courseInfo","courseID","courseName","status=0 order by courseID",1);
 		getDicList("statusEffect","status",0);
 		
 		$.ajaxSetup({ 
@@ -43,58 +44,33 @@
 		}
 		setButton();
 		
-		$("#btnSave").click(function(){
+		$("#save").click(function(){
 			saveNode();
 		});
-		$("#btnDel").click(function(){
-			$.messager.confirm("确认","确定要删除该部门吗？",function(r){
-				if(r){
-					$.messager.prompt('信息记录', '请填写删除原因:', function(r){
-						if (r.length > 1){
-							$.get("deptControl.asp?op=delNode&nodeID=" + $("#deptID").val() + "&item=" + escape(r) + "&times=" + (new Date().getTime()),function(re){
-								updateCount += 1;
-								getNodeInfo(nodeID);
-								jAlert("删除成功。");
-							});
-						}else{
-							jAlert("请认真填写删除原因。");
-						}
-					});
-				}
-			});
-		});
-		
-		$("#btnAdd").click(function(){
-			op = 1;
-			refID = nodeID;	//添加下级部门
-			setButton();
-		});
+	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
 	function getNodeInfo(id){
-		$.get("deptControl.asp?op=getNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
+		$.get("examControl.asp?op=getNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar > ""){
-				$("#deptID").val(ar[0]);
-				$("#pID").val(ar[1]);
-				$("#deptName").val(ar[2]);
-				$("#kindID").val(ar[3]);
-				$("#status").val(ar[4]);
-				$("#linker").val(ar[7]);
-				$("#phone").val(ar[8]);
-				$("#email").val(ar[9]);
-				$("#address").val(ar[10]);
-				$("#host").val(ar[11]);
-				$("#memo").val(ar[12]);
-				$("#regDate").val(ar[13]);
-				$("#registerName").val(ar[15]);
+				$("#ID").val(ar[0]);
+				$("#examID").val(ar[1]);
+				$("#examName").val(ar[2]);
+				$("#certID").val(ar[3]);
+				$("#courseID").val(ar[5]);
+				$("#kindID").val(ar[7]);
+				$("#status").val(ar[8]);
+				$("#scoreTotal").val(ar[11]);
+				$("#scorePass").val(ar[12]);
+				$("#minutes").val(ar[13]);
+				$("#memo").val(ar[14]);
+				$("#regDate").val(ar[15]);
+				$("#registerName").val(ar[17]);
 				
-				if(ar[11] !== "spc"){
-					$("#kindID").hide();
-				}
-				//getDownloadFile("deptID");
+				//getDownloadFile("examID");
 				setButton();
 			}else{
 				jAlert("该信息未找到！","信息提示");
@@ -104,13 +80,9 @@
 	}
 	
 	function saveNode(){
-		//alert($("#deptID").val() + "&item=" + ($("#memo").val()));
-		if($("#deptName").val()==""){
-			jAlert("部门名称不能为空");
-			return false;
-		}
-		$.get("deptControl.asp?op=update&nodeID=" + $("#deptID").val() + "&refID=" + $("#pID").val() + "&deptName=" + escape($("#deptName").val()) + "&linker=" +  escape($("#linker").val()) + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&host=" + $("#host").val() + "&phone=" +  escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&address=" + escape($("#address").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
-			//alert(unescape(re));
+		//alert($("#examID").val() + "&item=" + ($("#memo").val()));
+		$.get("examControl.asp?op=update&nodeID=" + $("#ID").val() + "&examID=" + $("#examID").val() + "&examName=" + escape($("#examName").val()) + "&certID=" + $("#certID").val() + "&courseID=" + $("#courseID").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&scoreTotal=" + $("#scoreTotal").val() + "&scorePass=" + $("#scorePass").val() + "&minutes=" + $("#minutes").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar[0] == 0){
@@ -129,33 +101,27 @@
 	}
 	
 	function setButton(){
-		$("#btnSave").hide();
-		$("#btnAdd").hide();
-		$("#btnDel").hide();
-		if(checkPermission("deptAdd")){
-			$("#btnSave").show();
-			$("#btnAdd").show();
-			$("#btnDel").show();
-		}
+		$("#save").hide();
 		if(op ==1){
 			setEmpty();
-			$("#btnAdd").hide();
-			$("#btnDel").hide();
+		}
+		if(checkPermission("examAdd")){
+			$("#save").show();
 		}
 	}
 	
 	function setEmpty(){
-		nodeID = 0;
-		$("#pID").val(refID);
-		$("#deptID").val(0);
-		$("#deptName").val("");
-		$("#status").val(0);
-		$("#linker").val("");
-		$("#phone").val("");
-		$("#email").val("");
-		$("#address").val("");
+		$("#ID").val(0);
+		$("#examID").val("");
+		$("#examName").val("");
 		$("#memo").val("");
+		$("#status").val(0);
+		$("#kindID").val(0);
+		$("#minutes").val(90);
+		$("#scoreTotal").val(100);
+		$("#scorePass").val(80);
 		$("#regDate").val(currDate);
+		$("#registerID").val(currUser);
 		$("#registerName").val(currUserName);
 	}
 	
@@ -178,28 +144,28 @@
 			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
-				<td align="right">编号</td><input id="pID" type="hidden" /><input id="host" type="hidden" />
-				<td><input type="text" class="readOnly" id="deptID" size="25" readOnly="true" /></td>
-				<td align="right">部门名称</td>
-				<td><input type="text" id="deptName" size="25" /></td>
+				<td align="right">试卷编号</td><input id="ID" type="hidden" /><input id="kindID" type="hidden" />
+				<td><input type="text" id="examID" size="25" /></td>
+				<td align="right">试卷名称</td>
+				<td><input type="text" id="examName" size="25" /></td>
 			</tr>
 			<tr>
-				<td align="right">类型</td>
-				<td><select id="kindID" style="width:100px;"></select></td>
+				<td align="right">认证项目</td>
+				<td><select id="certID" style="width:180px;"></select></td>
+				<td align="right">课程</td>
+				<td><select id="courseID" style="width:180px;"></select></td>
+			</tr>
+			<tr>
 				<td align="right">状态</td>
 				<td><select id="status" style="width:100px;"></select></td>
+				<td align="right">考试时间</td>
+				<td><input type="text" id="minutes" size="5" />&nbsp;&nbsp;分钟</td>
 			</tr>
 			<tr>
-				<td align="right">联系人</td>
-				<td><input type="text" id="linker" size="25" /></td>
-				<td align="right">地址</td>
-				<td><input type="text" id="address" size="25" /></td>
-			</tr>
-			<tr>
-				<td align="right">电话</td>
-				<td><input type="text" id="phone" size="25" /></td>
-				<td align="right">邮箱</td>
-				<td><input type="text" id="email" size="25" /></td>
+				<td align="right">总分数</td>
+				<td><input type="text" id="scoreTotal" size="5" />&nbsp;&nbsp;分</td>
+				<td align="right">及格线</td>
+				<td><input type="text" id="scorePass" size="5" />&nbsp;&nbsp;分</td>
 			</tr>
 			<tr>
 				<td align="right">说明</td>
@@ -219,9 +185,7 @@
 	
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
-  	<input class="button" type="button" id="btnSave" value="保存" />&nbsp;
-  	<input class="button" type="button" id="btnAdd" value="添加下级" />&nbsp;
-  	<input class="button" type="button" id="btnDel" value="删除" />&nbsp;
+  	<input class="button" type="button" id="save" name="save" value="保存" />&nbsp;
   </div>
 </div>
 </body>

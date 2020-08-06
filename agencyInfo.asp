@@ -183,7 +183,7 @@
 				<td><input type="text" id="title" size="25" /></td>
 			</tr>
 			<tr>
-				<td align="right">标识</td><input id="ID" type="hidden" />
+				<td align="right">编号</td><input id="ID" type="hidden" />
 				<td><input type="text" id="agencyID" size="25" /></td>
 				<td align="right"></td>
 				<td></td>

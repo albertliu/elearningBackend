@@ -315,8 +315,8 @@ if(op == "updateGenerateScore"){
 		}
 	}
 	result += "|" + nodeID;
-	//Response.Write(escape(result));
-	Response.Write(escape(sql));
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
 }
 
 if(op == "delGenerateScoreNode"){

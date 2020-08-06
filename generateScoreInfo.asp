@@ -124,7 +124,7 @@
 		}
 		//alert($("#ID").val() + "&item=" + ($("#item").val()) + "&certID=" + $("#certID").val() + "&qty=" + $("#qty").val() + "&host=" + $("#host").val() + "&memo=" + ($("#memo").val()));
 		$.get("studentControl.asp?op=updateGenerateScore&nodeID=" + $("#ID").val() + "&item=" + escape($("#item").val()) + "&certID=" + $("#certID").val() + "&qty=" + $("#qty").val() + "&host=" + $("#host").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
-			//jAlert(unescape(re));
+			jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar[0] == 0){

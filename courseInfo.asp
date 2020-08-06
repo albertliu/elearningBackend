@@ -39,6 +39,7 @@
 		getComList("certID","certificateInfo","certID","certName","status=0 order by certID",1);
 		getDicList("certKind","kindID",0);
 		getDicList("statusEffect","status",0);
+		getDicList("courseMark","mark",0);
 		
 		$.ajaxSetup({ 
 			async: false 
@@ -76,6 +77,7 @@
 				$("#deadline").val(ar[15]);
 				$("#deadday").val(ar[16]);
 				$("#period").val(ar[17]);
+				$("#mark").val(ar[18]);
 				
 				//getDownloadFile("courseID");
 				setButton();
@@ -88,7 +90,7 @@
 	
 	function saveNode(){
 		//alert("nodeID=" + $("#ID").val() + "&courseID=" + $("#courseID").val() + "&courseName=" + ($("#courseName").val()) + "&hours=" + $("#hours").val() + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&memo=" + ($("#memo").val()));
-		$.get("courseControl.asp?op=update&nodeID=" + $("#ID").val() + "&courseID=" + $("#courseID").val() + "&courseName=" + escape($("#courseName").val()) + "&hours=" + $("#hours").val() + "&completionPass=" + $("#completionPass").val() + "&deadline=" + $("#deadline").val() + "&period=" + $("#period").val() + "&deadday=" + $("#deadday").val() + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&refID=" + $("#certID").val() + "&status=" + $("#status").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("courseControl.asp?op=update&nodeID=" + $("#ID").val() + "&courseID=" + $("#courseID").val() + "&courseName=" + escape($("#courseName").val()) + "&hours=" + $("#hours").val() + "&completionPass=" + $("#completionPass").val() + "&deadline=" + $("#deadline").val() + "&period=" + $("#period").val() + "&deadday=" + $("#deadday").val() + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&refID=" + $("#certID").val() + "&status=" + $("#status").val() + "&mark=" + $("#mark").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -175,6 +177,12 @@
 				<td><input type="text" id="deadline" size="5" />% 完成率</td>
 				<td align="right">退课限制</td>
 				<td><input type="text" id="deadday" size="5" />开始天数</td>
+			</tr>
+			<tr>
+				<td align="right">可选人员</td>
+				<td><select id="mark" style="width:180px;"></select></td>
+				<td align="right">&nbsp;</td>
+				<td>&nbsp;</td>
 			</tr>
 			<tr>
 				<td align="right">说明</td>

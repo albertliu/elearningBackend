@@ -42,14 +42,14 @@ if(op == "getCertList"){
 
 	sql = " FROM v_certificateInfo " + where;
 	result = getBasketTip(sql,"");
-	ssql = "SELECT certID,certName,hours,statusName,kindName,agencyName,term,memo,regDate,registerName" + sql + " order by certID";
+	ssql = "SELECT certID,certName,hours,statusName,kindName,markName,agencyName,term,memo,regDate,registerName" + sql + " order by certID";
 	sql = "SELECT top " + basket + " *" + sql + " order by certID";
 
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
 		result += "%%" + rs("ID").value + "|" + rs("certID").value + "|" + rs("certName").value + "|" + rs("term").value + "|" + rs("kindID").value + "|" + rs("status").value + "|" + rs("kindName").value + "|" + rs("statusName").value;
 		//8
-		result += "|" + rs("agencyID").value + "|" + rs("agencyName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("hours").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("termExt").value + "|" + rs("type").value;
+		result += "|" + rs("agencyID").value + "|" + rs("agencyName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("hours").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("termExt").value + "|" + rs("type").value + "|" + rs("mark").value + "|" + rs("markName").value;
 		rs.MoveNext();
 	}
 /**/
@@ -64,7 +64,7 @@ if(op == "getNodeInfo"){
 	if (!rs.EOF){
 		result = rs("ID").value + "|" + rs("certID").value + "|" + rs("certName").value + "|" + rs("term").value + "|" + rs("kindID").value + "|" + rs("status").value + "|" + rs("kindName").value + "|" + rs("statusName").value;
 		//8
-		result += "|" + rs("agencyID").value + "|" + rs("agencyName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("hours").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("termExt").value + "|" + rs("type").value;
+		result += "|" + rs("agencyID").value + "|" + rs("agencyName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("hours").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("termExt").value + "|" + rs("type").value + "|" + rs("mark").value + "|" + rs("markName").value;
 		execSQL(sql);
 	}
 	rs.Close();
@@ -74,7 +74,7 @@ if(op == "getNodeInfo"){
 if(op == "update"){
 	result = 0;
 	if(result == 0){
-		sql = "exec updateCertificateInfo " + nodeID + ",'" + String(Request.QueryString("certID")) + "','" + unescape(String(Request.QueryString("certName"))) + "','" + String(Request.QueryString("term")) + "','" + String(Request.QueryString("termExt")) + "'," + String(Request.QueryString("agencyID")) + "," + kindID + "," + status + "," + String(Request.QueryString("type")) + ",'" + host + "','" + memo + "','" + currUser + "'";
+		sql = "exec updateCertificateInfo " + nodeID + ",'" + String(Request.QueryString("certID")) + "','" + unescape(String(Request.QueryString("certName"))) + "','" + String(Request.QueryString("term")) + "','" + String(Request.QueryString("termExt")) + "'," + String(Request.QueryString("agencyID")) + "," + kindID + "," + status + "," + String(Request.QueryString("type")) + "," + String(Request.QueryString("mark")) + ",'" + host + "','" + memo + "','" + currUser + "'";
 
 		execSQL(sql);
 		if(nodeID == 0){
