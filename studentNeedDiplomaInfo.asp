@@ -46,6 +46,21 @@
 		$("#save").click(function(){
 			saveNode();
 		});
+		$("#cancel").click(function(){
+			jConfirm('你确定要拒绝这个证书申请吗? 请在备注中填写拒绝原因。', '确认对话框', function(r) {
+				if(r){
+					if($("#memo").val().length < 2){
+						jAlert("请在备注中填写拒绝原因。");
+						return false;
+					}
+					$.get("diplomaControl.asp?op=setNeedDiplomaCancel&nodeID=" + $("#ID").val() + "&item=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(data){
+						jAlert("操作成功！","信息提示");
+						getNodeInfo(nodeID);
+						updateCount += 1;
+					});
+				}
+			});
+		});
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -188,6 +203,7 @@
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
   	<input class="button" type="button" id="reply" name="reply" value="发通知" />&nbsp;
   	<input class="button" type="button" id="save" name="save" value="保存备注" />&nbsp;
+  	<input class="button" type="button" id="cancel" name="cancel" value="拒绝申请" />&nbsp;
   </div>
 </div>
 </body>

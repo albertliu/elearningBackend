@@ -429,6 +429,14 @@ if(op == "setNeedDiplomaMemo"){
 	}
 	Response.Write(escape(result));
 }
+if(op == "setNeedDiplomaCancel"){
+	result = 0;
+	if(result == 0){
+		sql = "exec setNeedDiplomaCancel " + nodeID + ",'" + item + "'";
+		execSQL(sql);
+	}
+	Response.Write(escape(result));
+}
 if(op == "setGenerateDiplomaMemo"){
 	result = 0;
 	if(result == 0){
