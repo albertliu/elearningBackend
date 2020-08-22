@@ -1947,13 +1947,13 @@
 	//页面上的某组复选框全部选中或取消，在指定位置显示选中数量
 	function setSel(chkName,cart){
 		if(chkName == ""){chkName = "visitstockchk";}
-    var chkother= document.getElementsByName(chkName);
-    for (var i=0;i<chkother.length;i++)
-        chkother[i].checked = visitobj; 
-    visitobj = visitobj == true ? false : true;
-    if(cart>""){
-    	getSelCart(chkName,cart);
-    }
+		var chkother= document.getElementsByName(chkName);
+		for (var i=0;i<chkother.length;i++)
+			chkother[i].checked = visitobj; 
+		visitobj = visitobj == true ? false : true;
+		if(cart>""){
+			getSelCart(chkName,cart);
+		}
 	}
 	
 	function getSelCart(chkName,cart)
@@ -1979,13 +1979,13 @@
 			selList = arr.join("").substr(1);
 			selCount = count;
 		}else{
-	    if(cart==""){
-				jAlert("您还没有选中任何项目。");
-	    }
+			if(cart==""){
+					jAlert("您还没有选中任何项目。");
+			}
 		}
-    if(cart>""){
-    	setCartNum(cart);
-    }
+		if(cart>""){
+			setCartNum(cart);
+		}
 		arr = [];
 	}
 
@@ -2000,14 +2000,16 @@
 		}
 		selList = "";
 		selCount = 0;
-    if(cart>""){
-    	setCartNum(cart);
-    }
+		if(cart>""){
+			setCartNum(cart);
+		}
 	}
 
 	//为购物车设置显示数量
 	function setCartNum(cart){
-		$("#" + cart).html("<font color=red>" + selCount + "</font>");
+		if(cart>""){
+			$("#" + cart).html("<font color=red>" + selCount + "</font>");
+		}
 	}
 
 	function gotoPage(url,item,model){

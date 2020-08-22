@@ -16,15 +16,29 @@
 			getStudentNeedDiplomaList();
 		});
 		
+		$("#btnStudentNeedDiplomaSel").click(function(){
+			setSel("");
+		});
+		
+		$("#searchStudentNeedDiplomaCert").change(function(){
+			getStudentNeedDiplomaList();
+		});
+		
 		$("#btnStudentNeedDiplomaIssue").click(function(){
+			getSelCart("");
 			if($("#searchStudentNeedDiplomaCert").val()==""){
 				jAlert("请选择一个证书项目。");
+				return false;
+			}
+			if(selCount==0){
+				jAlert("请选择要发放证书的人员。");
 				return false;
 			}
 			jConfirm("确定要发放证书吗？","确认",function(r){
 				if(r){
 					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
-					$.getJSON(uploadURL + "/outfiles/generate_diploma_byCertID?certID=" + $("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&batchID=0" + "&username=" + currUser ,function(data){
+					//jAlert(selList);
+					$.getJSON(uploadURL + "/outfiles/generate_diploma_byCertID?certID=" + $("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&batchID=0&selList=" + selList + "&username=" + currUser ,function(data){
 						if(data>""){
 							jAlert("证书重新制作成功 <a href='" + data + "' target='_blank'>下载文件</a>");
 							getStudentNeedDiplomaList();
@@ -73,7 +87,6 @@
 			arr.push("<th width='3%'>No</th>");
 			arr.push("<th width='11%'>身份证</th>");
 			arr.push("<th width='8%'>姓名</th>");
-			arr.push("<th width='7%'>性别</th>");
 			arr.push("<th width='7%'>年龄</th>");
 			arr.push("<th width='13%'>证书名称</th>");
 			if(currHost==""){
@@ -84,6 +97,7 @@
 			arr.push("<th width='8%'>工种</th>");
 			arr.push("<th width='10%'>结束日期</th>");
 			arr.push("<th width='6%'>照片</th>");
+			arr.push("<th width='7%'>性别</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
@@ -104,7 +118,6 @@
 					arr.push("<td class='center'>" + i + "</td>");
 					arr.push("<td class='link1'><a href='javascript:showStudentNeedDiplomaInfo(\"" + ar1[0] + "\",0,0,1);'>" + ar1[1] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[2] + "</td>");
-					arr.push("<td class='left'>" + ar1[5] + "</td>");
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
 					arr.push("<td class='left'>" + ar1[4] + "</td>");
 					if(currHost==""){
@@ -122,6 +135,7 @@
 					}else{
 						arr.push("<td class='center'>" + imgChk + "</td>");
 					}
+					arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchk'>" + "</td>");
 					arr.push("</tr>");
 				});
 			}
