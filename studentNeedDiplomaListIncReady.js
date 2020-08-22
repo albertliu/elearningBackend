@@ -97,7 +97,7 @@
 			arr.push("<th width='8%'>工种</th>");
 			arr.push("<th width='10%'>结束日期</th>");
 			arr.push("<th width='6%'>照片</th>");
-			arr.push("<th width='7%'>性别</th>");
+			arr.push("<th width='5%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
