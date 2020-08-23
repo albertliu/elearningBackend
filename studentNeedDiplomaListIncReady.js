@@ -172,6 +172,9 @@
 			floatKey = "";		//
 			floatContent = "";	//records data for output
 			floatModel = 1;
+			if($("#searchStudentNeedDiplomaCert").val()>""){
+				setSel("");
+			}
 		});
 	}
 	
