@@ -1948,6 +1948,7 @@
 	function setSel(chkName,cart){
 		if(chkName == ""){chkName = "visitstockchk";}
 		var chkother= document.getElementsByName(chkName);
+		visitobj = selCount == 0 ? true : false;
 		for (var i=0;i<chkother.length;i++)
 			chkother[i].checked = visitobj; 
 		visitobj = visitobj == true ? false : true;
