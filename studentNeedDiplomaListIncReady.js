@@ -161,9 +161,8 @@
 				"aaSorting": [],
 				"bFilter": true,
 				"bPaginate": true,
-				"lengthMenu": [ 15, 30, 50, 75, 100 ],
 				"bLengthChange": true,
-				"pageLength": 50,
+				"_iDisplayLength": 50,
 				"bInfo": true,
 				"aoColumnDefs": []
 			});
