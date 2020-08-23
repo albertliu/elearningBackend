@@ -1952,9 +1952,7 @@
 		for (var i=0;i<chkother.length;i++)
 			chkother[i].checked = visitobj; 
 		visitobj = visitobj == true ? false : true;
-		if(cart>""){
-			getSelCart(chkName,cart);
-		}
+		getSelCart(chkName,cart);
 	}
 	
 	function getSelCart(chkName,cart)
