@@ -31,16 +31,16 @@
 				return false;
 			}
 			if(selCount==0){
-				jAlert("请选择要发放证书的人员。");
+				jAlert("请选择要发放证书的清单。");
 				return false;
 			}
-			jConfirm("确定要发放证书吗？","确认",function(r){
+			jConfirm("确定要发放证书(" + selCount + "个)吗？","确认",function(r){
 				if(r){
 					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
 					//jAlert(selList);
 					$.getJSON(uploadURL + "/outfiles/generate_diploma_byCertID?certID=" + $("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&batchID=0&selList=" + selList + "&username=" + currUser ,function(data){
 						if(data>""){
-							jAlert("证书重新制作成功 <a href='" + data + "' target='_blank'>下载文件</a>");
+							jAlert("证书制作成功 <a href='" + data + "' target='_blank'>下载文件</a>");
 							getStudentNeedDiplomaList();
 						}else{
 							jAlert("没有可供处理的数据。");
