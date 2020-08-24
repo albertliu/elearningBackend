@@ -162,7 +162,7 @@
 				"bFilter": true,
 				"bPaginate": true,
 				"bLengthChange": true,
-				"iDisplayLength": 50,
+				"iDisplayLength": 100,
 				"bInfo": true,
 				"aoColumnDefs": []
 			});
