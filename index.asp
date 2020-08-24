@@ -32,7 +32,7 @@
 		<script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
         <script src="js/jquery.tabs.pack.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/AsyncBox.v1.4.js"></script>
-<script language="javascript" type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+<script language="javascript" type="text/javascript" src="js/jquery.dataTables.min.js?v=1.0"></script>
 <script type="text/javascript" src="js/moment.min.js"></script>
 <script type="text/javascript" src="js/fullcalendar.min.js"></script>
 <script type="text/javascript" src="js/zh-cn.js"></script>
