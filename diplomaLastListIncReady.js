@@ -5,8 +5,11 @@
 		var w = "status=0 and hostNo='" + currHost + "'";
 		if(currHost==""){	//公司用户只能看自己公司内容
 			getComList("searchDiplomaLastHost","hostInfo","hostNo","title","status=0 order by hostName",1);
+			$("#diplomalastListLongItem2").hide();
 		}else{
 			getComList("searchDiplomaLastHost","hostInfo","hostNo","title",w,0);
+			$("#diplomalastListLongItem1").hide();
+			getComList("searchDiplomaLastDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchDiplomaLastHost").val() + "' and pID=0)",0);
 		}
 		
 		getComList("searchDiplomaLastKind","certificateInfo","certID","certName","status=0 order by certName",1);
@@ -47,7 +50,7 @@
 	function getDiplomaLastList(){
 		sWhere = $("#txtSearchDiplomaLast").val();
 		//alert((sWhere) + "&kindID=" + $("#searchDiplomaLastKind").val() + "&status=" + $("#searchDiplomaLastStatus").val() + "&host=" + $("#searchDiplomaLastHost").val() + "&fStart=" + $("#searchDiplomaLastStartDate").val() + "&fEnd=" + $("#searchDiplomaLastEndDate").val());
-		$.get("diplomaControl.asp?op=getDiplomaLastList&where=" + escape(sWhere) + "&kindID=" + $("#searchDiplomaLastKind").val() + "&status=" + $("#searchDiplomaLastStatus").val() + "&host=" + $("#searchDiplomaLastHost").val() + "&fStart=" + $("#searchDiplomaLastStartDate").val() + "&fEnd=" + $("#searchDiplomaLastEndDate").val() + "&dk=23&times=" + (new Date().getTime()),function(data){
+		$.get("diplomaControl.asp?op=getDiplomaLastList&where=" + escape(sWhere) + "&kindID=" + $("#searchDiplomaLastKind").val() + "&status=" + $("#searchDiplomaLastStatus").val() + "&host=" + $("#searchDiplomaLastHost").val() + "&refID=" + $("#searchDiplomaLastDept").val() + "&fStart=" + $("#searchDiplomaLastStartDate").val() + "&fEnd=" + $("#searchDiplomaLastEndDate").val() + "&dk=23&times=" + (new Date().getTime()),function(data){
 			//alert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");

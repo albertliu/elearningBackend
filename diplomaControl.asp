@@ -92,6 +92,15 @@ if(op == "getDiplomaLastList"){
 			where = s;
 		}
 	}
+	//如果有部门
+	if(refID > ""){ // 
+		s = "dept1=" + refID;
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 	//如果有状态
 	if(status > ""){ // 
 		s = "status=" + status;
