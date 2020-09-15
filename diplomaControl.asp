@@ -278,7 +278,7 @@ if(op == "getGenerateDiplomaList"){
 	var s = "";
 	//如果有条件，按照条件查询
 	if(where > ""){ // 有条件
-		where = "(diplomaID like('%" + where + "%') or certName like('%" + where + "%'))";
+		where = "(firstID <= '" + where + "' and lastID >= '" + where + "') or certName like('%" + where + "%'))";
 	}
 	//如果有公司
 	if(host > ""){ // 
