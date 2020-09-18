@@ -9,7 +9,7 @@
 		}else{
 			getComList("searchDiplomaLastHost","hostInfo","hostNo","title",w,0);
 			$("#diplomalastListLongItem1").hide();
-			getComList("searchDiplomaLastDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchDiplomaLastHost").val() + "' and pID=0)",0);
+			getComList("searchDiplomaLastDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchDiplomaLastHost").val() + "' and pID=0)",1);
 		}
 		
 		getComList("searchDiplomaLastKind","certificateInfo","certID","certName","status=0 order by certName",1);
