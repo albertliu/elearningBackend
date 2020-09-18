@@ -46,6 +46,13 @@
 		$("#save").click(function(){
 			saveNode();
 		});
+		$("#print").click(function(){
+			window.parent.showTab("dhtmlgoodies_tabView2",2);
+			window.parent.$("#txtSearchGenerateDiploma").val($("#diplomaID").val());
+			window.parent.getGenerateDiplomaList();
+			//window.parent.$("#txtSearchGenerateDiploma").val("");
+			top.$.close("diploma");
+		});
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -199,6 +206,7 @@
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
   	<input class="button" type="button" id="reply" name="reply" value="发通知" />&nbsp;
   	<input class="button" type="button" id="save" name="save" value="保存备注" />&nbsp;
+  	<input class="button" type="button" id="print" name="print" value="打印证书" />&nbsp;
   </div>
 </div>
 </body>

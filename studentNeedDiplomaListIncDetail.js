@@ -9,7 +9,7 @@
 		          			<input style="border:0px;" type="checkbox" id="searchStudentNeedDiplomaShowPhoto" value="">&nbsp;显示照片&nbsp;&nbsp;
 						    <span style="float:right;">
 								<input class="button" type="button" id="btnStudentNeedDiplomaSel" value="全选/取消">&nbsp;&nbsp;
-								<input class="button" type="button" id="btnStudentNeedDiplomaIssue" value="发放证书">&nbsp;&nbsp;
+								<input class="button" type="button" id="btnStudentNeedDiplomaIssue" value="制作证书">&nbsp;&nbsp;
 								<input class="button" type="button" id="btnDownLoad21" onClick="outputFloat(21,'file')" value="下载">
 							</span>
 				        </form>

@@ -327,8 +327,8 @@
 						<li><a href="#fragment-4"><span>课程管理</span></a></li>
 						<li id="menu5"><a href="#fragment-5"><span>题库管理</span></a></li>
 						<li><a href="#fragment-6"><span>统计报表</span></a></li>
-						<li><a href="#fragment-8"><span>用户管理</span></a></li>
-						<li><a href="#fragment-9"><span>基础数据</span></a></li>
+						<li><a href="#fragment-7"><span>用户管理</span></a></li>
+						<li><a href="#fragment-8"><span>基础数据</span></a></li>
 					</ul>
 					<div id="fragment-0">
 						<div align="center" style="width:480px; text-align: center;"><h4></h4></div>
@@ -440,7 +440,7 @@
 							</div>
 						</div>
 						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView2',Array("证书制作","证书查询","打印证书","换证提醒"),0,960,400);
+							initTabs('dhtmlgoodies_tabView2',Array("证书制作","证书查询","证书打印","换证提醒"),0,960,400);
 						</script>
 					</div>
 					
@@ -519,11 +519,11 @@
 					</div>
 					
 					
-					<div id="fragment-8">
+					<div id="fragment-7">
 						<!--#include file="userListIncDetail.js"-->
 					</div>
 					
-					<div id="fragment-9">
+					<div id="fragment-8">
 					</div>
 				</div>
 			</td>
