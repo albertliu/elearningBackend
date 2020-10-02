@@ -17,7 +17,7 @@
 		});
 		
 		$("#btnStudentNeedDiplomaSel").click(function(){
-			setSel("");
+			setSel("visitstockchkNeed");
 		});
 		
 		$("#searchStudentNeedDiplomaCert").change(function(){
@@ -25,16 +25,16 @@
 		});
 		
 		$("#btnStudentNeedDiplomaIssue").click(function(){
-			getSelCart("");
+			getSelCart("visitstockchkNeed");
 			if($("#searchStudentNeedDiplomaCert").val()==""){
 				jAlert("请选择一个证书项目。");
 				return false;
 			}
 			if(selCount==0){
-				jAlert("请选择要发放证书的清单。");
+				jAlert("请选择要制作证书的清单。");
 				return false;
 			}
-			jConfirm("确定要发放证书(" + selCount + "个)吗？","确认",function(r){
+			jConfirm("确定要制作证书(" + selCount + "个)吗？","确认",function(r){
 				if(r){
 					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
 					//jAlert(selList);
@@ -135,7 +135,7 @@
 					}else{
 						arr.push("<td class='center'>" + imgChk + "</td>");
 					}
-					arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchk'>" + "</td>");
+					arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchkNeed'>" + "</td>");
 					arr.push("</tr>");
 				});
 			}

@@ -98,6 +98,7 @@
 	<!--#include file="hostListIncReady.js"-->
 	<!--#include file="agencyListIncReady.js"-->
 	<!--#include file="studentNeedDiplomaListIncReady.js"-->
+	<!--#include file="issuedDiplomaListIncReady.js"-->
 	<!--#include file="generateDiplomaListIncReady.js"-->
 	<!--#include file="generateStudentListIncReady.js"-->
 	<!--#include file="generateScoreListIncReady.js"-->
@@ -429,18 +430,21 @@
 							<div id="dtab21" class="dhtmlgoodies_aTab">
 								<!--#include file="studentNeedDiplomaListIncDetail.js"-->
 							</div>
-							<div id="dtab20" class="dhtmlgoodies_aTab">
-								<!--#include file="diplomaListIncDetail.js"-->
-							</div>
 							<div id="dtab22" class="dhtmlgoodies_aTab">
 								<!--#include file="generateDiplomaListIncDetail.js"-->
+							</div>
+							<div id="dtab24" class="dhtmlgoodies_aTab">
+								<!--#include file="issuedDiplomaListIncDetail.js"-->
+							</div>
+							<div id="dtab20" class="dhtmlgoodies_aTab">
+								<!--#include file="diplomaListIncDetail.js"-->
 							</div>
 							<div id="dtab23" class="dhtmlgoodies_aTab">
 								<!--#include file="diplomaLastListIncDetail.js"-->
 							</div>
 						</div>
 						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView2',Array("证书制作","证书查询","证书打印","换证提醒"),0,960,400);
+							initTabs('dhtmlgoodies_tabView2',Array("证书制作","证书打印","证书发放","证书查询","换证提醒"),0,960,400);
 						</script>
 					</div>
 					

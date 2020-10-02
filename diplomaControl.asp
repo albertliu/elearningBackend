@@ -44,6 +44,15 @@ if(op == "getDiplomaList"){
 			where = s;
 		}
 	}
+	//如果有发放标识
+	if(keyID > ""){ // 
+		s = "issued=" + keyID;
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 	if(fStart > ""){
 		s = "startDate>='" + fStart + "'";
 		if(where > ""){
@@ -60,6 +69,22 @@ if(op == "getDiplomaList"){
 			where = s;
 		}
 	}
+	if(String(Request.QueryString("issuedStartDate")) > "" && String(Request.QueryString("issuedEndDate")) != "undefined"){
+		s = "issueDate>='" + String(Request.QueryString("issuedStartDate")) + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	if(String(Request.QueryString("issuedEndDate")) > "" && String(Request.QueryString("issuedEndDate")) != "undefined"){
+		s = "issueDate<='" + String(Request.QueryString("issuedEndDate")) + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 
 	if(where > ""){
 		where = " where " + where;
@@ -67,7 +92,7 @@ if(op == "getDiplomaList"){
 	//sql = " FROM v_studentDiplomaList " + where;
 	sql = " FROM v_diplomaInfo " + where;
 	result = getBasketTip(sql,"");
-	ssql = "SELECT diplomaID,certName,statusName,term,startDate,endDate,agencyName,username,name,sexName,age,hostName,dept1Name,dept2Name,job,mobile,email,memo,regDate,registerName" + sql + " order by diplomaID";
+	ssql = "SELECT diplomaID,certName,statusName,term,startDate,endDate,agencyName,username,name,sexName,age,hostName,dept1Name,dept2Name,job,mobile,email,memo,issueDate,issuerName,regDate,registerName" + sql + " order by diplomaID";
 	sql = "SELECT top " + basket + " *" + sql + " order by diplomaID";
 	
 	rs = conn.Execute(sql);
@@ -77,6 +102,8 @@ if(op == "getDiplomaList"){
 		result += "|" + rs("sexName").value + "|" + rs("age").value + "|" + rs("mobile").value + "|" + rs("email").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value;
 		//16
 		result += "|" + rs("startDate").value + "|" + rs("endDate").value + "|" + rs("term").value + "|" + rs("memo").value + "|" + rs("agencyName").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("filename").value;
+		//25
+		result += "|" + rs("issued").value + "|" + rs("issueDate").value + "|" + rs("issueType").value + "|" + rs("issuedName").value + "|" + rs("issueTypeName").value + "|" + rs("issuer").value + "|" + rs("issuerName").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -179,6 +206,8 @@ if(op == "getNodeInfo"){
 		result += "|" + rs("sexName").value + "|" + rs("age").value + "|" + rs("mobile").value + "|" + rs("email").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value;
 		//16
 		result += "|" + rs("startDate").value + "|" + rs("endDate").value + "|" + rs("term").value + "|" + rs("memo").value + "|" + rs("agencyName").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("filename").value;
+		//25
+		result += "|" + rs("issued").value + "|" + rs("issueDate").value + "|" + rs("issueType").value + "|" + rs("issuedName").value + "|" + rs("issueTypeName").value + "|" + rs("issuer").value + "|" + rs("issuerName").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -431,6 +460,15 @@ if(op == "getGenerateMaterialNodeInfo"){
 	Response.Write(escape(result));
 	//Response.Write(escape(sql));
 }	
+
+if(op == "issueDiploma"){
+	result = 0;
+	if(result == 0){
+		sql = "exec issueDiploma '" + item + "'," + kindID + ",'" + host + "','" + currUser + "'";
+		execSQL(sql);
+	}
+	Response.Write(escape(result));
+}
 
 if(op == "setMemo"){
 	result = 0;

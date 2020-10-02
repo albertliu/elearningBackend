@@ -47,7 +47,7 @@
 			saveNode();
 		});
 		$("#print").click(function(){
-			window.parent.showTab("dhtmlgoodies_tabView2",2);
+			window.parent.showTab("dhtmlgoodies_tabView2",1);
 			window.parent.$("#txtSearchGenerateDiploma").val($("#diplomaID").val());
 			window.parent.getGenerateDiplomaList();
 			//window.parent.$("#txtSearchGenerateDiploma").val("");
