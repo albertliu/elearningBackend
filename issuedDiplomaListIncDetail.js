@@ -14,7 +14,7 @@
 								&nbsp;发放日期&nbsp;<input type="text" id="searchIssuedDiplomaStartDate" size="8" />-<input type="text" id="searchIssuedDiplomaEndDate" size="8" />
 								<span style="float:right;">
 									<input class="button" type="button" id="btnIssuedDiplomaSel" value="全选/取消" />&nbsp;&nbsp;
-								<input class="button" type="button" id="btnIssuedDiplomaIssue" value="发放证书">&nbsp;&nbsp;
+								<input class="button" type="button" id="btnIssuedDiplomaIssue" value="发放证书" />&nbsp;&nbsp;
 									<input class="button" type="button" id="btnDownLoad24" onClick="outputFloat(24,'file')" value="下载" />
 								</span>
 							</form>

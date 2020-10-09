@@ -47,13 +47,19 @@
 			saveNode();
 		});
 		$("#cancel").click(function(){
-			jConfirm('你确定要拒绝这个证书申请吗? 请在备注中填写拒绝原因。', '确认对话框', function(r) {
+			var s = "你确定要暂时拒绝这个证书申请吗? 请在备注中填写拒绝原因。";
+			var k = 0;
+			if($("#diplomaID").val()=="*"){
+				k = 1;
+				s = "你确定要恢复这个证书申请吗? ";
+			}
+			jConfirm(s, '确认对话框', function(r) {
 				if(r){
-					if($("#memo").val().length < 2){
+					if(k==0 && $("#memo").val().length < 2){
 						jAlert("请在备注中填写拒绝原因。");
 						return false;
 					}
-					$.get("diplomaControl.asp?op=setNeedDiplomaCancel&nodeID=" + $("#ID").val() + "&item=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(data){
+					$.get("diplomaControl.asp?op=setNeedDiplomaCancel&nodeID=" + $("#ID").val() + "&item=" + escape($("#memo").val()) + "&kindID=" + k + "&times=" + (new Date().getTime()),function(data){
 						jAlert("操作成功！","信息提示");
 						getNodeInfo(nodeID);
 						updateCount += 1;
@@ -84,6 +90,7 @@
 				$("#dept1Name").val(ar[9]);
 				$("#memo").val(ar[16]);
 				$("#mobile").val(ar[14]);
+				$("#diplomaID").val(ar[17]);
 				$("#upload1").html("<a href='javascript:showLoadFile(\"student_photo\",\"" + ar[1] + "\",\"student\",\"\");' style='padding:3px;'>上传</a>");
 				var c = "";
 				if(ar[13] > ""){
@@ -91,6 +98,12 @@
 				}
 				if(c == ""){c = "&nbsp;&nbsp;还未上传";}
 				$("#photo").html(c);
+				if(ar[17] == ""){
+					$("#cancel").attr("value","拒绝申请");
+				}
+				if(ar[17] == "*"){
+					$("#cancel").attr("value","恢复申请");
+				}
 				//getDownloadFile("studentNeedDiplomaID");
 				setButton();
 			}else{
@@ -151,7 +164,7 @@
 			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
-				<td align="right">姓名</td><input type="hidden" id="ID" />
+				<td align="right">姓名</td><input type="hidden" id="ID" /><input type="hidden" id="diplomaID" />
 				<td><input class="readOnly" type="text" id="name" size="25" readOnly="true" /></td>
 				<td align="right">身份证</td>
 				<td><input class="readOnly" type="text" id="username" size="25" readOnly="true" /></td>

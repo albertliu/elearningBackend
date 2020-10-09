@@ -262,11 +262,27 @@ if(op == "getStudentNeedDiplomaList"){
 			where = s;
 		}
 	}
+	//如果显示拒绝申请的人员
+	if(refID == 1){ // 
+		s = "diplomaID='*'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}else{
+		s = "diplomaID=''";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 
 	if(where > ""){
 		where = " and " + where;
 	}
-	sql = " FROM v_studentCertList where type=1 and result=1 and diplomaID=''" + where;
+	sql = " FROM v_studentCertList where type=1 and result=1" + where;
 	result = getBasketTip(sql,"");
 	ssql = "SELECT username,name,sexName,age,certName,agencyName,hostName,dept1Name,dept2Name,job,mobile,closeDate,examScore,memo" + sql + " order by name";
 	sql = "SELECT top " + basket + " *" + sql + " order by ID";
@@ -295,7 +311,7 @@ if(op == "getNeedDiplomaNodeInfo"){
 		//5
 		result += "|" + rs("sexName").value + "|" + rs("age").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("dept1Name").value;
 		//10
-		result += "|" + rs("job").value + "|" + rs("closeDate").value + "|" + rs("agencyName").value + "|" + rs("photo_filename").value + "|" + rs("mobile").value + "|" + rs("student_kindName").value + "|" + rs("memo").value;
+		result += "|" + rs("job").value + "|" + rs("closeDate").value + "|" + rs("agencyName").value + "|" + rs("photo_filename").value + "|" + rs("mobile").value + "|" + rs("student_kindName").value + "|" + rs("memo").value + "|" + rs("diplomaID").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -489,7 +505,7 @@ if(op == "setNeedDiplomaMemo"){
 if(op == "setNeedDiplomaCancel"){
 	result = 0;
 	if(result == 0){
-		sql = "exec setNeedDiplomaCancel " + nodeID + ",'" + item + "','" + currUser + "'";
+		sql = "exec setNeedDiplomaCancel " + nodeID + ",'" + item + "'," + kindID + ",'" + currUser + "'";
 		execSQL(sql);
 	}
 	Response.Write(escape(result));
