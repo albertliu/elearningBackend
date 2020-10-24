@@ -151,7 +151,7 @@ if(op == "clearSession"){
 }
 
 if(op == "getCurrParam"){
-	result = currDate + "|" + currUser + "|" + Session("name_key") + "|" + currYear + "|" + currMonth + "|" + currWeek + "|" + currHost + "|" + currHostKind + "|" + getSysEnv("NODE_ENV_UPLOAD_URL");
+	result = currDate + "|" + currUser + "|" + Session("name_key") + "|" + currYear + "|" + currMonth + "|" + currWeek + "|" + currHost + "|" + currHostKind + "|" + getSysEnv("NODE_ENV_UPLOAD_URL") + "|" + currDeptID;
 	Response.Write(escape(result));
 }
 

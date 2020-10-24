@@ -15,6 +15,7 @@
 	var currUnitName = "";
 	var currHost = "";
 	var currHostKind = "";
+	var currDeptID = "";
 	var floatTitle = "";	//excel file's title in the 1st row, if it's blank then keep the excel's present one.
 	var floatItem = "";		//write to excel file's 2nd row
 	var floatLog = "";		//write to excel file's 3rd row
@@ -61,6 +62,7 @@
 		currHost = ar[6];
 		currHostKind = ar[7];
 		uploadURL = ar[8];
+		currDeptID = ar[9];
 	});
 		
 	function chkUserActive(){

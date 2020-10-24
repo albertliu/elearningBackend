@@ -36,7 +36,8 @@
 		$.ajaxSetup({ 
 			async: false 
 		}); 
-		getComList("deptID","deptInfo","deptID","deptName","select deptID,deptName from deptInfo where pID=(select deptID from deptInfo where pID=0 and host='" + currHost + "') and kindID=0 and dept_status=0 order by deptID",1);
+		
+		getComList("deptID","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where pID=0 and host='" + currHost + "') and kindID=0 and dept_status=0 order by deptID",1);
 		getDicList("userStatus","status",0);
 		getDicList("userKind","kindID",0);
 		$("#limitedDate").click(function(){WdatePicker();});
@@ -338,7 +339,7 @@
 		              <td>有效期</td>
 		              <td><input id="limitedDate" name="limitedDate" type="text" size="15" /></td>
 		              <td>状态</td>
-		              <td><select id="status" name="status" style="width:100px;" ></select></td>
+		              <td><select id="status" style="width:100px;" ></select></td>
 		            </tr>
 					<tr>
 						<td align="right">备注</td>

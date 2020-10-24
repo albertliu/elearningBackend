@@ -16,6 +16,11 @@ if(op == "getStudentList"){
 		}else{
 			where = s;
 		}
+		//如果有部门
+		if(currDeptID > 0){ // 
+			s = "dept1=" + currDeptID;
+			where = where + " and " + s;
+		}
 	}
 	//如果有分类
 	if(kindID > ""){ // 

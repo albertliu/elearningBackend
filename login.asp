@@ -40,9 +40,10 @@ if(op == "login"){
 			Session("user_host") = currHost;
 			Session("user_hostName") = rs("hostName").value;
 			Session("user_hostKind") = rs("hostKind").value;
+			Session("user_deptID") = rs("deptID").value;
 			Session.Timeout=360; //SEESION有效时间为360分钟
 		}
-		result = rs("e").value + "|" + rs("msg").value+"|"+currHost;
+		result = rs("e").value + "|" + rs("msg").value+"|"+currHost+"|"+rs("deptID").value;
 	}	
 	rs.Close();
 	Response.Write(escape(result));

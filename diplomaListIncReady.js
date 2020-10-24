@@ -10,6 +10,9 @@
 			getComList("searchDiplomaHost","hostInfo","hostNo","title",w,0);
 			$("#diplomaListLongItem1").hide();
 			getComList("searchDiplomaDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchDiplomaHost").val() + "' and pID=0)",1);
+			if(currDeptID > 0){
+				$("#searchDiplomaDept").val(currDeptID);
+			}
 		}
 		
 		getComList("searchDiplomaKind","certificateInfo","certID","certName","status=0 order by certName",1);

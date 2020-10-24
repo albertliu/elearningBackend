@@ -28,6 +28,7 @@ var memo = "";
 var mySection = 0;	//本区编号
 var currHost = Session("user_host");
 var currHostKind = Session("user_hostKind");
+var currDeptID = Session("user_deptID");
 var host = "";
 
 
