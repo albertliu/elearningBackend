@@ -2,7 +2,7 @@
 
 <script language="JScript" runat="Server">
 var conn = new ActiveXObject("ADODB.Connection");
-var strdsn = "DSN=elearning;UID=sa;PWD=Admin12345";
+var strdsn = "DSN=elearning;UID=sqlrw;PWD=De0penl99O53!4N#~9.";
 conn.Open(strdsn);
 
 var sql = "";
