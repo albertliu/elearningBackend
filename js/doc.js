@@ -142,7 +142,7 @@ function setReadLog(docID,docType){
 
 function setReturnLog(kindID,refID){
 		//写回执
-		var sql="exec setReturnLog '" + kindID + "','" + refID + "','" + currUser + "'";
+		var sql="exec setReturnLog '" + kindID + "','" + refID + "','" + currUser + "','" + currHost + "'";
 		execSQL(sql);
 }
 
