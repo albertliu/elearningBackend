@@ -46,7 +46,7 @@ if(op == "getProjectList"){
 	}
 	//如果有认证项目
 	if(refID > ""){ // 
-		s = "certID='" + kindID + "'";
+		s = "certID='" + refID + "'";
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
@@ -77,6 +77,8 @@ if(op == "getProjectList"){
 		result += "%%" + rs("ID").value + "|" + rs("projectID").value + "|" + rs("projectName").value + "|" + rs("certID").value + "|" + rs("kindID").value + "|" + rs("status").value + "|" + rs("object").value + "|" + rs("certName").value + "|" + rs("statusName").value;
 		//9
 		result += "|" + rs("address").value + "|" + rs("deadline").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("readerCount").value;
+		//18
+		result += "|" + rs("phone").value + "|" + rs("email").value;
 		rs.MoveNext();
 	}
 /**/
@@ -85,12 +87,14 @@ if(op == "getProjectList"){
 }	
 
 if(op == "getNodeInfo"){
-	sql = "SELECT * FROM v_projectInfo where ID=" + nodeID;
+	sql = "SELECT *, dbo.getReaderCount('project',ID) as readerCount FROM v_projectInfo where ID=" + nodeID;
 	rs = conn.Execute(sql);
 	if (!rs.EOF){
 		result = rs("ID").value + "|" + rs("projectID").value + "|" + rs("projectName").value + "|" + rs("certID").value + "|" + rs("kindID").value + "|" + rs("status").value + "|" + rs("object").value + "|" + rs("certName").value + "|" + rs("statusName").value;
 		//9
-		result += "|" + rs("address").value + "|" + rs("deadline").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value;
+		result += "|" + rs("address").value + "|" + rs("deadline").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("readerCount").value;
+		//18
+		result += "|" + rs("phone").value + "|" + rs("email").value;
 		execSQL(sql);
 	}
 	rs.Close();
@@ -100,7 +104,7 @@ if(op == "getNodeInfo"){
 if(op == "update"){
 	result = 0;
 	if(result == 0){
-		sql = "exec updateProjectInfo " + nodeID + ",'" + keyID + "','" + item + "','" + refID + "','" + unescape(String(Request.QueryString("object"))) + "','" + unescape(String(Request.QueryString("address"))) + "','" + String(Request.QueryString("deadline")) + "'," + kindID + ",'" + host + "','" + memo + "','" + currUser + "'";
+		sql = "exec updateProjectInfo " + nodeID + ",'" + keyID + "','" + item + "','" + refID + "','" + unescape(String(Request.QueryString("object"))) + "','" + unescape(String(Request.QueryString("address"))) + "','" + String(Request.QueryString("deadline")) + "'," + kindID + ",'" + unescape(String(Request.QueryString("phone"))) + "','" + unescape(String(Request.QueryString("email"))) + "','" + host + "','" + memo + "','" + currUser + "'";
 
 		execSQL(sql);
 		if(nodeID == 0){

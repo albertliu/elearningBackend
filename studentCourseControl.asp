@@ -31,9 +31,27 @@ if(op == "getStudentCourseList"){
 			where = s;
 		}
 	}
-	//如果有分类
+	/*//如果有分类
 	if(kindID > ""){ // 
 		s = "kindID=" + kindID;
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}*/
+	//如果有部门
+	if(kindID > ""){ // 
+		s = "dept1=" + kindID;
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//如果有招生批次
+	if(refID > ""){ // 
+		s = "projectID='" + refID + "'";
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
@@ -56,6 +74,7 @@ if(op == "getStudentCourseList"){
 			where = s;
 		}
 	}
+	/*
 	if(String(Request.QueryString("old")) == 1){
 		s = "age>=55";
 		if(where > ""){
@@ -63,7 +82,7 @@ if(op == "getStudentCourseList"){
 		}else{
 			where = s;
 		}
-	}
+	}*/
 	//课程
 	if(String(Request.QueryString("courseID")) > ""){
 		s = "courseID='" + String(Request.QueryString("courseID")) + "'";

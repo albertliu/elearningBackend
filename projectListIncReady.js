@@ -15,6 +15,10 @@
 		$("#btnSearchProject").click(function(){
 			getProjectList();
 		});
+
+		$("#btnSearchProjectAdd").click(function(){
+			showProjectInfo(0,0,1,1);
+		});
 		
 		if(projectListLong == 0){
 			$("#projectListLongprojectName1").show();
@@ -22,13 +26,23 @@
 			$("#projectListLongprojectName1").hide();
 		}
 		
-		//getProjectList();
+		if(checkPermission("projectAdd")){
+			$("#btnSearchProjectAdd").show();
+		}else{
+			$("#btnSearchProjectAdd").hide();
+		}
+		
+		getProjectList();
 	});
 
 	function getProjectList(){
 		sWhere = $("#txtSearchProject").val();
 		//alert("&fStart=" + $("#searchProjectStart").val() + "&fEnd=" + $("#searchProjectEnd").val() + "&kindID=" + $("#searchProjectKind").val() + "&status=" + $("#searchProjectStatus").val() + "&host=" + $("#searchProjectHost").val());
-		$.get("projectControl.asp?op=getProjectList&where=" + escape(sWhere) + "&fStart=" + $("#searchProjectStart").val() + "&fEnd=" + $("#searchProjectEnd").val() + "&certID=" + $("#searchProjectCert").val() + "&status=" + $("#searchProjectStatus").val() + "&host=" + $("#searchProjectHost").val() + "&dk=17&times=" + (new Date().getTime()),function(data){
+		var s = $("#searchProjectStatus").val();
+		if(!checkPermission("projectAdd")){
+			s = 1;	//一般人只能看已发布的通知
+		}
+		$.get("projectControl.asp?op=getProjectList&where=" + escape(sWhere) + "&fStart=" + $("#searchProjectStart").val() + "&fEnd=" + $("#searchProjectEnd").val() + "&refID=" + $("#searchProjectCert").val() + "&status=" + s + "&host=" + $("#searchProjectHost").val() + "&dk=17&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
@@ -43,10 +57,10 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
-			arr.push("<th width='10%'>编号</th>");
+			arr.push("<th width='12%'>编号</th>");
 			arr.push("<th width='25%'>内容</th>");
-			arr.push("<th width='25%'>项目名称</th>");
-			arr.push("<th width='12%'>参加对象</th>");
+			arr.push("<th width='15%'>项目名称</th>");
+			arr.push("<th width='15%'>参加对象</th>");
 			arr.push("<th width='12%'>截止日期</th>");
 			arr.push("<th width='8%'>阅读</th>");
 			arr.push("</tr>");
@@ -63,13 +77,12 @@
 					i += 1;
 					arr.push("<tr class='grade0'>");
 					arr.push("<td class='center'>" + i + "</td>");
-					arr.push("<td class='link1'><a href='javascript:showProjectInfo(" + ar1[0] + "</a></td>");
-					arr.push("<td class='left'>" + ar1[1] + "</td>");
+					arr.push("<td class='link1'><a href='javascript:showProjectInfo(" + ar1[0] + ",0,0,1);'>" + ar1[1] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[2] + "</td>");
 					arr.push("<td class='left'>" + ar1[7] + "</td>");
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
 					arr.push("<td class='left'>" + ar1[10] + "</td>");
-					arr.push("<td class='left'>" + ar1[10] + "</td>");
+					arr.push("<td class='left'>" + ar1[17] + "</td>");
 					arr.push("</tr>");
 				});
 			}

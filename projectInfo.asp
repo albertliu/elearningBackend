@@ -51,7 +51,7 @@
 		$("#cancel").click(function(){
 			jConfirm('确定要撤回这个通知吗?', '确认对话框', function(r) {
 				if(r){
-					setStatus(3);
+					setStatus(0);
 				}
 			});
 		});
@@ -80,6 +80,12 @@
 			});
 		});
 		
+		$("#certID").change(function(){
+			if(op==1){
+				$("#projectName").val("关于《" + $("#certID").find("option:selected").text() + "》的招生通知");
+			}
+		});
+		
 		$("#save").click(function(){
 			saveNode();
 		});
@@ -97,6 +103,7 @@
 				$("#projectName").val(ar[2]);
 				$("#certID").val(ar[3]);
 				$("#kindID").val(ar[4]);
+				$("#status").val(ar[5]);
 				$("#object").val(ar[6]);
 				$("#statusName").val(ar[8]);
 				$("#address").val(ar[9]);
@@ -105,6 +112,8 @@
 				$("#memo").val(ar[13]);
 				$("#regDate").val(ar[14]);
 				$("#registerName").val(ar[16]);
+				$("#phone").val(ar[18]);
+				$("#email").val(ar[19]);
 				
 				//getDownloadFile("projectID");
 				setButton();
@@ -121,18 +130,16 @@
 			return false;
 		}
 		//alert($("#projectID").val() + "&projectName=" + ($("#memo").val()));
-		$.get("projectControl.asp?op=update&nodeID=" + $("#ID").val() + "&keyID=" + $("#projectID").val() + "&item=" + escape($("#projectName").val()) + "&refID=" + $("#certID").val() + "&kindID=" + $("#kindID").val() + "&deadline=" + $("#deadline").val() + "&object=" + escape($("#object").val()) + "&address=" + escape($("#address").val()) + "&host=" + $("#host").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("projectControl.asp?op=update&nodeID=" + $("#ID").val() + "&keyID=" + $("#projectID").val() + "&item=" + escape($("#projectName").val()) + "&refID=" + $("#certID").val() + "&kindID=" + $("#kindID").val() + "&deadline=" + $("#deadline").val() + "&object=" + escape($("#object").val()) + "&address=" + escape($("#address").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&host=" + $("#host").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar[0] == 0){
 				if(op == 1){
 					op = 0;
-					getNodeInfo(ar[1]);
-					jAlert("发送成功！","信息提示");
-				}else{
-					jAlert("保存成功！","信息提示");
 				}
+				jAlert("保存成功！","信息提示");
+				getNodeInfo(ar[1]);
 				updateCount += 1;
 			}
 			if(ar[0] != 0){
@@ -144,7 +151,7 @@
 	
 	function setStatus(x){
 		//alert($("#projectID").val() + "&projectName=" + ($("#memo").val()));
-		$.get("projectControl.asp?op=setProjectStatus&nodeID=" + $("#projectID").val() + "&status=" + x + "&times=" + (new Date().getTime()),function(data){
+		$.get("projectControl.asp?op=setProjectStatus&nodeID=" + $("#ID").val() + "&status=" + x + "&times=" + (new Date().getTime()),function(data){
 			jAlert("操作成功！","信息提示");
 			getNodeInfo(nodeID);
 			updateCount += 1;
@@ -154,32 +161,43 @@
 	
 	function setButton(){
 		$("#cancel").hide();
+		$("#del").hide();
+		$("#close").hide();
+		$("#issue").hide();
 		$("#save").hide();
-		if(op ==1){
-			setEmpty();
-			$("#save").val("发送");
-		}else{
-			$("#save").val("保存");
-		}
-		if($("#status").val()==0 && checkPermission("projectAdd")){
+		if(checkPermission("projectAdd")){
 			$("#save").show();
 			if(op == 0){
-				$("#cancel").show();
+				var s = $("#status").val();
+				if(s==1){	//发布的通知可以撤销
+					$("#cancel").show();
+				}
+				if(s != 1){	//发布状态以外的其他状态都可以进行发布
+					$("#issue").show();
+				}
+				if(s != 2){	//关闭状态以外的其他状态都可以进行关闭
+					$("#close").show();
+				}
+				if(s != 9){	//删除状态以外的其他状态都可以进行删除
+					$("#del").show();
+				}
 			}
+		}
+		if(op ==1){
+			setEmpty();
 		}
 	}
 	
 	function setEmpty(){
-		$("#projectID").val(0);
-		$("#refID").val(refID);
-		$("#username").val(username);
+		$("#ID").val(0);
+		$("#projectID").val("");
+		$("#certID").val("");
+		$("#deadline").val("");
 		$("#status").val(0);
+		$("#kindID").val(0);
 		$("#regDate").val(currDate);
 		$("#registerID").val(currUser);
 		$("#registerName").val(currUserName);
-		if(refID == 0){
-			$("#kindID").val(1);	//非回复性消息，通知
-		}
 	}
 	
 	function getUpdateCount(){
@@ -201,44 +219,44 @@
 			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
-				<td align="right">消息内容</td><input id="projectID" type="hidden" />
-				<td colspan="5"><textarea id="projectName" style="padding:2px;" rows="4" cols="75"></textarea></td>
+				<td align="right">编号</td><input id="ID" type="hidden" /><input type="hidden" id="kindID" /><input type="hidden" id="status" />
+				<td><input class="readOnly" type="text" id="projectID" size="24" readOnly="true" /></td>
+				<td align="right">项目</td>
+				<td><select id="certID" style="width:200px;"></select></td>
 			</tr>
 			<tr>
-				<td align="right">接收人</td><input type="hidden" id="refID" /><input type="hidden" id="status" />
-				<td><input class="readOnly" type="text" id="name" size="25" readOnly="true" /></td>
-				<td align="right">身份证</td>
-				<td><input class="readOnly" type="text" id="username" size="25" readOnly="true" /></td>
+				<td align="right">招生对象</td>
+				<td><input type="text" id="object" size="24" /></td>
+				<td align="right">标题</td>
+				<td><input type="text" id="projectName" size="33" /></td>
 			</tr>
 			<tr>
-				<td align="right">类型</td>
-				<td><select id="kindID" style="width:100px;"></select></td>
-				<td align="right">紧急程度</td>
-				<td><select id="emergency" style="width:100px;"></select></td>
+				<td align="right">截止日期</td>
+				<td><input type="text" id="deadline" size="24" /></td>
+				<td align="right">培训地点</td>
+				<td><input type="text" id="address" size="33" /></td>
 			</tr>
 			<tr>
-				<td align="right">电话</td>
-				<td><input class="readOnly" type="text" id="mobile" size="25" readOnly="true" /></td>
-				<td align="right">邮箱</td>
-				<td><input class="readOnly" type="text" id="email" size="25" readOnly="true" /></td>
-			</tr>
-			<tr>
-				<td align="right">公司</td>
-				<td><input class="readOnly" type="text" id="hostName" size="25" readOnly="true" /></td>
-				<td align="right">部门</td>
-				<td><input class="readOnly" type="text" id="dept1Name" size="25" readOnly="true" /></td>
-			</tr>
-			<tr>
-				<td align="right">发送人</td>
-				<td><input class="readOnly" type="text" id="registerName" size="25" readOnly="true" /></td>
-				<td align="right">发送日期</td>
-				<td><input class="readOnly" type="text" id="regDate" size="25" readOnly="true" /></td>
+				<td align="right">联系电话</td>
+				<td><input type="text" id="phone" size="24" /></td>
+				<td align="right">电子邮箱</td>
+				<td><input type="text" id="email" size="33" /></td>
 			</tr>
 			<tr>
 				<td align="right">状态</td>
-				<td><input class="readOnly" type="text" id="statusName" size="25" readOnly="true" /></td>
-				<td align="right">阅读日期</td>
-				<td><input class="readOnly" type="text" id="readDate" size="25" readOnly="true" /></td>
+				<td><input class="readOnly" type="text" id="statusName" size="24" readOnly="true" /></td>
+				<td align="right">发布对象</td>
+				<td><select id="host" style="width:200px;"></select></td>
+			</tr>
+			<tr>
+				<td align="right">备注</td>
+				<td colspan="5"><textarea id="memo" style="padding:2px;" rows="4" cols="75"></textarea></td>
+			</tr>
+			<tr>
+				<td align="right">发布人</td>
+				<td><input class="readOnly" type="text" id="registerName" size="24" readOnly="true" /></td>
+				<td align="right">发布日期</td>
+				<td><input class="readOnly" type="text" id="regDate" size="25" readOnly="true" /></td>
 			</tr>
 			</table>
 			</form>

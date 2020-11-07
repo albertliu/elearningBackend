@@ -4,12 +4,21 @@
 	$(document).ready(function (){
 		var w1 = "status=0 and hostNo='" + currHost + "'";
 		var w2 = "status=0 and (kindID=0 or host='" + currHost + "')";
+		var w3 = " and deptID=" + currDeptID;
 		if(currHost==""){	//公司用户只能看自己公司内容
 			getComList("searchStudentCourseHost","hostInfo","hostNo","title","status=0 order by hostName",1);
 			getComList("searchStudentCourseID","courseInfo","courseID","courseName","status=0 order by courseID",1);
+			getComList("searchStudentProjectID","projectInfo","projectID","projectID","status=1 or status=2 order by ID desc",1);
 		}else{
 			getComList("searchStudentCourseHost","hostInfo","hostNo","title",w1,0);
 			getComList("searchStudentCourseID","courseInfo","courseID","courseName",w2,1);
+			getComList("searchStudentProjectID","projectInfo","projectID","projectID","host='" + currHost + "' and status=1 or status=2 order by ID desc",1);
+			$("#studentCourseListLongItem1").hide();
+			if(currDeptID>0){
+				getComList("searchStudentCourseDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchStudentCourseHost").val() + "' and pID=0)" + w3,1);
+			}else{
+				getComList("searchStudentCourseDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchStudentCourseHost").val() + "' and pID=0)",1);
+			}
 		}
 		getDicList("student","searchStudentCourseKind",1);
 		getDicList("planStatus","searchStudentCourseStatus",1);
@@ -30,19 +39,20 @@
 			}
 		});
 		
-		$("#searchStudentCourseOld").change(function(){
-			getStudentCourseList();
+		$("#searchStudentCourseHost").change(function(){
+			getComList("searchStudentCourseDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchStudentCourseHost").val() + "' and pID=0)",1);
+			getComList("searchStudentProjectID","projectInfo","projectID","projectID","host='" + $("#searchStudentCourseHost").val() + "' and status=1 or status=2 order by ID desc",1);
 		});
-		//$("#studentCourseListLongItem1").hide();
+		$("#studentCourseListLongItem3").hide();
 		//getStudentCourseList();
 	});
 
 	function getStudentCourseList(){
 		sWhere = $("#txtSearchStudentCourse").val();
 		var Old = 0;
-		if($("#searchStudentCourseOld").attr("checked")){Old = 1;}
+		//if($("#searchStudentCourseOld").attr("checked")){Old = 1;}
 		//alert((sWhere) + "&kindID=" + $("#searchStudentCourseKind").val() + "&status=" + $("#searchStudentCourseStatus").val() + "&host=" + $("#searchStudentCourseHost").val() + "&Old=" + Old + "&fStart=" + $("#searchStudentCourseStartDate").val() + "&fEnd=" + $("#searchStudentCourseEndDate").val());
-		$.get("studentCourseControl.asp?op=getStudentCourseList&where=" + escape(sWhere) + "&kindID=" + $("#searchStudentCourseKind").val() + "&status=" + $("#searchStudentCourseStatus").val() + "&courseID=" + $("#searchStudentCourseID").val() + "&host=" + $("#searchStudentCourseHost").val() + "&Old=" + Old + "&fStart=" + $("#searchStudentCourseStartDate").val() + "&fEnd=" + $("#searchStudentCourseEndDate").val() + "&dk=13&times=" + (new Date().getTime()),function(data){
+		$.get("studentCourseControl.asp?op=getStudentCourseList&where=" + escape(sWhere) + "&kindID=" + $("#searchStudentCourseDept").val() + "&refID=" + $("#searchStudentProjectID").val() + "&status=" + $("#searchStudentCourseStatus").val() + "&courseID=" + $("#searchStudentCourseID").val() + "&host=" + $("#searchStudentCourseHost").val() + "&Old=" + Old + "&fStart=" + $("#searchStudentCourseStartDate").val() + "&fEnd=" + $("#searchStudentCourseEndDate").val() + "&dk=13&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");

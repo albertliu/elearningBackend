@@ -99,6 +99,7 @@
 	<!--#include file="agencyListIncReady.js"-->
 	<!--#include file="studentNeedDiplomaListIncReady.js"-->
 	<!--#include file="issuedDiplomaListIncReady.js"-->
+	<!--#include file="projectListIncReady.js"-->
 	<!--#include file="generateDiplomaListIncReady.js"-->
 	<!--#include file="generateStudentListIncReady.js"-->
 	<!--#include file="generateScoreListIncReady.js"-->
@@ -323,7 +324,7 @@
 					<ul class="tabs-nav">
 						<li><a href="#fragment-0"><span>我的事务</span></a></li>
 						<li><a href="#fragment-1"><span>学员管理</span></a></li>
-						<li><a href="#fragment-2"><span>培训管理</span></a></li>
+						<li><a href="#fragment-2"><span>培训报名</span></a></li>
 						<li><a href="#fragment-3"><span>证书管理</span></a></li>
 						<li><a href="#fragment-4"><span>课程管理</span></a></li>
 						<li id="menu5"><a href="#fragment-5"><span>题库管理</span></a></li>
@@ -363,6 +364,7 @@
 						</div>
 						<div id="minialDiv" style="width:85%;float:right;">
 							<ul id="tabs">
+							    <li id="project_Tab"><a href="#" name="#tab0">招生通知</a></li> 
 							    <li id="mTab1"><a href="#" name="#tab1">学员反馈</a></li>
 							    <li><a href="#" name="#tab2">回复信息</a></li>
 							    <li id="generateStudent_Tab"><a href="#" name="#tab3">学员报名</a></li> 
@@ -371,6 +373,7 @@
 							</ul>
 							
 							<div id="content"> 
+							    <div id="tab0"><!--#include file="projectListIncDetail.js"--></div>
 							    <div id="tab1"><!--#include file="feedbackListIncDetail.js"--></div>
 							    <div id="tab2"><!--#include file="messageListIncDetail.js"--></div>
 							    <div id="tab3"><!--#include file="generateStudentListIncDetail.js"--></div>
