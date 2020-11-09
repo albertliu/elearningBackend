@@ -41,7 +41,7 @@ if(op == "getStudentCourseList"){
 		}
 	}*/
 	//如果有部门
-	if(kindID > ""){ // 
+	if(kindID > "" && kindID != "null"){ // 
 		s = "dept1=" + kindID;
 		if(where > ""){
 			where = where + " and " + s;
@@ -92,13 +92,22 @@ if(op == "getStudentCourseList"){
 			where = s;
 		}
 	}
+	//课程
+	if(String(Request.QueryString("checked")) > ""){
+		s = "checked=" + String(Request.QueryString("checked"));
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 
 	if(where > ""){
 		where = " where " + where;
 	}
 	sql = " FROM v_studentCourseList " + where;
 	result = getBasketTip(sql,"");
-	ssql = "SELECT courseName,hours,statusName,startDate,completion,examScore,username,name,sexName,age,hostName,dept1Name,dept2Name,mobile,email,memo,regDate" + sql + " order by courseID";
+	ssql = "SELECT courseName,hours,statusName,startDate,completion,examScore,username,name,sexName,age,hostName,dept1Name,dept2Name,mobile,email,checkName,memo,regDate" + sql + " order by courseID";
 	sql = "SELECT top " + basket + " *" + sql + " order by ID desc";
 	
 	rs = conn.Execute(sql);
@@ -106,10 +115,12 @@ if(op == "getStudentCourseList"){
 		result += "%%" + rs("ID").value + "|" + rs("username").value + "|" + rs("name").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("courseID").value + "|" + rs("courseName").value;
 		//7
 		result += "|" + rs("sexName").value + "|" + rs("age").value + "|" + rs("hours").value + "|" + rs("completion").value + "|" + rs("regDate").value + "|" + rs("hostName").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value + "|" + rs("examScore").value;
+		//16
+		result += "|" + rs("checked").value + "|" + rs("checkName").value;
 		rs.MoveNext();
 	}
 	rs.Close();
-/*	*/
+	/**/
 	Session(op) = ssql;
 	Response.Write(escape(result));
 	//Response.Write(escape(sql));
@@ -124,7 +135,7 @@ if(op == "getNodeInfo"){
 		//7
 		result += "|" + rs("sexName").value + "|" + rs("age").value + "|" + rs("hours").value + "|" + rs("completion").value + "|" + rs("regDate").value + "|" + rs("hostName").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value + "|" + rs("examScore").value + "|" + rs("memo").value + "|" + rs("mobile").value + "|" + rs("email").value;
 		//19
-		result += "|" + rs("startDate").value + "|" + rs("endDate").value + "|" + rs("job").value + "|" + rs("pass_condition").value;
+		result += "|" + rs("startDate").value + "|" + rs("endDate").value + "|" + rs("job").value + "|" + rs("pass_condition").value + "|" + rs("checked").value + "|" + rs("checkName").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -143,9 +154,13 @@ if(op == "setMemo"){
 if(op == "delNode"){
 	sql = "exec delStudentCourseList '" + nodeID + "','" + where + "','" + currUser + "'";
 	execSQL(sql);
-	Response.Write(nodeID);
+	Response.Write(0);
 }
-	
 
+if(op == "doStudentCourse_check"){
+	sql = "exec doStudentCourse_check '" + refID + "'," + status + ",'" + keyID + "','" + host + "','" + currUser + "'";
+	execSQL(sql);
+	Response.Write(0);
+}	
 
 %>

@@ -70,7 +70,7 @@ if(op == "getProjectList"){
 	sql = " FROM v_projectInfo " + where;
 	result = getBasketTip(sql,"");
 	ssql = "SELECT projectID,projectName,statusName,certName,address,object,deadline,hostName,memo,regDate,registerName" + sql + " order by ID desc";
-	sql = "SELECT top " + basket + " *, dbo.getReaderCount('project',ID) as readerCount" + sql + " order by ID desc";
+	sql = "SELECT top " + basket + " *, dbo.getReaderCount('project',ID) as readerCount, dbo.getProjectCount(projectID) as projectCount" + sql + " order by ID desc";
 
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
@@ -78,23 +78,22 @@ if(op == "getProjectList"){
 		//9
 		result += "|" + rs("address").value + "|" + rs("deadline").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("readerCount").value;
 		//18
-		result += "|" + rs("phone").value + "|" + rs("email").value;
+		result += "|" + rs("phone").value + "|" + rs("email").value + "|" + rs("projectCount").value + "|" + rs("filename").value;
 		rs.MoveNext();
 	}
-/**/
 	Response.Write(escape(result));
 	//Response.Write(escape(sql));
 }	
 
 if(op == "getNodeInfo"){
-	sql = "SELECT *, dbo.getReaderCount('project',ID) as readerCount FROM v_projectInfo where ID=" + nodeID;
+	sql = "SELECT *, dbo.getReaderCount('project',ID) as readerCount, dbo.getProjectCount(projectID) as projectCount FROM v_projectInfo where ID=" + nodeID;
 	rs = conn.Execute(sql);
 	if (!rs.EOF){
 		result = rs("ID").value + "|" + rs("projectID").value + "|" + rs("projectName").value + "|" + rs("certID").value + "|" + rs("kindID").value + "|" + rs("status").value + "|" + rs("object").value + "|" + rs("certName").value + "|" + rs("statusName").value;
 		//9
 		result += "|" + rs("address").value + "|" + rs("deadline").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("readerCount").value;
 		//18
-		result += "|" + rs("phone").value + "|" + rs("email").value;
+		result += "|" + rs("phone").value + "|" + rs("email").value + "|" + rs("projectCount").value + "|" + rs("filename").value;
 		execSQL(sql);
 	}
 	rs.Close();

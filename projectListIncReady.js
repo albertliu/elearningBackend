@@ -57,19 +57,19 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
-			arr.push("<th width='12%'>编号</th>");
-			arr.push("<th width='25%'>内容</th>");
-			arr.push("<th width='15%'>项目名称</th>");
+			arr.push("<th width='12%'>批次</th>");
+			arr.push("<th width='30%'>内容</th>");
 			arr.push("<th width='15%'>参加对象</th>");
 			arr.push("<th width='12%'>截止日期</th>");
-			arr.push("<th width='8%'>阅读</th>");
+			arr.push("<th width='10%'>附件</th>");
+			arr.push("<th width='8%'>报名</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
 			var i = 0;
 			var c = 0;
 			var mNew = "";
-			var imgChk = "<img src='images/green_check.png'>";
+			var imgChk = "<img src='images/attachment.png' height='15'>";
 			if(ar>""){
 				$.each(ar,function(iNum,val){
 					var ar1 = new Array();
@@ -79,10 +79,14 @@
 					arr.push("<td class='center'>" + i + "</td>");
 					arr.push("<td class='link1'><a href='javascript:showProjectInfo(" + ar1[0] + ",0,0,1);'>" + ar1[1] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[2] + "</td>");
-					arr.push("<td class='left'>" + ar1[7] + "</td>");
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
 					arr.push("<td class='left'>" + ar1[10] + "</td>");
-					arr.push("<td class='left'>" + ar1[17] + "</td>");
+					if(ar1[7]==''){
+						arr.push("<td class='center'>&nbsp;</td>");
+					}else{
+						arr.push("<td class='center'><a href='/users" + ar1[21] + "' target='_blank'>" + imgChk + "</a></td>");
+					}
+					arr.push("<td class='left'><a href='javascript:downloadProjectList(\"" + ar1[1] + "\");'>" + ar1[20] + "</a></td>");
 					arr.push("</tr>");
 				});
 			}
@@ -119,5 +123,12 @@
 		});
 	}
 
+
+	function downloadProjectList(pID){
+		//alert(pID);
+		$("#searchStudentCourseProjectID").val(pID);
+		getStudentCourseList();
+		outputFloat(13,'file');
+	}
 	
 	

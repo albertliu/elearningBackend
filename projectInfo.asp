@@ -114,6 +114,14 @@
 				$("#registerName").val(ar[16]);
 				$("#phone").val(ar[18]);
 				$("#email").val(ar[19]);
+				$("#projectCount").val(ar[20]);
+				$("#upload1").html("<a href='javascript:showLoadFile(\"project_brochure\",\"" + ar[1] + "\",\"project\",\"\");' style='padding:3px;'>上传</a>");
+				var c = "";
+				if(ar[21] > ""){
+					c += "<a href='/users" + ar[21] + "' target='_blank'>招生简章</a>";
+				}
+				if(c == ""){c = "&nbsp;&nbsp;还未上传";}
+				$("#photo").html(c);
 				
 				//getDownloadFile("projectID");
 				setButton();
@@ -139,7 +147,8 @@
 					op = 0;
 				}
 				jAlert("保存成功！","信息提示");
-				getNodeInfo(ar[1]);
+				nodeID = ar[1];
+				getNodeInfo(nodeID);
 				updateCount += 1;
 			}
 			if(ar[0] != 0){
@@ -257,6 +266,15 @@
 				<td><input class="readOnly" type="text" id="registerName" size="24" readOnly="true" /></td>
 				<td align="right">发布日期</td>
 				<td><input class="readOnly" type="text" id="regDate" size="25" readOnly="true" /></td>
+			</tr>
+			<tr>
+				<td align="right">报名人数</td>
+				<td><input class="readOnly" type="text" id="projectCount" size="10" readOnly="true" />&nbsp;确认/报名</td>
+				<td align="right">招生简章</td>
+				<td>
+					<span id="upload1" style="margin-left:20px;border:1px solid orange;"></span>
+					<span id="photo" style="margin-left:20px;"></span>
+				</td>
 			</tr>
 			</table>
 			</form>
