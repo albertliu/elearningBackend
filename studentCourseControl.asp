@@ -50,7 +50,7 @@ if(op == "getStudentCourseList"){
 		}
 	}
 	//如果有招生批次
-	if(refID > ""){ // 
+	if(refID > "" && refID != "null"){ // 
 		s = "projectID='" + refID + "'";
 		if(where > ""){
 			where = where + " and " + s;
