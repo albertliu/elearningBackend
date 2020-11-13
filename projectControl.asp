@@ -78,7 +78,7 @@ if(op == "getProjectList"){
 		//9
 		result += "|" + rs("address").value + "|" + rs("deadline").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("readerCount").value;
 		//18
-		result += "|" + rs("phone").value + "|" + rs("email").value + "|" + rs("projectCount").value + "|" + rs("filename").value;
+		result += "|" + rs("phone").value + "|" + rs("email").value + "|" + rs("projectCount").value + "|" + rs("filename").value + "|" + rs("entryform").value;
 		rs.MoveNext();
 	}
 	Response.Write(escape(result));
@@ -93,7 +93,7 @@ if(op == "getNodeInfo"){
 		//9
 		result += "|" + rs("address").value + "|" + rs("deadline").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("readerCount").value;
 		//18
-		result += "|" + rs("phone").value + "|" + rs("email").value + "|" + rs("projectCount").value + "|" + rs("filename").value;
+		result += "|" + rs("phone").value + "|" + rs("email").value + "|" + rs("projectCount").value + "|" + rs("filename").value + "|" + rs("entryform").value;
 		execSQL(sql);
 	}
 	rs.Close();

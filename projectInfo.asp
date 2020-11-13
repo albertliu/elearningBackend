@@ -79,6 +79,19 @@
 				}
 			});
 		});
+
+		$("#btnEntryForm").click(function(){
+			var n = $("#projectCount").val().split('/');
+			if(n[0]==0){
+				jAlert("已确认的学员为0，无法生成报名表。");
+				return false;
+			}
+			jConfirm('确定要生成培训报名表[' + n + '个学员]吗?', '确认对话框', function(r) {
+				if(r){
+					generateEntryForm();
+				}
+			});
+		});
 		
 		$("#certID").change(function(){
 			if(op==1){
@@ -122,6 +135,12 @@
 				}
 				if(c == ""){c = "&nbsp;&nbsp;还未上传";}
 				$("#photo").html(c);
+				var c1 = "";
+				if(ar[22] > ""){
+					c1 += "<a href='/users" + ar[22] + "' target='_blank'>报名表</a>";
+				}
+				if(c1 == ""){c1 = "&nbsp;&nbsp;还未生成";}
+				$("#entryform").html(c1);
 				
 				//getDownloadFile("projectID");
 				setButton();
@@ -158,6 +177,17 @@
 		//return false;
 	}
 	
+	function generateEntryForm(){
+		$.getJSON(uploadURL + "/outfiles/generate_entryform_byProjectID?certID=" + $("#certID").val() + "&projectID=" + $("#projectID").val() + "&registerID=" + currUser ,function(data){
+			if(data>""){
+				jAlert("报名表已生成 <a href='" + data + "' target='_blank'>下载文件</a>");
+				getNodeInfo(nodeID);
+			}else{
+				jAlert("没有可供处理的数据。");
+			}
+		});
+	}
+	
 	function setStatus(x){
 		//alert($("#projectID").val() + "&projectName=" + ($("#memo").val()));
 		$.get("projectControl.asp?op=setProjectStatus&nodeID=" + $("#ID").val() + "&status=" + x + "&times=" + (new Date().getTime()),function(data){
@@ -174,8 +204,10 @@
 		$("#close").hide();
 		$("#issue").hide();
 		$("#save").hide();
+		$("#btnEntryForm").hide();
 		if(checkPermission("projectAdd")){
 			$("#save").show();
+			$("#btnEntryForm").show();
 			if(op == 0){
 				var s = $("#status").val();
 				if(s==1){	//发布的通知可以撤销
@@ -275,6 +307,15 @@
 					<span id="upload1" style="margin-left:20px;border:1px solid orange;"></span>
 					<span id="photo" style="margin-left:20px;"></span>
 				</td>
+			</tr>
+			<tr>
+				<td align="right">报名表</td>
+				<td>
+					<span ><input class="button" type="button" id="btnEntryForm" value="生成" />&nbsp;</span>
+					<span id="entryform" style="margin-left:20px;"></span>
+				</td>
+				<td align="right"></td>
+				<td></td>
 			</tr>
 			</table>
 			</form>
