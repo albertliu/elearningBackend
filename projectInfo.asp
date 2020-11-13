@@ -128,7 +128,7 @@
 				$("#phone").val(ar[18]);
 				$("#email").val(ar[19]);
 				$("#projectCount").val(ar[20]);
-				$("#upload1").html("<a href='javascript:showLoadFile(\"project_brochure\",\"" + ar[1] + "\",\"project\",\"\");' style='padding:3px;'>上传</a>");
+				$("#upload1").html("<a href='javascript:showLoadFile(\"project_brochure\",\"" + ar[1] + "\",\"project\",\"" + ar[11] + "\");' style='padding:3px;'>上传</a>");
 				var c = "";
 				if(ar[21] > ""){
 					c += "<a href='/users" + ar[21] + "' target='_blank'>招生简章</a>";

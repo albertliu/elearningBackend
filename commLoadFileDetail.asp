@@ -9,6 +9,9 @@
 	function showLoadFile(loadOp,loadID,mark,p_host){
 		username = loadID;
 		host = p_host;
+		if(host > ""){
+			$("#commLoadFileHost").val(host);
+		}
 		//alert(action + ":" + loadID + ":" + loadOp);
 		//$("#formUpload").attr("action", action + "?upID=" + loadOp + "&username=" + loadID + "&currUser=" + currUser);
 		
