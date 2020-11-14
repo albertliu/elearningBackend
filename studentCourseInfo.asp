@@ -76,6 +76,7 @@
 				$("#endDate").val(ar[20]);
 				$("#job").val(ar[21]);
 				$("#pass_condition").val(ar[22]);
+				$("#educationName").val(ar[31]);
 				//getDownloadFile("studentCourseID");
 				setButton();
 			}else{

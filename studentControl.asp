@@ -109,7 +109,7 @@ if(op == "getNodeInfo"){
 		//21
 		result += "|" + rs("photo_filename").value + "|" + rs("IDa_filename").value + "|" + rs("IDb_filename").value + "|" + rs("edu_filename").value;
 		//25
-		result += "|" + rs("companyID").value + "|" + rs("dept1").value + "|" + rs("dept2").value + "|" + rs("dept3").value + "|" + rs("host").value;
+		result += "|" + rs("companyID").value + "|" + rs("dept1").value + "|" + rs("dept2").value + "|" + rs("dept3").value + "|" + rs("host").value + "|" + rs("education").value + "|" + rs("educationName").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -175,7 +175,7 @@ if(op == "update"){
 	result = 0;
 	if(result == 0){
 		//@mark int,@username varchar(50),@name nvarchar(50),@password varchar(50),@kindID int,@companyID varchar(50),@dept1 varchar(50),@dept1Name nvarchar(100),@dept2 varchar(50),@dept3 varchar(50),@job varchar(50),@mobile nvarchar(50),@phone nvarchar(50),@email nvarchar(50),@limitDate varchar(50),@memo nvarchar(500),@host varchar(50),@registerID varchar(50)
-		sql = "exec updateStudentInfo 1,'" + nodeID + "','" + unescape(String(Request.QueryString("name"))) + "',''," + kindID + "," + String(Request.QueryString("companyID")) + "," + String(Request.QueryString("dept1")) + ",''," + String(Request.QueryString("dept2")) + ",'','" + unescape(String(Request.QueryString("job"))) + "','" + unescape(String(Request.QueryString("mobile"))) + "','" + unescape(String(Request.QueryString("phone"))) + "','" + unescape(String(Request.QueryString("email"))) + "','" + String(Request.QueryString("limitDate")) + "','" + memo + "','" + host + "','" + currUser + "'";
+		sql = "exec updateStudentInfo 1,'" + nodeID + "','" + unescape(String(Request.QueryString("name"))) + "',''," + kindID + "," + String(Request.QueryString("companyID")) + "," + String(Request.QueryString("dept1")) + ",''," + String(Request.QueryString("dept2")) + ",'','" + unescape(String(Request.QueryString("job"))) + "','" + unescape(String(Request.QueryString("mobile"))) + "','" + unescape(String(Request.QueryString("phone"))) + "','" + unescape(String(Request.QueryString("email"))) + "','" + String(Request.QueryString("limitDate")) + "','" + String(Request.QueryString("education")) + "','" + memo + "','" + host + "','" + currUser + "'";
 
 		execSQL(sql);
 	}
