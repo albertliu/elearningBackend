@@ -86,7 +86,7 @@
 				jAlert("已确认的学员为0，无法生成报名表。");
 				return false;
 			}
-			jConfirm('确定要生成培训报名表[' + [0] + '个学员]吗?', '确认对话框', function(r) {
+			jConfirm('确定要生成培训报名表[' + n[0] + '个学员]吗?', '确认对话框', function(r) {
 				if(r){
 					generateEntryForm();
 				}
