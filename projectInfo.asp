@@ -291,7 +291,7 @@
 			</tr>
 			<tr>
 				<td align="right">备注</td>
-				<td colspan="5"><textarea id="memo" style="padding:2px;" rows="4" cols="75"></textarea></td>
+				<td colspan="5"><textarea id="memo" style="padding:2px;" rows="4" cols="70"></textarea></td>
 			</tr>
 			<tr>
 				<td align="right">发布人</td>
