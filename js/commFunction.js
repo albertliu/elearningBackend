@@ -1709,8 +1709,9 @@
 	function getDeptTree(id){
 		ctree = 0;
 		var bk = [];
-		$.get("deptControl.asp?op=getDeptJson&qf=0&nodeID=" + id + "&dk=0&times=" + (new Date().getTime()),function(re){
-			//alert(unescape(re));
+		//$.get("deptControl.asp?op=getDeptJson&qf=0&nodeID=" + id + "&dk=0&times=" + (new Date().getTime()),function(re){
+		$.getJSON(uploadURL + "/public/getDeptTreeJson?nodeID=" + id,function(re){
+			alert(unescape(re));
 			var dt = eval("(" + unescape(re) + ")");
 			//bk = getDeptJsonTree(dt.list,id);
 			bk = transTreeData(dt.list, 'id', 'pID', 'nodes');
