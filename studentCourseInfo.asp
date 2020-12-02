@@ -68,6 +68,7 @@
 				$("#regDate").val(ar[11]);
 				$("#hostName").val(ar[12]);
 				$("#dept1Name").val(ar[13]);
+				$("#dept2Name").val(ar[14]);
 				$("#examScore").val(ar[15]);
 				$("#memo").val(ar[16]);
 				$("#mobile").val(ar[17]);
@@ -148,6 +149,18 @@
 				<td><input class="readOnly" type="text" id="username" size="25" readOnly="true" /></td>
 			</tr>
 			<tr>
+				<td align="right">学号</td>
+				<td><input class="readOnly" type="text" id="SNo" size="25" readOnly="true" /></td>
+				<td align="right">公司</td>
+				<td><input class="readOnly" type="text" id="hostName" size="25" readOnly="true" /></td>
+			</tr>
+			<tr>
+				<td align="right">一级部门</td>
+				<td><input class="readOnly" type="text" id="dept1Name" size="25" readOnly="true" /></td>
+				<td align="right">二级部门</td>
+				<td><input class="readOnly" type="text" id="dept2Name" size="25" readOnly="true" /></td>
+			</tr>
+			<tr>
 				<td align="right">性别</td>
 				<td><input class="readOnly" type="text" id="sexName" size="25" readOnly="true" /></td>
 				<td align="right">年龄</td>
@@ -158,12 +171,6 @@
 				<td><input class="readOnly" type="text" id="mobile" size="25" readOnly="true" /></td>
 				<td align="right">邮箱</td>
 				<td><input class="readOnly" type="text" id="email" size="25" readOnly="true" /></td>
-			</tr>
-			<tr>
-				<td align="right">公司</td>
-				<td><input class="readOnly" type="text" id="hostName" size="25" readOnly="true" /></td>
-				<td align="right">部门</td>
-				<td><input class="readOnly" type="text" id="dept1Name" size="25" readOnly="true" /></td>
 			</tr>
 			<tr>
 				<td align="right">岗位</td>

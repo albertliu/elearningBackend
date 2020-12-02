@@ -16,6 +16,11 @@ if(op == "getProjectList"){
 		}else{
 			where = s;
 		}
+		//如果有部门
+		if(currDeptID > 0){ // 
+			s = "dbo.pf_inStrArray(dept,','," + currDeptID + ")=1";
+			where = where + " and " + s;
+		}
 	}
 	//如果有起始日期
 	if(fStart > ""){ // 
@@ -78,7 +83,7 @@ if(op == "getProjectList"){
 		//9
 		result += "|" + rs("address").value + "|" + rs("deadline").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("readerCount").value;
 		//18
-		result += "|" + rs("phone").value + "|" + rs("email").value + "|" + rs("projectCount").value + "|" + rs("filename").value + "|" + rs("entryform").value + "|" + rs("dept").value;
+		result += "|" + rs("phone").value + "|" + rs("email").value + "|" + rs("projectCount").value + "|" + rs("filename").value + "|" + rs("entryform").value + "|" + rs("dept").value + "|" + rs("linker").value + "|" + rs("mobile").value;
 		rs.MoveNext();
 	}
 	Response.Write(escape(result));
@@ -93,7 +98,7 @@ if(op == "getNodeInfo"){
 		//9
 		result += "|" + rs("address").value + "|" + rs("deadline").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("readerCount").value;
 		//18
-		result += "|" + rs("phone").value + "|" + rs("email").value + "|" + rs("projectCount").value + "|" + rs("filename").value + "|" + rs("entryform").value + "|" + rs("dept").value;
+		result += "|" + rs("phone").value + "|" + rs("email").value + "|" + rs("projectCount").value + "|" + rs("filename").value + "|" + rs("entryform").value + "|" + rs("dept").value + "|" + rs("linker").value + "|" + rs("mobile").value;
 		execSQL(sql);
 	}
 	rs.Close();
@@ -103,7 +108,7 @@ if(op == "getNodeInfo"){
 if(op == "update"){
 	result = 0;
 	if(result == 0){
-		sql = "exec updateProjectInfo " + nodeID + ",'" + keyID + "','" + item + "','" + refID + "','" + unescape(String(Request.QueryString("object"))) + "','" + unescape(String(Request.QueryString("address"))) + "','" + String(Request.QueryString("deadline")) + "'," + kindID + ",'" + unescape(String(Request.QueryString("phone"))) + "','" + unescape(String(Request.QueryString("email"))) + "','" + host + "','" + String(Request.QueryString("dept")) + "','" + memo + "','" + currUser + "'";
+		sql = "exec updateProjectInfo " + nodeID + ",'" + keyID + "','" + item + "','" + refID + "','" + unescape(String(Request.QueryString("object"))) + "','" + unescape(String(Request.QueryString("address"))) + "','" + String(Request.QueryString("deadline")) + "'," + kindID + ",'" + unescape(String(Request.QueryString("linker"))) + "','" + unescape(String(Request.QueryString("mobile"))) + "','" + unescape(String(Request.QueryString("phone"))) + "','" + unescape(String(Request.QueryString("email"))) + "','" + host + "','" + String(Request.QueryString("dept")) + "','" + memo + "','" + currUser + "'";
 
 		execSQL(sql);
 		if(nodeID == 0){

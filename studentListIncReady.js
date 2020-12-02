@@ -5,10 +5,13 @@
 		var w = "status=0 and hostNo='" + currHost + "'";
 		if(currHost==""){	//公司用户只能看自己公司内容
 			getComList("searchStudentHost","hostInfo","hostNo","title","status=0 order by hostName",1);
+			getComList("searchStudentProjectID","projectInfo","projectID","projectID","status=1 or status=2 order by ID desc",1);
 		}else{
 			getComList("searchStudentHost","hostInfo","hostNo","title",w,0);
+			getComList("searchStudentProjectID","projectInfo","projectID","projectID","host='" + currHost + "' and status=1 or status=2 order by ID desc",1);
 		}
 		getDicList("student","searchStudentKind",1);
+		getDicList("material","searchStudentMaterial",1);
 		$("#searchStudentStartDate").click(function(){WdatePicker();});
 		$("#searchStudentEndDate").click(function(){WdatePicker();});
 		
@@ -41,14 +44,15 @@
 
 	function getStudentList(){
 		sWhere = $("#txtSearchStudent").val();
-		var Old = 0;
-		var photo = 0;
-		var IDcard = 0;
-		if($("#searchStudentOld").attr("checked")){Old = 1;}
-		if($("#searchStudentPhoto").attr("checked")){photo = 1;}
-		if($("#searchStudentIDcard").attr("checked")){IDcard = 1;}
-		//alert((sWhere) + "&kindID=" + $("#searchStudentKind").val() + "&host=" + $("#searchStudentHost").val() + "&Old=" + Old + "&IDcard=" + IDcard + "&photo=" + photo + "&fStart=" + $("#searchStudentStartDate").val() + "&fEnd=" + $("#searchStudentEndDate").val());
-		$.get("studentControl.asp?op=getStudentList&where=" + escape(sWhere) + "&kindID=" + $("#searchStudentKind").val() + "&host=" + $("#searchStudentHost").val() + "&Old=" + Old + "&IDcard=" + IDcard + "&photo=" + photo + "&fStart=" + $("#searchStudentStartDate").val() + "&fEnd=" + $("#searchStudentEndDate").val() + "&dk=11&times=" + (new Date().getTime()),function(data){
+		var Old = $("#searchStudentOld").val();
+		//var photo = 0;
+		//var IDcard = 0;
+		//if($("#searchStudentOld").attr("checked")){Old = 1;}
+		//if($("#searchStudentPhoto").attr("checked")){photo = 1;}
+		//if($("#searchStudentIDcard").attr("checked")){IDcard = 1;}
+		//alert((sWhere) + "&kindID=" + $("#searchStudentKind").val() + "&host=" + $("#searchStudentHost").val() + "&Old=" + Old + "&keyID=" + $("#searchStudentMaterial").val() + "&refID=" + $("#searchStudentProjectID").val() + "&fStart=" + $("#searchStudentStartDate").val() + "&fEnd=" + $("#searchStudentEndDate").val());
+		//$.get("studentControl.asp?op=getStudentList&where=" + escape(sWhere) + "&kindID=" + $("#searchStudentKind").val() + "&host=" + $("#searchStudentHost").val() + "&Old=" + Old + "&IDcard=" + IDcard + "&photo=" + photo + "&fStart=" + $("#searchStudentStartDate").val() + "&fEnd=" + $("#searchStudentEndDate").val() + "&dk=11&times=" + (new Date().getTime()),function(data){
+		$.get("studentControl.asp?op=getStudentList&where=" + escape(sWhere) + "&kindID=" + $("#searchStudentKind").val() + "&host=" + $("#searchStudentHost").val() + "&Old=" + Old + "&keyID=" + $("#searchStudentMaterial").val() + "&refID=" + $("#searchStudentProjectID").val() + "&fStart=" + $("#searchStudentStartDate").val() + "&fEnd=" + $("#searchStudentEndDate").val() + "&dk=11&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");

@@ -11,7 +11,7 @@
 
 		$("#restore").click(function(){
 			if($("#commLoadFileHost").val()==""){
-				jAlert("请选择一个公司。");
+				alert("请选择一个公司。");
 				return false;
 			}
             var form = new FormData(document.getElementById("formUpload"));
@@ -31,7 +31,7 @@
 							msg = "没有上传有效文件。";
 						}
 					}
-					jAlert(msg, "上传结果");
+					alert(msg, "上传结果");
 					if(mark != "mulitple"){
 						document.getElementById("lightLoadFile").style.display="none";
 						document.getElementById("fadeLoadFile").style.display="none";

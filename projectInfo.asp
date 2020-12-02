@@ -8,16 +8,16 @@
 <title></title>
 
 <link href="css/style_inner1.css"  rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="css/easyui/easyui.css">
+<link rel="stylesheet" type="text/css" href="css/easyui/easyui.css?v=1.8.6">
 <link rel="stylesheet" type="text/css" href="css/easyui/icon.css">
 <link href="css/data_table_mini.css?v=20150411" rel="stylesheet" type="text/css" />
-<link href="css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="css/jquery-confirm.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="css/asyncbox/asyncbox.css" type="text/css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
-<script language="javascript" src="js/jquery-1.7.2.min.js"></script>
+<script language="javascript" src="js/jquery-1.12.4.min.js"></script>
 <script language="javascript" src="js/jquery.form.js"></script>
-<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
-<script src="js/jquery.alerts.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/jquery.easyui.min.js?v=1.8.6"></script>
+<script src="js/jquery-confirm.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/AsyncBox.v1.4.js"></script>
 <script language="javascript" type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 <script src="js/datepicker/WdatePicker.js" type="text/javascript"></script>
@@ -49,47 +49,54 @@
 		setButton();
 
 		$("#cancel").click(function(){
-			jConfirm('确定要撤回这个通知吗?', '确认对话框', function(r) {
-				if(r){
+			asyncbox.confirm('确定要撤回这个通知吗?','确认',function(action){
+			　　if(action == 'ok'){
 					setStatus(0);
-				}
+			　　}
 			});
 		});
 
 		$("#issue").click(function(){
-			jConfirm('确定要发布这个通知吗?', '确认对话框', function(r) {
-				if(r){
+			asyncbox.confirm('确定要发布这个通知吗?','确认',function(action){
+			　　if(action == 'ok'){
 					setStatus(1);
-				}
+			　　}
 			});
 		});
 
 		$("#close").click(function(){
-			jConfirm('确定要关闭这个通知吗?', '确认对话框', function(r) {
-				if(r){
+			asyncbox.confirm('确定要关闭这个通知吗?','确认',function(action){
+			　　if(action == 'ok'){
 					setStatus(2);
-				}
+			　　}
 			});
 		});
 
 		$("#del").click(function(){
-			jConfirm('确定要删除这个通知吗?', '确认对话框', function(r) {
-				if(r){
+			asyncbox.confirm('确定要删除这个通知吗？','确认',function(action){
+			　　if(action == 'ok'){
 					setStatus(9);
-				}
+			　　}
 			});
 		});
 
 		$("#btnEntryForm").click(function(){
 			var n = $("#projectCount").val().split('/');
 			if(n[0]==0){
-				jAlert("已确认的学员为0，无法生成报名表。");
+				alert("已确认的学员为0，无法生成报名表。");
 				return false;
 			}
-			jConfirm('确定要生成培训报名表[' + n[0] + '个学员]吗?', '确认对话框', function(r) {
-				if(r){
+			asyncbox.confirm('确定要生成培训报名表[' + n[0] + '个学员]吗?','确认',function(action){
+			　　//confirm 返回三个 action 值，分别是 'ok'、'cancel' 和 'close'。
+			　　if(action == 'ok'){
 					generateEntryForm();
-				}
+			　　}
+			　　if(action == 'cancel'){
+			　　　　//alert('cancel');
+			　　}
+			　　if(action == 'close'){
+			　　　　//alert('close');
+			　　}
 			});
 		});
 		
@@ -102,6 +109,10 @@
 		$("#save").click(function(){
 			saveNode();
 		});
+		$("#host").change(function(){
+			setDeptList($("#host").val(),0,[]);
+		});
+
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -122,12 +133,16 @@
 				$("#address").val(ar[9]);
 				$("#deadline").val(ar[10]);
 				$("#host").val(ar[11]);
+				setDeptList(ar[11],0,ar[23]);
 				$("#memo").val(ar[13]);
 				$("#regDate").val(ar[14]);
 				$("#registerName").val(ar[16]);
 				$("#phone").val(ar[18]);
 				$("#email").val(ar[19]);
 				$("#projectCount").val(ar[20]);
+				//$("#dept").val(ar[23]);
+				$("#linker").val(ar[24]);
+				$("#mobile").val(ar[25]);
 				$("#upload1").html("<a href='javascript:showLoadFile(\"project_brochure\",\"" + ar[1] + "\",\"project\",\"" + ar[11] + "\");' style='padding:3px;'>上传</a>");
 				var c = "";
 				if(ar[21] > ""){
@@ -145,7 +160,7 @@
 				//getDownloadFile("projectID");
 				setButton();
 			}else{
-				jAlert("该信息未找到！","信息提示");
+				alert("该信息未找到！");
 				setEmpty();
 			}
 		});
@@ -153,11 +168,11 @@
 	
 	function saveNode(){
 		if($("#projectName").val().length < 3){
-			jAlert("标题内容请至少填写3个字的内容。");
+			alert("标题内容请至少填写3个字的内容。");
 			return false;
 		}
-		//alert($("#projectID").val() + "&projectName=" + ($("#memo").val()));
-		$.get("projectControl.asp?op=update&nodeID=" + $("#ID").val() + "&keyID=" + $("#projectID").val() + "&item=" + escape($("#projectName").val()) + "&refID=" + $("#certID").val() + "&kindID=" + $("#kindID").val() + "&deadline=" + $("#deadline").val() + "&object=" + escape($("#object").val()) + "&address=" + escape($("#address").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&host=" + $("#host").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		//alert($('#dept').combobox('getValues'));
+		$.get("projectControl.asp?op=update&nodeID=" + $("#ID").val() + "&keyID=" + $("#projectID").val() + "&item=" + escape($("#projectName").val()) + "&refID=" + $("#certID").val() + "&kindID=" + $("#kindID").val() + "&deadline=" + $("#deadline").val() + "&object=" + escape($("#object").val()) + "&address=" + escape($("#address").val()) + "&dept=" + $("#dept").combobox("getValues") + "&linker=" + escape($("#linker").val()) + "&mobile=" + escape($("#mobile").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&host=" + $("#host").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -165,13 +180,13 @@
 				if(op == 1){
 					op = 0;
 				}
-				jAlert("保存成功！","信息提示");
+				alert("保存成功！","信息提示");
 				nodeID = ar[1];
 				getNodeInfo(nodeID);
 				updateCount += 1;
 			}
 			if(ar[0] != 0){
-				jAlert("未能成功提交，请退出后重试。","信息提示");
+				alert("未能成功提交，请退出后重试。","信息提示");
 			}
 		});
 		//return false;
@@ -180,10 +195,17 @@
 	function generateEntryForm(){
 		$.getJSON(uploadURL + "/outfiles/generate_entryform_byProjectID?certID=" + $("#certID").val() + "&projectID=" + $("#projectID").val() + "&registerID=" + currUser ,function(data){
 			if(data>""){
-				jAlert("报名表已生成 <a href='" + data + "' target='_blank'>下载文件</a>");
-				getNodeInfo(nodeID);
+				asyncbox.alert("报名表已生成 <a href='users" + data + "' target='_blank'>下载文件</a>",'操作成功',function(action){
+				　　//alert 返回action 值，分别是 'ok'、'close'。
+				　　if(action == 'ok'){
+						getNodeInfo(nodeID);
+				　　}
+				　　if(action == 'close'){
+				　　　　//alert('close');
+				　　}
+				});
 			}else{
-				jAlert("没有可供处理的数据。");
+				alert("没有可供处理的数据。");
 			}
 		});
 	}
@@ -191,11 +213,45 @@
 	function setStatus(x){
 		//alert($("#projectID").val() + "&projectName=" + ($("#memo").val()));
 		$.get("projectControl.asp?op=setProjectStatus&nodeID=" + $("#ID").val() + "&status=" + x + "&times=" + (new Date().getTime()),function(data){
-			jAlert("操作成功！","信息提示");
+			alert("操作成功！");
 			getNodeInfo(nodeID);
 			updateCount += 1;
 		});
 		//return false;
+	}
+	function setDeptList(h,kind,s){
+		$.get("deptControl.asp?op=getRootDeptByHost&refID=" + h + "&times=" + (new Date().getTime()),function(re){
+			if(re>0){
+				$.getJSON(uploadURL + "/public/getDeptListByPID?pID=" + re + "&kindID=" + kind ,function(data){
+					if(data>""){
+						//alert(data[0]["deptName"]);
+						//data = [{"id":1,"text":"text1"},{"id":2,"text":"text2"},{"id":3,"text":"text3"},{"id":4,"text":"text4"},{"id":5,"text":"text5"}];
+						$('#dept').combobox({
+							data: data,
+							valueField:'deptID',
+							textField:'deptName',
+							//panelHeight: 200,
+							multiple: true,
+							editable: false,
+							onLoadSuccess: function () { // 下拉框数据加载成功调用
+								// 正常情况下是默认选中“所有”，但我想实现点击所有全选功能，这这样会冲突，暂时默认都不选
+								//$("#dept").combobox('clear'); //清空
+								$('#dept').combobox("setValues",s);
+
+								// var opts = $(this).combobox('options');
+								// var values = $('#'+_id).combobox('getValues');
+								// $.map(opts.data, function (opt) {
+								//     if (opt.id === '') { // 将"所有"的复选框勾选
+								//         $('#'+opt.domId + ' input[type="checkbox"]').prop("checked", true);
+								//     }
+								// });
+							}
+						});
+					}
+				});
+				//getComList("dept","deptInfo","deptID","deptName","dept_status=0 and pID=" + re + " and kindID=" + kind + " order by deptID",1);
+			}
+		});
 	}
 	
 	function setButton(){
@@ -278,16 +334,22 @@
 				<td><input type="text" id="address" size="33" /></td>
 			</tr>
 			<tr>
+				<td align="right">联系人</td>
+				<td><input type="text" id="linker" size="24" /></td>
+				<td align="right">手机</td>
+				<td><input type="text" id="mobile" size="33" /></td>
+			</tr>
+			<tr>
 				<td align="right">联系电话</td>
 				<td><input type="text" id="phone" size="24" /></td>
 				<td align="right">电子邮箱</td>
 				<td><input type="text" id="email" size="33" /></td>
 			</tr>
 			<tr>
-				<td align="right">状态</td>
-				<td><input class="readOnly" type="text" id="statusName" size="24" readOnly="true" /></td>
-				<td align="right">发布对象</td>
-				<td><select id="host" style="width:200px;"></select></td>
+				<td align="right">对象单位</td>
+				<td><select id="host" style="width:150px;"></select></td>
+				<td align="right">对象部门</td>
+				<td><input type="text" id="dept" name="dept" size="33" /></td>
 			</tr>
 			<tr>
 				<td align="right">备注</td>
@@ -300,22 +362,22 @@
 				<td><input class="readOnly" type="text" id="regDate" size="25" readOnly="true" /></td>
 			</tr>
 			<tr>
+				<td align="right">状态</td>
+				<td><input class="readOnly" type="text" id="statusName" size="24" readOnly="true" /></td>
 				<td align="right">报名人数</td>
 				<td><input class="readOnly" type="text" id="projectCount" size="10" readOnly="true" />&nbsp;确认/报名</td>
+			</tr>
+			<tr>
 				<td align="right">招生简章</td>
 				<td>
 					<span id="upload1" style="margin-left:20px;border:1px solid orange;"></span>
 					<span id="photo" style="margin-left:20px;"></span>
 				</td>
-			</tr>
-			<tr>
 				<td align="right">报名表</td>
 				<td>
 					<span ><input class="button" type="button" id="btnEntryForm" value="生成" />&nbsp;</span>
 					<span id="entryform" style="margin-left:20px;"></span>
 				</td>
-				<td align="right"></td>
-				<td></td>
 			</tr>
 			</table>
 			</form>

@@ -75,6 +75,9 @@
 			if(re>0){
 				deptRoot = host;
 				//getDeptList(re);
+				if(currDeptID > 0){
+					re = currDeptID;
+				}
 				var dtree = getDeptTree(re);
 				//jAlert(dtree);
 				$("#tree1").treeview({
