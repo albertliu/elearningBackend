@@ -30,7 +30,9 @@
 	var pageModel = "<%=pageModel%>";
 	var visitobj = true;
 	var selList = "";
+	var selList1 = "";
 	var selCount = 0;
+	var selCount1 = 0;
 	var currPage = "";
 	var uploadURL = "";
 	var token_user = new Array();
@@ -1989,6 +1991,17 @@
 		getSelCart(chkName,cart);
 	}
 	
+	//页面上的某组复选框全部选中或取消，在指定位置显示选中数量
+	function setSel1(chkName,cart){
+		if(chkName == ""){chkName = "visitstockchk";}
+		var chkother= document.getElementsByName(chkName);
+		visitobj = selCount1 == 0 ? true : false;
+		for (var i=0;i<chkother.length;i++)
+			chkother[i].checked = visitobj; 
+		visitobj = visitobj == true ? false : true;
+		getSelCart1(chkName,cart);
+	}
+	
 	function getSelCart(chkName,cart)
 	{
 		if(chkName == ""){chkName = "visitstockchk";}
@@ -2018,6 +2031,36 @@
 		}
 		if(cart>""){
 			setCartNum(cart);
+		}
+		arr = [];
+	}
+	
+	function getSelCart1(chkName,cart)
+	{
+		if(chkName == ""){chkName = "visitstockchk";}
+		var count = 0;
+		var strSQL = "";
+		selList1 = "";
+		selCount1 = 0;
+		arr = [];
+		var chkother = document.getElementsByName(chkName); 
+		for (var i = 0;i < chkother.length;i++)
+		{
+		  if(chkother[i].checked == true){
+		    count++;
+				//strSQL += "," + chkother[i].value;
+				arr.push("," + chkother[i].value);
+			}
+		}
+		if(count>0)
+		{
+			//selList = strSQL.substr(1);
+			selList1 = arr.join("").substr(1);
+			selCount1 = count;
+		}else{
+			if(cart==""){
+					jAlert("您还没有选中任何项目。");
+			}
 		}
 		arr = [];
 	}

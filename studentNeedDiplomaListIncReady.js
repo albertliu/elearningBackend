@@ -18,6 +18,7 @@
 		
 		$("#btnStudentNeedDiplomaSel").click(function(){
 			setSel("visitstockchkNeed");
+			setSel1("visitstockchkStamp");
 		});
 		
 		$("#searchStudentNeedDiplomaCert").change(function(){
@@ -26,6 +27,7 @@
 		
 		$("#btnStudentNeedDiplomaIssue").click(function(){
 			getSelCart("visitstockchkNeed");
+			getSelCart1("visitstockchkStamp");	//是否盖章
 			if($("#searchStudentNeedDiplomaCert").val()==""){
 				jAlert("请选择一个证书项目。");
 				return false;
@@ -38,7 +40,7 @@
 				if(r){
 					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
 					//jAlert(selList);
-					$.getJSON(uploadURL + "/outfiles/generate_diploma_byCertID?certID=" + $("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&batchID=0&selList=" + selList + "&username=" + currUser ,function(data){
+					$.getJSON(uploadURL + "/outfiles/generate_diploma_byCertID?certID=" + $("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&batchID=0&selList=" + selList + "&selList1=" + selList1 + "&username=" + currUser ,function(data){
 						if(data>""){
 							jAlert("证书制作成功 <a href='" + data + "' target='_blank'>下载文件</a>");
 							getStudentNeedDiplomaList();
@@ -100,6 +102,7 @@
 			arr.push("<th width='10%'>结束日期</th>");
 			arr.push("<th width='6%'>照片</th>");
 			arr.push("<th width='5%'></th>");
+			arr.push("<th width='5%'>章</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
@@ -138,12 +141,14 @@
 						arr.push("<td class='center'>" + imgChk + "</td>");
 					}
 					arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchkNeed'>" + "</td>");
+					arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchkStamp'>" + "</td>");
 					arr.push("</tr>");
 				});
 			}
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
