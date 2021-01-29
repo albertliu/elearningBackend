@@ -38,6 +38,7 @@
 			async: false 
 		}); 
 		getDicList("student","kindID",0);
+		getDicList("education","education",1);
 		var w = "dept_status=0 and pID=0 and host='" + currHost + "'";
 		if(currHost==""){	//公司用户只能看自己公司内容
 			getComList("companyID","deptInfo","deptID","deptName","dept_status=0 and pID=0 order by deptID",0);
@@ -117,6 +118,7 @@
 				$("#memo").val(ar[10]);
 				$("#regDate").val(ar[11]);
 				$("#host").val(ar[29]);
+				$("#education").val(ar[30]);
 				$("#upload1").html("<a href='javascript:showLoadFile(\"student_photo\",\"" + ar[1] + "\",\"student\",\"\");' style='padding:3px;'>上传</a>");
 				var c = "";
 				if(ar[21] > ""){
@@ -151,7 +153,7 @@
 			return false;
 		}
 		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-		$.get("studentControl.asp?op=update&nodeID=" + $("#username").val() + "&name=" + escape($("#name").val()) + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + escape($("#mobile").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&job=" + escape($("#job").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("studentControl.asp?op=update&nodeID=" + $("#username").val() + "&name=" + escape($("#name").val()) + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + escape($("#mobile").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&job=" + escape($("#job").val()) + "&education=" + escape($("#education").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -164,7 +166,7 @@
 	}
 	
 	function setDeptList(pID,n,kind){
-		getComList("dept" + n,"deptInfo","deptID","deptName","dept_status=0 and pID=" + pID + " and kindID=" + kind + " order by deptID",0);
+		getComList("dept" + n,"deptInfo","deptID","deptName","dept_status=0 and pID=" + pID + " and kindID=" + kind + " order by deptID",1);
 	}
 	
 	function setButton(){
@@ -246,8 +248,14 @@
 			<tr>
 				<td align="right">二级部门</td>
 				<td><select id="dept2" style="width:180px;"></select></td>
+				<td align="right">三级部门</td>
+				<td><select id="dept3" style="width:180px;"></select></td>
+			</tr>
+			<tr>
 				<td align="right">岗位</td>
 				<td><input type="text" id="job" size="25" /></td>
+				<td align="right">学历</td>
+				<td><select id="education" style="width:180px;"></select></td>
 			</tr>
 			<tr>
 				<td align="right">手机</td>

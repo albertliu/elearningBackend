@@ -47,14 +47,15 @@ if(op == "getStudentList"){
 			where = s;
 		}
 	}
-	if(String(Request.QueryString("old"))==1){
-		s = "age>=55";
+	if(String(Request.QueryString("old"))>"0" && String(Request.QueryString("old")) != "null"){
+		s = "age>=" + String(Request.QueryString("old"));
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
 			where = s;
 		}
 	}
+	/*
 	//缺照片
 	if(String(Request.QueryString("photo"))==1){
 		s = "photo_filename=''";
@@ -67,6 +68,37 @@ if(op == "getStudentList"){
 	//缺身份证
 	if(String(Request.QueryString("IDcard"))==1){
 		s = "(IDa_filename='' or IDb_filename='')";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	*/
+	//缺资料
+	if(keyID > "" && keyID != "null"){
+		if(keyID==0){
+			s = "photo_filename=''";
+		}
+		if(keyID==1){
+			s = "IDa_filename=''";
+		}
+		if(keyID==2){
+			s = "IDb_filename=''";
+		}
+		if(keyID==3){
+			s = "edu_filename=''";
+		}
+
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//如果有招生批次
+	if(refID > "" && refID != "null"){ // 
+		s = "[dbo].[isStudentInProject](username,'" + refID + "')=1";
 		if(where > ""){
 			where = where + " and " + s;
 		}else{

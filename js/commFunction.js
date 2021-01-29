@@ -1712,11 +1712,13 @@
 		ctree = 0;
 		var bk = [];
 		//$.get("deptControl.asp?op=getDeptJson&qf=0&nodeID=" + id + "&dk=0&times=" + (new Date().getTime()),function(re){
-		$.getJSON(uploadURL + "/public/getDeptTreeJson?nodeID=" + id,function(re){
-			alert(unescape(re));
-			var dt = eval("(" + unescape(re) + ")");
+		//alert(uploadURL);
+		$.get(uploadURL + "/public/getDeptTreeJson?nodeID=" + id,function(re){
+			//jAlert(re);
+			//var dt = eval("(" + re + ")");
 			//bk = getDeptJsonTree(dt.list,id);
-			bk = transTreeData(dt.list, 'id', 'pID', 'nodes');
+			//bk = transTreeData(dt.list, 'id', 'pID', 'nodes');
+			bk = transTreeData(re, 'id', 'pID', 'nodes');
 		});
 		return bk;
 	}

@@ -107,7 +107,7 @@ if(op == "getStudentCourseList"){
 	}
 	sql = " FROM v_studentCourseList " + where;
 	result = getBasketTip(sql,"");
-	ssql = "SELECT courseName,hours,statusName,startDate,completion,examScore,username,name,sexName,age,hostName,dept1Name,dept2Name,mobile,email,checkName,memo,regDate" + sql + " order by courseID";
+	ssql = "SELECT SNo,username,name,sexName,age,hostName,dept1Name,dept2Name,job,mobile,email,checkName,courseName,hours,statusName,startDate,completion,examScore,memo,regDate" + sql + " order by projectID,SNo";
 	sql = "SELECT top " + basket + " *" + sql + " order by ID desc";
 	
 	rs = conn.Execute(sql);
@@ -135,7 +135,7 @@ if(op == "getNodeInfo"){
 		//7
 		result += "|" + rs("sexName").value + "|" + rs("age").value + "|" + rs("hours").value + "|" + rs("completion").value + "|" + rs("regDate").value + "|" + rs("hostName").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value + "|" + rs("examScore").value + "|" + rs("memo").value + "|" + rs("mobile").value + "|" + rs("email").value;
 		//19
-		result += "|" + rs("startDate").value + "|" + rs("endDate").value + "|" + rs("job").value + "|" + rs("pass_condition").value + "|" + rs("checked").value + "|" + rs("checkName").value;
+		result += "|" + rs("startDate").value + "|" + rs("endDate").value + "|" + rs("job").value + "|" + rs("pass_condition").value + "|" + rs("checked").value + "|" + rs("checkName").value + "|" + rs("SNo").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

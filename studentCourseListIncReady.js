@@ -17,7 +17,7 @@
 			if(currDeptID>0){
 				getComList("searchStudentCourseDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchStudentCourseHost").val() + "' and pID=0)" + w3,1);
 			}else{
-				getComList("searchStudentCourseDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchStudentCourseHost").val() + "' and pID=0)",1);
+				getComList("searchStudentCourseDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchStudentCourseHost").val() + "' and pID=0) and dept_status<9",1);
 			}
 		}
 		getDicList("student","searchStudentCourseKind",1);
@@ -45,7 +45,7 @@
 		});
 		
 		$("#searchStudentCourseHost").change(function(){
-			getComList("searchStudentCourseDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchStudentCourseHost").val() + "' and pID=0)",1);
+			getComList("searchStudentCourseDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchStudentCourseHost").val() + "' and pID=0) and dept_status<9",1);
 			getComList("searchStudentCourseProjectID","projectInfo","projectID","projectID","host='" + $("#searchStudentCourseHost").val() + "' and status=1 or status=2 order by ID desc",1);
 		});
 		
