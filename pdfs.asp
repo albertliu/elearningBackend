@@ -49,7 +49,7 @@
 					arr.push('<td>');
 					arr.push('<section class="login-form-wrap">');
 					arr.push('<div style="position: relative;">');
-					arr.push('<div style="position: absolute; z-index:10;">');
+					arr.push('<div style="position: absolute; z-index:10; width:100%;">');
 					arr.push('<div style="float:left;width:10%;">');
 					arr.push('	<img src="/users' + val["logo"] + '" style="width:93px;padding-top:10px;padding-left:20px;">');
 					arr.push('</div>');
@@ -104,9 +104,13 @@
 					arr.push('	</table>');
 					arr.push('</div>');
 					arr.push('</div>');
-					arr.push('<div style="position: absolute; z-index:20;">');
-					arr.push('<img id="stamp" src="" style="opacity:0.6; width:113mm;max-height:113mm;padding-top:25mm;padding-left:30mm;">');
-					arr.push('</div>');
+					
+					if(val["stamp"]==1){
+						arr.push('<div style="position: absolute; z-index:20;">');
+						arr.push('<img id="stamp" src="/users/upload/companies/stamp/' + val["host"] + '.png" style="opacity:0.6; width:113mm;max-height:113mm;padding-top:25mm;padding-left:30mm;">');
+						arr.push('</div>');
+					}
+					/**/
 					arr.push('</div>');
 					arr.push('</section>');
 					arr.push('</td>');

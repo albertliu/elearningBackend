@@ -72,7 +72,7 @@
 <p id="test"></p>
 <section class="login-form-wrap">
 	<div style="position: relative;">
-	<div style="position: absolute; z-index:10;">
+	<div style="position: absolute; z-index:10; width:100%;">
 		<div style="float:left;width:10%;">
 			<img id="logo" src="" style="width:93px;padding-top:10px;padding-left:20px;">
 		</div>
