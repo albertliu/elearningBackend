@@ -18,6 +18,11 @@
 		
 		$("#btnStudentNeedDiplomaSel").click(function(){
 			setSel("visitstockchkNeed");
+			if(selCount == 0){
+				selCount1 = 1;
+			}else{
+				selCount1 = 0;
+			}
 			setSel1("visitstockchkStamp");
 		});
 		
