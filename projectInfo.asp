@@ -72,6 +72,14 @@
 			});
 		});
 
+		$("#lock").click(function(){
+			asyncbox.confirm('确定要锁定这个通知吗? 锁定后将不能进行确认、剔除、提交等操作。','确认',function(action){
+			　　if(action == 'ok'){
+					setStatus(3);
+			　　}
+			});
+		});
+
 		$("#del").click(function(){
 			asyncbox.confirm('确定要删除这个通知吗？','确认',function(action){
 			　　if(action == 'ok'){
@@ -111,6 +119,24 @@
 		});
 		$("#host").change(function(){
 			setDeptList($("#host").val(),0,[]);
+		});
+		
+		$("#btnPhoto").click(function(){
+			$.getJSON(uploadURL + "/outfiles/generate_student_photos?kindID=0&item=projectID='" + $("#projectID").val() + "'" ,function(data){
+				if(data>""){
+					asyncbox.alert("照片文件已生成 <a href='" + data + "' target='_blank'>下载文件</a>",'操作成功',function(action){
+					　　//alert 返回action 值，分别是 'ok'、'close'。
+					　　if(action == 'ok'){
+							getStudentNeedDiplomaList();
+					　　}
+					　　if(action == 'close'){
+					　　　　//alert('close');
+					　　}
+					});
+				}else{
+					alert("没有可供处理的数据。");
+				}
+			});
 		});
 
 	  	<!--#include file="commLoadFileReady.asp"-->
@@ -260,6 +286,8 @@
 		$("#close").hide();
 		$("#issue").hide();
 		$("#save").hide();
+		$("#lock").hide();
+		$("#btnPhoto").hide();
 		$("#btnEntryForm").hide();
 		if(checkPermission("projectAdd")){
 			$("#save").show();
@@ -275,6 +303,9 @@
 				if(s != 2){	//关闭状态以外的其他状态都可以进行关闭
 					$("#close").show();
 				}
+				if(s < 3){	//删除和锁定状态以外的其他状态都可以进行锁定
+					$("#lock").show();
+				}
 				if(s != 9){	//删除状态以外的其他状态都可以进行删除
 					$("#del").show();
 				}
@@ -282,6 +313,10 @@
 		}
 		if(op ==1){
 			setEmpty();
+		}else{
+			if(checkPermission("photoPrint")){
+				$("#btnPhoto").show();
+			}
 		}
 	}
 	
@@ -365,7 +400,7 @@
 				<td align="right">状态</td>
 				<td><input class="readOnly" type="text" id="statusName" size="24" readOnly="true" /></td>
 				<td align="right">报名人数</td>
-				<td><input class="readOnly" type="text" id="projectCount" size="10" readOnly="true" />&nbsp;确认/报名</td>
+				<td><input class="readOnly" type="text" id="projectCount" size="10" readOnly="true" />&nbsp;确认/拒绝/报名</td>
 			</tr>
 			<tr>
 				<td align="right">招生简章</td>
@@ -391,7 +426,9 @@
   	<input class="button" type="button" id="issue" value="发布" />&nbsp;
   	<input class="button" type="button" id="close" value="关闭" />&nbsp;
   	<input class="button" type="button" id="cancel" value="撤回" />&nbsp;
+  	<input class="button" type="button" id="lock" value="锁定" />&nbsp;
   	<input class="button" type="button" id="del" value="删除" />&nbsp;
+  	<input class="button" type="button" id="btnPhoto" value="打印照片" />&nbsp;
   </div>
 </div>
 </body>

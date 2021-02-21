@@ -101,4 +101,63 @@ if(op == "delNode"){
 	execSQL(sql);
 	Response.Write(nodeID);
 }
+
+if(op == "getCertNeedMaterialListByCertID"){
+	var s = "";
+	//如果有分类
+	if(refID > ""){ // 
+		s = "certID='" + refID + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	if(where>""){
+		where = " where " + where;
+	}
+
+	sql = " FROM v_certNeedMaterial " + where;
+	sql = "SELECT *" + sql + " order by kindID";
+
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("kindID").value + "|" + rs("item").value + "|" + rs("description").value;
+		rs.MoveNext();
+	}
+/**/
+	result = result.substr(2);
+	Response.Write(escape(result));
+}	
+
+if(op == "getCertNeedMaterialListByProjectID"){
+	var s = "";
+	where = " a.certID=b.certID";
+	//如果有分类
+	if(refID > ""){ // 
+		s = "projectID='" + refID + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	if(where>""){
+		where = " where " + where;
+	}
+
+	sql = " FROM v_certNeedMaterial a, projectInfo b " + where;
+	sql = "SELECT a.*" + sql + " order by a.kindID";
+
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("kindID").value + "|" + rs("item").value + "|" + rs("description").value;
+		rs.MoveNext();
+	}
+/**/
+	result = result.substr(2);
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}	
+
 %>
