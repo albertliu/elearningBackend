@@ -6,7 +6,7 @@ if(op == "getDiplomaList"){
 	var s = "";
 	//如果有条件，按照条件查询
 	if(where > ""){ // 有条件
-		where = "(name like('%" + where + "%') or username='" + where + "' or diplomaID='" + where + "' or certName like('%" + where + "%'))";
+		where = "(name like('%" + where + "%') or username='" + where + "' or diplomaID='" + where + "' or certName like('%" + where + "%') or dept1Name like('%" + where + "%'))";
 	}
 	//如果有公司
 	if(host > ""){ // 
