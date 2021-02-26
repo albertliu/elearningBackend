@@ -39,12 +39,14 @@
 		setButton();
 		
 		getNodeInfo(nodeID);
+		getDiplomaListByBatch();
 
 		$("#redo").click(function(){
+			getSelCart("chkStamp");
 			jConfirm("确定要重新制作证书吗？证书编号将保持不变。","确认",function(r){
 				if(r){
 					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
-					$.getJSON(uploadURL + "/outfiles/generate_diploma_byCertID?certID=" + $("#certID").val() + "&host=" + $("#host").val() + "&batchID=" + $("#ID").val() + "&username=" + currUser ,function(data){
+					$.getJSON(uploadURL + "/outfiles/generate_diploma_byCertID?certID=" + $("#certID").val() + "&host=" + $("#host").val() + "&batchID=" + $("#ID").val() + "&selList1=" + selList + "&username=" + currUser ,function(data){
 						if(data>""){
 							jAlert("证书重新制作成功 <a href='" + data + "' target='_blank'>下载文件</a>");
 							getGenerateDiplomaList();
@@ -62,6 +64,7 @@
 	});
 
 	function getNodeInfo(id){
+		//alert(id);
 		$.get("diplomaControl.asp?op=getGenerateDiplomaNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
@@ -92,6 +95,75 @@
 				jAlert("该信息未找到！","信息提示");
 				setEmpty();
 			}
+		});
+	}
+
+	function getDiplomaListByBatch(){
+		//alert(nodeID);
+		$.get("diplomaControl.asp?op=getDiplomaListByBatch&refID=" + nodeID,function(data){
+			//jAlert(unescape(data));
+			var ar = new Array();
+			ar = (unescape(data)).split("%%");
+			$("#dimplomaListByBatch").empty();
+			arr = [];		
+			arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='diplomaTab' width='99%'>");
+			arr.push("<thead>");
+			arr.push("<tr align='center'>");
+			arr.push("<th width='18%'>身份证</th>");
+			arr.push("<th width='12%'>姓名</th>");
+			arr.push("<th width='30%'>部门</th>");
+			arr.push("<th width='12%'>照</th>");
+			arr.push("<th width='5%'>章</th>");
+			arr.push("</tr>");
+			arr.push("</thead>");
+			arr.push("<tbody id='tbody'>");
+			if(ar>""){
+				var i = 0;
+				var c = 0;
+				var h = "";
+				var imgChk = "";
+				$.each(ar,function(iNum,val){
+					var ar1 = new Array();
+					ar1 = val.split("|");
+					i += 1;
+					c = 0;
+					arr.push("<tr class='grade" + c + "'>");
+					arr.push("<td class='left'>" + ar1[1] + "</td>");
+					arr.push("<td class='left'>" + ar1[2] + "</td>");
+					arr.push("<td class='left'>" + ar1[3] + "</td>");
+					imgChk = "<img src='users" + ar1[5] + "' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'>";
+					arr.push("<td class='center'>" + imgChk + "</td>");
+					if(ar1[4]==1){
+						h = "checked"
+					}else{
+						h = "";
+					}
+					arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='chkStamp' " + h + ">" + "</td>");
+					arr.push("</tr>");
+				});
+			}
+			arr.push("</tbody>");
+			arr.push("<tfoot>");
+			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("</tr>");
+			arr.push("</tfoot>");
+			arr.push("</table>");
+			$("#dimplomaListByBatch").html(arr.join(""));
+			arr = [];
+			$('#diplomaTab').dataTable({
+				"aaSorting": [],
+				"bFilter": true,
+				"bPaginate": true,
+				"bLengthChange": true,
+				"iDisplayLength": 100,
+				"bInfo": true,
+				"aoColumnDefs": []
+			});
 		});
 	}
 	
@@ -183,6 +255,9 @@
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
   	<input class="button" type="button" id="save" name="save" value="保存备注" />&nbsp;
   	<input class="button" type="button" id="redo" name="redo" value="重新生成" />&nbsp;
+	<hr size="1" noshadow />
+	<div id="dimplomaListByBatch">
+	</div>
   </div>
 </div>
 </body>

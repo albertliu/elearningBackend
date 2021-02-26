@@ -1089,7 +1089,7 @@
 			url:"generateDiplomaInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "发放证书",
 			width: 600,
-			height: 380,
+			height: 600,
 			cover : {
 	          //透明度
 	          opacity : 0,

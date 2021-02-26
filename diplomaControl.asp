@@ -201,6 +201,19 @@ if(op == "getDiplomaLastList"){
 	//Response.Write(escape(sql));
 }	
 
+if(op == "getDiplomaListByBatch"){
+	sql = "SELECT * FROM v_diplomaInfo where batchID=" + refID;
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("ID").value + "|" + rs("username").value + "|" + rs("name").value + "|" + rs("dept1Name").value + "|" + rs("stamp").value + "|" + rs("photo_filename").value + "|" + rs("age").value;
+		rs.MoveNext();
+	}
+	rs.Close();
+	result = result.substr(2);
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}	
+
 if(op == "getNodeInfo"){
 	result = "";
 	sql = "SELECT * FROM v_diplomaInfo where ID=" + nodeID;
