@@ -122,7 +122,7 @@
 					i += 1;
 					c = 0;
 					h = ar1[13];	//公司用户显示部门1名称
-					if(ar1[9]>=55){c = 2;}	//55岁红色
+					if(ar1[6]>=55){c = 2;}	//55岁红色
 					if(currHost==""){h = ar1[12];}	//系统用户显示公司名称
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
