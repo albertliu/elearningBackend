@@ -110,7 +110,7 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='18%'>身份证</th>");
-			arr.push("<th width='12%'>姓名</th>");
+			arr.push("<th width='14%'>姓名</th>");
 			arr.push("<th width='30%'>部门</th>");
 			arr.push("<th width='12%'>照</th>");
 			arr.push("<th width='5%'>章</th>");
