@@ -62,7 +62,7 @@
 		}
 		
 		$("#searchIssuedDiplomaIssued").val(0);
-		getIssuedDiplomaList();
+		//getIssuedDiplomaList();
 	});
 
 	function getIssuedDiplomaList(){
