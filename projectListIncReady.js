@@ -63,6 +63,7 @@
 			arr.push("<th width='10%'>报名确认</th>");
 			arr.push("<th width='8%'>提交</th>");
 			arr.push("<th width='10%'>资料修正</th>");
+			arr.push("<th width='8%'>状态</th>");
 			arr.push("<th width='8%'>附件</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -84,7 +85,8 @@
 					arr.push("<td class='left' title='确认/拒绝/报名'><a href='javascript:downloadProjectList(\"" + ar1[1] + "\");'>" + ar1[20] + "</a></td>");
 					arr.push("<td class='left' title='提交/拒绝/确认'>" + ar1[27] + "</td>");
 					arr.push("<td class='left' title='确认/修改/通知'>" + ar1[26] + "</td>");
-					if(ar1[7]==''){
+					arr.push("<td class='left'>" + ar1[8] + "</td>");
+					if(ar1[21]==''){
 						arr.push("<td class='center'>&nbsp;</td>");
 					}else{
 						arr.push("<td class='center'><a href='/users" + ar1[21] + "' target='_blank'>" + imgChk + "</a></td>");
@@ -95,6 +97,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
