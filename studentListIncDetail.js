@@ -2,7 +2,8 @@
 							<div class="comm" align='left' style="background:#fdfdfd;">
 								<form><label>搜索:</label>
 				          <input type="text" id="txtSearchStudent" name="txtSearchStudent" size="14" title="姓名、身份证" style="background:yellow;" />
-				          <input class="button" type="button" id="btnSearchStudent" value="查找" />
+				          <input class="button" type="button" id="btnSearchStudent" value="查找" />&nbsp;&nbsp;
+				          <input class="button" type="button" id="btnSearchStudentAdd" value="添加" />
 					        <span id="studentListLongItem1">
 					          &nbsp;&nbsp;公司&nbsp;<select id="searchStudentHost" style="width:100px"></select>&nbsp;&nbsp;
 					          类别&nbsp;<select id="searchStudentKind" style="width:50px"></select>&nbsp;&nbsp;

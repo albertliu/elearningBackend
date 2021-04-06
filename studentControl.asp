@@ -130,7 +130,12 @@ if(op == "getStudentList"){
 
 if(op == "getNodeInfo"){
 	result = "";
-	sql = "SELECT * FROM v_studentInfo where userID=" + nodeID;
+	if(nodeID>0){
+		sql = "SELECT * FROM v_studentInfo where userID=" + nodeID;
+	}
+	if(refID>""){
+		sql = "SELECT * FROM v_studentInfo where username='" + refID + "'";
+	}
 	rs = conn.Execute(sql);
 	if(!rs.EOF){
 		result = rs("userID").value + "|" + rs("username").value + "|" + rs("name").value + "|" + rs("user_status").value + "|" + rs("statusName").value + "|" + rs("kindID").value + "|" + rs("kindName").value;
@@ -207,8 +212,7 @@ if(op == "update"){
 	result = 0;
 	if(result == 0){
 		//@mark int,@username varchar(50),@name nvarchar(50),@password varchar(50),@kindID int,@companyID varchar(50),@dept1 varchar(50),@dept1Name nvarchar(100),@dept2 varchar(50),@dept3 varchar(50),@job varchar(50),@mobile nvarchar(50),@phone nvarchar(50),@email nvarchar(50),@limitDate varchar(50),@memo nvarchar(500),@host varchar(50),@registerID varchar(50)
-		sql = "exec updateStudentInfo 1,'" + nodeID + "','" + unescape(String(Request.QueryString("name"))) + "',''," + kindID + "," + String(Request.QueryString("companyID")) + "," + String(Request.QueryString("dept1")) + ",''," + String(Request.QueryString("dept2")) + ",'','" + unescape(String(Request.QueryString("job"))) + "','" + unescape(String(Request.QueryString("mobile"))) + "','" + unescape(String(Request.QueryString("phone"))) + "','" + unescape(String(Request.QueryString("email"))) + "','" + String(Request.QueryString("limitDate")) + "','" + String(Request.QueryString("education")) + "','" + memo + "','" + host + "','" + currUser + "'";
-
+		sql = "exec updateStudentInfo " + keyID + ",'" + nodeID + "','" + unescape(String(Request.QueryString("name"))) + "',''," + kindID + ",'" + String(Request.QueryString("companyID")) + "','" + String(Request.QueryString("dept1")) + "','','" + String(Request.QueryString("dept2")) + "','','" + unescape(String(Request.QueryString("job"))) + "','" + unescape(String(Request.QueryString("mobile"))) + "','" + unescape(String(Request.QueryString("phone"))) + "','" + unescape(String(Request.QueryString("email"))) + "','" + String(Request.QueryString("limitDate")) + "','" + String(Request.QueryString("education")) + "','" + memo + "','" + host + "','" + currUser + "'";
 		execSQL(sql);
 	}
 
@@ -393,6 +397,18 @@ if(op == "delNode"){
 	sql = "exec delStudentInfo '" + nodeID + "','" + where + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(nodeID);
+}
+
+if(op == "studentExist"){
+	result = 0;
+	sql = "SELECT userID FROM studentInfo where username='" + nodeID + "'";
+	rs = conn.Execute(sql);
+	if(!rs.EOF){
+		result = rs("userID").value;
+	}
+	rs.Close();
+	Response.Write(result);
+	//Response.Write(escape(sql));
 }
 
 %>

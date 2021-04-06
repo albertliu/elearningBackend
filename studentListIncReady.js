@@ -19,6 +19,10 @@
 			getStudentList();
 		});
 		
+		$("#btnSearchStudentAdd").click(function(){
+			showStudentInfo(0,0,1,1);
+		});
+		
 		$("#txtSearchStudent").keypress(function(event){
 			if(event.keyCode==13){
 				if($("#txtSearchStudent").val()>""){
@@ -38,6 +42,11 @@
 		$("#searchStudentIDcard").change(function(){
 			getStudentList();
 		});
+		
+		if(!checkPermission("studentAdd")){
+			$("#btnSearchStudentAdd").hide();
+		}
+		
 
 		//getStudentList();
 	});

@@ -43,29 +43,6 @@
 	<script type="text/javascript" src="js/bootstrap-treeview.min.js"></script>
 <!--#include file="js/clickMenu.js"-->
 
-<script type="text/javascript">
-
-	ddaccordion.init({
-		headerclass: "headerbar", //Shared CSS class name of headers group
-		contentclass: "submenu", //Shared CSS class name of contents group
-		revealtype: "mouseover", //Reveal content when user clicks or onmouseover the header? Valid value: "click", "clickgo", or "mouseover"
-		mouseoverdelay: 200, //if revealtype="mouseover", set delay in milliseconds before header expands onMouseover
-		collapseprev: true, //Collapse previous content (so only one open at any time)? true/false
-		defaultexpanded: [0], //index of content(s) open by default [index1, index2, etc] [] denotes no content
-		onemustopen: true, //Specify whether at least one header should be open always (so never all headers closed)
-		animatedefault: false, //Should contents open by default be animated into view?
-		persiststate: true, //persist state of opened contents within browser session?
-		toggleclass: ["", "selected"], //Two CSS classes to be applied to the header when it's collapsed and expanded, respectively ["class1", "class2"]
-		togglehtml: ["", "", ""], //Additional HTML added to the header when it's collapsed and expanded, respectively  ["position", "html1", "html2"] (see docs)
-		animatespeed: "normal", //speed of animation: integer in milliseconds (ie: 200), or keywords "fast", "normal", or "slow"
-		oninit:function(headers, expandedindices){ //custom code to run when headers have initalized
-			//do nothing
-		},
-		onopenclose:function(header, index, state, isuseractivated){ //custom code to run whenever a header is opened or closed
-			//do nothing
-		}
-	})
-</script>
 <script language="javascript">
 	var seeAll = 0;
 	var dMark = 0;
@@ -104,6 +81,7 @@
 	<!--#include file="generateStudentListIncReady.js"-->
 	<!--#include file="generateScoreListIncReady.js"-->
 	<!--#include file="generateMaterialListIncReady.js"-->
+	<!--#include file="classListIncReady.js"-->
 	<!--#include file="rptStudentIncReady.js"-->
 	<!--#include file="rptTrainningIncReady.js"-->
 	<!--#include file="rptDiplomaIncReady.js"-->
@@ -208,7 +186,7 @@
 		
 		window.setInterval(function () {
 			chkUserActive();
-			refreshMsg();
+			//refreshMsg();
     	}, 30000);
 		document.getElementById("lightFloat").style.display="none";
 		document.getElementById("fadeFloat").style.display="none";
@@ -217,6 +195,9 @@
 		if(!checkPermission("examBrowse")){
 			$("#menu5").hide();
 			deleteTab("试卷管理");
+		}
+		if(!checkPermission("classLook")){
+			$("#fragment-9").hide();
 		}
 		
 		if(currHostKind==0 && currHost > ""){	//集团用户不使用导入报名表, 照片批量上传，成绩导入功能
@@ -325,6 +306,7 @@
 						<li><a href="#fragment-0"><span>我的事务</span></a></li>
 						<li><a href="#fragment-1"><span>学员管理</span></a></li>
 						<li><a href="#fragment-2"><span>培训报名</span></a></li>
+						<li><a href="#fragment-9"><span>班级管理</span></a></li>
 						<li><a href="#fragment-3"><span>证书管理</span></a></li>
 						<li><a href="#fragment-4"><span>课程管理</span></a></li>
 						<li id="menu5"><a href="#fragment-5"><span>题库管理</span></a></li>
@@ -428,8 +410,21 @@
 						<!--#include file="studentCourseListIncDetail.js"-->
 					</div>
 					
+					<div id="fragment-9">
+						<div id="dhtmlgoodies_tabView9">
+							<div id="dtab91" class="dhtmlgoodies_aTab">
+								<!--#include file="classListIncDetail.js"-->
+							</div>
+							<div id="dtab92" class="dhtmlgoodies_aTab">
+							</div>
+						</div>
+						<script type="text/javascript">
+							initTabs('dhtmlgoodies_tabView9',Array("班级组建","班级名册"),0,960,400);
+						</script>
+					</div>
+					
 					<div id="fragment-3">
-						<div id="dhtmlgoodies_tabView2">
+						<div id="dhtmlgoodies_tabView3">
 							<div id="dtab21" class="dhtmlgoodies_aTab">
 								<!--#include file="studentNeedDiplomaListIncDetail.js"-->
 							</div>
@@ -447,12 +442,12 @@
 							</div>
 						</div>
 						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView2',Array("证书制作","证书打印","证书发放","证书查询","换证提醒"),0,960,400);
+							initTabs('dhtmlgoodies_tabView3',Array("证书制作","证书打印","证书发放","证书查询","换证提醒"),0,960,400);
 						</script>
 					</div>
 					
 					<div id="fragment-4">
-						<div id="dhtmlgoodies_tabView1">
+						<div id="dhtmlgoodies_tabView4">
 							<div id="dtab0" class="dhtmlgoodies_aTab">
 								<div style="float:left;width:72%;">
 									<!--#include file="certListIncDetail.js"-->
@@ -497,7 +492,7 @@
 							</div>
 						</div>
 						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView1',Array("认证项目","培训课程","视频管理","课件管理","知识点","试卷管理","认证机构","公司单位","公司部门"),0,960,400);
+							initTabs('dhtmlgoodies_tabView4',Array("认证项目","培训课程","视频管理","课件管理","知识点","试卷管理","认证机构","公司单位","公司部门"),0,960,400);
 						</script>
 					</div>
 					

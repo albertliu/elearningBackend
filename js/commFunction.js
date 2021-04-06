@@ -94,6 +94,15 @@
 		return result;
 	}
 	
+	//确定给定的身份证号码是否已有学生注册，如果返回0表示没有，>0 为有，且返回其userID
+	function studentExist(id){
+		var result = 0;
+		$.get("studentControl.asp?op=studentExist&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
+			result = re;
+		});
+		return result;
+	}
+	
 	//判断给定用户所属的街道，如果不属于街道，返回0，否则返回街道编号
 	function getUserStreet(id){
 		var result = 0;
@@ -629,8 +638,8 @@
 			id: "student",
 			url:"studentInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "学员信息",
-			width: 640,
-			height: 420,
+			width: 880,
+			height: 680,
 			cover : {
 	          //透明度
 	          opacity : 0,
@@ -1295,6 +1304,62 @@
 				if(re>0 && mark==2){
 					//alert(iframe.getValList());
 					setObjValue("project",iframe.getValList(),0,0);  //根据请求，返回任意个数的项目，为相应的对象赋值。objList:传入的Object列表；valList：输出的值；mark：0 不动作 1 关闭本窗口（与objList同名）; loc: 0 同级别  1 父窗体
+				}
+　　　		}
+		});
+	}
+	
+	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
+	function showClassInfo(nodeID,refID,op,mark){
+		asyncbox.open({
+			id: "class",
+			url:"classInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
+			title: "班级信息",
+			width: 640,
+			height: 440,
+			cover : {
+	          //透明度
+	          opacity : 0,
+	          //背景颜色
+	           background : '#000'
+	          },
+
+			btnsbar : false,
+			callback : function(action,iframe){
+				setReturnLog("class",iframe.nodeID);	
+				var re = iframe.updateCount;
+				if(re>0 && mark==1){
+					getClassList();
+				}
+				//alert(re + ":" + mark);
+				if(re>0 && mark==2){
+					//alert(iframe.getValList());
+					setObjValue("class",iframe.getValList(),0,0);  //根据请求，返回任意个数的项目，为相应的对象赋值。objList:传入的Object列表；valList：输出的值；mark：0 不动作 1 关闭本窗口（与objList同名）; loc: 0 同级别  1 父窗体
+				}
+　　　		}
+		});
+	}
+	
+	//nodeID: ;
+	function showUseCardInfo(){
+		asyncbox.open({
+			id: "useCard",
+			url:"useCardInfo.asp?p=1&times=" + (new Date().getTime()),
+			title: "身份证信息",
+			width: 640,
+			height: 640,
+			cover : {
+	          //透明度
+	          opacity : 0,
+	          //背景颜色
+	           background : '#000'
+	          },
+
+			btnsbar : false,
+			callback : function(action,iframe){
+				var re = iframe.getUpdateCount();
+				if(re>0){
+					replaceImgFromCard(iframe.selList);
 				}
 　　　		}
 		});
@@ -2132,6 +2197,13 @@
 		return result;
 	}
 	
+/*
+1."验证通过!", 
+2."身份证号码位数不对!", 
+3."身份证号码出生日期超出范围或含有非法字符!", 
+4."身份证号码校验错误!", 
+5."身份证地区非法!" 
+*/
 	function checkIDcard(strID){
 		var result = 0;
 		$.get("commonControl.asp?op=checkIDcard&nodeID=" + escape(strID) + "&times=" + (new Date().getTime()),function(re){
