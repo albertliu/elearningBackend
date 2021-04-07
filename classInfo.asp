@@ -33,7 +33,7 @@
 		
 		getComList("certID","certificateInfo","certID","certName","status=0 and type=0 order by certID",1);
 		getComList("projectID","projectInfo","projectID","projectName","status=1 order by projectID desc",1);
-		getComList("adviserID","userInfo","username","realName","status=0 order by realName",1);
+		getComList("adviserID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='adviser') order by realName",1);
 		getDicList("planStatus","status",0);
 		$("#dateStart").click(function(){WdatePicker();});
 		$("#dateEnd").click(function(){WdatePicker();});

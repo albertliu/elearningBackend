@@ -118,7 +118,7 @@ if(op == "getStudentList"){
 	while (!rs.EOF){
 		result += "%%" + rs("userID").value + "|" + rs("username").value + "|" + rs("name").value + "|" + rs("user_status").value + "|" + rs("statusName").value + "|" + rs("kindID").value + "|" + rs("kindName").value;
 		//7
-		result += "|" + rs("mobile").value + "|" + rs("sexName").value + "|" + rs("age").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("hostName").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value + "|" + rs("photo").value;
+		result += "|" + rs("mobile").value + "|" + rs("sexName").value + "|" + rs("age").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("hostName").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value + "|" + rs("photo").value + "|" + rs("job_status").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -146,7 +146,7 @@ if(op == "getNodeInfo"){
 		//21
 		result += "|" + rs("photo_filename").value + "|" + rs("IDa_filename").value + "|" + rs("IDb_filename").value + "|" + rs("edu_filename").value;
 		//25
-		result += "|" + rs("companyID").value + "|" + rs("dept1").value + "|" + rs("dept2").value + "|" + rs("dept3").value + "|" + rs("host").value + "|" + rs("education").value + "|" + rs("educationName").value;
+		result += "|" + rs("companyID").value + "|" + rs("dept1").value + "|" + rs("dept2").value + "|" + rs("dept3").value + "|" + rs("host").value + "|" + rs("education").value + "|" + rs("educationName").value + "|" + rs("job_status").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

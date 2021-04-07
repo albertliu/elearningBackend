@@ -28,7 +28,7 @@
 				var a = new Array();
 				var b = new Array();
 				var t = "";
-				for(let i in x){
+				for(var i in x){
 					if(k !== x[i]['kindID'] || p !== x[i]['pID']){
 						n += 1;
 					}

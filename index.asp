@@ -4,8 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/nav.dwt" codeOutsideHTMLIsLocked="false" -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-
+<meta http-equiv="X-UA-Compatible" content="edge" />
 <!-- InstanceBeginEditable name="doctitle" -->
 <title><%=pageTitle%></title>
 <!-- InstanceEndEditable -->

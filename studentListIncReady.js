@@ -78,8 +78,8 @@
 			arr.push("<th width='3%'>No</th>");
 			arr.push("<th width='15%'>身份证</th>");
 			arr.push("<th width='8%'>姓名</th>");
-			arr.push("<th width='6%'>性别</th>");
-			arr.push("<th width='6%'>年龄</th>");
+			arr.push("<th width='6%'>别</th>");
+			arr.push("<th width='6%'>龄</th>");
 			if(currHost==""){
 				arr.push("<th width='12%'>公司</th>");
 				arr.push("<th width='12%'>部门</th>");
@@ -103,20 +103,20 @@
 					i += 1;
 					c = 0;
 					h = ar1[13];	//公司用户显示部门1名称
-					if(ar1[9]>=55){c = 2;}	//55岁红色
+					//if(ar1[9]>=55){c = 2;}	//55岁红色
 					if(currHost==""){h = ar1[12];}	//系统用户显示公司名称
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
 					arr.push("<td class='link1'><a href='javascript:showStudentInfo(\"" + ar1[0] + "\",0,0,1);'>" + ar1[1] + "</a></td>");
-					arr.push("<td class='left'>" + ar1[2] + "</td>");
+					arr.push("<td class='left'>" + ar1[2].substr(0,4) + "</td>");
 					arr.push("<td class='left'>" + ar1[8] + "</td>");
 					arr.push("<td class='left'>" + ar1[9] + "</td>");
 					if(currHost==""){
-						arr.push("<td class='left'>" + ar1[12] + "</td>");
-						arr.push("<td class='left'>" + ar1[13] + "</td>");
+						arr.push("<td class='left'>" + ar1[12].substr(0,10) + "</td>");
+						arr.push("<td class='left'>" + ar1[13].substr(0,10) + "</td>");
 					}else{
-						arr.push("<td class='left'>" + ar1[13] + "</td>");
-						arr.push("<td class='left'>" + ar1[14] + "</td>");
+						arr.push("<td class='left'>" + ar1[13].substr(0,10) + "</td>");
+						arr.push("<td class='left'>" + ar1[14].substr(0,10) + "</td>");
 					}
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
 					arr.push("<td class='left'>" + ar1[4] + "</td>");

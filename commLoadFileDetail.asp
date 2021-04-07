@@ -2,13 +2,13 @@
 	var username = "";
 	var action = uploadURL + "/outfiles/uploadSingle";
 	var host = "";
-	arr = [];
 	//alert(action);
 	//mark:student,host,course
 	//etc. ("student_photo","310102199209090021","student","spc"),  ("student_photo","0","mulitple","spc")
 	function showLoadFile(loadOp,loadID,mark,p_host){
 		username = loadID;
 		host = p_host;
+		arr = [];
 		if(host > ""){
 			$("#commLoadFileHost").val(host);
 		}

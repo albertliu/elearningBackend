@@ -23,7 +23,7 @@ if(op == "getStudentCourseList"){
 		}
 	}
 	//如果有状态
-	if(status > ""){ // 
+	if(status > "" && status !="undefined"){ // 
 		s = "status=" + status;
 		if(where > ""){
 			where = where + " and " + s;
@@ -31,17 +31,17 @@ if(op == "getStudentCourseList"){
 			where = s;
 		}
 	}
-	/*//如果有分类
-	if(kindID > ""){ // 
-		s = "kindID=" + kindID;
+	//如果有人
+	if(keyID > ""){ // 
+		s = "username='" + keyID + "'";
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
 			where = s;
 		}
-	}*/
+	}
 	//如果有部门
-	if(kindID > "" && kindID != "null"){ // 
+	if(kindID > "" && kindID != "null" && kindID !="undefined"){ // 
 		s = "dept1=" + kindID;
 		if(where > ""){
 			where = where + " and " + s;
@@ -50,7 +50,7 @@ if(op == "getStudentCourseList"){
 		}
 	}
 	//如果有招生批次
-	if(refID > "" && refID != "null"){ // 
+	if(refID > "" && refID != "null" && refID !="undefined"){ // 
 		s = "projectID='" + refID + "'";
 		if(where > ""){
 			where = where + " and " + s;
@@ -58,7 +58,7 @@ if(op == "getStudentCourseList"){
 			where = s;
 		}
 	}
-	if(fStart > ""){
+	if(fStart > "" && fStart !="undefined"){
 		s = "regDate>='" + fStart + "'";
 		if(where > ""){
 			where = where + " and " + s;
@@ -66,7 +66,7 @@ if(op == "getStudentCourseList"){
 			where = s;
 		}
 	}
-	if(fEnd > ""){
+	if(fEnd > "" && fEnd !="undefined"){
 		s = "regDate<='" + fEnd + "'";
 		if(where > ""){
 			where = where + " and " + s;
@@ -84,7 +84,7 @@ if(op == "getStudentCourseList"){
 		}
 	}*/
 	//课程
-	if(String(Request.QueryString("courseID")) > ""){
+	if(String(Request.QueryString("courseID")) > "" && String(Request.QueryString("courseID")) !="undefined"){
 		s = "courseID='" + String(Request.QueryString("courseID")) + "'";
 		if(where > ""){
 			where = where + " and " + s;
@@ -93,7 +93,7 @@ if(op == "getStudentCourseList"){
 		}
 	}
 	//确认
-	if(String(Request.QueryString("checked")) > ""){
+	if(String(Request.QueryString("checked")) > "" && String(Request.QueryString("checked")) !="undefined"){
 		s = "checked=" + String(Request.QueryString("checked"));
 		if(where > ""){
 			where = where + " and " + s;
@@ -102,7 +102,7 @@ if(op == "getStudentCourseList"){
 		}
 	}
 	//提交
-	if(String(Request.QueryString("submited")) > ""){
+	if(String(Request.QueryString("submited")) > "" && String(Request.QueryString("submited")) !="undefined"){
 		s = "submited=" + String(Request.QueryString("submited"));
 		if(where > ""){
 			where = where + " and " + s;
@@ -112,7 +112,7 @@ if(op == "getStudentCourseList"){
 	}
 	//不合格图片状态
 	var photoStatus = String(Request.QueryString("photoStatus"));
-	if(photoStatus > ""){
+	if(photoStatus > "" && photoStatus !="undefined"){
 		s = "(status0=" + photoStatus + " or status1=" + photoStatus + " or status2=" + photoStatus + " or status3=" + photoStatus + " or status4=" + photoStatus + ")";
 		if(where > ""){
 			where = where + " and " + s;
@@ -141,7 +141,9 @@ if(op == "getStudentCourseList"){
 		//32
 		result += "|" + rs("status3").value + "|" + rs("askerID3").value + "|" + rs("askDate3").value + "|" + rs("status4").value + "|" + rs("askerID4").value + "|" + rs("askDate4").value;
 		//38
-		result += "|" + rs("submited").value + "|" + rs("submitName").value;
+		result += "|" + rs("submited").value + "|" + rs("submitName").value + "|" + rs("submitName").value;
+		//41
+		result += "|" + rs("projectID").value + "|" + rs("classID").value + "|" + rs("SNo").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -149,7 +151,6 @@ if(op == "getStudentCourseList"){
 	Session(op) = ssql;
 	Response.Write(escape(result));
 	//Response.Write((sql));
-	//Response.Write('["x":1, "y": "22"]');
 }	
 
 if(op == "getNodeInfo"){
@@ -162,6 +163,8 @@ if(op == "getNodeInfo"){
 		result += "|" + rs("sexName").value + "|" + rs("age").value + "|" + rs("hours").value + "|" + rs("completion").value + "|" + rs("regDate").value + "|" + rs("hostName").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value + "|" + rs("examScore").value + "|" + rs("memo").value + "|" + rs("mobile").value + "|" + rs("email").value;
 		//19
 		result += "|" + rs("startDate").value + "|" + rs("endDate").value + "|" + rs("job").value + "|" + rs("pass_condition").value + "|" + rs("checked").value + "|" + rs("checkName").value + "|" + rs("SNo").value;
+		//26
+		result += "|" + rs("projectID").value + "|" + rs("classID").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

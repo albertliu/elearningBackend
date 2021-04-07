@@ -18,7 +18,6 @@
 <script src="js/jquery.alerts.js" type="text/javascript"></script>
 <script src="js/datepicker/WdatePicker.js" type="text/javascript"></script>
 <script type='text/javascript' src='js/jquery.autocomplete.js'></script>
-<!--#include file="js/clickMenu.js"-->
 
 <script language="javascript">
 	var card = window.parent.cardJson;
@@ -55,17 +54,15 @@
 </head>
 
 <body style="background:#f0f0f0;">
- <!--#include file='commFloatDetail.asp' -->
- <!--#include file='commLoadFileDetail.asp' -->
 
 <div id='layout' align='left' style="background:#f0f0f0;">	
-	
+	<h3 style="margin:5px;">请选择替换现有资料：</h3>
 	<div style="padding: 5px;text-align:center;overflow:hidden;margin:0 auto;flot:right;">
 		<table style="width:99%;">
 			<tr>
 				<td align="right" style="width:15%;"><input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='photo' name='visitstockchk'></td>
 				<td align="center" style="width:85%;">
-					<img id="img_photo" src="" value="" style='width:150px;background: #ccc;border:1px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);opacity: 0.8;' />
+					<img id="img_photo" src="" value="" style='width:120px;background: #ccc;border:1px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);opacity: 0.8;' />
 				</td>
 			</tr>
 			<tr>

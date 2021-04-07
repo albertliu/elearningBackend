@@ -44,6 +44,7 @@
 			async: false 
 		}); 
 		getDicList("student","kindID",0);
+		getDicList("statusJob","job_status",0);
 		getDicList("education","education",1);
 		var w = "dept_status=0 and pID=0 and host='" + currHost + "'";
 		if(currHost==""){	//公司用户只能看自己公司内容
@@ -142,6 +143,7 @@
 			setDeptList($("#dept1").val(),2,$("#kindID").val());
 		});
 		if(op==1){
+			setButton();
 			if($("#companyID").val()>0){
 				setDeptList($("#companyID").val(),1,$("#kindID").val());
 			}
@@ -186,6 +188,7 @@
 				$("#regDate").val(ar[11]);
 				$("#host").val(ar[29]);
 				$("#education").val(ar[30]);
+				$("#job_status").val(ar[32]);
 				//$("#upload1").html("<a href='javascript:showLoadFile(\"student_education\",\"" + ar[1] + "\",\"student\",\"\");' style='padding:3px;'>上传</a>");
 				//<a href='/users" + ar[21] + "' target='_blank'></a>
 				arr = [];
@@ -219,6 +222,7 @@
 					$("#kindID").hide();
 				}
 				original_item = arr.join("").substr(1);
+				getStudentCourseList(ar[1]);
 				setButton();
 			}else{
 				jAlert("该信息未找到！","信息提示");
@@ -247,7 +251,7 @@
 		var k = 0;
 		if(op==0){k=1;}
 		//alert("nodeID=" + $("#username").val() + "&name=" + ($("#name").val()) + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + ($("#mobile").val()) + "&phone=" + ($("#phone").val()) + "&email=" + ($("#email").val()) + "&job=" + ($("#job").val()) + "&education=" + ($("#education").val()) + "&memo=" + ($("#memo").val()));
-		$.get("studentControl.asp?op=update&nodeID=" + $("#username").val() + "&name=" + escape($("#name").val()) + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + escape($("#mobile").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&job=" + escape($("#job").val()) + "&education=" + $("#education").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("studentControl.asp?op=update&nodeID=" + $("#username").val() + "&name=" + escape($("#name").val()) + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&job_status=" + $("#job_status").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + escape($("#mobile").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&job=" + escape($("#job").val()) + "&education=" + $("#education").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -289,6 +293,33 @@
 	function setDeptList(pID,n,kind){
 		getComList("dept" + n,"deptInfo","deptID","deptName","dept_status=0 and pID=" + pID + " and kindID=" + kind + " order by deptID",1);
 	}
+
+	function getStudentCourseList(id){
+		//alert(id);
+		$.get("studentCourseControl.asp?op=getStudentCourseList&keyID=" + id,function(data1){
+			//alert(unescape(data1));
+			var ar = new Array();
+			var arr1 = new Array();
+			ar = unescape(data1).split("%%");
+			ar.shift();
+			ar.shift();
+			arr1.push("<table class='table_help' width='100%'>");
+			arr1.push("<tr align='center' bgcolor='#e0e0e0'>");
+			arr1.push("<td width='18%'>课程</td><td width='12%'>批次</td><td width='12%'>班级</td><td width='10%'>学号</td><td width='15%'>缴费</td><td width='10%'>状态</td>");
+			arr1.push("</tr>");
+			if(ar > ""){
+				$.each(ar,function(iNum,val){
+					var ar1 = new Array();
+					ar1 = val.split("|");
+					arr1.push("<tr>");
+					arr1.push("<td><a href='javascript:getStudentCourseNodeInfo(" + ar1[0] + ");'>" + ar1[6] + "</a></td><td>" + ar1[41] + "</td><td>" + ar1[42] + "</td><td>" + ar1[43] + "</td><td></td><td>" + ar1[4] + "</td>");
+					arr1.push("</tr>");
+				});
+			}
+			arr1.push("</table>");
+			$("#enterCover").html(arr1.join(""));
+		});
+	}
 	
 	function setButton(){
 		$("#reply").hide();
@@ -298,6 +329,7 @@
 		$("#close").hide();
 		$("#upload1").hide();
 		$("#username").prop("disabled",true);
+		$("*[tag='plus'").hide();
 		if(op==1){
 			$("#save").show();
 			$("#add_img_education").hide();
@@ -317,6 +349,7 @@
 			}
 			if(checkPermission("studentPhoto")){
 				$("#upload1").show();
+				$("*[tag='plus'").show();
 			}
 			if(checkPermission("studentDel")){
 				$("#close").show();
@@ -366,6 +399,7 @@
 				//弹出窗口，可选择覆盖原来的照片、身份证图片
 				//替换原来的图片资料
 				showUseCardInfo();
+				checkName(re.name);
 			}else{
 				op = 1;
 				setButton();
@@ -381,10 +415,7 @@
 		}
 		if(k==0 && op==0 && re.certNo == $("#username").val()){
 			//编辑状态，如果是当前的身份证，则比较其信息
-			if(re.name != $("#name").val()){
-				//校验姓名
-				alert("姓名与身份证信息不符，请核对。");
-			}
+			checkName(re.name);
 			//弹出窗口，可选择覆盖原来的照片、身份证图片
 			//替换原来的图片资料
 			showUseCardInfo();
@@ -400,6 +431,11 @@
 				//弹出窗口，可选择覆盖原来的照片、身份证图片
 				//替换原来的图片资料
 				showUseCardInfo();
+				checkName(re.name);
+				//if(re.name != $("#name").val()){
+					//校验姓名
+				//	alert("姓名与身份证信息不符，请核对。");
+				//}
 			}else{
 				//填充文字
 				$("#studentID").val(0);
@@ -434,6 +470,14 @@
 		});
 	}
 	
+	function checkName(cname){
+		if(cname != $("#name").val()){
+			//校验姓名
+			alert("当前姓名[" + $("#name").val() + "]与身份证信息不符，已更正。");
+			$("#name").val(cname);
+		}
+	}
+
 	function getUpdateCount(){
 		return updateCount;
 	}
@@ -455,7 +499,7 @@
 			<tr>
 				<td align="right">身份证</td><input type="hidden" id="status" /><input type="hidden" id="host" />
 				<td><input type="text" id="username" size="25" /></td>
-				<td align="right">姓名</td><input type="hidden" id="studentID" />
+				<td align="right">姓名</td><input type="hidden" id="studentID" /><input type="hidden" id="phone" />
 				<td><input class="mustFill" type="text" id="name" size="25" /></td>
 			</tr>
 			<tr>
@@ -489,10 +533,10 @@
 				<td><select id="education" style="width:180px;"></select></td>
 			</tr>
 			<tr>
+				<td align="right">就业状态</td>
+				<td><select id="job_status" style="width:180px;"></select></td>
 				<td align="right">手机</td>
 				<td><input class="mustFill" type="text" id="mobile" size="25" /></td>
-				<td align="right">电话</td>
-				<td><input type="text" id="phone" size="25" /></td>
 			</tr>
 			<tr>
 				<td align="right">邮箱</td>
@@ -527,29 +571,43 @@
 		<input class="button" type="button" id="close" value="禁用" />&nbsp;
 		<input class="button" type="button" id="reply" value="发通知" />&nbsp;
   	</div>
+
+	<div style="width:100%;margin:0; padding-left:10px; padding-top:5px;">
+		<div>
+		招生批次&nbsp;<select id="enter_projectID" style="width:150px"></select>&nbsp;&nbsp;
+		班级&nbsp;<select id="enter_classID" style="width:100px"></select>&nbsp;&nbsp;
+		</div>
+	</div>
+
+	<div style="width:100%;float:left;margin:10;height:4px;"></div>
+  	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fcfcfc;clear:both;">
+		<input class="button" type="button" id="enter" value="报名" />&nbsp;
+  	</div>
+	<hr size="1" noshadow />
+	<div id='enterCover'></div>
 </div>
 <div style="padding: 5px;text-align:center;overflow:hidden;margin:0 auto;flot:right;">
 	<table style="width:99%;">
 	<tr>
-		<td align="right" style="width:15%;"><img id="add_img_photo" src="images/plus.png" /></td>
+		<td align="right" style="width:15%;"><img id="add_img_photo" src="images/plus.png" tag="plus" /></td>
 		<td align="center" style="width:85%;">
 			<img id="img_photo" src="" value="" style='width:100px;background: #ccc;border:1px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);opacity: 0.8;' />
 		</td>
 	</tr>
 	<tr>
-		<td align="right" style="width:15%;"><img id="add_img_cardA" src="images/plus.png" /></td>
+		<td align="right" style="width:15%;"><img id="add_img_cardA" src="images/plus.png" tag="plus" /></td>
 		<td style="width:85%;">
 			<img id="img_cardA" src="" style='width:150px;background: #ccc;border:1px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);opacity: 0.8;' />
 		</td>
 	</tr>
 	<tr>
-		<td align="right" style="width:15%;"><img id="add_img_cardB" src="images/plus.png" /></td>
+		<td align="right" style="width:15%;"><img id="add_img_cardB" src="images/plus.png" tag="plus" /></td>
 		<td style="width:85%;">
 			<img id="img_cardB" src="" style='width:150px;background: #ccc;border:1px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);opacity: 0.8;' />
 		</td>
 	</tr>
 	<tr>
-		<td align="right" style="width:15%;"><img id="add_img_education" src="images/plus.png" /></td>
+		<td align="right" style="width:15%;"><img id="add_img_education" src="images/plus.png" tag="plus" /></td>
 		<td style="width:85%;">
 			<img id="img_education" src="" style='width:150px;background: #ccc;border:1px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);opacity: 0.8;' />
 		</td>
