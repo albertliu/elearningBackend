@@ -195,8 +195,8 @@
 			$("#menu5").hide();
 			deleteTab("试卷管理");
 		}
-		if(!checkPermission("classLook")){
-			$("#fragment-9").hide();
+		if(!checkPermission("classBrowse")){
+			$("#menu9").hide();
 		}
 		
 		if(currHostKind==0 && currHost > ""){	//集团用户不使用导入报名表, 照片批量上传，成绩导入功能
@@ -305,7 +305,7 @@
 						<li><a href="#fragment-0"><span>我的事务</span></a></li>
 						<li><a href="#fragment-1"><span>学员管理</span></a></li>
 						<li><a href="#fragment-2"><span>培训报名</span></a></li>
-						<li><a href="#fragment-9"><span>班级管理</span></a></li>
+						<li id="menu9"><a href="#fragment-9"><span>班级管理</span></a></li>
 						<li><a href="#fragment-3"><span>证书管理</span></a></li>
 						<li><a href="#fragment-4"><span>课程管理</span></a></li>
 						<li id="menu5"><a href="#fragment-5"><span>题库管理</span></a></li>
