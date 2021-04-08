@@ -112,6 +112,12 @@
 			if(op==1){
 				$("#projectName").val("关于《" + $("#certID").find("option:selected").text() + "》的招生通知");
 			}
+			if($("#certID").val()>""){
+				//获取费用标准
+				$.get("courseControl.asp?op=getCoursePrice&nodeID=&refID=" + $("#certID").val() + "&times=" + (new Date().getTime()),function(re){
+					$("#price").val(re);
+				});
+			}
 		});
 		
 		$("#save").click(function(){
@@ -169,6 +175,7 @@
 				//$("#dept").val(ar[23]);
 				$("#linker").val(ar[24]);
 				$("#mobile").val(ar[25]);
+				$("#price").val(ar[28]);
 				$("#upload1").html("<a href='javascript:showLoadFile(\"project_brochure\",\"" + ar[1] + "\",\"project\",\"" + ar[11] + "\");' style='padding:3px;'>上传</a>");
 				var c = "";
 				if(ar[21] > ""){
@@ -198,7 +205,7 @@
 			return false;
 		}
 		//alert($('#dept').combobox('getValues'));
-		$.get("projectControl.asp?op=update&nodeID=" + $("#ID").val() + "&keyID=" + $("#projectID").val() + "&item=" + escape($("#projectName").val()) + "&refID=" + $("#certID").val() + "&kindID=" + $("#kindID").val() + "&deadline=" + $("#deadline").val() + "&object=" + escape($("#object").val()) + "&address=" + escape($("#address").val()) + "&dept=" + $("#dept").combobox("getValues") + "&linker=" + escape($("#linker").val()) + "&mobile=" + escape($("#mobile").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&host=" + $("#host").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("projectControl.asp?op=update&nodeID=" + $("#ID").val() + "&keyID=" + $("#projectID").val() + "&item=" + escape($("#projectName").val()) + "&price=" + $("#price").val() + "&refID=" + $("#certID").val() + "&kindID=" + $("#kindID").val() + "&deadline=" + $("#deadline").val() + "&object=" + escape($("#object").val()) + "&address=" + escape($("#address").val()) + "&dept=" + $("#dept").combobox("getValues") + "&linker=" + escape($("#linker").val()) + "&mobile=" + escape($("#mobile").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&host=" + $("#host").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -351,9 +358,9 @@
 			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
-				<td align="right">编号</td><input id="ID" type="hidden" /><input type="hidden" id="kindID" /><input type="hidden" id="status" />
+				<td align="right" width="15%">编号</td><input id="ID" type="hidden" /><input type="hidden" id="kindID" /><input type="hidden" id="status" />
 				<td><input class="readOnly" type="text" id="projectID" size="24" readOnly="true" /></td>
-				<td align="right">项目</td>
+				<td align="right" width="15%">项目</td>
 				<td><select id="certID" style="width:200px;"></select></td>
 			</tr>
 			<tr>
@@ -364,7 +371,7 @@
 			</tr>
 			<tr>
 				<td align="right">截止日期</td>
-				<td><input type="text" id="deadline" size="24" /></td>
+				<td><input type="text" id="deadline" size="7" />&nbsp;&nbsp;&nbsp;费用<input type="text" id="price" size="3" /></td>
 				<td align="right">培训地点</td>
 				<td><input type="text" id="address" size="33" /></td>
 			</tr>

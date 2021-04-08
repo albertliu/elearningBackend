@@ -1284,8 +1284,8 @@
 			id: "project",
 			url:"projectInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "招生信息发布",
-			width: 640,
-			height: 440,
+			width: 680,
+			height: 540,
 			cover : {
 	          //透明度
 	          opacity : 0,

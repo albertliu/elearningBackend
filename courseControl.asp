@@ -41,6 +41,8 @@ if(op == "getCourseList"){
 		result += "%%" + rs("ID").value + "|" + rs("courseID").value + "|" + rs("courseName").value + "|" + rs("hours").value + "|" + rs("kindID").value + "|" + rs("status").value + "|" + rs("statusName").value;
 		//7
 		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("certID").value + "|" + rs("mark").value + "|" + rs("markName").value;
+		//16
+		result += "|" + rs("price").value;
 		rs.MoveNext();
 	}
 /**/
@@ -71,7 +73,8 @@ if(op == "getNodeInfo"){
 		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("certID").value;
 		//14
 		result += "|" + rs("completionPass").value + "|" + rs("deadline").value + "|" + rs("deadday").value + "|" + rs("period").value + "|" + rs("mark").value + "|" + rs("markName").value;
-		execSQL(sql);
+		//20
+		result += "|" + rs("price").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -80,7 +83,7 @@ if(op == "getNodeInfo"){
 if(op == "update"){
 	result = 0;
 	if(result == 0){
-		sql = "exec updateCourseInfo " + nodeID + ",'" + String(Request.QueryString("courseID")) + "','" + unescape(String(Request.QueryString("courseName"))) + "','" + String(Request.QueryString("hours")) + "','" + String(Request.QueryString("completionPass")) + "','" + String(Request.QueryString("deadline")) + "','" + String(Request.QueryString("deadday")) + "','" + String(Request.QueryString("period")) + "'," + kindID + "," + status + "," + String(Request.QueryString("mark")) + ",'" + refID + "','" + host + "','" + memo + "','" + currUser + "'";
+		sql = "exec updateCourseInfo " + nodeID + ",'" + String(Request.QueryString("courseID")) + "','" + unescape(String(Request.QueryString("courseName"))) + "','" + String(Request.QueryString("hours")) + "','" + String(Request.QueryString("completionPass")) + "','" + String(Request.QueryString("deadline")) + "','" + String(Request.QueryString("deadday")) + "','" + String(Request.QueryString("period")) + "'," + kindID + "," + status + "," + String(Request.QueryString("mark")) + ",'" + refID + "','" + String(Request.QueryString("price")) + "','" + host + "','" + memo + "','" + currUser + "'";
 
 		execSQL(sql);
 		if(nodeID == 0){
@@ -96,6 +99,16 @@ if(op == "update"){
 	//Response.Write(escape(1));
 }
 
+if(op == "getCoursePrice"){
+	sql = "SELECT dbo.getCoursePrice('" + nodeID + "','" + refID + "') as price";
+	rs = conn.Execute(sql);
+	if (!rs.EOF){
+		result = rs("price").value;
+	}
+	rs.Close();
+	Response.Write((result));
+}
+
 if(op == "cancelNode"){
 	sql = "exec doCancelCourse " + nodeID;
 	execSQL(sql);
@@ -106,5 +119,16 @@ if(op == "delNode"){
 	sql = "exec delCourseInfo '" + nodeID + "','" + where + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(nodeID);
+}
+
+if(op == "doEnter"){
+	//@username varchar(50),@classID varchar(50),@price int,@invoice varchar(50),@projectID varchar(50),@kindID varchar(50),@type int,@status int,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo,@registerID
+	sql = "exec doEnter '" + nodeID + "','" + String(Request.QueryString("classID")) + "','" + String(Request.QueryString("price")) + "','" + String(Request.QueryString("invoice")) + "','" + String(Request.QueryString("projectID")) + "'," + kindID + "," + String(Request.QueryString("type")) + "," + status + ",'" + String(Request.QueryString("datePay")) + "','" + String(Request.QueryString("dateInvoice")) + "','" + String(Request.QueryString("dateInvoicePick"))  + "','" + memo + "','" + currUser + "'";
+	rs = conn.Execute(sql);
+	if (!rs.EOF){
+		result = rs("re").value + "|" + rs("msg").value + "|" + rs("payID").value + "|" + rs("enterID").value;
+	}
+	rs.Close();
+	Response.Write(result);
 }
 %>
