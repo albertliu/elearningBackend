@@ -181,7 +181,7 @@
 			<tr>
 				<td align="right">完成条件</td>
 				<td><input class="readOnly" type="text" id="pass_condition" size="25" readOnly="true" /></td>
-				<td align="right">选课日期</td>
+				<td align="right">报名日期</td>
 				<td><input class="readOnly" type="text" id="regDate" size="25" readOnly="true" /></td>
 			</tr>
 			<tr>
