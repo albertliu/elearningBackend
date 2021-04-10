@@ -58,6 +58,9 @@
 		$("#reply").click(function(){
 			showMessageInfo(0,0,1,0,$("#username").val());
 		});
+		$("#enter").click(function(){
+			showEnterInfo(0,$("#username").val(),1,1);
+		});
 		$("#save").click(function(){
 			saveNode();
 		});
@@ -328,6 +331,7 @@
 		$("#open").hide();
 		$("#close").hide();
 		$("#upload1").hide();
+		$("#enter").hide();
 		$("#username").prop("disabled",true);
 		$("*[tag='plus'").hide();
 		if(op==1){
@@ -343,6 +347,7 @@
 				$("#open").show();
 				$("#close").show();
 				$("#save").show();
+				$("#enter").show();
 			}
 			if(checkPermission("studentEdit")){
 				$("#save").show();
@@ -572,16 +577,9 @@
 		<input class="button" type="button" id="reply" value="发通知" />&nbsp;
   	</div>
 
-	<div style="width:100%;margin:0; padding-left:10px; padding-top:5px;">
-		<div>
-		招生批次&nbsp;<select id="enter_projectID" style="width:150px"></select>&nbsp;&nbsp;
-		班级&nbsp;<select id="enter_classID" style="width:100px"></select>&nbsp;&nbsp;
-		</div>
-	</div>
-
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fcfcfc;clear:both;">
-		<input class="button" type="button" id="enter" value="报名" />&nbsp;
+		<input class="button" type="button" id="enter" value="去报名" />&nbsp;
   	</div>
 	<hr size="1" noshadow />
 	<div id='enterCover'></div>

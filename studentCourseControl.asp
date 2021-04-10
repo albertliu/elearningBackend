@@ -143,7 +143,7 @@ if(op == "getStudentCourseList"){
 		//38
 		result += "|" + rs("submited").value + "|" + rs("submitName").value + "|" + rs("submitName").value;
 		//41
-		result += "|" + rs("projectID").value + "|" + rs("classID").value + "|" + rs("SNo").value;
+		result += "|" + rs("projectID").value + "|" + rs("classID").value + "|" + rs("SNo").value + "|" + rs("materialCheck").value + "|" + rs("materialChecker").value + "|" + rs("materialCheckerName").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -164,7 +164,7 @@ if(op == "getNodeInfo"){
 		//19
 		result += "|" + rs("startDate").value + "|" + rs("endDate").value + "|" + rs("job").value + "|" + rs("pass_condition").value + "|" + rs("checked").value + "|" + rs("checkName").value + "|" + rs("SNo").value;
 		//26
-		result += "|" + rs("projectID").value + "|" + rs("classID").value;
+		result += "|" + rs("projectID").value + "|" + rs("classID").value + "|" + rs("materialCheck").value + "|" + rs("materialChecker").value + "|" + rs("materialCheckerName").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

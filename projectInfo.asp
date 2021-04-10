@@ -111,7 +111,7 @@
 		
 		$("#certID").change(function(){
 			if(op==1){
-				$("#projectName").val("关于《" + $("#certID").find("option:selected").text() + "》的招生通知");
+				$("#projectName").val($("#host").find("option:selected").text().substr(0,4) + "[" + $("#certID").find("option:selected").text() + "]");
 			}
 			if($("#certID").val()>""){
 				//获取费用标准
@@ -360,16 +360,22 @@
 			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
-				<td align="right" width="15%">编号</td><input id="ID" type="hidden" /><input type="hidden" id="kindID" /><input type="hidden" id="status" />
-				<td><input class="readOnly" type="text" id="projectID" size="24" readOnly="true" /></td>
+				<td align="right">对象单位</td>
+				<td><select id="host" style="width:150px;"></select></td>
+				<td align="right">对象部门</td>
+				<td><input type="text" id="dept" name="dept" size="33" /></td>
+			</tr>
+			<tr>
 				<td align="right" width="15%">项目</td>
 				<td><select id="certID" style="width:200px;"></select></td>
+				<td align="right" width="15%">编号</td><input id="ID" type="hidden" /><input type="hidden" id="kindID" /><input type="hidden" id="status" />
+				<td><input class="readOnly" type="text" id="projectID" size="24" readOnly="true" /></td>
 			</tr>
 			<tr>
 				<td align="right">招生对象</td>
 				<td><input type="text" id="object" size="24" /></td>
 				<td align="right">标题</td>
-				<td><input type="text" id="projectName" size="33" /></td>
+				<td><input class="mustFill" type="text" id="projectName" size="33" /></td>
 			</tr>
 			<tr>
 				<td align="right">截止日期</td>
@@ -394,12 +400,6 @@
 				<td><input type="text" id="phone" size="24" /></td>
 				<td align="right">电子邮箱</td>
 				<td><input type="text" id="email" size="33" /></td>
-			</tr>
-			<tr>
-				<td align="right">对象单位</td>
-				<td><select id="host" style="width:150px;"></select></td>
-				<td align="right">对象部门</td>
-				<td><input type="text" id="dept" name="dept" size="33" /></td>
 			</tr>
 			<tr>
 				<td align="right">备注</td>

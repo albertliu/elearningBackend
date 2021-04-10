@@ -26,6 +26,15 @@ if(op == "getClassList"){
 			where = s;
 		}
 	}
+	//如果有批次
+	if(String(Request.QueryString("projectID")) > ""){ // 
+		s = "projectID='" + String(Request.QueryString("projectID")) + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 
 	if(where>""){
 		where = " where " + where;

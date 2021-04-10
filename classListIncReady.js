@@ -3,6 +3,7 @@
 	$(document).ready(function (){
 		getComList("searchClassCert","certificateInfo","certID","certName","status=0 and type=0 order by certID",1);
 		getDicList("planStatus","searchClassStatus",1);
+		getComList("searchClassProject","projectInfo","projectID","projectName","status>0 and status<9 order by projectID desc",1);
 		
 		if(checkPermission("classAdd")){
 			$("#btnAddClass").show();
@@ -23,7 +24,7 @@
 	function getClassList(){
 		sWhere = $("#txtSearchClass").val();
 		//alert((sWhere) + "&refID=" + $("#searchClassCert").val() + "&status=" + $("#searchClassStatus").val());
-		$.get("classControl.asp?op=getClassList&where=" + escape(sWhere) + "&refID=" + $("#searchClassCert").val() + "&status=" + $("#searchClassStatus").val() + "&dk=91&times=" + (new Date().getTime()),function(data){
+		$.get("classControl.asp?op=getClassList&where=" + escape(sWhere) + "&refID=" + $("#searchClassCert").val() + "&status=" + $("#searchClassStatus").val() + "&project=" + $("#searchClassProject").val() + "&dk=91&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");

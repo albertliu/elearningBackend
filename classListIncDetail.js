@@ -6,6 +6,7 @@
 						      <input class="button" type="button" id="btnAddClass" name="btnAddClass" value="新增" />
 						      &nbsp;|&nbsp;
 					          &nbsp;课程&nbsp;<select id="searchClassCert" style="width:120px"></select>&nbsp;
+					          &nbsp;批次&nbsp;<select id="searchClassProject" style="width:120px"></select>&nbsp;
 							  状态&nbsp;<select id="searchClassStatus" style="width:50px"></select>&nbsp;
 						      	<span style="float:right;">
 								    <input class="button" type="button" onClick="outputFloat(91,'file')" value="下载" />

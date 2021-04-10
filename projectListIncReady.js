@@ -58,7 +58,7 @@
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
 			arr.push("<th width='12%'>批次</th>");
-			arr.push("<th width='20%'>课程名称</th>");
+			arr.push("<th width='20%'>标题</th>");
 			arr.push("<th width='12%'>截止日期</th>");
 			arr.push("<th width='10%'>报名确认</th>");
 			arr.push("<th width='8%'>提交</th>");
@@ -80,7 +80,7 @@
 					arr.push("<tr class='grade0'>");
 					arr.push("<td class='center'>" + i + "</td>");
 					arr.push("<td class='link1'><a href='javascript:showProjectInfo(" + ar1[0] + ",0,0,1);'>" + ar1[1] + "</a></td>");
-					arr.push("<td class='left'>" + ar1[7] + "</td>");
+					arr.push("<td class='left'>" + ar1[2] + "</td>");
 					arr.push("<td class='left'>" + ar1[10] + "</td>");
 					arr.push("<td class='left' title='确认/拒绝/报名'><a href='javascript:downloadProjectList(\"" + ar1[1] + "\");'>" + ar1[20] + "</a></td>");
 					arr.push("<td class='left' title='提交/拒绝/确认'>" + ar1[27] + "</td>");
