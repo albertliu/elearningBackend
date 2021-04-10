@@ -9,7 +9,7 @@ if (String(Request.QueryString("mode")) != "undefined" &&
 var table = "";
 if (String(Request.QueryString("table")) != "undefined" && 
     String(Request.QueryString("table")) != "") { 
-  table = String(Request.QueryString("table"));
+  table = unescape(String(Request.QueryString("table")));
 }
 var field = "";
 if (String(Request.QueryString("field")) != "undefined" && 

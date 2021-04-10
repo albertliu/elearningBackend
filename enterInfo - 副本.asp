@@ -40,11 +40,11 @@
 		$.ajaxSetup({ 
 			async: false 
 		}); 
-		setButton();
-		
+		alert(op);
+		//setButton();
+		/*
 		if(op==1){
-			var x = "dbo.getStudentProjectRestList('" + refID + "')";
-			getComList("projectID",x,"projectID","projectName","1=1 order by projectID desc",1);
+			getComList("projectID","dbo.[getStudentProjectRestList]('" + refID + "')","projectID","projectName"," order by projectID desc",0);
 			setClassList();
 		}else{
 			getNodeInfo(nodeID);
@@ -57,10 +57,10 @@
 		$("#save").click(function(){
 			saveNode();
 		});
-		
+		*/
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
-
+/*
 	function getNodeInfo(id){
 		$.get("studentCourseControl.asp?op=getNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
@@ -120,7 +120,7 @@
 	function setClassList(){
 		$("#classID").empty();
 		if($("#projectID").val()>""){
-			getComList("classID","[dbo].[getClassListByProject]('" + $("#projectID").val() + "')","classID","classID"," 1=1 order by classID desc",1);
+			getComList("classID","[dbo].[getClassListByProject]('" + $("#projectID").val() + "')","classID","classID"," order by classID desc",1);
 		}
 	}
 	
@@ -155,7 +155,7 @@
 	function getUpdateCount(){
 		return updateCount;
 	}
-	
+	*/
 </script>
 
 </head>
@@ -216,7 +216,7 @@
 			</table>
 			</form>
 
-			<form id="payCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#f8f8ee;">
+			<form id="payCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eef8fa;">
 			<table>
 			<tr>
 				<td align="right">缴费类型</td><input type="hidden" id="payID" />
@@ -250,17 +250,17 @@
 			</tr>
 			<tr>
 				<td align="right">备注</td>
-				<td colspan="5"><input type="text" id="memo" style="width:100%;" /></td>
+				<td colspan="5"><input type="text" id="memo" size="70" /></td>
 			</tr>
 			</table>
 			</form>
 
 			<div id="new" style="width:100%;margin:0; padding-left:10px; padding-top:5px;">
 				<div>
-				<span id="project1">招生批次&nbsp;<select id="projectID" style="width:200px"></select>&nbsp;&nbsp;</span>
-				<span id="project0">招生批次&nbsp;<input class="readOnly" type="text" id="projectName" style="width:200px" readOnly="true" />&nbsp;&nbsp;</span>
+				<span id="project1">招生批次&nbsp;<select id="projectID" style="width:150px"></select>&nbsp;&nbsp;</span>
+				<span id="project0">招生批次&nbsp;<input class="readOnly" type="text" id="projectName" size="8" readOnly="true" />&nbsp;&nbsp;</span>
 				班级&nbsp;<select id="classID" style="width:100px"></select>&nbsp;&nbsp;
-				学号&nbsp;<input class="readOnly" type="text" id="SNo" size="2" readOnly="true" />
+				学号&nbsp;<input class="readOnly" type="text" id="SNo" size="25" readOnly="true" />
 				</div>
 			</div>
 			</div>
@@ -268,7 +268,7 @@
 	</div>
 	
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
-  	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
+  	<div class="comm" style="width:99%;float:top;margin:1px;background:#fccffc;">
 		<input class="button" type="button" id="reply" value="发通知" />&nbsp;
 		<input class="button" type="button" id="save" value="保存" />&nbsp;
 		<input class="button" type="button" id="btnEnter" value="报名" />&nbsp;

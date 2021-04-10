@@ -146,8 +146,8 @@
 	//objCombox: 填充目标  tblName：表名  id/item：字段名   where: 过滤条件   mark: 0 照实填充  1 第一行增加一个空行
 	function getComList(objCombox,tblName,id,item,where,mark){
 		//alert(tblName + "&field=" + id + "&sName=" + item + "&where=" + (where));
-		$.get("commonControl.asp?op=getComList&table=" + tblName + "&field=" + id + "&sName=" + item + "&where=" + escape(where) + "&times=" + (new Date().getTime()),function(re){
-			//jAlert(unescape(re));
+		$.get("commonControl.asp?op=getComList&table=" + escape(tblName) + "&field=" + id + "&sName=" + item + "&where=" + escape(where) + "&times=" + (new Date().getTime()),function(re){
+			//alert(unescape(re));
 			var ar = new Array();
 			ar = (unescape(re)).split("%%");
 			$("#" + objCombox).empty();
@@ -1343,11 +1343,11 @@
 	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
 	function showEnterInfo(nodeID,refID,op,mark){
 		asyncbox.open({
-			id: "enter",
+			id: "enterInfo",
 			url:"enterInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "报名信息",
 			width: 640,
-			height: 700,
+			height: 640,
 			cover : {
 	          //透明度
 	          opacity : 0,
@@ -1357,7 +1357,7 @@
 
 			btnsbar : false,
 			callback : function(action,iframe){
-				setReturnLog("class",iframe.nodeID);	
+				setReturnLog("enter",iframe.nodeID);	
 				var re = iframe.updateCount;
 				if(re>0 && mark==1){
 					getStudentCourseList(refID);
