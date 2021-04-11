@@ -195,7 +195,8 @@
 			$("#menu5").hide();
 			deleteTab("试卷管理");
 		}
-		if(!checkPermission("classBrowse")){
+		//if(!checkPermission("classBrowse")){
+		if(currHost > ""){	//公司的人看不到班级
 			$("#menu9").hide();
 		}
 		

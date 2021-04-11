@@ -90,7 +90,7 @@ body { background:#fff url(../images/bg0.gif); }
 .comm label {vertical-align:middle;border:0px; text-align:center;color: #3F410F;}
 .comm td {line-height:26px;vertical-align:middle; padding:0;margin:1px;}
 .comm textarea {line-height:20px;padding-left:3px;border:solid 1px #c0c0c0; background:#fcfcfc;vertical-align:middle;margin:3px;}
-.comm input.button {height:18px;vertical-align:middle;text-align:center;border:solid 1px #AAAAAA; background: #edeecd;padding:1px;margin:3px;}
+.comm input.button {height:18px;vertical-align:middle;text-align:center;border:solid 1px #AAAAAA; background: #edeecd;padding-left:3px;padding-right:3px;margin:3px;}
 .comm input.readOnly {height:18px;vertical-align:middle;border:solid 1px #f8f8ff; background: #e8e8e8;margin:3px;}
 .comm textarea.readOnly {border:solid 1px #f8f8ff; background: #e8e8e8;margin:3px;}
 .comm input.mustFill {height:18px;vertical-align:middle;border:solid 1px #c0c0c0; background: #fff0f0;margin:3px;}

@@ -144,6 +144,8 @@ if(op == "getStudentCourseList"){
 		result += "|" + rs("submited").value + "|" + rs("submitName").value + "|" + rs("submitName").value;
 		//41
 		result += "|" + rs("projectID").value + "|" + rs("classID").value + "|" + rs("SNo").value + "|" + rs("materialCheck").value + "|" + rs("materialChecker").value + "|" + rs("materialCheckerName").value;
+		//47
+		result += "|" + rs("price").value + "|" + rs("pay_kindName").value + "|" + rs("pay_typeName").value + "|" + rs("pay_statusName").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -171,13 +173,44 @@ if(op == "getNodeInfo"){
 	//Response.Write(escape(sql));
 }	
 
-if(op == "setMemo"){
-	result = 0;
-	if(result == 0){
-		sql = "exec setStudentCourseMemo " + nodeID + ",'" + item + "'";
-		execSQL(sql);
+if(op == "getPayInfo"){
+	result = "";
+	sql = "SELECT * FROM v_payInfo where ID=" + nodeID;
+	rs = conn.Execute(sql);
+	if(!rs.EOF){
+		result = rs("ID").value + "|" + rs("invoice").value + "|" + rs("amount").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("kindID").value + "|" + rs("kindName").value + "|" + rs("type").value + "|" + rs("typeName").value;
+		//9
+		result += "|" + rs("datePay").value + "|" + rs("dateInvoice").value + "|" + rs("dateInvoicePick").value + "|" + rs("dateRefund").value + "|" + rs("refunderID").value + "|" + rs("refunderName").value;
+		//15
+		result += "|" + rs("checkDate").value + "|" + rs("checkerID").value + "|" + rs("checkerName").value;
+		//18
+		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value;
 	}
+	rs.Close();
 	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}	
+
+if(op == "getPayDetailInfoByEnterID"){
+	result = "";
+	sql = "SELECT * FROM v_payDetailInfo where enterID=" + nodeID;
+	rs = conn.Execute(sql);
+	if(!rs.EOF){
+		result = rs("ID").value + "|" + rs("payID").value + "|" + rs("enterID").value + "|" + rs("price").value + "|" + rs("status").value + "|" + rs("statusName").value;
+		//6
+		result += "|" + rs("payID_old").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value;
+	}
+	rs.Close();
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}	
+
+if(op == "updatePayInfo"){
+	//@ID int,@invoice varchar(50),@projectID varchar(50),@kindID varchar(50),@type int,@status int,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo
+	sql = "exec updatePayInfo " + nodeID + ",'" + String(Request.QueryString("invoice")) + "','" + String(Request.QueryString("projectID")) + "','" + kindID + "','" + String(Request.QueryString("type")) + "','" + status + "','" + String(Request.QueryString("datePay")) + "','" + String(Request.QueryString("dateInvoice")) + "','" + String(Request.QueryString("dateInvoicePick")) + "','" + memo + "','" + currUser + "',''";
+	rs = conn.Execute(sql);
+	Response.Write(escape(0));
+	//Response.Write(escape(sql));
 }
 
 if(op == "delNode"){
@@ -203,5 +236,30 @@ if(op == "doStudentMaterial_resubmit"){
 	execSQL(sql);
 	Response.Write(0);
 }	
+
+if(op == "doMaterial_check"){
+	sql = "exec doMaterial_check " + nodeID + ",'" + currUser + "'";
+	execSQL(sql);
+	Response.Write(0);
+}	
+
+if(op == "updatePayPrice"){
+	sql = "exec updatePayPrice " + nodeID + "," + refID;
+	execSQL(sql);
+	Response.Write(0);
+}	
+
+if(op == "doEnter"){
+	//@username varchar(50),@classID varchar(50),@price int,@invoice varchar(50),@projectID varchar(50),@kindID varchar(50),@type int,@status int,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo,@registerID
+	sql = "exec doEnter '" + nodeID + "','" + String(Request.QueryString("classID")) + "','" + String(Request.QueryString("price")) + "','" + String(Request.QueryString("invoice")) + "','" + String(Request.QueryString("projectID")) + "'," + kindID + "," + String(Request.QueryString("type")) + "," + status + ",'" + String(Request.QueryString("datePay")) + "','" + String(Request.QueryString("dateInvoice")) + "','" + String(Request.QueryString("dateInvoicePick"))  + "','" + memo + "','" + currUser + "'";
+	
+	rs = conn.Execute(sql);
+	if (!rs.EOF){
+		result = rs("re").value + "|" + rs("msg").value + "|" + rs("payID").value + "|" + rs("enterID").value;
+	}
+	rs.Close();/**/
+	Response.Write(result);
+	//Response.Write(escape(sql));
+}
 
 %>

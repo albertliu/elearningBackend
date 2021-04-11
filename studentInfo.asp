@@ -9,7 +9,7 @@
 
 <title></title>
 
-<link href="css/style_inner1.css"  rel="stylesheet" type="text/css" />
+<link href="css/style_inner1.css?v=1.0"  rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/easyui/easyui.css">
 <link rel="stylesheet" type="text/css" href="css/easyui/icon.css">
 <link href="css/data_table_mini.css?v=20150411" rel="stylesheet" type="text/css" />
@@ -308,14 +308,19 @@
 			ar.shift();
 			arr1.push("<table class='table_help' width='100%'>");
 			arr1.push("<tr align='center' bgcolor='#e0e0e0'>");
-			arr1.push("<td width='18%'>课程</td><td width='12%'>批次</td><td width='12%'>班级</td><td width='10%'>学号</td><td width='15%'>缴费</td><td width='10%'>状态</td>");
+			arr1.push("<td width='25%'>课程</td><td width='12%'>批次</td><td width='15%'>班级</td><td width='10%'>学号</td><td width='10%'>材料</td><td width='10%'>缴费</td><td width='10%'>状态</td>");
 			arr1.push("</tr>");
+			var imgChk = "<img src='images/green_check.png'>";
 			if(ar > ""){
 				$.each(ar,function(iNum,val){
 					var ar1 = new Array();
 					ar1 = val.split("|");
+					var c = "";
+					if(ar1[44]==1){
+						c = imgChk;
+					}
 					arr1.push("<tr>");
-					arr1.push("<td><a href='javascript:getStudentCourseNodeInfo(" + ar1[0] + ");'>" + ar1[6] + "</a></td><td>" + ar1[41] + "</td><td>" + ar1[42] + "</td><td>" + ar1[43] + "</td><td></td><td>" + ar1[4] + "</td>");
+					arr1.push("<td><a href='javascript:showEnterInfo(" + ar1[0] + ",\"" + $("#username").val() + "\",0,1);'>" + ar1[6] + "</a></td><td>" + ar1[41] + "</td><td>" + ar1[42] + "</td><td>" + ar1[43] + "</td><td>" + c + "</td><td>" + ar1[50] + "</td><td>" + ar1[4] + "</td>");
 					arr1.push("</tr>");
 				});
 			}
@@ -584,7 +589,7 @@
 	<hr size="1" noshadow />
 	<div id='enterCover'></div>
 </div>
-<div style="padding: 5px;text-align:center;overflow:hidden;margin:0 auto;flot:right;">
+<div style="padding: 5px;text-align:center;overflow:hidden;margin:0 auto;flot:right;background: #eeeeff;">
 	<table style="width:99%;">
 	<tr>
 		<td align="right" style="width:15%;"><img id="add_img_photo" src="images/plus.png" tag="plus" /></td>
@@ -611,7 +616,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td align="left" colspan="2" style="width:100%;"><textarea id="text_reader_result" style="padding:5px;width:100%;background: #fcfcfc;border:solid 1px #ccc;" rows="2"></textarea></td>
+		<td align="left" colspan="2" style="width:100%;"><textarea id="text_reader_result" style="padding:5px;width:90%;background: #eeeeee;border:solid 1px #ccc;color:#ff0000;" rows="2"></textarea></td>
 	</tr>
 	</table>
 </div>

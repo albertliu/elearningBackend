@@ -143,4 +143,14 @@ if(op == "getStatus"){
 	Response.Write((result));
 }
 
+if(op == "getPrice"){
+	sql = "SELECT price,payKind FROM projectInfo where projectID='" + refID + "'";
+	rs = conn.Execute(sql);
+	if (!rs.EOF){
+		result = rs("price").value + "|" + rs("payKind").value;
+	}
+	rs.Close();
+	Response.Write((result));
+}
+
 %>
