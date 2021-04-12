@@ -58,6 +58,24 @@ if(op == "getStudentCourseList"){
 			where = s;
 		}
 	}
+	//如果有班级
+	if(String(Request.QueryString("classID")) > "" && String(Request.QueryString("classID")) != "null" && String(Request.QueryString("classID")) !="undefined"){ // 
+		s = "classID='" + String(Request.QueryString("classID")) + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//如果有材料确认
+	if(String(Request.QueryString("materialChecked")) > "" && String(Request.QueryString("materialChecked")) != "null" && String(Request.QueryString("materialChecked")) !="undefined"){ // 
+		s = "materialCheck=" + String(Request.QueryString("materialChecked"));
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 	if(fStart > "" && fStart !="undefined"){
 		s = "regDate>='" + fStart + "'";
 		if(where > ""){
@@ -74,15 +92,15 @@ if(op == "getStudentCourseList"){
 			where = s;
 		}
 	}
-	/*
-	if(String(Request.QueryString("old")) == 1){
-		s = "age>=55";
+	//mark=1: 学校教务查询。
+	if(String(Request.QueryString("mark")) == 1){
+		s = "projectID>''";
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
 			where = s;
 		}
-	}*/
+	}
 	//课程
 	if(String(Request.QueryString("courseID")) > "" && String(Request.QueryString("courseID")) !="undefined"){
 		s = "courseID='" + String(Request.QueryString("courseID")) + "'";
@@ -146,6 +164,8 @@ if(op == "getStudentCourseList"){
 		result += "|" + rs("projectID").value + "|" + rs("classID").value + "|" + rs("SNo").value + "|" + rs("materialCheck").value + "|" + rs("materialChecker").value + "|" + rs("materialCheckerName").value;
 		//47
 		result += "|" + rs("price").value + "|" + rs("pay_kindName").value + "|" + rs("pay_typeName").value + "|" + rs("pay_statusName").value;
+		//51
+		result += "|" + rs("projectName").value + "|" + rs("className").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -166,7 +186,9 @@ if(op == "getNodeInfo"){
 		//19
 		result += "|" + rs("startDate").value + "|" + rs("endDate").value + "|" + rs("job").value + "|" + rs("pass_condition").value + "|" + rs("checked").value + "|" + rs("checkName").value + "|" + rs("SNo").value;
 		//26
-		result += "|" + rs("projectID").value + "|" + rs("classID").value + "|" + rs("materialCheck").value + "|" + rs("materialChecker").value + "|" + rs("materialCheckerName").value;
+		result += "|" + rs("projectID").value + "|" + rs("classID").value + "|" + rs("materialCheck").value + "|" + rs("materialChecker").value + "|" + rs("materialCheckerName").value + "|" + rs("checkDate").value + "|" + rs("checkerName").value;
+		//33
+		result += "|" + rs("projectName").value + "|" + rs("className").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -239,6 +261,12 @@ if(op == "doStudentMaterial_resubmit"){
 
 if(op == "doMaterial_check"){
 	sql = "exec doMaterial_check " + nodeID + ",'" + currUser + "'";
+	execSQL(sql);
+	Response.Write(0);
+}	
+
+if(op == "doMaterial_check_batch"){
+	sql = "exec doMaterial_check_batch '" + keyID + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(0);
 }	

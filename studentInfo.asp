@@ -299,7 +299,7 @@
 
 	function getStudentCourseList(id){
 		//alert(id);
-		$.get("studentCourseControl.asp?op=getStudentCourseList&keyID=" + id,function(data1){
+		$.get("studentCourseControl.asp?op=getStudentCourseList&mark=1&keyID=" + id,function(data1){
 			//alert(unescape(data1));
 			var ar = new Array();
 			var arr1 = new Array();

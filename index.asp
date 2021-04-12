@@ -81,6 +81,7 @@
 	<!--#include file="generateScoreListIncReady.js"-->
 	<!--#include file="generateMaterialListIncReady.js"-->
 	<!--#include file="classListIncReady.js"-->
+	<!--#include file="enterListIncReady.js"-->
 	<!--#include file="rptStudentIncReady.js"-->
 	<!--#include file="rptTrainningIncReady.js"-->
 	<!--#include file="rptDiplomaIncReady.js"-->
@@ -198,6 +199,7 @@
 		//if(!checkPermission("classBrowse")){
 		if(currHost > ""){	//公司的人看不到班级
 			$("#menu9").hide();
+			$("#menu10").hide();
 		}
 		
 		if(currHostKind==0 && currHost > ""){	//集团用户不使用导入报名表, 照片批量上传，成绩导入功能
@@ -305,7 +307,8 @@
 					<ul class="tabs-nav">
 						<li><a href="#fragment-0"><span>我的事务</span></a></li>
 						<li><a href="#fragment-1"><span>学员管理</span></a></li>
-						<li><a href="#fragment-2"><span>培训报名</span></a></li>
+						<li id="menu2"><a href="#fragment-2"><span>培训报名</span></a></li>
+						<li id="menu10"><a href="#fragment-10"><span>报名管理</span></a></li>
 						<li id="menu9"><a href="#fragment-9"><span>班级管理</span></a></li>
 						<li><a href="#fragment-3"><span>证书管理</span></a></li>
 						<li><a href="#fragment-4"><span>课程管理</span></a></li>
@@ -408,6 +411,19 @@
 					
 					<div id="fragment-2">
 						<!--#include file="studentCourseListIncDetail.js"-->
+					</div>
+					
+					<div id="fragment-10">
+						<div id="dhtmlgoodies_tabView10">
+							<div id="dtab101" class="dhtmlgoodies_aTab">
+								<!--#include file="enterListIncDetail.js"-->
+							</div>
+							<div id="dtab102" class="dhtmlgoodies_aTab">
+							</div>
+						</div>
+						<script type="text/javascript">
+							initTabs('dhtmlgoodies_tabView10',Array("报名清单","缴费清单"),0,960,400);
+						</script>
 					</div>
 					
 					<div id="fragment-9">

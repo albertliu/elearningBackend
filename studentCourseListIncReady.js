@@ -316,9 +316,9 @@
 					}else{
 						arr.push("<td class='left'>" + ar1[6] + "</td>");
 						if(currHost==""){
-							arr.push("<td class='left'>" + ar1[12] + "</td>");
+							arr.push("<td class='left'>" + ar1[12].substr(0,4) + "</td>");
 						}else{
-							arr.push("<td class='left'>" + ar1[13] + "</td>");
+							arr.push("<td class='left'>" + ar1[13].substr(0,5) + "</td>");
 						}
 						arr.push("<td class='left'>" + ar1[4] + "</td>");
 						arr.push("<td class='left'>" + ar1[11] + "</td>");

@@ -84,6 +84,18 @@
 			showMessageInfo(0,0,1,0,$("#username").val());
 		});
 
+		$("#kindID").change(function(){
+			setButton();
+		});
+
+		$("#btnPay").click(function(){
+			$("#status").val(1);
+			$("#datePay").val(currDate);
+			$("#dateInvoice").val(currDate);
+			$("#dateInvoicePick").val(currDate);
+			$("#invoice").val(parseInt(getDicItem(0,"invoiceNo")) + 1);
+		});
+
 		$("#btnMaterialCheck").click(function(){
 			if($("#studentCourseID").val()>0){
 				jConfirm('确定这个学员的报名材料齐全合规吗?', '确认对话框', function(r) {
@@ -123,7 +135,15 @@
 				$("#mobile").val(ar[17]);
 				$("#startDate").val(ar[19]);
 				$("#endDate").val(ar[20]);
+				$("#SNo").val(ar[25]);
+				$("#checkDate").val(ar[31]);
+				$("#checkerName").val(ar[32]);
 				$("#projectID").val(ar[26]);
+				if(ar[23]==1){
+					$("#checked").prop("checked",true);
+				}else{
+					$("#checked").prop("checked",false);
+				}
 				if(ar[28]==1){
 					$("#materialCheck").prop("checked",true);
 				}else{
@@ -131,6 +151,8 @@
 				}
 
 				$("#materialCheckerName").val(ar[30]);
+				$("#projectName").val(ar[33] + ar[26]);
+				$("#className").val(ar[34]);
 
 				getPayDetailInfoByEnterID(ar[0]);
 			//getDownloadFile("studentCourseID");
@@ -236,15 +258,20 @@
 	
 	function setButton(){
 		$("#save").hide();
-		$("#new").hide();
+		//$("#new").hide();
 		$("#btnEnter").hide();
 		$("#btnReturn").hide();
 		$("#btnRefund").hide();
 		$("#btnMaterialCheck").hide();
 		$("#reply").hide();
+		$("#btnPay").hide();
+		if(checkPermission("studentAdd") && $("#status").val()==0 && $("#kindID").val()==0){
+			//未支付的个人付款可以支付，团体付款应到发票管理中操作。
+			$("#btnPay").show();
+		}
 		if(op==1){
 			//新增报名：显示报名选项、报名按钮
-			$("#new").show();
+			//$("#new").show();
 			$("#btnEnter").show();
 			$("#project0").hide();
 			$("#project1").show();
@@ -281,10 +308,10 @@
 		
 		if($("#kindID").val()==0){
 			//个人缴费
-			$("#datePay").val(currDate);
-			$("#dateInvoice").val(currDate);
-			$("#dateInvoicePick").val(currDate);
-			$("#invoice").val(parseInt(getDicItem(0,"invoiceNo")) + 1);
+			//$("#datePay").val(currDate);
+			//$("#dateInvoice").val(currDate);
+			//$("#dateInvoicePick").val(currDate);
+			//$("#invoice").val(parseInt(getDicItem(0,"invoiceNo")) + 1);
 		}
 		if($("#kindID").val()==1){
 			//团体缴费
@@ -334,7 +361,7 @@
 			</tr>
 			<tr>
 				<td align="right">公司确认</td>
-				<td><input class="readOnly" type="text" id="checkerName" size="25" readOnly="true" /></td>
+				<td><input style="border:0px;" type="checkbox" id="checked" value="" />&nbsp;&nbsp;<input class="readOnly" type="text" id="checkerName" size="5" readOnly="true" /></td>
 				<td align="right">确认日期</td>
 				<td><input class="readOnly" type="text" id="checkDate" size="25" readOnly="true" /></td>
 			</tr>
@@ -348,7 +375,7 @@
 				<td align="right">手机</td>
 				<td><input class="readOnly" type="text" id="mobile" size="25" readOnly="true" /></td>
 				<td align="right">资料确认</td>
-				<td><input style="border:0px;" type="checkbox" id="materialCheck" value="" /><input class="readOnly" type="text" id="materialCheckerName" size="5" readOnly="true" /></td>
+				<td><input style="border:0px;" type="checkbox" id="materialCheck" value="" />&nbsp;&nbsp;<input class="readOnly" type="text" id="materialCheckerName" size="5" readOnly="true" /></td>
 			</tr>
 			<tr>
 				<td align="right">报名状态</td>
@@ -378,7 +405,7 @@
 				<td align="right">缴费类型</td><input type="hidden" id="payID" /><input type="hidden" id="payDetailID" />
 				<td><select id="kindID" style="width:180px;"></select></td>
 				<td align="right">缴费金额</td>
-				<td><input type="text" id="price" size="25" /></td>
+				<td><input type="text" id="price" style="width:50px;" />&nbsp;&nbsp;<input class="button" type="button" id="btnPay" value="付款" /></td>
 			</tr>
 			<tr>
 				<td align="right">支付方式</td>
