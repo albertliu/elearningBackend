@@ -7,15 +7,19 @@
 
 <title></title>
 
-<link href="css/style_inner1.css?ver=1.1"  rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="css/easyui/easyui.css">
+<link href="css/style_inner1.css"  rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/easyui/easyui.css?v=1.8.6">
 <link rel="stylesheet" type="text/css" href="css/easyui/icon.css">
-<link href="css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="css/data_table_mini.css?v=20150411" rel="stylesheet" type="text/css" />
+<link href="css/jquery-confirm.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="css/asyncbox/asyncbox.css" type="text/css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
-<script language="javascript" src="js/jquery-1.7.2.min.js"></script>
+<script language="javascript" src="js/jquery-1.12.4.min.js"></script>
 <script language="javascript" src="js/jquery.form.js"></script>
-<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
-<script src="js/jquery.alerts.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/jquery.easyui.min.js?v=1.8.6"></script>
+<script src="js/jquery-confirm.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/AsyncBox.v1.4.js"></script>
+<script language="javascript" type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 <script src="js/datepicker/WdatePicker.js" type="text/javascript"></script>
 <script type='text/javascript' src='js/jquery.autocomplete.js'></script>
 <!--#include file="js/clickMenu.js"-->
@@ -54,7 +58,7 @@
 		$("#certID").change(function(){
 			if($("#certID").val()>""){
 				var id=$("#certID").val();
-				setProjectList(id);
+				setProjectList(id,[]);
 			}
 		});
 	  	<!--#include file="commLoadFileReady.asp"-->
@@ -62,14 +66,15 @@
 
 	function getNodeInfo(id){
 		$.get("classControl.asp?op=getNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
-			//jAlert(unescape(re));
+			//alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar > ""){
 				$("#ID").val(ar[0]);
 				$("#classID").val(ar[1]);
-				$("#projectID").val(ar[2]);
+				//$("#projectID").val(ar[2]);
 				$("#certID").val(ar[3]);
+				setProjectList(ar[3],ar[2]);
 				$("#kindID").val(ar[5]);
 				$("#status").val(ar[6]);
 				$("#adviserID").val(ar[8]);
@@ -83,7 +88,7 @@
 				//getDownloadFile("classID");
 				setButton();
 			}else{
-				jAlert("该信息未找到！","信息提示");
+				alert("该信息未找到！","信息提示");
 				setEmpty();
 			}
 		});
@@ -91,8 +96,8 @@
 	
 	function saveNode(){
 		//alert($("#classID").val() + "&item=" + ($("#memo").val()));
-		$.get("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&projectID=" + $("#projectID").val() + "&classroom=" + escape($("#classroom").val()) + "&certID=" + $("#certID").val() + "&adviserID=" + $("#adviserID").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
-			//jAlert(unescape(re));
+		$.get("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&classroom=" + escape($("#classroom").val()) + "&certID=" + $("#certID").val() + "&adviserID=" + $("#adviserID").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+			//alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar[0] == 0){
@@ -100,19 +105,46 @@
 					op = 0;
 					getNodeInfo(ar[1]);
 				}
-				jAlert("保存成功！","信息提示");
+				alert("保存成功！","信息提示");
 				updateCount += 1;
 			}
 			if(ar[0] != 0){
-				jAlert("未能成功提交，请退出后重试。","信息提示");
+				alert("未能成功提交，请退出后重试。","信息提示");
 			}
 		});
 		//return false;
 	}
 	
-	function setProjectList(id){
+	function setProjectList(id,s){
 		$("#projectID").empty();
-		getComList("projectID","projectInfo","projectID","projectName"," status>0 and certID='" + id + "' order by projectID desc",1);
+		//getComList("projectID","projectInfo","projectID","projectName"," status>0 and certID='" + id + "' order by projectID desc",1);
+		$.getJSON(uploadURL + "/public/getProjectListBycertID?certID=" + id ,function(data){
+			if(data>""){
+				//alert(data[0]["deptName"]);
+				//data = [{"id":1,"text":"text1"},{"id":2,"text":"text2"},{"id":3,"text":"text3"},{"id":4,"text":"text4"},{"id":5,"text":"text5"}];
+				$('#projectID').combobox({
+					data: data,
+					valueField:'projectID',
+					textField:'projectName',
+					//panelHeight: 200,
+					multiple: true,
+					editable: false,
+					onLoadSuccess: function () { // 下拉框数据加载成功调用
+						// 正常情况下是默认选中“所有”，但我想实现点击所有全选功能，这这样会冲突，暂时默认都不选
+						//$("#dept").combobox('clear'); //清空
+						$('#projectID').combobox("setValues",s);
+
+						// var opts = $(this).combobox('options');
+						// var values = $('#'+_id).combobox('getValues');
+						// $.map(opts.data, function (opt) {
+						//     if (opt.id === '') { // 将"所有"的复选框勾选
+						//         $('#'+opt.domId + ' input[type="checkbox"]').prop("checked", true);
+						//     }
+						// });
+					}
+				});
+			}
+		});
 	}
 	
 	function setButton(){
@@ -169,7 +201,7 @@
 				<td align="right">课程名称</td>
 				<td><select id="certID" style="width:180px;"></select></td>
 				<td align="right">招生批次</td>
-				<td><select id="projectID" style="width:180px;"></select></td>
+				<td><input type="text" id="projectID" name="projectID" size="25" /></td>
 			</tr>
 			<tr>
 				<td align="right">开课日期</td>
