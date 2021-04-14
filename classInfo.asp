@@ -50,6 +50,13 @@
 		$("#save").click(function(){
 			saveNode();
 		});
+
+		$("#certID").change(function(){
+			if($("#certID").val()>""){
+				var id=$("#certID").val();
+				setProjectList(id);
+			}
+		});
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -101,6 +108,11 @@
 			}
 		});
 		//return false;
+	}
+	
+	function setProjectList(id){
+		$("#projectID").empty();
+		getComList("projectID","projectInfo","projectID","projectName"," status>0 and certID='" + id + "' order by projectID desc",1);
 	}
 	
 	function setButton(){

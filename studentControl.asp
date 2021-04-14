@@ -132,9 +132,10 @@ if(op == "getNodeInfo"){
 	result = "";
 	if(nodeID>0){
 		sql = "SELECT * FROM v_studentInfo where userID=" + nodeID;
-	}
-	if(refID>""){
-		sql = "SELECT * FROM v_studentInfo where username='" + refID + "'";
+	}else{
+		if(refID>""){
+			sql = "SELECT * FROM v_studentInfo where username='" + refID + "'";
+		}
 	}
 	rs = conn.Execute(sql);
 	if(!rs.EOF){

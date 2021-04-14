@@ -2,7 +2,8 @@
 						<div class="comm" align='left' style="background:#fdfdfd;">
 						<form><label>搜索:</label>
 				          <input type="text" id="txtSearchEnter" name="txtSearchEnter" size="10" title="姓名、身份证" style="background:yellow;" />
-				          <input class="button" type="button" id="btnSearchEnter" value="查找" />
+				          <input class="button" type="button" id="btnSearchEnter" value="查找" />&nbsp;
+				          <input class="button" type="button" id="btnSearchEnterAdd" value="添加" />
 						  	<span id="enterListLongItem1">&nbsp;
 					          &nbsp;公司&nbsp;<select id="searchEnterHost" style="width:80px"></select>&nbsp;&nbsp;
 				          	</span>
@@ -11,7 +12,7 @@
 				          	</span>
 							状态&nbsp;<select id="searchEnterStatus" style="width:50px"></select>&nbsp;&nbsp;
 							<span id="enterListLongItem6">
-								课程&nbsp;<select id="searchEnterID" style="width:80px"></select>&nbsp;&nbsp;
+								课程&nbsp;<select id="searchEnterCourseID" style="width:80px"></select>&nbsp;&nbsp;
 							</span>
 							批次&nbsp;<select id="searchEnterProjectID" style="width:75px"></select>&nbsp;&nbsp;
 							班级&nbsp;<select id="searchEnterClassID" style="width:75px"></select>&nbsp;&nbsp;

@@ -28,6 +28,7 @@
 
 <script language="javascript">
 	var nodeID = "";
+	var refID = "";
 	var op = 0;
 	var updateCount = 0;
 	var username = "";
@@ -38,6 +39,7 @@
 	<!--#include file="js/EST_reader.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";
+		refID = "<%=refID%>";	//username
 		op = "<%=op%>";
 		
 		$.ajaxSetup({ 
@@ -53,13 +55,15 @@
 			getComList("companyID","deptInfo","deptID","deptName",w,0);
 		}
 		//setButton();
-		getNodeInfo(nodeID,"");
+		if(op==0){
+			getNodeInfo(nodeID,refID);
+		}
 
 		$("#reply").click(function(){
 			showMessageInfo(0,0,1,0,$("#username").val());
 		});
 		$("#enter").click(function(){
-			showEnterInfo(0,$("#username").val(),1,1);
+			showEnterInfo(0,$("#username").val(),1,1,$("#companyID").val());
 		});
 		$("#save").click(function(){
 			saveNode();
@@ -103,16 +107,16 @@
 		});
 
 		$("#add_img_photo").click(function(){
-			showLoadFile("student_photo",$("#username").val(),"student","");
+			showLoadFile("student_photo",$("#username").val(),"student",$("#host").val());
 		});
 		$("#add_img_cardA").click(function(){
-			showLoadFile("student_IDcardA",$("#username").val(),"student","");
+			showLoadFile("student_IDcardA",$("#username").val(),"student",$("#host").val());
 		});
 		$("#add_img_cardB").click(function(){
-			showLoadFile("student_IDcardB",$("#username").val(),"student","");
+			showLoadFile("student_IDcardB",$("#username").val(),"student",$("#host").val());
 		});
 		$("#add_img_education").click(function(){
-			showLoadFile("student_education",$("#username").val(),"student","");
+			showLoadFile("student_education",$("#username").val(),"student",$("#host").val());
 		});
 		$("#img_photo").click(function(){
 			if($("#img_photo").attr("value")>""){
@@ -140,6 +144,12 @@
 			setDeptList($("#dept1").val(),2,$("#kindID").val());
 		});
 		$("#companyID").change(function(){
+			if($("#companyID").val()==8){
+				$("#kindID").show();
+			}else{
+				$("#kindID").val(0);
+				$("#kindID").hide();
+			}
 			setDeptList($("#companyID").val(),1,$("#kindID").val());
 		});
 		$("#dept1").change(function(){
@@ -159,7 +169,7 @@
 
 	function getNodeInfo(id,ref){
 		$.get("studentControl.asp?op=getNodeInfo&nodeID=" + id + "&refID=" + ref + "&times=" + (new Date().getTime()),function(re){
-			//jAlert(unescape(re));
+			//alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar > ""){
@@ -204,18 +214,21 @@
 				}
 				if(ar[22] > ""){
 					$("#img_cardA").attr("src","/users" + ar[22]);
+					$("#img_cardA").attr("value","/users" + ar[22]);
 				}else{
 					$("#img_cardA").attr("src","images/blank_cardA.png");
 					arr.push("," + "cardA");
 				}
 				if(ar[23] > ""){
 					$("#img_cardB").attr("src","/users" + ar[23]);
+					$("#img_cardB").attr("value","/users" + ar[23]);
 				}else{
 					$("#img_cardB").attr("src","images/blank_cardB.png");
 					arr.push("," + "cardB");
 				}
 				if(ar[24] > ""){
 					$("#img_education").attr("src","/users" + ar[24]);
+					$("#img_education").attr("value","/users" + ar[24]);
 				}else{
 					$("#img_education").attr("src","images/blank_education.png");
 				}
@@ -229,7 +242,8 @@
 				setButton();
 			}else{
 				jAlert("该信息未找到！","信息提示");
-				setEmpty();
+				op = 1;
+				setButton();
 			}
 		});
 	}
@@ -243,8 +257,8 @@
 			jAlert("请选择公司。");
 			return false;
 		}
-		if($("#mobile").val()==""){
-			jAlert("请填写手机。");
+		if($("#mobile").val().length != 11){
+			jAlert("请正确填写手机。");
 			return false;
 		}
 		if($("#name").val()==""){
@@ -262,7 +276,9 @@
 				jAlert("保存成功！","信息提示");
 				updateCount += 1;
 				op = 0;
+				getNodeInfo(0,$("#username").val());
 			}
+			setSession("lastcompany", $("#companyID").val());
 		});
 		if(replace_item > ""){
 			//上传被替换的图片
@@ -370,6 +386,12 @@
 				$("#close").hide();
 			}
 		}
+		if($("#companyID").val()==8){
+			$("#kindID").show();
+		}else{
+			$("#kindID").val(0);
+			$("#kindID").hide();
+		}
 	}
 	
 	function setEmpty(){
@@ -383,7 +405,7 @@
 		$("#email").val("");
 		$("#kindID").val(0);
 		$("#limitDate").val("");
-		//$("#companyID").val();
+		$("#companyID").val(getSession("lastcompany"));
 		//$("#dept1").val(ar[26]);				
 		//$("#dept2").val(ar[27]);
 		//$("#job").val(ar[18]);
@@ -521,26 +543,26 @@
 			<tr>
 				<td align="right">状态</td>
 				<td><input class="readOnly" readOnly="true" type="text" id="statusName" size="25" /></td>
-				<td align="right">类型</td>
-				<td><select id="kindID" style="width:180px;"></select></td>
+				<td align="right">学历</td>
+				<td><select id="education" style="width:180px;"></select></td>
 			</tr>
 			<tr>
 				<td align="right">公司</td>
 				<td><select id="companyID" style="width:180px;"></select></td>
+				<td align="right">类型</td>
+				<td><select id="kindID" style="width:180px;"></select></td>
+			</tr>
+			<tr>
 				<td align="right">一级部门</td>
 				<td><select id="dept1" style="width:180px;"></select></td>
-			</tr>
-			<tr>
 				<td align="right">二级部门</td>
 				<td><select id="dept2" style="width:180px;"></select></td>
-				<td align="right">三级部门</td>
-				<td><select id="dept3" style="width:180px;"></select></td>
 			</tr>
 			<tr>
+				<td align="right">三级部门</td>
+				<td><select id="dept3" style="width:180px;"></select></td>
 				<td align="right">岗位</td>
 				<td><input type="text" id="job" size="25" /></td>
-				<td align="right">学历</td>
-				<td><select id="education" style="width:180px;"></select></td>
 			</tr>
 			<tr>
 				<td align="right">就业状态</td>
@@ -600,19 +622,19 @@
 	<tr>
 		<td align="right" style="width:15%;"><img id="add_img_cardA" src="images/plus.png" tag="plus" /></td>
 		<td style="width:85%;">
-			<img id="img_cardA" src="" style='width:150px;background: #ccc;border:1px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);opacity: 0.8;' />
+			<img id="img_cardA" src="" value="" style='width:150px;background: #ccc;border:1px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);opacity: 0.8;' />
 		</td>
 	</tr>
 	<tr>
 		<td align="right" style="width:15%;"><img id="add_img_cardB" src="images/plus.png" tag="plus" /></td>
 		<td style="width:85%;">
-			<img id="img_cardB" src="" style='width:150px;background: #ccc;border:1px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);opacity: 0.8;' />
+			<img id="img_cardB" src="" value="" style='width:150px;background: #ccc;border:1px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);opacity: 0.8;' />
 		</td>
 	</tr>
 	<tr>
 		<td align="right" style="width:15%;"><img id="add_img_education" src="images/plus.png" tag="plus" /></td>
 		<td style="width:85%;">
-			<img id="img_education" src="" style='width:150px;background: #ccc;border:1px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);opacity: 0.8;' />
+			<img id="img_education" src="" value="" style='width:150px;background: #ccc;border:1px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);opacity: 0.8;' />
 		</td>
 	</tr>
 	<tr>

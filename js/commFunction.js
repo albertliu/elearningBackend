@@ -1341,13 +1341,13 @@
 	}
 	
 	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
-	function showEnterInfo(nodeID,refID,op,mark){
+	function showEnterInfo(nodeID,refID,op,mark,companyID){
 		asyncbox.open({
 			id: "enterInfo",
-			url:"enterInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
+			url:"enterInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&keyID=" + companyID + "&p=1&times=" + (new Date().getTime()),
 			title: "报名信息",
-			width: 640,
-			height: 640,
+			width: 650,
+			height: 650,
 			cover : {
 	          //透明度
 	          opacity : 0,
@@ -1371,14 +1371,45 @@
 		});
 	}
 	
+	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
+	function showMaterialsInfo(nodeID,refID,op,mark){
+		asyncbox.open({
+			id: "materialsInfo",
+			url:"materialsInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
+			title: "报名材料",
+			width: 600,
+			height: 600,
+			cover : {
+	          //透明度
+	          opacity : 0,
+	          //背景颜色
+	           background : '#000'
+	          },
+
+			btnsbar : false,
+			callback : function(action,iframe){
+				setReturnLog("materials",iframe.nodeID);	
+				var re = iframe.updateCount;
+				if(re>0 && mark==1){
+					//getStudentCourseList(refID);
+				}
+				//alert(re + ":" + mark);
+				if(re>0 && mark==2){
+					//alert(iframe.getValList());
+					setObjValue("enter",iframe.getValList(),0,0);  //根据请求，返回任意个数的项目，为相应的对象赋值。objList:传入的Object列表；valList：输出的值；mark：0 不动作 1 关闭本窗口（与objList同名）; loc: 0 同级别  1 父窗体
+				}
+　　　		}
+		});
+	}
+	
 	//nodeID: ;
 	function showUseCardInfo(){
 		asyncbox.open({
 			id: "useCard",
 			url:"useCardInfo.asp?p=1&times=" + (new Date().getTime()),
 			title: "身份证信息",
-			width: 640,
-			height: 640,
+			width: 500,
+			height: 500,
 			cover : {
 	          //透明度
 	          opacity : 0,

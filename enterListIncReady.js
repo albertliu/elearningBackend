@@ -4,7 +4,7 @@
 
 	$(document).ready(function (){
 		getComList("searchEnterHost","hostInfo","hostNo","title","status=0 order by hostName",1);
-		getComList("searchEnterID","courseInfo","courseID","courseName","status=0 order by courseID",1);
+		getComList("searchEnterCourseID","v_courseInfo","courseID","courseName","status=0 and type=0 order by courseID",1);
 		getComList("searchEnterProjectID","projectInfo","projectID","projectID","status>0 and status<9 order by ID desc",1);
 		getComList("searchEnterClassID","classInfo","classID","classID","1=1 order by ID desc",1);
 
@@ -114,6 +114,14 @@
 				}
 			});
 		});
+		
+		if(!checkPermission("studentAdd")){
+			$("#btnSearchEnterAdd").hide();
+		}
+		
+		$("#btnSearchEnterAdd").click(function(){
+			showStudentInfo(0,0,1,1);
+		});
 
 		//getEnterList();
 	});
@@ -122,10 +130,10 @@
 		sWhere = $("#txtSearchEnter").val();
 		var Old = 0;
 		//if($("#searchEnterOld").attr("checked")){Old = 1;}
-		//alert($("#searchEnterDept").val() + "&refID=" + $("#searchEnterProjectID").val() + "&status=" + $("#searchEnterStatus").val() + "&photoStatus=" + $("#searchEnterPhotoStatus").val() + "&courseID=" + $("#searchEnterID").val() + "&host=" + $("#searchEnterHost").val() + "&checked=" + $("#searchEnterChecked").val() + "&materialChecked=" + $("#searchEnterMaterialChecked").val() + "&classID=" + $("#searchEnterClassID").val());
-		$.get("studentCourseControl.asp?op=getEnterList&where=" + escape(sWhere) + "&mark=1&kindID=" + $("#searchEnterDept").val() + "&refID=" + $("#searchEnterProjectID").val() + "&status=" + $("#searchEnterStatus").val() + "&photoStatus=" + $("#searchEnterPhotoStatus").val() + "&courseID=" + $("#searchEnterID").val() + "&host=" + $("#searchEnterHost").val() + "&checked=" + $("#searchEnterChecked").val() + "&materialChecked=" + $("#searchEnterMaterialChecked").val() + "&classID=" + $("#searchEnterClassID").val() + "&fStart=" + $("#searchEnterStartDate").val() + "&fEnd=" + $("#searchEnterEndDate").val() + "&dk=101&times=" + (new Date().getTime()),function(data){
+		//alert($("#searchEnterDept").val() + "&refID=" + $("#searchEnterProjectID").val() + "&status=" + $("#searchEnterStatus").val() + "&photoStatus=" + $("#searchEnterPhotoStatus").val() + "&courseID=" + $("#searchEnterCourseID").val() + "&host=" + $("#searchEnterHost").val() + "&checked=" + $("#searchEnterChecked").val() + "&materialChecked=" + $("#searchEnterMaterialChecked").val() + "&classID=" + $("#searchEnterClassID").val());
+		$.get("studentCourseControl.asp?op=getStudentCourseList&where=" + escape(sWhere) + "&mark=1&kindID=" + $("#searchEnterDept").val() + "&refID=" + $("#searchEnterProjectID").val() + "&status=" + $("#searchEnterStatus").val() + "&photoStatus=" + $("#searchEnterPhotoStatus").val() + "&courseID=" + $("#searchEnterCourseID").val() + "&host=" + $("#searchEnterHost").val() + "&checked=" + $("#searchEnterChecked").val() + "&materialChecked=" + $("#searchEnterMaterialChecked").val() + "&classID=" + $("#searchEnterClassID").val() + "&fStart=" + $("#searchEnterStartDate").val() + "&fEnd=" + $("#searchEnterEndDate").val() + "&dk=101&times=" + (new Date().getTime()),function(data){
 		//$.getJSON("enterControl.asp?op=getEnterList",function(data){
-			//jAlert(unescape(data));
+			//alert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
 			$("#enterCover").empty();
@@ -186,7 +194,7 @@
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
 					arr.push("<td class='link1'><a href='javascript:showEnterInfo(\"" + ar1[0] + "\",0,0,1);'>" + ar1[1] + "</a></td>");
-					arr.push("<td class='left'>" + ar1[2] + "</td>");
+					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + ar1[1] + "\",0,1);'>" + ar1[2] + "</a></td>");
 					if($("#searchEnterProjectID").val()>"" && $("#searchEnterShowPhoto").attr("checked")){
 						$.each(ar2,function(iNum1,val1){
 							var ar3 = new Array();

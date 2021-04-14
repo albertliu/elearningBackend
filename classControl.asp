@@ -27,7 +27,7 @@ if(op == "getClassList"){
 		}
 	}
 	//如果有批次
-	if(String(Request.QueryString("projectID")) > ""){ // 
+	if(String(Request.QueryString("projectID")) > "" && String(Request.QueryString("projectID")) !="undefined"){ // 
 		s = "projectID='" + String(Request.QueryString("projectID")) + "'";
 		if(where > ""){
 			where = where + " and " + s;

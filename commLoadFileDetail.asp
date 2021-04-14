@@ -76,7 +76,7 @@
 			<div id="radioCover" style="margin: 10px;"></div>
 			<form class="comm" action="" id="formUpload" name="formUpload" encType="multipart/form-data"  method="post" target="hidden_frame" >
 				<div style="margin: 10px;">
-					<input type="file" id="avatar" name="avatar" style="width:300px;">
+					<input type="file" id="avatar" name="avatar" style="width:300px;height:28px;padding:2px;">
 					&nbsp;&nbsp;<input name="restore" type="button"  id="restore" value="上传" style="cursor:hand;margin:10px;">
 				</div>
 			</form>

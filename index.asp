@@ -82,6 +82,8 @@
 	<!--#include file="generateMaterialListIncReady.js"-->
 	<!--#include file="classListIncReady.js"-->
 	<!--#include file="enterListIncReady.js"-->
+	<!--#include file="payListIncReady.js"-->
+	<!--#include file="invoiceListIncReady.js"-->
 	<!--#include file="rptStudentIncReady.js"-->
 	<!--#include file="rptTrainningIncReady.js"-->
 	<!--#include file="rptDiplomaIncReady.js"-->
@@ -200,6 +202,8 @@
 		if(currHost > ""){	//公司的人看不到班级
 			$("#menu9").hide();
 			$("#menu10").hide();
+		}else{
+			$("#menu2").hide();
 		}
 		
 		if(currHostKind==0 && currHost > ""){	//集团用户不使用导入报名表, 照片批量上传，成绩导入功能
@@ -419,10 +423,16 @@
 								<!--#include file="enterListIncDetail.js"-->
 							</div>
 							<div id="dtab102" class="dhtmlgoodies_aTab">
+								<!--#include file="payListIncDetail.js"-->
+							</div>
+							<div id="dtab103" class="dhtmlgoodies_aTab">
+								<!--#include file="invoiceListIncDetail.js"-->
+							</div>
+							<div id="dtab104" class="dhtmlgoodies_aTab">
 							</div>
 						</div>
 						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView10',Array("报名清单","缴费清单"),0,960,400);
+							initTabs('dhtmlgoodies_tabView10',Array("报名记录","收费记录","发票管理","日结报表"),0,960,400);
 						</script>
 					</div>
 					
@@ -435,7 +445,7 @@
 							</div>
 						</div>
 						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView9',Array("班级组建","班级名册"),0,960,400);
+							initTabs('dhtmlgoodies_tabView9',Array("班级列表","花名册"),0,960,400);
 						</script>
 					</div>
 					

@@ -29,6 +29,7 @@
 <script language="javascript">
 	var nodeID = "";
 	var refID = "";
+	var keyID = 0;
 	var op = 0;
 	var updateCount = 0;
 	var lastone_item = new Array();
@@ -36,6 +37,7 @@
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";	//enterID
 		refID = "<%=refID%>";	//username
+		keyID = "<%=keyID%>";	//companyID
 		op = "<%=op%>";
 
 		getDicList("payKind","kindID",0);
@@ -84,6 +86,10 @@
 			showMessageInfo(0,0,1,0,$("#username").val());
 		});
 
+		$("#btnMaterials").click(function(){
+			showMaterialsInfo(0,$("#username").val(),0,0);
+		});
+
 		$("#kindID").change(function(){
 			setButton();
 		});
@@ -94,6 +100,9 @@
 			$("#dateInvoice").val(currDate);
 			$("#dateInvoicePick").val(currDate);
 			$("#invoice").val(parseInt(getDicItem(0,"invoiceNo")) + 1);
+			if($("#kindID").val()==0){
+				$("#title").val($("#name").val());
+			}
 		});
 
 		$("#btnMaterialCheck").click(function(){
@@ -110,6 +119,23 @@
 			}else{
 				jAlert("没有可操作的记录。");
 			}
+		});
+
+		$("#btnDel").click(function(){
+			jPrompt("请输入删除原因：","","输入窗口",function(x){
+				if(x && x>""){
+					jConfirm("确实要删除报名记录吗？", "确认对话框",function(r){
+						if(r){
+							$.get("studentCourseControl.asp?op=delNode&nodeID=" + $("#studentCourseID").val() + "&times=" + (new Date().getTime()),function(re){
+								jAlert("删除成功。");
+								updateCount += 1;
+								op = 1;
+								setButton();
+							});
+						}
+					});
+				}
+			});
 		});
 		
 	  	<!--#include file="commLoadFileReady.asp"-->
@@ -197,6 +223,7 @@
 				$("#dateRefund").val(ar[12]);
 				$("#refunderName").val(ar[14]);
 				$("#memo").val(ar[18]);
+				$("#title").val(ar[22]);
 			}else{
 				jAlert("缴费信息未找到！","信息提示");
 			}
@@ -211,7 +238,7 @@
 		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
 		//@ID int,@invoice varchar(50),@projectID varchar(50),@kindID varchar(50),@type int,@status int,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo
 		//alert($("#projectID").val());
-		$.get("studentCourseControl.asp?op=updatePayInfo&nodeID=" + $("#payID").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#status").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("studentCourseControl.asp?op=updatePayInfo&nodeID=" + $("#payID").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#status").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			updateCount += 1;
 			jAlert("保存成功.","信息提示");
@@ -228,15 +255,15 @@
 			return false;
 		}
 		lastone_item = [];
+		lastone_item.push("companyID|" + keyID);
 		lastone_item.push("projectID|" + $("#projectID").val());
-		lastone_item.push("classID|" + $("#classID").val());
 		lastone_item.push("price|" + $("#price").val());
 		lastone_item.push("kindID|" + $("#kindID").val());
-		lastone_item.push("status|" + $("#status").val());
+		lastone_item.push("classID|" + $("#classID").val());
 		setSession("lastone_item", lastone_item.join(","));
 		
 		//@username,@classID,@price,@invoice,@projectID,@kindID,@type,@status,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo,@registerID
-		$.get("studentCourseControl.asp?op=doEnter&nodeID=" + $("#username").val() + "&classID=" + $("#classID").val() + "&price=" + $("#price").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#status").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("studentCourseControl.asp?op=doEnter&nodeID=" + $("#username").val() + "&classID=" + $("#classID").val() + "&price=" + $("#price").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#status").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -265,6 +292,7 @@
 		$("#btnMaterialCheck").hide();
 		$("#reply").hide();
 		$("#btnPay").hide();
+		$("#btnDel").hide();
 		if(checkPermission("studentAdd") && $("#status").val()==0 && $("#kindID").val()==0){
 			//未支付的个人付款可以支付，团体付款应到发票管理中操作。
 			$("#btnPay").show();
@@ -285,7 +313,13 @@
 				$("#btnReturn").show();
 				$("#btnRefund").show();
 				$("#save").show();
-				$("#btnMaterialCheck").show();
+				if(!$("#materialCheck").attr("checked")){
+					$("#btnMaterialCheck").show();
+				}
+				if($("#status").val()==0 && $("#invoice").val()=="" && $("#dateInvoicePick").val()==""){
+					//未支付未开票的可以删除。
+					$("#btnDel").show();
+				}
 			}
 			$("#project0").show();
 			$("#project1").hide();
@@ -296,16 +330,28 @@
 	}
 	function setEmpty(){
 		$("#username").val(refID);
+		var companyID = 0;
 		lastone_item = getSession("lastone_item").split(",");
+		//alert(lastone_item);
 		$.each(lastone_item, function(i,val){
 			var ar = new Array();
 			ar = val.split("|");
-			if(ar[0]=="projectID"){
+			if(ar[0]=="companyID"){
+				companyID = ar[1];
+			}
+			if(ar[0]=="projectID" && companyID==keyID){
 				setClassList(ar[1]);
 			}
 			$("#" + ar[0]).val(ar[1]);
 		});
-		
+		$.get("studentControl.asp?op=getNodeInfo&nodeID=0&refID=" + refID + "&times=" + (new Date().getTime()),function(re){
+			//alert(unescape(re));
+			var ar = new Array();
+			ar = unescape(re).split("|");
+			if(ar > ""){
+				$("#name").val(ar[2]);
+			}
+		});
 		if($("#kindID").val()==0){
 			//个人缴费
 			//$("#datePay").val(currDate);
@@ -375,7 +421,7 @@
 				<td align="right">手机</td>
 				<td><input class="readOnly" type="text" id="mobile" size="25" readOnly="true" /></td>
 				<td align="right">资料确认</td>
-				<td><input style="border:0px;" type="checkbox" id="materialCheck" value="" />&nbsp;&nbsp;<input class="readOnly" type="text" id="materialCheckerName" size="5" readOnly="true" /></td>
+				<td><input style="border:0px;" type="checkbox" id="materialCheck" value="" />&nbsp;&nbsp;<input class="readOnly" type="text" id="materialCheckerName" size="5" readOnly="true" />&nbsp;&nbsp;<input class="button" type="button" id="btnMaterials" value="查看" /></td>
 			</tr>
 			<tr>
 				<td align="right">报名状态</td>
@@ -426,10 +472,10 @@
 				<td><input type="text" id="dateInvoicePick" size="25" /></td>
 			</tr>
 			<tr>
+				<td align="right">发票抬头</td>
+				<td><input type="text" id="title" size="25" /></td>
 				<td align="right">退款日期</td>
-				<td><input type="text" id="dateRefund" size="25" /></td>
-				<td align="right">退款经办</td>
-				<td><input class="readOnly" type="text" id="refunderName" size="25" readOnly="true" /></td>
+				<td><input type="text" id="dateRefund" style="width:80px;" />&nbsp;&nbsp;经办<input class="readOnly" type="text" id="refunderName" style="width:60px;" readOnly="true" /></td>
 			</tr>
 			<tr>
 				<td align="right">备注</td>
@@ -447,8 +493,9 @@
 		<input class="button" type="button" id="save" value="保存" />&nbsp;
 		<input class="button" type="button" id="btnEnter" value="报名" />&nbsp;
 		<input class="button" type="button" id="btnMaterialCheck" value="资料确认" />&nbsp;
-		<input class="button" type="button" id="btnReturn" value="退学" />&nbsp;
+		<input class="button" type="button" id="btnReturn" value="退课" />&nbsp;
 		<input class="button" type="button" id="btnRefund" value="退款" />&nbsp;
+		<input class="button" type="button" id="btnDel" value="删除" />&nbsp;
   	</div>
 </div>
 </body>
