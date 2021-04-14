@@ -9,6 +9,10 @@
 							<span id="invoiceListLongItem3">
 							    &nbsp;开票日期&nbsp;<input type="text" id="searchInvoiceStartDate" size="8" />-<input type="text" id="searchInvoiceEndDate" size="8" />
 							</span>
+							<span id="invoiceListLongItem5">
+								<input class="button" type="button" id="btnPaySel" value="全选/取消" />&nbsp;&nbsp;
+								<input class="button" type="button" id="btnPayCheck" value="接收" />&nbsp;&nbsp;
+							</span>
 						    <span style="float:right;">
 								<input class="button" type="button" name="btnDownLoad13" id="btnDownLoad13" onClick="outputFloat(103,'file')" value="下载" />
 							</span>

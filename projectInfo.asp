@@ -38,6 +38,7 @@
 		getComList("certID","certificateInfo","certID","certName","status=0 order by certID",1);
 		getComList("host","hostInfo","hostNo","title","status=0 order by hostName",1);
 		getDicList("payKind","payKind",0);
+		getDicList("payGroup","payGroup",0);
 		$("#deadline").click(function(){WdatePicker();});
 		
 		$.ajaxSetup({ 
@@ -127,6 +128,9 @@
 		$("#host").change(function(){
 			setDeptList($("#host").val(),0,[]);
 		});
+		$("#payKind").change(function(){
+			setPayGroup();
+		});
 		
 		$("#btnPhoto").click(function(){
 			$.getJSON(uploadURL + "/outfiles/generate_student_photos?kindID=0&item=projectID='" + $("#projectID").val() + "'" ,function(data){
@@ -178,6 +182,7 @@
 				$("#mobile").val(ar[25]);
 				$("#price").val(ar[28]);
 				$("#payKind").val(ar[29]);
+				$("#payGroup").val(ar[30]);
 				$("#upload1").html("<a href='javascript:showLoadFile(\"project_brochure\",\"" + ar[1] + "\",\"project\",\"" + ar[11] + "\");' style='padding:3px;'>上传</a>");
 				var c = "";
 				if(ar[21] > ""){
@@ -194,6 +199,7 @@
 				
 				//getDownloadFile("projectID");
 				setButton();
+				setPayGroup();
 			}else{
 				alert("该信息未找到！");
 				setEmpty();
@@ -207,7 +213,7 @@
 			return false;
 		}
 		//alert($('#dept').combobox('getValues'));
-		$.get("projectControl.asp?op=update&nodeID=" + $("#ID").val() + "&keyID=" + $("#projectID").val() + "&item=" + escape($("#projectName").val()) + "&price=" + $("#price").val() + "&payKind=" + $("#payKind").val() + "&refID=" + $("#certID").val() + "&kindID=" + $("#kindID").val() + "&deadline=" + $("#deadline").val() + "&object=" + escape($("#object").val()) + "&address=" + escape($("#address").val()) + "&dept=" + $("#dept").combobox("getValues") + "&linker=" + escape($("#linker").val()) + "&mobile=" + escape($("#mobile").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&host=" + $("#host").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("projectControl.asp?op=update&nodeID=" + $("#ID").val() + "&keyID=" + $("#projectID").val() + "&item=" + escape($("#projectName").val()) + "&price=" + $("#price").val() + "&payKind=" + $("#payKind").val() + "&payGroup=" + $("#payGroup").val() + "&refID=" + $("#certID").val() + "&kindID=" + $("#kindID").val() + "&deadline=" + $("#deadline").val() + "&object=" + escape($("#object").val()) + "&address=" + escape($("#address").val()) + "&dept=" + $("#dept").combobox("getValues") + "&linker=" + escape($("#linker").val()) + "&mobile=" + escape($("#mobile").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&host=" + $("#host").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -253,6 +259,14 @@
 			updateCount += 1;
 		});
 		//return false;
+	}
+	
+	function setPayGroup(){
+		if($("#payKind").val()==0){
+			$("#item_payGroup").hide();
+		}else{
+			$("#item_payGroup").show();
+		}
 	}
 	function setDeptList(h,kind,s){
 		$.get("deptControl.asp?op=getRootDeptByHost&refID=" + h + "&times=" + (new Date().getTime()),function(re){
@@ -322,6 +336,7 @@
 		}
 		if(op ==1){
 			setEmpty();
+			$("#item_payGroup").hide();
 		}else{
 			if(checkPermission("photoPrint")){
 				$("#btnPhoto").show();
@@ -387,7 +402,7 @@
 				<td align="right">培训费用</td>
 				<td><input type="text" id="price" size="8" />&nbsp;&nbsp;元/人</td>
 				<td align="right">收费方式</td>
-				<td><select id="payKind" style="width:150px;"></select></td>
+				<td><select id="payKind" style="width:60px;"></select><span id="item_payGroup">&nbsp;&nbsp;开票单元<select id="payGroup" style="width:60px;"></select></span></td>
 			</tr>
 			<tr>
 				<td align="right">联系人</td>

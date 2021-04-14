@@ -9,7 +9,6 @@
 		getComList("searchPayClassID","classInfo","classID","classID","1=1 order by ID desc",1);
 
 		getDicList("statusPay","searchPayStatus",1);
-		getDicList("statusNo","searchPayCheck",1);
 		$("#searchPayStartDate").click(function(){WdatePicker();});
 		$("#searchPayEndDate").click(function(){WdatePicker();});
 		
@@ -42,30 +41,6 @@
 
 		$("#payListLongItem3").hide();
 		$("#payListLongItem4").hide();
-		$("#payListLongItem5").hide();
-		
-		$("#btnPayCheck").click(function(){
-			getSelCart("visitstockchkPay");
-			if(selCount==0){
-				jAlert("请选择要接收的名单。");
-				return false;
-			}
-			jConfirm("确定要接收这些(" + selCount + "个)收费清单吗？","确认",function(r){
-				if(r){
-					//alert($("#searchPayProjectID").val() + "&status=1&host=" + $("#searchPayHost").val() + "&keyID=" + selList);
-					//jAlert(selList);
-					$.get("studentCourseControl.asp?op=doAccount_check_batch&keyID=" + selList ,function(data){
-						//jAlert(data);
-						if(data=="0"){
-							jAlert("接收成功");
-							getPayList();
-						}else{
-							jAlert("没有可供处理的数据。");
-						}
-					});
-				}
-			});
-		});
 
 		//getPayList();
 	});
@@ -75,7 +50,7 @@
 		var Old = 0;
 		//if($("#searchPayOld").attr("checked")){Old = 1;}
 		//alert($("#searchPayDept").val() + "&refID=" + $("#searchPayProjectID").val() + "&status=" + $("#searchPayStatus").val() + "&photoStatus=" + $("#searchPayPhotoStatus").val() + "&courseID=" + $("#searchPayCourseID").val() + "&host=" + $("#searchPayHost").val() + "&checked=" + $("#searchPayChecked").val() + "&materialChecked=" + $("#searchPayMaterialChecked").val() + "&classID=" + $("#searchPayClassID").val());
-		$.get("studentCourseControl.asp?op=getPayList&where=" + escape(sWhere) + "&kindID=" + $("#searchPayDept").val() + "&refID=" + $("#searchPayProjectID").val() + "&status=" + $("#searchPayStatus").val() + "&courseID=" + $("#searchPayCourseID").val() + "&host=" + $("#searchPayHost").val() + "&checked=" + $("#searchPayCheck").val() + "&classID=" + $("#searchPayClassID").val() + "&fStart=" + $("#searchPayStartDate").val() + "&fEnd=" + $("#searchPayEndDate").val() + "&dk=102&times=" + (new Date().getTime()),function(data){
+		$.get("studentCourseControl.asp?op=getPayList&where=" + escape(sWhere) + "&kindID=" + $("#searchPayDept").val() + "&refID=" + $("#searchPayProjectID").val() + "&status=" + $("#searchPayStatus").val() + "&courseID=" + $("#searchPayCourseID").val() + "&host=" + $("#searchPayHost").val() + "&classID=" + $("#searchPayClassID").val() + "&fStart=" + $("#searchPayStartDate").val() + "&fEnd=" + $("#searchPayEndDate").val() + "&dk=102&times=" + (new Date().getTime()),function(data){
 		//$.getJSON("payControl.asp?op=getPayList",function(data){
 			//alert(unescape(data));
 			var ar = new Array();
@@ -104,8 +79,6 @@
 			arr.push("<th width='6%'>金额</th>");
 			arr.push("<th width='6%'>方式</th>");
 			arr.push("<th width='6%'>类别</th>");
-			arr.push("<th width='6%'>财务</th>");
-			arr.push("<th width='3%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
@@ -134,20 +107,12 @@
 					arr.push("<td class='left'>" + ar1[3] + "</td>");
 					arr.push("<td class='left'>" + ar1[35] + "</td>");
 					arr.push("<td class='left'>" + ar1[33] + "</td>");
-					if(ar1[19]==""){
-						arr.push("<td class='center'>&nbsp;</td>");
-					}else{
-						arr.push("<td class='center'>" + imgChk1 + "</td>");
-					}
-					arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchkPay'>" + "</td>");
 					arr.push("</tr>");
 				});
 			}
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
-			arr.push("<th>&nbsp;</th>");
-			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
@@ -190,18 +155,11 @@
 			});
 			if($("#searchPayShowPhoto").attr("checked")){
 				$("#payListLongItem4").show();
-				$("#payListLongItem5").hide();
 			}else{
-				if(checkPermission("studentAdd")){
-					$("#payListLongItem5").show();
-				}else{
-					$("#payListLongItem5").hide();
-				}
 				$("#payListLongItem4").hide();
 			}
 		}else{
 			$("#payListLongItem4").hide();
-			$("#payListLongItem5").hide();
 			$("#payListLongItem6").show();
 		}
 		getPayList();

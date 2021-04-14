@@ -285,24 +285,6 @@ if(op == "getPayList"){
 			where = s;
 		}
 	}
-	//财务确认
-	if(String(Request.QueryString("checked")) == 0 && String(Request.QueryString("checked")) !="undefined"){
-		s = "pay_checkDate=''";
-		if(where > ""){
-			where = where + " and " + s;
-		}else{
-			where = s;
-		}
-	}
-	//财务确认
-	if(String(Request.QueryString("checked")) == 1 && String(Request.QueryString("checked")) !="undefined"){
-		s = "pay_checkDate>''";
-		if(where > ""){
-			where = where + " and " + s;
-		}else{
-			where = s;
-		}
-	}
 
 	if(where > ""){
 		where = " where " + where;
@@ -403,6 +385,24 @@ if(op == "getInvoiceList"){
 			where = s;
 		}
 	}
+	//财务确认
+	if(String(Request.QueryString("checked")) == 0 && String(Request.QueryString("checked")) !="undefined"){
+		s = "checkDate=''";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//财务确认
+	if(String(Request.QueryString("checked")) == 1 && String(Request.QueryString("checked")) !="undefined"){
+		s = "checkDate>''";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 
 	if(where > ""){
 		where = " where " + where;
@@ -446,7 +446,7 @@ if(op == "getPayDetailInfoByEnterID"){
 
 if(op == "updatePayInfo"){
 	//@ID int,@invoice varchar(50),@projectID varchar(50),@kindID varchar(50),@type int,@status int,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo
-	sql = "exec updatePayInfo " + nodeID + ",'" + String(Request.QueryString("invoice")) + "','" + String(Request.QueryString("projectID")) + "','" + item + "','" + kindID + "','" + String(Request.QueryString("type")) + "','" + status + "','" + String(Request.QueryString("datePay")) + "','" + String(Request.QueryString("dateInvoice")) + "','" + String(Request.QueryString("dateInvoicePick")) + "','" + memo + "','" + currUser + "',''";
+	sql = "exec updatePayInfo " + nodeID + ",'" + String(Request.QueryString("invoice")) + "','" + String(Request.QueryString("projectID")) + "','" + item + "','" + kindID + "','" + String(Request.QueryString("type")) + "','" + status + "','" + String(Request.QueryString("datePay")) + "','" + String(Request.QueryString("dateInvoice")) + "','" + String(Request.QueryString("dateInvoicePick")) + "','" + refID + "','" + memo + "','" + currUser + "',''";
 	rs = conn.Execute(sql);
 	Response.Write(escape(0));
 	//Response.Write(escape(sql));

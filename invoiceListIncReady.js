@@ -6,6 +6,7 @@
 		getDicList("statusPay","searchInvoiceStatus",1);
 		getDicList("payType","searchInvoiceType",1);
 		getDicList("payKind","searchInvoiceKind",1);
+		getDicList("statusNo","searchPayCheck",1);
 		$("#searchInvoiceStartDate").click(function(){WdatePicker();});
 		$("#searchInvoiceEndDate").click(function(){WdatePicker();});
 		
@@ -22,6 +23,38 @@
 				}
 			}
 		});
+		
+		if(checkPermission("cashier")){
+			$("#invoiceListLongItem5").show();
+		}else{
+			$("#invoiceListLongItem5").hide();
+		}
+		$("#btnPaySel").click(function(){
+			setSel("visitstockchkPay");
+		});
+		
+		$("#btnPayCheck").click(function(){
+			getSelCart("visitstockchkPay");
+			if(selCount==0){
+				jAlert("请选择要接收的名单。");
+				return false;
+			}
+			jConfirm("确定要接收这些(" + selCount + "个)收费清单吗？","确认",function(r){
+				if(r){
+					//alert($("#searchPayProjectID").val() + "&status=1&host=" + $("#searchPayHost").val() + "&keyID=" + selList);
+					//jAlert(selList);
+					$.get("studentCourseControl.asp?op=doAccount_check_batch&keyID=" + selList ,function(data){
+						//jAlert(data);
+						if(data=="0"){
+							jAlert("接收成功");
+							getPayList();
+						}else{
+							jAlert("没有可供处理的数据。");
+						}
+					});
+				}
+			});
+		});
 		//getInvoiceList();
 	});
 
@@ -29,7 +62,7 @@
 		sWhere = $("#txtSearchInvoice").val();
 		//if($("#searchInvoiceOld").attr("checked")){Old = 1;}
 		//alert("kindID=" + $("#searchInvoiceKind").val() + "&refID=" + $("#searchInvoiceType").val() + "&status=" + $("#searchInvoiceStatus").val() + "&fStart=" + $("#searchInvoiceStartDate").val() + "&fEnd=" + $("#searchInvoiceEndDate").val());
-		$.get("studentCourseControl.asp?op=getInvoiceList&where=" + escape(sWhere) + "&kindID=" + $("#searchInvoiceKind").val() + "&refID=" + $("#searchInvoiceType").val() + "&status=" + $("#searchInvoiceStatus").val() + "&fStart=" + $("#searchInvoiceStartDate").val() + "&fEnd=" + $("#searchInvoiceEndDate").val() + "&dk=102&times=" + (new Date().getTime()),function(data){
+		$.get("studentCourseControl.asp?op=getInvoiceList&where=" + escape(sWhere) + "&kindID=" + $("#searchInvoiceKind").val() + "&refID=" + $("#searchInvoiceType").val() + "&checked=" + $("#searchPayCheck").val() + "&status=" + $("#searchInvoiceStatus").val() + "&fStart=" + $("#searchInvoiceStartDate").val() + "&fEnd=" + $("#searchInvoiceEndDate").val() + "&dk=102&times=" + (new Date().getTime()),function(data){
 			//alert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
@@ -52,6 +85,8 @@
 			arr.push("<th width='10%'>开票日期</th>");
 			arr.push("<th width='15%'>发票抬头</th>");
 			arr.push("<th width='10%'>招生批次</th>");
+			arr.push("<th width='6%'>财务</th>");
+			arr.push("<th width='3%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
@@ -77,12 +112,20 @@
 					arr.push("<td class='left'>" + ar1[10] + "</td>");
 					arr.push("<td class='left'>" + ar1[22] + "</td>");
 					arr.push("<td class='left'>" + ar1[23] + "</td>");
+					if(ar1[15]==""){
+						arr.push("<td class='center'>&nbsp;</td>");
+					}else{
+						arr.push("<td class='center'>" + imgChk1 + "</td>");
+					}
+					arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchkPay'>" + "</td>");
 					arr.push("</tr>");
 				});
 			}
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
@@ -114,30 +157,5 @@
 			floatContent = "";	//records data for output
 			floatModel = 1;
 		});
-	}
-
-	function setInvoiceItem(){
-		if($("#searchInvoiceProjectID").val()>""){
-			$("#invoiceListLongItem6").hide();
-			$.get("projectControl.asp?op=getStatus&refID=" + $("#searchInvoiceProjectID").val() ,function(data){
-				invoiceProjectStatus = data;
-			});
-			if($("#searchInvoiceShowPhoto").attr("checked")){
-				$("#invoiceListLongItem4").show();
-				$("#invoiceListLongItem5").hide();
-			}else{
-				if(checkPermission("studentAdd")){
-					$("#invoiceListLongItem5").show();
-				}else{
-					$("#invoiceListLongItem5").hide();
-				}
-				$("#invoiceListLongItem4").hide();
-			}
-		}else{
-			$("#invoiceListLongItem4").hide();
-			$("#invoiceListLongItem5").hide();
-			$("#invoiceListLongItem6").show();
-		}
-		getInvoiceList();
 	}
 	
