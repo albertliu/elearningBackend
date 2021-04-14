@@ -188,7 +188,7 @@ if(op == "getNodeInfo"){
 		//26
 		result += "|" + rs("projectID").value + "|" + rs("classID").value + "|" + rs("materialCheck").value + "|" + rs("materialChecker").value + "|" + rs("materialCheckerName").value + "|" + rs("checkDate").value + "|" + rs("checkerName").value;
 		//33
-		result += "|" + rs("projectName").value + "|" + rs("className").value;
+		result += "|" + rs("projectName").value + "|" + rs("className").value + "|" + rs("entryform").value + "|" + rs("certID").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

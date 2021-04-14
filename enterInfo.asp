@@ -33,6 +33,7 @@
 	var op = 0;
 	var updateCount = 0;
 	var lastone_item = new Array();
+	var entryform = "";
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";	//enterID
@@ -88,6 +89,14 @@
 
 		$("#btnMaterials").click(function(){
 			showMaterialsInfo(0,$("#username").val(),0,0);
+		});
+
+		$("#btnEntryform").click(function(){
+			generateEntryForm(0);
+		});
+
+		$("#btnPrint").click(function(){
+			printWord(entryform);
 		});
 
 		$("#kindID").change(function(){
@@ -179,9 +188,18 @@
 				$("#materialCheckerName").val(ar[30]);
 				$("#projectName").val(ar[33] + ar[26]);
 				$("#className").val(ar[34]);
+				$("#certID").val(ar[36]);
 
 				getPayDetailInfoByEnterID(ar[0]);
 			//getDownloadFile("studentCourseID");
+				var c1 = "";
+				if(ar[35] > ""){
+					c1 += "<a href='/users" + ar[35] + "' target='_blank'>下载</a>";
+					entryform = "/users" + ar[35];
+				}
+				if(c1 == ""){c1 = "&nbsp;&nbsp;还未生成";}
+				$("#entryform").html(c1);
+
 				setButton();
 			}else{
 				jAlert("该信息未找到！","信息提示");
@@ -270,8 +288,10 @@
 			if(ar[0] == 0){
 				op = 0;
 				updateCount += 1;
+				nodeID = ar[3];
 				getPayInfo(ar[2]);
 				getNodeInfo(ar[3]);
+				generateEntryForm(1);
 			}
 			jAlert(ar[1],"信息提示");
 		});
@@ -281,6 +301,26 @@
 	function setClassList(id){
 		$("#classID").empty();
 		getComList("classID","[dbo].[getClassListByProject]('" + id + "')","classID","className"," 1=1 order by classID desc",1);
+	}
+	
+	function generateEntryForm(i){
+		$.getJSON(uploadURL + "/outfiles/generate_entryform?certID=" + $("#certID").val() + "&enterID=" + $("#studentCourseID").val() + "&registerID=" + currUser ,function(data){
+			if(data>""){
+				if(i==0){
+					asyncbox.alert("报名表已生成 <a href='users" + data + "' target='_blank'>下载文件</a>",'操作成功',function(action){
+					　　//alert 返回action 值，分别是 'ok'、'close'。
+					　　if(action == 'ok'){
+					　　}
+					　　if(action == 'close'){
+					　　　　//alert('close');
+					　　}
+					});
+				}
+				getNodeInfo(nodeID);
+			}else{
+				alert("没有可供处理的数据。");
+			}
+		});
 	}
 	
 	function setButton(){
@@ -293,6 +333,8 @@
 		$("#reply").hide();
 		$("#btnPay").hide();
 		$("#btnDel").hide();
+		$("#btnEntryform").hide();
+		//$("#btnPrint").hide();
 		if(checkPermission("studentAdd") && $("#status").val()==0 && $("#kindID").val()==0){
 			//未支付的个人付款可以支付，团体付款应到发票管理中操作。
 			$("#btnPay").show();
@@ -326,6 +368,7 @@
 			$("#class0").show();
 			$("#class1").hide();
 			$("#reply").show();
+			$("#btnEntryform").show();
 		}
 	}
 	function setEmpty(){
@@ -388,7 +431,7 @@
 			<form id="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
-				<td align="right">姓名</td><input type="hidden" id="studentCourseID" />
+				<td align="right">姓名</td><input type="hidden" id="studentCourseID" /><input type="hidden" id="certID" />
 				<td><input class="readOnly" type="text" id="name" size="25" readOnly="true" /></td>
 				<td align="right">身份证</td>
 				<td><input class="readOnly" type="text" id="username" size="25" readOnly="true" /></td>
@@ -441,6 +484,11 @@
 				<span id="class1">所属班级&nbsp;<select id="classID" style="width:250px"></select>&nbsp;&nbsp;</span>
 				<span id="class0">所属班级&nbsp;<input class="readOnly" type="text" id="className" style="width:250px" readOnly="true" />&nbsp;&nbsp;</span>
 				学号&nbsp;<input class="readOnly" type="text" id="SNo" style="width:50px" readOnly="true" />
+				<br>
+				报名表
+					<span id="entryform" style="margin-left:20px;"></span>
+					<input class="button" type="button" id="btnEntryform" value="生成" />
+					<input class="button" type="button" id="btnPrint" value="打印" />
 				</div>
 			</div>
 

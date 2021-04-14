@@ -160,6 +160,7 @@
 			if($("#companyID").val()>0){
 				setDeptList($("#companyID").val(),1,$("#kindID").val());
 			}
+			$("#dept1").val(getSession("lastdept1"));
 			if($("#dept1").val()>0){
 				setDeptList($("#dept1").val(),2,$("#kindID").val());
 			}
@@ -279,6 +280,7 @@
 				getNodeInfo(0,$("#username").val());
 			}
 			setSession("lastcompany", $("#companyID").val());
+			setSession("lastdept1", $("#dept1").val());
 		});
 		if(replace_item > ""){
 			//上传被替换的图片
@@ -310,7 +312,7 @@
 	}
 	
 	function setDeptList(pID,n,kind){
-		getComList("dept" + n,"deptInfo","deptID","deptName","dept_status=0 and pID=" + pID + " and kindID=" + kind + " order by deptID",1);
+		getComList("dept" + n,"deptInfo","deptID","deptName","dept_status=0 and pID=" + pID + " and kindID=" + kind + " order by deptName",1);
 	}
 
 	function getStudentCourseList(id){
@@ -400,7 +402,7 @@
 		$("#name").val("");
 		$("#sexName").val("");
 		$("#age").val("");
-		$("#mobile").val("");
+		$("#mobile").val("13000000000");
 		$("#phone").val("");
 		$("#email").val("");
 		$("#kindID").val(0);
