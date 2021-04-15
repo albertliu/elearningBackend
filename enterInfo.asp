@@ -119,7 +119,7 @@
 		});
 
 		$("#btnPrint").click(function(){
-			printWord(entryform);
+			window.open("entryform_" + $("#certID").val() + ".asp?nodeID=0&refID=" + refID, "_blank");
 		});
 
 		$("#kindID").change(function(){
@@ -360,7 +360,7 @@
 		$("#btnPay").hide();
 		$("#btnDel").hide();
 		$("#btnEntryform").hide();
-		//$("#btnPrint").hide();
+		$("#btnPrint").hide();
 		if($("#status").val()==0 && $("#kindID").val()==0){
 			//未支付的个人付款可以支付，团体付款应到发票管理中操作。
 			$("#btnPay").show();
@@ -395,6 +395,7 @@
 			$("#class1").hide();
 			$("#reply").show();
 			$("#btnEntryform").show();
+			$("#btnPrint").show();
 		}
 	}
 	function setEmpty(){

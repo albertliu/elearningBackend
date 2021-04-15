@@ -56,6 +56,8 @@
 				$("#sexName").html(ar[8]);
 				$("#mobile").html(ar[7]);
 				$("#phone").html(ar[17]);
+				$("#job").html(ar[18]);
+				$("#company").html(ar[12] + " ." + ar[13] + " ." + ar[14]);
 				$("#educationName").html(ar[31]);
 				if(ar[22] > ""){
 					$("#img_cardA").attr("src","/users" + ar[22]);
@@ -121,7 +123,7 @@
 				<td align="center" class='table_resume_title' width='15%' height='60px;'>学历</td><td align="center" width='35%'><p style='font-size:1em;' id="educationName"></p></td><td align="center" class='table_resume_title' width='15%'>手机号码</td><td align="center" width='35%'><p style='font-size:1em;' id="mobile"></p></td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='60px;'>工作单位</td><td align="center" colspan="3"><p style='font-size:1em;' id="coampany"></p></td>
+				<td align="center" class='table_resume_title' width='15%' height='60px;'>工作单位</td><td align="center" colspan="3"><p style='font-size:1em;' id="company"></p></td>
 			</tr>
 			<tr>
 				<td align="center" class='table_resume_title' width='15%' height='60px;'>职位</td><td align="center" width='35%'><p style='font-size:1em;' id="job"></p></td><td align="center" class='table_resume_title' width='15%'>单位电话</td><td align="center" width='35%'><p style='font-size:1em;' id="phone"></p></td>
