@@ -258,7 +258,7 @@
 			jAlert("请选择公司。");
 			return false;
 		}
-		if($("#mobile").val().length != 11){
+		if($("#mobile").val() !="" && $("#mobile").val().length != 11){
 			jAlert("请正确填写手机。");
 			return false;
 		}
@@ -402,7 +402,7 @@
 		$("#name").val("");
 		$("#sexName").val("");
 		$("#age").val("");
-		$("#mobile").val("13000000000");
+		$("#mobile").val("");
 		$("#phone").val("");
 		$("#email").val("");
 		$("#kindID").val(0);
