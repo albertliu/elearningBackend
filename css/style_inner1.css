@@ -104,3 +104,10 @@ body { background:#fff url(../images/bg0.gif); }
 .dir{ width:100%; border-left:#C8B9AE solid 1px;border-top:#C8B9AE solid 1px;border-collapse:collapse;} 
 .dir td{width:25%;border-right:#C8B9AE solid 1px;border-bottom:#C8B9AE solid 1px;background-color: #DA2CB;padding:10px 10px 6px;vertical-align: top;}
 
+.table_resume {width:99%;border-collapse:collapse; border:1px solid gray;margin:3px 0;}
+.table_resume td { padding: 3px; border-top: 1px solid gray; border-left: 1px solid gray;font-size:1.2em;}
+.table_resume tr.over td{background:#FEE4E5;}
+.table_resume td a{text-decoration:none; color:#900;}
+.table_resume td a:hover{text-decoration: underline; color: #F30;}
+.table_resume td a:visited {text-decoration:none; color: #F06;}
+.table_resume_title { text-align:center; background-color:#e0e0e0;}

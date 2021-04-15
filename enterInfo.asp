@@ -57,6 +57,29 @@
 			getComList("projectID",x,"projectID","projectName","1=1 order by projectID desc",1);
 			setClassList();
 			setButton();
+			$("#username").val(refID);
+			var companyID = 0;
+			lastone_item = getSession("lastone_item").split(",");
+			//alert(lastone_item);
+			$.each(lastone_item, function(i,val){
+				var ar = new Array();
+				ar = val.split("|");
+				if(ar[0]=="companyID"){
+					companyID = ar[1];
+				}
+				if(ar[0]=="projectID" && companyID==keyID){
+					setClassList(ar[1]);
+				}
+				$("#" + ar[0]).val(ar[1]);
+			});
+			$.get("studentControl.asp?op=getNodeInfo&nodeID=0&refID=" + refID + "&times=" + (new Date().getTime()),function(re){
+				//alert(unescape(re));
+				var ar = new Array();
+				ar = unescape(re).split("|");
+				if(ar > ""){
+					$("#name").val(ar[2]);
+				}
+			});
 		}else{
 			getComList("projectID","projectInfo","projectID","projectName","1=1 order by projectID desc",1);
 			getNodeInfo(nodeID);
@@ -108,7 +131,9 @@
 			$("#datePay").val(currDate);
 			$("#dateInvoice").val(currDate);
 			$("#dateInvoicePick").val(currDate);
-			$("#invoice").val(parseInt(getDicItem(0,"invoiceNo")) + 1);
+			var s = getDicItem(0,"invoiceNo");
+			s = fillFormat(parseInt(s) + 1, s.length, "0", 0);
+			$("#invoice").val(s);
 			if($("#kindID").val()==0){
 				$("#title").val($("#name").val());
 			}
@@ -317,6 +342,7 @@
 					});
 				}
 				getNodeInfo(nodeID);
+				window.open("entryform_" + $("#certID").val() + ".asp?nodeID=0&refID=" + refID, "_self");
 			}else{
 				alert("没有可供处理的数据。");
 			}
@@ -335,7 +361,7 @@
 		$("#btnDel").hide();
 		$("#btnEntryform").hide();
 		//$("#btnPrint").hide();
-		if(checkPermission("studentAdd") && $("#status").val()==0 && $("#kindID").val()==0){
+		if($("#status").val()==0 && $("#kindID").val()==0){
 			//未支付的个人付款可以支付，团体付款应到发票管理中操作。
 			$("#btnPay").show();
 		}
@@ -372,29 +398,6 @@
 		}
 	}
 	function setEmpty(){
-		$("#username").val(refID);
-		var companyID = 0;
-		lastone_item = getSession("lastone_item").split(",");
-		//alert(lastone_item);
-		$.each(lastone_item, function(i,val){
-			var ar = new Array();
-			ar = val.split("|");
-			if(ar[0]=="companyID"){
-				companyID = ar[1];
-			}
-			if(ar[0]=="projectID" && companyID==keyID){
-				setClassList(ar[1]);
-			}
-			$("#" + ar[0]).val(ar[1]);
-		});
-		$.get("studentControl.asp?op=getNodeInfo&nodeID=0&refID=" + refID + "&times=" + (new Date().getTime()),function(re){
-			//alert(unescape(re));
-			var ar = new Array();
-			ar = unescape(re).split("|");
-			if(ar > ""){
-				$("#name").val(ar[2]);
-			}
-		});
 		if($("#kindID").val()==0){
 			//个人缴费
 			//$("#datePay").val(currDate);

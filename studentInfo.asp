@@ -165,6 +165,7 @@
 				setDeptList($("#dept1").val(),2,$("#kindID").val());
 			}
 		}
+		
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -274,10 +275,16 @@
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar[0] == 0){
-				jAlert("保存成功！","信息提示");
 				updateCount += 1;
+				var i = op;
 				op = 0;
 				getNodeInfo(0,$("#username").val());
+				if(i==1){
+					//新学员保存后直接进入报名页面
+					showEnterInfo(0,$("#username").val(),1,1,$("#companyID").val());
+				}else{
+					jAlert("保存成功！","信息提示");
+				}
 			}
 			setSession("lastcompany", $("#companyID").val());
 			setSession("lastdept1", $("#dept1").val());
