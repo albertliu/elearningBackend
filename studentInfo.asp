@@ -450,10 +450,6 @@
 				$("#name").val(re.name);
 				$("#sexName").val(re.sex);
 
-				if($("#companyID").val()==8){
-					//spc student, look ref info from ref_student_spc
-					setDeptFromRefInfo();
-				}
 
 				//填充全部图片
 				replaceImgFromCard("photo,cardA,cardB");
@@ -493,6 +489,11 @@
 				replaceImgFromCard("photo,cardA,cardB");
 			}
 		}
+		//alert($("#companyID").val());
+		if($("#companyID").val()==8){
+			//spc student, look ref info from ref_student_spc
+			setDeptFromRefInfo();
+		}
 	}
 	
 	function replaceImgFromCard(item){
@@ -525,7 +526,19 @@
 	}
 	
 	function setDeptFromRefInfo(){
-		//
+		//检查参考数据，更新一级、二级部门
+		//alert($("#username").val());
+		$.get("studentControl.asp?op=getDeptRefrence&nodeID=" + $("#username").val(),function(re){
+			//alert(re);
+			var ar = new Array();
+			ar = unescape(re).split("|");
+			if(ar > ""){
+				$("#dept1").val(ar[0]);
+				setDeptList(ar[0],2,0);
+				$("#dept2").val(ar[1]);
+				$("#mobile").val(ar[2]);
+			}
+		});
 	}
 
 	function getUpdateCount(){

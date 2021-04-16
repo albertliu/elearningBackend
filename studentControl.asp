@@ -412,4 +412,27 @@ if(op == "studentExist"){
 	//Response.Write(escape(sql));
 }
 
+if(op == "getDeptRefrence"){
+	result = 0;
+	sql = "SELECT * FROM dbo.getDeptRefrence('" + nodeID + "')";
+	rs = conn.Execute(sql);
+	if(!rs.EOF){
+		result = rs("dept1").value + "|" + rs("dept2").value + "|" + rs("mobile").value;
+	}
+	rs.Close();
+	Response.Write(result);
+	//Response.Write(escape(sql));
+}
+
+if(op == "getDeptRefrenceNo"){
+	result = 0;
+	sql = "SELECT * FROM dbo.getDeptRefrenceNo('" + nodeID + "','" + refID + "')";
+	rs = conn.Execute(sql);
+	if(!rs.EOF){
+		result = rs("ID").value;
+	}
+	rs.Close();
+	Response.Write(result);
+}
+
 %>

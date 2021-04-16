@@ -32,8 +32,8 @@
 	var updateCount = 1;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
-		nodeID = "<%=nodeID%>";
-		refID = "<%=refID%>";
+		nodeID = "<%=nodeID%>";		//enterID
+		refID = "<%=refID%>";		//username
 		op = "<%=op%>";
 		
 		$.ajaxSetup({ 
@@ -46,7 +46,18 @@
 	});
 
 	function getNodeInfo(id,ref){
-		$.get("studentControl.asp?op=getNodeInfo&nodeID=" + id + "&refID=" + ref + "&times=" + (new Date().getTime()),function(re){
+		$.get("studentCourseControl.asp?op=getNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
+			//alert(unescape(re));
+			var ar = new Array();
+			ar = unescape(re).split("|");
+			if(ar > "0"){
+				$("#SNo").html(ar[25]);
+			}else{
+				//alert("没有找到要打印的内容。");
+				return false;
+			}
+		});
+		$.get("studentControl.asp?op=getNodeInfo&nodeID=0&refID=" + ref + "&times=" + (new Date().getTime()),function(re){
 			//alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -111,7 +122,7 @@
 		<div id="resume_print" style="border:none;width:99%;margin:1px;background:#ffffff;line-height:18px;">
 			<div style='margin: 20px;text-align:center;'><h2 style='font-size:1.3em;'>上海智能消防学校</h2></div>
 			<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>重点岗位消防安全培训学员信息采集表</h3></div>
-			<div style='margin: 12px;text-align:left; width:95%;'><p style='font-size:1.2em;'>学员编号：</p></div>
+			<div style='margin: 12px;text-align:left; width:95%;'><span style='font-size:1.2em;'>学员编号：</span><span style='font-size:1.2em;' id="SNo"></span></div>
 			<table class='table_resume' style='width:95%;'>
 			<tr>
 				<td align="center" class='table_resume_title' width='15%' height='60px;'>学员姓名</td><td align="center" width='35%'><p style='font-size:1em;' id="name"></p></td><td align="center" class='table_resume_title' width='15%'>性别</td><td align="center" width='35%'><p style='font-size:1em;' id="sexName"></p></td>

@@ -119,7 +119,7 @@
 		});
 
 		$("#btnPrint").click(function(){
-			window.open("entryform_" + $("#certID").val() + ".asp?nodeID=0&refID=" + refID, "_blank");
+			window.open("entryform_" + $("#certID").val() + ".asp?nodeID=" + nodeID + "&refID=" + refID, "_blank");
 		});
 
 		$("#kindID").change(function(){
@@ -342,7 +342,7 @@
 					});
 				}
 				getNodeInfo(nodeID);
-				window.open("entryform_" + $("#certID").val() + ".asp?nodeID=0&refID=" + refID, "_self");
+				window.open("entryform_" + $("#certID").val() + ".asp?nodeID=" + nodeID + "&refID=" + refID, "_self");
 			}else{
 				alert("没有可供处理的数据。");
 			}
