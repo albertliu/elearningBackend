@@ -450,6 +450,11 @@
 				$("#name").val(re.name);
 				$("#sexName").val(re.sex);
 
+				if($("#companyID").val()==8){
+					//spc student, look ref info from ref_student_spc
+					setDeptFromRefInfo();
+				}
+
 				//填充全部图片
 				replaceImgFromCard("photo,cardA,cardB");
 			}
@@ -517,6 +522,10 @@
 			alert("当前姓名[" + $("#name").val() + "]与身份证信息不符，已更正。");
 			$("#name").val(cname);
 		}
+	}
+	
+	function setDeptFromRefInfo(){
+		//
 	}
 
 	function getUpdateCount(){
