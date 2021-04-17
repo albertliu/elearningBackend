@@ -126,35 +126,47 @@
 		</div>
 		<div id="resume_print" style="border:none;width:99%;margin:1px;background:#ffffff;line-height:18px;">
 			<div style='margin: 20px;text-align:center;'><h2 style='font-size:1.3em;'>上海智能消防学校</h2></div>
-			<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>重点岗位消防安全培训学员信息采集表</h3></div>
+			<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>危险化学品专业知识培训报名表</h3></div>
 			<div style='margin: 12px;text-align:left; width:95%;'><span style='font-size:1.2em;'>学员编号：</span><span style='font-size:1.2em;' id="SNo"></span></div>
 			<table class='table_resume' style='width:95%;'>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='60px;'>学员姓名</td><td align="center" width='35%'><p style='font-size:1em;' id="name"></p></td><td align="center" class='table_resume_title' width='15%'>性别</td><td align="center" width='35%'><p style='font-size:1em;' id="sexName"></p></td>
+				<td align="center" class='table_resume_title' width='15%' height='50px;'>姓名</td><td align="center" width='13%'><p style='font-size:1em;' id="name"></p></td>
+				<td align="center" class='table_resume_title' width='13%'>性别</td><td align="center" width='13%'><p style='font-size:1em;' id="sexName"></p></td>
+				<td align="center" class='table_resume_title' width='13%'>籍贯</td><td class='table_resume_title' width='13%'></td>
+				<td rowspan="4" colspan="2" align="center" class='table_resume_title' width='20%'>
+					<img id="img_photo" src="" value="" style='width:100px;background: #ccc;border:1px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);opacity: 0.8;' />
+				</td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='60px;'>证件号码</td><td align="center" colspan="3"><p style='font-size:1em;' id="username"></p></td>
+				<td align="center" class='table_resume_title' width='15%' height='50px;'>出生日期</td><td align="center" width='13%'><p style='font-size:1em;' id="birthday"></p></td>
+				<td align="center" class='table_resume_title' width='13%'>年龄</td><td align="center" width='13%'><p style='font-size:1em;' id="age"></p></td>
+				<td align="center" class='table_resume_title' width='13%'>学历</td><td class='table_resume_title' width='13%'><p style='font-size:1em;' id="educationName"></p></td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='60px;'>学历</td><td align="center" width='35%'><p style='font-size:1em;' id="educationName"></p></td><td align="center" class='table_resume_title' width='15%'>手机号码</td><td align="center" width='35%'><p style='font-size:1em;' id="mobile"></p></td>
+				<td align="center" class='table_resume_title' width='15%' height='50px;'>身份证号</td><td align="center" colspan="5"><p style='font-size:1em;' id="username"></p></td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='60px;'>工作单位</td><td align="center" colspan="3"><p style='font-size:1em;' id="company"></p></td>
+				<td align="center" class='table_resume_title' width='15%' height='50px;'>领导姓名</td><td align="center" width='13%'></td>
+				<td align="center" class='table_resume_title' width='13%'>电话</td><td align="center" width='13%'><p style='font-size:1em;' id="phone"></p></td>
+				<td align="center" class='table_resume_title' width='13%'>本人手机</td><td class='table_resume_title' width='13%'><p style='font-size:1em;' id="mobile"></p></td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='60px;'>职位</td><td align="center" width='35%'><p style='font-size:1em;' id="job"></p></td><td align="center" class='table_resume_title' width='15%'>单位电话</td><td align="center" width='35%'><p style='font-size:1em;' id="phone"></p></td>
+				<td align="center" class='table_resume_title' width='15%' height='50px;'>工作单位</td><td align="center" colspan="3"><p style='font-size:1em;' id="company"></p></td>
+				<td align="center" class='table_resume_title' width='13%' height='50px;'>地址</td><td align="center" colspan="3"><p style='font-size:1em;' id="address"></p></td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='60px;'>单位地址</td><td align="center" colspan="3"><p style='font-size:1em;' id="address"></p></td>
+				<td align="center" class='table_resume_title' width='15%' height='50px;'>工作部门</td><td align="center" width='13%'><p style='font-size:1em;' id="dept2"></p></td>
+				<td align="center" class='table_resume_title' width='13%'>从事工作</td><td align="center" width='13%'><p style='font-size:1em;' id="job"></p></td>
+				<td align="center" class='table_resume_title' width='13%'>职务</td><td class='table_resume_title' width='13%'></td>
+				<td align="center" class='table_resume_title' width='10%'>职称</td><td class='table_resume_title' width='10%'></td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='300px;'>身份证<br>复印件</td><td colspan="3" align="center">
+				<td align="center" class='table_resume_title' width='15%' height='50px;'>备注</td><td align="center" width='13%'></td>
+				<td align="center" class='table_resume_title' width='15%' height='300px;' colspan="6">
 					<img id="img_cardA" src="" value="" style='width:300px;background: #ccc;border:1px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);opacity: 0.8;' />
 				</td>
 			</tr>
 			</table>
-			<div style='margin: 12px;text-align:left; width:95%;'><p style='font-size:1.2em;'>&bull; 本表作为学员参加消防培训的重要材料入档，请学员务必准备、完整填写，不得有空项，填写完成后在下方签名，并于规定时间上交。</p></div>
-			<div style='margin: 12px;text-align:left; width:95%;'><p style='font-size:1.2em;'>&bull; 表格有空项、无学员签名、表格未在规定时间内上交的，均不予办理《消防培训合格证》、不进行网上注册。</p></div>
 			<div style='margin: 12px;text-align:left; width:95%;'><p style='font-size:1.2em;'>&bull; 提交1张2寸免冠彩色照片。</p></div>
 			<div style='margin: 12px;text-align:right; width:95%; padding-right:100px;'><p style='font-size:1.3em;'>学员签名：</p></div>
 			<div style='margin: 12px;text-align:right; width:95%;'><p id="date" style='font-size:1.3em;'></p></div>

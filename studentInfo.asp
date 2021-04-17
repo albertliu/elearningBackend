@@ -59,6 +59,10 @@
 			getNodeInfo(nodeID,refID);
 		}
 
+		$("#add").click(function(){
+			op = 1;
+			setButton();
+		});
 		$("#reply").click(function(){
 			showMessageInfo(0,0,1,0,$("#username").val());
 		});
@@ -369,6 +373,7 @@
 			$("#add_img_education").hide();
 			$("#username").prop("disabled",false);
 			setEmpty();
+			//$("#save").focus();
 		}else{
 			if(checkPermission("messageAdd")){
 				$("#reply").show();
@@ -378,6 +383,7 @@
 				$("#close").show();
 				$("#save").show();
 				$("#enter").show();
+				$("#add").show();
 			}
 			if(checkPermission("studentEdit")){
 				$("#save").show();
@@ -422,6 +428,7 @@
 		$("#regDate").val(currDate);
 		//$("#host").val();
 		$("#education").val(0);
+		$("#enterCover").empty();
 	}
 
 	function dealResponse(re){
@@ -515,6 +522,7 @@
 				$("#img_cardB").attr("src","data:image/jpeg;base64,"+cardJson.imageBack);
 			}
 		});
+		$("#save").focus();
 	}
 	
 	function checkName(cname){

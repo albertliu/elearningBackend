@@ -20,7 +20,7 @@
 <script language="javascript" src="js/jquery.form.js"></script>
 <script type="text/javascript" src="js/jquery.easyui.min.js"></script>
 <script src="js/jquery.alerts.js" type="text/javascript"></script>
-<script type="text/javascript" src="js/AsyncBox.v1.4.js"></script>
+<script type="text/javascript" src="js/asyncbox.v1.5.min.js"></script>
 <script language="javascript" type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 <script src="js/datepicker/WdatePicker.js" type="text/javascript"></script>
 <script type='text/javascript' src='js/jquery.autocomplete.js'></script>
@@ -119,7 +119,7 @@
 		});
 
 		$("#btnPrint").click(function(){
-			window.open("entryform_" + $("#certID").val() + ".asp?nodeID=" + nodeID + "&refID=" + refID, "_blank");
+			window.open("entryform_" + $("#certID").val() + ".asp?nodeID=" + nodeID + "&refID=" + refID, "_self");
 		});
 
 		$("#kindID").change(function(){
@@ -374,6 +374,7 @@
 			$("#class0").hide();
 			$("#class1").show();
 			setEmpty();
+			$("#btnEnter").focus();
 		}
 		else{
 			if(checkPermission("studentAdd")){

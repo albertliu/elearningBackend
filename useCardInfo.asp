@@ -31,7 +31,11 @@
 		$("#btnSel").click(function(){
 			setSel("");
 		});
+		$("#btnClose").click(function(){
+			window.parent.$.close("useCard");
+		});
 		getNodeInfo();
+		$("#btnClose").focus();
 	});
 
 	function getNodeInfo(){
@@ -61,6 +65,7 @@
 <div id='layout' align='left' style="background:#f0f0f0;">	
 	<h3 style="margin:5px;">请选择替换现有资料：</h3>
 	<input class="button" type="button" id="btnSel" value="全选/取消" />&nbsp;&nbsp;
+	<input class="button" type="button" id="btnClose" value="确定" />&nbsp;&nbsp;
 	<div style="padding: 5px;text-align:center;overflow:hidden;margin:0 auto;flot:right;">
 		<table style="width:99%;">
 			<tr>
