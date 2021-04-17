@@ -66,15 +66,22 @@
 				$("#name").html(ar[2]);
 				$("#sexName").html(ar[8]);
 				$("#mobile").html(ar[7]);
+				$("#age").html(ar[9]);
 				$("#phone").html(ar[17]);
 				$("#job").html(ar[18]);
-				$("#company").html(ar[12] + " ." + ar[13] + " ." + ar[14]);
+				$("#company").html(ar[12] + " ." + ar[13]);
+				$("#dept2").html(ar[14]);
 				$("#educationName").html(ar[31]);
+				$("#birthday").html(ar[33]);
+				if(ar[21] > ""){
+					$("#img_photo").attr("src","/users" + ar[21]);
+				}else{
+					$("#img_photo").attr("src","images/blank_photo.png");
+				}
 				if(ar[22] > ""){
 					$("#img_cardA").attr("src","/users" + ar[22]);
 				}else{
 					$("#img_cardA").attr("src","images/blank_cardA.png");
-					arr.push("," + "cardA");
 				}
 				$("#date").html(currDate);
 				resumePrint();
@@ -104,6 +111,7 @@
 		});
 		window.setTimeout(function () {
 			//window.parent.asyncbox.close("enterInfo");
+			window.parent.getStudentCourseList(refID);
 			window.parent.$.close("enterInfo");
 			//refreshMsg();
 		}, 1000);
@@ -130,40 +138,40 @@
 			<div style='margin: 12px;text-align:left; width:95%;'><span style='font-size:1.2em;'>学员编号：</span><span style='font-size:1.2em;' id="SNo"></span></div>
 			<table class='table_resume' style='width:95%;'>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='50px;'>姓名</td><td align="center" width='13%'><p style='font-size:1em;' id="name"></p></td>
+				<td align="center" class='table_resume_title' width='15%' height='55px;'>姓名</td><td align="center" width='15%'><p style='font-size:1em;' id="name"></p></td>
 				<td align="center" class='table_resume_title' width='13%'>性别</td><td align="center" width='13%'><p style='font-size:1em;' id="sexName"></p></td>
-				<td align="center" class='table_resume_title' width='13%'>籍贯</td><td class='table_resume_title' width='13%'></td>
+				<td align="center" class='table_resume_title' width='13%'>籍贯</td><td class='table_resume_title' width='11%'></td>
 				<td rowspan="4" colspan="2" align="center" class='table_resume_title' width='20%'>
-					<img id="img_photo" src="" value="" style='width:100px;background: #ccc;border:1px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);opacity: 0.8;' />
+					<img id="img_photo" src="" value="" style='width:100px;border:none;' />
 				</td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='50px;'>出生日期</td><td align="center" width='13%'><p style='font-size:1em;' id="birthday"></p></td>
+				<td align="center" class='table_resume_title' width='15%' height='55px;'>出生日期</td><td align="center" width='13%'><p style='font-size:1em;' id="birthday"></p></td>
 				<td align="center" class='table_resume_title' width='13%'>年龄</td><td align="center" width='13%'><p style='font-size:1em;' id="age"></p></td>
-				<td align="center" class='table_resume_title' width='13%'>学历</td><td class='table_resume_title' width='13%'><p style='font-size:1em;' id="educationName"></p></td>
+				<td align="center" class='table_resume_title' width='13%'>学历</td><td class='table_resume_title' width='11%'><p style='font-size:1em;' id="educationName"></p></td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='50px;'>身份证号</td><td align="center" colspan="5"><p style='font-size:1em;' id="username"></p></td>
+				<td align="center" class='table_resume_title' width='15%' height='55px;'>身份证号</td><td align="center" colspan="3"><p style='font-size:1em;' id="username"></p></td>
+				<td align="center" class='table_resume_title' width='15%' height='55px;'>领导姓名</td><td align="center" width='13%'></td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='50px;'>领导姓名</td><td align="center" width='13%'></td>
-				<td align="center" class='table_resume_title' width='13%'>电话</td><td align="center" width='13%'><p style='font-size:1em;' id="phone"></p></td>
-				<td align="center" class='table_resume_title' width='13%'>本人手机</td><td class='table_resume_title' width='13%'><p style='font-size:1em;' id="mobile"></p></td>
+				<td align="center" class='table_resume_title' width='13%' height='55px;'>单位电话</td><td align="center" width='13%' colspan="2"><p style='font-size:1em;' id="phone"></p></td>
+				<td align="center" class='table_resume_title' width='13%'>本人手机</td><td class='table_resume_title' width='13%' colspan="2"><p style='font-size:1em;' id="mobile"></p></td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='50px;'>工作单位</td><td align="center" colspan="3"><p style='font-size:1em;' id="company"></p></td>
-				<td align="center" class='table_resume_title' width='13%' height='50px;'>地址</td><td align="center" colspan="3"><p style='font-size:1em;' id="address"></p></td>
+				<td align="center" class='table_resume_title' width='15%' height='55px;'>工作单位</td><td align="center" colspan="3"><p style='font-size:1em;' id="company"></p></td>
+				<td align="center" class='table_resume_title' width='13%'>地址</td><td align="center" colspan="3"><p style='font-size:1em;' id="address"></p></td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='50px;'>工作部门</td><td align="center" width='13%'><p style='font-size:1em;' id="dept2"></p></td>
+				<td align="center" class='table_resume_title' width='15%' height='55px;'>工作部门</td><td align="center" width='13%'><p style='font-size:1em;' id="dept2"></p></td>
 				<td align="center" class='table_resume_title' width='13%'>从事工作</td><td align="center" width='13%'><p style='font-size:1em;' id="job"></p></td>
 				<td align="center" class='table_resume_title' width='13%'>职务</td><td class='table_resume_title' width='13%'></td>
 				<td align="center" class='table_resume_title' width='10%'>职称</td><td class='table_resume_title' width='10%'></td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='50px;'>备注</td><td align="center" width='13%'></td>
+				<td style="text-align:left;" class='table_resume_title' height='55px;' colspan="2"><div style="float: left;padding-left:10px;padding-top:10px;font-size:1em;">备注<div></td>
 				<td align="center" class='table_resume_title' width='15%' height='300px;' colspan="6">
-					<img id="img_cardA" src="" value="" style='width:300px;background: #ccc;border:1px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);opacity: 0.8;' />
+					<img id="img_cardA" src="" value="" style='width:300px;border:none;' />
 				</td>
 			</tr>
 			</table>

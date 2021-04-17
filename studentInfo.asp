@@ -655,25 +655,25 @@
 	<tr>
 		<td align="right" style="width:15%;"><img id="add_img_photo" src="images/plus.png" tag="plus" /></td>
 		<td align="center" style="width:85%;">
-			<img id="img_photo" src="" value="" style='width:100px;background: #ccc;border:1px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);opacity: 0.8;' />
+			<img id="img_photo" src="" value="" style='width:100px;border:none;' />
 		</td>
 	</tr>
 	<tr>
 		<td align="right" style="width:15%;"><img id="add_img_cardA" src="images/plus.png" tag="plus" /></td>
 		<td style="width:85%;">
-			<img id="img_cardA" src="" value="" style='width:150px;background: #ccc;border:1px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);opacity: 0.8;' />
+			<img id="img_cardA" src="" value="" style='width:150px;border:none;' />
 		</td>
 	</tr>
 	<tr>
 		<td align="right" style="width:15%;"><img id="add_img_cardB" src="images/plus.png" tag="plus" /></td>
 		<td style="width:85%;">
-			<img id="img_cardB" src="" value="" style='width:150px;background: #ccc;border:1px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);opacity: 0.8;' />
+			<img id="img_cardB" src="" value="" style='width:150px;border:none;' />
 		</td>
 	</tr>
 	<tr>
 		<td align="right" style="width:15%;"><img id="add_img_education" src="images/plus.png" tag="plus" /></td>
 		<td style="width:85%;">
-			<img id="img_education" src="" value="" style='width:150px;background: #ccc;border:1px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);opacity: 0.8;' />
+			<img id="img_education" src="" value="" style='width:150px;border:none;' />
 		</td>
 	</tr>
 	<tr>

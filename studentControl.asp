@@ -147,7 +147,9 @@ if(op == "getNodeInfo"){
 		//21
 		result += "|" + rs("photo_filename").value + "|" + rs("IDa_filename").value + "|" + rs("IDb_filename").value + "|" + rs("edu_filename").value;
 		//25
-		result += "|" + rs("companyID").value + "|" + rs("dept1").value + "|" + rs("dept2").value + "|" + rs("dept3").value + "|" + rs("host").value + "|" + rs("education").value + "|" + rs("educationName").value + "|" + rs("job_status").value;
+		result += "|" + rs("companyID").value + "|" + rs("dept1").value + "|" + rs("dept2").value + "|" + rs("dept3").value + "|" + rs("host").value;
+		//30
+		result += "|" + rs("education").value + "|" + rs("educationName").value + "|" + rs("job_status").value + "|" + rs("birthday").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

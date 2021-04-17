@@ -74,7 +74,6 @@
 					$("#img_cardA").attr("src","/users" + ar[22]);
 				}else{
 					$("#img_cardA").attr("src","images/blank_cardA.png");
-					arr.push("," + "cardA");
 				}
 				$("#date").html(currDate);
 				resumePrint();
@@ -149,7 +148,7 @@
 			</tr>
 			<tr>
 				<td align="center" class='table_resume_title' width='15%' height='300px;'>身份证<br>复印件</td><td colspan="3" align="center">
-					<img id="img_cardA" src="" value="" style='width:300px;background: #ccc;border:1px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);opacity: 0.8;' />
+					<img id="img_cardA" src="" value="" style='width:300px;border:none;' />
 				</td>
 			</tr>
 			</table>
