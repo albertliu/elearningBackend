@@ -23,6 +23,7 @@
 								<input style="border:0px;" type="checkbox" id="rptTrainningGroupKind" value="">&nbsp;类别&nbsp;&nbsp;
 								<input style="border:0px;" type="checkbox" id="rptTrainningGroupCourse" value="">&nbsp;课程&nbsp;&nbsp;
 								<input style="border:0px;" type="checkbox" id="rptTrainningGroupStatus" value="">&nbsp;状态&nbsp;&nbsp;
+								<input style="border:0px;" type="radio" id="rptTrainningGroupDate0" name="rptTrainningGroupDate" value="day" />日期
 								<input style="border:0px;" type="radio" id="rptTrainningGroupDate1" name="rptTrainningGroupDate" value="month" />月度
 								<input style="border:0px;" type="radio" id="rptTrainningGroupDate2" name="rptTrainningGroupDate" value="quarter" />季度
 								<input style="border:0px;" type="radio" id="rptTrainningGroupDate3" name="rptTrainningGroupDate" value="year" checked />年度

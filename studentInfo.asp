@@ -209,6 +209,7 @@
 				$("#host").val(ar[29]);
 				$("#education").val(ar[30]);
 				$("#job_status").val(ar[32]);
+				$("#address").val(ar[34]);
 				//$("#upload1").html("<a href='javascript:showLoadFile(\"student_education\",\"" + ar[1] + "\",\"student\",\"\");' style='padding:3px;'>上传</a>");
 				//<a href='/users" + ar[21] + "' target='_blank'></a>
 				arr = [];
@@ -275,7 +276,7 @@
 		var k = 0;
 		if(op==0){k=1;}
 		//alert("nodeID=" + $("#username").val() + "&name=" + ($("#name").val()) + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + ($("#mobile").val()) + "&phone=" + ($("#phone").val()) + "&email=" + ($("#email").val()) + "&job=" + ($("#job").val()) + "&education=" + ($("#education").val()) + "&memo=" + ($("#memo").val()));
-		$.get("studentControl.asp?op=update&nodeID=" + $("#username").val() + "&name=" + escape($("#name").val()) + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&job_status=" + $("#job_status").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + escape($("#mobile").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&job=" + escape($("#job").val()) + "&education=" + $("#education").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("studentControl.asp?op=update&nodeID=" + $("#username").val() + "&name=" + escape($("#name").val()) + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&job_status=" + $("#job_status").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + escape($("#mobile").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&address=" + escape($("#address").val()) + "&job=" + escape($("#job").val()) + "&education=" + $("#education").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -421,10 +422,11 @@
 		$("#email").val("");
 		$("#kindID").val(0);
 		$("#limitDate").val("");
+		$("#address").val("");
 		$("#companyID").val(getSession("lastcompany"));
 		//$("#dept1").val(ar[26]);				
 		//$("#dept2").val(ar[27]);
-		//$("#job").val(ar[18]);
+		$("#job_status").val(1);	//默认就业
 		$("#memo").val("");
 		$("#regDate").val(currDate);
 		//$("#host").val();
@@ -498,10 +500,10 @@
 			}
 		}
 		//alert($("#companyID").val());
-		if($("#companyID").val()==8){
+		//if($("#companyID").val()==8){
 			//spc student, look ref info from ref_student_spc
 			setDeptFromRefInfo();
-		}
+		//}
 	}
 	
 	function replaceImgFromCard(item){
@@ -542,10 +544,18 @@
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar > ""){
-				$("#dept1").val(ar[0]);
-				setDeptList(ar[0],2,0);
-				$("#dept2").val(ar[1]);
-				$("#mobile").val(ar[2]);
+				$("#companyID").val(ar[0]);
+				setDeptList(ar[0],1,0);
+				$("#dept1").val(ar[1]);
+				setDeptList(ar[1],2,0);
+				$("#dept2").val(ar[2]);
+				$("#mobile").val(ar[3]);
+				if($("#companyID").val()==8){
+					$("#kindID").show();
+				}else{
+					$("#kindID").val(0);
+					$("#kindID").hide();
+				}
 			}
 		});
 	}
@@ -571,7 +581,7 @@
 			<tr>
 				<td align="right">身份证</td><input type="hidden" id="status" /><input type="hidden" id="host" />
 				<td><input type="text" id="username" size="25" /></td>
-				<td align="right">姓名</td><input type="hidden" id="studentID" /><input type="hidden" id="phone" />
+				<td align="right">姓名</td><input type="hidden" id="studentID" />
 				<td><input class="mustFill" type="text" id="name" size="25" /></td>
 			</tr>
 			<tr>
@@ -605,14 +615,20 @@
 				<td><input type="text" id="job" size="25" /></td>
 			</tr>
 			<tr>
-				<td align="right">就业状态</td>
-				<td><select id="job_status" style="width:180px;"></select></td>
 				<td align="right">手机</td>
 				<td><input class="mustFill" type="text" id="mobile" size="25" /></td>
-			</tr>
-			<tr>
 				<td align="right">邮箱</td>
 				<td><input type="text" id="email" size="25" /></td>
+			</tr>
+			<tr>
+				<td align="right">联系地址</td>
+				<td><input type="text" id="address" size="25" /></td>
+				<td align="right">单位电话</td>
+				<td><input type="text" id="phone" size="25" /></td>
+			</tr>
+			<tr>
+				<td align="right">就业状态</td>
+				<td><select id="job_status" style="width:180px;"></select></td>
 				<td align="right">有效期</td>
 				<td><input type="text" id="limitDate" size="25" /></td>
 			</tr>
