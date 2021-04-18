@@ -144,8 +144,8 @@ if(op == "getStudentCourseList"){
 	}
 	sql = " FROM v_studentCourseList " + where;
 	result = getBasketTip(sql,"");
-	ssql = "SELECT SNo,username,name,sexName,age,hostName,dept1Name,dept2Name,job,mobile,email,checkName,courseName,hours,statusName,startDate,completion,examScore,memo,regDate" + sql + " order by projectID,SNo";
-	sql = "SELECT top " + basket + " *" + sql + " order by ID desc";
+	ssql = "SELECT SNo,username,name,sexName,age,educationName,hostName,dept1Name,dept2Name,job,mobile,phone,checkName,projectID+projectName,classID,statusName,price,pay_typeName,pay_kindName,datePay,invoice,(case when diploma_score=0 then '' else cast(diploma_score as varchar) end),diplomaID,diploma_startDate,diploma_endDate,memo,regDate" + sql + " order by projectID,SNo";
+	sql = "SELECT top " + basket + " *" + sql + " order by projectID desc, SNo desc, ID desc";
 	
 	rs = conn.Execute(sql);
 	while (!rs.EOF){

@@ -106,7 +106,11 @@
 	function saveNode(){
 		//alert($("#deptID").val() + "&item=" + ($("#memo").val()));
 		if($("#deptName").val()==""){
-			jAlert("部门名称不能为空");
+			jAlert("部门名称不能为空。");
+			return false;
+		}
+		if($("#pID").val()=="" || $("#pID").val()==0){
+			jAlert("上级部门缺失，请重新添加。");
 			return false;
 		}
 		$.get("deptControl.asp?op=update&nodeID=" + $("#deptID").val() + "&refID=" + $("#pID").val() + "&deptName=" + escape($("#deptName").val()) + "&linker=" +  escape($("#linker").val()) + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&host=" + $("#host").val() + "&phone=" +  escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&address=" + escape($("#address").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
@@ -114,12 +118,13 @@
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar[0] == 0){
+				updateCount += 1;
 				if(op == 1){
-					op = 0;
-					getNodeInfo(ar[1]);
+					//op = 0;
+					//getNodeInfo(ar[1]);
+					window.parent.$.close("dept");
 				}
 				jAlert("保存成功！","信息提示");
-				updateCount += 1;
 			}
 			if(ar[0] != 0){
 				jAlert("未能成功提交，请退出后重试。","信息提示");

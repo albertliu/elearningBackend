@@ -488,7 +488,7 @@
 				<br>
 				<span id="class1">所属班级&nbsp;<select id="classID" style="width:250px"></select>&nbsp;&nbsp;</span>
 				<span id="class0">所属班级&nbsp;<input class="readOnly" type="text" id="className" style="width:250px" readOnly="true" />&nbsp;&nbsp;</span>
-				学号&nbsp;<input class="readOnly" type="text" id="SNo" style="width:50px" readOnly="true" />
+				报名编号&nbsp;<input class="readOnly" type="text" id="SNo" style="width:50px" readOnly="true" />
 				<br>
 				报名表
 					<span id="entryform" style="margin-left:20px;"></span>

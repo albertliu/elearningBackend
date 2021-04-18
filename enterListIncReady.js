@@ -88,7 +88,7 @@
 			setEnterItem();
 		});
 
-		$("#enterListLongItem3").hide();
+		//$("#enterListLongItem3").hide();
 		$("#enterListLongItem4").hide();
 		$("#enterListLongItem5").hide();
 		
@@ -173,6 +173,7 @@
 			arr.push("<th width='6%'>单位</th>");
 			arr.push("<th width='6%'>材料</th>");
 			arr.push("<th width='6%'>缴费</th>");
+			arr.push("<th width='6%'>编号</th>");
 			arr.push("<th width='3%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -193,7 +194,7 @@
 					if(currHost==""){h = ar1[12];}	//系统用户显示公司名称
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
-					arr.push("<td class='link1'><a href='javascript:showEnterInfo(\"" + ar1[0] + "\",0,0,1);'>" + ar1[1] + "</a></td>");
+					arr.push("<td class='link1'><a href='javascript:showEnterInfo(" + ar1[0] + ",\"" + ar1[1] + "\",0,1);'>" + ar1[1] + "</a></td>");
 					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + ar1[1] + "\",0,1);'>" + ar1[2] + "</a></td>");
 					if($("#searchEnterProjectID").val()>"" && $("#searchEnterShowPhoto").attr("checked")){
 						$.each(ar2,function(iNum1,val1){
@@ -246,6 +247,7 @@
 						arr.push("<td class='center'>" + imgChk1 + "</td>");
 					}
 					arr.push("<td class='left'>" + ar1[50] + "</td>");
+					arr.push("<td class='left'>" + ar1[43] + "</td>");
 					arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchkEnter'>" + "</td>");
 					arr.push("</tr>");
 				});
@@ -253,6 +255,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");

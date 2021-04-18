@@ -9,7 +9,7 @@
 
 <title></title>
 
-<link href="css/style_inner1.css?v=1.0"  rel="stylesheet" type="text/css" />
+<link href="css/style_inner1.css?v=1.2"  rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/easyui/easyui.css">
 <link rel="stylesheet" type="text/css" href="css/easyui/icon.css">
 <link href="css/data_table_mini.css?v=20150411" rel="stylesheet" type="text/css" />
@@ -104,6 +104,7 @@
 						op = 0;
 						getNodeInfo(0,$("#username").val());
 					}
+					setDeptFromRefInfo();
 				}else{
 					jAlert("身份证号码有误，请核对。");
 				}

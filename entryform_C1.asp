@@ -7,7 +7,7 @@
 
 <title></title>
 
-<link href="css/style_inner1.css?v=1.11"  rel="stylesheet" type="text/css" />
+<link href="css/style_inner1.css?v=1.2"  rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/easyui/easyui.css?v=1.8.6">
 <link rel="stylesheet" type="text/css" href="css/easyui/icon.css">
 <link href="css/data_table_mini.css?v=20150411" rel="stylesheet" type="text/css" />
@@ -58,7 +58,7 @@
 			}
 		});
 		$.get("studentControl.asp?op=getNodeInfo&nodeID=0&refID=" + ref + "&times=" + (new Date().getTime()),function(re){
-			//alert(unescape(re));
+			//alert(ref + ":" + unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar > ""){
@@ -132,11 +132,11 @@
 		<div style="text-align:center;">
 		<input class="button" type="button" id="print" value="打印" />&nbsp;
 		</div>
-		<div id="resume_print" style="border:none;width:99%;margin:1px;background:#ffffff;line-height:18px;">
+		<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
 			<div style='margin: 20px;text-align:center;'><h2 style='font-size:1.3em;'>上海智能消防学校</h2></div>
 			<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>危险化学品专业知识培训报名表</h3></div>
 			<div style='margin: 12px;text-align:left; width:95%;'><span style='font-size:1.2em;'>学员编号：</span><span style='font-size:1.2em;' id="SNo"></span></div>
-			<table class='table_resume' style='width:95%;'>
+			<table class='table_resume' style='width:100%;'>
 			<tr>
 				<td align="center" class='table_resume_title' width='15%' height='55px;'>姓名</td><td align="center" width='15%'><p style='font-size:1em;' id="name"></p></td>
 				<td align="center" class='table_resume_title' width='13%'>性别</td><td align="center" width='13%'><p style='font-size:1em;' id="sexName"></p></td>
@@ -171,7 +171,7 @@
 			<tr>
 				<td style="text-align:left;" class='table_resume_title' height='55px;' colspan="2"><div style="float: left;padding-left:10px;padding-top:10px;font-size:1em;">备注<div></td>
 				<td align="center" class='table_resume_title' width='15%' height='300px;' colspan="6">
-					<img id="img_cardA" src="" value="" style='width:300px;border:none;' />
+					<img id="img_cardA" src="" value="" style='width:350px;border:none;' />
 				</td>
 			</tr>
 			</table>
