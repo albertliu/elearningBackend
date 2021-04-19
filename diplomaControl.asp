@@ -495,6 +495,28 @@ if(op == "getGenerateMaterialNodeInfo"){
 	//Response.Write(escape(sql));
 }	
 
+if(op == "getGeneratePasscardNodeInfo"){
+	result = "";
+	sql = "SELECT * FROM v_generatePasscardInfo where ID=" + nodeID;
+	rs = conn.Execute(sql);
+	if(!rs.EOF){
+		result = rs("ID").value + "|" + rs("classID").value + "|" + rs("className").value + "|" + rs("title").value + "|" + rs("qty").value + "|" + rs("startTime").value + "|" + rs("address").value;
+		//7
+		result += "|" + rs("notes").value + "|" + rs("cert").value + "|" + rs("filename").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value;
+	}
+	rs.Close();
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}	
+
+if(op == "updateGeneratePasscardInfo"){
+	//@ID int,@classID varchar(50),@title nvarchar(100),@qty int,@startTime varchar(100),@address nvarchar(100),@notes nvarchar(500),@memo nvarchar(500),@registerID
+	sql = "exec updateGeneratePasscardInfo " + nodeID + ",'" + refID + "','" + item + "'," + String(Request.QueryString("qty")) + ",'" + status + "','" + String(Request.QueryString("startTime")) + "','" + unescape(String(Request.QueryString("address"))) + "','" + unescape(String(Request.QueryString("notes"))) + "','" + memo + "','" + currUser + "',''";
+	rs = conn.Execute(sql);
+	Response.Write(escape(0));
+	//Response.Write(escape(sql));
+}
+
 if(op == "issueDiploma"){
 	result = 0;
 	if(result == 0){

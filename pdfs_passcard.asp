@@ -38,8 +38,9 @@
 				var j = 0;
 				var m = 3;  //3 rows per table
 				var n = 3;  //3 columns per row
-				var certID = "";
+				var k = 0;
 				$.each(data,function(iNum,val){
+					k += 1;
 					if(i == 0){
 						arr.push('<table style="margin-top:15mm;margin-left:15mm;">');
 					}
@@ -51,66 +52,47 @@
 					arr.push('<div style="position: relative;">');
 					arr.push('<div style="position: absolute; z-index:10; width:100%;">');
 					arr.push('<div style="float:left;width:10%;">');
-					arr.push('	<img src="/users' + val["logo"] + '" style="width:93px;padding-top:10px;padding-left:20px;">');
+					arr.push('	<img src="/users/upload/companies/logo/znxf.png" style="width:93px;padding-top:10px;padding-left:20px;">');
 					arr.push('</div>');
 					arr.push('<div style="float:right;width:89%;">');
 					arr.push('	<div style="text-align:center;"><h2>' + val["title"] + '</h2></div>');
-					arr.push('	<div style="text-align:center;"><h1>' + val["certName"] + '</h1></div>');
+					arr.push('	<div style="text-align:center;"><h1>准考证</h1></div>');
 					arr.push('</div>');
 					arr.push('<div style="clear: both;"></div>');
 					arr.push('<hr size=2 color="red">');
-					arr.push('<div style="float:left;width:30%;">');
-					if(val["photo_filename"]==''){
-						c = '/images/blankphoto.png';
-					}else{
-						c = "/users" + val["photo_filename"];
-					}
-					arr.push('	<img src="' + c + '" style="width:50mm;max-height:75mm;padding-top:10mm;padding-left:7mm;">');
-					arr.push('</div>');
-					arr.push('<div style="float:right;width:69%;">');
+					arr.push('<div style="float:right;width:100%;">');
 					arr.push('	<table style="width:100%;">');
 					arr.push('		<tr>');
-					arr.push('			<td width="28%"><h3>单&nbsp;位：</h3></td>');
-					if(val["host"]=='spc' && val["dept1Name"]=="公司本部"){
-						c = "上海石油分公司";
-					}else{
-						c = val["dept1Name"];
-					}
-					arr.push('			<td class="foot" width="71%"><h3>' + c + '</h3></td>');
+					arr.push('			<td width="15%"><h3>姓&nbsp;名：</h3></td>');
+					arr.push('			<td class="foot" width="35%"><h3>' + val["name"] + '</h3></td>');
+					arr.push('			<td width="15%"><h3>性&nbsp;别：</h3></td>');
+					arr.push('			<td class="foot" width="35%"><h3>' + val["sexName"] + '</h3></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
-					arr.push('			<td><h3>姓&nbsp;名：</h3></td>');
-					arr.push('			<td class="foot"><h3>' + val["name"] + '</h3></td>');
-					arr.push('		</tr>');
-					if(val["certID"]=='C5'){	//施工作业上岗证
-					certID = 'C5';
-					arr.push('		<tr>');
-					arr.push('			<td><h3>工&nbsp;种：</h3></td>');
-					arr.push('			<td class="foot"><h3>' + val["job"] + '</h3></td>');
-					arr.push('		</tr>');
-					}
-					arr.push('		<tr>');
-					arr.push('			<td><h3>证&nbsp;号：</h3></td>');
-					arr.push('			<td class="foot"><h3>' + val["diplomaID"] + '</h3></td>');
+					arr.push('			<td><h3>身份证号：</h3></td>');
+					arr.push('			<td class="foot" colspan="3"><h3>' + val["username"] + '</h3></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
-					arr.push('			<td><h3>发证日期</h3></td>');
-					arr.push('			<td class="foot"><h3>' + val["startDate"] + '</h3></td>');
+					arr.push('			<td><h3>考生标识：</h3></td>');
+					arr.push('			<td class="foot"><h3>' + val["startDate"].replace("-","") + fillFormat(k,2,"0",0) + '</h3></td>');
+					arr.push('			<td><h3>登录密码：</h3></td>');
+					arr.push('			<td class="foot"><h3>' + val["username"].substr(13,6) + '</h3></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
-					arr.push('			<td><h3>有效期：</h3></td>');
-					arr.push('			<td class="foot"><h3>' + val["term"] + '年</h3></td>');
+					arr.push('			<td><h3>考试时间：</h3></td>');
+					arr.push('			<td class="foot" colspan="3"><h3>' + val["startDate"] + '&nbsp;&nbsp;' + val["startTime"] + '</h3></td>');
+					arr.push('		</tr>');
+					arr.push('		<tr>');
+					arr.push('			<td><h3>考试地点：</h3></td>');
+					arr.push('			<td class="foot"><h3>' + val["address"] + '</h3></td>');
+					arr.push('		</tr>');
+					arr.push('		<tr>');
+					arr.push('			<td><h3>注意事项：</h3></td>');
+					arr.push('			<td class="foot"><h3>' + val["notes"] + '年</h3></td>');
 					arr.push('		</tr>');
 					arr.push('	</table>');
 					arr.push('</div>');
 					arr.push('</div>');
-					
-					if(val["stamp"]==1){
-						arr.push('<div style="position: absolute; z-index:20;">');
-						arr.push('<img id="stamp" src="/users/upload/companies/stamp/' + val["host"] + '.png" style="opacity:0.6; width:113mm;max-height:113mm;padding-top:25mm;padding-left:30mm;">');
-						arr.push('</div>');
-					}
-					/**/
 					arr.push('</div>');
 					arr.push('</section>');
 					arr.push('</td>');
@@ -124,10 +106,6 @@
 					}
 				});
 				$("#cover").html(arr.join(""));
-				if(certID=='C5'){	//施工作业上岗证
-					//减小行距和字体
-					$("h3").css({'padding-top': '7px', 'font-size': '22px'});
-				}
 			}
 		});
 	}
