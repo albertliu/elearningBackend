@@ -35,6 +35,7 @@
 	var replace_item = "";
 	var original_item = "";
 	var cardJson = "";
+	var fromCard = 0;
 	<!--#include file="js/commFunction.js"-->
 	<!--#include file="js/EST_reader.js"-->
 	$(document).ready(function (){
@@ -289,7 +290,11 @@
 					//新学员保存后直接进入报名页面
 					showEnterInfo(0,$("#username").val(),1,1,$("#companyID").val());
 				}else{
-					jAlert("保存成功！","信息提示");
+					if(fromCard==0){
+						jAlert("保存成功！","信息提示");
+					}
+					fromCard = 0;
+					$("#enter").focus();
 				}
 			}
 			setSession("lastcompany", $("#companyID").val());
@@ -526,7 +531,9 @@
 				$("#img_cardB").attr("src","data:image/jpeg;base64,"+cardJson.imageBack);
 			}
 		});
-		$("#save").focus();
+		if(op==1){
+			$("#save").focus();
+		}
 	}
 	
 	function checkName(cname){

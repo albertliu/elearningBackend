@@ -1420,6 +1420,7 @@
 			btnsbar : false,
 			callback : function(action,iframe){
 				var re = iframe.getUpdateCount();
+				fromCard = 1;
 				if(re>0){
 					replaceImgFromCard(iframe.selList);
 					saveNode();
