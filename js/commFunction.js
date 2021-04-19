@@ -1422,6 +1422,9 @@
 				var re = iframe.getUpdateCount();
 				if(re>0){
 					replaceImgFromCard(iframe.selList);
+					saveNode();
+				}else{
+					saveNode();
 				}
 　　　		}
 		});

@@ -321,6 +321,7 @@
 				}
 			});
 		}
+		$("#enter").focus();
 		return false;
 	}
 	
