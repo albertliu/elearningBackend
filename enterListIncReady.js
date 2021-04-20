@@ -123,7 +123,7 @@
 		$("#btnEnterPasscard").click(function(){
 			getSelCart("visitstockchkEnter");
 			if(selCount==0){
-				jAlert("请选择名单。");
+				jAlert("请选择制作准考证的名单。");
 				return false;
 			}
 			if($("#searchEnterClassID").val()==""){
@@ -140,7 +140,7 @@
 		$("#btnSearchEnterAdd").click(function(){
 			showStudentInfo(0,0,1,1);
 		});
-
+		$("#btnEnterCheck").hide();
 		//getEnterList();
 	});
 
