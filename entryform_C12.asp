@@ -138,40 +138,39 @@
 		<input class="button" type="button" id="print" value="打印" />&nbsp;
 		</div>
 		<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
-			<div style='margin: 20px;text-align:center;'><h2 style='font-size:1.3em;'>上海智能消防学校</h2></div>
-			<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>危险化学品专业知识培训报名表</h3></div>
+			<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>上海市特种作业人员安全技术考核申请表（2020版）</h3></div>
 			<div style='margin: 12px;text-align:left; width:95%;'><span style='font-size:1.2em;'>学员编号：</span><span style='font-size:1.2em;' id="SNo"></span></div>
 			<table class='table_resume' style='width:100%;'>
 			<tr>
 				<td align="center" class='table_resume_title' width='15%' height='55px;'>姓名</td><td align="center" width='15%'><p style='font-size:1em;' id="name"></p></td>
 				<td align="center" class='table_resume_title' width='13%'>性别</td><td align="center" width='13%'><p style='font-size:1em;' id="sexName"></p></td>
-				<td align="center" class='table_resume_title' width='13%'>籍贯</td><td class='table_resume_title' width='11%'></td>
+				<td align="center" class='table_resume_title' width='13%'>出生年月</td><td class='table_resume_title' width='11%'><p style='font-size:1em;' id="birthday"></p></td>
 				<td rowspan="4" colspan="2" align="center" class='table_resume_title' width='20%'>
-					<img id="img_photo" src="" value="" style='width:100px;border:none;' />
+					1寸近期免冠彩色照片粘贴处
 				</td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='55px;'>出生日期</td><td align="center" width='13%'><p style='font-size:1em;' id="birthday"></p></td>
-				<td align="center" class='table_resume_title' width='13%'>年龄</td><td align="center" width='13%'><p style='font-size:1em;' id="age"></p></td>
-				<td align="center" class='table_resume_title' width='13%'>学历</td><td class='table_resume_title' width='11%'><p style='font-size:1em;' id="educationName"></p></td>
+				<td align="center" class='table_resume_title' width='15%' height='55px;'>国籍</td><td align="center" width='13%'></td>
+				<td align="center" class='table_resume_title' width='13%'>民族</td><td align="center" width='13%'></td>
+				<td align="center" class='table_resume_title' width='13%'>文化程度</td><td class='table_resume_title' width='11%'><p style='font-size:1em;' id="educationName"></p></td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='55px;'>身份证号</td><td align="center" colspan="3"><p style='font-size:1em;' id="username"></p></td>
-				<td align="center" class='table_resume_title' width='15%' height='55px;'>领导姓名</td><td align="center" width='13%'></td>
+				<td align="center" class='table_resume_title' width='15%' height='55px;'>证件号码</td><td align="center" colspan="5"><p style='font-size:1em;' id="username"></p></td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='13%' height='55px;'>单位电话</td><td align="center" width='13%' colspan="2"><p style='font-size:1em;' id="phone"></p></td>
-				<td align="center" class='table_resume_title' width='13%'>本人手机</td><td class='table_resume_title' width='13%' colspan="2"><p style='font-size:1em;' id="mobile"></p></td>
+				<td align="center" class='table_resume_title' width='15%' height='55px;'>单位名称</td><td align="center" colspan="3"><p style='font-size:1em;' id="company"></p></td>
+				<td align="center" class='table_resume_title' width='13%'>从事岗位</td><td align="center" colspan="3"><p style='font-size:1em;' id="job"></p></td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='55px;'>工作单位</td><td align="center" colspan="3"><p style='font-size:1em;' id="company"></p></td>
-				<td align="center" class='table_resume_title' width='13%'>地址</td><td align="center" colspan="3"><p style='font-size:1em;' id="address"></p></td>
+				<td align="center" class='table_resume_title' width='13%' height='55px;'>联系地址</td><td align="center" colspan="3"><p style='font-size:1em;' id="address"></p></td>
+				<td align="center" class='table_resume_title' width='13%'>联系方式</td><td align="center" width='13%' colspan="3"><p style='font-size:1em;' id="mobile"></p></td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='55px;'>工作部门</td><td align="center" width='13%'><p style='font-size:1em;' id="dept2"></p></td>
-				<td align="center" class='table_resume_title' width='13%'>从事工作</td><td align="center" width='13%'><p style='font-size:1em;' id="job"></p></td>
-				<td align="center" class='table_resume_title' width='13%'>职务</td><td class='table_resume_title' width='13%'></td>
-				<td align="center" class='table_resume_title' width='10%'>职称</td><td class='table_resume_title' width='10%'></td>
+				<td align="center" class='table_resume_title' width='15%' height='55px;'>申请考核工种</td><td align="center" colspan="7"><p style='font-size:1em;' id="courseName"></p></td>
+			</tr>
+			<tr>
+				<td align="center" class='table_resume_title' width='15%' height='55px;'>考核类型</td><td align="center" width='13%' colspan="2"><p style='font-size:1em;'>初审   复审</p></td>
+				<td align="center" class='table_resume_title' width='13%' colspan="3">是否参加相应培训</td><td align="center" width='13%' colspan="2"><p style='font-size:1em;' id="job"></p></td>
 			</tr>
 			<tr>
 				<td style="text-align:left;" class='table_resume_title' height='55px;' colspan="2"><div style="float: left;padding-left:10px;padding-top:10px;font-size:1em;">备注<div></td>

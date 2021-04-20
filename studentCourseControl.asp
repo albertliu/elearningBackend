@@ -162,7 +162,7 @@ if(op == "getStudentCourseList"){
 	}
 	sql = " FROM v_studentCourseList " + where;
 	result = getBasketTip(sql,"");
-	ssql = "SELECT SNo,username,name,sexName,age,educationName,hostName,dept1Name,dept2Name,job,mobile,phone,checkName,projectID+projectName,classID,statusName,price,pay_typeName,pay_kindName,datePay,invoice,(case when diploma_score=0 then '' else cast(diploma_score as varchar) end),diplomaID,diploma_startDate,diploma_endDate,memo,regDate" + sql + " order by projectID,SNo";
+	ssql = "SELECT SNo,username,name,sexName,age,educationName,(case when host='znxf' then unit else hostName end),(case when host='znxf' then dept else dept1Name end),(case when host='znxf' then '' else dept2Name end),job,mobile,phone,checkName,projectID+projectName,classID,statusName,price,pay_typeName,pay_kindName,datePay,invoice,(case when diploma_score=0 then '' else cast(diploma_score as varchar) end),diplomaID,diploma_startDate,diploma_endDate,memo,regDate" + sql + " order by projectID,SNo";
 	sql = "SELECT top " + basket + " *" + sql + " order by projectID desc, SNo desc, ID desc";
 	
 	rs = conn.Execute(sql);
@@ -183,7 +183,7 @@ if(op == "getStudentCourseList"){
 		//47
 		result += "|" + rs("price").value + "|" + rs("pay_kindName").value + "|" + rs("pay_typeName").value + "|" + rs("pay_statusName").value;
 		//51
-		result += "|" + rs("projectName").value + "|" + rs("className").value + "|" + rs("passcardID").value;
+		result += "|" + rs("projectName").value + "|" + rs("className").value + "|" + rs("passcardID").value + "|" + rs("unit").value + "|" + rs("dept").value + "|" + rs("host").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -206,7 +206,7 @@ if(op == "getNodeInfo"){
 		//26
 		result += "|" + rs("projectID").value + "|" + rs("classID").value + "|" + rs("materialCheck").value + "|" + rs("materialChecker").value + "|" + rs("materialCheckerName").value + "|" + rs("checkDate").value + "|" + rs("checkerName").value;
 		//33
-		result += "|" + rs("projectName").value + "|" + rs("className").value + "|" + rs("entryform").value + "|" + rs("certID").value;
+		result += "|" + rs("projectName").value + "|" + rs("className").value + "|" + rs("entryform").value + "|" + rs("certID").value + "|" + rs("unit").value + "|" + rs("dept").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -326,7 +326,7 @@ if(op == "getPayList"){
 		//32
 		result += "|" + rs("pay_kindID").value + "|" + rs("pay_kindName").value + "|" + rs("pay_type").value + "|" + rs("pay_typeName").value + "|" + rs("pay_status").value + "|" + rs("pay_statusName").value;
 		//38
-		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value;
+		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("unit").value + "|" + rs("dept").value;
 		rs.MoveNext();
 	}
 	rs.Close();

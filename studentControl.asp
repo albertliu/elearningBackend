@@ -111,7 +111,7 @@ if(op == "getStudentList"){
 	}
 	sql = " FROM v_studentInfo " + where;
 	result = getBasketTip(sql,"");
-	ssql = "SELECT username,name,sexName,age,birthday,kindName,statusName,hostName,dept1Name,dept2Name,mobile,phone,email,memo,regDate,(case when photo_filename>'' then '+' else '' end) as photo,(case when IDa_filename>'' then '+' else '' end) as ida,(case when IDb_filename>'' then '+' else '' end) as idb" + sql + " order by username";
+	ssql = "SELECT username,name,sexName,age,birthday,(case when host='znxf' then '' else kindName end),statusName,(case when host='znxf' then unit else hostName end),(case when host='znxf' then dept else dept1Name end),(case when host='znxf' then '' else dept2Name end),mobile,phone,email,memo,regDate,(case when photo_filename>'' then '+' else '' end) as photo,(case when IDa_filename>'' then '+' else '' end) as ida,(case when IDb_filename>'' then '+' else '' end) as idb" + sql + " order by username";
 	sql = "SELECT top " + basket + " *" + sql + " order by userID desc";
 	
 	rs = conn.Execute(sql);
@@ -119,6 +119,8 @@ if(op == "getStudentList"){
 		result += "%%" + rs("userID").value + "|" + rs("username").value + "|" + rs("name").value + "|" + rs("user_status").value + "|" + rs("statusName").value + "|" + rs("kindID").value + "|" + rs("kindName").value;
 		//7
 		result += "|" + rs("mobile").value + "|" + rs("sexName").value + "|" + rs("age").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("hostName").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value + "|" + rs("photo").value + "|" + rs("job_status").value;
+		//17
+		result += "|" + rs("unit").value + "|" + rs("dept").value + "|" + rs("host").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -150,6 +152,8 @@ if(op == "getNodeInfo"){
 		result += "|" + rs("companyID").value + "|" + rs("dept1").value + "|" + rs("dept2").value + "|" + rs("dept3").value + "|" + rs("host").value;
 		//30
 		result += "|" + rs("education").value + "|" + rs("educationName").value + "|" + rs("job_status").value + "|" + rs("birthday").value + "|" + rs("address").value;
+		//35
+		result += "|" + rs("unit").value + "|" + rs("dept").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -215,7 +219,7 @@ if(op == "update"){
 	result = 0;
 	if(result == 0){
 		//@mark int,@username varchar(50),@name nvarchar(50),@password varchar(50),@kindID int,@companyID varchar(50),@dept1 varchar(50),@dept1Name nvarchar(100),@dept2 varchar(50),@dept3 varchar(50),@job varchar(50),@mobile nvarchar(50),@phone nvarchar(50),@email nvarchar(50),@limitDate varchar(50),@memo nvarchar(500),@host varchar(50),@registerID varchar(50)
-		sql = "exec updateStudentInfo " + keyID + ",'" + nodeID + "','" + unescape(String(Request.QueryString("name"))) + "',''," + kindID + ",'" + String(Request.QueryString("companyID")) + "','" + String(Request.QueryString("dept1")) + "','','" + String(Request.QueryString("dept2")) + "','','" + unescape(String(Request.QueryString("job"))) + "'," + String(Request.QueryString("job_status")) + ",'" + unescape(String(Request.QueryString("mobile"))) + "','" + unescape(String(Request.QueryString("phone"))) + "','" + unescape(String(Request.QueryString("email"))) + "','" + unescape(String(Request.QueryString("address"))) + "','" + String(Request.QueryString("limitDate")) + "','" + String(Request.QueryString("education")) + "','" + memo + "','" + host + "','" + currUser + "'";
+		sql = "exec updateStudentInfo " + keyID + ",'" + nodeID + "','" + unescape(String(Request.QueryString("name"))) + "',''," + kindID + ",'" + String(Request.QueryString("companyID")) + "','" + String(Request.QueryString("dept1")) + "','','" + String(Request.QueryString("dept2")) + "','','" + unescape(String(Request.QueryString("job"))) + "'," + String(Request.QueryString("job_status")) + ",'" + unescape(String(Request.QueryString("mobile"))) + "','" + unescape(String(Request.QueryString("phone"))) + "','" + unescape(String(Request.QueryString("email"))) + "','" + unescape(String(Request.QueryString("address"))) + "','" + String(Request.QueryString("limitDate")) + "','" + String(Request.QueryString("education")) + "','" + unescape(String(Request.QueryString("unit"))) + "','" + unescape(String(Request.QueryString("dept"))) + "','" + memo + "','" + host + "','" + currUser + "'";
 		execSQL(sql);
 	}
 

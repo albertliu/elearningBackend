@@ -112,8 +112,13 @@
 					arr.push("<td class='left'>" + ar1[8] + "</td>");
 					arr.push("<td class='left'>" + ar1[9] + "</td>");
 					if(currHost==""){
-						arr.push("<td class='left'>" + ar1[12].substr(0,10) + "</td>");
-						arr.push("<td class='left'>" + ar1[13].substr(0,10) + "</td>");
+						if(ar1[19]=="znxf"){	//非集团客户，显示自己的单位和部门
+							arr.push("<td class='left'>" + ar1[17].substr(0,10) + "</td>");
+							arr.push("<td class='left'>" + ar1[18].substr(0,10) + "</td>");
+						}else{
+							arr.push("<td class='left'>" + ar1[12].substr(0,10) + "</td>");
+							arr.push("<td class='left'>" + ar1[13].substr(0,10) + "</td>");
+						}
 					}else{
 						arr.push("<td class='left'>" + ar1[13].substr(0,10) + "</td>");
 						arr.push("<td class='left'>" + ar1[14].substr(0,10) + "</td>");

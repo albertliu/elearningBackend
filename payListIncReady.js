@@ -98,7 +98,11 @@
 					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + ar1[4] + "\",0,1);'>" + ar1[5] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[9] + "</td>");
 					if(currHost==""){
-						arr.push("<td class='left'>" + ar1[11].substr(0,4) + "</td>");
+						if(ar1[10]=="znxf"){	//非集团客户，显示自己的单位和部门
+							arr.push("<td class='left'>" + ar1[42].substr(0,4) + "</td>");
+						}else{
+							arr.push("<td class='left'>" + ar1[11].substr(0,4) + "</td>");
+						}
 					}else{
 						arr.push("<td class='left'>" + ar1[13].substr(0,5) + "</td>");
 					}

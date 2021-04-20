@@ -68,7 +68,11 @@
 				$("#mobile").html(ar[7]);
 				$("#phone").html(ar[17]);
 				$("#job").html(ar[18]);
-				$("#company").html(ar[12] + " ." + ar[13] + " ." + ar[14]);
+				if(ar[29]=="znxf"){
+					$("#company").html(ar[35] + " ." + ar[36]);
+				}else{
+					$("#company").html(ar[12] + " ." + ar[13] + " ." + ar[14]);
+				}
 				$("#educationName").html(ar[31]);
 				if(ar[22] > ""){
 					$("#img_cardA").attr("src","/users" + ar[22]);

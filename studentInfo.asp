@@ -150,12 +150,7 @@
 			setDeptList($("#dept1").val(),2,$("#kindID").val());
 		});
 		$("#companyID").change(function(){
-			if($("#companyID").val()==8){
-				$("#kindID").show();
-			}else{
-				$("#kindID").val(0);
-				$("#kindID").hide();
-			}
+			setZNXF();
 			setDeptList($("#companyID").val(),1,$("#kindID").val());
 		});
 		$("#dept1").change(function(){
@@ -211,6 +206,8 @@
 				$("#education").val(ar[30]);
 				$("#job_status").val(ar[32]);
 				$("#address").val(ar[34]);
+				$("#unit").val(ar[35]);
+				$("#dept").val(ar[36]);
 				//$("#upload1").html("<a href='javascript:showLoadFile(\"student_education\",\"" + ar[1] + "\",\"student\",\"\");' style='padding:3px;'>上传</a>");
 				//<a href='/users" + ar[21] + "' target='_blank'></a>
 				arr = [];
@@ -263,7 +260,7 @@
 			return false;
 		}
 		if($("#companyID").val()==""){
-			jAlert("请选择公司。");
+			jAlert("请选择来源。");
 			return false;
 		}
 		if($("#mobile").val() !="" && $("#mobile").val().length != 11){
@@ -277,7 +274,7 @@
 		var k = 0;
 		if(op==0){k=1;}
 		//alert("nodeID=" + $("#username").val() + "&name=" + ($("#name").val()) + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + ($("#mobile").val()) + "&phone=" + ($("#phone").val()) + "&email=" + ($("#email").val()) + "&job=" + ($("#job").val()) + "&education=" + ($("#education").val()) + "&memo=" + ($("#memo").val()));
-		$.get("studentControl.asp?op=update&nodeID=" + $("#username").val() + "&name=" + escape($("#name").val()) + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&job_status=" + $("#job_status").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + escape($("#mobile").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&address=" + escape($("#address").val()) + "&job=" + escape($("#job").val()) + "&education=" + $("#education").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("studentControl.asp?op=update&nodeID=" + $("#username").val() + "&name=" + escape($("#name").val()) + "&unit=" + escape($("#unit").val()) + "&dept=" + escape($("#dept").val()) + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&job_status=" + $("#job_status").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + escape($("#mobile").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&address=" + escape($("#address").val()) + "&job=" + escape($("#job").val()) + "&education=" + $("#education").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -409,12 +406,7 @@
 				$("#close").hide();
 			}
 		}
-		if($("#companyID").val()==8){
-			$("#kindID").show();
-		}else{
-			$("#kindID").val(0);
-			$("#kindID").hide();
-		}
+		setZNXF();
 	}
 	
 	function setEmpty(){
@@ -438,6 +430,21 @@
 		//$("#host").val();
 		$("#education").val(0);
 		$("#enterCover").empty();
+	}
+
+	function setZNXF(){
+		if($("#companyID").val()==46){
+			$("#kindID").val(0);
+			$("#kindID").hide();
+			$("#spc_dept").hide();
+			$("#dept3").hide();
+			$("#znxf_dept").show();
+		}else{
+			$("#kindID").show();
+			$("#spc_dept").show();
+			$("#znxf_dept").hide();
+			$("#dept3").show();
+		}
 	}
 
 	function dealResponse(re){
@@ -558,12 +565,7 @@
 				setDeptList(ar[1],2,0);
 				$("#dept2").val(ar[2]);
 				$("#mobile").val(ar[3]);
-				if($("#companyID").val()==8){
-					$("#kindID").show();
-				}else{
-					$("#kindID").val(0);
-					$("#kindID").hide();
-				}
+				setZNXF();
 			}
 		});
 	}
@@ -605,16 +607,22 @@
 				<td><select id="education" style="width:180px;"></select></td>
 			</tr>
 			<tr>
-				<td align="right">公司</td>
+				<td align="right">来源</td>
 				<td><select id="companyID" style="width:180px;"></select></td>
 				<td align="right">类型</td>
 				<td><select id="kindID" style="width:180px;"></select></td>
 			</tr>
-			<tr>
+			<tr id="spc_dept">
 				<td align="right">一级部门</td>
 				<td><select id="dept1" style="width:180px;"></select></td>
 				<td align="right">二级部门</td>
 				<td><select id="dept2" style="width:180px;"></select></td>
+			</tr>
+			<tr id="znxf_dept">
+				<td align="right">单位</td>
+				<td><input type="text" id="unit" size="25" /></td>
+				<td align="right">部门</td>
+				<td><input type="text" id="dept" size="25" /></td>
 			</tr>
 			<tr>
 				<td align="right">三级部门</td>
