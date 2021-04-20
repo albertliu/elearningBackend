@@ -188,9 +188,15 @@
 				$("#statusName").val(ar[4]);
 				$("#courseName").val(ar[6]);
 				$("#regDate").val(ar[11]);
-				$("#hostName").val(ar[12]);
-				$("#dept1Name").val(ar[13]);
-				$("#dept2Name").val(ar[14]);
+				if(ar[39]=="znxf"){	//非集团客户，显示自己的单位和部门
+					$("#hostName").val(ar[37]);
+					$("#dept1Name").val(ar[38]);
+					$("#dept2Name").val("");
+				}else{
+					$("#hostName").val(ar[12]);
+					$("#dept1Name").val(ar[13]);
+					$("#dept2Name").val(ar[14]);
+				}
 				$("#memo").val(ar[16]);
 				$("#mobile").val(ar[17]);
 				$("#startDate").val(ar[19]);
