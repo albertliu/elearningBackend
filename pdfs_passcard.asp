@@ -61,7 +61,7 @@
 					arr.push('<div style="clear: both;"></div>');
 					arr.push('<hr size=2 color="red">');
 					arr.push('<div style="float:left;width:100%;">');
-					arr.push('	<table style="width:100%;">');
+					arr.push('	<table style="width:100%; padding-left:5px;">');
 					arr.push('		<tr>');
 					arr.push('			<td width="25%"><h3>姓&nbsp;名：</h3></td>');
 					arr.push('			<td class="foot" width="25%"><h3>' + val["name"] + '</h3></td>');
@@ -76,7 +76,7 @@
 					arr.push('			<td><h3>考生标识：</h3></td>');
 //					arr.push('			<td class="foot"><h3>' + val["startDate"].replace("-","") + fillFormat(k,2,"0",0) + '</h3></td>');
 					arr.push('			<td class="foot"><h3>' + val["startDate"].replace(/-/g,"") + fillFormat(k,2,"0",0) + '</h3></td>');
-					arr.push('			<td align="right"><h3>登录密码：</h3></td>');
+					arr.push('			<td align="right"><h3>密&nbsp;码：</h3></td>');
 					arr.push('			<td class="foot"><h3>' + val["username"].substr(12,6) + '</h3></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
