@@ -6,7 +6,7 @@
 		getComList("searchEnterHost","hostInfo","hostNo","title","status=0 order by hostName",1);
 		getComList("searchEnterCourseID","v_courseInfo","courseID","courseName","status=0 and type=0 order by courseID",1);
 		getComList("searchEnterProjectID","projectInfo","projectID","projectID","status>0 and status<9 order by ID desc",1);
-		getComList("searchEnterClassID","classInfo","classID","classID","1=1 order by ID desc",1);
+		getComList("searchEnterClassID","v_classInfo","classID","className","1=1 order by ID desc",1);
 
 		getDicList("student","searchEnterKind",1);
 		getDicList("planStatus","searchEnterStatus",1);
