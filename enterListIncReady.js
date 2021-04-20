@@ -12,6 +12,7 @@
 		getDicList("planStatus","searchEnterStatus",1);
 		getDicList("statusCheck","searchEnterChecked",1);
 		getDicList("statusNo","searchEnterMaterialChecked",1);
+		getDicList("statusNo","searchEnterPasscard",1);
 		getDicList("statusAsk","searchEnterPhotoStatus",1);
 		$("#searchEnterStartDate").click(function(){WdatePicker();});
 		$("#searchEnterEndDate").click(function(){WdatePicker();});
@@ -87,6 +88,10 @@
 		$("#searchEnterShowPhoto").change(function(){
 			setEnterItem();
 		});
+		
+		$("#searchEnterClassID").change(function(){
+			setEnterItem();
+		});
 
 		//$("#enterListLongItem3").hide();
 		$("#enterListLongItem4").hide();
@@ -115,6 +120,19 @@
 			});
 		});
 		
+		$("#btnEnterPasscard").click(function(){
+			getSelCart("visitstockchkEnter");
+			if(selCount==0){
+				jAlert("请选择名单。");
+				return false;
+			}
+			if($("#searchEnterClassID").val()==""){
+				jAlert("请选择一个班级。");
+				return false;
+			}
+			showGeneratePasscardInfo(0,selList,1,1,$("#searchEnterClassID").val());
+		});
+		
 		if(!checkPermission("studentAdd")){
 			$("#btnSearchEnterAdd").hide();
 		}
@@ -131,7 +149,7 @@
 		var Old = 0;
 		//if($("#searchEnterOld").attr("checked")){Old = 1;}
 		//alert($("#searchEnterDept").val() + "&refID=" + $("#searchEnterProjectID").val() + "&status=" + $("#searchEnterStatus").val() + "&photoStatus=" + $("#searchEnterPhotoStatus").val() + "&courseID=" + $("#searchEnterCourseID").val() + "&host=" + $("#searchEnterHost").val() + "&checked=" + $("#searchEnterChecked").val() + "&materialChecked=" + $("#searchEnterMaterialChecked").val() + "&classID=" + $("#searchEnterClassID").val());
-		$.get("studentCourseControl.asp?op=getStudentCourseList&where=" + escape(sWhere) + "&mark=1&kindID=" + $("#searchEnterDept").val() + "&refID=" + $("#searchEnterProjectID").val() + "&status=" + $("#searchEnterStatus").val() + "&photoStatus=" + $("#searchEnterPhotoStatus").val() + "&courseID=" + $("#searchEnterCourseID").val() + "&host=" + $("#searchEnterHost").val() + "&checked=" + $("#searchEnterChecked").val() + "&materialChecked=" + $("#searchEnterMaterialChecked").val() + "&classID=" + $("#searchEnterClassID").val() + "&fStart=" + $("#searchEnterStartDate").val() + "&fEnd=" + $("#searchEnterEndDate").val() + "&dk=101&times=" + (new Date().getTime()),function(data){
+		$.get("studentCourseControl.asp?op=getStudentCourseList&where=" + escape(sWhere) + "&mark=1&kindID=" + $("#searchEnterDept").val() + "&refID=" + $("#searchEnterProjectID").val() + "&status=" + $("#searchEnterStatus").val() + "&photoStatus=" + $("#searchEnterPhotoStatus").val() + "&courseID=" + $("#searchEnterCourseID").val() + "&host=" + $("#searchEnterHost").val() + "&checked=" + $("#searchEnterChecked").val() + "&materialChecked=" + $("#searchEnterMaterialChecked").val() + "&passcard=" + $("#searchEnterPasscard").val() + "&classID=" + $("#searchEnterClassID").val() + "&fStart=" + $("#searchEnterStartDate").val() + "&fEnd=" + $("#searchEnterEndDate").val() + "&dk=101&times=" + (new Date().getTime()),function(data){
 		//$.getJSON("enterControl.asp?op=getEnterList",function(data){
 			//alert(unescape(data));
 			var ar = new Array();
@@ -148,7 +166,7 @@
 			});
 			arr = [];
 			arr.push("<div>" + ar.shift() + "</div>");					
-			arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='enterTab' width='99%'>");
+			arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='enterTab' width='100%'>");
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
@@ -163,17 +181,18 @@
 			}else{
 				arr.push("<th width='12%'>课程名称</th>");
 				if(currHost==""){
-					arr.push("<th width='12%'>公司</th>");
+					arr.push("<th width='8%'>公司</th>");
 				}else{
-					arr.push("<th width='12%'>部门</th>");
+					arr.push("<th width='8%'>部门</th>");
 				}
 				arr.push("<th width='6%'>状态</th>");
 				arr.push("<th width='8%'>报名日期</th>");
 			}
-			arr.push("<th width='6%'>单位</th>");
+			//arr.push("<th width='6%'>单位</th>");
 			arr.push("<th width='6%'>材料</th>");
 			arr.push("<th width='6%'>缴费</th>");
 			arr.push("<th width='6%'>编号</th>");
+			arr.push("<th width='6%'>准考</th>");
 			arr.push("<th width='3%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -231,6 +250,7 @@
 						arr.push("<td class='left'>" + ar1[11] + "</td>");
 						
 					}
+					/*
 					if(ar1[16]==0){
 						arr.push("<td class='center'>&nbsp;</td>");
 					}
@@ -240,6 +260,7 @@
 					if(ar1[16]==2){
 						arr.push("<td class='center'>" + imgChk2 + "</td>");
 					}
+					*/
 					if(ar1[44]==0){
 						arr.push("<td class='center'>&nbsp;</td>");
 					}
@@ -248,6 +269,11 @@
 					}
 					arr.push("<td class='left'>" + ar1[50] + "</td>");
 					arr.push("<td class='left'>" + ar1[43] + "</td>");
+					if(ar1[53]>0){
+						arr.push("<td class='center'>" + imgChk1 + "</td>");
+					}else{
+						arr.push("<td class='center'>&nbsp;</td>");
+					}
 					arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchkEnter'>" + "</td>");
 					arr.push("</tr>");
 				});
@@ -263,6 +289,7 @@
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
+			//arr.push("<th>&nbsp;</th>");
 			if($("#searchEnterProjectID").val()>"" && $("#searchEnterShowPhoto").attr("checked")){
 				$.each(ar2,function(iNum1,val1){
 					arr.push("<th>&nbsp;</th>");
@@ -298,8 +325,7 @@
 	}
 
 	function setEnterItem(){
-		if($("#searchEnterProjectID").val()>""){
-			$("#enterListLongItem6").hide();
+		if($("#searchEnterProjectID").val()>"" || $("#searchEnterClassID").val()>""){
 			$.get("projectControl.asp?op=getStatus&refID=" + $("#searchEnterProjectID").val() ,function(data){
 				enterProjectStatus = data;
 			});
@@ -317,7 +343,6 @@
 		}else{
 			$("#enterListLongItem4").hide();
 			$("#enterListLongItem5").hide();
-			$("#enterListLongItem6").show();
 		}
 		getEnterList();
 	}

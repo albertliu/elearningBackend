@@ -55,18 +55,18 @@
 					arr.push('	<img src="/users/upload/companies/logo/znxf.png" style="width:93px;padding-top:10px;padding-left:20px;">');
 					arr.push('</div>');
 					arr.push('<div style="float:right;width:89%;">');
-					arr.push('	<div style="text-align:center;"><h2>' + val["title"] + '</h2></div>');
-					arr.push('	<div style="text-align:center;"><h1>准考证</h1></div>');
+					arr.push('	<div style="text-align:center;"><h3>' + val["title"] + '</h2></div>');
+					arr.push('	<div style="text-align:center;"><h2>准考证</h1></div>');
 					arr.push('</div>');
 					arr.push('<div style="clear: both;"></div>');
 					arr.push('<hr size=2 color="red">');
-					arr.push('<div style="float:right;width:100%;">');
+					arr.push('<div style="float:left;width:100%;">');
 					arr.push('	<table style="width:100%;">');
 					arr.push('		<tr>');
-					arr.push('			<td width="15%"><h3>姓&nbsp;名：</h3></td>');
-					arr.push('			<td class="foot" width="35%"><h3>' + val["name"] + '</h3></td>');
-					arr.push('			<td width="15%"><h3>性&nbsp;别：</h3></td>');
-					arr.push('			<td class="foot" width="35%"><h3>' + val["sexName"] + '</h3></td>');
+					arr.push('			<td width="25%"><h3>姓&nbsp;名：</h3></td>');
+					arr.push('			<td class="foot" width="25%"><h3>' + val["name"] + '</h3></td>');
+					arr.push('			<td width="25%" align="right"><h3>性&nbsp;别：</h3></td>');
+					arr.push('			<td class="foot" width="25%"><h3>' + val["sexName"] + '</h3></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
 					arr.push('			<td><h3>身份证号：</h3></td>');
@@ -74,9 +74,10 @@
 					arr.push('		</tr>');
 					arr.push('		<tr>');
 					arr.push('			<td><h3>考生标识：</h3></td>');
-					arr.push('			<td class="foot"><h3>' + val["startDate"].replace("-","") + fillFormat(k,2,"0",0) + '</h3></td>');
-					arr.push('			<td><h3>登录密码：</h3></td>');
-					arr.push('			<td class="foot"><h3>' + val["username"].substr(13,6) + '</h3></td>');
+//					arr.push('			<td class="foot"><h3>' + val["startDate"].replace("-","") + fillFormat(k,2,"0",0) + '</h3></td>');
+					arr.push('			<td class="foot"><h3>' + val["startDate"].replace(/-/g,"") + fillFormat(k,2,"0",0) + '</h3></td>');
+					arr.push('			<td align="right"><h3>登录密码：</h3></td>');
+					arr.push('			<td class="foot"><h3>' + val["username"].substr(12,6) + '</h3></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
 					arr.push('			<td><h3>考试时间：</h3></td>');
@@ -84,11 +85,11 @@
 					arr.push('		</tr>');
 					arr.push('		<tr>');
 					arr.push('			<td><h3>考试地点：</h3></td>');
-					arr.push('			<td class="foot"><h3>' + val["address"] + '</h3></td>');
+					arr.push('			<td class="foot" colspan="3"><h3>' + val["address"] + '</h3></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
 					arr.push('			<td><h3>注意事项：</h3></td>');
-					arr.push('			<td class="foot"><h3>' + val["notes"] + '年</h3></td>');
+					arr.push('			<td colspan="3"><h3>' + val["notes"] + '</h3></td>');
 					arr.push('		</tr>');
 					arr.push('	</table>');
 					arr.push('</div>');
@@ -108,6 +109,18 @@
 				$("#cover").html(arr.join(""));
 			}
 		});
+	}
+	//fillFormat("1",3,"0",0) = "001"
+	function fillFormat(strIn,intLng,strFill,location){
+		var result = String(strIn);
+		while(result.length < intLng){
+			if(location==0){//填充在前面
+				result = strFill + result;
+			}else{
+				result = result + strFill;
+			}
+		}
+		return result;
 	}
 </script>
 

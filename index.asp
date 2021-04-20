@@ -84,6 +84,7 @@
 	<!--#include file="enterListIncReady.js"-->
 	<!--#include file="payListIncReady.js"-->
 	<!--#include file="invoiceListIncReady.js"-->
+	<!--#include file="generatePasscardListIncReady.js"-->
 	<!--#include file="rptStudentIncReady.js"-->
 	<!--#include file="rptTrainningIncReady.js"-->
 	<!--#include file="rptDiplomaIncReady.js"-->
@@ -429,10 +430,13 @@
 								<!--#include file="invoiceListIncDetail.js"-->
 							</div>
 							<div id="dtab104" class="dhtmlgoodies_aTab">
+								<!--#include file="generatePasscardListIncDetail.js"-->
+							</div>
+							<div id="dtab105" class="dhtmlgoodies_aTab">
 							</div>
 						</div>
 						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView10',Array("报名记录","收费记录","发票管理","日结报表"),0,960,400);
+							initTabs('dhtmlgoodies_tabView10',Array("报名记录","收费记录","发票管理","准考证","日结报表"),0,960,400);
 						</script>
 					</div>
 					

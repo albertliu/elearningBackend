@@ -495,6 +495,69 @@ if(op == "getGenerateMaterialNodeInfo"){
 	//Response.Write(escape(sql));
 }	
 
+if(op == "getGeneratePasscardList"){
+	result = "";
+	var s = "";
+	//如果有条件，按照条件查询
+	if(where > ""){ // 有条件
+		where = "(className like('%" + where + "%'))";
+	}
+	//如果有班级
+	if(refID > ""){ // 
+		s = "classID='" + refID + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//如果有课程
+	if(kindID > ""){ // 
+		s = "certID='" + kindID + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	if(fStart > ""){
+		s = "startDate>='" + fStart + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	if(fEnd > ""){
+		s = "startDate<='" + fEnd + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+
+	if(where > ""){
+		where = " where " + where;
+	}
+	sql = " FROM v_generatePasscardInfo " + where;
+	result = getBasketTip(sql,"");
+	ssql = "SELECT kindName,qty,hostName,memo,regDate,registerName" + sql + " order by ID";
+	sql = "SELECT top " + basket + " *" + sql + " order by ID desc";
+	
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("ID").value + "|" + rs("classID").value + "|" + rs("className").value + "|" + rs("title").value + "|" + rs("qty").value + "|" + rs("startTime").value + "|" + rs("address").value;
+		//7
+		result += "|" + rs("notes").value + "|" + rs("startDate").value + "|" + rs("filename").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value;
+		rs.MoveNext();
+	}
+	rs.Close();
+	
+	Session(op) = ssql;
+	Response.Write(escape(result));
+}	
+
 if(op == "getGeneratePasscardNodeInfo"){
 	result = "";
 	sql = "SELECT * FROM v_generatePasscardInfo where ID=" + nodeID;
@@ -502,7 +565,7 @@ if(op == "getGeneratePasscardNodeInfo"){
 	if(!rs.EOF){
 		result = rs("ID").value + "|" + rs("classID").value + "|" + rs("className").value + "|" + rs("title").value + "|" + rs("qty").value + "|" + rs("startTime").value + "|" + rs("address").value;
 		//7
-		result += "|" + rs("notes").value + "|" + rs("cert").value + "|" + rs("filename").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value;
+		result += "|" + rs("notes").value + "|" + rs("startDate").value + "|" + rs("filename").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

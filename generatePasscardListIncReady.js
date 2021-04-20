@@ -1,58 +1,50 @@
-﻿	var generateDiplomaListLong = 0;		//0: 标准栏目  1：短栏目
-	var generateDiplomaListChk = 0;
+﻿	var generatePasscardListLong = 0;		//0: 标准栏目  1：短栏目
+	var generatePasscardListChk = 0;
 
 	$(document).ready(function (){
-		var w1 = "status=0 and hostNo='" + currHost + "'";
-		var w2 = "status=0 and (kindID=0 or host='" + currHost + "')";
-		if(currHost==""){	//公司用户只能看自己公司内容
-			getComList("searchGenerateDiplomaHost","hostInfo","hostNo","title","status=0 order by hostName",1);
-			getComList("searchGenerateDiplomaCert","certificateInfo","certID","certName","status=0 order by certID",1);
-		}else{
-			getComList("searchGenerateDiplomaHost","hostInfo","hostNo","title",w1,0);
-			getComList("searchGenerateDiplomaCert","certificateInfo","certID","certName",w2,1);
-		}
-		$("#searchGenerateDiplomaStart").click(function(){WdatePicker();});
-		$("#searchGenerateDiplomaEnd").click(function(){WdatePicker();});
+		getComList("searchGeneratePasscardCert","v_certificateInfo","certID","certName","status=0 and type=0 order by certName",1);
+		getComList("searchGeneratePasscardClass","classInfo","classID","classID","1=1 order by ID desc",1);
+		$("#searchGeneratePasscardStart").click(function(){WdatePicker();});
+		$("#searchGeneratePasscardEnd").click(function(){WdatePicker();});
 		
-		$("#btnSearchGenerateDiploma").click(function(){
-			getGenerateDiplomaList();
+		$("#btnSearchGeneratePasscard").click(function(){
+			getGeneratePasscardList();
 		});
 		
-		$("#txtSearchGenerateDiploma").keypress(function(event){
+		$("#txtSearchGeneratePasscard").keypress(function(event){
 			if(event.keyCode==13){
-				if($("#txtSearchGenerateDiploma").val()>""){
-					getGenerateDiplomaList();
+				if($("#txtSearchGeneratePasscard").val()>""){
+					getGeneratePasscardList();
 				}else{
 					jAlert("请输入查询条件");
 				}
 			}
 		});
-		//getGenerateDiplomaList();
+		//getGeneratePasscardList();
 	});
 
-	function getGenerateDiplomaList(){
-		sWhere = $("#txtSearchGenerateDiploma").val();
-		//alert((sWhere) + "&kindID=" + $("#searchGenerateDiplomaCert").val() + "&host=" + $("#searchGenerateDiplomaHost").val() + "&keyID=" + photo);
-		$.get("diplomaControl.asp?op=getGenerateDiplomaList&where=" + escape(sWhere) + "&kindID=" + $("#searchGenerateDiplomaCert").val() + "&host=" + $("#searchGenerateDiplomaHost").val() + "&fStart=" + $("#searchGenerateDiplomaStart").val() + "&fEnd=" + $("#searchGenerateDiplomaEnd").val() + "&dk=22&times=" + (new Date().getTime()),function(data){
+	function getGeneratePasscardList(){
+		sWhere = $("#txtSearchGeneratePasscard").val();
+		//alert((sWhere) + "&kindID=" + $("#searchGeneratePasscardCert").val() + "&host=" + $("#searchGeneratePasscardHost").val() + "&keyID=" + photo);
+		$.get("diplomaControl.asp?op=getGeneratePasscardList&where=" + escape(sWhere) + "&kindID=" + $("#searchGeneratePasscardCert").val() + "&refID=" + $("#searchGeneratePasscardClass").val() + "&fStart=" + $("#searchGeneratePasscardStart").val() + "&fEnd=" + $("#searchGeneratePasscardEnd").val() + "&dk=104&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
-			$("#generateDiplomaCover").empty();
+			$("#generatePasscardCover").empty();
 			var ar0 = new Array();
 			ar0 = ar.shift().split("|");
 			floatCount = ar0[0];
 			floatSum = "";
 			arr = [];
 			arr.push("<div>" + ar.shift() + "</div>");					
-			arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='generateDiplomaTab' width='99%'>");
+			arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='generatePasscardTab' width='99%'>");
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
-			arr.push("<th width='15%'>证书名称</th>");
+			arr.push("<th width='12%'>班级编号</th>");
+			arr.push("<th width='20%'>班级名称</th>");
 			arr.push("<th width='8%'>数量</th>");
-			arr.push("<th width='24%'>编号范围</th>");
-			arr.push("<th width='15%'>公司</th>");
-			arr.push("<th width='9%'>说明</th>");
+			arr.push("<th width='30%'>考试日期</th>");
 			arr.push("<th width='10%'>制作日期</th>");
 			arr.push("<th width='9%'>制作人</th>");
 			arr.push("<th width='6%'>文件</th>");
@@ -70,17 +62,16 @@
 					i += 1;
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
-					arr.push("<td class='link1'><a href='javascript:showGenerateDiplomaInfo(\"" + ar1[0] + "\",0,0,1);'>" + ar1[2] + "</a></td>");
-					arr.push("<td class='left'>" + ar1[3] + "</td>");
-					arr.push("<td class='left'>" + ar1[8] + " ~ " + ar1[9] + "</td>");
-					arr.push("<td class='left'>" + ar1[6] + "</td>");
-					arr.push("<td class='left'>" + ar1[10] + "</td>");
+					arr.push("<td class='link1'><a href='javascript:showGeneratePasscardInfo(" + ar1[0] + ",0,0,1,\"\");'>" + ar1[1] + "</a></td>");
+					arr.push("<td class='left'>" + ar1[2] + "</td>");
+					arr.push("<td class='left'>" + ar1[4] + "</td>");
+					arr.push("<td class='left'>" + ar1[8] + "  " + ar1[5] + "</td>");
 					arr.push("<td class='left'>" + ar1[11] + "</td>");
 					arr.push("<td class='left'>" + ar1[12] + "</td>");
-					if(ar1[7]==''){
+					if(ar1[9]==''){
 						arr.push("<td class='center'>&nbsp;</td>");
 					}else{
-						arr.push("<td class='center'><a href='/users" + ar1[7] + "' target='_blank'>" + imgChk + "</a></td>");
+						arr.push("<td class='center'><a href='/users" + ar1[9] + "' target='_blank'>" + imgChk + "</a></td>");
 					}
 					arr.push("</tr>");
 				});
@@ -96,13 +87,12 @@
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
-			arr.push("<th>&nbsp;</th>");
 			arr.push("</tr>");
 			arr.push("</tfoot>");
 			arr.push("</table>");
-			$("#generateDiplomaCover").html(arr.join(""));
+			$("#generatePasscardCover").html(arr.join(""));
 			arr = [];
-			$('#generateDiplomaTab').dataTable({
+			$('#generatePasscardTab').dataTable({
 				"aaSorting": [],
 				"bFilter": true,
 				"bPaginate": true,

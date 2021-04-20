@@ -128,6 +128,24 @@ if(op == "getStudentCourseList"){
 			where = s;
 		}
 	}
+	//未做准考证
+	if(String(Request.QueryString("passcard")) == "0"){
+		s = "passcardID=0";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//已做准考证
+	if(String(Request.QueryString("passcard")) == "1"){
+		s = "passcardID>0";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 	//不合格图片状态
 	var photoStatus = String(Request.QueryString("photoStatus"));
 	if(photoStatus > "" && photoStatus !="undefined"){
@@ -165,7 +183,7 @@ if(op == "getStudentCourseList"){
 		//47
 		result += "|" + rs("price").value + "|" + rs("pay_kindName").value + "|" + rs("pay_typeName").value + "|" + rs("pay_statusName").value;
 		//51
-		result += "|" + rs("projectName").value + "|" + rs("className").value;
+		result += "|" + rs("projectName").value + "|" + rs("className").value + "|" + rs("passcardID").value;
 		rs.MoveNext();
 	}
 	rs.Close();
