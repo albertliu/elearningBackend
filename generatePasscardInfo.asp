@@ -97,6 +97,7 @@
 				$("#memo").val(ar[10]);
 				$("#regDate").val(ar[11]);
 				$("#registerName").val(ar[12]);
+				$("#startNo").val(ar[13]);
 				var c = "";
 				if(ar[9] > ""){
 					c += "<a href='/users" + ar[9] + "' target='_blank'>准考证</a>";
@@ -125,8 +126,12 @@
 			jAlert("请填写考试时间。");
 			return false;
 		}
+		if($("#startNo").val()=="" || $("#startNo").val()<1 || $("#startNo").val()>1000){
+			jAlert("请检查起始编号值。");
+			return false;
+		}
 		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-		$.getJSON(uploadURL + "/outfiles/generate_passcard_byClassID?mark=0&classID=" + keyID + "&ID=" + nodeID + "&selList=" + refID + "&title=" + $("#title").val() + "&startDate=" + $("#startDate").val() + "&startTime=" + $("#startTime").val() + "&address=" + $("#address").val() + "&notes=" + $("#notes").val() + "&memo=" + $("#memo").val() + "&username=" + currUser ,function(data){
+		$.getJSON(uploadURL + "/outfiles/generate_passcard_byClassID?mark=0&classID=" + keyID + "&ID=" + nodeID + "&selList=" + refID + "&title=" + $("#title").val() + "&startNo=" + $("#startNo").val() + "&startDate=" + $("#startDate").val() + "&startTime=" + $("#startTime").val() + "&address=" + $("#address").val() + "&notes=" + $("#notes").val() + "&memo=" + $("#memo").val() + "&username=" + currUser ,function(data){
 			if(data>""){
 				jAlert("准考证制作成功");
 				op = 0;
@@ -153,8 +158,12 @@
 			jAlert("请填写考试时间。");
 			return false;
 		}
+		if($("#startNo").val()=="" || $("#startNo").val()<1 || $("#startNo").val()>1000){
+			jAlert("请检查起始编号值。");
+			return false;
+		}
 		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-		$.getJSON(uploadURL + "/outfiles/generate_passcard_byClassID?mark=1&classID=" + keyID + "&ID=" + nodeID + "&selList=&title=" + $("#title").val() + "&startDate=" + $("#startDate").val() + "&startTime=" + $("#startTime").val() + "&address=" + $("#address").val() + "&notes=" + $("#notes").val() + "&memo=" + $("#memo").val() + "&username=" + currUser ,function(data){
+		$.getJSON(uploadURL + "/outfiles/generate_passcard_byClassID?mark=1&classID=" + keyID + "&ID=" + nodeID + "&selList=&title=" + $("#title").val() + "&startNo=" + $("#startNo").val() + "&startDate=" + $("#startDate").val() + "&startTime=" + $("#startTime").val() + "&address=" + $("#address").val() + "&notes=" + $("#notes").val() + "&memo=" + $("#memo").val() + "&username=" + currUser ,function(data){
 			if(data>""){
 				jAlert("保存成功");
 				op = 0;
@@ -170,10 +179,12 @@
 	function setButton(){
 		$("#save").hide();
 		$("#doPasscard").hide();
+		$("#startNo").prop("disabled",true);
 		if(op==1){
 			$("#doPasscard").show();
 			$("#doPasscard").val("制作准考证");
 			setEmpty();
+			$("#startNo").prop("disabled",false);
 			//$("#save").focus();
 		}else{
 			if(checkPermission("studentAdd")){
@@ -188,6 +199,7 @@
 		$("#title").val("中石化从业人员安全知识考核");
 		$("#startDate").val(currDate);
 		$("#startTime").val("15:00 - 16:30");
+		$("#startNo").val(1);
 		$("#address").val("黄兴路158号D栋103室");
 		$("#notes").val("请务必携带身份证和准考证；迟到15分钟不得入场。");
 	}
@@ -214,7 +226,7 @@
 				<td align="right">班级</td><input type="hidden" id="ID" /><input type="hidden" id="classID" />
 				<td><input class="readOnly" type="text" id="className" size="25" readOnly="true" /></td>
 				<td align="right">数量</td>
-				<td><input class="readOnly" type="text" id="qty" size="25" readOnly="true" /></td>
+				<td><input class="readOnly" type="text" id="qty" size="3" readOnly="true" />&nbsp;&nbsp;&nbsp;&nbsp;起始编号&nbsp;<input class="mustFill" type="text" id="startNo" size="3" /></td>
 			</tr>
 			<tr>
 				<td align="right">证书标题</td>
