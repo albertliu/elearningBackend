@@ -67,6 +67,12 @@
 		$("#doPasscard").click(function(){
 			doPasscard();
 		});
+		$("#list").click(function(){
+			outputExcelBySQL('x01','file',nodeID,0,0);
+		});
+		$("#sign").click(function(){
+			outputExcelBySQL('x02','file',nodeID,0,0);
+		});
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -125,6 +131,7 @@
 				jAlert("准考证制作成功");
 				op = 0;
 				updateCount = 1;
+				nodeID = data;
 				getNodeInfo(data);
 			}else{
 				jAlert("没有可供处理的数据。");
@@ -225,6 +232,8 @@
 				<td align="right">文件下载</td>
 				<td>
 					<span id="photo" style="margin-left:10px;"></span>
+					<span id="list" style="margin-left:10px;"><a>考生数据</a></span>
+					<span id="sign" style="margin-left:10px;"><a>签到表</a></span>
 				</td>
 			</tr>
 			<tr>

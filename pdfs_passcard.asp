@@ -74,10 +74,11 @@
 					arr.push('		</tr>');
 					arr.push('		<tr>');
 					arr.push('			<td><h3>考生标识：</h3></td>');
-//					arr.push('			<td class="foot"><h3>' + val["startDate"].replace("-","") + fillFormat(k,2,"0",0) + '</h3></td>');
-					arr.push('			<td class="foot"><h3>' + val["startDate"].replace(/-/g,"") + fillFormat(k,2,"0",0) + '</h3></td>');
+//					arr.push('			<td class="foot"><h3>' + val["startDate"].replace(/-/g,"") + fillFormat(k,2,"0",0) + '</h3></td>');
+					arr.push('			<td class="foot"><h3>' + val["passNo"] + '</h3></td>');
 					arr.push('			<td align="right"><h3>密&nbsp;码：</h3></td>');
-					arr.push('			<td class="foot"><h3>' + val["username"].substr(12,6) + '</h3></td>');
+//					arr.push('			<td class="foot"><h3>' + val["username"].substr(12,6) + '</h3></td>');
+					arr.push('			<td class="foot"><h3>' + val["password"] + '</h3></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
 					arr.push('			<td><h3>考试时间：</h3></td>');

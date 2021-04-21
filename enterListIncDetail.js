@@ -18,7 +18,7 @@
 							班级&nbsp;<select id="searchEnterClassID" style="width:75px"></select>&nbsp;&nbsp;
 							<input style="border:0px;" type="checkbox" id="searchEnterShowPhoto" value="" />&nbsp;图片&nbsp;&nbsp;
 						    <span style="float:right;">
-								<input class="button" type="button" name="btnDownLoad13" id="btnDownLoad13" onClick="outputFloat(101,'file')" value="下载" />
+								<input class="button" type="button" onClick="outputFloat(101,'file')" value="下载" />
 							</span>
 							<br>
 							<span id="enterListLongItem4">

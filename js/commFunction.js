@@ -225,7 +225,28 @@
 			jAlert("已提交打印","信息提示");
 		});
 	}
-	
+
+	//执行预先制定的语句，输出为excel文件
+	//key: file/print
+	function outputExcelBySQL(id,key,p1,p2,p3){
+		//alert(id);
+		var sql = "";
+		var p = "";
+		if(id=='x01'){
+			p = "getExamerList";
+			sql = "select courseName,username,'',passNo,'',password,name,sexName from v_passcardInfo where refID=" + p1 + " order by passNo";
+		}
+		if(id=='x02'){
+			p = "getExamerSignList";
+			sql = "select passNo,name,username,sexName from v_passcardInfo where refID=" + p1 + " order by passNo";
+		}
+		setSession(p, sql);
+		setSession("dk" + id, p);
+		setSession("dk" + id + "_count", 60);
+		//alert(sql);
+		outputFloat(id,key);
+	}
+		
 	function outputFloat(id,key){
 		var m = getSession("dk" + id + "_count");
 		//alert(floatCount);

@@ -303,6 +303,10 @@
 			jAlert("请选择招生项目。");
 			return false;
 		}
+		if($("#classID").val() == "" || $("#classID").val() == null){
+			jAlert("请选择班级。");
+			return false;
+		}
 		lastone_item = [];
 		lastone_item.push("companyID|" + keyID);
 		lastone_item.push("projectID|" + $("#projectID").val());
