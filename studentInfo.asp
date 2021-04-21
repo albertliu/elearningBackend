@@ -422,6 +422,8 @@
 		$("#limitDate").val("");
 		$("#address").val("");
 		$("#companyID").val(getSession("lastcompany"));
+		setZNXF();
+		setDeptList($("#companyID").val(),1,$("#kindID").val());
 		//$("#dept1").val(ar[26]);				
 		//$("#dept2").val(ar[27]);
 		$("#job_status").val(1);	//默认就业
@@ -430,6 +432,10 @@
 		//$("#host").val();
 		$("#education").val(0);
 		$("#enterCover").empty();
+		$("#img_photo").attr("src","");
+		$("#img_cardA").attr("src","");
+		$("#img_cardB").attr("src","");
+		$("#img_education").attr("src","");
 	}
 
 	function setZNXF(){
