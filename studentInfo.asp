@@ -208,6 +208,12 @@
 				$("#address").val(ar[34]);
 				$("#unit").val(ar[35]);
 				$("#dept").val(ar[36]);
+				$("#ethnicity").val(ar[37]);
+				$("#IDaddress").val(ar[38]);
+				$("#bureau").val(ar[39]);
+				$("#IDdateStart").val(ar[40]);
+				$("#IDdateEnd").val(ar[41]);
+				$("#experience").val(ar[42]);
 				//$("#upload1").html("<a href='javascript:showLoadFile(\"student_education\",\"" + ar[1] + "\",\"student\",\"\");' style='padding:3px;'>上传</a>");
 				//<a href='/users" + ar[21] + "' target='_blank'></a>
 				arr = [];
@@ -274,7 +280,7 @@
 		var k = 0;
 		if(op==0){k=1;}
 		//alert("nodeID=" + $("#username").val() + "&name=" + ($("#name").val()) + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + ($("#mobile").val()) + "&phone=" + ($("#phone").val()) + "&email=" + ($("#email").val()) + "&job=" + ($("#job").val()) + "&education=" + ($("#education").val()) + "&memo=" + ($("#memo").val()));
-		$.get("studentControl.asp?op=update&nodeID=" + $("#username").val() + "&name=" + escape($("#name").val()) + "&unit=" + escape($("#unit").val()) + "&dept=" + escape($("#dept").val()) + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&job_status=" + $("#job_status").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + escape($("#mobile").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&address=" + escape($("#address").val()) + "&job=" + escape($("#job").val()) + "&education=" + $("#education").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("studentControl.asp?op=update&nodeID=" + $("#username").val() + "&name=" + escape($("#name").val()) + "&unit=" + escape($("#unit").val()) + "&dept=" + escape($("#dept").val()) + "&ethnicity=" + escape($("#ethnicity").val()) + "&IDaddress=" + escape($("#IDaddress").val()) + "&bureau=" + escape($("#bureau").val()) + "&IDdateStart=" + $("#IDdateStart").val() + "&IDdateEnd=" + $("#IDdateEnd").val() + "&experience=" + escape($("#experience").val()) + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&job_status=" + $("#job_status").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + escape($("#mobile").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&address=" + escape($("#address").val()) + "&job=" + escape($("#job").val()) + "&education=" + $("#education").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -421,6 +427,12 @@
 		$("#kindID").val(0);
 		$("#limitDate").val("");
 		$("#address").val("");
+		$("#experience").val("");
+		$("#ethnicity").val("汉");
+		$("#IDaddress").val("");
+		$("#bureau").val("");
+		$("#IDdateStart").val("");
+		$("#IDdateEnd").val("");
 		$("#companyID").val(getSession("lastcompany"));
 		setZNXF();
 		setDeptList($("#companyID").val(),1,$("#kindID").val());
@@ -518,11 +530,14 @@
 				replaceImgFromCard("photo,cardA,cardB");
 			}
 		}
-		//alert($("#companyID").val());
-		//if($("#companyID").val()==8){
-			//spc student, look ref info from ref_student_spc
-			setDeptFromRefInfo();
-		//}
+		setDeptFromRefInfo();	//读取预报名表信息
+
+		//填充身份证信息
+		$("#ethnicity").val(re.nation);
+		$("#IDaddress").val(re.address);
+		$("#bureau").val(re.department);
+		$("#IDdateStart").val(re.effectData);
+		$("#IDdateEnd").val(re.expire);
 	}
 	
 	function replaceImgFromCard(item){
@@ -594,6 +609,8 @@
 			<div class="comm" style="background:#f5faf8; float:left;width:100%;">
 			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table style="width:100%;">
+			<input type="hidden" id="ethnicity" /><input type="hidden" id="IDaddress" /><input type="hidden" id="bureau" />
+			<input type="hidden" id="IDdateStart" /><input type="hidden" id="IDdateEnd" /><input type="hidden" id="experience" />
 			<tr>
 				<td align="right">身份证</td><input type="hidden" id="status" /><input type="hidden" id="host" />
 				<td><input type="text" id="username" size="25" /></td>

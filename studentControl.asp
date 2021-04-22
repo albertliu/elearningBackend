@@ -153,7 +153,7 @@ if(op == "getNodeInfo"){
 		//30
 		result += "|" + rs("education").value + "|" + rs("educationName").value + "|" + rs("job_status").value + "|" + rs("birthday").value + "|" + rs("address").value;
 		//35
-		result += "|" + rs("unit").value + "|" + rs("dept").value;
+		result += "|" + rs("unit").value + "|" + rs("dept").value + "|" + rs("ethnicity").value + "|" + rs("IDaddress").value + "|" + rs("bureau").value + "|" + rs("IDdateStart").value + "|" + rs("IDdateEnd").value + "|" + rs("experience").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -219,7 +219,7 @@ if(op == "update"){
 	result = 0;
 	if(result == 0){
 		//@mark int,@username varchar(50),@name nvarchar(50),@password varchar(50),@kindID int,@companyID varchar(50),@dept1 varchar(50),@dept1Name nvarchar(100),@dept2 varchar(50),@dept3 varchar(50),@job varchar(50),@mobile nvarchar(50),@phone nvarchar(50),@email nvarchar(50),@limitDate varchar(50),@memo nvarchar(500),@host varchar(50),@registerID varchar(50)
-		sql = "exec updateStudentInfo " + keyID + ",'" + nodeID + "','" + unescape(String(Request.QueryString("name"))) + "',''," + kindID + ",'" + String(Request.QueryString("companyID")) + "','" + String(Request.QueryString("dept1")) + "','','" + String(Request.QueryString("dept2")) + "','','" + unescape(String(Request.QueryString("job"))) + "'," + String(Request.QueryString("job_status")) + ",'" + unescape(String(Request.QueryString("mobile"))) + "','" + unescape(String(Request.QueryString("phone"))) + "','" + unescape(String(Request.QueryString("email"))) + "','" + unescape(String(Request.QueryString("address"))) + "','" + String(Request.QueryString("limitDate")) + "','" + String(Request.QueryString("education")) + "','" + unescape(String(Request.QueryString("unit"))) + "','" + unescape(String(Request.QueryString("dept"))) + "','" + memo + "','" + host + "','" + currUser + "'";
+		sql = "exec updateStudentInfo " + keyID + ",'" + nodeID + "','" + unescape(String(Request.QueryString("name"))) + "',''," + kindID + ",'" + String(Request.QueryString("companyID")) + "','" + String(Request.QueryString("dept1")) + "','','" + String(Request.QueryString("dept2")) + "','','" + unescape(String(Request.QueryString("job"))) + "'," + String(Request.QueryString("job_status")) + ",'" + unescape(String(Request.QueryString("mobile"))) + "','" + unescape(String(Request.QueryString("phone"))) + "','" + unescape(String(Request.QueryString("email"))) + "','" + unescape(String(Request.QueryString("address"))) + "','" + String(Request.QueryString("limitDate")) + "','" + String(Request.QueryString("education")) + "','" + unescape(String(Request.QueryString("unit"))) + "','" + unescape(String(Request.QueryString("dept"))) + "','" + unescape(String(Request.QueryString("ethnicity"))) + "','" + unescape(String(Request.QueryString("IDaddress"))) + "','" + unescape(String(Request.QueryString("bureau"))) + "','" + String(Request.QueryString("IDdateStart")) + "','" + String(Request.QueryString("IDdateEnd")) + "','" + unescape(String(Request.QueryString("experience"))) + "','" + memo + "','" + host + "','" + currUser + "'";
 		execSQL(sql);
 	}
 
