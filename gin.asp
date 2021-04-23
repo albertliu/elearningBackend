@@ -173,8 +173,35 @@
 			next
 		  rs.movenext
     end if 
+       
+    if model = 2 then		'没有表头
+	    rs.movenext			'第1行表头
+	    '第2行开始为正式数据
+	    
+	    for i=0 to ubound(LocalArray)
+		    arr = split(LocalArray(i),"|",-1,1)
+		    j = 0
+		    for j=0 to ubound(arr)
+			    rs(j) = arr(j)
+				next
+		    rs.movenext
+	    next
+	    
+	    do while rs(0)<6300
+	    	i = rs(0)
+		    for j=0 to ubound(arr)
+			    rs(j) = ""
+				next
+	    	rs.movenext
+			loop
+		
+			for j=0 to ubound(arr)
+				rs(j) = ""
+			next
+		  rs.movenext
+    end if
     
-		rs.Close
+	rs.Close
     oConn.Close
     Set oConn = Nothing
 

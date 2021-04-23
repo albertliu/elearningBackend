@@ -334,7 +334,11 @@
 	}
 	
 	function setDeptList(pID,n,kind){
-		getComList("dept" + n,"deptInfo","deptID","deptName","dept_status=0 and pID=" + pID + " and kindID=" + kind + " order by deptName",1);
+		if(pID>0){
+			getComList("dept" + n,"deptInfo","deptID","deptName","dept_status=0 and pID=" + pID + " and kindID=" + kind + " order by deptName",1);
+		else{
+			$("#dept" + n).empty();
+		}
 	}
 
 	function getStudentCourseList(id){

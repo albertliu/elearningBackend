@@ -198,7 +198,7 @@
 	function setEmpty(){
 		$("#title").val("中石化从业人员安全知识考核");
 		$("#startDate").val(currDate);
-		$("#startTime").val("15:00 - 16:30");
+		$("#startTime").val("15:00 - 16:00");
 		$("#startNo").val(1);
 		$("#address").val("黄兴路158号D栋103室");
 		$("#notes").val("请务必携带身份证和准考证；迟到15分钟不得入场。");
