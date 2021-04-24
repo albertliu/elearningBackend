@@ -35,9 +35,16 @@
 
     LocalArray = ar.join("%%")
     LocalArray = split(LocalArray,"%%",-1,1)
-    tempFile = "\temp\" & user & "_" & floatKind & ".xlsx"
+    tempFile = "\temp\" & user & "_" & floatKind
     
-    sSourceXLS = Server.MapPath(".") & "\output\output" & "_" & floatKind & ".xlsx"
+	sSourceXLS = Server.MapPath(".") & "\output\output" & "_" & floatKind
+	if floatKind = "getExamerList" then
+		sSourceXLS = sSourceXLS  & ".xls"
+		tempFile = tempFile & ".xls"
+	else
+		sSourceXLS = sSourceXLS  & ".xlsx"
+		tempFile = tempFile & ".xlsx"
+	end if
     sDestXLS = Server.MapPath(".") & tempFile
     
     
@@ -54,7 +61,11 @@
     oConn.Open "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & sDestXLS & ";Extended Properties=""Excel 12.0 Xml;HDR=NO;"""
         
     Set rs = Server.CreateObject("ADODB.Recordset")
-    rs.Open "Select  *  From [sheet1$]", oConn, 2, 2
+	if floatKind = "getExamerList" then
+    	rs.Open "Select  *  From [用户$]", oConn, 2, 2
+	else
+    	rs.Open "Select  *  From [sheet1$]", oConn, 2, 2
+	end if
     
     i = 0
        

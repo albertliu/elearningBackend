@@ -235,7 +235,7 @@
 		if(id=='x01'){
 			p = "getExamerList";
 			floatModel = 2;
-			sql = "select (case when courseName='危险化学品从业人员' then '危化从业人员' else courseName end),'','',passNo,'',password,name,sexName from v_passcardInfo where refID=" + p1 + " order by passNo";
+			sql = "select (case when courseID='L1' then '危化从业人员' else courseName end) as courseName,'','',passNo,'',password,name,sexName from v_passcardInfo where refID=" + p1 + " order by passNo";
 		}
 		if(id=='x02'){
 			p = "getExamerSignList";
