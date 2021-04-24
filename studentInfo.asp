@@ -42,7 +42,6 @@
 		nodeID = "<%=nodeID%>";
 		refID = "<%=refID%>";	//username
 		op = "<%=op%>";
-		
 		$.ajaxSetup({ 
 			async: false 
 		}); 
@@ -336,7 +335,7 @@
 	function setDeptList(pID,n,kind){
 		if(pID>0){
 			getComList("dept" + n,"deptInfo","deptID","deptName","dept_status=0 and pID=" + pID + " and kindID=" + kind + " order by deptName",1);
-		else{
+		}else{
 			$("#dept" + n).empty();
 		}
 	}
