@@ -64,6 +64,18 @@
 		$("#save").click(function(){
 			saveNode();
 		});
+		$("#del").click(function(){
+			jConfirm('你确定要删除这批准考证信息吗?', '确认对话框', function(r) {
+				if(r){
+					$.get("diplomaControl.asp?op=delGeneratePasscard&nodeID=" + nodeID + "&&times=" + (new Date().getTime()),function(data){
+						jAlert("成功禁用！","信息提示");
+						op = 1;
+						setButton();
+						updateCount += 1;
+					});
+				}
+			});
+		});
 		$("#doPasscard").click(function(){
 			doPasscard();
 		});
@@ -171,6 +183,7 @@
 				op = 0;
 				updateCount = 1;
 				getNodeInfo(data);
+				nodeID = data;
 			}else{
 				jAlert("没有可供处理的数据。");
 			}
@@ -180,6 +193,7 @@
 	
 	function setButton(){
 		$("#save").hide();
+		$("#del").hide();
 		$("#doPasscard").hide();
 		$("#startNo").prop("disabled",true);
 		if(op==1){
@@ -191,6 +205,7 @@
 		}else{
 			if(checkPermission("studentAdd")){
 				$("#save").show();
+				$("#del").show();
 				$("#doPasscard").show();
 				$("#doPasscard").val("重新制作");
 			}
@@ -273,6 +288,7 @@
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
   	<input class="button" type="button" id="save" value="保存" />&nbsp;
+  	<input class="button" type="button" id="del" value="删除" />&nbsp;
   	<input class="button" type="button" id="doPasscard" value="" />&nbsp;
   </div>
 </div>

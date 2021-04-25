@@ -636,4 +636,10 @@ if(op == "delNode"){
 	Response.Write(nodeID);
 }
 
+if(op == "delGeneratePasscard"){
+	sql = "exec delGeneratePasscard '" + nodeID + "','" + currUser + "'";
+	execSQL(sql);
+	Response.Write(nodeID);
+}
+
 %>

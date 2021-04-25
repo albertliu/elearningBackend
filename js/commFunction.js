@@ -1474,7 +1474,7 @@
 				setReturnLog("generatePasscard",iframe.nodeID);	
 				var re = iframe.updateCount;
 				if(re>0 && mark==1){
-					//getGeneratePasscardList();
+					getGeneratePasscardList();
 				}
 				//alert(re + ":" + mark);
 				if(re>0 && mark==2){
