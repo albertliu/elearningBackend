@@ -239,6 +239,7 @@
 		}
 		if(id=='x02'){
 			p = "getExamerSignList";
+			floatModel = 3;
 			sql = "select passNo,name,username,sexName from v_passcardInfo where refID=" + p1 + " order by passNo";
 		}
 		setSession(p, sql);

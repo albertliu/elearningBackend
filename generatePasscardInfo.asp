@@ -104,6 +104,8 @@
 				}
 				if(c == ""){c = "&nbsp;&nbsp;还未生成";}
 				$("#photo").html(c);
+				$("#list").html("<a href=''>考站数据</a>");
+				$("#sign").html("<a href=''>签到表</a>");
 				//getDownloadFile("generateDiplomaID");
 				setButton();
 			}else{
@@ -244,8 +246,8 @@
 				<td align="right">文件下载</td>
 				<td>
 					<span id="photo" style="margin-left:10px;"></span>
-					<span id="list" style="margin-left:10px;"><a>考生数据</a></span>
-					<span id="sign" style="margin-left:10px;"><a>签到表</a></span>
+					<span id="list" style="margin-left:10px;"></span>
+					<span id="sign" style="margin-left:10px;"></span>
 				</td>
 			</tr>
 			<tr>
