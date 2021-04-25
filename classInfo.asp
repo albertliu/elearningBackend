@@ -84,6 +84,7 @@
 				$("#memo").val(ar[13]);
 				$("#regDate").val(ar[14]);
 				$("#registerName").val(ar[16]);
+				$("#timetable").val(ar[18]);
 				
 				//getDownloadFile("classID");
 				setButton();
@@ -95,8 +96,8 @@
 	}
 	
 	function saveNode(){
-		//alert($("#classID").val() + "&item=" + ($("#memo").val()));
-		$.get("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&classroom=" + escape($("#classroom").val()) + "&certID=" + $("#certID").val() + "&adviserID=" + $("#adviserID").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		//alert($("#adviserID").val() + "&item=" + ($("#memo").val()));
+		$.get("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&classroom=" + escape($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&adviserID=" + $("#adviserID").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -216,8 +217,12 @@
 				<td><input type="text" id="classroom" size="25" /></td>
 			</tr>
 			<tr>
+				<td align="right">课程安排</td>
+				<td colspan="5"><textarea id="timetable" style="padding:2px;" rows="5" cols="75"></textarea></td>
+			</tr>
+			<tr>
 				<td align="right">说明</td>
-				<td colspan="5"><textarea id="memo" style="padding:2px;" rows="5" cols="75"></textarea></td>
+				<td colspan="5"><textarea id="memo" style="padding:2px;" rows="1" cols="75"></textarea></td>
 			</tr>
 			<tr>
 				<td align="right">登记人</td>

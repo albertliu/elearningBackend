@@ -29,11 +29,13 @@
 	var nodeID = 0;
 	var op = 0;
 	var refID = 0;
+	var keyID = 0;
 	var updateCount = 1;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";		//enterID
 		refID = "<%=refID%>";		//username
+		keyID = "<%=keyID%>";		//0 不打印学员须知  1 打印
 		op = "<%=op%>";
 		
 		$.ajaxSetup({ 
