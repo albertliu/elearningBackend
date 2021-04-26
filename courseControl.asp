@@ -42,7 +42,7 @@ if(op == "getCourseList"){
 		//7
 		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("certID").value + "|" + rs("mark").value + "|" + rs("markName").value;
 		//16
-		result += "|" + rs("price").value;
+		result += "|" + rs("price").value + "|" + rs("price1").value;
 		rs.MoveNext();
 	}
 /**/
@@ -74,7 +74,7 @@ if(op == "getNodeInfo"){
 		//14
 		result += "|" + rs("completionPass").value + "|" + rs("deadline").value + "|" + rs("deadday").value + "|" + rs("period").value + "|" + rs("mark").value + "|" + rs("markName").value;
 		//20
-		result += "|" + rs("price").value;
+		result += "|" + rs("price").value + "|" + rs("price1").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -83,7 +83,7 @@ if(op == "getNodeInfo"){
 if(op == "update"){
 	result = 0;
 	if(result == 0){
-		sql = "exec updateCourseInfo " + nodeID + ",'" + String(Request.QueryString("courseID")) + "','" + unescape(String(Request.QueryString("courseName"))) + "','" + String(Request.QueryString("hours")) + "','" + String(Request.QueryString("completionPass")) + "','" + String(Request.QueryString("deadline")) + "','" + String(Request.QueryString("deadday")) + "','" + String(Request.QueryString("period")) + "'," + kindID + "," + status + "," + String(Request.QueryString("mark")) + ",'" + refID + "','" + String(Request.QueryString("price")) + "','" + host + "','" + memo + "','" + currUser + "'";
+		sql = "exec updateCourseInfo " + nodeID + ",'" + String(Request.QueryString("courseID")) + "','" + unescape(String(Request.QueryString("courseName"))) + "','" + String(Request.QueryString("hours")) + "','" + String(Request.QueryString("completionPass")) + "','" + String(Request.QueryString("deadline")) + "','" + String(Request.QueryString("deadday")) + "','" + String(Request.QueryString("period")) + "'," + kindID + "," + status + "," + String(Request.QueryString("mark")) + ",'" + refID + "','" + String(Request.QueryString("price")) + "','" + String(Request.QueryString("price1")) + "','" + host + "','" + memo + "','" + currUser + "'";
 
 		execSQL(sql);
 		if(nodeID == 0){
@@ -100,7 +100,7 @@ if(op == "update"){
 }
 
 if(op == "getCoursePrice"){
-	sql = "SELECT dbo.getCoursePrice('" + nodeID + "','" + refID + "') as price";
+	sql = "SELECT dbo.getCoursePrice('" + nodeID + "','" + refID + "'," + keyID + ") as price";
 	rs = conn.Execute(sql);
 	if (!rs.EOF){
 		result = rs("price").value;

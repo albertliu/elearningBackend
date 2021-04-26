@@ -55,6 +55,8 @@
 			ar = unescape(re).split("|");
 			if(ar > "0"){
 				$("#SNo").html(ar[25]);
+				$("#reexamine").html(ar[41]);
+				$("#courseName").html(ar[6]);
 			}else{
 				//alert("没有找到要打印的内容。");
 				return false;
@@ -68,19 +70,22 @@
 				$("#username").html(ar[1]);
 				$("#name").html(ar[2]);
 				$("#sexName").html(ar[8]);
-				$("#mobile").html(ar[7]);
+				$("#mobile").html(ar[7] + "&nbsp;&nbsp;" + ar[17]);
 				$("#age").html(ar[9]);
-				$("#phone").html(ar[17]);
+				$("#job").html(ar[18]);
+				//$("#phone").html(ar[17]);
 				$("#job").html(ar[18]);
 				if(ar[29]=="znxf"){
-					$("#company").html(ar[35]);
-					$("#dept2").html(ar[36]);
+					$("#company").html(ar[35] + "." + ar[36]);
+					//$("#dept2").html(ar[36]);
 				}else{
-					$("#company").html(ar[12] + " ." + ar[13]);
-					$("#dept2").html(ar[14]);
+					$("#company").html(ar[12] + "." + ar[13] + "." + ar[14]);
+					//$("#dept2").html(ar[14]);
 				}
 				$("#educationName").html(ar[31]);
-				$("#birthday").html(ar[33]);
+				$("#birthday").html(ar[33].substr(0,7));
+				$("#address").html(ar[34]);
+				$("#ethnicity").html(ar[37]);
 				if(ar[21] > ""){
 					$("#img_photo").attr("src","/users" + ar[21]);
 				}else{
@@ -90,6 +95,11 @@
 					$("#img_cardA").attr("src","/users" + ar[22]);
 				}else{
 					$("#img_cardA").attr("src","images/blank_cardA.png");
+				}
+				if(ar[23] > ""){
+					$("#img_cardB").attr("src","/users" + ar[23]);
+				}else{
+					$("#img_cardB").attr("src","images/blank_cardB.png");
 				}
 				$("#date").html(currDate);
 				if(keyID==1){
@@ -145,18 +155,18 @@
 		<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
 			<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>上海市特种作业人员安全技术考核申请表（2020版）</h3></div>
 			<div style='margin: 12px;text-align:left; width:95%;'><span style='font-size:1.2em;'>学员编号：</span><span style='font-size:1.2em;' id="SNo"></span></div>
-			<table class='table_resume' style='width:100%;'>
+			<table class='table_resume' style='width:99%;'>
 			<tr>
 				<td align="center" class='table_resume_title' width='15%' height='55px;'>姓名</td><td align="center" width='15%'><p style='font-size:1em;' id="name"></p></td>
 				<td align="center" class='table_resume_title' width='13%'>性别</td><td align="center" width='13%'><p style='font-size:1em;' id="sexName"></p></td>
 				<td align="center" class='table_resume_title' width='13%'>出生年月</td><td class='table_resume_title' width='11%'><p style='font-size:1em;' id="birthday"></p></td>
 				<td rowspan="4" colspan="2" align="center" class='table_resume_title' width='20%'>
-					1寸近期免冠彩色照片粘贴处
+					<img id="img_photo" src="" value="" style='width:100px;border:none;' />
 				</td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='55px;'>国籍</td><td align="center" width='13%'></td>
-				<td align="center" class='table_resume_title' width='13%'>民族</td><td align="center" width='13%'></td>
+				<td align="center" class='table_resume_title' width='15%' height='55px;'>国籍</td><td align="center" width='13%'><p style='font-size:1em;'>中国</p></td>
+				<td align="center" class='table_resume_title' width='13%'>民族</td><td align="center" width='13%'><p style='font-size:1em;' id="ethnicity"></p></td>
 				<td align="center" class='table_resume_title' width='13%'>文化程度</td><td class='table_resume_title' width='11%'><p style='font-size:1em;' id="educationName"></p></td>
 			</tr>
 			<tr>
@@ -164,7 +174,7 @@
 			</tr>
 			<tr>
 				<td align="center" class='table_resume_title' width='15%' height='55px;'>单位名称</td><td align="center" colspan="3"><p style='font-size:1em;' id="company"></p></td>
-				<td align="center" class='table_resume_title' width='13%'>从事岗位</td><td align="center" colspan="3"><p style='font-size:1em;' id="job"></p></td>
+				<td align="center" class='table_resume_title' width='13%'>从事岗位</td><td align="center"><p style='font-size:1em;' id="job"></p></td>
 			</tr>
 			<tr>
 				<td align="center" class='table_resume_title' width='13%' height='55px;'>联系地址</td><td align="center" colspan="3"><p style='font-size:1em;' id="address"></p></td>
@@ -174,19 +184,51 @@
 				<td align="center" class='table_resume_title' width='15%' height='55px;'>申请考核工种</td><td align="center" colspan="7"><p style='font-size:1em;' id="courseName"></p></td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='55px;'>考核类型</td><td align="center" width='13%' colspan="2"><p style='font-size:1em;'>初审   复审</p></td>
-				<td align="center" class='table_resume_title' width='13%' colspan="3">是否参加相应培训</td><td align="center" width='13%' colspan="2"><p style='font-size:1em;' id="job"></p></td>
+				<td align="center" height='55px;' colspan="4" class='table_resume_title' width='15%' height='250px;'>
+					<img id="img_cardA" src="" value="" style='width:340px;border:none;' />
+				</td>
+				<td align="center" colspan="4" class='table_resume_title' width='15%' height='250px;'>
+					<img id="img_cardB" src="" value="" style='width:340px;border:none;' />
+				</td>
 			</tr>
 			<tr>
-				<td style="text-align:left;" class='table_resume_title' height='55px;' colspan="2"><div style="float: left;padding-left:10px;padding-top:10px;font-size:1em;">备注<div></td>
-				<td align="center" class='table_resume_title' width='15%' height='300px;' colspan="6">
-					<img id="img_cardA" src="" value="" style='width:350px;border:none;' />
+				<td align="center" class='table_resume_title' width='15%' height='55px;'>考核类型</td><td align="center" width='13%' colspan="2"><p id="reexamine" style='font-size:1em;'></p></td>
+				<td align="center" class='table_resume_title' width='13%' colspan="2">是否参加相应培训</td><td align="center" width='13%' colspan="3"><p style='font-size:1em;'><input type="checkbox" />&nbsp;&nbsp;是&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" />&nbsp;&nbsp;否</p></td>
+			</tr>
+			<tr>
+				<td align="center" class='table_resume_title' width='15%' height='55px;'>从事特种作业操作情况</td>
+				<td align="left" colspan="7" style="padding-left:5px;">
+					<p style='font-size:1em;'><input type="checkbox" />&nbsp;&nbsp;本人是初次参加特种作业人员安全技术考核。</p>
+					<p style='font-size:1em;'><input type="checkbox" />&nbsp;&nbsp;本人此次参加特种作业人员安全技术复审考核，在持原特种作业操作证书从事相应特种作业工种内容期间，未发生过事故。</p>
+					<p style='font-size:1em;'><input type="checkbox" />&nbsp;&nbsp;本人因未按时参加复审导致原操作证书过期，重新申请参加特种作业人员安全技术考核。</p>
+					<p style='font-size:1em;'><input type="checkbox" />&nbsp;&nbsp;其他：</p>
+				</td>
+			</tr>
+			<tr>
+				<td align="center" class='table_resume_title' width='15%' height='55px;'>个人承诺</td>
+				<td align="left" colspan="7" style="padding-left:5px;">
+				<p style='font-size:1em;text-indent:30px;'>
+				本人年满18周岁，且不超过国家法定退休年龄；具有初中及以上文化程度；经社区或者县级以上医疗机构体检健康合格，无妨碍从事相应特种作业的器质性心脏病、癫痫病、美尼尔氏症、眩晕症、癔病、震颤麻痹症、精神病、痴呆症以及其他疾病和生理缺陷，本人对以上信息的真实性负责，如有隐瞒，相关责任全部有本人承担。
+				</p>
+				<p style='font-size:1em;text-align:center;'>
+				承诺人（签名）：
+				</p>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" class='table_resume_title' width='15%' height='55px;' colspan="4">
+					<p style='font-size:1em;float:left;'>申请人签名：</p>
+					<br><br>
+					<p id="date" style='font-size:1em;float:right;padding-right:5px;'></p>
+				</td>
+				<td align="left" class='table_resume_title' width='15%' height='55px;' colspan="4">
+					<p style='font-size:1em;float:left;'>审核意见：</p>
+					<br><br>
+					<span style='font-size:1em;float:center;padding-right:50px;'>经办人签名：</span>
+					<span style='font-size:1em;float:right;'>年&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;日</span>
 				</td>
 			</tr>
 			</table>
-			<div style='margin: 12px;text-align:left; width:95%;'><p style='font-size:1.2em;'>&bull; 提交1张2寸免冠彩色照片。</p></div>
-			<div style='margin: 12px;text-align:right; width:95%; padding-right:100px;'><p style='font-size:1.3em;'>学员签名：</p></div>
-			<div style='margin: 12px;text-align:right; width:95%;'><p id="date" style='font-size:1.3em;'></p></div>
 			<div style="page-break-after:always"></div>
 			<div id="needCover"></div>
 		</div>

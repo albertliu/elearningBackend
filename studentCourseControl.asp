@@ -184,6 +184,8 @@ if(op == "getStudentCourseList"){
 		result += "|" + rs("price").value + "|" + rs("pay_kindName").value + "|" + rs("pay_typeName").value + "|" + rs("pay_statusName").value;
 		//51
 		result += "|" + rs("projectName").value + "|" + rs("className").value + "|" + rs("passcardID").value + "|" + rs("unit").value + "|" + rs("dept").value + "|" + rs("host").value;
+		//57
+		result += "|" + rs("reexamine").value + "|" + rs("reexamineName").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -207,6 +209,8 @@ if(op == "getNodeInfo"){
 		result += "|" + rs("projectID").value + "|" + rs("classID").value + "|" + rs("materialCheck").value + "|" + rs("materialChecker").value + "|" + rs("materialCheckerName").value + "|" + rs("checkDate").value + "|" + rs("checkerName").value;
 		//33
 		result += "|" + rs("projectName").value + "|" + rs("className").value + "|" + rs("entryform").value + "|" + rs("certID").value + "|" + rs("unit").value + "|" + rs("dept").value + "|" + rs("host").value;
+		//40
+		result += "|" + rs("reexamine").value + "|" + rs("reexamineName").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

@@ -120,6 +120,7 @@
 
 		$("#btnPrint").click(function(){
 			window.open("entryform_" + $("#certID").val() + ".asp?keyID=1&nodeID=" + nodeID + "&refID=" + refID, "_self");
+			//window.open("entryform_C12.asp?keyID=1&nodeID=" + nodeID + "&refID=" + refID, "_self");
 		});
 
 		$("#btnPreview").click(function(){
@@ -224,6 +225,7 @@
 				$("#projectName").val(ar[33] + ar[26]);
 				$("#className").val(ar[34]);
 				$("#certID").val(ar[36]);
+				$("#reexamineName").val(ar[41]);
 
 				getPayDetailInfoByEnterID(ar[0]);
 			//getDownloadFile("studentCourseID");
@@ -499,10 +501,11 @@
 				<div>
 				<span id="project1">招生批次&nbsp;<select id="projectID" style="width:250px"></select>&nbsp;&nbsp;</span>
 				<span id="project0">招生批次&nbsp;<input class="readOnly" type="text" id="projectName" style="width:250px" readOnly="true" />&nbsp;&nbsp;</span>
+				类别&nbsp;<input class="readOnly" type="text" id="reexamineName" style="width:50px" readOnly="true" />
 				<br>
 				<span id="class1">所属班级&nbsp;<select id="classID" style="width:250px"></select>&nbsp;&nbsp;</span>
 				<span id="class0">所属班级&nbsp;<input class="readOnly" type="text" id="className" style="width:250px" readOnly="true" />&nbsp;&nbsp;</span>
-				报名编号&nbsp;<input class="readOnly" type="text" id="SNo" style="width:50px" readOnly="true" />
+				编号&nbsp;<input class="readOnly" type="text" id="SNo" style="width:50px" readOnly="true" />
 				<br>
 				报名表
 					<span id="entryform" style="margin-left:20px;"></span>
