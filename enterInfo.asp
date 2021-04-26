@@ -119,7 +119,11 @@
 		});
 
 		$("#btnPrint").click(function(){
-			window.open("entryform_" + $("#certID").val() + ".asp?nodeID=" + nodeID + "&refID=" + refID, "_self");
+			window.open("entryform_" + $("#certID").val() + ".asp?keyID=1&nodeID=" + nodeID + "&refID=" + refID, "_self");
+		});
+
+		$("#btnPreview").click(function(){
+			window.open("entryform_" + $("#certID").val() + ".asp?keyID=0&nodeID=" + nodeID + "&refID=" + refID, "_self");
 		});
 
 		$("#kindID").change(function(){
@@ -503,6 +507,7 @@
 				报名表
 					<span id="entryform" style="margin-left:20px;"></span>
 					<input class="button" type="button" id="btnEntryform" value="生成" />
+					<input class="button" type="button" id="btnPreview" value="预览" />
 					<input class="button" type="button" id="btnPrint" value="打印" />
 				</div>
 			</div>

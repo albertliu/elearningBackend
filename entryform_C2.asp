@@ -31,9 +31,11 @@
 	var refID = 0;
 	var updateCount = 1;
 	<!--#include file="js/commFunction.js"-->
+	<!--#include file="need2know.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";		//enterID
 		refID = "<%=refID%>";		//username
+		keyID = "<%=keyID%>";		//0 预览  1 打印
 		op = "<%=op%>";
 		
 		$.ajaxSetup({ 
@@ -42,6 +44,7 @@
 		$("#print").click(function(){
 			resumePrint();
 		});
+		getNeed2know(nodeID);
 		getNodeInfo(nodeID, refID);
 });
 
@@ -80,7 +83,9 @@
 					$("#img_cardA").attr("src","images/blank_cardA.png");
 				}
 				$("#date").html(currDate);
-				resumePrint();
+				if(keyID==1){
+					resumePrint();
+				}
 			}else{
 				alert("没有找到要打印的内容。");
 				return false;
@@ -161,6 +166,8 @@
 			<div style='margin: 12px;text-align:left; width:95%;'><p style='font-size:1.2em;'>&bull; 提交1张2寸免冠彩色照片。</p></div>
 			<div style='margin: 12px;text-align:right; width:95%; padding-right:100px;'><p style='font-size:1.3em;'>学员签名：</p></div>
 			<div style='margin: 12px;text-align:right; width:95%;'><p id="date" style='font-size:1.3em;'></p></div>
+			<div style="page-break-after:always"></div>
+			<div id="needCover"></div>
 		</div>
 	</div>
   </div>

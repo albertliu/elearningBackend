@@ -56,7 +56,7 @@
 					arr.push('</div>');
 					arr.push('<div style="float:right;width:89%;">');
 					arr.push('	<div style="text-align:center;"><h3>' + val["title"] + '</h2></div>');
-					arr.push('	<div style="text-align:center;"><h2>准考证</h1></div>');
+					arr.push('	<div style="text-align:center;"><h2>准考证</h2></div>');
 					arr.push('</div>');
 					arr.push('<div style="clear: both;"></div>');
 					arr.push('<hr size=2 color="red">');
