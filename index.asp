@@ -11,7 +11,7 @@
 <!-- InstanceBeginEditable name="head" -->
 <!-- InstanceEndEditable -->
 
-<link href="css/style_main.css?ver=1.0"  rel="stylesheet" type="text/css" />
+<link href="css/style_main.css?ver=1.12"  rel="stylesheet" type="text/css" />
 <link type="text/css" href="css/jquery-ui-1.7.2.custom.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="css/minimalTabs.css">
 <link href="css/data_table.css" rel="stylesheet" type="text/css" />

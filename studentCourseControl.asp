@@ -67,6 +67,15 @@ if(op == "getStudentCourseList"){
 			where = s;
 		}
 	}
+	//如果有初训复训
+	if(String(Request.QueryString("reexamine")) > "" && String(Request.QueryString("reexamine")) != "null" && String(Request.QueryString("classID")) !="reexamine"){ // 
+		s = "reexamine=" + String(Request.QueryString("reexamine"));
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 	//如果有材料确认
 	if(String(Request.QueryString("materialChecked")) > "" && String(Request.QueryString("materialChecked")) != "null" && String(Request.QueryString("materialChecked")) !="undefined"){ // 
 		s = "materialCheck=" + String(Request.QueryString("materialChecked"));

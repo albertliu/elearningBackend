@@ -14,13 +14,13 @@
 							<span id="enterListLongItem6">
 								课程&nbsp;<select id="searchEnterCourseID" style="width:80px"></select>&nbsp;&nbsp;
 							</span>
-							批次&nbsp;<select id="searchEnterProjectID" style="width:75px"></select>&nbsp;&nbsp;
-							班级&nbsp;<select id="searchEnterClassID" style="width:75px"></select>&nbsp;&nbsp;
+							批次&nbsp;<select id="searchEnterProjectID" style="width:180px"></select>&nbsp;&nbsp;
 							<input style="border:0px;" type="checkbox" id="searchEnterShowPhoto" value="" />&nbsp;图片&nbsp;&nbsp;
 						    <span style="float:right;">
 								<input class="button" type="button" onClick="outputFloat(101,'file')" value="下载" />
 							</span>
-							<br>
+							<br/>
+							<hr style="margin:3px 0;" />
 							<span id="enterListLongItem4">
 								状态&nbsp;<select id="searchEnterPhotoStatus" style="width:50px"></select>&nbsp;&nbsp;
 								单位确认&nbsp;<select id="searchEnterChecked" style="width:50px"></select>&nbsp;&nbsp;
@@ -29,17 +29,19 @@
 								<input class="button" type="button" id="btnEnterGoodPhoto" value="修正确认" />
 							</span>
 							<span id="enterListLongItem3">
+								班级&nbsp;<select id="searchEnterClassID" style="width:100px"></select>&nbsp;&nbsp;
+								类别&nbsp;<select id="searchEnterReexamine" style="width:50px"></select>&nbsp;&nbsp;
 							    &nbsp;报名日期&nbsp;<input type="text" id="searchEnterStartDate" size="8" />-<input type="text" id="searchEnterEndDate" size="8" />
 							</span>
 							<span id="enterListLongItem5">
 								<input class="button" type="button" id="btnEnterSel" value="全选/取消" />&nbsp;&nbsp;
 								<input class="button" type="button" id="btnEnterCheck" value="材料确认" />&nbsp;&nbsp;
 								<input class="button" type="button" id="btnEnterPasscard" value="做准考证" />&nbsp;&nbsp;
-								已做准考证&nbsp;<select id="searchEnterPasscard" style="width:50px"></select>&nbsp;&nbsp;
+								已做准考证&nbsp;<select id="searchEnterPasscard" style="width:50px"></select>
 							</span>
 				        </form>
 							</div>
-							<hr size="1" noshadow />
+							<hr style="margin:3px 0;" noshadow />
 							<div id="enterCover" style="float:top;margin:0px;background:#f8fff8;">
 							</div>
 						</div>

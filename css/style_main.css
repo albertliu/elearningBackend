@@ -108,3 +108,4 @@ body { background:#fff url(../images/bg0.gif) ; }
 .dir{ width:100%; border-left:#C8B9AE solid 1px;border-top:#C8B9AE solid 1px;border-collapse:collapse;} 
 .dir td{width:25%;border-right:#C8B9AE solid 1px;border-bottom:#C8B9AE solid 1px;background-color: #DA2CB;padding:10px 10px 6px;vertical-align: top;}
 
+#hr { width:100%; margin:3px 0;}

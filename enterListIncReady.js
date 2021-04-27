@@ -5,7 +5,7 @@
 	$(document).ready(function (){
 		getComList("searchEnterHost","hostInfo","hostNo","title","status=0 order by hostName",1);
 		getComList("searchEnterCourseID","v_courseInfo","courseID","courseName","status=0 and type=0 order by courseID",1);
-		getComList("searchEnterProjectID","projectInfo","projectID","projectID","status>0 and status<9 order by ID desc",1);
+		getComList("searchEnterProjectID","projectInfo","projectID","projectName","status>0 and status<9 order by ID desc",1);
 		getComList("searchEnterClassID","v_classInfo","classID","className","1=1 order by ID desc",1);
 
 		getDicList("student","searchEnterKind",1);
@@ -14,6 +14,7 @@
 		getDicList("statusNo","searchEnterMaterialChecked",1);
 		getDicList("statusNo","searchEnterPasscard",1);
 		getDicList("statusAsk","searchEnterPhotoStatus",1);
+		getDicList("reexamine","searchEnterReexamine",1);
 		$("#searchEnterStartDate").click(function(){WdatePicker();});
 		$("#searchEnterEndDate").click(function(){WdatePicker();});
 		
@@ -149,7 +150,7 @@
 		var Old = 0;
 		//if($("#searchEnterOld").attr("checked")){Old = 1;}
 		//alert($("#searchEnterDept").val() + "&refID=" + $("#searchEnterProjectID").val() + "&status=" + $("#searchEnterStatus").val() + "&photoStatus=" + $("#searchEnterPhotoStatus").val() + "&courseID=" + $("#searchEnterCourseID").val() + "&host=" + $("#searchEnterHost").val() + "&checked=" + $("#searchEnterChecked").val() + "&materialChecked=" + $("#searchEnterMaterialChecked").val() + "&classID=" + $("#searchEnterClassID").val());
-		$.get("studentCourseControl.asp?op=getStudentCourseList&where=" + escape(sWhere) + "&mark=1&kindID=" + $("#searchEnterDept").val() + "&refID=" + $("#searchEnterProjectID").val() + "&status=" + $("#searchEnterStatus").val() + "&photoStatus=" + $("#searchEnterPhotoStatus").val() + "&courseID=" + $("#searchEnterCourseID").val() + "&host=" + $("#searchEnterHost").val() + "&checked=" + $("#searchEnterChecked").val() + "&materialChecked=" + $("#searchEnterMaterialChecked").val() + "&passcard=" + $("#searchEnterPasscard").val() + "&classID=" + $("#searchEnterClassID").val() + "&fStart=" + $("#searchEnterStartDate").val() + "&fEnd=" + $("#searchEnterEndDate").val() + "&dk=101&times=" + (new Date().getTime()),function(data){
+		$.get("studentCourseControl.asp?op=getStudentCourseList&where=" + escape(sWhere) + "&mark=1&kindID=" + $("#searchEnterDept").val() + "&refID=" + $("#searchEnterProjectID").val() + "&status=" + $("#searchEnterStatus").val() + "&reexamine=" + $("#searchEnterReexamine").val() + "&photoStatus=" + $("#searchEnterPhotoStatus").val() + "&courseID=" + $("#searchEnterCourseID").val() + "&host=" + $("#searchEnterHost").val() + "&checked=" + $("#searchEnterChecked").val() + "&materialChecked=" + $("#searchEnterMaterialChecked").val() + "&passcard=" + $("#searchEnterPasscard").val() + "&classID=" + $("#searchEnterClassID").val() + "&fStart=" + $("#searchEnterStartDate").val() + "&fEnd=" + $("#searchEnterEndDate").val() + "&dk=101&times=" + (new Date().getTime()),function(data){
 		//$.getJSON("enterControl.asp?op=getEnterList",function(data){
 			//alert(unescape(data));
 			var ar = new Array();

@@ -112,9 +112,6 @@
 		});
 		
 		$("#certID").change(function(){
-			if(op==1){
-				$("#projectName").val($("#host").find("option:selected").text().substr(0,4) + "[" + $("#certID").find("option:selected").text() + "]");
-			}
 			setPrice();
 		});
 		$("#reexamine").change(function(){
@@ -309,6 +306,9 @@
 			$.get("courseControl.asp?op=getCoursePrice&nodeID=&refID=" + $("#certID").val() + "&keyID=" + $("#reexamine").val() + " + &times=" + (new Date().getTime()),function(re){
 				$("#price").val(re);
 			});
+			if(op==1){
+				$("#projectName").val($("#host").find("option:selected").text().substr(0,4) + "[" + $("#certID").find("option:selected").text() + "]" + $("#reexamine").find("option:selected").text());
+			}
 		}
 	}
 	
