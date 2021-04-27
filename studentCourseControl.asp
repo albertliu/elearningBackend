@@ -68,7 +68,7 @@ if(op == "getStudentCourseList"){
 		}
 	}
 	//如果有初训复训
-	if(String(Request.QueryString("reexamine")) > "" && String(Request.QueryString("reexamine")) != "null" && String(Request.QueryString("classID")) !="reexamine"){ // 
+	if(String(Request.QueryString("reexamine")) > "" && String(Request.QueryString("reexamine")) != "null" && String(Request.QueryString("reexamine")) !="undefined"){ // 
 		s = "reexamine=" + String(Request.QueryString("reexamine"));
 		if(where > ""){
 			where = where + " and " + s;

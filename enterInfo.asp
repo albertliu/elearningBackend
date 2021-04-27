@@ -358,7 +358,7 @@
 					});
 				}
 				getNodeInfo(nodeID);
-				window.open("entryform_" + $("#certID").val() + ".asp?nodeID=" + nodeID + "&refID=" + refID + "&keyID=0", "_self");
+				window.open("entryform_" + $("#certID").val() + ".asp?nodeID=" + nodeID + "&refID=" + refID + "&keyID=1", "_self");
 			}else{
 				alert("没有可供处理的数据。");
 			}

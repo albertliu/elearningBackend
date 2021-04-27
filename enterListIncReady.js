@@ -339,6 +339,11 @@
 				$("#enterListLongItem5").hide();
 			}else{
 				if(checkPermission("studentAdd")){
+					if($("#searchEnterProjectID").val()>""){
+						$("#btnEnterApply").show();
+					}else{
+						$("#btnEnterApply").hide();
+					}
 					$("#enterListLongItem5").show();
 				}else{
 					$("#enterListLongItem5").hide();
