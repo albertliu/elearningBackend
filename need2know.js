@@ -101,7 +101,7 @@
 				arr.push('</div>');
 				arr.push('</div>');
 				$("#needCover").html(arr.join(""));
-				var text = uploadURL + "/public/get_user_qr?username=" + val["username"] + "&size=4";
+				var text = uploadURL + "/public/get_user_qr?username=" + val["username"] + "&size=4&host=" + val["host"];
 				$("#qr-img").attr("src", text);
 			}
 		});
