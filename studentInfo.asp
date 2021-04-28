@@ -454,17 +454,19 @@
 	}
 
 	function setZNXF(){
+		$("#kindID").hide();
 		if($("#companyID").val()==46){
 			$("#kindID").val(0);
-			$("#kindID").hide();
 			$("#spc_dept").hide();
 			$("#dept3").hide();
 			$("#znxf_dept").show();
 		}else{
-			$("#kindID").show();
 			$("#spc_dept").show();
 			$("#znxf_dept").hide();
 			$("#dept3").show();
+		}
+		if($("#companyID").val()==8){
+			$("#kindID").show();
 		}
 	}
 
