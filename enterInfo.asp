@@ -119,8 +119,8 @@
 		});
 
 		$("#btnPrint").click(function(){
-			window.open("entryform_" + $("#certID").val() + ".asp?keyID=1&nodeID=" + nodeID + "&refID=" + refID, "_self");
-			//window.open("entryform_C12.asp?keyID=1&nodeID=" + nodeID + "&refID=" + refID, "_self");
+			//window.open("entryform_" + $("#certID").val() + ".asp?keyID=1&nodeID=" + nodeID + "&refID=" + refID, "_self");
+			window.open("entryform_C20.asp?keyID=1&nodeID=" + nodeID + "&refID=" + refID, "_self");
 		});
 
 		$("#btnPreview").click(function(){
