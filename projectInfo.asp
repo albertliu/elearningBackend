@@ -35,11 +35,10 @@
 		refID = "<%=refID%>";
 		op = "<%=op%>";
 		
-		getComList("certID","certificateInfo","certID","certName","status=0 order by certID",1);
+		getComList("courseID","v_courseInfo","courseID","courseName1","status=0 order by courseName",1);
 		getComList("host","hostInfo","hostNo","title","status=0 order by hostName",1);
 		getDicList("payKind","payKind",0);
 		getDicList("payGroup","payGroup",0);
-		getDicList("reexamine","reexamine",0);
 		$("#deadline").click(function(){WdatePicker();});
 		
 		$.ajaxSetup({ 
@@ -111,10 +110,7 @@
 			});
 		});
 		
-		$("#certID").change(function(){
-			setPrice();
-		});
-		$("#reexamine").change(function(){
+		$("#courseID").change(function(){
 			setPrice();
 		});
 		
@@ -158,7 +154,7 @@
 				$("#ID").val(ar[0]);
 				$("#projectID").val(ar[1]);
 				$("#projectName").val(ar[2]);
-				$("#certID").val(ar[3]);
+				$("#courseID").val(ar[33]);
 				$("#kindID").val(ar[4]);
 				$("#status").val(ar[5]);
 				$("#object").val(ar[6]);
@@ -179,7 +175,6 @@
 				$("#price").val(ar[28]);
 				$("#payKind").val(ar[29]);
 				$("#payGroup").val(ar[30]);
-				$("#reexamine").val(ar[31]);
 				$("#upload1").html("<a href='javascript:showLoadFile(\"project_brochure\",\"" + ar[1] + "\",\"project\",\"" + ar[11] + "\");' style='padding:3px;'>上传</a>");
 				var c = "";
 				if(ar[21] > ""){
@@ -210,7 +205,7 @@
 			return false;
 		}
 		//alert($('#dept').combobox('getValues'));
-		$.get("projectControl.asp?op=update&nodeID=" + $("#ID").val() + "&keyID=" + $("#projectID").val() + "&item=" + escape($("#projectName").val()) + "&price=" + $("#price").val() + "&reexamine=" + $("#reexamine").val() + "&payKind=" + $("#payKind").val() + "&payGroup=" + $("#payGroup").val() + "&refID=" + $("#certID").val() + "&kindID=" + $("#kindID").val() + "&deadline=" + $("#deadline").val() + "&object=" + escape($("#object").val()) + "&address=" + escape($("#address").val()) + "&dept=" + $("#dept").combobox("getValues") + "&linker=" + escape($("#linker").val()) + "&mobile=" + escape($("#mobile").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&host=" + $("#host").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("projectControl.asp?op=update&nodeID=" + $("#ID").val() + "&keyID=" + $("#projectID").val() + "&item=" + escape($("#projectName").val()) + "&price=" + $("#price").val() + "&payKind=" + $("#payKind").val() + "&payGroup=" + $("#payGroup").val() + "&refID=" + $("#courseID").val() + "&kindID=" + $("#kindID").val() + "&deadline=" + $("#deadline").val() + "&object=" + escape($("#object").val()) + "&address=" + escape($("#address").val()) + "&dept=" + $("#dept").combobox("getValues") + "&linker=" + escape($("#linker").val()) + "&mobile=" + escape($("#mobile").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&host=" + $("#host").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -301,13 +296,13 @@
 	}
 	
 	function setPrice(){
-		if($("#certID").val()>""){
+		if($("#courseID").val()>""){
 			//获取费用标准
-			$.get("courseControl.asp?op=getCoursePrice&nodeID=&refID=" + $("#certID").val() + "&keyID=" + $("#reexamine").val() + " + &times=" + (new Date().getTime()),function(re){
+			$.get("courseControl.asp?op=getCoursePrice&nodeID=" + $("#courseID").val() + "&refID=&keyID=0&times=" + (new Date().getTime()),function(re){
 				$("#price").val(re);
 			});
 			if(op==1){
-				$("#projectName").val($("#host").find("option:selected").text().substr(0,4) + "[" + $("#certID").find("option:selected").text() + "]" + $("#reexamine").find("option:selected").text());
+				$("#projectName").val($("#host").find("option:selected").text().substr(0,4) + "." + $("#courseID").find("option:selected").text());
 			}
 		}
 	}
@@ -390,8 +385,8 @@
 				<td><input type="text" id="dept" name="dept" size="33" /></td>
 			</tr>
 			<tr>
-				<td align="right" width="15%">项目</td>
-				<td><select id="certID" style="width:200px;"></select></td>
+				<td align="right" width="15%">课程</td>
+				<td><select id="courseID" style="width:200px;"></select></td>
 				<td align="right" width="15%">编号</td><input id="ID" type="hidden" /><input type="hidden" id="kindID" /><input type="hidden" id="status" />
 				<td><input class="readOnly" type="text" id="projectID" size="24" readOnly="true" /></td>
 			</tr>
@@ -409,7 +404,7 @@
 			</tr>
 			<tr>
 				<td align="right">培训费用</td>
-				<td>&nbsp;&nbsp;类别<select id="reexamine" style="width:60px;"></select>&nbsp;<input type="text" id="price" size="3" />&nbsp;元</td>
+				<td><input type="text" id="price" size="10" />&nbsp;元</td>
 				<td align="right">收费方式</td>
 				<td><select id="payKind" style="width:60px;"></select><span id="item_payGroup">&nbsp;&nbsp;开票单元<select id="payGroup" style="width:60px;"></select></span></td>
 			</tr>

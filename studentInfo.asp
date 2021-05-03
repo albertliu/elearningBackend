@@ -678,7 +678,7 @@
 			</tr>
 			<tr>
 				<td align="right">备注</td>
-				<td colspan="5"><input type="text" id="memo" style="width:95%;" /></td>
+				<td colspan="3"><input type="text" id="memo" style="width:95%;" /></td>
 			</tr>
 			<tr>
 				<td align="right">注册日期</td>

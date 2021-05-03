@@ -38,7 +38,8 @@
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
 			arr.push("<th width='13%'>编号</th>");
-			arr.push("<th width='45%'>课程名称</th>");
+			arr.push("<th width='33%'>课程名称</th>");
+			arr.push("<th width='12%'>类别</th>");
 			arr.push("<th width='13%'>课时</th>");
 			arr.push("<th width='12%'>状态</th>");
 			arr.push("<th width='12%'>课表</th>");
@@ -58,6 +59,7 @@
 					arr.push("<td class='center'>" + i + "</td>");
 					arr.push("<td class='left'>" + ar1[1] + "</td>");
 					arr.push("<td class='link1'><a href='javascript:showCourseInfo(" + ar1[0] + ",0,0,1);'>" + ar1[2] + "</a></td>");
+					arr.push("<td class='left'>" + ar1[18] + "</td>");
 					arr.push("<td class='left'>" + ar1[3] + "</td>");
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
 					arr.push("<td class='left'><a href='javascript:getLessonList(\"" + ar1[1] + "\");'>>></a></td>");
@@ -67,6 +69,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");

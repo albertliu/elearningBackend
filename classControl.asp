@@ -78,7 +78,7 @@ if(op == "getNodeInfo"){
 if(op == "update"){
 	result = 0;
 	if(result == 0){
-		sql = "exec updateClassInfo " + nodeID + ",'" + String(Request.QueryString("certID")) + "','" + String(Request.QueryString("projectID")) + "','" + String(Request.QueryString("adviserID")) + "'," + kindID + "," + status + ",'" + String(Request.QueryString("dateStart")) + "','" + String(Request.QueryString("dateEnd")) + "','" + unescape(String(Request.QueryString("classroom"))) + "','" + unescape(String(Request.QueryString("timetable"))) + "','" + memo + "','" + currUser + "'";
+		sql = "exec updateClassInfo " + nodeID + ",'" + unescape(String(Request.QueryString("className"))) + "','" + String(Request.QueryString("certID")) + "','" + String(Request.QueryString("projectID")) + "','" + String(Request.QueryString("adviserID")) + "'," + kindID + "," + status + ",'" + String(Request.QueryString("dateStart")) + "','" + String(Request.QueryString("dateEnd")) + "','" + unescape(String(Request.QueryString("classroom"))) + "','" + unescape(String(Request.QueryString("timetable"))) + "','" + memo + "','" + currUser + "'";
 
 		execSQL(sql);
 		if(nodeID == 0){

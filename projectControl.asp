@@ -85,7 +85,7 @@ if(op == "getProjectList"){
 		//18
 		result += "|" + rs("phone").value + "|" + rs("email").value + "|" + rs("projectCount").value + "|" + rs("filename").value + "|" + rs("entryform").value + "|" + rs("dept").value + "|" + rs("linker").value + "|" + rs("mobile").value + "|" + rs("projectBadPhotoCount").value + "|" + rs("projectSubmitCount").value;
 		//28
-		result += "|" + rs("price").value + "|" + rs("payKind").value + "|" + rs("payGroup").value + "|" + rs("reexamine").value;
+		result += "|" + rs("price").value + "|" + rs("payKind").value + "|" + rs("payGroup").value + "|" + rs("reexamine").value + "|" + rs("reexamineName").value + "|" + rs("courseID").value + "|" + rs("courseName").value;
 		rs.MoveNext();
 	}
 	Response.Write(escape(result));
@@ -102,7 +102,7 @@ if(op == "getNodeInfo"){
 		//18
 		result += "|" + rs("phone").value + "|" + rs("email").value + "|" + rs("projectCount").value + "|" + rs("filename").value + "|" + rs("entryform").value + "|" + rs("dept").value + "|" + rs("linker").value + "|" + rs("mobile").value + "|" + rs("projectBadPhotoCount").value + "|" + rs("projectSubmitCount").value;
 		//28
-		result += "|" + rs("price").value + "|" + rs("payKind").value + "|" + rs("payGroup").value + "|" + rs("reexamine").value;
+		result += "|" + rs("price").value + "|" + rs("payKind").value + "|" + rs("payGroup").value + "|" + rs("reexamine").value + "|" + rs("reexamineName").value + "|" + rs("courseID").value + "|" + rs("courseName").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -111,7 +111,7 @@ if(op == "getNodeInfo"){
 if(op == "update"){
 	result = 0;
 	if(result == 0){
-		sql = "exec updateProjectInfo " + nodeID + ",'" + keyID + "','" + item + "','" + refID + "','" + String(Request.QueryString("reexamine")) + "','" + unescape(String(Request.QueryString("object"))) + "','" + unescape(String(Request.QueryString("address"))) + "','" + String(Request.QueryString("deadline")) + "'," + kindID + ",'" + unescape(String(Request.QueryString("linker"))) + "','" + unescape(String(Request.QueryString("mobile"))) + "','" + unescape(String(Request.QueryString("phone"))) + "','" + unescape(String(Request.QueryString("email"))) + "','" + String(Request.QueryString("price")) + "','" + String(Request.QueryString("payKind")) + "','" + String(Request.QueryString("payGroup")) + "','" + host + "','" + String(Request.QueryString("dept")) + "','" + memo + "','" + currUser + "'";
+		sql = "exec updateProjectInfo " + nodeID + ",'" + keyID + "','" + item + "','" + refID + "','" + unescape(String(Request.QueryString("object"))) + "','" + unescape(String(Request.QueryString("address"))) + "','" + String(Request.QueryString("deadline")) + "'," + kindID + ",'" + unescape(String(Request.QueryString("linker"))) + "','" + unescape(String(Request.QueryString("mobile"))) + "','" + unescape(String(Request.QueryString("phone"))) + "','" + unescape(String(Request.QueryString("email"))) + "','" + String(Request.QueryString("price")) + "','" + String(Request.QueryString("payKind")) + "','" + String(Request.QueryString("payGroup")) + "','" + host + "','" + String(Request.QueryString("dept")) + "','" + memo + "','" + currUser + "'";
 
 		execSQL(sql);
 		if(nodeID == 0){

@@ -59,6 +59,7 @@
 			if($("#certID").val()>""){
 				var id=$("#certID").val();
 				setProjectList(id,[]);
+				$("#className").val($("#certID").find("option:selected").text());
 			}
 		});
 	  	<!--#include file="commLoadFileReady.asp"-->
@@ -84,6 +85,7 @@
 				$("#memo").val(ar[13]);
 				$("#regDate").val(ar[14]);
 				$("#registerName").val(ar[16]);
+				$("#className").val(ar[17]);
 				$("#timetable").val(ar[18]);
 				
 				//getDownloadFile("classID");
@@ -96,8 +98,12 @@
 	}
 	
 	function saveNode(){
+		if($("#className").val()==0){
+			alert("请填写班级名称。");
+			return false;
+		}
 		//alert($("#adviserID").val() + "&item=" + ($("#memo").val()));
-		$.get("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&classroom=" + escape($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&adviserID=" + $("#adviserID").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&className=" + escape($("#className").val()) + "&classroom=" + escape($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&adviserID=" + $("#adviserID").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -193,14 +199,14 @@
 			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
-				<td align="right">班级编号</td><input id="ID" type="hidden" /><input id="kindID" type="hidden" />
+				<td align="right">班级编号</td><input id="ID" type="hidden" /><input id="kindID" type="hidden" /><input id="status" type="hidden" />
 				<td><input type="text" id="classID" size="25" class="readOnly" readOnly="true" /></td>
-				<td align="right">状态</td>
-				<td><select id="status" style="width:100px;"></select></td>
-			</tr>
-			<tr>
 				<td align="right">课程名称</td>
 				<td><select id="certID" style="width:180px;"></select></td>
+			</tr>
+			<tr>
+				<td align="right">班级名称</td>
+				<td><input type="text" class="mustFill" id="className" size="25" /></td>
 				<td align="right">招生批次</td>
 				<td><input type="text" id="projectID" name="projectID" size="25" /></td>
 			</tr>
