@@ -118,9 +118,13 @@
 			generateEntryForm(0);
 		});
 
+		$("#btnFiremanMaterials").click(function(){
+			generateFiremanMaterials();
+		});
+
 		$("#btnPrint").click(function(){
-			//window.open("entryform_" + $("#certID").val() + ".asp?keyID=1&nodeID=" + nodeID + "&refID=" + refID, "_self");
-			window.open("entryform_C20.asp?keyID=1&nodeID=" + nodeID + "&refID=" + refID, "_self");
+			window.open("entryform_" + $("#certID").val() + ".asp?keyID=1&nodeID=" + nodeID + "&refID=" + refID, "_self");
+			//window.open("entryform_C20.asp?keyID=0&nodeID=" + nodeID + "&refID=" + refID, "_self");
 		});
 
 		$("#btnPreview").click(function(){
@@ -365,6 +369,26 @@
 		});
 	}
 	
+	function generateFiremanMaterials(){
+		$.getJSON(uploadURL + "/outfiles/generate_fireman_materials?username=" + $("#username").val() + "&enterID=" + $("#studentCourseID").val() + "&registerID=" + currUser ,function(data){
+			if(data>""){
+				if(i==0){
+					asyncbox.alert("已生成 <a href='users" + data + "' target='_blank'>下载文件</a>",'操作成功',function(action){
+					　　//alert 返回action 值，分别是 'ok'、'close'。
+					　　if(action == 'ok'){
+					　　}
+					　　if(action == 'close'){
+					　　　　//alert('close');
+					　　}
+					});
+				}
+				//getNodeInfo(nodeID);
+			}else{
+				alert("没有可供处理的数据。");
+			}
+		});
+	}
+	
 	function setButton(){
 		$("#save").hide();
 		//$("#new").hide();
@@ -376,6 +400,7 @@
 		$("#btnPay").hide();
 		$("#btnDel").hide();
 		$("#btnEntryform").hide();
+		$("#btnFiremanMaterials").hide();
 		$("#btnPrint").hide();
 		if($("#status").val()==0 && $("#kindID").val()==0){
 			//未支付的个人付款可以支付，团体付款应到发票管理中操作。
@@ -412,6 +437,7 @@
 			$("#class1").hide();
 			$("#reply").show();
 			$("#btnEntryform").show();
+			//$("#btnFiremanMaterials").show();
 			$("#btnPrint").show();
 		}
 	}
@@ -512,6 +538,7 @@
 					<input class="button" type="button" id="btnEntryform" value="生成" />
 					<input class="button" type="button" id="btnPreview" value="预览" />
 					<input class="button" type="button" id="btnPrint" value="打印" />
+					<input class="button" type="button" id="btnFiremanMaterials" value="消防员" />
 				</div>
 			</div>
 

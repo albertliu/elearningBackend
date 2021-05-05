@@ -40,7 +40,7 @@
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
 			arr.push("<th width='8%'>编号</th>");
-			arr.push("<th width='20%'>课程名称</th>");
+			arr.push("<th width='20%'>班级名称</th>");
 			arr.push("<th width='12%'>开课日期</th>");
 			arr.push("<th width='12%'>结束日期</th>");
 			arr.push("<th width='10%'>班主任</th>");
@@ -65,7 +65,7 @@
 					arr.push("<tr class='grade0'>");
 					arr.push("<td class='center'>" + i + "</td>");
 					arr.push("<td class='link1'><a href='javascript:showClassInfo(" + ar1[0] + ",0,0,1);'>" + ar1[1] + "</a></td>");
-					arr.push("<td class='left'>" + ar1[4] + "</td>");
+					arr.push("<td class='left'>" + ar1[17] + "</td>");
 					arr.push("<td class='left'>" + ar1[10] + "</td>");
 					arr.push("<td class='left'>" + ar1[11] + "</td>");
 					arr.push("<td class='left'>" + ar1[9] + "</td>");

@@ -105,4 +105,10 @@ if(op == "delNode"){
 	execSQL(sql);
 	Response.Write(nodeID);
 }
+
+if(op == "closeClass"){
+	sql = "exec closeClassInfo '" + nodeID + "','" + currUser + "'";
+	execSQL(sql);
+	Response.Write(nodeID);
+}
 %>
