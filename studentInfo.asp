@@ -599,6 +599,9 @@
 				if(ar[5]>''){
 					$("#job").val(ar[5]);
 				}
+				if(ar[6]>''){
+					$("#memo").val(ar[6]);
+				}
 				setZNXF();
 			}
 		});
