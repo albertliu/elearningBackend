@@ -423,7 +423,7 @@ if(op == "getDeptRefrence"){
 	sql = "SELECT * FROM dbo.getDeptRefrence('" + nodeID + "')";
 	rs = conn.Execute(sql);
 	if(!rs.EOF){
-		result = rs("companyID").value + "|" + rs("dept1").value + "|" + rs("dept2").value + "|" + rs("mobile").value;
+		result = rs("companyID").value + "|" + rs("dept1").value + "|" + rs("dept2").value + "|" + rs("mobile").value + "|" + rs("education").value + "|" + rs("job").value;
 	}
 	rs.Close();
 	Response.Write(result);

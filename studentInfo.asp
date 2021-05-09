@@ -590,7 +590,15 @@
 				$("#dept1").val(ar[1]);
 				setDeptList(ar[1],2,0);
 				$("#dept2").val(ar[2]);
-				$("#mobile").val(ar[3]);
+				if(ar[3]>''){
+					$("#mobile").val(ar[3]);
+				}
+				if(ar[4]>0){
+					$("#education").val(ar[4]);
+				}
+				if(ar[5]>''){
+					$("#job").val(ar[5]);
+				}
 				setZNXF();
 			}
 		});

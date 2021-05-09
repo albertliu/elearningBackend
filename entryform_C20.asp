@@ -167,17 +167,16 @@
 			<tr>
 				<td align="center" class='table_resume_title' width='16%' height='45px;'>人员属性</td><td align="left">
 					<span style='font-size:1em;'><input type="radio" name="fire_kind1" value=0 />&nbsp;&nbsp;社会人员</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind1" value=1 />&nbsp;&nbsp;公职人员</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind1" value=2 />&nbsp;&nbsp;其他</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind1" value=1 />&nbsp;&nbsp;专职消防人员</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind1" value=2 />&nbsp;&nbsp;综合性消防救援队伍人员</span>
 				</td>
 				<td align="center" class='table_resume_title' width='16%'>户口所在地</td><td class='table_resume_title'><p style='font-size:1em;' id="bureau"></p></td>
 			</tr>
 			<tr>
 				<td align="center" class='table_resume_title' width='16%' height='45px;'>政治面貌</td><td align="left" colspan="4">
-					<span style='font-size:1em;'><input type="radio" name="fire_kind2" value=0 />&nbsp;&nbsp;群众</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind2" value=1 />&nbsp;&nbsp;党员</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind2" value=2 />&nbsp;&nbsp;团员</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind2" value=3 />&nbsp;&nbsp;其他</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind2" value=0 />&nbsp;&nbsp;中国共产党党员</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind2" value=1 />&nbsp;&nbsp;民主党派人士</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind2" value=2 />&nbsp;&nbsp;群众</span>
 				</td>
 			</tr>
 			<tr>
@@ -185,8 +184,8 @@
 			</tr>
 			<tr>
 				<td align="center" class='table_resume_title' width='16%' height='45px;'>在职情况</td><td align="left" colspan="4">
-					<span style='font-size:1em;'><input type="radio" name="job_status" value=1 />&nbsp;&nbsp;在职人员</span>
-					<span style='font-size:1em;'><input type="radio" name="job_status" value=0 />&nbsp;&nbsp;待业人员</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind11" value=1 />&nbsp;&nbsp;在职人员</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind11" value=0 />&nbsp;&nbsp;待业人员</span>
 				</td>
 			</tr>
 			<tr>
@@ -195,24 +194,44 @@
 			</tr>
 			<tr>
 				<td align="center" class='table_resume_title' width='16%' height='45px;'>从事职业</td><td align="center" colspan="4">
-					<span style='font-size:1em;'><input type="radio" name="fire_kind10" value=0 />&nbsp;&nbsp;农林牧渔水利业</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind10" value=1 />&nbsp;&nbsp;...</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind10" value=2 />&nbsp;&nbsp;...</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind10" value=0 />&nbsp;&nbsp;农林牧渔水利</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind10" value=1 />&nbsp;&nbsp;工业</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind10" value=2 />&nbsp;&nbsp;建筑</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind10" value=3 />&nbsp;&nbsp;交运电信</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind10" value=4 />&nbsp;&nbsp;商业、饮食、物资供应和仓储</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind10" value=5 />&nbsp;&nbsp;房地产、公用事业、居民服务</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind10" value=6 />&nbsp;&nbsp;卫生体育福利</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind10" value=7 />&nbsp;&nbsp;教育文化广电</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind10" value=8 />&nbsp;&nbsp;科研技术服务</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind10" value=9 />&nbsp;&nbsp;金融保险</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind10" value=10 />&nbsp;&nbsp;机关社团</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind10" value=11 />&nbsp;&nbsp;其他</span>
 				</td>
 			</tr>
 			<tr>
 				<td align="center" class='table_resume_title' width='16%' height='45px;'>所在学校</td><td align="center"><p style='font-size:1em;'></p></td>
 				<td align="center" class='table_resume_title'>学校类型</td><td align="center" colspan="2">
-					<span style='font-size:1em;'><input type="radio" name="fire_kind3" value=0 />&nbsp;&nbsp;普通教育高等学校</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind3" value=1 />&nbsp;&nbsp;...</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind3" value=0 />&nbsp;&nbsp;普通高等学校</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind3" value=1 />&nbsp;&nbsp;高级技校</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind3" value=2 />&nbsp;&nbsp;技校</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind3" value=3 />&nbsp;&nbsp;技师学院</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind3" value=4 />&nbsp;&nbsp;其他</span>
 				</td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='16%' height='45px;'>学历</td><td align="center" colspan="2"><p style='font-size:1em;' id="educationName"></p></td>
+				<td align="center" class='table_resume_title' width='16%' height='45px;'>学历</td><td align="center" colspan="2">
+					<span style='font-size:1em;'><input type="radio" name="fire_kind12" value=0 />&nbsp;&nbsp;博士</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind12" value=1 />&nbsp;&nbsp;研究生</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind12" value=2 />&nbsp;&nbsp;本科</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind12" value=3 />&nbsp;&nbsp;大专</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind12" value=4 />&nbsp;&nbsp;中专</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind12" value=5 />&nbsp;&nbsp;高中</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind12" value=6 />&nbsp;&nbsp;职高</span>
+				</td>
 				<td align="center" class='table_resume_title'>毕业时间</td><td align="center"><p style='font-size:1em;'></p></td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='16%' height='45px;'>专业名称</td><td align="center" colspan="4"><p style='font-size:1em;'></p></td>
+				<td align="center" class='table_resume_title' width='16%' height='45px;'>专业名称</td><td align="center" colspan="4"><p style='font-size:1em;' id="profession"></p></td>
 			</tr>
 			<tr>
 				<td align="center" class='table_resume_title' width='16%' height='45px;'>手机号码</td><td align="center"><p style='font-size:1em;' id="mobile"></p></td>
@@ -226,37 +245,30 @@
 			</tr>
 			<tr>
 				<td align="center" class='table_resume_title' width='16%' height='45px;'>职业方向</td><td align="left" colspan="4">
-					<span style='font-size:1em;'><input type="radio" name="fire_kind4" value=0 />&nbsp;&nbsp;灭火救援员</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind4" value=1 />&nbsp;&nbsp;消防通讯员</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind4" value=2 />&nbsp;&nbsp;计算机管理员</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind4" value=3 />&nbsp;&nbsp;搜救犬训导员</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind4" value=4 />&nbsp;&nbsp;消防车驾驶员</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind4" value=5 />&nbsp;&nbsp;装备维护员</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind4" value=0 />&nbsp;&nbsp;消防设施操作</span>
 				</td>
 			</tr>
 			<tr>
 				<td align="center" class='table_resume_title' width='16%' height='45px;'>职业等级</td><td align="left" colspan="4">
-					<span style='font-size:1em;'><input type="radio" name="fire_kind5" value=0 />&nbsp;&nbsp;灭火救援员</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind5" value=1 />&nbsp;&nbsp;消防通讯员</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind5" value=2 />&nbsp;&nbsp;计算机管理员</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind5" value=3 />&nbsp;&nbsp;搜救犬训导员</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind5" value=4 />&nbsp;&nbsp;消防车驾驶员</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind5" value=5 />&nbsp;&nbsp;装备维护员</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind5" value=0 />&nbsp;&nbsp;一级/高级技师</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind5" value=1 />&nbsp;&nbsp;二级/技师</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind5" value=2 />&nbsp;&nbsp;三级/高级工</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind5" value=3 />&nbsp;&nbsp;四级/中级工</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind5" value=4 />&nbsp;&nbsp;五级/初级工</span>
 				</td>
 			</tr>
 			<tr>
 				<td align="center" class='table_resume_title' width='16%' height='45px;'>鉴定分类</td><td align="left" colspan="4">
-					<span style='font-size:1em;'><input type="radio" name="fire_kind6" value=0 />&nbsp;&nbsp;一级/高级技师</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind6" value=1 />&nbsp;&nbsp;二级/技师</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind6" value=2 />&nbsp;&nbsp;三级/高级工</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind6" value=3 />&nbsp;&nbsp;四级/中级工</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind6" value=4 />&nbsp;&nbsp;五级/初级工</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind6" value=0 />&nbsp;&nbsp;初次鉴定</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind6" value=1 />&nbsp;&nbsp;晋级鉴定</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind6" value=2 />&nbsp;&nbsp;补考</span>
 				</td>
 			</tr>
 			<tr>
 				<td align="center" class='table_resume_title' width='16%' height='45px;'>满足资格所属类</td><td align="left" colspan="4">
-					<span style='font-size:1em;'><input type="radio" name="fire_kind7" value=0 />&nbsp;&nbsp;相关职业</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind7" value=1 />&nbsp;&nbsp;本职业方向</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind7" value=0 />&nbsp;&nbsp;相关专业</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind7" value=1 />&nbsp;&nbsp;相关职业</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind7" value=2 />&nbsp;&nbsp;本职业方向</span>
 				</td>
 			</tr>
 			<tr>
