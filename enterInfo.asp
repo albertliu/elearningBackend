@@ -180,7 +180,6 @@
 				}
 			});
 		});
-		
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -349,7 +348,7 @@
 	}
 	
 	function generateEntryForm(i){
-		$.getJSON(uploadURL + "/outfiles/generate_entryform?certID=" + $("#certID").val() + "&enterID=" + $("#studentCourseID").val() + "&registerID=" + currUser ,function(data){
+		/*$.getJSON(uploadURL + "/outfiles/generate_entryform?certID=" + $("#certID").val() + "&enterID=" + $("#studentCourseID").val() + "&registerID=" + currUser ,function(data){
 			if(data>""){
 				if(i==0){
 					asyncbox.alert("报名表已生成 <a href='users" + data + "' target='_blank'>下载文件</a>",'操作成功',function(action){
@@ -367,6 +366,8 @@
 				alert("没有可供处理的数据。");
 			}
 		});
+		*/
+		window.open("entryform_" + $("#certID").val() + ".asp?nodeID=" + nodeID + "&refID=" + refID + "&keyID=1", "_self");
 	}
 	
 	function generateFiremanMaterials(){
@@ -436,7 +437,7 @@
 			$("#class0").show();
 			$("#class1").hide();
 			$("#reply").show();
-			$("#btnEntryform").show();
+			//$("#btnEntryform").show();
 			//$("#btnFiremanMaterials").show();
 			$("#btnPrint").show();
 		}
