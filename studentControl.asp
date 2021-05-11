@@ -419,7 +419,7 @@ if(op == "studentExist"){
 }
 
 if(op == "getDeptRefrence"){
-	result = 0;
+	result = "";
 	sql = "SELECT * FROM dbo.getDeptRefrence('" + nodeID + "')";
 	rs = conn.Execute(sql);
 	if(!rs.EOF){

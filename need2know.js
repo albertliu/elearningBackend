@@ -61,7 +61,7 @@
 				arr.push('		</tr>');
 				if(val["missingItems"]>""){
 					arr.push('		<tr>');
-					arr.push('			<td colspan="4" style="height:30px;"><p style="font-size:1.3em;">&bull;&nbsp;&nbsp;您尚未填写' + val["missingItems"] + '，请尽快在"个人信息"中补充。否则可能会影响您的学习和证书办理。</p></td>');
+					arr.push('			<td colspan="4" style="height:30px;"><p style="font-size:1.4em;">&bull;&nbsp;&nbsp;您尚未填写' + val["missingItems"] + '，请尽快在"个人信息"中补充。否则可能会影响您的学习和证书办理。</p></td>');
 					arr.push('		</tr>');
 				}
 				arr.push('		<tr>');

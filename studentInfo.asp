@@ -104,6 +104,7 @@
 						op = 0;
 						getNodeInfo(0,$("#username").val());
 					}
+					replace_item = "";
 					setDeptFromRefInfo();
 				}else{
 					jAlert("身份证号码有误，请核对。");
@@ -585,10 +586,14 @@
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar > ""){
-				$("#companyID").val(ar[0]);
-				setDeptList(ar[0],1,0);
-				$("#dept1").val(ar[1]);
-				setDeptList(ar[1],2,0);
+				if(ar[0] > 0){
+					$("#companyID").val(ar[0]);
+					setDeptList(ar[0],1,0);
+				}
+				if(ar[1] > 0){
+					$("#dept1").val(ar[1]);
+					setDeptList(ar[1],2,0);
+				}
 				$("#dept2").val(ar[2]);
 				if(ar[3]>''){
 					$("#mobile").val(ar[3]);
