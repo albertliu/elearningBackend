@@ -238,7 +238,7 @@
 					entryform = "/users" + ar[35];
 				}
 				if(c1 == ""){c1 = "&nbsp;&nbsp;还未生成";}
-				$("#entryform").html(c1);
+				//$("#entryform").html(c1);
 
 				setButton();
 			}else{
