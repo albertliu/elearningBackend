@@ -205,6 +205,7 @@
 			$("#menu10").hide();
 		}else{
 			$("#menu2").hide();
+			$("#menu3").hide();
 		}
 		
 		if(currHostKind==0 && currHost > ""){	//集团用户不使用导入报名表, 照片批量上传，成绩导入功能
@@ -315,7 +316,7 @@
 						<li id="menu2"><a href="#fragment-2"><span>培训报名</span></a></li>
 						<li id="menu10"><a href="#fragment-10"><span>报名管理</span></a></li>
 						<li id="menu9"><a href="#fragment-9"><span>班级管理</span></a></li>
-						<li><a href="#fragment-3"><span>证书管理</span></a></li>
+						<li id="menu3"><a href="#fragment-3"><span>证书管理</span></a></li>
 						<li><a href="#fragment-4"><span>课程管理</span></a></li>
 						<li id="menu5"><a href="#fragment-5"><span>题库管理</span></a></li>
 						<li><a href="#fragment-6"><span>统计报表</span></a></li>
