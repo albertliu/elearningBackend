@@ -260,19 +260,14 @@ function getUserNameByID(userID){
 }
 
 function userHasRole(userID,roleID){
-		sql = "select userHasRole('" + userID + "','" + roleID + "') as count"
-		var rsTemp = conn.Execute(sql);
-
-		if (!rsTemp1.EOF){
-			if(rsTemp1("count")>0){
-				return true;
-			}else{
-				return false;
-			}
-		}else{
-			return false;
-		}
-		rsTemp1.Close();
+	var i = 0;
+	sql = "select dbo.userHasRole('" + userID + "','" + roleID + "') as count";
+	var rsTemp = conn.Execute(sql);
+	if (!rsTemp.EOF){
+		i = rsTemp("count").value;
+	}
+	rsTemp.Close();
+	return i;
 }
 
 function nz(strIn,strOut){

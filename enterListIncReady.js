@@ -161,6 +161,8 @@
 			floatCount = ar0[0];
 			floatSum = "";
 			var ar2 = new Array();
+			var role = checkRole("teacher");
+			//alert(role);
 			$.get("certControl.asp?op=getCertNeedMaterialListByProjectID&refID=" + $("#searchEnterProjectID").val(),function(data1){
 				//jAlert($("#searchEnterProjectID").val() + ":" + unescape(data1));
 				ar2 = (unescape(data1)).split("%%");
@@ -191,8 +193,13 @@
 			}
 			//arr.push("<th width='6%'>单位</th>");
 			arr.push("<th width='6%'>材料</th>");
-			arr.push("<th width='6%'>缴费</th>");
-			arr.push("<th width='6%'>编号</th>");
+			if(role){
+				arr.push("<th width='6%'>成绩</th>");
+				arr.push("<th width='6%'>次数</th>");
+			}else{
+				arr.push("<th width='6%'>缴费</th>");
+				arr.push("<th width='6%'>编号</th>");
+			}
 			arr.push("<th width='6%'>准考</th>");
 			arr.push("<th width='3%'></th>");
 			arr.push("</tr>");
@@ -272,8 +279,13 @@
 					if(ar1[44]==1){
 						arr.push("<td class='center'>" + imgChk1 + "</td>");
 					}
-					arr.push("<td class='left'>" + ar1[50] + "</td>");
-					arr.push("<td class='left'>" + ar1[43] + "</td>");
+					if(role){
+						arr.push("<td class='left'>" + ar1[15] + "</td>");
+						arr.push("<td class='left'>" + ar1[59] + "</td>");
+					}else{
+						arr.push("<td class='left'>" + ar1[50] + "</td>");
+						arr.push("<td class='left'>" + ar1[43] + "</td>");
+					}
 					if(ar1[53]>0){
 						arr.push("<td class='center'>" + imgChk1 + "</td>");
 					}else{

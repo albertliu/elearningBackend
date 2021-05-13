@@ -23,6 +23,11 @@ if(op == "checkPermission"){
 	Response.Write(result);
 }	
 
+if(op == "checkRole"){
+	result = userHasRole(currUser,roleID);
+	Response.Write(result);
+}	
+
 if(op == "imChecker"){
 	result = 0;
 	sql = "SELECT dbo.imChecker('" + refID + "') as re";

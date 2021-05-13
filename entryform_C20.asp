@@ -224,8 +224,8 @@
 					<span style='font-size:1em;'><input type="radio" name="fire_kind12" value=1 />&nbsp;&nbsp;研究生</span>
 					<span style='font-size:1em;'><input type="radio" name="fire_kind12" value=2 />&nbsp;&nbsp;本科</span>
 					<span style='font-size:1em;'><input type="radio" name="fire_kind12" value=3 />&nbsp;&nbsp;大专</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind12" value=4 />&nbsp;&nbsp;中专</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind12" value=5 />&nbsp;&nbsp;高中</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind12" value=4 />&nbsp;&nbsp;高中</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind12" value=5 />&nbsp;&nbsp;中专</span>
 					<span style='font-size:1em;'><input type="radio" name="fire_kind12" value=6 />&nbsp;&nbsp;职高</span>
 				</td>
 				<td align="center" class='table_resume_title'>毕业时间</td><td align="center"><p style='font-size:1em;'></p></td>
@@ -245,14 +245,11 @@
 			</tr>
 			<tr>
 				<td align="center" class='table_resume_title' width='16%' height='45px;'>职业方向</td><td align="left" colspan="4">
-					<span style='font-size:1em;'><input type="radio" name="fire_kind4" value=0 />&nbsp;&nbsp;消防设施操作</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind4" value=0 />&nbsp;&nbsp;消防设施监控操作</span>
 				</td>
 			</tr>
 			<tr>
 				<td align="center" class='table_resume_title' width='16%' height='45px;'>职业等级</td><td align="left" colspan="4">
-					<span style='font-size:1em;'><input type="radio" name="fire_kind5" value=0 />&nbsp;&nbsp;一级/高级技师</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind5" value=1 />&nbsp;&nbsp;二级/技师</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind5" value=2 />&nbsp;&nbsp;三级/高级工</span>
 					<span style='font-size:1em;'><input type="radio" name="fire_kind5" value=3 />&nbsp;&nbsp;四级/中级工</span>
 					<span style='font-size:1em;'><input type="radio" name="fire_kind5" value=4 />&nbsp;&nbsp;五级/初级工</span>
 				</td>
@@ -265,24 +262,48 @@
 				</td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='16%' height='45px;'>满足资格所属类</td><td align="left" colspan="4">
-					<span style='font-size:1em;'><input type="radio" name="fire_kind7" value=0 />&nbsp;&nbsp;相关专业</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind7" value=1 />&nbsp;&nbsp;相关职业</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind7" value=2 />&nbsp;&nbsp;本职业方向</span>
+				<td align="center" class='table_resume_title' width='16%' height='45px;'>申报资格(中级)</td><td align="left" colspan="4">
+					<span style='font-size:1em;'><input type="radio" name="fire_kind9" value=0 />&nbsp;&nbsp;取得本职业五级/初级工职业资格证书（技能等级证书）后，累计从事本职业工作4年（含）以上</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind9" value=1 />&nbsp;&nbsp;累计从事本职业工作6年（含）以上</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind9" value=2 />&nbsp;&nbsp;取得相关职业五级/初级工职业资格证书（技能等级证书）后，累计从事相关职业工作4年（含）以上</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind9" value=3 />&nbsp;&nbsp;累计从事相关职业工作6年（含）以上</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind9" value=4 />&nbsp;&nbsp;取的技工学校或相关专业毕业证书（含尚未取得毕业证书的在校应届毕业生）</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind9" value=5 />&nbsp;&nbsp;取得经评估论证、以中级技能为培养目标的中等及以上职业学校专业或相关专业毕业证书（含尚未取得毕业证书的在校应届毕业生）</span>
+				</td>
+			</tr>
+			<tr>
+				<td align="center" class='table_resume_title' width='16%' height='45px;'>申报资格(初级)</td><td align="left" colspan="4">
+					<span style='font-size:1em;'><input type="radio" name="fire_kind9" value=6 />&nbsp;&nbsp;累计从事本职业工作1年（含）以上</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind9" value=7 />&nbsp;&nbsp;本职业学徒期满</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind9" value=8 />&nbsp;&nbsp;累计从事相关职业工作1年（含）以上</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind9" value=9 />&nbsp;&nbsp;相关职业学徒期满</span>
 				</td>
 			</tr>
 			<tr>
 				<td align="center" class='table_resume_title' width='16%' height='45px;'>相关职业</td><td align="left" colspan="4">
-					<span style='font-size:1em;'><input type="radio" name="fire_kind8" value=0 />&nbsp;&nbsp;消防员</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind8" value=1 />&nbsp;&nbsp;人民警察</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind8" value=2 />&nbsp;&nbsp;....</span>
-				</td>
-			</tr>
-			<tr>
-				<td align="center" class='table_resume_title' width='16%' height='45px;'>申报资格</td><td align="left" colspan="4">
-					<span style='font-size:1em;'><input type="radio" name="fire_kind9" value=0 />&nbsp;&nbsp;消防员</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind9" value=1 />&nbsp;&nbsp;...</span>
-					<span style='font-size:1em;'><input type="radio" name="fire_kind9" value=2 />&nbsp;&nbsp;....</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind8" value=0 />&nbsp;&nbsp;安全防范设计评估工程技术人员</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind8" value=1 />&nbsp;&nbsp;消防工程技术人员</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind8" value=2 />&nbsp;&nbsp;安全生产管理工程技术人员</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind8" value=3 />&nbsp;&nbsp;安全评价工程技术人员</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind8" value=4 />&nbsp;&nbsp;人民警察</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind8" value=5 />&nbsp;&nbsp;保卫管理员</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind8" value=6 />&nbsp;&nbsp;消防员</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind8" value=7 />&nbsp;&nbsp;消防指挥员</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind8" value=8 />&nbsp;&nbsp;消防装备管理员</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind8" value=9 />&nbsp;&nbsp;消防安全管理员</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind8" value=10 />&nbsp;&nbsp;消防监督检查员</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind8" value=11 />&nbsp;&nbsp;森林消防员</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind8" value=12 />&nbsp;&nbsp;森林火情瞭望观察员</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind8" value=13 />&nbsp;&nbsp;应急救援员</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind8" value=14 />&nbsp;&nbsp;物业管理员</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind8" value=15 />&nbsp;&nbsp;保安员</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind8" value=16 />&nbsp;&nbsp;智能楼宇管理员</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind8" value=17 />&nbsp;&nbsp;安全防范系统安装维护员</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind8" value=18 />&nbsp;&nbsp;机械设备安装工</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind8" value=19 />&nbsp;&nbsp;电气设备安装工</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind8" value=20 />&nbsp;&nbsp;管工</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind8" value=21 />&nbsp;&nbsp;电工</span>
+					<span style='font-size:1em;'><input type="radio" name="fire_kind8" value=22 />&nbsp;&nbsp;安全员</span>
 				</td>
 			</tr>
 			</table>

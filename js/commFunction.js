@@ -84,6 +84,19 @@
 		});
 		return result;
 	}
+		
+	function checkRole(pID){
+		//alert(pID);
+		var result = false;
+		//alert("1:"+pID);
+		$.get("permissionControl.asp?op=checkRole&roleID=" + pID + "&times=" + (new Date().getTime()),function(re){
+			//alert("2:"+re);
+			if(re>0){
+				result = true;
+			}
+		});
+		return result;
+	}
 	
 	//确定当前用户是否为有任何审批权限的人，如果返回0表示不是，1表示是
 	function imChecker(id){
