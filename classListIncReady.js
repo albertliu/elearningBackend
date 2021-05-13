@@ -1,7 +1,7 @@
 ﻿	var classListLong = 0;		//0: 标准栏目  1：短栏目
 
 	$(document).ready(function (){
-		getComList("searchClassCert","certificateInfo","certID","certName","status=0 and type=0 order by certID",1);
+		getComList("searchClassCert","certificateInfo","certID","shortName","status=0 and type=0 order by certID",1);
 		getDicList("planStatus","searchClassStatus",1);
 		getComList("searchClassProject","projectInfo","projectID","projectName","status>0 and status<9 order by projectID desc",1);
 		

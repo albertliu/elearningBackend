@@ -74,6 +74,7 @@
 				$("#host").val(ar[15]);
 				$("#type").val(ar[18]);
 				$("#mark").val(ar[19]);
+				$("#shortName").val(ar[21]);
 				
 				//getDownloadFile("certID");
 				setButton();
@@ -86,7 +87,7 @@
 	
 	function saveNode(){
 		//alert($("#certID").val() + "&item=" + ($("#memo").val()));
-		$.get("certControl.asp?op=update&nodeID=" + $("#ID").val() + "&certID=" + $("#certID").val() + "&certName=" + escape($("#certName").val()) + "&term=" + $("#term").val() + "&termExt=" + $("#termExt").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&type=" + $("#type").val() + "&mark=" + $("#mark").val() + "&host=" + $("#host").val() + "&agencyID=" + $("#agencyID").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("certControl.asp?op=update&nodeID=" + $("#ID").val() + "&certID=" + $("#certID").val() + "&certName=" + escape($("#certName").val()) + "&shortName=" + escape($("#shortName").val()) + "&term=" + $("#term").val() + "&termExt=" + $("#termExt").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&type=" + $("#type").val() + "&mark=" + $("#mark").val() + "&host=" + $("#host").val() + "&agencyID=" + $("#agencyID").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -119,6 +120,7 @@
 		$("#ID").val(0);
 		$("#certID").val("");
 		$("#certName").val("");
+		$("#shortName").val("");
 		$("#memo").val("");
 		$("#status").val(0);
 		$("#regDate").val(currDate);
@@ -177,8 +179,8 @@
 			<tr>
 				<td align="right">可选人员</td>
 				<td><select id="mark" style="width:180px;"></select></td>
-				<td align="right">&nbsp;</td>
-				<td>&nbsp;</td>
+				<td align="right">简称</td>
+				<td><input type="text" id="shortName" size="25" /></td>
 			</tr>
 			<tr>
 				<td align="right">说明</td>

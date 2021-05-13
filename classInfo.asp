@@ -35,7 +35,7 @@
 		refID = "<%=refID%>";
 		op = "<%=op%>";
 		
-		getComList("certID","certificateInfo","certID","certName","status=0 and type=0 order by certID",1);
+		getComList("certID","certificateInfo","certID","shortName","status=0 and type=0 order by certID",1);
 		getComList("projectID","projectInfo","projectID","projectName","status=1 order by projectID desc",1);
 		getComList("adviserID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='adviser') order by realName",1);
 		getDicList("planStatus","status",0);
@@ -68,7 +68,7 @@
 			if($("#certID").val()>""){
 				var id=$("#certID").val();
 				setProjectList(id,[]);
-				$("#className").val($("#certID").find("option:selected").text());
+				$("#className").val($("#certID").find("option:selected").text() + $("#dateStart").val());
 			}
 		});
 	  	<!--#include file="commLoadFileReady.asp"-->
@@ -186,8 +186,8 @@
 		$("#className").val("");
 		$("#status").val(0);
 		$("#kindID").val(0);
-		$("#classroom").val("");
-		$("#dateStart").val("");
+		$("#classroom").val("黄兴路158号D103");
+		$("#dateStart").val(addDays(currDate,3));
 		$("#dateEnd").val("");
 		$("#regDate").val(currDate);
 		$("#registerID").val(currUser);
@@ -213,6 +213,12 @@
 			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
+				<td align="right">开课日期</td>
+				<td><input type="text" id="dateStart" size="15" /></td>
+				<td align="right">结束日期</td>
+				<td><input type="text" id="dateEnd" size="15" />&nbsp;预计</td>
+			</tr>
+			<tr>
 				<td align="right">班级编号</td><input id="ID" type="hidden" /><input id="kindID" type="hidden" /><input id="status" type="hidden" />
 				<td><input type="text" id="classID" size="25" class="readOnly" readOnly="true" /></td>
 				<td align="right">课程名称</td>
@@ -223,12 +229,6 @@
 				<td><input type="text" class="mustFill" id="className" size="25" /></td>
 				<td align="right">招生批次</td>
 				<td><input type="text" id="projectID" name="projectID" size="25" /></td>
-			</tr>
-			<tr>
-				<td align="right">开课日期</td>
-				<td><input type="text" id="dateStart" size="15" /></td>
-				<td align="right">结束日期</td>
-				<td><input type="text" id="dateEnd" size="15" />&nbsp;预计</td>
 			</tr>
 			<tr>
 				<td align="right">班主任</td>

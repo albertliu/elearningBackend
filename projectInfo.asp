@@ -35,7 +35,7 @@
 		refID = "<%=refID%>";
 		op = "<%=op%>";
 		
-		getComList("courseID","v_courseInfo","courseID","courseName1","status=0 order by courseName",1);
+		getComList("courseID","v_courseInfo","courseID","shortName","status=0 and type=0 order by shortName",1);
 		getComList("host","hostInfo","hostNo","title","status=0 order by hostName",1);
 		getDicList("payKind","payKind",0);
 		getDicList("payGroup","payGroup",0);
