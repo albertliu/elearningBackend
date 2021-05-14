@@ -197,7 +197,7 @@
 				arr.push("<th width='6%'>成绩</th>");
 				arr.push("<th width='6%'>次数</th>");
 			}else{
-				arr.push("<th width='6%'>缴费</th>");
+				arr.push("<th width='6%'>缺项</th>");
 				arr.push("<th width='6%'>编号</th>");
 			}
 			arr.push("<th width='6%'>准考</th>");
@@ -209,6 +209,7 @@
 				var i = 0;
 				var c = 0;
 				var h = "";
+				var n = 0;
 				var imgChk = "<img src='images/attachment.png' style='width:16px;'>";
 				var imgChk1 = "<img src='images/green_check.png'>";
 				var imgChk2 = "<img src='images/cancel.png'>";
@@ -280,7 +281,12 @@
 						arr.push("<td class='left'>" + ar1[15] + "</td>");
 						arr.push("<td class='left'>" + ar1[59] + "</td>");
 					}else{
-						arr.push("<td class='left'>" + ar1[50] + "</td>");
+						n = ar1[61].split(",").length;
+						if(n>0){
+							arr.push("<td class='left' title='" + ar1[61] + "'>" + n + "</td>");
+						}else{
+							arr.push("<td class='left'>&nbsp;</td>");
+						}
 						arr.push("<td class='left'>" + ar1[43] + "</td>");
 					}
 					if(ar1[53]>0){
