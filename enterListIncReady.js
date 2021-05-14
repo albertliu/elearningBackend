@@ -192,7 +192,7 @@
 				arr.push("<th width='8%'>报名日期</th>");
 			}
 			//arr.push("<th width='6%'>单位</th>");
-			arr.push("<th width='6%'>材料</th>");
+			arr.push("<th width='6%'>表</th>");
 			if(role){
 				arr.push("<th width='6%'>成绩</th>");
 				arr.push("<th width='6%'>次数</th>");
@@ -209,6 +209,7 @@
 				var i = 0;
 				var c = 0;
 				var h = "";
+				var imgChk = "<img src='images/attachment.png' style='width:16px;'>";
 				var imgChk1 = "<img src='images/green_check.png'>";
 				var imgChk2 = "<img src='images/cancel.png'>";
 				$.each(ar,function(iNum,val){
@@ -273,12 +274,8 @@
 						arr.push("<td class='center'>" + imgChk2 + "</td>");
 					}
 					*/
-					if(ar1[44]==0){
-						arr.push("<td class='center'>&nbsp;</td>");
-					}
-					if(ar1[44]==1){
-						arr.push("<td class='center'>" + imgChk1 + "</td>");
-					}
+					//arr.push("<td class='link1'><a href='javascript:window.open(\"entryform_" + ar1[60] + ".asp?keyID=0&nodeID=" + ar1[0] + "&refID=" + ar1[1] + ", \"_blank\");'>" + imgChk + "</a></td>");
+					arr.push("<td class='link1'><a href='javascript:openEntryForm(\"" + ar1[60] + "\"," + ar1[0] + ",\"" + ar1[1] + "\");'>" + imgChk + "</a></td>");
 					if(role){
 						arr.push("<td class='left'>" + ar1[15] + "</td>");
 						arr.push("<td class='left'>" + ar1[59] + "</td>");
@@ -367,5 +364,9 @@
 			$("#enterListLongItem5").hide();
 		}
 		getEnterList();
+	}
+
+	function openEntryForm(c,n,f){
+		window.open("entryform_" + c + ".asp?keyID=0&nodeID=" + n + "&refID=" + f, "_blank");
 	}
 	

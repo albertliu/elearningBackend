@@ -154,6 +154,8 @@ if(op == "getNodeInfo"){
 		result += "|" + rs("education").value + "|" + rs("educationName").value + "|" + rs("job_status").value + "|" + rs("birthday").value + "|" + rs("address").value;
 		//35
 		result += "|" + rs("unit").value + "|" + rs("dept").value + "|" + rs("ethnicity").value + "|" + rs("IDaddress").value + "|" + rs("bureau").value + "|" + rs("IDdateStart").value + "|" + rs("IDdateEnd").value + "|" + rs("experience").value;
+		//43
+		result += "|" + rs("CHESICC_filename").value + "|" + rs("employe_filename").value + "|" + rs("job_filename").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

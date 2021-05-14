@@ -111,7 +111,9 @@ body { background:#fff url(../images/bg0.gif); }
 .table_resume td a:hover{text-decoration: underline; color: #F30;}
 .table_resume td a:visited {text-decoration:none; color: #F06;}
 .table_resume_title { text-align:center; background-color:#e0e0e0;}
+/*
 #img_cardA{-webkit-filter: grayscale(100%);-moz-filter: grayscale(100%);-ms-filter: grayscale(100%);-o-filter: grayscale(100%);filter: grayscale(100%);filter: gray;}
 #img_cardB{-webkit-filter: grayscale(100%);-moz-filter: grayscale(100%);-ms-filter: grayscale(100%);-o-filter: grayscale(100%);filter: grayscale(100%);filter: gray;}
 #img_education{-webkit-filter: grayscale(100%);-moz-filter: grayscale(100%);-ms-filter: grayscale(100%);-o-filter: grayscale(100%);filter: grayscale(100%);filter: gray;}
+*/
 

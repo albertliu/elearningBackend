@@ -9,7 +9,7 @@
 
 <title></title>
 
-<link href="css/style_inner1.css?v=1.2"  rel="stylesheet" type="text/css" />
+<link href="css/style_inner1.css?v=1.3"  rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/easyui/easyui.css">
 <link rel="stylesheet" type="text/css" href="css/easyui/icon.css">
 <link href="css/data_table_mini.css?v=20150411" rel="stylesheet" type="text/css" />
@@ -67,7 +67,7 @@
 			showMessageInfo(0,0,1,0,$("#username").val());
 		});
 		$("#enter").click(function(){
-			showEnterInfo(0,$("#username").val(),1,1,$("#companyID").val());
+			showEnterInfo(0,$("#username").val(),1,1,$("#companyID").val(),0);
 		});
 		$("#save").click(function(){
 			saveNode();
@@ -124,6 +124,18 @@
 		$("#add_img_education").click(function(){
 			showLoadFile("student_education",$("#username").val(),"student",$("#host").val());
 		});
+		$("#add_img_CHESICC").click(function(){
+			showLoadFile("student_CHESICC",$("#username").val(),"student",$("#host").val());
+			getNodeInfo(nodeID,refID);
+		});
+		$("#add_img_employment").click(function(){
+			showLoadFile("student_employment",$("#username").val(),"student",$("#host").val());
+			getNodeInfo(nodeID,refID);
+		});
+		$("#add_img_jobCertificate").click(function(){
+			showLoadFile("student_jobCertificate",$("#username").val(),"student",$("#host").val());
+			getNodeInfo(nodeID,refID);
+		});
 		$("#img_photo").click(function(){
 			if($("#img_photo").attr("value")>""){
 				window.open($("#img_photo").attr("value"));
@@ -142,6 +154,21 @@
 		$("#img_education").click(function(){
 			if($("#img_education").attr("value")>""){
 				window.open($("#img_education").attr("value"));
+			}
+		});
+		$("#img_CHESICC").click(function(){
+			if($("#img_CHESICC").attr("value")>""){
+				window.open($("#img_CHESICC").attr("value"));
+			}
+		});
+		$("#img_employment").click(function(){
+			if($("#img_employment").attr("value")>""){
+				window.open($("#img_employment").attr("value"));
+			}
+		});
+		$("#img_jobCertificate").click(function(){
+			if($("#img_jobCertificate").attr("value")>""){
+				window.open($("#img_jobCertificate").attr("value"));
 			}
 		});
 		$("#kindID").change(function(){
@@ -244,6 +271,24 @@
 				}else{
 					$("#img_education").attr("src","images/blank_education.png");
 				}
+				if(ar[43] > ""){
+					$("#img_CHESICC").attr("src","/users" + ar[43]);
+					$("#img_CHESICC").attr("value","/users" + ar[43]);
+				}else{
+					$("#img_CHESICC").attr("src","images/blank_CHESICC.png");
+				}
+				if(ar[44] > ""){
+					$("#img_employment").attr("src","/users" + ar[44]);
+					$("#img_employment").attr("value","/users" + ar[44]);
+				}else{
+					$("#img_employment").attr("src","images/blank_employment.png");
+				}
+				if(ar[45] > ""){
+					$("#img_jobCertificate").attr("src","/users" + ar[45]);
+					$("#img_jobCertificate").attr("value","/users" + ar[45]);
+				}else{
+					$("#img_jobCertificate").attr("src","images/blank_jobCertificate.png");
+				}
 				//$("#photo").html(c);
 				//getDownloadFile("studentID");
 				if(ar[29] !== "spc"){
@@ -291,7 +336,7 @@
 				getNodeInfo(0,$("#username").val());
 				if(i==1){
 					//新学员保存后直接进入报名页面
-					showEnterInfo(0,$("#username").val(),1,1,$("#companyID").val());
+					showEnterInfo(0,$("#username").val(),1,1,$("#companyID").val(),0);
 				}else{
 					if(fromCard==0){
 						jAlert("保存成功！","信息提示");
@@ -364,7 +409,7 @@
 						c = imgChk;
 					}
 					arr1.push("<tr>");
-					arr1.push("<td><a href='javascript:showEnterInfo(" + ar1[0] + ",\"" + $("#username").val() + "\",0,1);'>" + ar1[6] + "</a></td><td>" + ar1[41] + "</td><td>" + ar1[42] + "</td><td>" + ar1[43] + "</td><td>" + c + "</td><td>" + ar1[50] + "</td><td>" + ar1[4] + "</td>");
+					arr1.push("<td><a href='javascript:showEnterInfo(" + ar1[0] + ",\"" + $("#username").val() + "\",0,1,0);'>" + ar1[6] + "</a></td><td>" + ar1[41] + "</td><td>" + ar1[42] + "</td><td>" + ar1[43] + "</td><td>" + c + "</td><td>" + ar1[50] + "</td><td>" + ar1[4] + "</td>");
 					arr1.push("</tr>");
 				});
 			}
@@ -751,6 +796,24 @@
 		<td align="right" style="width:15%;"><img id="add_img_education" src="images/plus.png" tag="plus" /></td>
 		<td style="width:85%;">
 			<img id="img_education" src="" value="" style='width:150px;border:none;' />
+		</td>
+	</tr>
+	<tr>
+		<td align="right" style="width:15%;"><img id="add_img_CHESICC" src="images/plus.png" tag="plus" /></td>
+		<td style="width:85%;">
+			<img id="img_CHESICC" src="" value="" style='width:150px;border:none;' />
+		</td>
+	</tr>
+	<tr>
+		<td align="right" style="width:15%;"><img id="add_img_employment" src="images/plus.png" tag="plus" /></td>
+		<td style="width:85%;">
+			<img id="img_employment" src="" value="" style='width:150px;border:none;' />
+		</td>
+	</tr>
+	<tr>
+		<td align="right" style="width:15%;"><img id="add_img_jobCertificate" src="images/plus.png" tag="plus" /></td>
+		<td style="width:85%;">
+			<img id="img_jobCertificate" src="" value="" style='width:150px;border:none;' />
 		</td>
 	</tr>
 	<tr>

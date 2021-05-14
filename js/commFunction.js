@@ -1376,14 +1376,20 @@
 		});
 	}
 	
-	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
-	function showEnterInfo(nodeID,refID,op,mark,companyID){
+	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表; re:0 normal  1 big window
+	function showEnterInfo(nodeID,refID,op,mark,companyID,re){
+		var w = 650;
+		var h = 650;
+		if(re==1){
+			w = 1000;
+			h = 960;
+		}
 		asyncbox.open({
 			id: "enterInfo",
 			url:"enterInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&keyID=" + companyID + "&p=1&times=" + (new Date().getTime()),
 			title: "报名信息",
-			width: 650,
-			height: 650,
+			width: w,
+			height: h,
 			cover : {
 	          //透明度
 	          opacity : 0,

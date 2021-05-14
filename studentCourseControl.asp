@@ -172,7 +172,7 @@ if(op == "getStudentCourseList"){
 	sql = " FROM v_studentCourseList " + where;
 	result = getBasketTip(sql,"");
 	ssql = "SELECT SNo,username,name,sexName,age,educationName,(case when host='znxf' then unit else hostName end),(case when host='znxf' then dept else dept1Name end),(case when host='znxf' then '' else dept2Name end),job,mobile,phone,checkName,projectID+projectName,classID,statusName,price,pay_typeName,pay_kindName,datePay,invoice,(case when diploma_score=0 then '' else cast(diploma_score as varchar) end),diplomaID,diploma_startDate,diploma_endDate,memo,regDate" + sql + " order by projectID,SNo";
-	sql = "SELECT top " + basket + " *" + sql + " order by ID desc";
+	sql = "SELECT top " + basket + " *,[dbo].[getMissingItems](ID) as missingItems" + sql + " order by ID desc";
 	
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
@@ -194,7 +194,7 @@ if(op == "getStudentCourseList"){
 		//51
 		result += "|" + rs("projectName").value + "|" + rs("className").value + "|" + rs("passcardID").value + "|" + rs("unit").value + "|" + rs("dept").value + "|" + rs("host").value;
 		//57
-		result += "|" + rs("reexamine").value + "|" + rs("reexamineName").value + "|" + rs("examTimes").value;
+		result += "|" + rs("reexamine").value + "|" + rs("reexamineName").value + "|" + rs("examTimes").value + "|" + rs("certID").value + "|" + rs("missingItems").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -206,7 +206,7 @@ if(op == "getStudentCourseList"){
 
 if(op == "getNodeInfo"){
 	result = "";
-	sql = "SELECT *,[dbo].[getPassCondition](ID) as pass_condition FROM v_studentCourseList where ID=" + nodeID;
+	sql = "SELECT *,[dbo].[getPassCondition](ID) as pass_condition,[dbo].[getMissingItems](ID) as missingItems FROM v_studentCourseList where ID=" + nodeID;
 	rs = conn.Execute(sql);
 	if(!rs.EOF){
 		result = rs("ID").value + "|" + rs("username").value + "|" + rs("name").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("courseID").value + "|" + rs("courseName").value;
@@ -219,7 +219,7 @@ if(op == "getNodeInfo"){
 		//33
 		result += "|" + rs("projectName").value + "|" + rs("className").value + "|" + rs("entryform").value + "|" + rs("certID").value + "|" + rs("unit").value + "|" + rs("dept").value + "|" + rs("host").value;
 		//40
-		result += "|" + rs("reexamine").value + "|" + rs("reexamineName").value + "|" + rs("examTimes").value;
+		result += "|" + rs("reexamine").value + "|" + rs("reexamineName").value + "|" + rs("examTimes").value + "|" + rs("missingItems").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -475,11 +475,43 @@ if(op == "getPayDetailInfoByEnterID"){
 	//Response.Write(escape(sql));
 }	
 
+if(op == "getFiremanEnterInfo"){
+	result = "";
+	sql = "SELECT * FROM v_firemanEnterInfo where enterID=" + refID;
+	rs = conn.Execute(sql);
+	if(!rs.EOF){
+		result = rs("ID").value + "|" + rs("enterID").value + "|" + rs("area").value + "|" + rs("address").value + "|" + rs("employDate").value + "|" + rs("university").value + "|" + rs("gradeDate").value + "|" + rs("profession").value + "|" + rs("area_now").value;
+		//9
+		result += "|" + rs("kind1").value + "|" + rs("kind2").value + "|" + rs("kind3").value + "|" + rs("kind4").value + "|" + rs("kind5").value + "|" + rs("kind6").value + "|" + rs("kind7").value + "|" + rs("kind8").value + "|" + rs("kind9").value + "|" + rs("kind10").value + "|" + rs("kind11").value + "|" + rs("kind12").value;
+		//21
+		result += "|" + rs("materials").value + "|" + rs("memo").value + "|" + rs("registerID").value;
+	}
+	rs.Close();
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}	
+
 if(op == "updatePayInfo"){
 	//@ID int,@invoice varchar(50),@projectID varchar(50),@kindID varchar(50),@type int,@status int,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo
 	sql = "exec updatePayInfo " + nodeID + ",'" + String(Request.QueryString("invoice")) + "','" + String(Request.QueryString("projectID")) + "','" + item + "','" + kindID + "','" + String(Request.QueryString("type")) + "','" + status + "','" + String(Request.QueryString("datePay")) + "','" + String(Request.QueryString("dateInvoice")) + "','" + String(Request.QueryString("dateInvoicePick")) + "','" + refID + "','" + memo + "','" + currUser + "',''";
 	rs = conn.Execute(sql);
 	Response.Write(escape(0));
+	//Response.Write(escape(sql));
+}
+
+if(op == "updateFiremanEnterInfo"){
+	//enterID,area,address,employDate,university,gradeDate,profession,area_now,kind1,kind2,kind3,kind4,kind5,kind6,kind7,kind8,kind9,kind10,kind11,kind12,memo,registerID
+	result = "";
+	sql = "exec updateFiremanEnterInfo " + refID + ",'" + unescape(String(Request.QueryString("area"))) + "','" + unescape(String(Request.QueryString("address"))) + "','" + String(Request.QueryString("employDate")) + "','" + unescape(String(Request.QueryString("university"))) + "','" + String(Request.QueryString("gradeDate")) + "','" + unescape(String(Request.QueryString("profession"))) + "','" + unescape(String(Request.QueryString("area_now"))) + "','" + String(Request.QueryString("kind1")) + "','" + String(Request.QueryString("kind2")) + "','" + String(Request.QueryString("kind3")) + "','" + String(Request.QueryString("kind4")) + "','" + String(Request.QueryString("kind5")) + "','" + String(Request.QueryString("kind6")) + "','" + String(Request.QueryString("kind7")) + "','" + String(Request.QueryString("kind8")) + "','" + String(Request.QueryString("kind9")) + "','" + String(Request.QueryString("kind10")) + "','" + String(Request.QueryString("kind11")) + "','" + String(Request.QueryString("kind12")) + "','" + memo + "','" + currUser + "'";
+	
+	rs = conn.Execute(sql);
+	if (!rs.EOF){
+		result = rs("status").value + "|" + rs("msg").value;
+		execSQL(sql);
+	}
+	rs.Close();
+	Response.Write(escape(result));
+	/**/
 	//Response.Write(escape(sql));
 }
 
