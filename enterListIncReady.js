@@ -282,7 +282,7 @@
 						arr.push("<td class='left'>" + ar1[59] + "</td>");
 					}else{
 						n = ar1[61].split(",").length;
-						if(n>0){
+						if(n>0 && ar1[61]>''){
 							arr.push("<td class='left' title='" + ar1[61] + "'>" + n + "</td>");
 						}else{
 							arr.push("<td class='left'>&nbsp;</td>");
