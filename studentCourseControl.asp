@@ -516,9 +516,15 @@ if(op == "updateFiremanEnterInfo"){
 }
 
 if(op == "delNode"){
+	result = "";
 	sql = "exec delEnter '" + nodeID + "','" + where + "','" + currUser + "'";
-	execSQL(sql);
-	Response.Write(0);
+	rs = conn.Execute(sql);
+	if (!rs.EOF){
+		result = rs("status").value + "|" + rs("msg").value;
+		execSQL(sql);
+	}
+	rs.Close();
+	Response.Write(escape(result));
 }
 
 if(op == "doStudentCourse_check"){

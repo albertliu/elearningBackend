@@ -169,11 +169,14 @@
 				if(x && x>""){
 					jConfirm("确实要删除报名记录吗？", "确认对话框",function(r){
 						if(r){
-							$.get("studentCourseControl.asp?op=delNode&nodeID=" + $("#studentCourseID").val() + "&times=" + (new Date().getTime()),function(re){
-								jAlert("删除成功。");
-								updateCount += 1;
-								op = 1;
-								setButton();
+							$.get("studentCourseControl.asp?op=delNode&nodeID=" + $("#studentCourseID").val() + "&where=" + escape(x) + "&times=" + (new Date().getTime()),function(re){
+								var ar = unescape(re).split("|");
+								jAlert(ar[1]);
+								if(ar[0]==0){
+									updateCount += 1;
+									op = 1;
+									setButton();
+								}
 							});
 						}
 					});
