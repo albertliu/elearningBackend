@@ -38,6 +38,7 @@
 	var nodeID = 0;
 	var op = 0;
 	var refID = 0;
+	var keyID = 0;
 	var updateCount = 1;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
@@ -70,6 +71,11 @@
 		//getNeed2know(nodeID);
 		$("#item_kind7").hide();
 		getNodeInfo(nodeID, refID);
+		if(getSession("public")==1){
+			//resize window
+			//$("#layout").css("width":"1000px");
+		}
+		$("#fire_materials1").hide();
 });
 
 	function getNodeInfo(id,ref){
@@ -110,13 +116,19 @@
 				$("input[name='fire_kind10'][value=" + ar[18] + "]").attr("checked",true);
 				$("input[name='fire_kind11'][value=" + ar[19] + "]").attr("checked",true);
 				$("input[name='fire_kind12'][value=" + ar[20] + "]").attr("checked",true);
-				$("#fire_memo").val(ar[22]);
+				$("#fire_memo").val(ar[23]);
 				var c = "";
 				if(ar[21] > ""){
 					c += "<a href='/users" + ar[21] + "' target='_blank'>证明材料</a>";
 				}
 				if(c == ""){c = "&nbsp;&nbsp;还未生成";}
 				$("#fire_materials").html(c);
+				c = "";
+				if(ar[22] > ""){
+					c += "<a href='/users" + ar[22] + "' target='_blank'>报名表</a>";
+				}
+				if(c == ""){c = "&nbsp;&nbsp;还未生成";}
+				$("#fire_materials1").html(c);
 			}
 		});
 		$.get("studentControl.asp?op=getNodeInfo&nodeID=0&refID=" + ref + "&times=" + (new Date().getTime()),function(re){
@@ -140,6 +152,12 @@
 					$("#img_photo").attr("src","images/blank_photo.png");
 					$("#img_photo").attr("value","");
 				}
+				var c = "";
+				if(ar[22] > ""){
+					c += "<a href='/users" + ar[22] + "' target='_blank'>身份证正面</a>";
+				}
+				if(c == ""){c = "&nbsp;&nbsp;还未上传";}
+				$("#img_cardA").html(c);
 				if(keyID==1){
 					resumePrint();
 				}
@@ -148,6 +166,7 @@
 				return false;
 			}
 		});
+		//setSession("public",0);
 	}
 	
 	function generateFiremanMaterials(){
@@ -211,16 +230,18 @@
 
 <body style="background:#f0f0f0;">
 
-<div id='layout' align='left' style="background:#f0f0f0;">	
+<div id='layout' align='left' style="background:#f0f0f0;width:1000px;">	
 	
 	<div style="width:100%;float:left;margin:0;">
 		<div style="text-align:center;">
 		<input class="button" type="button" id="print" value="打印" />&nbsp;<input class="button" type="button" id="save" value="保存" />&nbsp;
 		</div>
 		<div>
-		材料
+		申报文件
 			<span id="fire_materials" style="margin-left:20px;"></span>
-			<input class="button" type="button" id="btnFiremanMaterials" value="生成" />
+			<span id="fire_materials1" style="margin-left:20px;"></span>
+			<span id="img_cardA" style="margin-left:20px;"></span>
+			<input class="button" style="margin-left:20px;" type="button" id="btnFiremanMaterials" value="生成" />
 		</div>
 		<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
 			<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>全国消防行业职业技能鉴定报名表</h3></div>

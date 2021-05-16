@@ -2,6 +2,12 @@
 <%Session.CodePage=65001%>
 <!--#include file="../Connections/conn_js.asp" -->
 <%
+
+if (String(Request.QueryString("public")) != "undefined" && 
+    String(Request.QueryString("public")) != "") { 
+  Session("public") = String(Request.QueryString("public"));
+}
+
 chkUserActive();
 var currUser = Session("user_key");
 var currUserName = Session("name_key");
@@ -202,7 +208,8 @@ function getUserActive(){
 
 function chkUserActive(){
 	var user = Session("user_key");
-	if(user == null || user == "undifined" || user == ""){
+	var public = Session("public");
+	if((user == null || user == "undifined" || user == "") && public !=1){
 		//Response.Redirect("default.asp?msg=对不起，您的操作已经超时，请重新登录。");
 		Response.Write("<script>top.location='default.asp?event=logout&msg=" + escape("对不起，您的操作已经超时，请重新登录。") + "'</script>");
 	}
