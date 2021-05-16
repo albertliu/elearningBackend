@@ -121,13 +121,13 @@
 				if(ar[21] > ""){
 					c += "<a href='/users" + ar[21] + "' target='_blank'>证明材料</a>";
 				}
-				if(c == ""){c = "&nbsp;&nbsp;还未生成";}
+				if(c == ""){c = "&nbsp;&nbsp;证明材料还未生成";}
 				$("#fire_materials").html(c);
 				c = "";
 				if(ar[22] > ""){
 					c += "<a href='/users" + ar[22] + "' target='_blank'>报名表</a>";
 				}
-				if(c == ""){c = "&nbsp;&nbsp;还未生成";}
+				if(c == ""){c = "&nbsp;&nbsp;报名表还未生成";}
 				$("#fire_materials1").html(c);
 			}
 		});
@@ -156,7 +156,7 @@
 				if(ar[22] > ""){
 					c += "<a href='/users" + ar[22] + "' target='_blank'>身份证正面</a>";
 				}
-				if(c == ""){c = "&nbsp;&nbsp;还未上传";}
+				if(c == ""){c = "&nbsp;&nbsp;身份证正面还未上传";}
 				$("#img_cardA").html(c);
 				if(keyID==1){
 					resumePrint();
