@@ -1,270 +1,88 @@
-﻿<!--#include file="js/doc.js" -->
+﻿<!--#include file="js/doc1.js" -->
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/nav.dwt" codeOutsideHTMLIsLocked="false" -->
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title></title>
+<meta name="viewport" content="width=device-width">
 
-<link href="css/style_inner1.css?v=1.2"  rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="css/easyui/easyui.css?v=1.8.6">
-<link rel="stylesheet" type="text/css" href="css/easyui/icon.css">
-<link href="css/data_table_mini.css?v=20150411" rel="stylesheet" type="text/css" />
-<link href="css/jquery-confirm.css" rel="stylesheet" type="text/css" media="screen" />
-<link href="css/asyncbox/asyncbox.css" type="text/css" rel="stylesheet" />
-<link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
-<script language="javascript" src="js/jquery-1.12.4.min.js"></script>
-<script language="javascript" src="js/jquery.form.js"></script>
-<script type="text/javascript" src="js/jquery.easyui.min.js?v=1.8.6"></script>
-<script src="js/jquery-confirm.js" type="text/javascript"></script>
-<script type="text/javascript" src="js/asyncbox.v1.5.min.js"></script>
-<script language="javascript" type="text/javascript" src="js/jquery.dataTables.min.js"></script>
-<script src="js/datepicker/WdatePicker.js" type="text/javascript"></script>
-<script src="js/jQuery.print.js" type="text/javascript"></script>
-<script type='text/javascript' src='js/jquery.autocomplete.js'></script>
-<!--#include file="js/clickMenu.js"-->
-<style type="text/css"> 
-	input[type="text"]{
-		background: #ffdddd;
-		width:100%;
-		height: 30px;
-		border: 1px solid #cccccc;
-		font-size:1em;
-	}
-</style> 
+<!--必要样式-->
+<link href="css/style_inner1.css?ver=1.2"  rel="stylesheet" type="text/css" id="css" />
+<script language="javascript" src="js/jquery-1.7.2.min.js"></script>
+
 
 <script language="javascript">
 	var nodeID = 0;
-	var op = 0;
-	var refID = 0;
-	var keyID = 0;
-	var updateCount = 1;
-	<!--#include file="js/commFunction.js"-->
+	var updateCount = 0;
+	var uploadURL = "<%=uploadURL%>";
 	$(document).ready(function (){
-		nodeID = "<%=nodeID%>";		//enterID
-		refID = "<%=refID%>";		//username
-		keyID = "<%=keyID%>";		//0 预览  1 打印
-		op = "<%=op%>";
-		$("#fire_employDate").click(function(){WdatePicker();});
-		$("#fire_gradeDate").click(function(){WdatePicker();});
-		
+		nodeID = "<%=nodeID%>";  //enterID
 		$.ajaxSetup({ 
 			async: false 
 		}); 
-		$("#print").click(function(){
-			resumePrint();
-		});
-		$("#img_photo").click(function(){
-			if($("#img_photo").attr("value")>""){
-				window.open($("#img_photo").attr("value"));
-			}
-		});
-
-		$("#btnFiremanMaterials").click(function(){
-			generateFiremanMaterials();
-		});
-		$("#btnFiremanZip").click(function(){
-			generateFiremanZip();
-		});
-
-		$("#save").click(function(){
-			saveNode();
-		});
-		//getNeed2know(nodeID);
+		//$("#test").html(refID);
 		$("#item_kind7").hide();
-		getNodeInfo(nodeID, refID);
-		if(getSession("public")==1){
-			//resize window
-			//$("#layout").css("width":"1000px");
-		}
-});
+		getNodeInfo(nodeID);
+	});
 
-	function getNodeInfo(id,ref){
-		$.get("studentCourseControl.asp?op=getNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
-			//alert(unescape(re));
-			var ar = new Array();
-			ar = unescape(re).split("|");
-			if(ar > "0"){
-				$("#SNo").html(ar[25]);
-				$("#courseName").html(ar[6]);
-				$("#missingItems").html("缺项：" + ar[43]);
-			}else{
-				//alert("没有找到要打印的内容。");
-				return false;
-			}
-		});
-		$.get("studentCourseControl.asp?op=getFiremanEnterInfo&refID=" + id + "&times=" + (new Date().getTime()),function(re){
-			//alert(unescape(re));
-			var ar = new Array();
-			ar = unescape(re).split("|");
-			if(ar > "0"){
-				$("#fire_area").val(ar[2]);
-				$("#fire_address").val(ar[3]);
-				$("#fire_employDate").val(ar[4]);
-				$("#fire_university").val(ar[5]);
-				$("#fire_gradeDate").val(ar[6]);
-				$("#fire_profession").val(ar[7]);
-				$("#fire_area_now").val(ar[8]);
-				$("input[name='fire_kind1'][value=" + ar[9] + "]").attr("checked",true);
-				$("input[name='fire_kind2'][value=" + ar[10] + "]").attr("checked",true);
-				$("input[name='fire_kind3'][value=" + ar[11] + "]").attr("checked",true);
-				$("input[name='fire_kind4'][value=" + ar[12] + "]").attr("checked",true);
-				$("input[name='fire_kind5'][value=" + ar[13] + "]").attr("checked",true);
-				$("input[name='fire_kind6'][value=" + ar[14] + "]").attr("checked",true);
-				$("input[name='fire_kind7'][value=" + ar[15] + "]").attr("checked",true);
-				$("input[name='fire_kind8'][value=" + ar[16] + "]").attr("checked",true);
-				$("input[name='fire_kind9'][value=" + ar[17] + "]").attr("checked",true);
-				$("input[name='fire_kind10'][value=" + ar[18] + "]").attr("checked",true);
-				$("input[name='fire_kind11'][value=" + ar[19] + "]").attr("checked",true);
-				$("input[name='fire_kind12'][value=" + ar[20] + "]").attr("checked",true);
-				$("#fire_memo").val(ar[24]);
-				var c = "";
-				if(ar[21] > ""){
-					c += "<a href='/users" + ar[21] + "' target='_blank'>证明材料</a>";
-				}
-				if(c == ""){c = "&nbsp;&nbsp;证明材料还未生成";}
-				$("#fire_materials").html(c);
-				c = "";
-				if(ar[22] > ""){
-					c += "<a href='/users" + ar[22] + "' target='_blank'>报名表</a>";
-				}
-				if(c == ""){c = "&nbsp;&nbsp;报名表还未生成";}
-				$("#fire_materials1").html(c);
-				c = "";
-				if(ar[23] > ""){
-					c += "<a href='/users" + ar[23] + "' target='_blank'>压缩包</a>";
-				}
-				if(c == ""){c = "&nbsp;&nbsp;压缩包还未生成";}
-				$("#fire_zip").html(c);
-			}
-		});
-		$.get("studentControl.asp?op=getNodeInfo&nodeID=0&refID=" + ref + "&times=" + (new Date().getTime()),function(re){
-			//alert(ref + ":" + unescape(re));
-			var ar = new Array();
-			ar = unescape(re).split("|");
+	function getNodeInfo(id){
+		$.getJSON(uploadURL + "/public/getFiremanEnterInfo?refID=" + id,function(re){
+			//jAlert(unescape(data));
+			var ar = re;
 			if(ar > ""){
-				$("#username").html(ar[1]);
-				$("#name").html(ar[2]);
-				$("#mobile").html(ar[7]);
-				$("#sexName").html(ar[8]);
-				$("#age").html(ar[9]);
-				$("#birthday").html(ar[33]);
-				$("#unit").html(ar[35]);
-				$("#ethnicity").html(ar[37]);
-				$("#IDaddress").html(ar[38]);
-				if(ar[21] > ""){
-					$("#img_photo").attr("src","/users" + ar[21]);
-					$("#img_photo").attr("value","/users" + ar[21]);
+				$("#SNo").html(ar["SNo"]);
+				$("#courseName").html(ar["courseName"]);
+				$("#missingItems").html("缺项：" + ar["missingItems"]);
+				$("#fire_area").val(ar["area"]);
+				$("#fire_address").val(ar["address"]);
+				$("#fire_employDate").val(ar["employDate"]);
+				$("#fire_university").val(ar["university"]);
+				$("#fire_gradeDate").val(ar["gradeDate"]);
+				$("#fire_profession").val(ar["profession"]);
+				$("#fire_area_now").val(ar["area_now"]);
+				$("input[name='fire_kind1'][value=" + ar["kind1"] + "]").attr("checked",true);
+				$("input[name='fire_kind2'][value=" + ar["kind2"] + "]").attr("checked",true);
+				$("input[name='fire_kind3'][value=" + ar["kind3"] + "]").attr("checked",true);
+				$("input[name='fire_kind4'][value=" + ar["kind4"] + "]").attr("checked",true);
+				$("input[name='fire_kind5'][value=" + ar["kind5"] + "]").attr("checked",true);
+				$("input[name='fire_kind6'][value=" + ar["kind6"] + "]").attr("checked",true);
+				$("input[name='fire_kind7'][value=" + ar["kind7"] + "]").attr("checked",true);
+				$("input[name='fire_kind8'][value=" + ar["kind8"] + "]").attr("checked",true);
+				$("input[name='fire_kind9'][value=" + ar["kind9"] + "]").attr("checked",true);
+				$("input[name='fire_kind10'][value=" + ar["kind10"] + "]").attr("checked",true);
+				$("input[name='fire_kind11'][value=" + ar["kind11"] + "]").attr("checked",true);
+				$("input[name='fire_kind12'][value=" + ar["kind12"] + "]").attr("checked",true);
+				$("#fire_memo").val(ar["memo"]);
+				$("#username").html(ar["username"]);
+				$("#name").html(ar["name"]);
+				$("#mobile").html(ar["mobile"]);
+				$("#sexName").html(ar["sexName"]);
+				$("#age").html(ar["age"]);
+				$("#birthday").html(ar["birthday"]);
+				$("#unit").html(ar["unit"]);
+				$("#ethnicity").html(ar["ethnicity"]);
+				$("#IDaddress").html(ar["IDaddress"]);
+				if(ar["photo_filename"] > ""){
+					$("#img_photo").attr("src","/users" + ar["photo_filename"]);
 				}else{
 					$("#img_photo").attr("src","images/blank_photo.png");
-					$("#img_photo").attr("value","");
 				}
-				var c = "";
-				if(ar[22] > ""){
-					c += "<a href='/users" + ar[22] + "' target='_blank'>身份证正面</a>";
-				}
-				if(c == ""){c = "&nbsp;&nbsp;身份证正面还未上传";}
-				$("#img_cardA").html(c);
-				if(keyID==1){
-					resumePrint();
-				}
-			}else{
-				alert("没有找到要打印的内容。");
-				return false;
 			}
 		});
 		//setSession("public",0);
-	}
-	
-	function generateFiremanMaterials(){
-		$.getJSON(uploadURL + "/outfiles/generate_fireman_materials?username=" + refID + "&enterID=" + nodeID + "&registerID=" + currUser ,function(data){
-			if(data>""){
-				alert("已生成文件");
-				getNodeInfo(nodeID, refID);
-			}else{
-				alert("没有可供处理的数据。");
-			}
-		});
-	}
-	
-	function generateFiremanZip(){
-		$.getJSON(uploadURL + "/outfiles/generate_fireman_zip?username=" + refID + "&enterID=" + nodeID + "&registerID=" + currUser ,function(data){
-			if(data>""){
-				alert("已生成压缩包");
-				getNodeInfo(nodeID, refID);
-			}else{
-				alert("没有可供处理的数据。");
-			}
-		});
-	}
-	
-	function saveNode(){
-		//alert(nodeID + "&area=" + ($("#fire_area").val()) + "&address=" + ($("#fire_address").val()));
-		$.get("studentCourseControl.asp?op=updateFiremanEnterInfo&refID=" + nodeID + "&area=" + escape($("#fire_area").val()) + "&address=" + escape($("#fire_address").val())+ "&employDate=" + $("#fire_employDate").val() + "&university=" + escape($("#fire_university").val()) + "&profession=" + escape($("#fire_profession").val()) + "&gradeDate=" + $("#fire_gradeDate").val() + "&area_now=" + escape($("#fire_area_now").val()) + "&kind1=" + $("input[name='fire_kind1']:checked").val() + "&kind2=" + $("input[name='fire_kind2']:checked").val() + "&kind3=" + $("input[name='fire_kind3']:checked").val() + "&kind4=" + $("input[name='fire_kind4']:checked").val() + "&kind5=" + $("input[name='fire_kind5']:checked").val() + "&kind6=" + $("input[name='fire_kind6']:checked").val() + "&kind7=0&kind8=" + $("input[name='fire_kind8']:checked").val() + "&kind9=" + $("input[name='fire_kind9']:checked").val() + "&kind10=" + $("input[name='fire_kind10']:checked").val() + "&kind11=" + $("input[name='fire_kind11']:checked").val() + "&kind12=" + $("input[name='fire_kind12']:checked").val() + "&memo=" + escape($("#fire_memo").val()) + "&times=" + (new Date().getTime()),function(re){
-			//alert(unescape(re));
-			var ar = new Array();
-			ar = unescape(re).split("|");
-			if(ar[0] == 0){
-				alert("保存成功！","信息提示");
-				updateCount += 1;
-			}else{
-				alert(ar[1]);
-			}
-		});
-		//return false;
-	}
-
-	function resumePrint(){
-		$("#resume_print").print({
-			//Use Global styles
-			globalStyles : true,
-			//Add link with attrbute media=print
-			mediaPrint : false,
-			//Custom stylesheet
-			stylesheet : "",
-			//Print in a hidden iframe
-			iframe : true,
-			//Don't print this
-			noPrintSelector : ".no-print",
-			//Add this at top
-			prepend : "",
-			//Add this on bottom
-			append : "<br/>"
-		});
-		window.setTimeout(function () {
-			//window.parent.asyncbox.close("enterInfo");
-			window.parent.getStudentCourseList(refID);
-			window.parent.$.close("enterInfo");
-			//refreshMsg();
-		}, 1000);
-	}
-
-	function getUpdateCount(){
-		return updateCount;
 	}
 </script>
 
 </head>
 
-<body style="background:#f0f0f0;">
+<body>
 
-<div id='layout' align='left' style="background:#f0f0f0;width:1000px;">	
+<div>	
 	
-	<div style="width:100%;float:left;margin:0;">
+	<div style="width:92%;float:left;margin:10mm;">
 		<div style="text-align:center;">
-		<input class="button" type="button" id="print" value="打印" />&nbsp;<input class="button" type="button" id="save" value="保存" />&nbsp;
-		</div>
-		<hr style="text-align:center;margin-top:10px;margin-bottom:10px;">
-		<div>
-		申报文件
-			<span id="fire_materials" style="margin-left:20px;"></span>
-			<span id="fire_materials1" style="margin-left:20px;"></span>
-			<span id="img_cardA" style="margin-left:20px;"></span>
-			<span id="fire_zip" style="margin-left:20px;"></span>
-			<input class="button" style="margin-left:20px;" type="button" id="btnFiremanMaterials" value="生成文件" />
-			<input class="button" style="margin-left:20px;" type="button" id="btnFiremanZip" value="生成压缩包" />
-		</div>
 		<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
 			<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>全国消防行业职业技能鉴定报名表</h3></div>
 			<div style='margin: 12px;text-align:left; width:95%;'><span style='font-size:1.2em;'>学员编号：</span><span style='font-size:1.2em;' id="SNo"></span><span style='font-size:1.2em;padding-left:30px;' id="missingItems"></span></div>
