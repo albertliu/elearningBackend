@@ -123,12 +123,20 @@
 		});
 
 		$("#btnPrint").click(function(){
-			window.open("entryform_" + $("#certID").val() + ".asp?keyID=1&nodeID=" + nodeID + "&refID=" + refID, "_self");
+			var c = $("#certID").val();
+			if(c == "C21"){
+				c = "C20";
+			}
+			window.open("entryform_" + c + ".asp?keyID=1&nodeID=" + nodeID + "&refID=" + refID, "_self");
 			//window.open("entryform_C16.asp?keyID=0&nodeID=" + nodeID + "&refID=" + refID, "_self");
 		});
 
 		$("#btnPreview").click(function(){
-			window.open("entryform_" + $("#certID").val() + ".asp?keyID=0&nodeID=" + nodeID + "&refID=" + refID, "_self");
+			var c = $("#certID").val();
+			if(c == "C21"){
+				c = "C20";
+			}
+			window.open("entryform_" + c + ".asp?keyID=0&nodeID=" + nodeID + "&refID=" + refID, "_self");
 		});
 
 		$("#kindID").change(function(){

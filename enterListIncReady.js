@@ -373,6 +373,9 @@
 	}
 
 	function openEntryForm(c,n,f){
+		if(c == "C21"){
+			c = "C20";
+		}
 		window.open("entryform_" + c + ".asp?keyID=0&nodeID=" + n + "&refID=" + f, "_blank");
 	}
 	
