@@ -11,9 +11,9 @@
 				          	</span>
 							状态&nbsp;<select id="searchStudentCourseStatus" style="width:50px"></select>&nbsp;&nbsp;
 							<span id="studentCourseListLongItem6">
-								课程&nbsp;<select id="searchStudentCourseID" style="width:80px"></select>&nbsp;&nbsp;
+								课程&nbsp;<select id="searchStudentCourseID" style="width:120px"></select>&nbsp;&nbsp;
 							</span>
-							批次&nbsp;<select id="searchStudentCourseProjectID" style="width:75px"></select>&nbsp;&nbsp;
+							批次&nbsp;<select id="searchStudentCourseProjectID" style="width:120px"></select>&nbsp;&nbsp;
 							<input style="border:0px;" type="checkbox" id="searchStudentCourseShowPhoto" value="" />&nbsp;图片&nbsp;&nbsp;
 							<span id="studentCourseListLongItem4">
 								状态&nbsp;<select id="searchStudentCoursePhotoStatus" style="width:50px"></select>&nbsp;&nbsp;

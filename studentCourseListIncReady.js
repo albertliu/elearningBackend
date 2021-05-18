@@ -8,12 +8,12 @@
 		var w3 = " and deptID=" + currDeptID;
 		if(currHost==""){	//公司用户只能看自己公司内容
 			getComList("searchStudentCourseHost","hostInfo","hostNo","title","status=0 order by hostName",1);
-			getComList("searchStudentCourseID","courseInfo","courseID","courseName","status=0 order by courseID",1);
-			getComList("searchStudentCourseProjectID","projectInfo","projectID","projectID","status>0 and status<9 order by ID desc",1);
+			getComList("searchStudentCourseID","v_courseInfo","courseID","shortName","status=0 order by courseID",1);
+			getComList("searchStudentCourseProjectID","projectInfo","projectID","projectName","status>0 and status<9 order by ID desc",1);
 		}else{
 			getComList("searchStudentCourseHost","hostInfo","hostNo","title",w1,0);
-			getComList("searchStudentCourseID","courseInfo","courseID","courseName",w2,1);
-			getComList("searchStudentCourseProjectID","projectInfo","projectID","projectID","host='" + currHost + "' and status>0 and status<9 order by ID desc",1);
+			getComList("searchStudentCourseID","v_courseInfo","courseID","shortName",w2,1);
+			getComList("searchStudentCourseProjectID","projectInfo","projectID","projectName","host='" + currHost + "' and status>0 and status<9 order by ID desc",1);
 			$("#studentCourseListLongItem1").hide();
 			if(currDeptID>0){
 				getComList("searchStudentCourseDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchStudentCourseHost").val() + "' and pID=0)" + w3,1);
@@ -288,7 +288,8 @@
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
 					arr.push("<td class='link1'><a href='javascript:showStudentCourseInfo(\"" + ar1[0] + "\",0,0,1);'>" + ar1[1] + "</a></td>");
-					arr.push("<td class='left'>" + ar1[2] + "</td>");
+					//arr.push("<td class='left'>" + ar1[2] + "</td>");
+					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + ar1[1] + "\",0,1);'>" + ar1[2] + "</a></td>");
 					if($("#searchStudentCourseProjectID").val()>"" && $("#searchStudentCourseShowPhoto").attr("checked")){
 						$.each(ar2,function(iNum1,val1){
 							var ar3 = new Array();
