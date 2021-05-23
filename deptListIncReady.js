@@ -7,7 +7,7 @@
 		if(currHost==""){	//公司用户只能看自己公司内容
 			getComList("searchDeptHost","hostInfo","hostNo","title","status=0 order by hostName",1);
 		}else{
-			getComList("searchDeptHost","hostInfo","hostNo","title",w,0);
+			getComList("searchDeptHost","hostInfo","hostNo","title",w,1);
 			getDeptList(currHost);
 		}
 		if(!checkPermission("deptAdd")){
@@ -17,6 +17,7 @@
 		$("#searchDeptHost").change(function(){
 			getDeptList($("#searchDeptHost").val());
 		});
+		
 		$("#btnMergeDepts").click(function(){
 			var x = new Array();
 			x = $("#tree1").treeview('getChecked');
