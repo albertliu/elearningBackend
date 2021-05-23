@@ -172,8 +172,8 @@
 			arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='enterTab' width='100%'>");
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
-			arr.push("<th width='3%'>No</th>");
-			arr.push("<th width='10%'>身份证</th>");
+			arr.push("<th width='2%'>No</th>");
+			arr.push("<th width='9%'>身份证</th>");
 			arr.push("<th width='7%'>姓名</th>");
 			if($("#searchEnterProjectID").val()>"" && $("#searchEnterShowPhoto").attr("checked")){
 				$.each(ar2,function(iNum1,val1){
@@ -182,7 +182,11 @@
 					arr.push("<th width='10%'>" + ar3[2] + "</th>");
 				});
 			}else{
-				arr.push("<th width='12%'>课程名称</th>");
+				if($("#searchEnterProjectID").val()>""){
+					arr.push("<th width='12%'>班级名称</th>");
+				}else{
+					arr.push("<th width='12%'>课程名称</th>");
+				}
 				if(currHost==""){
 					arr.push("<th width='8%'>公司</th>");
 				}else{
@@ -192,16 +196,17 @@
 				arr.push("<th width='8%'>报名日期</th>");
 			}
 			//arr.push("<th width='6%'>单位</th>");
-			arr.push("<th width='6%'>表</th>");
+			arr.push("<th width='5%'>表</th>");
 			if(role){
 				arr.push("<th width='6%'>成绩</th>");
 				arr.push("<th width='6%'>次数</th>");
 			}else{
-				arr.push("<th width='6%'>缺项</th>");
-				arr.push("<th width='6%'>编号</th>");
+				arr.push("<th width='5%'>缺</th>");
+				arr.push("<th width='5%'>编</th>");
 			}
-			arr.push("<th width='6%'>准考</th>");
-			arr.push("<th width='3%'></th>");
+			arr.push("<th width='5%'>确</th>");
+			arr.push("<th width='5%'>准</th>");
+			arr.push("<th width='2%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
@@ -210,7 +215,7 @@
 				var c = 0;
 				var h = "";
 				var n = 0;
-				var imgChk = "<img src='images/attachment.png' style='width:16px;'>";
+				var imgChk = "<img src='images/attachment.png' style='width:14px;'>";
 				var imgChk1 = "<img src='images/green_check.png'>";
 				var imgChk2 = "<img src='images/cancel.png'>";
 				$.each(ar,function(iNum,val){
@@ -250,7 +255,11 @@
 							arr.push("<td class='center'>" + imgChk + "</td>");
 						});
 					}else{
-						arr.push("<td class='left'>" + ar1[6] + "</td>");
+						if($("#searchEnterProjectID").val()>""){
+							arr.push("<td class='left'>" + ar1[52] + "</td>");
+						}else{
+							arr.push("<td class='left'>" + ar1[62] + "</td>");
+						}	
 						if(currHost==""){
 							if(ar1[56]=="znxf"){	//非集团客户，显示自己的单位和部门
 								arr.push("<td class='left'>" + ar1[54].substr(0,4) + "</td>");
@@ -264,17 +273,6 @@
 						arr.push("<td class='left'>" + ar1[11] + "</td>");
 						
 					}
-					/*
-					if(ar1[16]==0){
-						arr.push("<td class='center'>&nbsp;</td>");
-					}
-					if(ar1[16]==1){
-						arr.push("<td class='center'>" + imgChk1 + "</td>");
-					}
-					if(ar1[16]==2){
-						arr.push("<td class='center'>" + imgChk2 + "</td>");
-					}
-					*/
 					//arr.push("<td class='link1'><a href='javascript:window.open(\"entryform_" + ar1[60] + ".asp?keyID=0&nodeID=" + ar1[0] + "&refID=" + ar1[1] + ", \"_blank\");'>" + imgChk + "</a></td>");
 					arr.push("<td class='link1'><a href='javascript:openEntryForm(\"" + ar1[60] + "\"," + ar1[0] + ",\"" + ar1[1] + "\");'>" + imgChk + "</a></td>");
 					if(role){
@@ -288,6 +286,16 @@
 							arr.push("<td class='left'>&nbsp;</td>");
 						}
 						arr.push("<td class='left'>" + ar1[43] + "</td>");
+					}
+					/*确认*/
+					if(ar1[16]==0){
+						arr.push("<td class='center'>&nbsp;</td>");
+					}
+					if(ar1[16]==1){
+						arr.push("<td class='center'>" + imgChk1 + "</td>");
+					}
+					if(ar1[16]==2){
+						arr.push("<td class='center'>" + imgChk2 + "</td>");
 					}
 					if(ar1[53]>0){
 						arr.push("<td class='center'>" + imgChk1 + "</td>");
@@ -309,7 +317,7 @@
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
-			//arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
 			if($("#searchEnterProjectID").val()>"" && $("#searchEnterShowPhoto").attr("checked")){
 				$.each(ar2,function(iNum1,val1){
 					arr.push("<th>&nbsp;</th>");

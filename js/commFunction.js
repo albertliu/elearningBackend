@@ -2618,3 +2618,41 @@ function num2chinese(n)
     return head + s.replace(/(零.)*零元/, '元').replace(/(零.)+/g, '零').replace(/^整$/, '零元整'); 
 }
 
+//等比压缩图片工具 -- by xqs
+//调用
+//var imgArr = $(".newsMsg dt").find("img");
+//proDownImage(imgArr); 
+var proDownImage = function(imgObj){
+	imgObj = (typeof imgObj == "string") ? $(imgObj) : imgObj;
+	$.each(imgObj,function(){
+		var img = $(this);
+		var setSize = {};
+		var obj = {
+			width : img.parent().width(),
+			height : img.parent().height()   //外容器宽高
+		};
+		var image = new Image();
+		image.src = img.attr("src");    //图片路径
+		image.onload = function() { // 当加载状态改变时执行此方法,因为img的加载有延迟
+			if (image.complete == true) { // 当加载状态为完全结束时进入
+				if (image.width > 0 && image.height > 0) {
+					var ww = obj.width / image.width;
+					var hh = obj.height / image.height;
+					var rate = (ww > hh) ? ww: hh;
+					if (rate <= 1) {
+						setSize.width = image.width * rate;
+						setSize.height = image.height * rate;
+					} else {
+						setSize.width = image.width;
+						setSize.height = image.height;
+					}
+				}
+				//设置样式
+				img.attr({"width":setSize.width,"height":setSize.height});
+				//居中显示
+				img.css({'margin-left':(-(setSize.width - obj.width) / 2)+'px'});
+				img.css({'margin-top':(-(setSize.height - obj.height) / 2)+'px'});
+			}
+		};
+	});
+};

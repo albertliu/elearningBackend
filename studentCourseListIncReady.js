@@ -105,7 +105,7 @@
 			setStudentCourseItem();
 		});
 
-		$("#studentCourseListLongItem3").hide();
+		//$("#studentCourseListLongItem3").hide();
 		$("#studentCourseListLongItem4").hide();
 		$("#studentCourseListLongItem5").hide();
 		$("#studentCourseListLongItem7").hide();
@@ -125,7 +125,7 @@
 					//alert($("#searchStudentCourseProjectID").val() + "&status=1&host=" + $("#searchStudentCourseHost").val() + "&keyID=" + selList);
 					//jAlert(selList);
 					$.get("studentCourseControl.asp?op=doStudentCourse_check&refID=" + $("#searchStudentCourseProjectID").val() + "&status=1&host=" + $("#searchStudentCourseHost").val() + "&keyID=" + selList ,function(data){
-						//jAlert(data);
+						jAlert(data);
 						if(data=="0"){
 							jAlert("确认成功");
 							getStudentCourseList();
@@ -256,12 +256,13 @@
 					arr.push("<th width='10%'>" + ar3[2] + "</th>");
 				});
 			}else{
-				arr.push("<th width='12%'>课程名称</th>");
+				arr.push("<th width='10%'>课程名称</th>");
 				if(currHost==""){
-					arr.push("<th width='12%'>公司</th>");
+					arr.push("<th width='10%'>公司</th>");
 				}else{
-					arr.push("<th width='12%'>部门</th>");
+					arr.push("<th width='10%'>部门</th>");
 				}
+				arr.push("<th width='8%'>岗位</th>");
 				arr.push("<th width='6%'>状态</th>");
 				arr.push("<th width='8%'>报名日期</th>");
 			}
@@ -315,15 +316,19 @@
 							arr.push("<td class='center'>" + imgChk + "</td>");
 						});
 					}else{
-						arr.push("<td class='left'>" + ar1[6] + "</td>");
+						arr.push("<td class='left'>" + ar1[62] + "</td>");
 						if(currHost==""){
-							arr.push("<td class='left'>" + ar1[12].substr(0,4) + "</td>");
+							arr.push("<td class='left'>" + ar1[12].substr(0,6) + "</td>");
 						}else{
-							arr.push("<td class='left'>" + ar1[13].substr(0,5) + "</td>");
+							if(currDeptID>0){
+								arr.push("<td class='left'>" + ar1[14] + "</td>");
+							}else{
+								arr.push("<td class='left'>" + ar1[13] + "</td>");
+							}
 						}
+						arr.push("<td class='left'>" + ar1[63] + "</td>");
 						arr.push("<td class='left'>" + ar1[4] + "</td>");
 						arr.push("<td class='left'>" + ar1[11] + "</td>");
-						
 					}
 					if(ar1[16]==0){
 						arr.push("<td class='center'>&nbsp;</td>");
@@ -343,7 +348,11 @@
 					if(ar1[38]==2){
 						arr.push("<td class='center'>" + imgChk2 + "</td>");
 					}
-					arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchkCourse'>" + "</td>");
+					if(ar1[38]==0){
+						arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchkCourse'>" + "</td>");
+					}else{
+						arr.push("<td class='center'>&nbsp;</td>");
+					}
 					arr.push("</tr>");
 				});
 			}
@@ -360,6 +369,7 @@
 					arr.push("<th>&nbsp;</th>");
 				});
 			}else{
+				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");

@@ -96,6 +96,7 @@
 		});
 		$("#username").change(function(){
 			if($("#username").val()>""){
+				$("#username").val($("#username").val().toUpperCase());
 				if(checkIDcard($("#username").val())==1){
 					var n = studentExist($("#username").val());
 					if(n>0){
@@ -193,7 +194,14 @@
 				setDeptList($("#dept1").val(),2,$("#kindID").val());
 			}
 		}
-		
+		/*
+		var imgArr = $("#xx").find("img");
+		//alert(imgArr.length);
+		$.each(imgArr,function(){
+			var img = $(this);
+			alert(img.parent().width());
+		});*/
+
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -772,7 +780,7 @@
 	<hr size="1" noshadow />
 	<div id='enterCover'></div>
 </div>
-<div style="padding: 5px;text-align:center;overflow:hidden;margin:0 auto;flot:right;background: #eeeeff;">
+<div style="padding: 5px;text-align:center;overflow:hidden;margin:0 auto;flot:right;background: #eeeeff;" id="xx">
 	<table style="width:99%;">
 	<tr>
 		<td align="right" style="width:15%;"><img id="add_img_photo" src="images/plus.png" tag="plus" /></td>

@@ -27,6 +27,8 @@
 		//$("#test").html(refID);
 		$("#test").hide();
 		getNodeInfo(item);
+		//var imgArr = $("#cover").find("img");
+		//proDownImage(imgArr); 
 	});
 
 	function getNodeInfo(id){
@@ -41,7 +43,8 @@
 					if(val["kindID"]>0){
 						arr.push('<tr>');
 						arr.push('<td align="center" style="width:100%;">');
-						arr.push('	<img src="users' + val["filename"] + '" style="max-width:350mm;max-height:900mm;padding-top:5mm;">');
+						//arr.push('	<img src="users' + val["filename"] + '" style="max-width:130mm;max-height:180mm;padding-top:5mm;">');
+						arr.push('	<img src="users' + val["filename"] + '" style="max-width:600px;max-height:600px;padding-top:20px;">');
 						arr.push('</td>');
 						arr.push('</tr>');
 					}

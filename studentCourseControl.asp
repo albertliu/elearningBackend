@@ -103,7 +103,7 @@ if(op == "getStudentCourseList"){
 	}
 	//mark=1: 学校教务查询。
 	if(String(Request.QueryString("mark")) == 1){
-		s = "projectID>''";
+		s = "projectID>'' and checked=1";
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
@@ -194,7 +194,7 @@ if(op == "getStudentCourseList"){
 		//51
 		result += "|" + rs("projectName").value + "|" + rs("className").value + "|" + rs("passcardID").value + "|" + rs("unit").value + "|" + rs("dept").value + "|" + rs("host").value;
 		//57
-		result += "|" + rs("reexamine").value + "|" + rs("reexamineName").value + "|" + rs("examTimes").value + "|" + rs("certID").value + "|" + rs("missingItems").value;
+		result += "|" + rs("reexamine").value + "|" + rs("reexamineName").value + "|" + rs("examTimes").value + "|" + rs("certID").value + "|" + rs("missingItems").value + "|" + rs("shortName").value + "|" + rs("job").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -531,6 +531,7 @@ if(op == "doStudentCourse_check"){
 	sql = "exec doStudentCourse_check '" + refID + "'," + status + ",'" + keyID + "','" + host + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(0);
+	//Response.Write(sql);
 }	
 
 if(op == "doStudentCourse_submit"){
@@ -559,6 +560,12 @@ if(op == "doMaterial_check_batch"){
 
 if(op == "updatePayPrice"){
 	sql = "exec updatePayPrice " + nodeID + "," + refID;
+	execSQL(sql);
+	Response.Write(0);
+}	
+
+if(op == "updateEnterClass"){
+	sql = "exec updateEnterClass " + nodeID + ",'" + refID + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(0);
 }	

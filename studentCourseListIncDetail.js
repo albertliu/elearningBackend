@@ -21,8 +21,12 @@
 								<input class="button" type="button" id="btnStudentCourseGoodPhoto" value="修正确认" />
 							</span>
 							<span id="studentCourseListLongItem3">
-							    &nbsp;报名日期&nbsp;<input type="text" id="searchStudentCourseStartDate" size="8" />-<input type="text" id="searchStudentCourseEndDate" size="8" />
+							    &nbsp;报名日期&nbsp;<input type="text" id="searchStudentCourseStartDate" size="7" />-<input type="text" id="searchStudentCourseEndDate" size="7" />
 							</span>
+						    <span style="float:right;">
+								<input class="button" type="button" name="btnDownLoad13" id="btnDownLoad13" onClick="outputFloat(13,'file')" value="下载" />
+							</span>
+							<br />
 							<span id="studentCourseListLongItem5">
 								确认&nbsp;<select id="searchStudentCourseChecked" style="width:50px"></select>&nbsp;&nbsp;
 								<input class="button" type="button" id="btnStudentCourseSel" value="全选/取消" />&nbsp;&nbsp;
@@ -34,9 +38,6 @@
 								<input class="button" type="button" id="btnStudentCourseSel1" value="全选/取消" />&nbsp;&nbsp;
 								<input class="button" type="button" id="btnStudentCourseSubmit" value="名单提交" />&nbsp;&nbsp;
 								<input class="button" type="button" id="btnStudentCourseCallback" value="剔除" />&nbsp;&nbsp;
-							</span>
-						    <span style="float:right;">
-								<input class="button" type="button" name="btnDownLoad13" id="btnDownLoad13" onClick="outputFloat(13,'file')" value="下载" />
 							</span>
 				        </form>
 							</div>

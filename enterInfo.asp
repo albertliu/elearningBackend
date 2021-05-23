@@ -55,7 +55,7 @@
 		if(op==1){
 			var x = "dbo.getStudentProjectRestList('" + refID + "')";
 			getComList("projectID",x,"projectID","projectName","1=1 order by projectID desc",1);
-			setClassList();
+			//setClassList();
 			setButton();
 			$("#username").val(refID);
 			var companyID = 0;
@@ -224,6 +224,7 @@
 				$("#checkDate").val(ar[31]);
 				$("#checkerName").val(ar[32]);
 				$("#projectID").val(ar[26]);
+				setClassList(ar[26]);
 				if(ar[23]==1){
 					$("#checked").prop("checked",true);
 				}else{
@@ -237,6 +238,7 @@
 
 				$("#materialCheckerName").val(ar[30]);
 				$("#projectName").val(ar[33] + ar[26]);
+				$("#classID").val(ar[27]);
 				$("#className").val(ar[34]);
 				$("#certID").val(ar[36]);
 				$("#reexamineName").val(ar[41]);
@@ -304,6 +306,10 @@
 			jAlert("没有要操作的数据。");
 			return false;
 		}
+		if($("#classID").val() == "" || $("#classID").val() == null){
+			jAlert("请选择班级。");
+			return false;
+		}
 		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
 		//@ID int,@invoice varchar(50),@projectID varchar(50),@kindID varchar(50),@type int,@status int,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo
 		//alert($("#payID").val() + "&refID=" + $("#username").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + ($("#title").val()) + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#status").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&memo=" + ($("#memo").val()));
@@ -314,6 +320,10 @@
 		});
 		$.get("studentCourseControl.asp?op=updatePayPrice&nodeID=" + $("#payDetailID").val() + "&refID=" + $("#price").val() + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
+		});
+		$.get("studentCourseControl.asp?op=updateEnterClass&nodeID=" + nodeID + "&refID=" + $("#classID").val() + "&times=" + (new Date().getTime()),function(re){
+			//jAlert(unescape(re));
+			getNodeInfo(nodeID);
 		});
 		return false;
 	}
@@ -445,8 +455,8 @@
 			}
 			$("#project0").show();
 			$("#project1").hide();
-			$("#class0").show();
-			$("#class1").hide();
+			$("#class0").hide();
+			//$("#class1").hide();
 			$("#reply").show();
 			//$("#btnEntryform").show();
 			//$("#btnFiremanMaterials").show();
