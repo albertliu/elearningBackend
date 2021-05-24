@@ -96,6 +96,10 @@
 				arr.push('			<td style="width:40%;"><h3></h3></td>');
 				arr.push('			<td colspan="3" style="width:60%;height:20px; align:center;"><p style="font-size:1.3em;">上海智能消防学校&nbsp;&nbsp;&nbsp;&nbsp;' + currDate + '</p></td>');
 				arr.push('		</tr>');
+				arr.push('		<tr>');
+				arr.push('			<td style="width:40%;"><h3></h3></td>');
+				arr.push('			<td colspan="3" style="width:60%;height:20px; align:center;"><p style="font-size:1.3em;">杨浦区黄兴路158号（长阳创谷）1182幢D103室</p></td>');
+				arr.push('		</tr>');
 				arr.push('	</table>');
 				arr.push('</div>');
 				arr.push('</div>');
