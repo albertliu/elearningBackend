@@ -128,7 +128,7 @@
 				c = "C20";
 			}
 			window.open("entryform_" + c + ".asp?keyID=1&nodeID=" + nodeID + "&refID=" + refID, "_self");
-			//window.open("entryform_C16.asp?keyID=0&nodeID=" + nodeID + "&refID=" + refID, "_self");
+			//window.open("entryform_C13.asp?keyID=0&nodeID=" + nodeID + "&refID=" + refID, "_self");
 		});
 
 		$("#btnPreview").click(function(){
