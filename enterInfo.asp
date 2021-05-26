@@ -388,7 +388,11 @@
 			}
 		});
 		*/
-		window.open("entryform_" + $("#certID").val() + ".asp?nodeID=" + nodeID + "&refID=" + refID + "&keyID=1", "_self");
+		var c = $("#certID").val();
+		if(c == "C21"){
+			c = "C20";
+		}
+		window.open("entryform_" + c + ".asp?nodeID=" + nodeID + "&refID=" + refID + "&keyID=1", "_self");
 	}
 	
 	function generateFiremanMaterials(){
