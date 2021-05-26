@@ -103,7 +103,7 @@ if(op == "getStudentCourseList"){
 	}
 	//mark=1: 学校教务查询。
 	if(String(Request.QueryString("mark")) == 1){
-		s = "projectID>'' and checked=1";
+		s = "projectID>'' and ((host <> 'znxf' and checked=1) or host='znxf')";
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
