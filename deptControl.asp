@@ -7,7 +7,7 @@ if(op == "getNodeInfo"){
 	if (!rs.EOF){
 		result = rs("deptID").value + "|" + rs("pID").value + "|" + rs("deptName").value + "|" + rs("kindID").value + "|" + rs("dept_status").value + "|" + rs("kindName").value + "|" + rs("statusName").value;
 		//7
-		result += "|" + rs("linker").value + "|" + rs("phone").value + "|" + rs("email").value + "|" + rs("address").value + "|" + rs("host").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("No").value;
+		result += "|" + rs("linker").value + "|" + rs("phone").value + "|" + rs("email").value + "|" + rs("address").value + "|" + rs("host").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("No").value + "|" + rs("area").value;
 		execSQL(sql);
 	}
 	rs.Close();
@@ -18,7 +18,7 @@ if(op == "update"){
 	result = 0;
 	if(result == 0){
 		sql = "exec updateDeptInfo " + nodeID + "," + refID + ",'" + unescape(String(Request.QueryString("deptName"))) + "'," + kindID + "," + status + ",'" + unescape(String(Request.QueryString("linker"))) + "','" + unescape(String(Request.QueryString("phone"))) + "','" + unescape(String(Request.QueryString("email"))) + "','" + unescape(String(Request.QueryString("address")));
-		sql += "','" + String(Request.QueryString("No")) + "','" + host + "','" + unescape(String(Request.QueryString("memo"))) + "','" + currUser + "'"; 
+		sql += "','" + String(Request.QueryString("No")) + "','" + unescape(String(Request.QueryString("area"))) + "','" + host + "','" + unescape(String(Request.QueryString("memo"))) + "','" + currUser + "'"; 
 		
 		execSQL(sql);
 		if(nodeID == 0){

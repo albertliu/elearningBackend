@@ -91,6 +91,7 @@
 				$("#regDate").val(ar[13]);
 				$("#registerName").val(ar[15]);
 				$("#No").val(ar[16]);
+				$("#area").val(ar[17]);
 				
 				if(ar[11] !== "spc"){
 					$("#kindID").hide();
@@ -114,7 +115,7 @@
 			jAlert("上级部门缺失，请重新添加。");
 			return false;
 		}
-		$.get("deptControl.asp?op=update&nodeID=" + $("#deptID").val() + "&refID=" + $("#pID").val() + "&deptName=" + escape($("#deptName").val()) + "&linker=" +  escape($("#linker").val()) + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&host=" + $("#host").val() + "&phone=" +  escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&address=" + escape($("#address").val()) + "&No=" + $("#No").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("deptControl.asp?op=update&nodeID=" + $("#deptID").val() + "&refID=" + $("#pID").val() + "&deptName=" + escape($("#deptName").val()) + "&linker=" +  escape($("#linker").val()) + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&host=" + $("#host").val() + "&phone=" +  escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&address=" + escape($("#address").val()) + "&No=" + $("#No").val() + "&area=" + escape($("#area").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -210,8 +211,12 @@
 			<tr>
 				<td align="right">内部编号</td>
 				<td><input type="text" id="No" size="25" /></td>
+				<td align="right">所属区</td>
+				<td><input type="text" id="area" size="25" /></td>
+			</tr>
+			<tr>
 				<td align="right">说明</td>
-				<td><input type="text" id="memo" size="25" /></td>
+				<td colspan="3"><input type="text" id="memo" style="width:100%;" /></td>
 			</tr>
 			<tr>
 				<td align="right">登记人</td>
