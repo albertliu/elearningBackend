@@ -83,6 +83,7 @@
 				$("#educationName").html(ar[31]);
 				$("#birthday").html(ar[33]);
 				$("#address").html(ar[34]);
+				$("#linker").html(ar[46]);
 				if(ar[21] > ""){
 					$("#img_photo").attr("src","/users" + ar[21]);
 				}else{
@@ -164,7 +165,7 @@
 			</tr>
 			<tr>
 				<td align="center" class='table_resume_title' width='15%' height='55px;'>身份证号</td><td align="center" colspan="3"><p style='font-size:1em;' id="username"></p></td>
-				<td align="center" class='table_resume_title' width='15%' height='55px;'>领导姓名</td><td align="center" width='13%'></td>
+				<td align="center" class='table_resume_title' width='15%' height='55px;'>领导姓名</td><td align="center" width='13%'><p style='font-size:1em;' id="linker"></p></td>
 			</tr>
 			<tr>
 				<td align="center" class='table_resume_title' width='13%' height='55px;'>单位电话</td><td align="center" width='13%' colspan="2"><p style='font-size:1em;' id="phone"></p></td>
