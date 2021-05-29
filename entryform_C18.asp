@@ -82,6 +82,7 @@
 				}
 				$("#educationName").html(ar[31]);
 				$("#birthday").html(ar[33]);
+				$("#address").html(ar[34]);
 				if(ar[21] > ""){
 					$("#img_photo").attr("src","/users" + ar[21]);
 				}else{

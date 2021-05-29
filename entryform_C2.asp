@@ -77,6 +77,7 @@
 					$("#company").html(ar[12] + " ." + ar[13] + " ." + ar[14]);
 				}
 				$("#educationName").html(ar[31]);
+				$("#address").html(ar[34]);
 				if(ar[22] > ""){
 					$("#img_cardA").attr("src","/users" + ar[22]);
 				}else{
