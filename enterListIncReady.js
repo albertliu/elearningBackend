@@ -79,7 +79,7 @@
 		
 		$("#searchEnterHost").change(function(){
 			getComList("searchEnterDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchEnterHost").val() + "' and pID=0) and dept_status<9",1);
-			getComList("searchEnterProjectID","projectInfo","projectID","projectID","host='" + $("#searchEnterHost").val() + "' and status=1 or status=2 order by ID desc",1);
+			getComList("searchEnterProjectID","projectInfo","projectID","projectName","host='" + $("#searchEnterHost").val() + "' and status=1 or status=2 order by ID desc",1);
 		});
 		
 		$("#searchEnterProjectID").change(function(){
