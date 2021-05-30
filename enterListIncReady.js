@@ -141,6 +141,32 @@
 		$("#btnSearchEnterAdd").click(function(){
 			showStudentInfo(0,0,1,1);
 		});
+		$("#btnRefundList").click(function(){
+			getSelCart("visitstockchkEnter");
+			if(selCount==0){
+				jAlert("请选择制作退费单的人员。");
+				return false;
+			}
+			if($("#searchEnterClassID").val()==""){
+				jAlert("请选择一个班级。");
+				return false;
+			}
+			$.getJSON(uploadURL + "/outfiles/generate_refund_list?class=" + $("#searchEnterClassID").find("option:selected").text() + "&selList=" + selList + "&price=10" ,function(data){
+				if(data>""){
+					asyncbox.alert("已生成 <a href='" + data + "' target='_blank'>下载文件</a>",'操作成功',function(action){
+					　　//alert 返回action 值，分别是 'ok'、'close'。
+					　　if(action == 'ok'){
+					　　}
+					　　if(action == 'close'){
+					　　　　//alert('close');
+					　　}
+					});
+					//getNodeInfo(nodeID);
+				}else{
+					alert("没有可供处理的数据。");
+				}
+			});
+		});
 		$("#btnEnterCheck").hide();
 		//getEnterList();
 	});

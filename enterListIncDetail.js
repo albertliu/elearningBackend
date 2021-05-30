@@ -14,8 +14,8 @@
 							<span id="enterListLongItem6">
 								课程&nbsp;<select id="searchEnterCourseID" style="width:80px"></select>&nbsp;&nbsp;
 							</span>
-							批次&nbsp;<select id="searchEnterProjectID" style="width:180px"></select>&nbsp;&nbsp;
-							<input style="border:0px;" type="checkbox" id="searchEnterShowPhoto" value="" />&nbsp;图片&nbsp;&nbsp;
+							批次&nbsp;<select id="searchEnterProjectID" style="width:180px"></select>&nbsp;
+							<input style="border:0px;" type="checkbox" id="searchEnterShowPhoto" value="" />图片&nbsp;
 						    <span style="float:right;">
 								<input class="button" type="button" onClick="outputFloat(101,'file')" value="下载" />
 							</span>
@@ -38,6 +38,7 @@
 								<input class="button" type="button" id="btnEnterCheck" value="材料确认" />&nbsp;&nbsp;
 								<input class="button" type="button" id="btnEnterApply" value="申报名单" />&nbsp;&nbsp;
 								<input class="button" type="button" id="btnEnterPasscard" value="做准考证" />&nbsp;&nbsp;
+								<input class="button" type="button" id="btnRefundList" value="退费单" />
 								已做准考证&nbsp;<select id="searchEnterPasscard" style="width:50px"></select>
 							</span>
 				        </form>
