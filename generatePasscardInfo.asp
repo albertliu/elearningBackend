@@ -28,12 +28,14 @@
 	var nodeID = "";
 	var refID = "";
 	var keyID = "";
+	var kindID = 0;
 	var op = 0;
 	var updateCount = 0;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";		//
 		refID = "<%=refID%>";		//selList
+		kindID = "<%=kindID%>";		//count
 		keyID = "<%=keyID%>";		//classID
 		op = "<%=op%>";
 		
@@ -144,16 +146,20 @@
 			jAlert("请检查起始编号值。");
 			return false;
 		}
-		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-		$.getJSON(uploadURL + "/outfiles/generate_passcard_byClassID?mark=0&classID=" + keyID + "&ID=" + nodeID + "&selList=" + refID + "&title=" + $("#title").val() + "&startNo=" + $("#startNo").val() + "&startDate=" + $("#startDate").val() + "&startTime=" + $("#startTime").val() + "&address=" + $("#address").val() + "&notes=" + $("#notes").val() + "&memo=" + $("#memo").val() + "&username=" + currUser ,function(data){
-			if(data>""){
-				jAlert("准考证制作成功");
-				op = 0;
-				updateCount = 1;
-				nodeID = data;
-				getNodeInfo(data);
-			}else{
-				jAlert("没有可供处理的数据。");
+		jConfirm('你确定要制作这批' + kindID + '人的准考证吗?', '确认对话框', function(r) {
+			if(r){
+				//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
+				$.getJSON(uploadURL + "/outfiles/generate_passcard_byClassID?mark=0&classID=" + keyID + "&ID=" + nodeID + "&selList=" + refID + "&title=" + $("#title").val() + "&startNo=" + $("#startNo").val() + "&startDate=" + $("#startDate").val() + "&startTime=" + $("#startTime").val() + "&address=" + $("#address").val() + "&notes=" + $("#notes").val() + "&memo=" + $("#memo").val() + "&username=" + currUser ,function(data){
+					if(data>""){
+						jAlert("准考证制作成功");
+						op = 0;
+						updateCount = 1;
+						nodeID = data;
+						getNodeInfo(data);
+					}else{
+						jAlert("没有可供处理的数据。");
+					}
+				});
 			}
 		});
 		return false;
@@ -215,6 +221,7 @@
 	function setEmpty(){
 		$("#title").val("中石化从业人员安全知识考核");
 		$("#startDate").val(currDate);
+		$("#qty").val(kindID);
 		$("#startTime").val("15:00 - 16:00");
 		$("#startNo").val(1);
 		$("#address").val("黄兴路158号D栋103室");

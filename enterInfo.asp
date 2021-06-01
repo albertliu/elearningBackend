@@ -123,20 +123,12 @@
 		});
 
 		$("#btnPrint").click(function(){
-			var c = $("#certID").val();
-			if(c == "C21"){
-				c = "C20";
-			}
-			window.open("entryform_" + c + ".asp?keyID=1&nodeID=" + nodeID + "&refID=" + refID, "_self");
+			printEntryform(1);
 			//window.open("entryform_C13.asp?keyID=0&nodeID=" + nodeID + "&refID=" + refID, "_self");
 		});
 
 		$("#btnPreview").click(function(){
-			var c = $("#certID").val();
-			if(c == "C21"){
-				c = "C20";
-			}
-			window.open("entryform_" + c + ".asp?keyID=0&nodeID=" + nodeID + "&refID=" + refID, "_self");
+			printEntryform(0);
 		});
 
 		$("#kindID").change(function(){
@@ -324,6 +316,7 @@
 		$.get("studentCourseControl.asp?op=updateEnterClass&nodeID=" + nodeID + "&refID=" + $("#classID").val() + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			getNodeInfo(nodeID);
+			printEntryform(1);
 		});
 		return false;
 	}
@@ -413,6 +406,14 @@
 				alert("没有可供处理的数据。");
 			}
 		});
+	}
+	
+	function printEntryform(k){
+		var c = $("#certID").val();
+		if(c == "C21"){
+			c = "C20";
+		}
+		window.open("entryform_" + c + ".asp?keyID=" + k + "&nodeID=" + nodeID + "&refID=" + refID, "_self");
 	}
 	
 	function setButton(){
@@ -562,6 +563,7 @@
 				报名表
 					<span id="entryform" style="margin-left:20px;"></span>
 					<input class="button" type="button" id="btnEntryform" value="生成" />
+					<input class="button" type="button" id="save" value="保存" />
 					<input class="button" type="button" id="btnPreview" value="预览" />
 					<input class="button" type="button" id="btnPrint" value="打印" />
 					<input class="button" type="button" id="btnFiremanMaterials" value="消防员" />
@@ -614,7 +616,6 @@
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
 		<input class="button" type="button" id="reply" value="发通知" />&nbsp;
-		<input class="button" type="button" id="save" value="保存" />&nbsp;
 		<input class="button" type="button" id="btnEnter" value="报名" />&nbsp;
 		<input class="button" type="button" id="btnMaterialCheck" value="资料确认" />&nbsp;
 		<input class="button" type="button" id="btnReturn" value="退课" />&nbsp;

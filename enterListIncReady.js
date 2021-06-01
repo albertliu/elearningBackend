@@ -131,7 +131,7 @@
 				jAlert("请选择一个班级。");
 				return false;
 			}
-			showGeneratePasscardInfo(0,selList,1,1,$("#searchEnterClassID").val());
+			showGeneratePasscardInfo(0,selList,1,1,$("#searchEnterClassID").val(),selCount);
 		});
 		
 		if(!checkPermission("studentAdd")){

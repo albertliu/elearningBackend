@@ -1474,10 +1474,10 @@
 	}
 	
 	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
-	function showGeneratePasscardInfo(nodeID,refID,op,mark,classID){
+	function showGeneratePasscardInfo(nodeID,refID,op,mark,classID,count){
 		asyncbox.open({
 			id: "generatePasscard",
-			url:"generatePasscardInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&keyID=" + classID + "&p=1&times=" + (new Date().getTime()),
+			url:"generatePasscardInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&keyID=" + classID + "&kindID=" + count + "&p=1&times=" + (new Date().getTime()),
 			title: "准考证信息",
 			width: 600,
 			height: 400,
