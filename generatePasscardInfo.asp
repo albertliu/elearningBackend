@@ -146,7 +146,7 @@
 			jAlert("请检查起始编号值。");
 			return false;
 		}
-		jConfirm('你确定要制作这批' + kindID + '人的准考证吗?', '确认对话框', function(r) {
+		jConfirm('你确定要安排这批' + kindID + '人于' + $("#startDate").val() + '进行考试吗?', '确认对话框', function(r) {
 			if(r){
 				//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
 				$.getJSON(uploadURL + "/outfiles/generate_passcard_byClassID?mark=0&classID=" + keyID + "&ID=" + nodeID + "&selList=" + refID + "&title=" + $("#title").val() + "&startNo=" + $("#startNo").val() + "&startDate=" + $("#startDate").val() + "&startTime=" + $("#startTime").val() + "&address=" + $("#address").val() + "&notes=" + $("#notes").val() + "&memo=" + $("#memo").val() + "&username=" + currUser ,function(data){
