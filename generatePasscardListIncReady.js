@@ -41,13 +41,14 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
-			arr.push("<th width='12%'>班级编号</th>");
+			arr.push("<th width='10%'>班级编号</th>");
 			arr.push("<th width='20%'>班级名称</th>");
 			arr.push("<th width='8%'>数量</th>");
-			arr.push("<th width='30%'>考试日期</th>");
+			arr.push("<th width='10%'>起始编号</th>");
+			arr.push("<th width='20%'>考试日期</th>");
 			arr.push("<th width='10%'>制作日期</th>");
-			arr.push("<th width='9%'>制作人</th>");
-			arr.push("<th width='6%'>文件</th>");
+			arr.push("<th width='8%'>制作</th>");
+			arr.push("<th width='8%'>文件</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
@@ -65,6 +66,7 @@
 					arr.push("<td class='link1'><a href='javascript:showGeneratePasscardInfo(" + ar1[0] + ",0,0,1,\"\");'>" + ar1[1] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[2] + "</td>");
 					arr.push("<td class='left'>" + ar1[4] + "</td>");
+					arr.push("<td class='left'>" + ar1[13] + "</td>");
 					arr.push("<td class='left'>" + ar1[8] + "  " + ar1[5] + "</td>");
 					arr.push("<td class='left'>" + ar1[11] + "</td>");
 					arr.push("<td class='left'>" + ar1[12] + "</td>");
@@ -79,6 +81,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
