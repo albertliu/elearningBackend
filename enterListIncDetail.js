@@ -31,7 +31,7 @@
 							<span id="enterListLongItem3">
 								班级&nbsp;<select id="searchEnterClassID" style="width:180px"></select>&nbsp;&nbsp;
 								类别&nbsp;<select id="searchEnterReexamine" style="width:50px"></select>&nbsp;&nbsp;
-							    &nbsp;报名日期&nbsp;<input type="text" id="searchEnterStartDate" size="8" />-<input type="text" id="searchEnterEndDate" size="8" />
+							    &nbsp;<label id="searchEnterDateItem">报名日期</label>&nbsp;<input type="text" id="searchEnterStartDate" size="8" />-<input type="text" id="searchEnterEndDate" size="8" />
 							</span>
 							<span id="enterListLongItem5">
 								<input class="button" type="button" id="btnEnterSel" value="全选/取消" />&nbsp;&nbsp;

@@ -86,7 +86,11 @@ if(op == "getStudentCourseList"){
 		}
 	}
 	if(fStart > "" && fStart !="undefined"){
-		s = "regDate>='" + fStart + "'";
+		if(currHost>""){
+			s = "regDate>='" + fStart + "'";
+		}else{
+			s = "submitDate>='" + fStart + "'";
+		}
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
@@ -94,7 +98,11 @@ if(op == "getStudentCourseList"){
 		}
 	}
 	if(fEnd > "" && fEnd !="undefined"){
-		s = "regDate<='" + fEnd + "'";
+		if(currHost>""){
+			s = "regDate<='" + fEnd + "'";
+		}else{
+			s = "submitDate<='" + fEnd + "'";
+		}
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
@@ -186,7 +194,7 @@ if(op == "getStudentCourseList"){
 		//32
 		result += "|" + rs("status3").value + "|" + rs("askerID3").value + "|" + rs("askDate3").value + "|" + rs("status4").value + "|" + rs("askerID4").value + "|" + rs("askDate4").value;
 		//38
-		result += "|" + rs("submited").value + "|" + rs("submitName").value + "|" + rs("submitName").value;
+		result += "|" + rs("submited").value + "|" + rs("submitDate").value + "|" + rs("submitName").value;
 		//41
 		result += "|" + rs("projectID").value + "|" + rs("classID").value + "|" + rs("SNo").value + "|" + rs("materialCheck").value + "|" + rs("materialChecker").value + "|" + rs("materialCheckerName").value;
 		//47

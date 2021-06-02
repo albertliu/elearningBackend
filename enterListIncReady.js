@@ -31,6 +31,12 @@
 				}
 			}
 		});
+
+		if(currHost==""){
+			$("#searchEnterDateItem").html("提交日期");
+		}else{
+			$("#searchEnterDateItem").html("报名日期");
+		}
 		
 		$("#btnEnterSel").click(function(){
 			setSel("visitstockchkEnter");
@@ -219,7 +225,11 @@
 					arr.push("<th width='8%'>部门</th>");
 				}
 				arr.push("<th width='6%'>状态</th>");
-				arr.push("<th width='8%'>报名日期</th>");
+				if(currHost==""){
+					arr.push("<th width='8%'>提交日期</th>");
+				}else{
+					arr.push("<th width='8%'>报名日期</th>");
+				}
 			}
 			//arr.push("<th width='6%'>单位</th>");
 			arr.push("<th width='5%'>表</th>");
@@ -296,7 +306,11 @@
 							arr.push("<td class='left'>" + ar1[13].substr(0,5) + "</td>");
 						}
 						arr.push("<td class='left'>" + ar1[4] + "</td>");
-						arr.push("<td class='left'>" + ar1[11] + "</td>");
+						if(currHost==""){
+							arr.push("<td class='left'>" + ar1[39] + "</td>");
+						}else{
+							arr.push("<td class='left'>" + ar1[11] + "</td>");
+						}
 						
 					}
 					//arr.push("<td class='link1'><a href='javascript:window.open(\"entryform_" + ar1[60] + ".asp?keyID=0&nodeID=" + ar1[0] + "&refID=" + ar1[1] + ", \"_blank\");'>" + imgChk + "</a></td>");

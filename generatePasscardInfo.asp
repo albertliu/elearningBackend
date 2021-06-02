@@ -70,7 +70,7 @@
 			jConfirm('你确定要删除这批准考证信息吗?', '确认对话框', function(r) {
 				if(r){
 					$.get("diplomaControl.asp?op=delGeneratePasscard&nodeID=" + nodeID + "&&times=" + (new Date().getTime()),function(data){
-						jAlert("成功禁用！","信息提示");
+						jAlert("成功删除！","信息提示");
 						op = 1;
 						setButton();
 						updateCount += 1;
@@ -146,7 +146,7 @@
 			jAlert("请检查起始编号值。");
 			return false;
 		}
-		jConfirm('你确定要安排这批' + kindID + '人于' + $("#startDate").val() + '进行考试吗?', '确认对话框', function(r) {
+		jConfirm('你确定要安排' + kindID + '人于' + $("#startDate").val() + '进行考试吗?', '确认对话框', function(r) {
 			if(r){
 				//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
 				$.getJSON(uploadURL + "/outfiles/generate_passcard_byClassID?mark=0&classID=" + keyID + "&ID=" + nodeID + "&selList=" + refID + "&title=" + $("#title").val() + "&startNo=" + $("#startNo").val() + "&startDate=" + $("#startDate").val() + "&startTime=" + $("#startTime").val() + "&address=" + $("#address").val() + "&notes=" + $("#notes").val() + "&memo=" + $("#memo").val() + "&username=" + currUser ,function(data){
@@ -224,7 +224,7 @@
 		$("#qty").val(kindID);
 		$("#startTime").val("15:00 - 16:00");
 		$("#startNo").val(1);
-		$("#address").val("黄兴路158号D栋103室");
+		$("#address").val("黄兴路158号1182幢D103室");
 		$("#notes").val("请务必携带身份证和准考证；迟到15分钟不得入场。");
 	}
 	
