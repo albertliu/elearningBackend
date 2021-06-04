@@ -85,6 +85,7 @@
 				$("#educationName").html(ar[31]);
 				//$("#birthday").html(ar[33].substr(0,7));
 				$("#address").html(ar[34]);
+				$("#IDaddress").html(ar[38]);
 				//$("#ethnicity").html(ar[37]);
 				if(ar[21] > ""){
 					$("#img_photo").attr("src","/users" + ar[21]);
@@ -180,7 +181,7 @@
 				<td align="center" class='table_resume_title' height='48px;'>工作单位地址</td><td align="center" colspan="3"><p style='font-size:1em;' id="address"></p></td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' height='48px;'>通信地址</td><td align="center" colspan="4"><p style='font-size:1em;'></p></td>
+				<td align="center" class='table_resume_title' height='48px;'>通信地址</td><td align="center" colspan="4"><p style='font-size:1em;' id="IDaddress"></p></td>
 			</tr>
 			<tr>
 				<td align="center" class='table_resume_title' height='48px;'>邮编</td><td align="center"><p id="zip" style='font-size:1em;'></p></td>
