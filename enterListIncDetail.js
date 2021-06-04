@@ -10,7 +10,9 @@
 							<span id="enterListLongItem2">
 					          &nbsp;部门&nbsp;<select id="searchEnterDept" style="width:80px"></select>&nbsp;&nbsp;
 				          	</span>
-							状态&nbsp;<select id="searchEnterStatus" style="width:50px"></select>&nbsp;&nbsp;
+							<span id="enterListLongItem7">
+								状态&nbsp;<select id="searchEnterStatus" style="width:50px"></select>&nbsp;&nbsp;
+							</span>
 							<span id="enterListLongItem6">
 								课程&nbsp;<select id="searchEnterCourseID" style="width:80px"></select>&nbsp;&nbsp;
 							</span>
@@ -36,10 +38,11 @@
 							<span id="enterListLongItem5">
 								<input class="button" type="button" id="btnEnterSel" value="全选/取消" />&nbsp;&nbsp;
 								<input class="button" type="button" id="btnEnterCheck" value="材料确认" />&nbsp;&nbsp;
-								<input class="button" type="button" id="btnEnterApply" value="申报名单" />&nbsp;&nbsp;
-								<input class="button" type="button" id="btnEnterPasscard" value="做准考证" />&nbsp;&nbsp;
+								已做&nbsp;<select id="searchEnterPasscard" style="width:50px"></select>
+								<input class="button" type="button" id="btnEnterPasscard" value="准考证" />&nbsp;&nbsp;
+								<input class="button" type="button" id="btnEnterApply" value="申报" />&nbsp;&nbsp;
+								<input class="button" type="button" id="btnEnterDiploma" value="证书" />&nbsp;&nbsp;
 								<input class="button" type="button" id="btnRefundList" value="退费单" />
-								已做准考证&nbsp;<select id="searchEnterPasscard" style="width:50px"></select>
 							</span>
 				        </form>
 							</div>

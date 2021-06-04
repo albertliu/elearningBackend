@@ -103,6 +103,7 @@
 		//$("#enterListLongItem3").hide();
 		$("#enterListLongItem4").hide();
 		$("#enterListLongItem5").hide();
+		$("#enterListLongItem7").hide();
 		
 		$("#btnEnterCheck").click(function(){
 			getSelCart("visitstockchkEnter");
@@ -226,9 +227,9 @@
 				}
 				arr.push("<th width='6%'>状态</th>");
 				if(currHost==""){
-					arr.push("<th width='8%'>提交日期</th>");
+					arr.push("<th width='9%'>提交日期</th>");
 				}else{
-					arr.push("<th width='8%'>报名日期</th>");
+					arr.push("<th width='9%'>报名日期</th>");
 				}
 			}
 			//arr.push("<th width='6%'>单位</th>");

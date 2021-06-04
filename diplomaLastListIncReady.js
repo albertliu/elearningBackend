@@ -12,7 +12,7 @@
 			getComList("searchDiplomaLastDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchDiplomaLastHost").val() + "' and pID=0)",1);
 		}
 		
-		getComList("searchDiplomaLastKind","certificateInfo","certID","certName","status=0 order by certName",1);
+		getComList("searchDiplomaLastKind","v_certificateInfo","certID","certName","status=0 and host='" + currHost + "' order by certName",1);
 		getDicList("statusExpire","searchDiplomaLastStatus",1);
 		$("#searchDiplomaLastStartDate").click(function(){WdatePicker();});
 		$("#searchDiplomaLastEndDate").click(function(){WdatePicker();});
@@ -44,7 +44,7 @@
 			getDiplomaLastList();
 		});
 
-		getDiplomaLastList();
+		//getDiplomaLastList();
 	});
 
 	function getDiplomaLastList(){

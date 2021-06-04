@@ -25,7 +25,7 @@
 			}
 		});
 		
-		getHostList();
+		//getHostList();
 	});
 
 	function getHostList(){

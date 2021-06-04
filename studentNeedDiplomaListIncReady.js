@@ -3,10 +3,10 @@
 
 	$(document).ready(function (){
 		var w1 = "status=0 and hostNo='" + currHost + "'";
-		var w2 = "status=0 and (kindID=0 or host='" + currHost + "')";
+		var w2 = "status=0 and host='" + currHost + "'";
 		if(currHost==""){	//公司用户只能看自己公司内容
 			getComList("searchStudentNeedDiplomaHost","hostInfo","hostNo","title","status=0 order by hostName",1);
-			getComList("searchStudentNeedDiplomaCert","certificateInfo","certID","certName","status=0 order by certID",1);
+			getComList("searchStudentNeedDiplomaCert","v_certificateInfo","certID","certName","status=0 and host='' order by certID",1);
 		}else{
 			getComList("searchStudentNeedDiplomaHost","hostInfo","hostNo","title",w1,0);
 			getComList("searchStudentNeedDiplomaCert","certificateInfo","certID","certName",w2,1);
@@ -66,10 +66,14 @@
 				}
 			}
 		});
+		
 		if(!checkPermission("diplomaAdd")){
 			$("#btnStudentNeedDiplomaIssue").hide();
 		}
-		getStudentNeedDiplomaList();
+
+		if(currHost>""){
+			getStudentNeedDiplomaList();
+		}
 	});
 
 	function getStudentNeedDiplomaList(){

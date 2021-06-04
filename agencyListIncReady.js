@@ -25,7 +25,7 @@
 			}
 		});
 		
-		getAgencyList();
+		//getAgencyList();
 	});
 
 	function getAgencyList(){

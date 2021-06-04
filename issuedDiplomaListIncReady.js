@@ -12,7 +12,7 @@
 			getComList("searchIssuedDiplomaDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchIssuedDiplomaHost").val() + "' and pID=0)",1);
 		}
 		
-		getComList("searchIssuedDiplomaKind","certificateInfo","certID","certName","status=0 order by certName",1);
+		getComList("searchIssuedDiplomaKind","v_certificateInfo","certID","certName","status=0 and host='" + currHost + "' order by certName",1);
 		getDicList("statusNo","searchIssuedDiplomaIssued",1);
 		$("#searchIssuedDiplomaStartDate").click(function(){WdatePicker();});
 		$("#searchIssuedDiplomaEndDate").click(function(){WdatePicker();});

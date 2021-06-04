@@ -15,7 +15,7 @@
 			}
 		}
 		
-		getComList("searchDiplomaKind","certificateInfo","certID","certName","status=0 order by certName",1);
+		getComList("searchDiplomaKind","v_certificateInfo","certID","certName","status=0 and host='" + currHost + "' order by certName",1);
 		getDicList("statusExpire","searchDiplomaStatus",1);
 		$("#searchDiplomaStartDate").click(function(){WdatePicker();});
 		$("#searchDiplomaEndDate").click(function(){WdatePicker();});
