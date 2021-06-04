@@ -192,7 +192,7 @@
 				<td align="center" class='table_resume_title'>申请项目代号</td><td align="center" colspan="2"><p style='font-size:1em;'>A</p></td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='120px;'>工作简历</td><td align="center" colspan="4"><p style='font-size:1em;'></p></td>
+				<td align="center" class='table_resume_title' width='15%' height='120px;'>工作简历</td><td align="center" colspan="4"><p style='font-size:1em;'>从事特种作业相关工作两年以上</p></td>
 			</tr>
 			<tr>
 				<td align="center" height='48px;' colspan="5" class='table_resume_title' width='15%' height='250px;'>
