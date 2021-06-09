@@ -86,8 +86,8 @@
 					arr.push('			<td><h4>' + val["startDate"] + '</h4></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
-					arr.push('			<td style="height:80px;"><h4>有效期：</h4></td>');
-					arr.push('			<td><h4>' + val["endDate"] + '</h4></td>');
+					arr.push('			<td style="height:80px;"><h4>有效期限：</h4></td>');
+					arr.push('			<td><h4>' + val["term"] + '年</h4></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
 					arr.push('			<td style="height:80px;" colspan="4"><h4 style="float:left;padding-left:20px;">' + val["diplomaNo"] + '</h4>');
@@ -131,7 +131,6 @@
 </head>
 
 <body>
-	<p id="test"></p>
 	<div id="cover"></div>
 </body>
 </html>

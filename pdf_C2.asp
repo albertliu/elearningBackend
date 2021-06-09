@@ -38,7 +38,7 @@
 				$("#hostName").html(ar[5]);
 				$("#job").html(ar[6]);
 				$("#startDate").html(ar[7]);
-				$("#endDate").html(ar[8]);
+				$("#term").html(ar[11] + '年');
 				$("#title").html(ar[9]);
 				if(ar[10]==''){
 					$("#photo_filename").attr("src","/images/blankphoto.png");
@@ -98,8 +98,8 @@
 					<td><h4 id="startDate"></h4></td>
 				</tr>
 				<tr>
-					<td style="height:85px;"><h4>有效期：</h4></td>
-					<td><h4 id="endDate"></h4></td>
+					<td style="height:85px;"><h4>有效期限：</h4></td>
+					<td><h4 id="term"></h4></td>
 				</tr>
 				<tr>
 					<td style="height:85px;"><h4>发证单位：</h4></td>

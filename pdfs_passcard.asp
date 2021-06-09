@@ -128,7 +128,6 @@
 </head>
 
 <body>
-	<p id="test"></p>
 	<div id="cover"></div>
 </body>
 </html>
