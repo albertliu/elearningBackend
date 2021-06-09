@@ -33,7 +33,7 @@
 		});
 
 		if(currHost==""){
-			$("#searchEnterDateItem").html("提交日期");
+			$("#searchEnterDateItem").html("报到日期");
 		}else{
 			$("#searchEnterDateItem").html("报名日期");
 		}
@@ -141,6 +141,32 @@
 			showGeneratePasscardInfo(0,selList,1,1,$("#searchEnterClassID").val(),selCount);
 		});
 		
+		$("#btnEnterDiploma").click(function(){
+			getSelCart("visitstockchkEnter");
+			if(selCount==0){
+				jAlert("请选择制作证书的名单。");
+				return false;
+			}
+			if($("#searchEnterClassID").val()==""){
+				jAlert("请选择一个班级。");
+				return false;
+			}
+			jConfirm("确定要制作证书(" + selCount + "个)吗？","确认",function(r){
+				if(r){
+					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
+					//jAlert(selList);
+					$.getJSON(uploadURL + "/outfiles/generate_diploma_byClassID?classID=" + $("#searchEnterClassID").val() + "&selList=" + selList + "&registerID=" + currUser ,function(data){
+						if(data>""){
+							jAlert("证书制作成功 <a href='" + data + "' target='_blank'>下载文件</a>");
+							getEnterList();
+						}else{
+							jAlert("没有可供处理的数据。");
+						}
+					});
+				}
+			});
+		});
+		
 		if(!checkPermission("studentAdd")){
 			$("#btnSearchEnterAdd").hide();
 		}
@@ -225,7 +251,6 @@
 				}else{
 					arr.push("<th width='8%'>部门</th>");
 				}
-				arr.push("<th width='6%'>状态</th>");
 				if(currHost==""){
 					arr.push("<th width='9%'>提交日期</th>");
 				}else{
@@ -241,8 +266,9 @@
 				arr.push("<th width='5%'>缺</th>");
 				arr.push("<th width='5%'>编</th>");
 			}
-			arr.push("<th width='5%'>确</th>");
+			arr.push("<th width='5%'>申</th>");
 			arr.push("<th width='5%'>准</th>");
+			arr.push("<th width='5%'>证</th>");
 			arr.push("<th width='2%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -306,7 +332,6 @@
 						}else{
 							arr.push("<td class='left'>" + ar1[13].substr(0,5) + "</td>");
 						}
-						arr.push("<td class='left'>" + ar1[4] + "</td>");
 						if(currHost==""){
 							arr.push("<td class='left'>" + ar1[39] + "</td>");
 						}else{
@@ -328,18 +353,19 @@
 						}
 						arr.push("<td class='left'>" + ar1[43] + "</td>");
 					}
-					/*确认*/
-					if(ar1[16]==0){
+					/*申报*/
+					if(ar1[65]>0){
+						arr.push("<td class='center'>" + imgChk1 + "</td>");	//申报
+					}else{
 						arr.push("<td class='center'>&nbsp;</td>");
 					}
-					if(ar1[16]==1){
-						arr.push("<td class='center'>" + imgChk1 + "</td>");
-					}
-					if(ar1[16]==2){
-						arr.push("<td class='center'>" + imgChk2 + "</td>");
-					}
 					if(ar1[53]>0){
-						arr.push("<td class='center'>" + imgChk1 + "</td>");
+						arr.push("<td class='center'>" + imgChk1 + "</td>");	//准考证
+					}else{
+						arr.push("<td class='center'>&nbsp;</td>");
+					}
+					if(ar1[64]>""){
+						arr.push("<td class='center'>" + imgChk1 + "</td>");	//证书
 					}else{
 						arr.push("<td class='center'>&nbsp;</td>");
 					}
@@ -359,12 +385,12 @@
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
 			if($("#searchEnterProjectID").val()>"" && $("#searchEnterShowPhoto").attr("checked")){
 				$.each(ar2,function(iNum1,val1){
 					arr.push("<th>&nbsp;</th>");
 				});
 			}else{
-				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
@@ -380,7 +406,8 @@
 				"bPaginate": true,
 				"bLengthChange": true,
 				"bInfo": true,
-				"iDisplayLength": 100,
+				"aLengthMenu":[15,30,50,100,500],
+				"iDisplayLength": 500,
 				"aoColumnDefs": []
 			});
 			floatCount = i;
@@ -405,14 +432,21 @@
 				if(checkPermission("studentAdd")){
 					if($("#searchEnterProjectID").val()>""){
 						$("#btnEnterApply").show();
+						$("#btnEnterApplyBack").show();
 					}else{
 						$("#btnEnterApply").hide();
+						$("#btnEnterApplyBack").show();
 					}
 					$("#enterListLongItem5").show();
 				}else{
 					$("#enterListLongItem5").hide();
 				}
 				$("#enterListLongItem4").hide();
+			}
+			if($("#searchEnterClassID").val()>""){
+				$("#btnEnterDiploma").show();
+			}else{
+				$("#btnEnterDiploma").hide();
 			}
 		}else{
 			$("#enterListLongItem4").hide();

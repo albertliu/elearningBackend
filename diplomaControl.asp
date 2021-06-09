@@ -352,6 +352,15 @@ if(op == "getGenerateDiplomaList"){
 			where = s;
 		}
 	}
+	//如果是教务
+	if(currHost == ""){ // 
+		s = "host=''";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 	//如果有分类(证书类型)
 	if(kindID > ""){ // 
 		s = "certID='" + kindID + "'";
@@ -393,6 +402,8 @@ if(op == "getGenerateDiplomaList"){
 		result += "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("title").value + "|" + rs("filename").value;
 		//8
 		result += "|" + rs("firstID").value + "|" + rs("lastID").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value;
+		//13
+		result += "|" + rs("printed").value + "|" + rs("printDate").value + "|" + rs("delivery").value + "|" + rs("deliveryDate").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -412,6 +423,8 @@ if(op == "getGenerateDiplomaNodeInfo"){
 		result += "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("title").value + "|" + rs("filename").value;
 		//8
 		result += "|" + rs("firstID").value + "|" + rs("lastID").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value;
+		//13
+		result += "|" + rs("printed").value + "|" + rs("printDate").value + "|" + rs("delivery").value + "|" + rs("deliveryDate").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -575,6 +588,14 @@ if(op == "getGeneratePasscardNodeInfo"){
 if(op == "updateGeneratePasscardInfo"){
 	//@ID int,@classID varchar(50),@title nvarchar(100),@qty int,@startTime varchar(100),@address nvarchar(100),@notes nvarchar(500),@memo nvarchar(500),@registerID
 	sql = "exec updateGeneratePasscardInfo " + nodeID + ",'" + refID + "','" + item + "'," + String(Request.QueryString("qty")) + ",'" + status + "','" + String(Request.QueryString("startTime")) + "','" + unescape(String(Request.QueryString("address"))) + "','" + unescape(String(Request.QueryString("notes"))) + "','" + memo + "','" + currUser + "',''";
+	rs = conn.Execute(sql);
+	Response.Write(escape(0));
+	//Response.Write(escape(sql));
+}
+
+if(op == "updateGenerateDiplomaInfo"){
+	//@ID int,@classID varchar(50),@title nvarchar(100),@qty int,@startTime varchar(100),@address nvarchar(100),@notes nvarchar(500),@memo nvarchar(500),@registerID
+	sql = "exec updateGenerateDiplomaInfo " + nodeID + ",'','','" + String(Request.QueryString("printed")) + "','" + String(Request.QueryString("printDate")) + "','" + String(Request.QueryString("delivery")) + "','" + String(Request.QueryString("deliveryDate")) + "','','" + memo + "','" + currUser + "'";
 	rs = conn.Execute(sql);
 	Response.Write(escape(0));
 	//Response.Write(escape(sql));

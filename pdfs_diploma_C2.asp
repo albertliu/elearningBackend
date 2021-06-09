@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width">
 
 <!--必要样式-->
-<link href="css/style.css?ver=1.0"  rel="stylesheet" type="text/css" id="css" />
+<link href="css/style.css?ver=1.1"  rel="stylesheet" type="text/css" id="css" />
 <script language="javascript" src="js/jquery-1.7.2.min.js"></script>
 
 
@@ -28,7 +28,7 @@
 	});
 
 	function getNodeInfo(id){
-		$.getJSON(uploadURL + "/public/getPasscardListByBatchID?refID=" + id,function(data){
+		$.getJSON(uploadURL + "/public/getDiplomaListByBatchID?refID=" + id,function(data){
 			//jAlert(unescape(data));
 			var c = "";
 			$("#cover").empty();
@@ -42,56 +42,56 @@
 				$.each(data,function(iNum,val){
 					k += 1;
 					if(i == 0){
-						arr.push('<table style="margin-top:15mm;margin-left:15mm;">');
+						arr.push('<table style="margin-top:35mm;margin-left:15mm;display:inline-block; *display:inline; zoom:1;">');
 					}
 					if(i%n == 0){
 						arr.push('<tr>');
 					}
 					arr.push('<td>');
-					arr.push('<section class="login-form-wrap">');
+					arr.push('<section class="login-form-wrap1">');
 					arr.push('<div style="position: relative;">');
 					arr.push('<div style="position: absolute; z-index:10; width:100%;">');
 					arr.push('<div style="float:left;width:100%;">');
-					arr.push('	<table style="width:100%; padding-left:10px;">');
+					arr.push('	<table style="width:100%; padding-left:18mm;padding-top:15mm;">');
 					arr.push('		<tr>');
-					arr.push('			<td width="25%" align="right"><h3>岗位：</h3></td>');
-					arr.push('			<td class="foot" width="75%"><h3>' + val["title"] + '</h3></td>');
+					arr.push('			<td style="height:80px;width:28%;"><h4>岗位：</h4></td>');
+					arr.push('			<td style="height:80px;width:72%;"><h4>' + val["title"] + '</h4></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
-					arr.push('			<td align="right"><h3>姓名：</h3></td>');
-					arr.push('			<td class="foot"><h3>' + val["name"] + '</h3></td>');
+					arr.push('			<td style="height:80px;"><h4>姓名：</h4></td>');
+					arr.push('			<td><h4>' + val["name"] + '</h4></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
-					arr.push('			<td><h3>性别：</h3></td>');
-					arr.push('			<td class="foot"><h3>' + val["sexName"] + '</h3></td>');
+					arr.push('			<td style="height:80px;"><h4>性别：</h4></td>');
+					arr.push('			<td><h4>' + val["sexName"] + '</h4></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
-					arr.push('			<td><h3>身份证号：</h3></td>');
-					arr.push('			<td class="foot"><h3>' + val["username"] + '</h3></td>');
+					arr.push('			<td style="height:80px;"><h4>身份证号：</h4></td>');
+					arr.push('			<td><h4>' + val["username"] + '</h4></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
-					arr.push('			<td><h3>单位：</h3></td>');
-					arr.push('			<td class="foot"><h3>' + val["hostName"] + '</h3></td>');
+					arr.push('			<td style="height:80px;"><h4>单位：</h4></td>');
+					arr.push('			<td><h4>' + val["hostName"] + '</h4></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
-					arr.push('			<td><h3>职务：</h3></td>');
-					arr.push('			<td class="foot"><h3>' + val["job"] + '</h3></td>');
+					arr.push('			<td style="height:80px;"><h4>职务：</h4></td>');
+					arr.push('			<td><h4>' + val["job"] + '</h4></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
-					arr.push('			<td><h3>证书编号：</h3></td>');
-					arr.push('			<td class="foot"><h3>' + val["diplomaID"] + '</h3></td>');
+					arr.push('			<td style="height:80px;"><h4>证书编号：</h4></td>');
+					arr.push('			<td><h4>' + val["diplomaID"] + '</h4></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
-					arr.push('			<td><h3>发证日期：</h3></td>');
-					arr.push('			<td class="foot"><h3>' + val["startDate"] + '</h3></td>');
+					arr.push('			<td style="height:80px;"><h4>发证日期：</h4></td>');
+					arr.push('			<td><h4>' + val["startDate"] + '</h4></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
-					arr.push('			<td><h3>有效期：</h3></td>');
-					arr.push('			<td class="foot"><h3>' + val["endDate"] + '</h3></td>');
+					arr.push('			<td style="height:80px;"><h4>有效期：</h4></td>');
+					arr.push('			<td><h4>' + val["endDate"] + '</h4></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
-					arr.push('			<td colspan="4"><h3 style="float:right;padding-right:20px;">' + val["diplomaNo"] + '</h3>');
-					arr.push('			<h3 style="float:right;padding-right:20px;">（发证机关印章）</h3></td>');
+					arr.push('			<td style="height:80px;" colspan="4"><h4 style="float:left;padding-left:20px;">' + val["diplomaNo"] + '</h4>');
+					arr.push('			<h4 style="float:right;padding-right:150px;">（发证机关印章）</h4></td>');
 					arr.push('		</tr>');
 					arr.push('	</table>');
 					arr.push('</div>');
@@ -102,6 +102,8 @@
 					i += 1;
 					if(i%n == 0){
 						arr.push('</tr>');
+					}else{
+						arr.push('<td style="width:3.5%;"></td>');
 					}
 					if(i%(n*m) == 0){
 						i = 0;

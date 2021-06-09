@@ -205,7 +205,7 @@
 			$("#menu10").hide();
 		}else{
 			$("#menu2").hide();
-			$("#menu3").hide();
+			//$("#menu3").hide();
 		}
 		
 		if(currHostKind==0 && currHost > ""){	//集团用户不使用导入报名表, 照片批量上传，成绩导入功能

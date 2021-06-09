@@ -7,6 +7,7 @@
 		if(currHost==""){	//公司用户只能看自己公司内容
 			getComList("searchGenerateDiplomaHost","hostInfo","hostNo","title","status=0 order by hostName",1);
 			getComList("searchGenerateDiplomaCert","v_certificateInfo","certID","certName","status=0 and host='' order by certID",1);
+			$("#searchGenerateDiplomaItem1").hide();
 		}else{
 			getComList("searchGenerateDiplomaHost","hostInfo","hostNo","title",w1,0);
 			getComList("searchGenerateDiplomaCert","certificateInfo","certID","certName",w2,1);
@@ -50,8 +51,9 @@
 			arr.push("<th width='3%'>No</th>");
 			arr.push("<th width='15%'>证书名称</th>");
 			arr.push("<th width='8%'>数量</th>");
-			arr.push("<th width='24%'>编号范围</th>");
-			arr.push("<th width='15%'>公司</th>");
+			arr.push("<th width='20%'>编号范围</th>");
+			arr.push("<th width='10%'>打印日期</th>");
+			arr.push("<th width='10%'>发放日期</th>");
 			arr.push("<th width='9%'>说明</th>");
 			arr.push("<th width='10%'>制作日期</th>");
 			arr.push("<th width='9%'>制作人</th>");
@@ -73,7 +75,8 @@
 					arr.push("<td class='link1'><a href='javascript:showGenerateDiplomaInfo(\"" + ar1[0] + "\",0,0,1);'>" + ar1[2] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[3] + "</td>");
 					arr.push("<td class='left'>" + ar1[8] + " ~ " + ar1[9] + "</td>");
-					arr.push("<td class='left'>" + ar1[6] + "</td>");
+					arr.push("<td class='left'>" + ar1[14] + "</td>");
+					arr.push("<td class='left'>" + ar1[16] + "</td>");
 					arr.push("<td class='left'>" + ar1[10] + "</td>");
 					arr.push("<td class='left'>" + ar1[11] + "</td>");
 					arr.push("<td class='left'>" + ar1[12] + "</td>");
@@ -88,6 +91,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");

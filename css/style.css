@@ -44,6 +44,14 @@ h3 {
   font-size: 26px;
   color: #222;
 }
+h4 {
+  margin: 0;
+  padding-top: 10px;
+  padding-bottom: 3px;
+  padding-left: 3px;
+  font-size: 30px;
+  color: #222;
+}
 td.foot {
   border-bottom:#888 solid 1px;
   text-align: center;
@@ -55,3 +63,24 @@ td.foot {
   font-weight: 400;
 }
 
+.login-form-wrap1 {
+  position: relative;
+  width: 175mm;
+  height: 260mm;
+  margin: 0;
+  padding: 0;
+  text-align: left; 
+  border: none;
+}
+.login-form-wrap2 {
+  position: relative;
+  width: 175mm;
+  height: 260mm;
+  margin: 0;
+  padding: 0;
+  text-align: left; 
+  border: 1px solid #555;
+}
+td.normal {
+  height: 30px;
+}

@@ -82,6 +82,18 @@
 				$("#memo").val(ar[10]);
 				$("#regDate").val(ar[11]);
 				$("#registerName").val(ar[12]);
+				$("#printDate").val(ar[14]);
+				$("#deliveryDate").val(ar[16]);
+				if(ar[13]==1){
+					$("#printed").prop("checked",true);
+				}else{
+					$("#printed").prop("checked",false);
+				}
+				if(ar[15]==1){
+					$("#delivery").prop("checked",true);
+				}else{
+					$("#delivery").prop("checked",false);
+				}
 				$("#upload1").html("<a href='javascript:showLoadFile(\"gen_diploma\",\"" + ar[0] + "\",\"diploma\",\"\");' style='padding:3px;'>上传</a>");
 				var c = "";
 				if(ar[7] > ""){
@@ -168,18 +180,24 @@
 	}
 	
 	function saveNode(){
+		/*
 		if($("#memo").val().length < 3){
 			jAlert("备注信息请至少填写3个字的内容。");
 			return false;
-		}
+		}*/
+		var printed = 0;
+		if($("#printed").attr("checked")){printed = 1;}
+		var delivery = 0;
+		if($("#delivery").attr("checked")){delivery = 1;}
 		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-		$.get("diplomaControl.asp?op=setGenerateDiplomaMemo&nodeID=" + $("#ID").val() + "&item=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("diplomaControl.asp?op=updateGenerateDiplomaInfo&nodeID=" + $("#ID").val() + "&printed=" + printed + "&delivery=" + delivery + "&printDate=" + $("#printDate").val() + "&deliveryDate=" + $("#delivery").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar[0] == 0){
 				jAlert("保存成功！","信息提示");
 				updateCount += 1;
+				getNodeInfo(nodeID);
 			}
 		});
 		return false;
@@ -190,6 +208,9 @@
 		if(checkPermission("diplomaAdd")){
 			$("#upload1").show();
 			$("#redo").show();
+		}
+		if(currHost==""){
+			$("#redo").hide();
 		}
 	}
 	
@@ -236,6 +257,12 @@
 				</td>
 			</tr>
 			<tr>
+				<td align="right">证书打印</td>
+				<td><input style="border:0px;" type="checkbox" id="printed" value="" />&nbsp;&nbsp;<input class="readOnly" type="text" id="printDate" size="10" readOnly="true" /></td>
+				<td align="right">证书发放</td>
+				<td><input style="border:0px;" type="checkbox" id="delivery" value="" />&nbsp;&nbsp;<input class="readOnly" type="text" id="deliveryDate" size="10" readOnly="true" /></td>
+			</tr>
+			<tr>
 				<td align="right">制作日期</td>
 				<td><input class="readOnly" type="text" id="regDate" size="25" readOnly="true" /></td>
 				<td align="right">制作人</td>
@@ -253,7 +280,7 @@
 	
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
-  	<input class="button" type="button" id="save" name="save" value="保存备注" />&nbsp;
+  	<input class="button" type="button" id="save" name="save" value="保存" />&nbsp;
   	<input class="button" type="button" id="redo" name="redo" value="重新生成" />&nbsp;
 	<hr size="1" noshadow />
 	<div id="dimplomaListByBatch">
