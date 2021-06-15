@@ -42,7 +42,7 @@ h3 {
   padding-bottom: 3px;
   padding-left: 3px;
   font-size: 26px;
-  color: #222;
+  color: #000;
 }
 h4 {
   margin: 0;
@@ -50,15 +50,15 @@ h4 {
   padding-bottom: 3px;
   padding-left: 3px;
   font-size: 30px;
-  color: #222;
+  color: #000;
 }
 h5 {
   margin: 0;
   padding-top: 8px;
   padding-bottom: 3px;
   padding-left: 3px;
-  font-size: 25px;
-  color: #222;
+  font-size: 30px;
+  color: #000;
 }
 td.foot {
   border-bottom:#888 solid 1px;
@@ -109,6 +109,7 @@ td.foot {
 }
 td.normal {
   height: 30px;
+  word-wrap: break-word;
 }
 .lineC1 {
   height: 50px;
@@ -117,7 +118,7 @@ td.normal {
   padding-bottom: 3px;
   padding-left: 3px;
   font-size: 24px;
-  color: #222;
+  color: #000;
   line-height:40px;
 }
 .lineC1s {
@@ -126,6 +127,6 @@ td.normal {
   padding-top: 10px;
   padding-bottom: 3px;
   padding-left: 3px;
-  font-size: 30px;
-  color: #222;
+  font-size: 35px;
+  color: #000;
 }

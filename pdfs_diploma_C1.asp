@@ -43,11 +43,12 @@
 					k += 1;
 					arr.push('<section class="login-form-wrap3s">');
 					arr.push('<div style="position: relative;">');
-					arr.push('<div style="position: absolute; z-index:10; width:100%; padding-left:15mm;padding-top:30mm;">');
+					arr.push('<div style="position: absolute; z-index:10; width:100%; padding-left:18mm;padding-top:30mm;">');
 					arr.push('<div class="lineC1s"><span style="padding-left:15mm;">' + val["name"] + '</span><span style="padding-left:60mm;">' + val["class_startDate"] + '</span></div>');
 					arr.push('<div class="lineC1s"><span style="padding-left:20mm;">' + val["class_endDate"] + '</span></div>');
+					arr.push('<div class="lineC1s" style="padding-top:120mm;padding-left:65mm;"><span style="padding-left:20mm;">' + val["startDate"] + '</span></div>');
 					arr.push('</div>');
-					arr.push('<div style="position: absolute; z-index:10; width:100%; padding-left:240mm; padding-top:100mm;">');
+					arr.push('<div style="position: absolute; z-index:10; width:100%; padding-left:248mm; padding-top:97mm;">');
 					arr.push('	<table style="width:100%;">');
 					arr.push('		<tr>');
 					arr.push('			<td style="height:57px;"><h5>' + val["diplomaID"] + '</h5></td>');
@@ -71,14 +72,14 @@
 					arr.push('			<td style="height:57px;"><h5>' + val["job"] + '</h5></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
-					arr.push('			<td style="height:57px;"><h5>' + val["hostName"] + '</h5></td>');
+					arr.push('			<td style="height:57px; word-wrap: break-word;"><h5 style=" width:80%;">' + val["hostName"] + '</h5></td>');
 					arr.push('		</tr>');
 					arr.push('	</table>');	
 					arr.push('</div>');
 					arr.push('</div>');
 					arr.push('</section><hr style="page-break-after:always; border:none;">');	//分页
 					arr.push('<div style="width:100%; padding-left:15mm;padding-top:85mm;">');
-					arr.push('<div class="lineC1s"><span style="padding-left:12mm;">' + val["class_startDate"].substr(0,7) + '</span><span style="padding-left:15mm;">上海智能消防学校</span><span style="padding-left:15mm;">合格</span><span style="padding-left:15mm;">上海智能消防学校</span><span style="padding-left:25mm;">' + val["term"] + '年</span></div>');
+					arr.push('<div class="lineC1s"><span style="padding-left:15mm;">' + val["class_startDate"].substr(0,7) + '</span><span style="padding-left:12mm;">上海智能消防学校</span><span style="padding-left:10mm;">合格</span><span style="padding-left:10mm;">上海智能消防学校</span><span style="padding-left:20mm;">' + val["term"] + '年</span></div>');
 					arr.push('</div><hr style="page-break-after:always; border:none;">');	//分页
 				});
 				$("#cover").html(arr.join(""));

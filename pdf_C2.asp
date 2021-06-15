@@ -83,7 +83,7 @@
 				</tr>
 				<tr>
 					<td style="height:85px;"><h4>单位：</h4></td>
-					<td><h4 id="hostName"></h4></td>
+					<td style="word-wrap: break-word;"><h4 id="hostName"></h4></td>
 				</tr>
 				<tr>
 					<td style="height:85px;"><h4>职务：</h4></td>
@@ -111,10 +111,10 @@
 			</table>
 		</div>
 	</div>
-	<div style="position: absolute; z-index:30;padding-top:35mm;padding-left:75mm;">
+	<div style="position: absolute; z-index:30;padding-top:175mm;padding-left:75mm;">
 		<img id="stamp" src="" style="opacity:0.7; width:70mm;max-height:70mm;">
 	</div>
-	<div style="position: absolute; z-index:30;padding-top:185mm;padding-left:110mm;">
+	<div style="position: absolute; z-index:30;padding-top:125mm;padding-left:120mm;">
 		<img id="logo" src="" style="opacity:0.15; width:50mm;max-height:80mm;">
 	</div>
 	</div>

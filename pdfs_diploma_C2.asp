@@ -52,7 +52,7 @@
 					arr.push('<div style="position: relative;">');
 					arr.push('<div style="position: absolute; z-index:10; width:100%;">');
 					arr.push('<div style="float:left;width:100%;">');
-					arr.push('	<table style="width:100%; padding-left:18mm;padding-top:15mm;">');
+					arr.push('	<table style="width:100%; padding-left:10mm;padding-top:15mm;">');
 					arr.push('		<tr>');
 					arr.push('			<td style="height:80px;width:28%;"><h4>岗位：</h4></td>');
 					arr.push('			<td style="height:80px;width:72%;"><h4>' + val["title"] + '</h4></td>');
@@ -71,7 +71,7 @@
 					arr.push('		</tr>');
 					arr.push('		<tr>');
 					arr.push('			<td style="height:80px;"><h4>单位：</h4></td>');
-					arr.push('			<td><h4>' + val["hostName"] + '</h4></td>');
+					arr.push('			<td style="word-wrap: break-word;"><h4 style="width:85%;">' + val["hostName"] + '</h4></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
 					arr.push('			<td style="height:80px;"><h4>职务：</h4></td>');

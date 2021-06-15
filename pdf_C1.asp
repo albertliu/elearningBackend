@@ -114,7 +114,7 @@
 				</tr>
 				<tr>
 					<td style="height:45px;"><h5>单&nbsp;&nbsp;位：</h5></td>
-					<td><h5 id="hostName"></h5></td>
+					<td style="word-wrap: break-word;"><h5 id="hostName"></h5></td>
 				</tr>
 			</table>
 		</div>
