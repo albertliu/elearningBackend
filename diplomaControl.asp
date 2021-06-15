@@ -595,7 +595,7 @@ if(op == "updateGeneratePasscardInfo"){
 
 if(op == "updateGenerateDiplomaInfo"){
 	//@ID int,@classID varchar(50),@title nvarchar(100),@qty int,@startTime varchar(100),@address nvarchar(100),@notes nvarchar(500),@memo nvarchar(500),@registerID
-	sql = "exec updateGenerateDiplomaInfo " + nodeID + ",'','','" + String(Request.QueryString("printed")) + "','" + String(Request.QueryString("printDate")) + "','" + String(Request.QueryString("delivery")) + "','" + String(Request.QueryString("deliveryDate")) + "','','" + memo + "','" + currUser + "'";
+	sql = "exec updateGenerateDiplomaInfo " + nodeID + ",'','','','" + String(Request.QueryString("printed")) + "','" + String(Request.QueryString("printDate")) + "','" + String(Request.QueryString("delivery")) + "','" + String(Request.QueryString("deliveryDate")) + "','','" + memo + "','" + currUser + "'";
 	rs = conn.Execute(sql);
 	Response.Write(escape(0));
 	//Response.Write(escape(sql));

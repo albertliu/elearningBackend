@@ -155,12 +155,18 @@
 				if(r){
 					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
 					//jAlert(selList);
-					$.getJSON(uploadURL + "/outfiles/generate_diploma_byClassID?classID=" + $("#searchEnterClassID").val() + "&selList=" + selList + "&registerID=" + currUser ,function(data){
-						if(data>""){
-							jAlert("证书制作成功 <a href='" + data + "' target='_blank'>下载文件</a>");
-							getEnterList();
+					jPrompt("请输入发证日期：", currDate, "调整发证日期",function(d){
+						if(d=="" || isDate(d)){
+							$.getJSON(uploadURL + "/outfiles/generate_diploma_byClassID?classID=" + $("#searchEnterClassID").val() + "&selList=" + selList + "&startDate=" + d + "&registerID=" + currUser ,function(data){
+								if(data>""){
+									jAlert("证书制作成功 <a href='" + data + "' target='_blank'>下载文件</a>");
+									getEnterList();
+								}else{
+									jAlert("没有可供处理的数据。");
+								}
+							});
 						}else{
-							jAlert("没有可供处理的数据。");
+							jAlert("请输入发证日期。");
 						}
 					});
 				}
