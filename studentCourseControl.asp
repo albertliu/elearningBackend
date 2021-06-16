@@ -118,6 +118,15 @@ if(op == "getStudentCourseList"){
 			where = s;
 		}
 	}
+	//mark=2: 前台报名。
+	if(String(Request.QueryString("mark")) == 2){
+		s = "projectID>''";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 	//课程
 	if(String(Request.QueryString("courseID")) > "" && String(Request.QueryString("courseID")) !="undefined"){
 		s = "courseID='" + String(Request.QueryString("courseID")) + "'";
