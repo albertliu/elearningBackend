@@ -540,7 +540,7 @@
 				getNodeInfo(0,re.certNo);
 				//弹出窗口，可选择覆盖原来的照片、身份证图片
 				//替换原来的图片资料
-				showUseCardInfo();
+				//showUseCardInfo();
 				checkName(re.name);
 			}else{
 				op = 1;
@@ -553,7 +553,7 @@
 
 
 				//填充全部图片
-				replaceImgFromCard("photo,cardA,cardB");
+				//replaceImgFromCard("photo,cardA,cardB");
 			}
 		}
 		if(k==0 && op==0 && re.certNo == $("#username").val()){
@@ -561,7 +561,7 @@
 			checkName(re.name);
 			//弹出窗口，可选择覆盖原来的照片、身份证图片
 			//替换原来的图片资料
-			showUseCardInfo();
+			//showUseCardInfo();
 			k = 1;
 		}
 		if(k==0 && op==1){
@@ -573,7 +573,7 @@
 				getNodeInfo(0,re.certNo);
 				//弹出窗口，可选择覆盖原来的照片、身份证图片
 				//替换原来的图片资料
-				showUseCardInfo();
+				//showUseCardInfo();
 				checkName(re.name);
 				//if(re.name != $("#name").val()){
 					//校验姓名
@@ -587,9 +587,11 @@
 				$("#sexName").val(re.sex);
 
 				//填充全部图片
-				replaceImgFromCard("photo,cardA,cardB");
+				//replaceImgFromCard("photo,cardA,cardB");
 			}
 		}
+		//填充全部图片
+		replaceImgFromCard("photo,cardA,cardB");
 		setDeptFromRefInfo();	//读取预报名表信息
 
 		//填充身份证信息

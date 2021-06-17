@@ -35,7 +35,7 @@
 			window.parent.$.close("useCard");
 		});
 		getNodeInfo();
-		$("#btnClose").focus();
+		$("#btnClose").hide();
 	});
 
 	function getNodeInfo(){
