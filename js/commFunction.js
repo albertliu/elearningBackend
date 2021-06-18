@@ -2054,10 +2054,11 @@
 				background : '#000'
 			},
 
-			btnsbar : $.btn.OKCANCEL,
+			btnsbar : false,
 			callback : function(action,iframe){
 				if(action == 'ok'){
-					jAlert("密码修改成功。","信息提示");
+					//iframe.saveNode();
+					//jAlert("密码修改成功。","信息提示");
 		　　　　}
 		　　}
 		});

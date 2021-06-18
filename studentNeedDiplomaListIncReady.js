@@ -4,12 +4,21 @@
 	$(document).ready(function (){
 		var w1 = "status=0 and hostNo='" + currHost + "'";
 		var w2 = "status=0 and host='" + currHost + "'";
+		$("#btnStudentNeedDiplomaIssue").hide();
+		$("#btnStudentNeedDiplomaIssue1").hide();
+
 		if(currHost==""){	//公司用户只能看自己公司内容
 			getComList("searchStudentNeedDiplomaHost","hostInfo","hostNo","title","status=0 order by hostName",1);
-			getComList("searchStudentNeedDiplomaCert","v_certificateInfo","certID","certName","status=0 and host='' order by certID",1);
+			getComList("searchStudentNeedDiplomaCert","v_certificateInfo","certID","certName","status=0 and agencyID=4 and host='' order by certID",1);
+			if(checkPermission("diplomaAdd")){
+				$("#btnStudentNeedDiplomaIssue1").show();
+			}
 		}else{
 			getComList("searchStudentNeedDiplomaHost","hostInfo","hostNo","title",w1,0);
 			getComList("searchStudentNeedDiplomaCert","certificateInfo","certID","certName",w2,1);
+			if(checkPermission("diplomaAdd")){
+				$("#btnStudentNeedDiplomaIssue").show();
+			}
 		}
 		
 		$("#btnSearchStudentNeedDiploma").click(function(){
@@ -57,6 +66,36 @@
 			});
 		});
 		
+		$("#btnStudentNeedDiplomaIssue1").click(function(){
+			getSelCart("visitstockchkNeed");
+			if($("#searchStudentNeedDiplomaCert").val()==""){
+				jAlert("请选择一个证书项目。");
+				return false;
+			}
+			if(selCount==0){
+				jAlert("请选择要制作证书的清单。");
+				return false;
+			}
+			jConfirm("确定要制作证书(" + selCount + "个)吗？","确认",function(r){
+				if(r){
+					jPrompt("请输入发证日期：", currDate, "调整发证日期",function(d){
+						if(d=="" || isDate(d)){
+							$.getJSON(uploadURL + "/outfiles/generate_diploma_byClassID?certID=" + $("#searchStudentNeedDiplomaCert").val() + "&selList=" + selList + "&startDate=" + d + "&registerID=" + currUser ,function(data){
+								if(data>""){
+									jAlert("证书制作成功 <a href='" + data + "' target='_blank'>下载文件</a>");
+									getEnterList();
+								}else{
+									jAlert("没有可供处理的数据。");
+								}
+							});
+						}else{
+							jAlert("请输入发证日期。");
+						}
+					});
+				}
+			});
+		});
+		
 		$("#txtSearchStudentNeedDiploma").keypress(function(event){
 			if(event.keyCode==13){
 				if($("#txtSearchStudentNeedDiploma").val()>""){
@@ -80,10 +119,12 @@
 		sWhere = $("#txtSearchStudentNeedDiploma").val();
 		var photo = 0;
 		var refuse = 0;
+		var mark = 1;
+		if(currHost==""){mark=0;}
 		if($("#searchStudentNeedDiplomaPhoto").attr("checked")){photo = 1;}
 		if($("#searchStudentNeedDiplomaRefuse").attr("checked")){refuse = 1;}
 		//alert((sWhere) + "&kindID=" + $("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&keyID=" + photo);
-		$.get("diplomaControl.asp?op=getStudentNeedDiplomaList&where=" + escape(sWhere) + "&kindID=" + $("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&keyID=" + photo + "&refID=" + refuse + "&dk=21&times=" + (new Date().getTime()),function(data){
+		$.get("diplomaControl.asp?op=getStudentNeedDiplomaList&where=" + escape(sWhere) + "&mark=" + mark + "&kindID=" + $("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&keyID=" + photo + "&refID=" + refuse + "&dk=21&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");

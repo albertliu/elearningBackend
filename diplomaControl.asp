@@ -300,7 +300,7 @@ if(op == "getStudentNeedDiplomaList"){
 	if(where > ""){
 		where = " and " + where;
 	}
-	sql = " FROM v_studentCertList where type=1 and result=1" + where;
+	sql = " FROM v_studentCertList where type=" + String(Request.QueryString("mark")) + " and result=1" + where;
 	result = getBasketTip(sql,"");
 	ssql = "SELECT username,name,sexName,age,certName,agencyName,hostName,dept1Name,dept2Name,job,mobile,closeDate,examScore,memo" + sql + " order by name";
 	sql = "SELECT top " + basket + " *" + sql + " order by ID";
