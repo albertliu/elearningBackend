@@ -42,7 +42,6 @@
 								<input class="button" type="button" id="btnEnterPasscard" value="准考证" />&nbsp;
 								<input class="button" type="button" id="btnEnterApply" value="申报" />&nbsp;
 								<input class="button" type="button" id="btnEnterApplyBack" value="申退" />&nbsp;
-								<input class="button" type="button" id="btnEnterDiploma" value="证书" />&nbsp;
 								<input class="button" type="button" id="btnRefundList" value="退费单" />
 							</span>
 				        </form>

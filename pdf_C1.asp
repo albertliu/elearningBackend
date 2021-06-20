@@ -68,7 +68,7 @@
 		<img id="photo_filename" src="" style="width:40mm;max-height:60mm;">
 	</div>
 	<div style="text-align:center; padding-top:20px;"><h2>安全培训合格证书</h2></div>
-	<div style="position: absolute; z-index:10; width:36%; padding-left:10mm;padding-top:10mm;">
+	<div style="position: absolute; z-index:10; width:40%; padding-left:10mm;padding-top:10mm;">
 		<div class="lineC1"><span id="name" style="padding-left:10mm;"></span><span style="padding-left:5mm;">同志于</span><span id="class_startDate" style="padding-left:5mm;"></span>
 		<span>至</span><span id="class_endDate" style="padding-left:5mm;"></span><span style="padding-left:5mm;">参加</span><span id="title"></span>
 		<span>安全培训，完成了规定课程的学习，经考核合格，特发此证。</span></div>
@@ -85,8 +85,8 @@
 		<div style="float:left;width:100%; padding-top: 35mm;">
 			<table style="width:100%;">
 				<tr>
-					<td style="height:45px;width:28%;"><h5>证&nbsp;&nbsp;号：</h5></td>
-					<td width="72%"><h5 id="diplomaID"></h5></td>
+					<td style="height:45px;width:30%;"><h5>证&nbsp;&nbsp;号：</h5></td>
+					<td width="70%"><h5 id="diplomaID"></h5></td>
 				</tr>
 				<tr>
 					<td style="height:45px;"><h5>姓&nbsp;&nbsp;名：</h5></td>

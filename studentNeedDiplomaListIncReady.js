@@ -80,7 +80,7 @@
 				if(r){
 					jPrompt("请输入发证日期：", currDate, "调整发证日期",function(d){
 						if(d=="" || isDate(d)){
-							$.getJSON(uploadURL + "/outfiles/generate_diploma_byClassID?certID=" + $("#searchStudentNeedDiplomaCert").val() + "&selList=" + selList + "&startDate=" + d + "&registerID=" + currUser ,function(data){
+							$.getJSON(uploadURL + "/outfiles/generate_diploma_byClassID?ID=0&mark=0&certID=" + $("#searchStudentNeedDiplomaCert").val() + "&selList=" + selList + "&startDate=" + d + "&registerID=" + currUser ,function(data){
 								if(data>""){
 									jAlert("证书制作成功 <a href='" + data + "' target='_blank'>下载文件</a>");
 									getEnterList();
@@ -105,10 +105,6 @@
 				}
 			}
 		});
-		
-		if(!checkPermission("diplomaAdd")){
-			$("#btnStudentNeedDiplomaIssue").hide();
-		}
 
 		if(currHost>""){
 			getStudentNeedDiplomaList();
@@ -152,7 +148,9 @@
 			arr.push("<th width='10%'>结束日期</th>");
 			arr.push("<th width='6%'>照</th>");
 			arr.push("<th width='5%'>证</th>");
-			arr.push("<th width='5%'>章</th>");
+			if(currHost>""){
+				arr.push("<th width='5%'>章</th>");
+			}
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
@@ -176,7 +174,7 @@
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
 					arr.push("<td class='left'>" + ar1[4] + "</td>");
 					if(currHost==""){
-						arr.push("<td class='left'>" + ar1[8] + "</td>");
+						arr.push("<td class='left'>" + ar1[8].substr(0,6) + "</td>");
 					}else{
 						arr.push("<td class='left'>" + ar1[9] + "</td>");
 					}
@@ -191,7 +189,9 @@
 						arr.push("<td class='center'>" + imgChk + "</td>");
 					}
 					arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchkNeed'>" + "</td>");
-					arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchkStamp'>" + "</td>");
+					if(currHost>""){
+						arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchkStamp'>" + "</td>");
+					}
 					arr.push("</tr>");
 				});
 			}
@@ -208,7 +208,9 @@
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
-			arr.push("<th>&nbsp;</th>");
+			if(currHost>""){
+				arr.push("<th>&nbsp;</th>");
+			}
 			arr.push("</tr>");
 			arr.push("</tfoot>");
 			arr.push("</table>");

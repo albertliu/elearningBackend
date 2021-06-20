@@ -355,11 +355,11 @@ if(op == "getGenerateScoreNodeInfo"){
 if(op == "updateGenerateScore"){
 	result = 0;
 	if(result == 0){
-		sql = "exec updateGenerateScoreInfo " + nodeID + ",'" + item + "','" + String(Request.QueryString("certID")) + "'," + String(Request.QueryString("qty")) + ",'" + host + "','" + memo + "','" + currUser + "'";
+		sql = "exec updateGenerateScoreInfo " + nodeID + ",'" + item + "','" + String(Request.QueryString("certID")) + "','" + memo + "','" + currUser + "'";
 		execSQL(sql);
 		if(nodeID == 0){
 			//这是一个新增的记录
-			sql = "SELECT ID as maxID FROM generateScoreInfo where registerID='" + currUser + "'";
+			sql = "SELECT max(ID) as maxID FROM generateScoreInfo where registerID='" + currUser + "'";
 			rs = conn.Execute(sql);
 			nodeID = rs("maxID");
 		}

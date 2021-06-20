@@ -36,6 +36,7 @@
 		$.ajaxSetup({ 
 			async: false 
 		}); 
+		$("#startDate").click(function(){WdatePicker();});
 		setButton();
 		
 		getNodeInfo(nodeID);
@@ -47,6 +48,22 @@
 				if(r){
 					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
 					$.getJSON(uploadURL + "/outfiles/generate_diploma_byCertID?certID=" + $("#certID").val() + "&host=" + $("#host").val() + "&batchID=" + $("#ID").val() + "&selList1=" + selList + "&username=" + currUser ,function(data){
+						if(data>""){
+							jAlert("证书重新制作成功 <a href='" + data + "' target='_blank'>下载文件</a>");
+							getGenerateDiplomaList();
+						}else{
+							jAlert("没有可供处理的数据。");
+						}
+					});
+				}
+			});
+		});
+
+		$("#redo1").click(function(){
+			jConfirm("确定要重新制作证书吗？证书编号将保持不变。","确认",function(r){
+				if(r){
+					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
+					$.getJSON(uploadURL + "/outfiles/generate_diploma_byClassID?ID=" + $("#ID").val() + "&certID=" + $("#certID").val() + "&selList=" + selList + "&startDate=" + $("#startDate").val() + "&registerID=" + currUser ,function(data){
 						if(data>""){
 							jAlert("证书重新制作成功 <a href='" + data + "' target='_blank'>下载文件</a>");
 							getGenerateDiplomaList();
@@ -78,12 +95,13 @@
 				$("#host").val(ar[4]);
 				$("#firstID").val(ar[8]);
 				$("#lastID").val(ar[9]);
-				$("#title").val(ar[6]);
+				//$("#title").val(ar[6]);
 				$("#memo").val(ar[10]);
 				$("#regDate").val(ar[11]);
 				$("#registerName").val(ar[12]);
 				$("#printDate").val(ar[14]);
 				$("#deliveryDate").val(ar[16]);
+				$("#startDate").val(ar[17]);
 				if(ar[13]==1){
 					$("#printed").prop("checked",true);
 				}else{
@@ -125,7 +143,9 @@
 			arr.push("<th width='14%'>姓名</th>");
 			arr.push("<th width='30%'>部门</th>");
 			arr.push("<th width='12%'>照</th>");
-			arr.push("<th width='5%'>章</th>");
+			if(currHost>""){
+				arr.push("<th width='5%'>章</th>");
+			}
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
@@ -150,7 +170,9 @@
 					}else{
 						h = "";
 					}
-					arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='chkStamp' " + h + ">" + "</td>");
+					if(currHost>""){
+						arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='chkStamp' " + h + ">" + "</td>");
+					}
 					arr.push("</tr>");
 				});
 			}
@@ -161,7 +183,9 @@
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
-			arr.push("<th>&nbsp;</th>");
+			if(currHost>""){
+				arr.push("<th>&nbsp;</th>");
+			}
 			arr.push("</tr>");
 			arr.push("</tfoot>");
 			arr.push("</table>");
@@ -190,7 +214,7 @@
 		var delivery = 0;
 		if($("#delivery").attr("checked")){delivery = 1;}
 		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-		$.get("diplomaControl.asp?op=updateGenerateDiplomaInfo&nodeID=" + $("#ID").val() + "&printed=" + printed + "&delivery=" + delivery + "&printDate=" + $("#printDate").val() + "&deliveryDate=" + $("#delivery").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("diplomaControl.asp?op=updateGenerateDiplomaMemo&nodeID=" + $("#ID").val() + "&printed=" + printed + "&delivery=" + delivery + "&printDate=" + $("#printDate").val() + "&deliveryDate=" + $("#deliveryDate").val() + "&startDate=" + $("#startDate").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -205,12 +229,15 @@
 	
 	function setButton(){
 		$("#upload1").hide();
-		if(checkPermission("diplomaAdd")){
+		$("#redo").hide();
+		$("#redo1").hide();
+		if(currHost>"" && checkPermission("diplomaAdd")){
 			$("#upload1").show();
 			$("#redo").show();
 		}
-		if(currHost==""){
-			$("#redo").hide();
+		if(currHost=="" && checkPermission("diplomaAdd")){
+			$("#upload1").show();
+			$("#redo1").show();
 		}
 	}
 	
@@ -248,8 +275,8 @@
 				<td><input class="readOnly" type="text" id="lastID" size="25" readOnly="true" /></td>
 			</tr>
 			<tr>
-				<td align="right">公司</td>
-				<td><input class="readOnly" type="text" id="title" size="25" readOnly="true" /></td>
+				<td align="right">发证日期</td>
+				<td><input type="text" id="startDate" size="25" /></td>
 				<td align="right">资料</td>
 				<td>
 					<span id="upload1" style="margin-left:10px;border:1px solid orange;"></span>
@@ -280,8 +307,9 @@
 	
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
-  	<input class="button" type="button" id="save" name="save" value="保存" />&nbsp;
-  	<input class="button" type="button" id="redo" name="redo" value="重新生成" />&nbsp;
+  	<input class="button" type="button" id="save" value="保存" />&nbsp;
+  	<input class="button" type="button" id="redo" value="重新生成" />
+  	<input class="button" type="button" id="redo1" value="重新生成" />&nbsp;
 	<hr size="1" noshadow />
 	<div id="dimplomaListByBatch">
 	</div>

@@ -5,6 +5,7 @@
 		var commw1 = "status=0 and hostNo='" + currHost + "'";
 		if(currHost==""){	//公司用户只能看自己公司内容
 			getComList("commLoadFileHost","hostInfo","hostNo","title","status=0 order by hostName",1);
+			$("#commLoadFileHost").val("znxf");
 		}else{
 			getComList("commLoadFileHost","hostInfo","hostNo","title",commw1,0);
 		}

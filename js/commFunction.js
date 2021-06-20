@@ -255,6 +255,11 @@
 			floatModel = 3;
 			sql = "select passNo,name,username,mobile from v_passcardInfo where refID=" + p1 + " order by passNo";
 		}
+		if(id=='x03'){
+			p = "getExamerScoreList";
+			floatModel = 2;
+			sql = "select passNo,name,username,'' from v_passcardInfo where refID=" + p1 + " order by passNo";
+		}
 		setSession(p, sql);
 		setSession("dk" + id, p);
 		setSession("dk" + id + "_count", 60);

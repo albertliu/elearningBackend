@@ -39,8 +39,7 @@
 			async: false 
 		}); 
 		setButton();
-		getComList("host","hostInfo","hostNo","title","status=0 order by hostName",0);		
-		getComList("certID","certificateInfo","certID","certName","status=0 order by certID",1);		
+		getComList("certID","certificateInfo","certID","certName","status=0 and agencyID=4 order by certID",1);		
 		if(op==0){
 			getNodeInfo(nodeID);
 		}
@@ -51,8 +50,11 @@
 			op = 1;
 			setButton();
 		});
+		$("#certID").change(function(){
+			$("#item").val($("#certID").find("option:selected").text() + currDate);
+		});
 		$("#btnDel").click(function(){
-			$.messager.confirm("确认","确定要删除该单位吗？",function(r){
+			$.messager.confirm("确认","确定要删除该名单吗？",function(r){
 				if(r){
 					$.messager.prompt('信息记录', '请填写删除原因:', function(r){
 						if (r.length > 1){
@@ -69,11 +71,7 @@
 			});
 		});
 		$("#upload1").click(function(){
-			if($("#host").val()==""){
-				jAlert("请选择一个公司。");
-				return false;
-			}
-			showLoadFile("score_list",$("#ID").val(),"studentList",$("#host").val());
+			showLoadFile("score_list",$("#ID").val(),"studentList",'');
 		});
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
@@ -88,7 +86,6 @@
 				$("#ID").val(ar[0]);
 				$("#item").val(ar[1]);
 				$("#qty").val(ar[2]);
-				$("#host").val(ar[3]);
 				$("#memo").val(ar[7]);
 				$("#regDate").val(ar[8]);
 				$("#registerName").val(ar[9]);
@@ -110,20 +107,16 @@
 	}
 	
 	function saveNode(){
-		if($("#host").val()==""){
-			jAlert("请选择一个公司。");
+		if($("#certID").val()==""){
+			jAlert("请选择一个证书项目。");
 			return false;
 		}
 		if($("#item").val()==""){
 			jAlert("请填写标题。");
 			return false;
 		}
-		if($("#qty").val()=="" || $("#qty").val()==0){
-			jAlert("数量不能为0");
-			return false;
-		}
 		//alert($("#ID").val() + "&item=" + ($("#item").val()) + "&certID=" + $("#certID").val() + "&qty=" + $("#qty").val() + "&host=" + $("#host").val() + "&memo=" + ($("#memo").val()));
-		$.get("studentControl.asp?op=updateGenerateScore&nodeID=" + $("#ID").val() + "&item=" + escape($("#item").val()) + "&certID=" + $("#certID").val() + "&qty=" + $("#qty").val() + "&host=" + $("#host").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("studentControl.asp?op=updateGenerateScore&nodeID=" + $("#ID").val() + "&item=" + escape($("#item").val()) + "&certID=" + $("#certID").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -188,20 +181,15 @@
 			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
-				<td align="right">标题</td><input type="hidden" id="ID" />
-				<td><input type="text" class="mustFill" id="item" size="25" /></td>
-				<td align="right">数量</td>
-				<td><input type="text" id="qty" size="25" /></td>
-			</tr>
 			<tr>
-				<td align="right">证书</td>
+				<td align="right">鉴定项目</td>
 				<td><select id="certID" style="width:150px;"></select></td>
-				<td align="right">&nbsp;</td>
-				<td>&nbsp;</td>
+				<td align="right">场次</td><input type="hidden" id="ID" />
+				<td><input type="text" class="mustFill" id="item" size="25" /></td>
 			</tr>
 			<tr>
-				<td align="right">公司</td>
-				<td><select id="host" style="width:150px;"></select></td>
+				<td align="right">数量</td>
+				<td><input class="readOnly" readOnly="true" type="text" id="qty" size="25" /></td>
 				<td align="right">成绩单</td>
 				<td>
 					<span id="upload1" style="padding:3px;margin-left:10px;border:1px solid orange;"></span>

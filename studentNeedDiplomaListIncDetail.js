@@ -10,7 +10,8 @@
 		          			<input style="border:0px;" type="checkbox" id="searchStudentNeedDiplomaRefuse" value="" />&nbsp;拒绝申请&nbsp;&nbsp;
 						    <span style="float:right;">
 								<input class="button" type="button" id="btnStudentNeedDiplomaSel" value="全选/取消" />&nbsp;&nbsp;
-								<input class="button" type="button" id="btnStudentNeedDiplomaIssue" value="制作证书" />&nbsp;&nbsp;
+								<input class="button" type="button" id="btnStudentNeedDiplomaIssue" value="制作证书" />
+								<input class="button" type="button" id="btnStudentNeedDiplomaIssue1" value="制作证书" />&nbsp;&nbsp;
 								<input class="button" type="button" id="btnDownLoad21" onClick="outputFloat(21,'file')" value="下载" />
 							</span>
 				        </form>

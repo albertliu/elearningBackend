@@ -42,6 +42,7 @@
 		$.ajaxSetup({ 
 			async: false 
 		}); 
+		$("#startDate").click(function(){WdatePicker();});
 		setButton();
 		if(nodeID>0 && op==0){
 			getNodeInfo(nodeID);
@@ -87,6 +88,9 @@
 		$("#sign").click(function(){
 			outputExcelBySQL('x02','file',nodeID,0,0);
 		});
+		$("#score").click(function(){
+			outputExcelBySQL('x03','file',nodeID,0,0);
+		});
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -120,6 +124,7 @@
 				$("#photo").html(c);
 				$("#list").html("<a href=''>考站数据</a>");
 				$("#sign").html("<a href=''>签到表</a>");
+				$("#score").html("<a href=''>评分表</a>");
 				//getDownloadFile("generateDiplomaID");
 				setButton();
 			}else{
@@ -270,6 +275,7 @@
 					<span id="photo" style="margin-left:10px;"></span>
 					<span id="list" style="margin-left:10px;"></span>
 					<span id="sign" style="margin-left:10px;"></span>
+					<span id="score" style="margin-left:10px;"></span>
 				</td>
 			</tr>
 			<tr>

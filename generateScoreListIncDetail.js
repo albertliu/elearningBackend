@@ -4,8 +4,7 @@
 				          <input type="text" id="txtSearchGenerateScore" name="txtSearchGenerateScore" size="14" title="标题" style="background:yellow;" />
 				          <input class="button" type="button" id="btnSearchGenerateScore" value="查找">&nbsp;&nbsp;
 				          <input class="button" type="button" id="btnGenerateScoreAdd" value="添加">
-					          &nbsp;&nbsp;公司&nbsp;<select id="searchGenerateScoreHost" style="width:100px"></select>&nbsp;&nbsp;
-					          &nbsp;&nbsp;证书&nbsp;<select id="searchGenerateScoreCert" style="width:100px"></select>&nbsp;&nbsp;
+					          &nbsp;&nbsp;鉴定项目&nbsp;<select id="searchGenerateScoreCert" style="width:100px"></select>&nbsp;&nbsp;
 							  &nbsp;&nbsp;<label>导入日期</label>
 				          	<input type="text" id="searchGenerateScoreStart" size="8" title="起始日期" style="background:#AAFFAA;" />
 				          	-

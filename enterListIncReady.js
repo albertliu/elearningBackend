@@ -141,38 +141,6 @@
 			showGeneratePasscardInfo(0,selList,1,1,$("#searchEnterClassID").val(),selCount);
 		});
 		
-		$("#btnEnterDiploma").click(function(){
-			getSelCart("visitstockchkEnter");
-			if(selCount==0){
-				jAlert("请选择制作证书的名单。");
-				return false;
-			}
-			if($("#searchEnterClassID").val()==""){
-				jAlert("请选择一个班级。");
-				return false;
-			}
-			jConfirm("确定要制作证书(" + selCount + "个)吗？","确认",function(r){
-				if(r){
-					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
-					//jAlert(selList);
-					jPrompt("请输入发证日期：", currDate, "调整发证日期",function(d){
-						if(d=="" || isDate(d)){
-							$.getJSON(uploadURL + "/outfiles/generate_diploma_byClassID?classID=" + $("#searchEnterClassID").val() + "&selList=" + selList + "&startDate=" + d + "&registerID=" + currUser ,function(data){
-								if(data>""){
-									jAlert("证书制作成功 <a href='" + data + "' target='_blank'>下载文件</a>");
-									getEnterList();
-								}else{
-									jAlert("没有可供处理的数据。");
-								}
-							});
-						}else{
-							jAlert("请输入发证日期。");
-						}
-					});
-				}
-			});
-		});
-		
 		if(!checkPermission("studentAdd")){
 			$("#btnSearchEnterAdd").hide();
 		}
@@ -448,11 +416,6 @@
 					$("#enterListLongItem5").hide();
 				}
 				$("#enterListLongItem4").hide();
-			}
-			if($("#searchEnterClassID").val()>""){
-				$("#btnEnterDiploma").show();
-			}else{
-				$("#btnEnterDiploma").hide();
 			}
 		}else{
 			$("#enterListLongItem4").hide();

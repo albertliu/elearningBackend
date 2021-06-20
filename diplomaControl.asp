@@ -403,7 +403,7 @@ if(op == "getGenerateDiplomaList"){
 		//8
 		result += "|" + rs("firstID").value + "|" + rs("lastID").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value;
 		//13
-		result += "|" + rs("printed").value + "|" + rs("printDate").value + "|" + rs("delivery").value + "|" + rs("deliveryDate").value;
+		result += "|" + rs("printed").value + "|" + rs("printDate").value + "|" + rs("delivery").value + "|" + rs("deliveryDate").value + "|" + rs("startDate").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -424,7 +424,7 @@ if(op == "getGenerateDiplomaNodeInfo"){
 		//8
 		result += "|" + rs("firstID").value + "|" + rs("lastID").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value;
 		//13
-		result += "|" + rs("printed").value + "|" + rs("printDate").value + "|" + rs("delivery").value + "|" + rs("deliveryDate").value;
+		result += "|" + rs("printed").value + "|" + rs("printDate").value + "|" + rs("delivery").value + "|" + rs("deliveryDate").value + "|" + rs("startDate").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -596,6 +596,14 @@ if(op == "updateGeneratePasscardInfo"){
 if(op == "updateGenerateDiplomaInfo"){
 	//@ID int,@classID varchar(50),@title nvarchar(100),@qty int,@startTime varchar(100),@address nvarchar(100),@notes nvarchar(500),@memo nvarchar(500),@registerID
 	sql = "exec updateGenerateDiplomaInfo " + nodeID + ",'','','','" + String(Request.QueryString("printed")) + "','" + String(Request.QueryString("printDate")) + "','" + String(Request.QueryString("delivery")) + "','" + String(Request.QueryString("deliveryDate")) + "','','" + memo + "','" + currUser + "'";
+	rs = conn.Execute(sql);
+	Response.Write(escape(0));
+	//Response.Write(escape(sql));
+}
+
+if(op == "updateGenerateDiplomaMemo"){
+	//@ID int,@classID varchar(50),@title nvarchar(100),@qty int,@startTime varchar(100),@address nvarchar(100),@notes nvarchar(500),@memo nvarchar(500),@registerID
+	sql = "exec updateGenerateDiplomaMemo " + nodeID + ",'" + String(Request.QueryString("startDate")) + "','" + String(Request.QueryString("printed")) + "','" + String(Request.QueryString("printDate")) + "','" + String(Request.QueryString("delivery")) + "','" + String(Request.QueryString("deliveryDate")) + "','" + memo + "','" + currUser + "'";
 	rs = conn.Execute(sql);
 	Response.Write(escape(0));
 	//Response.Write(escape(sql));

@@ -5,10 +5,8 @@
 		var w3 = "status=0 and hostNo='" + currHost + "'";
 		var w4 = "status=0 and (kindID=0 or host='" + currHost + "')";
 		if(currHost==""){	//公司用户只能看自己公司内容
-			getComList("searchGenerateScoreHost","hostInfo","hostNo","title","status=0 order by hostName",1);
-			getComList("searchGenerateScoreCert","certificateInfo","certID","certName","status=0 order by certID",1);
+			getComList("searchGenerateScoreCert","certificateInfo","certID","certName","status=0 and agencyID=4 order by certID",1);
 		}else{
-			getComList("searchGenerateScoreHost","hostInfo","hostNo","title",w3,0);
 			getComList("searchGenerateScoreCert","certificateInfo","certID","certName",w4,1);
 		}
 		$("#searchGenerateScoreStart").click(function(){WdatePicker();});
@@ -40,7 +38,7 @@
 	function getGenerateScoreList(){
 		sWhere = $("#txtSearchGenerateScore").val();
 		//alert((sWhere) + "&kindID=" + $("#searchGenerateScoreCert").val() + "&host=" + $("#searchGenerateScoreHost").val() + "&fStart=" + $("#searchGenerateScoreStart").val() + "&fEnd=" + $("#searchGenerateScoreEnd").val());
-		$.get("studentControl.asp?op=getGenerateScoreList&where=" + escape(sWhere) + "&kindID=" + $("#searchGenerateScoreCert").val() + "&host=" + $("#searchGenerateScoreHost").val() + "&fStart=" + $("#searchGenerateScoreStart").val() + "&fEnd=" + $("#searchGenerateScoreEnd").val() + "&dk=4&times=" + (new Date().getTime()),function(data){
+		$.get("studentControl.asp?op=getGenerateScoreList&where=" + escape(sWhere) + "&kindID=" + $("#searchGenerateScoreCert").val() + "&fStart=" + $("#searchGenerateScoreStart").val() + "&fEnd=" + $("#searchGenerateScoreEnd").val() + "&dk=4&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
@@ -55,11 +53,10 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
-			arr.push("<th width='15%'>标题</th>");
+			arr.push("<th width='25%'>标题</th>");
 			arr.push("<th width='15%'>证书名称</th>");
-			arr.push("<th width='8%'>数量</th>");
-			arr.push("<th width='15%'>公司</th>");
-			arr.push("<th width='9%'>说明</th>");
+			arr.push("<th width='8%'>人数</th>");
+			arr.push("<th width='8%'>说明</th>");
 			arr.push("<th width='10%'>导入日期</th>");
 			arr.push("<th width='9%'>操作人</th>");
 			arr.push("<th width='6%'>文件</th>");
@@ -79,7 +76,6 @@
 					arr.push("<td class='link1'><a href='javascript:showGenerateScoreInfo(\"" + ar1[0] + "\",0,0,1);'>" + ar1[1] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[11] + "</td>");
 					arr.push("<td class='left'>" + ar1[2] + "</td>");
-					arr.push("<td class='left'>" + ar1[5] + "</td>");
 					arr.push("<td class='left'>" + ar1[7] + "</td>");
 					arr.push("<td class='left'>" + ar1[8] + "</td>");
 					arr.push("<td class='left'>" + ar1[9] + "</td>");
@@ -94,7 +90,6 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
-			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
