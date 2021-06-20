@@ -213,7 +213,7 @@ if(op == "getStudentCourseList"){
 		//57
 		result += "|" + rs("reexamine").value + "|" + rs("reexamineName").value + "|" + rs("examTimes").value + "|" + rs("certID").value + "|" + rs("missingItems").value + "|" + rs("shortName").value + "|" + rs("job").value;
 		//64
-		result += "|" + rs("diplomaID").value + "|" + rs("applyID").value;
+		result += "|" + rs("diplomaID").value + "|" + rs("applyID").value + "|" + rs("score").value;
 		rs.MoveNext();
 	}
 	rs.Close();

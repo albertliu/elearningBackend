@@ -242,7 +242,7 @@
 			}
 			arr.push("<th width='5%'>申</th>");
 			arr.push("<th width='5%'>准</th>");
-			arr.push("<th width='5%'>证</th>");
+			arr.push("<th width='5%'>分</th>");
 			arr.push("<th width='2%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -338,11 +338,13 @@
 					}else{
 						arr.push("<td class='center'>&nbsp;</td>");
 					}
+					/*
 					if(ar1[64]>""){
 						arr.push("<td class='center'>" + imgChk1 + "</td>");	//证书
 					}else{
 						arr.push("<td class='center'>&nbsp;</td>");
-					}
+					}*/
+					arr.push("<td class='left'>" + ar1[66] + "</td>");
 					arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchkEnter'>" + "</td>");
 					arr.push("</tr>");
 				});
