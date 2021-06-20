@@ -72,7 +72,7 @@
 					arr.push('			<td style="height:57px;"><h5>' + val["job"] + '</h5></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
-					arr.push('			<td style="height:57px; word-wrap: break-word;"><h5 style=" width:80%;">' + val["hostName"] + '</h5></td>');
+					arr.push('			<td style="height:57px; word-wrap: break-word;"><h5 style=" width:82%;">' + val["hostName"] + '</h5></td>');
 					arr.push('		</tr>');
 					arr.push('	</table>');	
 					arr.push('</div>');

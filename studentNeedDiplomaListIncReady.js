@@ -83,7 +83,7 @@
 							$.getJSON(uploadURL + "/outfiles/generate_diploma_byClassID?ID=0&mark=0&certID=" + $("#searchStudentNeedDiplomaCert").val() + "&selList=" + selList + "&startDate=" + d + "&registerID=" + currUser ,function(data){
 								if(data>""){
 									jAlert("证书制作成功 <a href='" + data + "' target='_blank'>下载文件</a>");
-									getEnterList();
+									getStudentNeedDiplomaList();
 								}else{
 									jAlert("没有可供处理的数据。");
 								}
@@ -174,9 +174,9 @@
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
 					arr.push("<td class='left'>" + ar1[4] + "</td>");
 					if(currHost==""){
-						arr.push("<td class='left'>" + ar1[8].substr(0,6) + "</td>");
+						arr.push("<td class='left' title='" + ar1[8] + "'>" + ar1[8].substr(0,6) + "</td>");
 					}else{
-						arr.push("<td class='left'>" + ar1[9] + "</td>");
+						arr.push("<td class='left' title='" + ar1[9] + "'>" + ar1[9].substr(0,4) + "</td>");
 					}
 					arr.push("<td class='left'>" + ar1[10] + "</td>");
 					arr.push("<td class='left'>" + ar1[11] + "</td>");

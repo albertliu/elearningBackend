@@ -72,6 +72,7 @@
 		});
 		$("#upload1").click(function(){
 			showLoadFile("score_list",$("#ID").val(),"studentList",'');
+			updateCount += 1;
 		});
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
