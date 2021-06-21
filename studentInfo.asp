@@ -70,6 +70,7 @@
 			showEnterInfo(0,$("#username").val(),1,1,$("#companyID").val(),0);
 		});
 		$("#save").click(function(){
+			fromCard = 0;
 			saveNode();
 		});
 		$("#close").click(function(){
@@ -624,7 +625,11 @@
 		if(op==1){
 			$("#save").focus();
 		}else{
-			saveNode();
+			fromCard = 1;
+			setTimeout(function(){
+				saveNode();
+			},1000);
+			
 		}
 	}
 	
