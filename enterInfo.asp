@@ -313,7 +313,7 @@
 		$.get("studentCourseControl.asp?op=updatePayPrice&nodeID=" + $("#payDetailID").val() + "&refID=" + $("#price").val() + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 		});
-		$.get("studentCourseControl.asp?op=updateEnterClass&nodeID=" + nodeID + "&refID=" + $("#classID").val() + "&times=" + (new Date().getTime()),function(re){
+		$.get("studentCourseControl.asp?op=updateEnterClass&nodeID=" + nodeID + "&refID=" + $("#classID").val() + "&keyID=" + $("#SNo").val() + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			getNodeInfo(nodeID);
 			printEntryform(1);
@@ -558,7 +558,7 @@
 				<br>
 				<span id="class1">所属班级&nbsp;<select id="classID" style="width:250px"></select>&nbsp;&nbsp;</span>
 				<span id="class0">所属班级&nbsp;<input class="readOnly" type="text" id="className" style="width:250px" readOnly="true" />&nbsp;&nbsp;</span>
-				编号&nbsp;<input class="readOnly" type="text" id="SNo" style="width:50px" readOnly="true" />
+				编号&nbsp;<input type="text" id="SNo" style="width:50px" />
 				<br>
 				报名表
 					<span id="entryform" style="margin-left:20px;"></span>

@@ -584,7 +584,7 @@ if(op == "updatePayPrice"){
 }	
 
 if(op == "updateEnterClass"){
-	sql = "exec updateEnterClass " + nodeID + ",'" + refID + "','" + currUser + "'";
+	sql = "exec updateEnterClass " + nodeID + ",'" + refID + "','" + keyID + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(0);
 }	
