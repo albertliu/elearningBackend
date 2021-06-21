@@ -49,11 +49,10 @@
 		}
 
 		$("#redo").click(function(){
-			getSelCart("chkStamp");
 			jConfirm("确定要重新制作准考证吗？证书编号将保持不变。","确认",function(r){
 				if(r){
 					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
-					$.getJSON(uploadURL + "/outfiles/generate_diploma_byCertID?certID=" + $("#certID").val() + "&host=" + $("#host").val() + "&batchID=" + $("#ID").val() + "&selList1=" + selList + "&username=" + currUser ,function(data){
+					$.getJSON(uploadURL + "/outfiles/generate_passcard_byClassID?mark=0&classID=" + keyID + "&ID=" + nodeID + "&selList=&title=" + $("#title").val() + "&startNo=" + $("#startNo").val() + "&startDate=" + $("#startDate").val() + "&startTime=" + $("#startTime").val() + "&address=" + $("#address").val() + "&notes=" + $("#notes").val() + "&memo=" + $("#memo").val() + "&username=" + currUser ,function(data){
 						if(data>""){
 							jAlert("证书重新制作成功 <a href='" + data + "' target='_blank'>下载文件</a>");
 							getGenerateDiplomaList();
@@ -126,6 +125,8 @@
 				$("#sign").html("<a href=''>签到表</a>");
 				$("#score").html("<a href=''>评分表</a>");
 				//getDownloadFile("generateDiplomaID");
+				nodeID = ar[0];
+				keyID = ar[1];
 				setButton();
 			}else{
 				jAlert("该信息未找到！","信息提示");
