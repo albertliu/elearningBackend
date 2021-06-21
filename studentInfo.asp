@@ -623,6 +623,8 @@
 		});
 		if(op==1){
 			$("#save").focus();
+		}else{
+			saveNode();
 		}
 	}
 	
