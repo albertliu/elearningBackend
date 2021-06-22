@@ -1163,6 +1163,37 @@
 		});
 	}
 	
+	//nodeID: ID; op: 0 浏览 1 新增; kindID:certID; refID: selList; mark: 0 不动作  1 有修改时刷新列表;
+	function showGenerateDiplomaInfo1(nodeID,kindID,refID,keyID,op,mark){
+		asyncbox.open({
+			id: "generateDiploma1",
+			url:"generateDiplomaInfo1.asp?nodeID=" + nodeID + "&kindID=" + kindID + "&keyID=" + keyID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
+			title: "发放证书",
+			width: 600,
+			height: 800,
+			cover : {
+	          //透明度
+	          opacity : 0,
+	          //背景颜色
+	           background : '#000'
+	          },
+
+			btnsbar : false,
+			callback : function(action,iframe){
+				setReturnLog("generateDiploma1",iframe.nodeID);	
+				var re = iframe.updateCount;
+				if(re>0 && nodeID==0){
+					getGenerateDiplomaList();
+				}
+				//alert(re + ":" + mark);
+				if(re>0 && mark==2){
+					//alert(iframe.getValList());
+					setObjValue("generateDiploma",iframe.getValList(),0,0);  //根据请求，返回任意个数的项目，为相应的对象赋值。objList:传入的Object列表；valList：输出的值；mark：0 不动作 1 关闭本窗口（与objList同名）; loc: 0 同级别  1 父窗体
+				}
+　　　		}
+		});
+	}
+	
 	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
 	function showGenerateStudentInfo(nodeID,refID,op,mark){
 		asyncbox.open({

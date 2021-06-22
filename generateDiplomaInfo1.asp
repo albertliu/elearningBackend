@@ -26,11 +26,17 @@
 
 <script language="javascript">
 	var nodeID = "";
+	var kindID = "";
+	var refID = "";
+	var keyID = 0;
 	var op = 0;
 	var updateCount = 0;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";
+		kindID = "<%=kindID%>";		//certID
+		refID = "<%=refID%>";		//selList
+		keyID = "<%=keyID%>";		//selCount
 		op = "<%=op%>";
 		
 		$.ajaxSetup({ 
@@ -41,34 +47,57 @@
 		$("#class_endDate").click(function(){WdatePicker();});
 		setButton();
 		
-		getNodeInfo(nodeID);
-		getDiplomaListByBatch();
+		if(op==0){
+			getNodeInfo(nodeID);
+			getDiplomaListByBatch();
+		}
 
-		$("#redo").click(function(){
-			getSelCart("chkStamp");
-			jConfirm("确定要重新制作证书吗？证书编号将保持不变。","确认",function(r){
+		$("#do").click(function(){
+			if($("#startDate").val()==""){
+				jAlert("请填写发证日期。");
+				return false;
+			}
+			if($("#class_startDate").val()==""){
+				jAlert("请填写培训起始日期。");
+				return false;
+			}
+			if($("#class_endDate").val()==""){
+				jAlert("请填写培训结束日期。");
+				return false;
+			}
+			if($("#class_endDate").val() < $("#class_startDate").val()){
+				jAlert("开始日期不得大于结束日期。");
+				return false;
+			}
+			if($("#class_endDate").val() > $("#startDate").val()){
+				jAlert("结束日期不得大于发证日期。");
+				return false;
+			}
+			jConfirm("确定要制作证书(" + keyID + "个)吗？","确认",function(r){
 				if(r){
-					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
-					$.getJSON(uploadURL + "/outfiles/generate_diploma_byCertID?certID=" + $("#certID").val() + "&host=" + $("#host").val() + "&batchID=" + $("#ID").val() + "&selList1=" + selList + "&username=" + currUser ,function(data){
-						if(data>""){
-							jAlert("证书重新制作成功 <a href='" + data + "' target='_blank'>下载文件</a>");
-							getGenerateDiplomaList();
+					$.getJSON(uploadURL + "/outfiles/generate_diploma_byClassID?ID=0&mark=0&certID=" + kindID + "&selList=" + refID + "&startDate=" + $("#startDate").val() + "&class_startDate=" + $("#class_startDate").val() + "&class_endDate=" + $("#class_endDate").val() + "&registerID=" + currUser ,function(data){
+						if(data>0){
+							jAlert("证书制作成功。");
+							nodeID = data;
+							op = 0;
+							updateCount += 1;
+							getNodeInfo(nodeID);
 						}else{
-							jAlert("没有可供处理的数据。");
+							jAlert("操作失败。");
 						}
 					});
 				}
 			});
 		});
-/*
-		$("#redo1").click(function(){
+
+		$("#redo").click(function(){
 			jConfirm("确定要重新制作证书吗？证书编号将保持不变。","确认",function(r){
 				if(r){
 					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
-					$.getJSON(uploadURL + "/outfiles/generate_diploma_byClassID?ID=" + $("#ID").val() + "&certID=" + $("#certID").val() + "&selList=" + selList + "&startDate=" + $("#startDate").val() + "&registerID=" + currUser ,function(data){
+					$.getJSON(uploadURL + "/outfiles/generate_diploma_byClassID?ID=" + $("#ID").val() + "&mark=0&certID=" + $("#certID").val() + "&selList=" + selList + "&startDate=" + $("#startDate").val() + "&class_startDate=" + $("#class_startDate").val() + "&class_endDate=" + $("#class_endDate").val() + "&registerID=" + currUser ,function(data){
 						if(data>""){
 							jAlert("证书重新制作成功 <a href='" + data + "' target='_blank'>下载文件</a>");
-							getGenerateDiplomaList();
+							updateCount += 1;
 						}else{
 							jAlert("没有可供处理的数据。");
 						}
@@ -78,7 +107,7 @@
 		});
 		$("#save").click(function(){
 			saveNode();
-		});*/
+		});
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -104,6 +133,8 @@
 				$("#printDate").val(ar[14]);
 				$("#deliveryDate").val(ar[16]);
 				$("#startDate").val(ar[17]);
+				$("#class_startDate").val(ar[18]);
+				$("#class_endDate").val(ar[19]);
 				if(ar[13]==1){
 					$("#printed").prop("checked",true);
 				}else{
@@ -119,7 +150,7 @@
 				if(ar[7] > ""){
 					c += "<a href='/users" + ar[7] + "' target='_blank'>证书打印版</a>";
 				}
-				if(c == ""){c = "&nbsp;&nbsp;还未上传";}
+				if(c == ""){c = "&nbsp;&nbsp;还未制作";}
 				$("#photo").html(c);
 				//getDownloadFile("generateDiplomaID");
 				setButton();
@@ -145,9 +176,6 @@
 			arr.push("<th width='14%'>姓名</th>");
 			arr.push("<th width='30%'>部门</th>");
 			arr.push("<th width='12%'>照</th>");
-			if(currHost>""){
-				arr.push("<th width='5%'>章</th>");
-			}
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
@@ -172,9 +200,6 @@
 					}else{
 						h = "";
 					}
-					if(currHost>""){
-						arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='chkStamp' " + h + ">" + "</td>");
-					}
 					arr.push("</tr>");
 				});
 			}
@@ -185,9 +210,6 @@
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
-			if(currHost>""){
-				arr.push("<th>&nbsp;</th>");
-			}
 			arr.push("</tr>");
 			arr.push("</tfoot>");
 			arr.push("</table>");
@@ -206,17 +228,32 @@
 	}
 	
 	function saveNode(){
-		/*
-		if($("#memo").val().length < 3){
-			jAlert("备注信息请至少填写3个字的内容。");
+		if($("#startDate").val()==""){
+			jAlert("请填写发证日期。");
 			return false;
-		}*/
+		}
+		if($("#class_startDate").val()==""){
+			jAlert("请填写培训起始日期。");
+			return false;
+		}
+		if($("#class_endDate").val()==""){
+			jAlert("请填写培训结束日期。");
+			return false;
+		}
+		if($("#class_endDate").val() < $("#class_startDate").val()){
+			jAlert("开始日期不得大于结束日期。");
+			return false;
+		}
+		if($("#class_endDate").val() > $("#startDate").val()){
+			jAlert("结束日期不得大于发证日期。");
+			return false;
+		}
 		var printed = 0;
 		if($("#printed").attr("checked")){printed = 1;}
 		var delivery = 0;
 		if($("#delivery").attr("checked")){delivery = 1;}
 		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-		$.get("diplomaControl.asp?op=updateGenerateDiplomaMemo&nodeID=" + $("#ID").val() + "&printed=" + printed + "&delivery=" + delivery + "&printDate=" + $("#printDate").val() + "&deliveryDate=" + $("#deliveryDate").val() + "&startDate=" + $("#startDate").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("diplomaControl.asp?op=updateGenerateDiplomaMemo&nodeID=" + $("#ID").val() + "&printed=" + printed + "&delivery=" + delivery + "&printDate=" + $("#printDate").val() + "&deliveryDate=" + $("#deliveryDate").val() + "&startDate=" + $("#startDate").val() + "&class_startDate=" + $("#class_startDate").val() + "&class_endDate=" + $("#class_endDate").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -232,14 +269,21 @@
 	function setButton(){
 		$("#upload1").hide();
 		$("#redo").hide();
+		$("#do").hide();
 		$("#save").hide();
-		if(currHost>"" && checkPermission("diplomaAdd")){
+		if(op == 1){
+			$("#do").show();
+			setEmpty();
+		}
+		if(op==0 && checkPermission("diplomaAdd")){
 			$("#upload1").show();
 			$("#redo").show();
+			$("#save").show();
 		}
 	}
 	
 	function setEmpty(){
+		$("#startDate").val(currDate);
 	}
 	
 	function getUpdateCount(){
@@ -273,8 +317,14 @@
 				<td><input class="readOnly" type="text" id="lastID" size="25" readOnly="true" /></td>
 			</tr>
 			<tr>
+				<td align="right">培训开始</td>
+				<td><input class="mustFill" type="text" id="class_startDate" size="25" /></td>
+				<td align="right">培训结束</td>
+				<td><input class="mustFill" type="text" id="class_endDate" size="25" /></td>
+			</tr>
+			<tr>
 				<td align="right">发证日期</td>
-				<td><input type="text" id="startDate" size="25" /></td>
+				<td><input class="mustFill" type="text" id="startDate" size="25" /></td>
 				<td align="right">资料</td>
 				<td>
 					<span id="upload1" style="margin-left:10px;border:1px solid orange;"></span>
@@ -306,7 +356,8 @@
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
   	<input class="button" type="button" id="save" value="保存" />&nbsp;
-  	<input class="button" type="button" id="redo" value="重新生成" />&nbsp;
+  	<input class="button" type="button" id="redo" value="重新生成" />
+  	<input class="button" type="button" id="do" value="生成证书" />&nbsp;
 	<hr size="1" noshadow />
 	<div id="dimplomaListByBatch">
 	</div>

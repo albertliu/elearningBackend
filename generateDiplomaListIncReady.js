@@ -72,7 +72,11 @@
 					i += 1;
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
-					arr.push("<td class='link1'><a href='javascript:showGenerateDiplomaInfo(\"" + ar1[0] + "\",0,0,1);'>" + ar1[2] + "</a></td>");
+					if(currHost>""){
+						arr.push("<td class='link1'><a href='javascript:showGenerateDiplomaInfo(\"" + ar1[0] + "\",0,0,1);'>" + ar1[2] + "</a></td>");
+					}else{
+						arr.push("<td class='link1'><a href='javascript:showGenerateDiplomaInfo1(\"" + ar1[0] + "\",0,0,0,0,1);'>" + ar1[2] + "</a></td>");
+					}
 					arr.push("<td class='left'>" + ar1[3] + "</td>");
 					arr.push("<td class='left'>" + ar1[8] + " ~ " + ar1[9] + "</td>");
 					arr.push("<td class='left'>" + ar1[14] + "</td>");

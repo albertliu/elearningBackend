@@ -76,6 +76,7 @@
 				jAlert("请选择要制作证书的清单。");
 				return false;
 			}
+			/*
 			jConfirm("确定要制作证书(" + selCount + "个)吗？","确认",function(r){
 				if(r){
 					jPrompt("请输入发证日期：", currDate, "调整发证日期",function(d){
@@ -93,7 +94,8 @@
 						}
 					});
 				}
-			});
+			});*/
+			showGenerateDiplomaInfo1(0,$("#searchStudentNeedDiplomaCert").val(),selList,selCount,1,1);
 		});
 		
 		$("#txtSearchStudentNeedDiploma").keypress(function(event){
@@ -221,7 +223,8 @@
 				"bFilter": true,
 				"bPaginate": true,
 				"bLengthChange": true,
-				"iDisplayLength": 100,
+				"aLengthMenu":[15,30,50,100,500],
+				"iDisplayLength": 500,
 				"bInfo": true,
 				"aoColumnDefs": []
 			});
