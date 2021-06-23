@@ -281,7 +281,7 @@ if(op == "getStudentNeedDiplomaList"){
 		}
 	}
 	if(fStart > ""){
-		s = "testDate>='" + fStart + "'";
+		s = "c.startDate>='" + fStart + "'";
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
@@ -289,7 +289,7 @@ if(op == "getStudentNeedDiplomaList"){
 		}
 	}
 	if(fEnd > ""){
-		s = "testDate<='" + fEnd + "'";
+		s = "c.startDate<='" + fEnd + "'";
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
