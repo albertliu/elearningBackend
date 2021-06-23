@@ -284,6 +284,8 @@
 	
 	function setEmpty(){
 		$("#startDate").val(currDate);
+		$("#class_startDate").val(currDate);
+		$("#class_endDate").val(currDate);
 	}
 	
 	function getUpdateCount(){
