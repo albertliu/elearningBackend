@@ -255,7 +255,7 @@ if(op == "getStudentNeedDiplomaList"){
 	}
 	//如果有公司
 	if(host > ""){ // 
-		s = "host='" + host + "'";
+		s = "a.host='" + host + "'";
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
@@ -264,7 +264,7 @@ if(op == "getStudentNeedDiplomaList"){
 	}
 	//如果有分类(证书类型)
 	if(kindID > ""){ // 
-		s = "certID='" + kindID + "'";
+		s = "a.certID='" + kindID + "'";
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
@@ -342,8 +342,9 @@ if(op == "getStudentNeedDiplomaList"){
 		rs.MoveNext();
 	}
 	rs.Close();
-	
+	/**/
 	Session(op) = ssql;
+	//result = sql;
 	Response.Write(escape(result));
 }	
 
