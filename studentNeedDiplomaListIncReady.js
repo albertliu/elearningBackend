@@ -6,6 +6,8 @@
 		var w2 = "status=0 and host='" + currHost + "'";
 		$("#btnStudentNeedDiplomaIssue").hide();
 		$("#btnStudentNeedDiplomaIssue1").hide();
+		$("#searchStudentNeedDiplomaStartDate").click(function(){WdatePicker();});
+		$("#searchStudentNeedDiplomaEndDate").click(function(){WdatePicker();});
 
 		if(currHost==""){	//公司用户只能看自己公司内容
 			getComList("searchStudentNeedDiplomaHost","hostInfo","hostNo","title","status=0 order by hostName",1);
@@ -37,6 +39,9 @@
 		
 		$("#searchStudentNeedDiplomaCert").change(function(){
 			getStudentNeedDiplomaList();
+			if($("#searchStudentNeedDiplomaCert").val()>""){
+				getComList("searchStudentNeedDiplomaClassID","v_classInfo","classID","className","certID='" + $("#searchStudentNeedDiplomaCert").val() + "' order by ID desc",1);
+			}
 		});
 		
 		$("#btnStudentNeedDiplomaIssue").click(function(){
@@ -140,14 +145,14 @@
 			arr.push("<th width='11%'>身份证</th>");
 			arr.push("<th width='8%'>姓名</th>");
 			arr.push("<th width='7%'>年龄</th>");
-			arr.push("<th width='13%'>证书名称</th>");
+			arr.push("<th width='15%'>证书名称</th>");
 			if(currHost==""){
-				arr.push("<th width='12%'>公司</th>");
+				arr.push("<th width='15%'>班级</th>");
+				arr.push("<th width='10%'>考试日期</th>");
 			}else{
-				arr.push("<th width='12%'>部门</th>");
+				arr.push("<th width='15%'>部门</th>");
+				arr.push("<th width='10%'>结束日期</th>");
 			}
-			arr.push("<th width='8%'>工种</th>");
-			arr.push("<th width='10%'>结束日期</th>");
 			arr.push("<th width='6%'>照</th>");
 			arr.push("<th width='5%'>证</th>");
 			if(currHost>""){
@@ -176,12 +181,12 @@
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
 					arr.push("<td class='left'>" + ar1[4] + "</td>");
 					if(currHost==""){
-						arr.push("<td class='left' title='" + ar1[8] + "'>" + ar1[8].substr(0,6) + "</td>");
+						arr.push("<td class='left'>" + ar1[15] + "</td>");
+						arr.push("<td class='left'>" + ar1[16] + "</td>");
 					}else{
-						arr.push("<td class='left' title='" + ar1[9] + "'>" + ar1[9].substr(0,4) + "</td>");
+						arr.push("<td class='left'>" + ar1[9] + "</td>");
+						arr.push("<td class='left'>" + ar1[11] + "</td>");
 					}
-					arr.push("<td class='left'>" + ar1[10] + "</td>");
-					arr.push("<td class='left'>" + ar1[11] + "</td>");
 					if($("#searchStudentNeedDiplomaShowPhoto").attr("checked")){
 						imgChk = "<img src='users" + ar1[13] + "' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'>";
 					}
@@ -200,7 +205,6 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
-			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");

@@ -14,6 +14,12 @@
 								<input class="button" type="button" id="btnStudentNeedDiplomaIssue1" value="制作证书" />&nbsp;&nbsp;
 								<input class="button" type="button" id="btnDownLoad21" onClick="outputFloat(21,'file')" value="下载" />
 							</span>
+							<br/>
+							<hr style="margin:3px 0;" />
+							<span>
+								班级&nbsp;<select id="searchStudentNeedDiplomaClassID" style="width:180px"></select>&nbsp;&nbsp;
+							    &nbsp;考试日期&nbsp;<input type="text" id="searchStudentNeedDiplomaStartDate" size="8" />-<input type="text" id="searchStudentNeedDiplomaEndDate" size="8" />
+							</span>
 				        </form>
 					</div>
 					<hr size="1" noshadow />

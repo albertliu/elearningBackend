@@ -271,6 +271,31 @@ if(op == "getStudentNeedDiplomaList"){
 			where = s;
 		}
 	}
+	//如果有班级
+	if(String(Request.QueryString("classID")) > "" && String(Request.QueryString("classID")) != "null" && String(Request.QueryString("classID")) !="undefined"){ // 
+		s = "b.classID='" + String(Request.QueryString("classID")) + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	if(fStart > ""){
+		s = "testDate>='" + fStart + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	if(fEnd > ""){
+		s = "testDate<='" + fEnd + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 	//如果缺照片
 	if(keyID == 1){ // 
 		s = "photo_filename=''";
@@ -300,10 +325,10 @@ if(op == "getStudentNeedDiplomaList"){
 	if(where > ""){
 		where = " and " + where;
 	}
-	sql = " FROM v_studentCertList where type=" + String(Request.QueryString("mark")) + " and result=1" + where;
+	sql = " FROM v_studentCertList a INNER JOIN studentCourseList b ON a.ID = b.refID LEFT OUTER JOIN  dbo.classInfo d ON b.classID = d.classID LEFT OUTER JOIN v_generatePasscardInfo c ON b.passcardID = c.ID where a.type=" + String(Request.QueryString("mark")) + " and a.result=1" + where;
 	result = getBasketTip(sql,"");
-	ssql = "SELECT username,name,sexName,age,certName,agencyName,hostName,dept1Name,dept2Name,job,mobile,closeDate,examScore,memo" + sql + " order by name";
-	sql = "SELECT top " + basket + " *" + sql + " order by ID";
+	ssql = "SELECT a.username,name,sexName,age,certName,agencyName,hostName,dept1Name,dept2Name,job,mobile,closeDate,examScore,a.memo" + sql + " order by name";
+	sql = "SELECT top " + basket + " a.*, isnull(d.className,'') as className,isnull(b.classID,'') as classID, isnull(c.startDate,'') as testDate" + sql + " order by a.ID";
 	
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
@@ -312,6 +337,8 @@ if(op == "getStudentNeedDiplomaList"){
 		result += "|" + rs("sexName").value + "|" + rs("age").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("dept1Name").value;
 		//10
 		result += "|" + rs("job").value + "|" + rs("closeDate").value + "|" + rs("agencyName").value + "|" + rs("photo_filename").value + "|" + rs("student_kindID").value;
+		//15
+		result += "|" + rs("className").value + "|" + rs("testDate").value + "|" + rs("classID").value;
 		rs.MoveNext();
 	}
 	rs.Close();

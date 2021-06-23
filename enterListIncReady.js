@@ -92,6 +92,12 @@
 			setEnterItem();
 		});
 		
+		$("#searchEnterCourseID").change(function(){
+			if($("#searchEnterCourseID").val()>""){
+				getComList("searchEnterClassID","v_classInfo","classID","className","certID in(select certID from courseInfo where courseID='" + $("#searchEnterCourseID").val() + "') order by ID desc",1);
+			}
+		});
+		
 		$("#searchEnterShowPhoto").change(function(){
 			setEnterItem();
 		});
