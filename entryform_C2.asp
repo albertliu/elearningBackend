@@ -44,7 +44,7 @@
 		$("#print").click(function(){
 			resumePrint();
 		});
-		getNeed2know(nodeID);
+		//getNeed2know(nodeID);
 		getNodeInfo(nodeID, refID);
 });
 
