@@ -187,6 +187,12 @@
 			//}
 		});
 		
+		$("#compress").click(function(){
+			$.getJSON(uploadURL + "/outfiles/compressImages?path=users/upload/students/photos",function(data){
+				jAlert(data);
+			});
+		});
+		
 		window.setInterval(function () {
 			chkUserActive();
 			//refreshMsg();
@@ -220,6 +226,9 @@
 			deleteTab("视频管理");
 			deleteTab("课件管理");
 			deleteTab("知识点");
+		}
+		if(currUser != "desk."){
+			$("#compress").hide();
 		}
 		
 	    refreshMsg();
@@ -351,6 +360,7 @@
 								<div>当前用户：<span style="color:gray;" id="currUser"></span></div>
 								<div style="align:center; padding:10px;"><input class="button" type="button" id="changePasswd" value=" 修改密码 "></div>
 								<div style="align:center; padding:10px;"><input class="button" type="button" id="signOut" value=" 退出 "></div>
+								<div style="align:center; padding:10px;"><input class="button" type="button" id="compress" value=" 压缩照片 "></div>
 							</div>
 						</div>
 						<div id="minialDiv" style="width:85%;float:right;">

@@ -16,7 +16,7 @@
 							</span>
 							<br/>
 							<hr style="margin:3px 0;" />
-							<span>
+							<span id="searchStudentNeedDiplomaItem1">
 								班级&nbsp;<select id="searchStudentNeedDiplomaClassID" style="width:180px"></select>&nbsp;&nbsp;
 							    &nbsp;考试日期&nbsp;<input type="text" id="searchStudentNeedDiplomaStartDate" size="8" />-<input type="text" id="searchStudentNeedDiplomaEndDate" size="8" />
 							</span>

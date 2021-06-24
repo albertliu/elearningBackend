@@ -21,6 +21,7 @@
 			if(checkPermission("diplomaAdd")){
 				$("#btnStudentNeedDiplomaIssue").show();
 			}
+			$("#searchStudentNeedDiplomaItem1").hide();
 		}
 		
 		$("#btnSearchStudentNeedDiploma").click(function(){
