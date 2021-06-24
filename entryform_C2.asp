@@ -31,7 +31,6 @@
 	var refID = 0;
 	var updateCount = 1;
 	<!--#include file="js/commFunction.js"-->
-	<!--#include file="need2know.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";		//enterID
 		refID = "<%=refID%>";		//username
@@ -167,7 +166,6 @@
 			<div style='margin: 12px;text-align:left; width:95%;'><p style='font-size:1.2em;'>&bull; 提交1张2寸免冠彩色照片。</p></div>
 			<div style='margin: 12px;text-align:right; width:95%; padding-right:100px;'><p style='font-size:1.3em;'>学员签名：</p></div>
 			<div style='margin: 12px;text-align:right; width:95%;'><p id="date" style='font-size:1.3em;'></p></div>
-			<div id="needCover"></div>
 		</div>
 	</div>
   </div>
