@@ -358,7 +358,7 @@
 	
 	function setClassList(id){
 		$("#classID").empty();
-		getComList("classID","[dbo].[getClassListByProject]('" + id + "')","classID","className"," status=0 order by classID desc",1);
+		getComList("classID","[dbo].[getClassListByProject]('" + id + "')","classID","className"," 1=1 order by classID desc",1);
 	}
 	
 	function generateEntryForm(i){
