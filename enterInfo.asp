@@ -244,8 +244,8 @@
 				}
 				if(c1 == ""){c1 = "&nbsp;&nbsp;还未生成";}
 				//$("#entryform").html(c1);
-				if(ar[27]==""){
-					getComList("classID","[dbo].[getClassListByProject]('" + id + "')","classID","className"," status=0 order by classID desc",1);
+				if(ar[27]=="" && ar[26]>""){
+					getComList("classID","[dbo].[getClassListByProject]('" + ar[26] + "')","classID","className"," status=0 order by classID desc",1);
 				}
 
 				setButton();
