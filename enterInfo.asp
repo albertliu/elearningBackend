@@ -244,6 +244,9 @@
 				}
 				if(c1 == ""){c1 = "&nbsp;&nbsp;还未生成";}
 				//$("#entryform").html(c1);
+				if(ar[27]==""){
+					getComList("classID","[dbo].[getClassListByProject]('" + id + "')","classID","className"," status=0 order by classID desc",1);
+				}
 
 				setButton();
 			}else{
@@ -358,7 +361,11 @@
 	
 	function setClassList(id){
 		$("#classID").empty();
-		getComList("classID","[dbo].[getClassListByProject]('" + id + "')","classID","className"," 1=1 order by classID desc",1);
+		if(op==1){
+			getComList("classID","[dbo].[getClassListByProject]('" + id + "')","classID","className"," status=0 order by classID desc",1);
+		}else{
+			getComList("classID","[dbo].[getClassListByProject]('" + id + "')","classID","className"," 1=1 order by classID desc",1);
+		}
 	}
 	
 	function generateEntryForm(i){
