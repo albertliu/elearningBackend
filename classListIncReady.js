@@ -70,7 +70,7 @@
 					arr.push("<td class='left'>" + ar1[11] + "</td>");
 					arr.push("<td class='left'>" + ar1[9] + "</td>");
 					arr.push("<td class='left'>" + ar1[7] + "</td>");
-					arr.push("<td class='left'></td>");
+					arr.push("<td class='left'>" + ar1[20] + "</td>");
 					arr.push("<td class='left'></td>");
 					arr.push("<td class='left'></td>");
 					arr.push("<td class='left'></td>");

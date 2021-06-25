@@ -51,7 +51,7 @@ if(op == "getClassList"){
 		//8
 		result += "|" + rs("adviserID").value + "|" + rs("adviserName").value + "|" + rs("dateStart").value + "|" + rs("dateEnd").value + "|" + rs("classroom").value;
 		//13
-		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("className").value + "|" + rs("timetable").value + "|" + rs("phone").value;
+		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("className").value + "|" + rs("timetable").value + "|" + rs("phone").value + "|" + rs("qty").value;
 		rs.MoveNext();
 	}
 /**/
@@ -68,7 +68,7 @@ if(op == "getNodeInfo"){
 		//8
 		result += "|" + rs("adviserID").value + "|" + rs("adviserName").value + "|" + rs("dateStart").value + "|" + rs("dateEnd").value + "|" + rs("classroom").value;
 		//13
-		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("className").value + "|" + rs("timetable").value + "|" + rs("phone").value;
+		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("className").value + "|" + rs("timetable").value + "|" + rs("phone").value + "|" + rs("qty").value;
 		execSQL(sql);
 	}
 	rs.Close();
