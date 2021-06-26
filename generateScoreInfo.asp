@@ -218,6 +218,7 @@
   	<input class="button" type="button" id="btnSave" value="保存" />&nbsp;
   	<input class="button" type="button" id="btnAdd" value="添加" />&nbsp;
   	<input class="button" type="button" id="btnDel" value="删除" />&nbsp;
+  	<input class="button" type="button" id="btnSendMsg" value="成绩通知" />&nbsp;
   </div>
 </div>
 </body>

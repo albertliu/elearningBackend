@@ -591,6 +591,8 @@ if(op == "getGeneratePasscardList"){
 		result += "%%" + rs("ID").value + "|" + rs("classID").value + "|" + rs("className").value + "|" + rs("title").value + "|" + rs("qty").value + "|" + rs("startTime").value + "|" + rs("address").value;
 		//7
 		result += "|" + rs("notes").value + "|" + rs("startDate").value + "|" + rs("filename").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value + "|" + rs("startNo").value;
+		//14
+		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -607,6 +609,8 @@ if(op == "getGeneratePasscardNodeInfo"){
 		result = rs("ID").value + "|" + rs("classID").value + "|" + rs("className").value + "|" + rs("title").value + "|" + rs("qty").value + "|" + rs("startTime").value + "|" + rs("address").value;
 		//7
 		result += "|" + rs("notes").value + "|" + rs("startDate").value + "|" + rs("filename").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value + "|" + rs("startNo").value;
+		//14
+		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

@@ -63,6 +63,22 @@
 				}
 			});
 		});
+
+		$("#sendMsg").click(function(){
+			jConfirm("确定向这批考生发送考试通知吗？","确认",function(r){
+				if(r){
+					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
+					$.getJSON(uploadURL + "/public/send_message_exam?SMS=1&batchID=" + nodeID + "&registerID=" + currUser ,function(data){
+						if(data>""){
+							jAlert("通知发送成功。");
+							getNodeInfo(nodeID);
+						}else{
+							jAlert("没有可供处理的数据。");
+						}
+					});
+				}
+			});
+		});
 		$("#save").click(function(){
 			saveNode();
 		});
@@ -115,6 +131,9 @@
 				$("#regDate").val(ar[11]);
 				$("#registerName").val(ar[12]);
 				$("#startNo").val(ar[13]);
+				$("#send").val(ar[14]);
+				$("#sendDate").val(ar[15]);
+				$("#senderName").val(ar[16]);
 				var c = "";
 				if(ar[9] > ""){
 					c += "<a href='/users" + ar[9] + "' target='_blank'>准考证</a>";
@@ -207,6 +226,7 @@
 		$("#save").hide();
 		$("#del").hide();
 		$("#doPasscard").hide();
+		$("#sendMsg").hide();
 		$("#startNo").prop("disabled",true);
 		if(op==1){
 			$("#doPasscard").show();
@@ -219,6 +239,7 @@
 				$("#save").show();
 				$("#del").show();
 				$("#doPasscard").show();
+				$("#sendMsg").show();
 				$("#doPasscard").val("重新制作");
 			}
 		}
@@ -293,6 +314,14 @@
 				<td align="right">制作人</td>
 				<td><input class="readOnly" type="text" id="registerName" size="25" readOnly="true" /></td>
 			</tr>
+			<tr>
+				<td align="right">通知</td>
+				<td colspan="5">
+					次数&nbsp;<input class="readOnly" type="text" id="send" size="2" readOnly="true" />&nbsp;&nbsp;
+					日期&nbsp;<input class="readOnly" type="text" id="sendDate" size="6" readOnly="true" />&nbsp;&nbsp;
+					发送人&nbsp;<input class="readOnly" type="text" id="senderName" size="5" readOnly="true" />&nbsp;&nbsp;
+				</td>
+			</tr>
 			</table>
 			</form>
 			</div>
@@ -304,6 +333,7 @@
   	<input class="button" type="button" id="save" value="保存" />&nbsp;
   	<input class="button" type="button" id="del" value="删除" />&nbsp;
   	<input class="button" type="button" id="doPasscard" value="" />&nbsp;
+  	<input class="button" type="button" id="sendMsg" value="发送通知" />&nbsp;
   </div>
 </div>
 </body>
