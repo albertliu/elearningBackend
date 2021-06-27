@@ -447,7 +447,7 @@
 							</div>
 						</div>
 						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView10',Array("报名记录","收费记录","发票管理","准考证","日结报表"),0,960,400);
+							initTabs('dhtmlgoodies_tabView10',Array("报名记录","收费记录","发票管理","考试管理","日结报表"),0,960,400);
 						</script>
 					</div>
 					

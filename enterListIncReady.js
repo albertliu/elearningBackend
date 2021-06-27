@@ -1,6 +1,7 @@
 ﻿	var enterListLong = 0;		//0: 标准栏目  1：短栏目
 	var enterListChk = 0;
 	var enterProjectStatus = 0;
+	var examer_cart_memo = "";
 
 	$(document).ready(function (){
 		getComList("searchEnterHost","hostInfo","hostNo","title","status=0 order by hostName",1);
@@ -182,6 +183,33 @@
 		});
 		$("#btnEnterCheck").hide();
 		//getEnterList();
+		$("#cart_examer").click(function(){
+			if(checkPermission("studentAdd")){
+				showCartInfo("examer",0,0,1);
+			}
+		});
+
+		$("#cart_examer_img").click(function(){
+			if(checkPermission("studentAdd")){
+				showCartInfo("examer",0,0,1);
+			}
+		});
+		
+		$("#btnEnterCartAdd").click(function(){
+			getSelCart("visitstockchkEnter");
+			if(selCount==0){
+				jAlert("请选择要加入购物车的人员。");
+				return false;
+			}
+			jPrompt('添加备注:', examer_cart_memo, '购物车备注', function (r) {
+				if(examer_cart_memo != r){
+					examer_cart_memo = r;
+				}
+				add2Cart("visitstockchkEnter","examer",r);
+			});
+		});
+		//getExamerList();
+		setCartNum("examer");
 	});
 
 	function getEnterList(){

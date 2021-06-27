@@ -20,6 +20,14 @@
 				}
 			}
 		});
+		
+		if(!checkPermission("studentAdd")){
+			$("#btnSearchGeneratePasscardAdd").hide();
+		}
+		
+		$("#btnSearchGeneratePasscardAdd").click(function(){
+			showGeneratePasscardInfo(0,0,1,1);
+		});
 		//getGeneratePasscardList();
 	});
 
@@ -41,14 +49,14 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
-			arr.push("<th width='10%'>班级编号</th>");
-			arr.push("<th width='20%'>班级名称</th>");
-			arr.push("<th width='8%'>数量</th>");
-			arr.push("<th width='10%'>起始编号</th>");
+			arr.push("<th width='20%'>考试场次</th>");
+			arr.push("<th width='8%'>人数</th>");
+			arr.push("<th width='10%'>状态</th>");
+			arr.push("<th width='10%'>通知</th>");
 			arr.push("<th width='20%'>考试日期</th>");
 			arr.push("<th width='10%'>制作日期</th>");
 			arr.push("<th width='8%'>制作</th>");
-			arr.push("<th width='8%'>文件</th>");
+			arr.push("<th width='10%'>准考证</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
@@ -57,16 +65,21 @@
 				var c = 0;
 				var h = "";
 				var imgChk = "<img src='images/printer1.png'>";
+				var imgChk1 = "<img src='images/green_check.png'>";
 				$.each(ar,function(iNum,val){
 					var ar1 = new Array();
 					ar1 = val.split("|");
 					i += 1;
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
-					arr.push("<td class='link1'><a href='javascript:showGeneratePasscardInfo(" + ar1[0] + ",0,0,1,\"\");'>" + ar1[1] + "</a></td>");
-					arr.push("<td class='left'>" + ar1[2] + "</td>");
+					arr.push("<td class='link1'><a href='javascript:showGeneratePasscardInfo(" + ar1[0] + ",0,0,1);'>" + ar1[3] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[4] + "</td>");
-					arr.push("<td class='left'>" + ar1[13] + "</td>");
+					if(ar1[17]==0){
+						arr.push("<td class='center'>&nbsp;</td>");
+					}else{
+						arr.push("<td class='center'>" + ar1[18] + "</td>");
+					}
+					arr.push("<td class='left'>" + ar1[15] + "</td>");
 					arr.push("<td class='left'>" + ar1[8] + "  " + ar1[5] + "</td>");
 					arr.push("<td class='left'>" + ar1[11] + "</td>");
 					arr.push("<td class='left'>" + ar1[12] + "</td>");

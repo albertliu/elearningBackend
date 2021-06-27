@@ -27,42 +27,25 @@
 <script language="javascript">
 	var nodeID = "";
 	var refID = "";
-	var keyID = "";
-	var kindID = 0;
 	var op = 0;
 	var updateCount = 0;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";		//
-		refID = "<%=refID%>";		//selList
-		kindID = "<%=kindID%>";		//count
-		keyID = "<%=keyID%>";		//classID
+		refID = "<%=refID%>";		//
 		op = "<%=op%>";
 		
 		$.ajaxSetup({ 
 			async: false 
 		}); 
+		getComList("certID","certificateInfo","certID","shortName","status=0 and type=0 order by certID",1);
+		getDicList("examResult","s_status",1);
+		getDicList("statusNo","s_resit",1);
 		$("#startDate").click(function(){WdatePicker();});
 		setButton();
 		if(nodeID>0 && op==0){
 			getNodeInfo(nodeID);
 		}
-
-		$("#redo").click(function(){
-			jConfirm("确定要重新制作准考证吗？证书编号将保持不变。","确认",function(r){
-				if(r){
-					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
-					$.getJSON(uploadURL + "/outfiles/generate_passcard_byClassID?mark=0&classID=" + keyID + "&ID=" + nodeID + "&selList=&title=" + $("#title").val() + "&startNo=" + $("#startNo").val() + "&startDate=" + $("#startDate").val() + "&startTime=" + $("#startTime").val() + "&address=" + $("#address").val() + "&notes=" + $("#notes").val() + "&memo=" + $("#memo").val() + "&username=" + currUser ,function(data){
-						if(data>""){
-							jAlert("证书重新制作成功 <a href='" + data + "' target='_blank'>下载文件</a>");
-							getGenerateDiplomaList();
-						}else{
-							jAlert("没有可供处理的数据。");
-						}
-					});
-				}
-			});
-		});
 
 		$("#sendMsg").click(function(){
 			jConfirm("确定向这批考生发送考试通知吗？","确认",function(r){
@@ -83,7 +66,11 @@
 			saveNode();
 		});
 		$("#del").click(function(){
-			jConfirm('你确定要删除这批准考证信息吗?', '确认对话框', function(r) {
+			if($("#qty").val()>0){
+				jAlert("该场次还有考生，请将其清空后再删除。");
+				return false;
+			}
+			jConfirm('你确定要删除考试信息吗?', '确认对话框', function(r) {
 				if(r){
 					$.get("diplomaControl.asp?op=delGeneratePasscard&nodeID=" + nodeID + "&&times=" + (new Date().getTime()),function(data){
 						jAlert("成功删除！","信息提示");
@@ -93,6 +80,15 @@
 					});
 				}
 			});
+		});
+		$("#close").click(function(){
+			if(confirm('确定要结束本场考试吗?')){
+				$.get("diplomaControl.asp?op=closeGeneratePasscard&nodeID=" + $("#ID").val() + "&times=" + (new Date().getTime()),function(data){
+					jAlert("已关闭考试","信息提示");
+					getNodeInfo(nodeID);
+					updateCount += 1;
+				});
+			}
 		});
 		$("#doPasscard").click(function(){
 			doPasscard();
@@ -106,6 +102,37 @@
 		$("#score").click(function(){
 			outputExcelBySQL('x03','file',nodeID,0,0);
 		});
+		$("#certID").change(function(){
+			c = $("#certID").find("option:selected").text();
+			if($("#startDate").val()>"" && c > ""){
+				$("#title").val(c + $("#startDate").val());
+			}
+		});
+		$("#btnSearch").click(function(){
+			getPasscardList();
+		});
+
+		$("#btnSel").click(function(){
+			setSel("");
+		});
+		
+		$("#btnResit").click(function(){
+			if($("#status").val()==0){
+				jAlert("请先结束考试，再安排补考。");
+				return false;
+			}
+			getSelCart("");
+			if(selCount==0){
+				jAlert("请选择要加入购物车的人员。");
+				return false;
+			}
+			jConfirm('确定要安排这' + selCount + '个人补考吗?', "确认对话框",function(r){
+				if(r){
+					add2Cart("","examer","*补考*");
+					updateCount += 1;
+				}
+			});
+		});
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -118,8 +145,8 @@
 			ar = unescape(re).split("|");
 			if(ar > ""){
 				$("#ID").val(ar[0]);
-				$("#classID").val(ar[1]);
-				$("#className").val(ar[2]);
+				$("#certID").val(ar[1]);
+				//$("#className").val(ar[2]);
 				$("#title").val(ar[3]);
 				$("#qty").val(ar[4]);
 				$("#startTime").val(ar[5]);
@@ -134,6 +161,8 @@
 				$("#send").val(ar[14]);
 				$("#sendDate").val(ar[15]);
 				$("#senderName").val(ar[16]);
+				$("#status").val(ar[17]);
+				$("#statusName").val(ar[18]);
 				var c = "";
 				if(ar[9] > ""){
 					c += "<a href='/users" + ar[9] + "' target='_blank'>准考证</a>";
@@ -145,8 +174,8 @@
 				$("#score").html("<a href=''>评分表</a>");
 				//getDownloadFile("generateDiplomaID");
 				nodeID = ar[0];
-				keyID = ar[1];
 				setButton();
+				getPasscardList();
 			}else{
 				jAlert("该信息未找到！","信息提示");
 				setEmpty();
@@ -171,10 +200,10 @@
 			jAlert("请检查起始编号值。");
 			return false;
 		}
-		jConfirm('你确定要安排' + kindID + '人于' + $("#startDate").val() + '进行考试吗?', '确认对话框', function(r) {
+		jConfirm('你确定要制作准考证吗?', '确认对话框', function(r) {
 			if(r){
 				//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-				$.getJSON(uploadURL + "/outfiles/generate_passcard_byClassID?mark=0&classID=" + keyID + "&ID=" + nodeID + "&selList=" + refID + "&title=" + $("#title").val() + "&startNo=" + $("#startNo").val() + "&startDate=" + $("#startDate").val() + "&startTime=" + $("#startTime").val() + "&address=" + $("#address").val() + "&notes=" + $("#notes").val() + "&memo=" + $("#memo").val() + "&username=" + currUser ,function(data){
+				$.getJSON(uploadURL + "/outfiles/generate_passcard_byExamID?mark=0&ID=" + nodeID + "&username=" + currUser ,function(data){
 					if(data>""){
 						jAlert("准考证制作成功");
 						op = 0;
@@ -203,23 +232,99 @@
 			jAlert("请填写考试时间。");
 			return false;
 		}
-		if($("#startNo").val()=="" || $("#startNo").val()<1 || $("#startNo").val()>1000){
-			jAlert("请检查起始编号值。");
+		if($("#certID").val()==""){
+			jAlert("请选择考试科目。");
 			return false;
 		}
 		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-		$.getJSON(uploadURL + "/outfiles/generate_passcard_byClassID?mark=1&classID=" + keyID + "&ID=" + nodeID + "&selList=&title=" + $("#title").val() + "&startNo=" + $("#startNo").val() + "&startDate=" + $("#startDate").val() + "&startTime=" + $("#startTime").val() + "&address=" + $("#address").val() + "&notes=" + $("#notes").val() + "&memo=" + $("#memo").val() + "&username=" + currUser ,function(data){
-			if(data>""){
+		$.get("diplomaControl.asp?op=updateGeneratePasscardInfo&nodeID=" + nodeID + "&refID=" + $("#certID").val() + "&keyID=" + $("#startNo").val() + "&startDate=" + $("#startDate").val() + "&startTime=" + $("#startTime").val() + "&item=" + escape($("#title").val()) + "&address=" + escape($("#address").val()) + "&notes=" + escape($("#notes").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+			//alert(unescape(re));
+			if(re>0){
 				jAlert("保存成功");
 				op = 0;
 				updateCount = 1;
-				getNodeInfo(data);
-				nodeID = data;
+				getNodeInfo(re);
+				nodeID = re;
 			}else{
 				jAlert("没有可供处理的数据。");
 			}
 		});
 		return false;
+	}
+
+	function getPasscardList(){
+		$.get("diplomaControl.asp?op=getPasscardListByExam&refID=" + nodeID + "&status=" + $("#s_status").val() + "&keyID=" + $("#s_resit").val() + "&times=" + (new Date().getTime()),function(data){
+			//jAlert(unescape(data));
+			var ar = new Array();
+			ar = (unescape(data)).split("%%");
+			$("#cover").empty();
+			arr = [];		
+			arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='cartTab' width='100%'>");
+			arr.push("<thead>");
+			arr.push("<tr align='center'>");
+			arr.push("<th width='4%'>No</th>");
+			arr.push("<th width='20%'>身份证</th>");
+			arr.push("<th width='10%'>姓名</th>");
+			arr.push("<th width='25%'>单位</th>");
+			arr.push("<th width='15%'>电话</th>");
+			arr.push("<th width='10%'>成绩</th>");
+			arr.push("<th width='10%'>补考</th>");
+			arr.push("<th width='8%'></th>");
+			arr.push("</tr>");
+			arr.push("</thead>");
+			arr.push("<tbody id='tbody'>");
+			if(ar>""){
+				var i = 0;
+				var c = 0;
+				var h = "";
+				var imgChk = "<img src='images/green_check.png'>";
+				$.each(ar,function(iNum,val){
+					var ar1 = new Array();
+					ar1 = val.split("|");
+					i += 1;
+					c = 0;
+					arr.push("<tr class='grade" + c + "'>");
+					arr.push("<td class='center'>" + i + "</td>");
+					arr.push("<td class='link1'><a href='javascript:showEnterInfo(\"" + ar1[2] + "\",0,0,1);'>" + ar1[4] + "</a></td>");
+					arr.push("<td class='left'>" + ar1[5] + "</td>");
+					arr.push("<td class='left'>" + ar1[14] + ar1[15].substring(0,2) + "." + ar1[16] + "</td>");
+					arr.push("<td class='left'>" + ar1[6] + "</td>");
+					arr.push("<td class='left'>" + ar1[7] + "</td>");
+					if(ar1[8]>0){
+						arr.push("<td class='center'>" + imgChk + "</td>");	//补考
+					}else{
+						arr.push("<td class='center'>&nbsp;</td>");
+					}
+					arr.push("<td class='left'><input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[2] + "' name='visitstockchk'></td>");
+					arr.push("</tr>");
+				});
+			}
+			arr.push("</tbody>");
+			arr.push("<tfoot>");
+			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("</tr>");
+			arr.push("</tfoot>");
+			arr.push("</table>");
+			$("#cover").html(arr.join(""));
+			arr = [];
+			$('#cartTab').dataTable({
+				"aaSorting": [],
+				"bFilter": false,
+				"bPaginate": false,
+				"bLengthChange": false,
+				"bInfo": false,
+				"iDisplayLength": 500,
+				"aoColumnDefs": []
+			});
+		});
 	}
 	
 	function setButton(){
@@ -229,10 +334,8 @@
 		$("#sendMsg").hide();
 		$("#startNo").prop("disabled",true);
 		if(op==1){
-			$("#doPasscard").show();
-			$("#doPasscard").val("制作准考证");
 			setEmpty();
-			$("#startNo").prop("disabled",false);
+			$("#save").show();
 			//$("#save").focus();
 		}else{
 			if(checkPermission("studentAdd")){
@@ -240,15 +343,16 @@
 				$("#del").show();
 				$("#doPasscard").show();
 				$("#sendMsg").show();
-				$("#doPasscard").val("重新制作");
+				$("#doPasscard").val("制作准考证");
 			}
 		}
 	}
 	
 	function setEmpty(){
-		$("#title").val("中石化从业人员安全知识考核");
+		//$("#title").val("中石化从业人员安全知识考核");
+		$("#title").val("");
 		$("#startDate").val(currDate);
-		$("#qty").val(kindID);
+		$("#qty").val(0);
 		$("#startTime").val("15:00 - 16:00");
 		$("#startNo").val(1);
 		$("#address").val("黄兴路158号1182幢D103室");
@@ -274,20 +378,20 @@
 			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
-				<td align="right">班级</td><input type="hidden" id="ID" /><input type="hidden" id="classID" />
-				<td><input class="readOnly" type="text" id="className" size="25" readOnly="true" /></td>
-				<td align="right">数量</td>
-				<td><input class="readOnly" type="text" id="qty" size="3" readOnly="true" />&nbsp;&nbsp;&nbsp;&nbsp;起始编号&nbsp;<input class="mustFill" type="text" id="startNo" size="3" /></td>
-			</tr>
-			<tr>
-				<td align="right">证书标题</td>
-				<td colspan="3"><input class="mustFill" type="text" id="title" style="width:100%;" /></td>
-			</tr>
-			<tr>
 				<td align="right">考试日期</td>
 				<td><input class="mustFill" type="text" id="startDate" size="25" /></td>
 				<td align="right">考试时间</td>
 				<td><input class="mustFill" type="text" id="startTime" size="25" /></td>
+			</tr>
+			<tr>
+				<td align="right">考试科目</td><input type="hidden" id="ID" /><input type="hidden" id="status" />
+				<td><select id="certID" style="width:100%;"></select></td>
+				<td align="right">人数</td>
+				<td><input class="readOnly" type="text" id="qty" size="3" readOnly="true" />&nbsp;&nbsp;&nbsp;&nbsp;起始编号&nbsp;<input class="readOnly" type="text" id="startNo" size="3" readOnly="true" /></td>
+			</tr>
+			<tr>
+				<td align="right">场次标识</td>
+				<td colspan="3"><input class="mustFill" type="text" id="title" style="width:70%;" />&nbsp;&nbsp;状态<input class="readOnly" type="text" id="statusName" size="5" readOnly="true" /></td>
 			</tr>
 			<tr>
 				<td align="right">考试地址</td>
@@ -330,10 +434,23 @@
 	
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
-  	<input class="button" type="button" id="save" value="保存" />&nbsp;
-  	<input class="button" type="button" id="del" value="删除" />&nbsp;
-  	<input class="button" type="button" id="doPasscard" value="" />&nbsp;
-  	<input class="button" type="button" id="sendMsg" value="发送通知" />&nbsp;
-  </div>
+		<input class="button" type="button" id="save" value="保存" />&nbsp;
+		<input class="button" type="button" id="del" value="删除" />&nbsp;
+		<input class="button" type="button" id="doPasscard" value="" />&nbsp;
+		<input class="button" type="button" id="sendMsg" value="发送通知" />&nbsp;
+		<input class="button" type="button" id="close" value="结束" />&nbsp;
+  	</div>
+	<div style="width:100%;float:left;margin:10;height:4px;"></div>
+	<div style="width:100%;float:left;margin:0;">
+		<div style="border:solid 1px #e0e0e0;width:99%;margin:5px;background:#ffffff;line-height:18px;padding-left:20px;">
+			<span>鉴定结果&nbsp;<select id="s_status" style="width:70px"></select></span>
+			<span>&nbsp;&nbsp;申请补考&nbsp;<select id="s_resit" style="width:70px"></select></span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnSearch" value="查找" /></span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnSel" value="全选/取消" /></span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnResit" value="加入补考购物车" /></span>
+		</div>
+	</div>
+	<div id="cover" style="float:top;margin:3px;background:#f8fff8;">
+	</div>
 </div>
 </body>

@@ -44,6 +44,9 @@
 								<input class="button" type="button" id="btnEnterApplyBack" value="申退" />&nbsp;
 								<input class="button" type="button" id="btnRefundList" value="退费单" />
 							</span>
+							<span style="float:right;margin-right:20px;"><input class="button" type="button" id="btnEnterCartAdd" value="加入购物车" />&nbsp;&nbsp;</span>
+							<span style="float:right;margin-right:10px;"><img id="cart_examer_img" src="images/cart.png" /></span>
+							<span id="cart_examer" style="float:right;">0</span>
 				        </form>
 							</div>
 							<hr style="margin:3px 0;" noshadow />

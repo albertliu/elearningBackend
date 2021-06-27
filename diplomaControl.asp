@@ -592,11 +592,64 @@ if(op == "getGeneratePasscardList"){
 		//7
 		result += "|" + rs("notes").value + "|" + rs("startDate").value + "|" + rs("filename").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value + "|" + rs("startNo").value;
 		//14
-		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value;
+		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value + "|" + rs("status").value + "|" + rs("statusName").value;
 		rs.MoveNext();
 	}
 	rs.Close();
 	
+	Session(op) = ssql;
+	Response.Write(escape(result));
+}	
+
+if(op == "getPasscardListByExam"){
+	result = "";
+	var s = "";
+	//如果有考试场次
+	if(refID > ""){ // 
+		s = "refID=" + refID;
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//如果有状态
+	if(status > ""){ // 
+		s = "status=" + status;
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//如果有补考
+	if(keyID > ""){
+		s = "resit>=" + keyID;
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+
+	if(where > ""){
+		where = " where " + where;
+	}
+	sql = " FROM v_passcardInfo " + where;
+	ssql = "SELECT kindName,qty,hostName,memo,regDate,registerName" + sql + " order by ID";
+	sql = "SELECT *" + sql + " order by passNo, ID";
+	
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("ID").value + "|" + rs("refID").value + "|" + rs("enterID").value + "|" + rs("passNo").value + "|" + rs("username").value + "|" + rs("name").value + "|" + rs("mobile").value;
+		//7
+		result += "|" + rs("score").value + "|" + rs("resit").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value;
+		//14
+		result += "|" + rs("unit").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value;
+		rs.MoveNext();
+	}
+	rs.Close();
+	result = result.substr(2);
 	Session(op) = ssql;
 	Response.Write(escape(result));
 }	
@@ -606,11 +659,11 @@ if(op == "getGeneratePasscardNodeInfo"){
 	sql = "SELECT * FROM v_generatePasscardInfo where ID=" + nodeID;
 	rs = conn.Execute(sql);
 	if(!rs.EOF){
-		result = rs("ID").value + "|" + rs("classID").value + "|" + rs("className").value + "|" + rs("title").value + "|" + rs("qty").value + "|" + rs("startTime").value + "|" + rs("address").value;
+		result = rs("ID").value + "|" + rs("certID").value + "|" + rs("certName").value + "|" + rs("title").value + "|" + rs("qty").value + "|" + rs("startTime").value + "|" + rs("address").value;
 		//7
 		result += "|" + rs("notes").value + "|" + rs("startDate").value + "|" + rs("filename").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value + "|" + rs("startNo").value;
 		//14
-		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value;
+		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value + "|" + rs("status").value + "|" + rs("statusName").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -618,10 +671,14 @@ if(op == "getGeneratePasscardNodeInfo"){
 }	
 
 if(op == "updateGeneratePasscardInfo"){
-	//@ID int,@classID varchar(50),@title nvarchar(100),@qty int,@startTime varchar(100),@address nvarchar(100),@notes nvarchar(500),@memo nvarchar(500),@registerID
-	sql = "exec updateGeneratePasscardInfo " + nodeID + ",'" + refID + "','" + item + "'," + String(Request.QueryString("qty")) + ",'" + status + "','" + String(Request.QueryString("startTime")) + "','" + unescape(String(Request.QueryString("address"))) + "','" + unescape(String(Request.QueryString("notes"))) + "','" + memo + "','" + currUser + "',''";
+	//@ID int,@certID varchar(50),@title nvarchar(100),@startNo int,@startDate varchar(100),@startTime varchar(100),@address nvarchar(100),@notes nvarchar(500),@memo nvarchar(500),@registerID
+	sql = "exec updateGeneratePasscardInfo1 " + nodeID + ",'" + refID + "','" + item + "','" + keyID + "','" + String(Request.QueryString("startDate")) + "','" + String(Request.QueryString("startTime")) + "','" + unescape(String(Request.QueryString("address"))) + "','" + unescape(String(Request.QueryString("notes"))) + "','" + memo + "','" + currUser + "'";
 	rs = conn.Execute(sql);
-	Response.Write(escape(0));
+	if(!rs.EOF){
+		result = rs("re").value;
+	}
+	rs.Close();
+	Response.Write(result);
 	//Response.Write(escape(sql));
 }
 
@@ -699,6 +756,12 @@ if(op == "delNode"){
 
 if(op == "delGeneratePasscard"){
 	sql = "exec delGeneratePasscard '" + nodeID + "','" + currUser + "'";
+	execSQL(sql);
+	Response.Write(nodeID);
+}
+
+if(op == "closeGeneratePasscard"){
+	sql = "exec closeGeneratePasscard '" + nodeID + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(nodeID);
 }

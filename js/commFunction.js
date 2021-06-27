@@ -1510,13 +1510,13 @@
 	}
 	
 	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
-	function showGeneratePasscardInfo(nodeID,refID,op,mark,classID,count){
+	function showGeneratePasscardInfo(nodeID,refID,op,mark){
 		asyncbox.open({
 			id: "generatePasscard",
-			url:"generatePasscardInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&keyID=" + classID + "&kindID=" + count + "&p=1&times=" + (new Date().getTime()),
+			url:"generatePasscardInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "准考证信息",
-			width: 600,
-			height: 400,
+			width: 800,
+			height: 880,
 			cover : {
 	          //透明度
 	          opacity : 0,
@@ -1530,6 +1530,7 @@
 				var re = iframe.updateCount;
 				if(re>0 && mark==1){
 					getGeneratePasscardList();
+					setCartNum("examer");
 				}
 				//alert(re + ":" + mark);
 				if(re>0 && mark==2){
@@ -2307,6 +2308,37 @@
 		}
 		arr = [];
 	}
+	
+	function add2Cart(chkName,cart,memo)
+	{
+		if(chkName == ""){chkName = "visitstockchk";}
+		var count = 0;
+		var strSQL = "";
+		selList = "";
+		selCount = 0;
+		arr = [];
+		var chkother = document.getElementsByName(chkName); 
+		for (var i = 0;i < chkother.length;i++)
+		{
+		  if(chkother[i].checked == true){
+		    count++;
+				//strSQL += "," + chkother[i].value;
+				arr.push("," + chkother[i].value);
+			}
+		}
+		if(count>0)
+		{
+			//selList = strSQL.substr(1);
+			selList = arr.join("").substr(1);
+			$.get("cartControl.asp?op=add2cart&kindID=" + cart + "&item=" + escape(selList) + "&memo=" + escape(memo) + "&times=" + (new Date().getTime()),function(re){
+				setCartNum(cart);
+				jAlert("添加成功。");
+			});
+		}else{
+			jAlert("您还没有选中任何数据。");
+		}
+		arr = [];
+	}
 
 	//清空购物车
 	function emptyCart(chkName,cart){
@@ -2326,9 +2358,43 @@
 
 	//为购物车设置显示数量
 	function setCartNum(cart){
-		if(cart>""){
-			$("#" + cart).html("<font color=red>" + selCount + "</font>");
-		}
+		$.get("cartControl.asp?op=getCartCount&kindID=" + cart + "&times=" + (new Date().getTime()),function(re){
+			if(cart>""){
+				$("#cart_" + cart).html(re);
+				$("#cart_" + cart).css({'padding-right': '3px', 'font-size': '16px', 'color':'red'});
+			}
+		});
+	}
+	
+	//nodeID: ID; refID: project ID; op: 0 浏览 1 新增  2 编辑  3 删除  4 审批; mark: 0 不动作  1 有修改时刷新列表  2 有修改时刷新对象
+	function showCartInfo(nodeID,refID,op,mark){
+		asyncbox.open({
+			id: "cart",
+			url:"cartInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
+			title: "购物车信息",
+			width: 720,
+			height: 800,
+			cover : {
+	          //透明度
+	          opacity : 0,
+	          //背景颜色
+	           background : '#000'
+	          },
+
+			btnsbar : false,
+			callback : function(action,iframe){
+				//setReturnLog("docResult",iframe.nodeID);	//写回执（审批件）
+				var re = iframe.updateCount;
+				if(re>0 && mark==1){
+					setCartNum(nodeID);
+				}
+				//alert(re + ":" + mark);
+				if(re>0 && mark==2){
+					//alert(iframe.getValList());
+					setObjValue("cart",iframe.getValList(),0,0);  //根据请求，返回任意个数的项目，为相应的对象赋值。objList:传入的Object列表；valList：输出的值；mark：0 不动作 1 关闭本窗口（与objList同名）; loc: 0 同级别  1 父窗体
+				}
+　　　		}
+		});
 	}
 
 	function gotoPage(url,item,model){

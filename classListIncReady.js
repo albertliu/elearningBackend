@@ -69,7 +69,11 @@
 					arr.push("<td class='left'>" + ar1[10] + "</td>");
 					arr.push("<td class='left'>" + ar1[11] + "</td>");
 					arr.push("<td class='left'>" + ar1[9] + "</td>");
-					arr.push("<td class='left'>" + ar1[7] + "</td>");
+					if(ar1[6]==0){
+						arr.push("<td class='center'>&nbsp;</td>");
+					}else{
+						arr.push("<td class='center'>" + ar1[7] + "</td>");
+					}
 					arr.push("<td class='left'>" + ar1[20] + "</td>");
 					arr.push("<td class='left'></td>");
 					arr.push("<td class='left'></td>");
