@@ -135,19 +135,6 @@
 			});
 		});
 		
-		$("#btnEnterPasscard").click(function(){
-			getSelCart("visitstockchkEnter");
-			if(selCount==0){
-				jAlert("请选择制作准考证的名单。");
-				return false;
-			}
-			if($("#searchEnterClassID").val()==""){
-				jAlert("请选择一个班级。");
-				return false;
-			}
-			showGeneratePasscardInfo(0,selList,1,1,$("#searchEnterClassID").val(),selCount);
-		});
-		
 		if(!checkPermission("studentAdd")){
 			$("#btnSearchEnterAdd").hide();
 		}

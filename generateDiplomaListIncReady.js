@@ -51,10 +51,10 @@
 			arr.push("<th width='3%'>No</th>");
 			arr.push("<th width='15%'>证书名称</th>");
 			arr.push("<th width='8%'>数量</th>");
-			arr.push("<th width='20%'>编号范围</th>");
+			arr.push("<th width='25%'>编号范围</th>");
 			arr.push("<th width='10%'>打印日期</th>");
 			arr.push("<th width='10%'>发放日期</th>");
-			arr.push("<th width='19%'>说明</th>");
+			arr.push("<th width='15%'>说明</th>");
 			arr.push("<th width='10%'>制作日期</th>");
 			arr.push("<th width='6%'></th>");
 			arr.push("</tr>");

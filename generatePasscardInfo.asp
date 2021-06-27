@@ -166,12 +166,12 @@
 				var c = "";
 				if(ar[9] > ""){
 					c += "<a href='/users" + ar[9] + "' target='_blank'>准考证</a>";
+					$("#list").html("<a href=''>考站数据</a>");
+					$("#sign").html("<a href=''>签到表</a>");
+					$("#score").html("<a href=''>评分表</a>");
 				}
 				if(c == ""){c = "&nbsp;&nbsp;还未生成";}
 				$("#photo").html(c);
-				$("#list").html("<a href=''>考站数据</a>");
-				$("#sign").html("<a href=''>签到表</a>");
-				$("#score").html("<a href=''>评分表</a>");
 				//getDownloadFile("generateDiplomaID");
 				nodeID = ar[0];
 				setButton();
@@ -200,7 +200,12 @@
 			jAlert("请检查起始编号值。");
 			return false;
 		}
-		jConfirm('你确定要制作准考证吗?', '确认对话框', function(r) {
+		var s = "确定要制作准考证吗?";
+		if(ar[9] > ""){
+			s = "要重新制作准考证吗？请随后下载新的考站数据、签到表。";
+		}
+
+		jConfirm('确定要制作准考证吗?', '确认对话框', function(r) {
 			if(r){
 				//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
 				$.getJSON(uploadURL + "/outfiles/generate_passcard_byExamID?mark=0&ID=" + nodeID + "&username=" + currUser ,function(data){

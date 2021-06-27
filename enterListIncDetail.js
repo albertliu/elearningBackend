@@ -38,8 +38,7 @@
 							<span id="enterListLongItem5">
 								<input class="button" type="button" id="btnEnterSel" value="全选/取消" />&nbsp;&nbsp;
 								<input class="button" type="button" id="btnEnterCheck" value="材料确认" />&nbsp;
-								已做&nbsp;<select id="searchEnterPasscard" style="width:50px"></select>&nbsp;
-								<input class="button" type="button" id="btnEnterPasscard" value="准考证" />&nbsp;
+								准考证&nbsp;<select id="searchEnterPasscard" style="width:50px"></select>&nbsp;
 								<input class="button" type="button" id="btnEnterApply" value="申报" />&nbsp;
 								<input class="button" type="button" id="btnEnterApplyBack" value="申退" />&nbsp;
 								<input class="button" type="button" id="btnRefundList" value="退费单" />
