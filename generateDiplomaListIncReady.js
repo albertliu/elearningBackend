@@ -54,10 +54,9 @@
 			arr.push("<th width='20%'>编号范围</th>");
 			arr.push("<th width='10%'>打印日期</th>");
 			arr.push("<th width='10%'>发放日期</th>");
-			arr.push("<th width='9%'>说明</th>");
+			arr.push("<th width='19%'>说明</th>");
 			arr.push("<th width='10%'>制作日期</th>");
-			arr.push("<th width='9%'>制作人</th>");
-			arr.push("<th width='6%'>文件</th>");
+			arr.push("<th width='6%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
@@ -83,7 +82,6 @@
 					arr.push("<td class='left'>" + ar1[16] + "</td>");
 					arr.push("<td class='left'>" + ar1[10] + "</td>");
 					arr.push("<td class='left'>" + ar1[11] + "</td>");
-					arr.push("<td class='left'>" + ar1[12] + "</td>");
 					if(ar1[7]==''){
 						arr.push("<td class='center'>&nbsp;</td>");
 					}else{
@@ -95,7 +93,6 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
-			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
