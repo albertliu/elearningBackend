@@ -50,7 +50,7 @@
 					arr.push('<td>');
 					arr.push('<section class="login-form-wrap1">');
 					arr.push('<div style="position: relative;">');
-					arr.push('<div style="position: absolute; z-index:10; width:100%;">');
+					arr.push('<div style="position: absolute; z-index:10; width:100%;padding-left:8mm;">');
 					arr.push('<div style="float:left;width:100%;">');
 					arr.push('	<table style="width:100%; padding-left:10mm;padding-top:15mm;">');
 					arr.push('		<tr>');

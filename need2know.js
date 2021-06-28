@@ -42,7 +42,7 @@
 				arr.push('			<td colspan="4" style="height:30px;"><p style="font-size:1.3em;text-indent:30px;">欢迎参加' + val["courseName"] + '培训课程，为顺利完成学习任务，请遵守以下规定：</p></td>');
 				arr.push('		</tr>');
 				arr.push('		<tr>');
-				arr.push('			<td colspan="4" style="height:30px;"><p style="font-size:1.3em;">1. 填写报名表并签字。准备一张2寸照片，背面写上编号、姓名、部门（加油站）。</p></td>');
+				arr.push('			<td colspan="4" style="height:30px;"><p style="font-size:1.3em;">1. 填写报名表并签字。准备一张  寸照片，背面写上编号、姓名、部门。</p></td>');
 				arr.push('		</tr>');
 				arr.push('		<tr>');
 				arr.push('			<td colspan="4" style="height:30px;"><p style="font-size:1.3em;">2. 到教室将上述材料一起交给老师审核，并领取教材，开始上课。</p></td>');

@@ -28,6 +28,7 @@
 	var nodeID = "";
 	var refID = "";
 	var op = 0;
+	var fn = "";
 	var updateCount = 0;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
@@ -154,6 +155,7 @@
 				$("#notes").val(ar[7]);
 				$("#startDate").val(ar[8]);
 				//$("#filename").val(ar[9]);
+				fn = ar[9];
 				$("#memo").val(ar[10]);
 				$("#regDate").val(ar[11]);
 				$("#registerName").val(ar[12]);
@@ -201,7 +203,7 @@
 			return false;
 		}
 		var s = "确定要制作准考证吗?";
-		if(ar[9] > ""){
+		if(fn > ""){
 			s = "要重新制作准考证吗？请随后下载新的考站数据、签到表。";
 		}
 

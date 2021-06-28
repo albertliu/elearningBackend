@@ -79,7 +79,7 @@
 					arr.push('</div>');
 					arr.push('</section><hr style="page-break-after:always; border:none;">');	//分页
 					arr.push('<div style="width:100%; padding-left:15mm;padding-top:85mm;">');
-					arr.push('<div class="lineC1s"><span style="padding-left:10mm;">' + val["class_startDate"].substr(0,7) + '月</span><span style="padding-left:5mm;">上海智能消防学校</span><span style="padding-left:10mm;">合格</span><span style="padding-left:9mm;">上海智能消防学校</span><span style="padding-left:20mm;">' + val["term"] + '年</span></div>');
+					arr.push('<div class="lineC1s"><span style="padding-left:10mm;">' + val["class_startDate"].substr(0,7) + '月</span><span style="padding-left:5mm;">上海智能消防学校</span><span style="padding-left:10mm;">合格</span><span style="padding-left:13mm;">上海智能消防学校</span><span style="padding-left:20mm;">' + val["term"] + '年</span></div>');
 					arr.push('</div><hr style="page-break-after:always; border:none;">');	//分页
 				});
 				$("#cover").html(arr.join(""));
