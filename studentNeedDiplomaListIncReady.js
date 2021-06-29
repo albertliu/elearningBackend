@@ -150,7 +150,7 @@
 			arr.push("<th width='15%'>证书名称</th>");
 			if(currHost==""){
 				arr.push("<th width='15%'>班级</th>");
-				arr.push("<th width='10%'>考试日期</th>");
+				arr.push("<th width='10%'>学历</th>");
 			}else{
 				arr.push("<th width='15%'>部门</th>");
 				arr.push("<th width='10%'>结束日期</th>");
@@ -184,7 +184,7 @@
 					arr.push("<td class='left'>" + ar1[4] + "</td>");
 					if(currHost==""){
 						arr.push("<td class='left'>" + ar1[15] + "</td>");
-						arr.push("<td class='left'>" + ar1[16] + "</td>");
+						arr.push("<td class='left'>" + ar1[18] + "</td>");
 					}else{
 						arr.push("<td class='left'>" + ar1[9] + "</td>");
 						arr.push("<td class='left'>" + ar1[11] + "</td>");

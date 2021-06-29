@@ -111,6 +111,9 @@
 		$("#save").click(function(){
 			saveNode();
 		});
+		$("#list").click(function(){
+			outputExcelBySQL('x04','file',nodeID,0,0);
+		});
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -148,10 +151,10 @@
 				}else{
 					$("#delivery").prop("checked",false);
 				}
-				$("#upload1").html("<a href='javascript:showLoadFile(\"gen_diploma\",\"" + ar[0] + "\",\"diploma\",\"\");' style='padding:3px;'>上传</a>");
 				var c = "";
 				if(ar[7] > ""){
-					c += "<a href='/users" + ar[7] + "' target='_blank'>证书打印版</a>";
+					c += "<a href='/users" + ar[7] + "' target='_blank'>证书打印</a>";
+					$("#list").html("<a href=''>证书清单</a>");
 				}
 				if(c == ""){c = "&nbsp;&nbsp;还未制作";}
 				$("#photo").html(c);
@@ -333,7 +336,7 @@
 				<td><input class="mustFill" type="text" id="startDate" size="25" /></td>
 				<td align="right">资料</td>
 				<td>
-					<span id="upload1" style="margin-left:10px;border:1px solid orange;"></span>
+					<span id="list" style="margin-left:10px;"></span>
 					<span id="photo" style="margin-left:10px;"></span>
 				</td>
 			</tr>

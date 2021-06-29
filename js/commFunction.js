@@ -260,6 +260,11 @@
 			floatModel = 2;
 			sql = "select passNo,name,username,'' from v_passcardInfo where refID=" + p1 + " order by passNo";
 		}
+		if(id=='x04'){
+			p = "getDiplomaIssueList";
+			floatModel = 5;
+			sql = "select a.name,a.dept1Name,a.dept2Name,a.diplomaID,a.username,a.mobile,a.educationName,c.className,c.submitDate,c.SNo from v_diplomaInfo a, studentCertList b, v_studentCourseList c where b.ID=c.refID and a.diplomaID=b.diplomaID and a.batchID=" + p1 + " order by a.dept1Name,a.diplomaID";
+		}
 		setSession(p, sql);
 		setSession("dk" + id, p);
 		setSession("dk" + id + "_count", 60);
@@ -1514,8 +1519,8 @@
 		asyncbox.open({
 			id: "generatePasscard",
 			url:"generatePasscardInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
-			title: "准考证信息",
-			width: 800,
+			title: "考试场次信息",
+			width: 880,
 			height: 880,
 			cover : {
 	          //透明度

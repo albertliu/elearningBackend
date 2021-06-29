@@ -338,7 +338,7 @@ if(op == "getStudentNeedDiplomaList"){
 		//10
 		result += "|" + rs("job").value + "|" + rs("closeDate").value + "|" + rs("agencyName").value + "|" + rs("photo_filename").value + "|" + rs("student_kindID").value;
 		//15
-		result += "|" + rs("className").value + "|" + rs("testDate").value + "|" + rs("classID").value;
+		result += "|" + rs("className").value + "|" + rs("testDate").value + "|" + rs("classID").value + "|" + rs("educationName").value;
 		rs.MoveNext();
 	}
 	rs.Close();

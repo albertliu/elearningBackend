@@ -298,13 +298,14 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='4%'>No</th>");
-			arr.push("<th width='20%'>身份证</th>");
+			arr.push("<th width='18%'>身份证</th>");
 			arr.push("<th width='10%'>姓名</th>");
-			arr.push("<th width='25%'>单位</th>");
-			arr.push("<th width='15%'>电话</th>");
+			arr.push("<th width='22%'>单位</th>");
+			arr.push("<th width='14%'>电话</th>");
 			arr.push("<th width='10%'>成绩</th>");
+			arr.push("<th width='10%'>结果</th>");
 			arr.push("<th width='10%'>补考</th>");
-			arr.push("<th width='8%'></th>");
+			arr.push("<th width='6%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
@@ -325,6 +326,7 @@
 					arr.push("<td class='left'>" + ar1[14] + ar1[15].substring(0,2) + "." + ar1[16] + "</td>");
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
 					arr.push("<td class='left'>" + ar1[7] + "</td>");
+					arr.push("<td class='left'>" + ar1[10] + "</td>");
 					if(ar1[8]>0){
 						arr.push("<td class='center'>" + imgChk + "</td>");	//补考
 					}else{
@@ -337,6 +339,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
@@ -382,6 +385,8 @@
 				$("#doPasscard").show();
 				$("#sendMsgExam").show();
 				$("#sendMsgScore").show();
+			}
+			if(checkPermission("scoreUpload")){
 				$("#doImportScore").show();
 			}
 		}
