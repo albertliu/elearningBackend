@@ -102,12 +102,38 @@
 		});
 		$("#close").click(function(){
 			if(confirm('确定要结束本场考试吗?')){
-				$.get("diplomaControl.asp?op=closeGeneratePasscard&nodeID=" + $("#ID").val() + "&times=" + (new Date().getTime()),function(data){
+				$.get("diplomaControl.asp?op=closeGeneratePasscard&nodeID=" + $("#ID").val() + "&refID=2&times=" + (new Date().getTime()),function(data){
 					jAlert("已关闭考试","信息提示");
 					getNodeInfo(nodeID);
 					updateCount += 1;
 				});
 			}
+		});
+		$("#lock").click(function(){
+			if(confirm('确定要锁定本场考试吗? 将无法调整考生名单。')){
+				$.get("diplomaControl.asp?op=closeGeneratePasscard&nodeID=" + $("#ID").val() + "&refID=1&times=" + (new Date().getTime()),function(data){
+					jAlert("已关闭考试","信息提示");
+					getNodeInfo(nodeID);
+					updateCount += 1;
+				});
+			}
+		});
+		$("#btnRemove").click(function(){
+			getSelCart("");
+			if(selCount==0){
+				jAlert("请选择要移除的人员。");
+				return false;
+			}
+			jConfirm('确定要将这' + selCount + '个人从本场考试移除吗?', "确认对话框",function(r){
+				if(r){
+					$.post("diplomaControl.asp?op=remove4GeneratePasscard&nodeID=0", {"selList":selList},function(data){
+						//jAlert(data);
+						jAlert("已成功移除","信息提示");
+						getNodeInfo(nodeID);
+						updateCount += 1;
+					});
+				}
+			});
 		});
 		$("#doPasscard").click(function(){
 			doPasscard();
@@ -313,6 +339,8 @@
 				var i = 0;
 				var c = 0;
 				var h = "";
+				var k = 0;
+				var s = $("#status").val();
 				var imgChk = "<img src='images/green_check.png'>";
 				$.each(ar,function(iNum,val){
 					var ar1 = new Array();
@@ -332,7 +360,12 @@
 					}else{
 						arr.push("<td class='center'>&nbsp;</td>");
 					}
-					arr.push("<td class='left'><input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[2] + "' name='visitstockchk'></td>");
+					if(s==0){
+						k = ar1[0];
+					}else{
+						k = ar1[2];
+					}
+					arr.push("<td class='left'><input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + k + "' name='visitstockchk'></td>");
 					arr.push("</tr>");
 				});
 			}
@@ -367,12 +400,17 @@
 	}
 	
 	function setButton(){
+		var s = $("#status").val();
 		$("#save").hide();
 		$("#del").hide();
+		$("#lock").hide();
+		$("#close").hide();
 		$("#doPasscard").hide();
 		$("#doImportScore").hide();
 		$("#sendMsgExam").hide();
 		$("#sendMsgScore").hide();
+		$("#btnRemove").hide();
+		$("#btnResit").hide();
 		$("#startNo").prop("disabled",true);
 		if(op==1){
 			setEmpty();
@@ -380,13 +418,25 @@
 			//$("#save").focus();
 		}else{
 			if(checkPermission("studentAdd")){
-				$("#save").show();
-				$("#del").show();
-				$("#doPasscard").show();
-				$("#sendMsgExam").show();
-				$("#sendMsgScore").show();
+				if(s==0){
+					$("#save").show();
+					$("#del").show();
+					$("#lock").show();
+					$("#btnRemove").show();
+				}
+				if(s==1){
+					$("#doPasscard").show();
+					$("#sendMsgExam").show();
+				}
+				if(s==2){
+					$("#sendMsgScore").show();
+					$("#btnResit").show();
+				}
+				if(s<2){
+					$("#close").show();
+				}
 			}
-			if(checkPermission("scoreUpload")){
+			if(checkPermission("scoreUpload") && s == 2){
 				$("#doImportScore").show();
 			}
 		}
@@ -492,6 +542,7 @@
 		<input class="button" type="button" id="sendMsgExam" value="考试通知" />&nbsp;
 		<input class="button" type="button" id="doImportScore" value="成绩导入" />&nbsp;
 		<input class="button" type="button" id="sendMsgScore" value="成绩通知" />&nbsp;
+		<input class="button" type="button" id="lock" value="锁定" />&nbsp;
 		<input class="button" type="button" id="close" value="结束" />&nbsp;
   	</div>
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
@@ -501,6 +552,7 @@
 			<span>&nbsp;&nbsp;申请补考&nbsp;<select id="s_resit" style="width:70px"></select></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnSearch" value="查找" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnSel" value="全选/取消" /></span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnRemove" value="移出名单" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnResit" value="加入补考购物车" /></span>
 		</div>
 	</div>

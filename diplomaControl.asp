@@ -765,9 +765,16 @@ if(op == "delGeneratePasscard"){
 }
 
 if(op == "closeGeneratePasscard"){
-	sql = "exec closeGeneratePasscard '" + nodeID + "','" + currUser + "'";
+	sql = "exec closeGeneratePasscard " + nodeID + "," + refID + ",'" + currUser + "'";
 	execSQL(sql);
 	Response.Write(nodeID);
+}
+
+if(op == "remove4GeneratePasscard"){
+	sql = "exec changeExamer " + nodeID + ",'" + String(Request.Form("selList")) + "','" + currUser + "'";
+	execSQL(sql);
+	Response.Write(nodeID);
+	//Response.Write(sql);
 }
 
 %>
