@@ -118,6 +118,15 @@
 				});
 			}
 		});
+		$("#open").click(function(){
+			if(confirm('确定要重新开启本场考试吗? 如果有人员调整，请注意重新生成数据。')){
+				$.get("diplomaControl.asp?op=closeGeneratePasscard&nodeID=" + $("#ID").val() + "&refID=0&times=" + (new Date().getTime()),function(data){
+					jAlert("已开启考试","信息提示");
+					getNodeInfo(nodeID);
+					updateCount += 1;
+				});
+			}
+		});
 		$("#btnRemove").click(function(){
 			getSelCart("");
 			if(selCount==0){
@@ -405,6 +414,7 @@
 		$("#del").hide();
 		$("#lock").hide();
 		$("#close").hide();
+		$("#open").hide();
 		$("#doPasscard").hide();
 		$("#doImportScore").hide();
 		$("#sendMsgExam").hide();
@@ -438,6 +448,9 @@
 			}
 			if(checkPermission("scoreUpload") && s == 2){
 				$("#doImportScore").show();
+			}
+			if(checkPermission("examOpen") && s == 1){
+				$("#open").show();
 			}
 		}
 	}
@@ -544,6 +557,7 @@
 		<input class="button" type="button" id="sendMsgScore" value="成绩通知" />&nbsp;
 		<input class="button" type="button" id="lock" value="锁定" />&nbsp;
 		<input class="button" type="button" id="close" value="结束" />&nbsp;
+		<input class="button" type="button" id="open" value="开启" />&nbsp;
   	</div>
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
 	<div style="width:100%;float:left;margin:0;">

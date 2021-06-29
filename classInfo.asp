@@ -56,7 +56,16 @@
 		});
 		$("#close").click(function(){
 			if(confirm('确定要结课吗?')){
-				$.get("classControl.asp?op=closeClass&nodeID=" + $("#ID").val() + "&times=" + (new Date().getTime()),function(data){
+				$.get("classControl.asp?op=closeClass&nodeID=" + $("#ID").val() + "&refID=2&times=" + (new Date().getTime()),function(data){
+					alert("已结课","信息提示");
+					getNodeInfo(nodeID);
+					updateCount += 1;
+				});
+			}
+		});
+		$("#open").click(function(){
+			if(confirm('确定重新开启班级吗?')){
+				$.get("classControl.asp?op=closeClass&nodeID=" + $("#ID").val() + "&refID=0&times=" + (new Date().getTime()),function(data){
 					alert("已结课","信息提示");
 					getNodeInfo(nodeID);
 					updateCount += 1;
@@ -164,16 +173,22 @@
 	}
 	
 	function setButton(){
+		var s = $("#status").val();
 		$("#save").hide();
 		$("#close").hide();
+		$("#open").hide();
 		if(op ==1){
 			setEmpty();
-		}
-		if(checkPermission("classAdd")){
-			$("#save").show();
-			if(op==0){
+		}else{
+			if(checkPermission("classAdd") && s < 2){
 				$("#close").show();
 			}
+			if(checkPermission("classOpen") && s > 0){
+				$("#open").show();
+			}
+		}
+		if(checkPermission("classAdd") && s < 2){
+			$("#save").show();
 		}
 	}
 	
