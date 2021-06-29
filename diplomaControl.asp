@@ -594,7 +594,7 @@ if(op == "getGeneratePasscardList"){
 		//14
 		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("filescore").value;
 		//20
-		result += "|" + rs("sendScore").value + "|" + rs("sendScoreDate").value + "|" + rs("senderScoreName").value;
+		result += "|" + rs("sendScore").value + "|" + rs("sendScoreDate").value + "|" + rs("senderScoreName").value + "|" + rs("qtyYes").value + "|" + rs("qtyNo").value + "|" + rs("qtyNull").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -667,7 +667,7 @@ if(op == "getGeneratePasscardNodeInfo"){
 		//14
 		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("filescore").value;
 		//20
-		result += "|" + rs("sendScore").value + "|" + rs("sendScoreDate").value + "|" + rs("senderScoreName").value;
+		result += "|" + rs("sendScore").value + "|" + rs("sendScoreDate").value + "|" + rs("senderScoreName").value + "|" + rs("qtyYes").value + "|" + rs("qtyNo").value + "|" + rs("qtyNull").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
