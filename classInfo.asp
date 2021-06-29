@@ -66,7 +66,7 @@
 		$("#open").click(function(){
 			if(confirm('确定重新开启班级吗?')){
 				$.get("classControl.asp?op=closeClass&nodeID=" + $("#ID").val() + "&refID=0&times=" + (new Date().getTime()),function(data){
-					alert("已结课","信息提示");
+					alert("已重新开启，请及时关闭。","信息提示");
 					getNodeInfo(nodeID);
 					updateCount += 1;
 				});
@@ -274,7 +274,8 @@
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
   	<input class="button" type="button" id="save" value="保存" />&nbsp;&nbsp;
-  	<input class="button" type="button" id="close" value="结课" />
+  	<input class="button" type="button" id="close" value="结课" />&nbsp;&nbsp;
+  	<input class="button" type="button" id="open" value="开启" />
   </div>
 </div>
 </body>

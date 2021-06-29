@@ -121,7 +121,7 @@
 		$("#open").click(function(){
 			if(confirm('确定要重新开启本场考试吗? 如果有人员调整，请注意重新生成数据。')){
 				$.get("diplomaControl.asp?op=closeGeneratePasscard&nodeID=" + $("#ID").val() + "&refID=0&times=" + (new Date().getTime()),function(data){
-					jAlert("已开启考试","信息提示");
+					jAlert("已重新开启考试，请及时关闭或锁定。","信息提示");
 					getNodeInfo(nodeID);
 					updateCount += 1;
 				});
