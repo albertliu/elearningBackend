@@ -101,7 +101,8 @@
 					});
 				}
 			});*/
-			showGenerateDiplomaInfo1(0,$("#searchStudentNeedDiplomaCert").val(),selList,selCount,1,1);
+			setSession("need2DiplomaList", selList);
+			showGenerateDiplomaInfo1(0,$("#searchStudentNeedDiplomaCert").val(),"need2DiplomaList",selCount,1,1);
 		});
 		
 		$("#txtSearchStudentNeedDiploma").keypress(function(event){

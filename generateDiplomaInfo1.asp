@@ -73,9 +73,12 @@
 				jAlert("结束日期不得大于发证日期。");
 				return false;
 			}
+			//jAlert(getSession(refID));
+			
 			jConfirm("确定要制作证书(" + keyID + "个)吗？","确认",function(r){
 				if(r){
-					$.getJSON(uploadURL + "/outfiles/generate_diploma_byClassID?ID=0&mark=0&certID=" + kindID + "&selList=" + refID + "&startDate=" + $("#startDate").val() + "&class_startDate=" + $("#class_startDate").val() + "&class_endDate=" + $("#class_endDate").val() + "&registerID=" + currUser ,function(data){
+					//$.getJSON(uploadURL + "/outfiles/generate_diploma_byClassID?ID=0&mark=0&certID=" + kindID + "&selList=" + refID + "&startDate=" + $("#startDate").val() + "&class_startDate=" + $("#class_startDate").val() + "&class_endDate=" + $("#class_endDate").val() + "&registerID=" + currUser ,function(data){
+					$.post(uploadURL + "/outfiles/generate_diploma_byClassID?ID=0&mark=0&certID=" + kindID + "&startDate=" + $("#startDate").val() + "&class_startDate=" + $("#class_startDate").val() + "&class_endDate=" + $("#class_endDate").val() + "&registerID=" + currUser, {"selList": getSession(refID)} ,function(data){
 						if(data>0){
 							jAlert("证书制作成功。");
 							nodeID = data;
@@ -220,7 +223,8 @@
 				"bFilter": true,
 				"bPaginate": true,
 				"bLengthChange": true,
-				"iDisplayLength": 100,
+				"aLengthMenu":[15,30,50,100,500],
+				"iDisplayLength": 500,
 				"bInfo": true,
 				"aoColumnDefs": []
 			});
@@ -357,12 +361,12 @@
 	
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
-  	<input class="button" type="button" id="save" value="保存" />&nbsp;
-  	<input class="button" type="button" id="redo" value="重新生成" />
-  	<input class="button" type="button" id="do" value="生成证书" />&nbsp;
+		<input class="button" type="button" id="save" value="保存" />&nbsp;
+		<input class="button" type="button" id="redo" value="重新生成" />
+		<input class="button" type="button" id="do" value="生成证书" />&nbsp;
+	</div>
 	<hr size="1" noshadow />
 	<div id="dimplomaListByBatch">
 	</div>
-  </div>
 </div>
 </body>

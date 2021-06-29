@@ -48,7 +48,7 @@
 			getNodeInfo(nodeID);
 		}
 
-		$("#sendMsg").click(function(){
+		$("#sendMsgExam").click(function(){
 			jConfirm("确定向这批考生发送考试通知吗？","确认",function(r){
 				if(r){
 					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
@@ -63,9 +63,27 @@
 				}
 			});
 		});
+
+		$("#sendMsgScore").click(function(){
+			jConfirm("确定向这批考生发送成绩单吗？","确认",function(r){
+				if(r){
+					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
+					$.getJSON(uploadURL + "/public/send_message_score?SMS=1&batchID=" + nodeID + "&registerID=" + currUser ,function(data){
+						if(data>""){
+							jAlert("通知发送成功。");
+							getNodeInfo(nodeID);
+						}else{
+							jAlert("没有可供处理的数据。");
+						}
+					});
+				}
+			});
+		});
+
 		$("#save").click(function(){
 			saveNode();
 		});
+
 		$("#del").click(function(){
 			if($("#qty").val()>0){
 				jAlert("该场次还有考生，请将其清空后再删除。");
@@ -134,6 +152,10 @@
 				}
 			});
 		});
+		$("#doImportScore").click(function(){
+			showLoadFile("score_list",$("#ID").val(),"studentList",'');
+			updateCount += 1;
+		});
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -163,6 +185,9 @@
 				$("#send").val(ar[14]);
 				$("#sendDate").val(ar[15]);
 				$("#senderName").val(ar[16]);
+				$("#send").val(ar[20]);
+				$("#sendDate").val(ar[21]);
+				$("#senderName").val(ar[22]);
 				$("#status").val(ar[17]);
 				$("#statusName").val(ar[18]);
 				var c = "";
@@ -171,6 +196,9 @@
 					$("#list").html("<a href=''>考站数据</a>");
 					$("#sign").html("<a href=''>签到表</a>");
 					$("#score").html("<a href=''>评分表</a>");
+					if(ar[19] > ""){
+						$("#scoreResult").html("<a href='/users" + ar[19] + "' target='_blank'>成绩单</a>");
+					}
 				}
 				if(c == ""){c = "&nbsp;&nbsp;还未生成";}
 				$("#photo").html(c);
@@ -266,7 +294,7 @@
 			ar = (unescape(data)).split("%%");
 			$("#cover").empty();
 			arr = [];		
-			arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='cartTab' width='100%'>");
+			arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='cardTab' width='100%'>");
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='4%'>No</th>");
@@ -322,13 +350,14 @@
 			arr.push("</table>");
 			$("#cover").html(arr.join(""));
 			arr = [];
-			$('#cartTab').dataTable({
+			$('#cardTab').dataTable({
 				"aaSorting": [],
-				"bFilter": false,
-				"bPaginate": false,
-				"bLengthChange": false,
-				"bInfo": false,
+				"bFilter": true,
+				"bPaginate": true,
+				"bLengthChange": true,
+				"aLengthMenu":[15,30,50,100,500],
 				"iDisplayLength": 500,
+				"bInfo": true,
 				"aoColumnDefs": []
 			});
 		});
@@ -338,7 +367,9 @@
 		$("#save").hide();
 		$("#del").hide();
 		$("#doPasscard").hide();
-		$("#sendMsg").hide();
+		$("#doImportScore").hide();
+		$("#sendMsgExam").hide();
+		$("#sendMsgScore").hide();
 		$("#startNo").prop("disabled",true);
 		if(op==1){
 			setEmpty();
@@ -349,8 +380,9 @@
 				$("#save").show();
 				$("#del").show();
 				$("#doPasscard").show();
-				$("#sendMsg").show();
-				$("#doPasscard").val("制作准考证");
+				$("#sendMsgExam").show();
+				$("#sendMsgScore").show();
+				$("#doImportScore").show();
 			}
 		}
 	}
@@ -403,12 +435,12 @@
 			<tr>
 				<td align="right">考试地址</td>
 				<td><input type="text" id="address" size="25" /></td>
-				<td align="right">文件下载</td>
-				<td>
+				<td colspan="2">
 					<span id="photo" style="margin-left:10px;"></span>
 					<span id="list" style="margin-left:10px;"></span>
 					<span id="sign" style="margin-left:10px;"></span>
 					<span id="score" style="margin-left:10px;"></span>
+					<span id="scoreResult" style="margin-left:10px;"></span>
 				</td>
 			</tr>
 			<tr>
@@ -426,11 +458,19 @@
 				<td><input class="readOnly" type="text" id="registerName" size="25" readOnly="true" /></td>
 			</tr>
 			<tr>
-				<td align="right">通知</td>
+				<td align="right">考试通知</td>
 				<td colspan="5">
 					次数&nbsp;<input class="readOnly" type="text" id="send" size="2" readOnly="true" />&nbsp;&nbsp;
 					日期&nbsp;<input class="readOnly" type="text" id="sendDate" size="6" readOnly="true" />&nbsp;&nbsp;
 					发送人&nbsp;<input class="readOnly" type="text" id="senderName" size="5" readOnly="true" />&nbsp;&nbsp;
+				</td>
+			</tr>
+			<tr>
+				<td align="right">成绩通知</td>
+				<td colspan="5">
+					次数&nbsp;<input class="readOnly" type="text" id="sendScore" size="2" readOnly="true" />&nbsp;&nbsp;
+					日期&nbsp;<input class="readOnly" type="text" id="sendScoreDate" size="6" readOnly="true" />&nbsp;&nbsp;
+					发送人&nbsp;<input class="readOnly" type="text" id="senderScoreName" size="5" readOnly="true" />&nbsp;&nbsp;
 				</td>
 			</tr>
 			</table>
@@ -443,8 +483,10 @@
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
 		<input class="button" type="button" id="save" value="保存" />&nbsp;
 		<input class="button" type="button" id="del" value="删除" />&nbsp;
-		<input class="button" type="button" id="doPasscard" value="" />&nbsp;
-		<input class="button" type="button" id="sendMsg" value="发送通知" />&nbsp;
+		<input class="button" type="button" id="doPasscard" value="做准考证" />&nbsp;
+		<input class="button" type="button" id="sendMsgExam" value="考试通知" />&nbsp;
+		<input class="button" type="button" id="doImportScore" value="成绩导入" />&nbsp;
+		<input class="button" type="button" id="sendMsgScore" value="成绩通知" />&nbsp;
 		<input class="button" type="button" id="close" value="结束" />&nbsp;
   	</div>
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
@@ -457,6 +499,7 @@
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnResit" value="加入补考购物车" /></span>
 		</div>
 	</div>
+	<hr size="1" noshadow />
 	<div id="cover" style="float:top;margin:3px;background:#f8fff8;">
 	</div>
 </div>

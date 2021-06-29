@@ -85,7 +85,8 @@
 			$.messager.confirm("确认","确定将这" + selCount + "人加入到'" + $("#examID").find("option:selected").text() + "'考试吗？",function(r){
 				if(r){
 					//$.getJSON(uploadURL + "/outfiles/recommend_job4cart?jobID=" + $("#jobID").val() + "&selList=" + selList + "&username=" + currUser ,function(data){
-					$.get("cartControl.asp?op=pickExamer4cart&refID=" + $("#examID").val() + "&item=" + escape(selList) + "&times=" + (new Date().getTime()),function(data){
+					//$.get("cartControl.asp?op=pickExamer4cart&refID=" + $("#examID").val() + "&item=" + escape(selList) + "&times=" + (new Date().getTime()),function(data){
+					$.post("cartControl.asp?op=pickExamer4cart&refID=" + $("#examID").val(), {"item":selList},function(data){
 						if(data==0){
 							jAlert("保存成功。");
 							getCartList();
@@ -165,6 +166,8 @@
 				"bPaginate": true,
 				"bLengthChange": true,
 				"bInfo": true,
+				"aLengthMenu":[15,30,50,100,500],
+				"iDisplayLength": 500,
 				"aoColumnDefs": []
 			});
 		});

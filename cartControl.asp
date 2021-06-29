@@ -77,7 +77,8 @@ if(op == "update"){
 }
 
 if(op == "add2cart"){
-	sql = "exec add2cart '" + kindID + "','" + item + "','" + memo + "','" + currUser + "'";
+	//sql = "exec add2cart '" + kindID + "','" + item + "','" + memo + "','" + currUser + "'";
+	sql = "exec add2cart '" + String(Request.Form("kindID")) + "','" + String(Request.Form("item")) + "','" + String(Request.Form("memo")) + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(0);
 }
@@ -94,7 +95,8 @@ if(op == "getCartCount"){
 }
 
 if(op == "pickExamer4cart"){
-	sql = "exec pickExamer4cart '" + refID + "','" + item + "','" + currUser + "'";
+	//sql = "exec pickExamer4cart '" + refID + "','" + item + "','" + currUser + "'";
+	sql = "exec pickExamer4cart '" + refID + "','" + String(Request.Form("item")) + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(0);
 }

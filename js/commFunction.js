@@ -442,7 +442,7 @@
 	}
 
 	function setSession(sName,sValue){
-		$.get("commonControl.asp?op=setSession&sName=" + escape(sName) + "&anyStr=" + escape(sValue) + "&times=" + (new Date().getTime()),function(re){
+		$.post("commonControl.asp?op=setSession&sName=" + escape(sName),{"anyStr":sValue},function(re){
 			//alert(re);
 		});
 	}
@@ -2330,7 +2330,8 @@
 		{
 			//selList = strSQL.substr(1);
 			selList = arr.join("").substr(1);
-			$.get("cartControl.asp?op=add2cart&kindID=" + cart + "&item=" + escape(selList) + "&memo=" + escape(memo) + "&times=" + (new Date().getTime()),function(re){
+			//$.get("cartControl.asp?op=add2cart&kindID=" + cart + "&item=" + escape(selList) + "&memo=" + escape(memo) + "&times=" + (new Date().getTime()),function(re){
+			$.post("cartControl.asp?op=add2cart", {"kindID":cart, "item":selList,"memo":memo},function(re){
 				setCartNum(cart);
 				jAlert("添加成功。");
 			});
@@ -2372,7 +2373,7 @@
 			id: "cart",
 			url:"cartInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "购物车信息",
-			width: 720,
+			width: 800,
 			height: 800,
 			cover : {
 	          //透明度

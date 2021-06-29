@@ -134,7 +134,7 @@ if(op == "getQuestionList"){
 }
 
 if(op == "setSession"){
-	Session(sName) = anyStr;
+	Session(sName) = String(Request.Form("anyStr"));
 	Response.Write(Session(sName));
 }
 
