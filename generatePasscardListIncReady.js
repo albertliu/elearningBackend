@@ -76,11 +76,7 @@
 					arr.push("<td class='link1'><a href='javascript:showGeneratePasscardInfo(" + ar1[0] + ",0,0,1);'>" + ar1[3] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[4] + "</td>");
 					arr.push("<td class='left'>" + ar1[8] + "</td>");
-					if(ar1[17]==0){
-						arr.push("<td class='center'>&nbsp;</td>");
-					}else{
-						arr.push("<td class='center'>" + ar1[18] + "</td>");
-					}
+					arr.push("<td class='center'>" + ar1[18] + "</td>");
 					arr.push("<td class='left'>" + ar1[15] + "</td>");
 					arr.push("<td class='left'>" + ar1[21] + "</td>");
 					if(ar1[19]==''){
