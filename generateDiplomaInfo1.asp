@@ -97,7 +97,7 @@
 			jConfirm("确定要重新制作证书吗？证书编号将保持不变。","确认",function(r){
 				if(r){
 					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
-					$.getJSON(uploadURL + "/outfiles/generate_diploma_byClassID?ID=" + $("#ID").val() + "&mark=0&certID=" + $("#certID").val() + "&selList=" + selList + "&startDate=" + $("#startDate").val() + "&class_startDate=" + $("#class_startDate").val() + "&class_endDate=" + $("#class_endDate").val() + "&registerID=" + currUser ,function(data){
+					$.post(uploadURL + "/outfiles/generate_diploma_byClassID?ID=" + $("#ID").val() + "&mark=0&certID=" + $("#certID").val() + "&startDate=" + $("#startDate").val() + "&class_startDate=" + $("#class_startDate").val() + "&class_endDate=" + $("#class_endDate").val() + "&registerID=" + currUser, {selList:""} ,function(data){
 						if(data>""){
 							jAlert("证书重新制作成功 <a href='" + data + "' target='_blank'>下载文件</a>");
 							updateCount += 1;
