@@ -285,6 +285,9 @@
 		if(op==0 && checkPermission("diplomaAdd")){
 			$("#upload1").show();
 			$("#redo").show();
+			//$("#save").show();
+		}
+		if(op==0 && checkPermission("diplomaPrint")){
 			$("#save").show();
 		}
 	}

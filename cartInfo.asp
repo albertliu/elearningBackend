@@ -87,6 +87,7 @@
 					//$.getJSON(uploadURL + "/outfiles/recommend_job4cart?jobID=" + $("#jobID").val() + "&selList=" + selList + "&username=" + currUser ,function(data){
 					//$.get("cartControl.asp?op=pickExamer4cart&refID=" + $("#examID").val() + "&item=" + escape(selList) + "&times=" + (new Date().getTime()),function(data){
 					$.post("cartControl.asp?op=pickExamer4cart&refID=" + $("#examID").val(), {"item":selList},function(data){
+						//jAlert(data);
 						if(data==0){
 							jAlert("保存成功。");
 							getCartList();

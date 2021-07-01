@@ -99,6 +99,7 @@ if(op == "pickExamer4cart"){
 	sql = "exec pickExamer4cart '" + refID + "','" + String(Request.Form("item")) + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(0);
+	//Response.Write(sql);
 }
 
 if(op == "remove4cart"){
