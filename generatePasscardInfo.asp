@@ -428,28 +428,29 @@
 			//$("#save").focus();
 		}else{
 			if(checkPermission("studentAdd")){
-				if(s==0){
+				if(s==0){		//考前可以删除考试、调整人员
 					$("#save").show();
 					$("#del").show();
 					$("#lock").show();
 					$("#btnRemove").show();
 				}
-				if(s==1){
+				if(s==1){		//锁定后可以做准考证，发考试通知，上传成绩，发成绩通知，安排补考
 					$("#doPasscard").show();
 					$("#sendMsgExam").show();
-				}
-				if(s==2){
 					$("#sendMsgScore").show();
 					$("#btnResit").show();
+				}
+				if(s==2){
+					//结束后什么都不能做
 				}
 				if(s<2){
 					$("#close").show();
 				}
 			}
-			if(checkPermission("scoreUpload") && s == 2){
+			if(checkPermission("scoreUpload") && s == 1){
 				$("#doImportScore").show();
 			}
-			if(checkPermission("examOpen") && s == 1){
+			if(checkPermission("examOpen") && s > 0){
 				$("#open").show();
 			}
 		}
