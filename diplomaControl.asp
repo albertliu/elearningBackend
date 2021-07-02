@@ -633,6 +633,15 @@ if(op == "getPasscardListByExam"){
 			where = s;
 		}
 	}
+	//如果需要补考
+	if(String(Request.QueryString("needResit"))==1){ // 
+		s = "status<>1";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 
 	if(where > ""){
 		where = " where " + where;

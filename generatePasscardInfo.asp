@@ -323,7 +323,9 @@
 	}
 
 	function getPasscardList(){
-		$.get("diplomaControl.asp?op=getPasscardListByExam&refID=" + nodeID + "&status=" + $("#s_status").val() + "&keyID=" + $("#s_resit").val() + "&times=" + (new Date().getTime()),function(data){
+		var need = 0;
+		if($("#needResit").attr("checked")){ need = 1;}
+		$.get("diplomaControl.asp?op=getPasscardListByExam&refID=" + nodeID + "&status=" + $("#s_status").val() + "&keyID=" + $("#s_resit").val() + "&needResit=" + need + "&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
@@ -566,6 +568,7 @@
 			<span>鉴定结果&nbsp;<select id="s_status" style="width:70px"></select></span>
 			<span>&nbsp;&nbsp;申请补考&nbsp;<select id="s_resit" style="width:70px"></select></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnSearch" value="查找" /></span>
+			<span><input style="border:0px;" type="checkbox" id="needResit" value="" />&nbsp;需补考&nbsp;</span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnSel" value="全选/取消" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnRemove" value="移出名单" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnResit" value="加入补考购物车" /></span>

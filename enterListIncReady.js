@@ -427,7 +427,7 @@
 				$("#enterListLongItem5").hide();
 			}else{
 				if(checkPermission("studentAdd")){
-					if($("#searchEnterProjectID").val()>""){
+					if($("#searchEnterCourseID").val()>""){
 						$("#btnEnterApply").show();
 						$("#btnEnterApplyBack").show();
 					}else{

@@ -72,6 +72,24 @@
 				});
 			}
 		});
+		$("#del").click(function(){
+			if($("#qty").val() > 0){
+				alert("该班级还有学员，不能删除。");
+				return false;
+			}
+			if(confirm('确定删除班级吗?')){
+				var x = prompt("请输入删除原因：","");
+				if(x && x>""){
+					$.get("classControl.asp?op=delNode&nodeID=" + $("#classID").val() + "&where=" + escape(x) + "&times=" + (new Date().getTime()),function(data){
+						//alert(unescape(data));
+						alert("已成功删除。","信息提示");
+						updateCount += 1;
+						op = 1;
+						setButton();
+					});
+				}
+			}
+		});
 
 		$("#certID").change(function(){
 			if($("#certID").val()>""){
@@ -105,6 +123,7 @@
 				$("#registerName").val(ar[16]);
 				$("#className").val(ar[17]);
 				$("#timetable").val(ar[18]);
+				$("#qty").val(ar[20]);
 				
 				//getDownloadFile("classID");
 				setButton();
@@ -177,6 +196,7 @@
 		$("#save").hide();
 		$("#close").hide();
 		$("#open").hide();
+		$("#del").hide();
 		if(op ==1){
 			setEmpty();
 		}else{
@@ -185,6 +205,9 @@
 			}
 			if(checkPermission("classOpen") && s > 0){
 				$("#open").show();
+			}
+			if(checkPermission("classAdd")){
+				$("#del").show();
 			}
 		}
 		if(checkPermission("classAdd") && s < 2){
@@ -246,6 +269,12 @@
 				<td><input type="text" id="projectID" name="projectID" size="25" /></td>
 			</tr>
 			<tr>
+				<td align="right">学员人数</td>
+				<td><input type="text" class="readOnly" readOnly="true" id="qty" size="25" /></td>
+				<td align="right">合格人数</td>
+				<td><input type="text" class="readOnly" readOnly="true" id="qtyPass"  size="25" /></td>
+			</tr>
+			<tr>
 				<td align="right">班主任</td>
 				<td><select id="adviserID" style="width:180px;"></select></td>
 				<td align="right">上课地点</td>
@@ -253,7 +282,7 @@
 			</tr>
 			<tr>
 				<td align="right">课程安排</td>
-				<td colspan="5"><textarea id="timetable" style="padding:2px;" rows="5" cols="75"></textarea></td>
+				<td colspan="5"><textarea id="timetable" style="padding:2px;" rows="4" cols="75"></textarea></td>
 			</tr>
 			<tr>
 				<td align="right">说明</td>
@@ -261,7 +290,7 @@
 			</tr>
 			<tr>
 				<td align="right">登记人</td>
-				<td><input class="readOnly" type="text" id="registerName" size="25" readOnly="true" /></td>
+				<td><input class="readOnly" readOnly="true" type="text" id="registerName" size="25" /></td>
 				<td align="right">登记日期</td>
 				<td><input class="readOnly" type="text" id="regDate" size="25" readOnly="true" /></td>
 			</tr>
@@ -275,7 +304,8 @@
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
   	<input class="button" type="button" id="save" value="保存" />&nbsp;&nbsp;
   	<input class="button" type="button" id="close" value="结课" />&nbsp;&nbsp;
-  	<input class="button" type="button" id="open" value="开启" />
+  	<input class="button" type="button" id="open" value="开启" />&nbsp;&nbsp;
+  	<input class="button" type="button" id="del" value="删除" />
   </div>
 </div>
 </body>
