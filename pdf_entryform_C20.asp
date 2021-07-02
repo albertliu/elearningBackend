@@ -24,6 +24,9 @@
 		}); 
 		//$("#test").html(refID);
 		$("#item_kind7").hide();
+		$("input[name='fire_kind5']").change(function(){
+			setKind4();
+		});
 		getNodeInfo(nodeID);
 	});
 
@@ -69,9 +72,18 @@
 				}else{
 					$("#img_photo").attr("src","images/blank_photo.png");
 				}
+				setKind4();
 			}
 		});
 		//setSession("public",0);
+	}
+
+	function setKind4(){
+		if($("input[name='fire_kind5']:checked").val()==1){
+			$("#fire_kind4_1").hide();
+		}else{
+			$("#fire_kind4_1").show();
+		}
 	}
 </script>
 
@@ -183,7 +195,8 @@
 			</tr>
 			<tr>
 				<td align="center" class='table_resume_title' width='16%' height='45px;'>职业方向</td><td align="left" colspan="4">
-					<span style='font-size:1em;'><input type="radio" name="fire_kind4" value=0 />&nbsp;&nbsp;消防设施监控操作</span>
+					<span style='font-size:1em;' id="fire_kind4_0"><input type="radio" name="fire_kind4" value=0 />&nbsp;&nbsp;消防设施监控操作</span>
+					<span style='font-size:1em;' id="fire_kind4_1"><input type="radio" name="fire_kind4" value=1 />&nbsp;&nbsp;消防设施检测维保</span>
 				</td>
 			</tr>
 			<tr>

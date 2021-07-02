@@ -263,7 +263,7 @@
 		if(id=='x04'){
 			p = "getDiplomaIssueList";
 			floatModel = 5;
-			sql = "select a.name,a.dept1Name,a.dept2Name,a.diplomaID,a.username,a.mobile,a.educationName,c.className,c.submitDate,c.SNo from v_diplomaInfo a, studentCertList b, v_studentCourseList c where b.ID=c.refID and a.diplomaID=b.diplomaID and a.batchID=" + p1 + " order by a.dept1Name,a.diplomaID";
+			sql = "select a.name,(case when a.host='znxf' then unit else a.dept1Name end),a.dept2Name,a.diplomaID,a.username,a.mobile,a.educationName,c.className,c.submitDate,c.SNo from v_diplomaInfo a, studentCertList b, v_studentCourseList c where b.ID=c.refID and a.diplomaID=b.diplomaID and a.batchID=" + p1 + " order by a.dept1Name,a.diplomaID";
 		}
 		setSession(p, sql);
 		setSession("dk" + id, p);

@@ -423,6 +423,7 @@
 		$("#sendMsgScore").hide();
 		$("#btnRemove").hide();
 		$("#btnResit").hide();
+		$("#needResit").hide();
 		$("#startNo").prop("disabled",true);
 		if(op==1){
 			setEmpty();
@@ -441,6 +442,7 @@
 					$("#sendMsgExam").show();
 					$("#sendMsgScore").show();
 					$("#btnResit").show();
+					$("#needResit").show();
 				}
 				if(s==2){
 					//结束后什么都不能做
