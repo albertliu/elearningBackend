@@ -247,7 +247,7 @@
 					arr.push("<th width='8%'>部门</th>");
 				}
 				if(currHost==""){
-					arr.push("<th width='9%'>提交日期</th>");
+					arr.push("<th width='12%'>经办人</th>");
 				}else{
 					arr.push("<th width='9%'>报名日期</th>");
 				}
@@ -328,7 +328,7 @@
 							arr.push("<td class='left'>" + ar1[13].substr(0,5) + "</td>");
 						}
 						if(currHost==""){
-							arr.push("<td class='left'>" + ar1[39] + "</td>");
+							arr.push("<td class='left'>" + ar1[39] + ar1[67] + "</td>");
 						}else{
 							arr.push("<td class='left'>" + ar1[11] + "</td>");
 						}
