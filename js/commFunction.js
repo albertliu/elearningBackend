@@ -265,6 +265,11 @@
 			floatModel = 5;
 			sql = "select a.name,(case when a.host='znxf' then a.unit else a.dept1Name end) as dept1Name,a.dept2Name,a.diplomaID,a.username,a.mobile,a.educationName,c.className,c.submitDate,c.SNo from v_diplomaInfo a, studentCertList b, v_studentCourseList c where b.ID=c.refID and a.diplomaID=b.diplomaID and a.batchID=" + p1 + " order by a.dept1Name,a.diplomaID";
 		}
+		if(id=='x05'){
+			p = "getApplyList";
+			floatModel = 2;
+			sql = "select name,sexName,educationName,username,mobile,unit from v_applyInfo where refID=" + p1 + " order by applyNo";
+		}
 		setSession(p, sql);
 		setSession("dk" + id, p);
 		setSession("dk" + id + "_count", 60);
@@ -1541,6 +1546,38 @@
 				if(re>0 && mark==2){
 					//alert(iframe.getValList());
 					setObjValue("generatePasscard",iframe.getValList(),0,0);  //根据请求，返回任意个数的项目，为相应的对象赋值。objList:传入的Object列表；valList：输出的值；mark：0 不动作 1 关闭本窗口（与objList同名）; loc: 0 同级别  1 父窗体
+				}
+　　　		}
+		});
+	}
+	
+	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
+	function showGenerateApplyInfo(nodeID,refID,op,mark){
+		asyncbox.open({
+			id: "generateApply",
+			url:"generateApplyInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
+			title: "申报批次信息",
+			width: 880,
+			height: 880,
+			cover : {
+	          //透明度
+	          opacity : 0,
+	          //背景颜色
+	           background : '#000'
+	          },
+
+			btnsbar : false,
+			callback : function(action,iframe){
+				setReturnLog("generateApply",iframe.nodeID);	
+				var re = iframe.updateCount;
+				if(re>0 && mark==1){
+					getGenerateApplyList();
+					setCartNum("examer");
+				}
+				//alert(re + ":" + mark);
+				if(re>0 && mark==2){
+					//alert(iframe.getValList());
+					setObjValue("generateApply",iframe.getValList(),0,0);  //根据请求，返回任意个数的项目，为相应的对象赋值。objList:传入的Object列表；valList：输出的值；mark：0 不动作 1 关闭本窗口（与objList同名）; loc: 0 同级别  1 父窗体
 				}
 　　　		}
 		});

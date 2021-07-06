@@ -39,8 +39,8 @@
 		$.ajaxSetup({ 
 			async: false 
 		}); 
-		getComList("certID","certificateInfo","certID","shortName","status=0 and type=0 order by certID",1);
-		getDicList("examResult","s_status",1);
+		getComList("courseID","v_courseInfo","courseID","shortName","status=0 and type=0 and agencyID<>4 order by courseID",1);
+		getDicList("statusApply","s_status",1);
 		getDicList("statusNo","s_resit",1);
 		$("#startDate").click(function(){WdatePicker();});
 		setButton();
@@ -48,50 +48,18 @@
 			getNodeInfo(nodeID);
 		}
 
-		$("#sendMsgExam").click(function(){
-			jConfirm("确定向这批考生发送考试通知吗？","确认",function(r){
-				if(r){
-					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
-					$.getJSON(uploadURL + "/public/send_message_exam?SMS=1&batchID=" + nodeID + "&registerID=" + currUser ,function(data){
-						if(data>""){
-							jAlert("通知发送成功。");
-							getNodeInfo(nodeID);
-						}else{
-							jAlert("没有可供处理的数据。");
-						}
-					});
-				}
-			});
-		});
-
-		$("#sendMsgScore").click(function(){
-			jConfirm("确定向这批考生发送成绩单吗？","确认",function(r){
-				if(r){
-					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
-					$.getJSON(uploadURL + "/public/send_message_score?SMS=1&batchID=" + nodeID + "&registerID=" + currUser ,function(data){
-						if(data>""){
-							jAlert("通知发送成功。");
-							getNodeInfo(nodeID);
-						}else{
-							jAlert("没有可供处理的数据。");
-						}
-					});
-				}
-			});
-		});
-
 		$("#save").click(function(){
 			saveNode();
 		});
 
 		$("#del").click(function(){
 			if($("#qty").val()>0){
-				jAlert("该场次还有考生，请将其清空后再删除。");
+				jAlert("该批申报还有考生，请将其清空后再删除。");
 				return false;
 			}
-			jConfirm('你确定要删除考试信息吗?', '确认对话框', function(r) {
+			jConfirm('你确定要删除申报信息吗?', '确认对话框', function(r) {
 				if(r){
-					$.get("diplomaControl.asp?op=delGeneratePasscard&nodeID=" + nodeID + "&&times=" + (new Date().getTime()),function(data){
+					$.get("diplomaControl.asp?op=delGenerateApply&nodeID=" + nodeID + "&&times=" + (new Date().getTime()),function(data){
 						jAlert("成功删除！","信息提示");
 						op = 1;
 						setButton();
@@ -101,27 +69,27 @@
 			});
 		});
 		$("#close").click(function(){
-			if(confirm('确定要结束本场考试吗?')){
-				$.get("diplomaControl.asp?op=closeGeneratePasscard&nodeID=" + $("#ID").val() + "&refID=2&times=" + (new Date().getTime()),function(data){
-					jAlert("已关闭考试","信息提示");
+			if(confirm('确定要结束本次申报吗?')){
+				$.get("diplomaControl.asp?op=closeGenerateApply&nodeID=" + $("#ID").val() + "&refID=2&times=" + (new Date().getTime()),function(data){
+					jAlert("已关闭申报","信息提示");
 					getNodeInfo(nodeID);
 					updateCount += 1;
 				});
 			}
 		});
 		$("#lock").click(function(){
-			if(confirm('确定要锁定本场考试吗? 将无法调整考生名单。')){
-				$.get("diplomaControl.asp?op=closeGeneratePasscard&nodeID=" + $("#ID").val() + "&refID=1&times=" + (new Date().getTime()),function(data){
-					jAlert("已关闭考试","信息提示");
+			if(confirm('确定要锁定本次申报吗? 将无法调整考生名单。')){
+				$.get("diplomaControl.asp?op=closeGenerateApply&nodeID=" + $("#ID").val() + "&refID=1&times=" + (new Date().getTime()),function(data){
+					jAlert("已关闭申报","信息提示");
 					getNodeInfo(nodeID);
 					updateCount += 1;
 				});
 			}
 		});
 		$("#open").click(function(){
-			if(confirm('确定要重新开启本场考试吗? 如果有人员调整，请注意重新生成数据。')){
-				$.get("diplomaControl.asp?op=closeGeneratePasscard&nodeID=" + $("#ID").val() + "&refID=0&times=" + (new Date().getTime()),function(data){
-					jAlert("已重新开启考试，请及时关闭或锁定。","信息提示");
+			if(confirm('确定要重新开启本次申报吗? 如果有人员调整，请注意重新生成数据。')){
+				$.get("diplomaControl.asp?op=closeGenerateApply&nodeID=" + $("#ID").val() + "&refID=0&times=" + (new Date().getTime()),function(data){
+					jAlert("已重新开启申报，请及时关闭或锁定。","信息提示");
 					getNodeInfo(nodeID);
 					updateCount += 1;
 				});
@@ -133,9 +101,9 @@
 				jAlert("请选择要移除的人员。");
 				return false;
 			}
-			jConfirm('确定要将这' + selCount + '个人从本场考试移除吗?', "确认对话框",function(r){
+			jConfirm('确定要将这' + selCount + '个人从本次申报移除吗?', "确认对话框",function(r){
 				if(r){
-					$.post("diplomaControl.asp?op=remove4GeneratePasscard&nodeID=0", {"selList":selList},function(data){
+					$.post("diplomaControl.asp?op=remove4GenerateApply&nodeID=0", {"selList":selList},function(data){
 						//jAlert(data);
 						jAlert("已成功移除","信息提示");
 						getNodeInfo(nodeID);
@@ -144,26 +112,20 @@
 				}
 			});
 		});
-		$("#doPasscard").click(function(){
-			doPasscard();
+		$("#doApply").click(function(){
+			doApply();
 		});
 		$("#list").click(function(){
-			outputExcelBySQL('x01','file',nodeID,0,0);
+			outputExcelBySQL('x05','file',nodeID,0,0);
 		});
-		$("#sign").click(function(){
-			outputExcelBySQL('x02','file',nodeID,0,0);
-		});
-		$("#score").click(function(){
-			outputExcelBySQL('x03','file',nodeID,0,0);
-		});
-		$("#certID").change(function(){
-			var c = $("#certID").find("option:selected").text();
+		$("#courseID").change(function(){
+			var c = $("#courseID").find("option:selected").text();
 			if($("#startDate").val()>"" && c > ""){
 				$("#title").val(c + $("#startDate").val());
 			}
 		});
 		$("#btnSearch").click(function(){
-			getPasscardList();
+			getApplyList();
 		});
 
 		$("#btnSel").click(function(){
@@ -172,7 +134,7 @@
 		
 		$("#btnResit").click(function(){
 			if($("#status").val()==0){
-				jAlert("请先结束考试，再安排补考。");
+				jAlert("请先结束申报，再安排补申。");
 				return false;
 			}
 			getSelCart("");
@@ -180,7 +142,7 @@
 				jAlert("请选择要加入购物车的人员。");
 				return false;
 			}
-			jConfirm('确定要安排这' + selCount + '个人补考吗?', "确认对话框",function(r){
+			jConfirm('确定要安排这' + selCount + '个人补申吗?', "确认对话框",function(r){
 				if(r){
 					add2Cart("","examer","*补考*");
 					updateCount += 1;
@@ -196,51 +158,31 @@
 
 	function getNodeInfo(id){
 		//alert(id);
-		$.get("diplomaControl.asp?op=getGeneratePasscardNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
+		$.get("diplomaControl.asp?op=getGenerateApplyNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			var c = "";
 			ar = unescape(re).split("|");
 			if(ar > ""){
 				$("#ID").val(ar[0]);
-				$("#certID").val(ar[1]);
-				//$("#className").val(ar[2]);
+				$("#courseID").val(ar[1]);
+				//$("#courseName").val(ar[2]);
 				$("#title").val(ar[3]);
 				$("#qty").val(ar[4]);
-				$("#startTime").val(ar[5]);
-				$("#address").val(ar[6]);
-				$("#notes").val(ar[7]);
-				$("#startDate").val(ar[8]);
+				$("#applyID").val(ar[5]);
+				$("#startDate").val(ar[6]);
 				//$("#filename").val(ar[9]);
-				fn = ar[9];
-				$("#memo").val(ar[10]);
-				$("#regDate").val(ar[11]);
-				$("#registerName").val(ar[12]);
-				$("#startNo").val(ar[13]);
-				$("#send").val(ar[14]);
-				$("#sendDate").val(ar[15]);
-				$("#senderName").val(ar[16]);
-				$("#send").val(ar[20]);
-				$("#sendDate").val(ar[21]);
-				$("#senderName").val(ar[22]);
-				$("#status").val(ar[17]);
-				$("#statusName").val(ar[18]);
-				var c = "";
-				if(ar[9] > ""){
-					c += "<a href='/users" + ar[9] + "' target='_blank'>准考证</a>";
-					$("#list").html("<a href=''>考站数据</a>");
-					$("#sign").html("<a href=''>签到表</a>");
-					$("#score").html("<a href=''>评分表</a>");
-					if(ar[19] > ""){
-						$("#scoreResult").html("<a href='/users" + ar[19] + "' target='_blank'>成绩单</a>");
-					}
-				}
-				if(c == ""){c = "&nbsp;&nbsp;还未生成";}
-				$("#photo").html(c);
+				fn = ar[7];
+				$("#memo").val(ar[8]);
+				$("#regDate").val(ar[9]);
+				$("#registerName").val(ar[10]);
+				$("#status").val(ar[11]);
+				$("#statusName").val(ar[12]);
+				$("#list").html("<a href=''>申报名单</a>");
 				//getDownloadFile("generateDiplomaID");
 				nodeID = ar[0];
 				setButton();
-				getPasscardList();
+				getApplyList();
 			}else{
 				jAlert("该信息未找到！","信息提示");
 				setEmpty();
@@ -248,17 +190,17 @@
 		});
 	}
 	
-	function doPasscard(){
+	function doApply(){
 		if($("#title").val()==""){
 			jAlert("请填写标题。");
 			return false;
 		}
 		if($("#startDate").val()==""){
-			jAlert("请填写考试日期。");
+			jAlert("请填写申报日期。");
 			return false;
 		}
 		if($("#startTime").val()==""){
-			jAlert("请填写考试时间。");
+			jAlert("请填写申报时间。");
 			return false;
 		}
 		if($("#startNo").val()=="" || $("#startNo").val()<1 || $("#startNo").val()>1000){
@@ -273,7 +215,7 @@
 		jConfirm('确定要制作准考证吗?', '确认对话框', function(r) {
 			if(r){
 				//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-				$.getJSON(uploadURL + "/outfiles/generate_passcard_byExamID?mark=0&ID=" + nodeID + "&username=" + currUser ,function(data){
+				$.getJSON(uploadURL + "/outfiles/generate_apply_byExamID?mark=0&ID=" + nodeID + "&username=" + currUser ,function(data){
 					if(data>""){
 						jAlert("准考证制作成功");
 						op = 0;
@@ -295,19 +237,19 @@
 			return false;
 		}
 		if($("#startDate").val()==""){
-			jAlert("请填写考试日期。");
+			jAlert("请填写申报日期。");
 			return false;
 		}
 		if($("#startTime").val()==""){
-			jAlert("请填写考试时间。");
+			jAlert("请填写申报时间。");
 			return false;
 		}
-		if($("#certID").val()==""){
-			jAlert("请选择考试科目。");
+		if($("#courseID").val()==""){
+			jAlert("请选择申报科目。");
 			return false;
 		}
 		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-		$.get("diplomaControl.asp?op=updateGeneratePasscardInfo&nodeID=" + nodeID + "&refID=" + $("#certID").val() + "&keyID=" + $("#startNo").val() + "&startDate=" + $("#startDate").val() + "&startTime=" + $("#startTime").val() + "&item=" + escape($("#title").val()) + "&address=" + escape($("#address").val()) + "&notes=" + escape($("#notes").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("diplomaControl.asp?op=updateGenerateApplyInfo&nodeID=" + nodeID + "&refID=" + $("#courseID").val() + "&keyID=" + $("#startNo").val() + "&startDate=" + $("#startDate").val() + "&startTime=" + $("#startTime").val() + "&item=" + escape($("#title").val()) + "&address=" + escape($("#address").val()) + "&notes=" + escape($("#notes").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//alert(unescape(re));
 			if(re>0){
 				jAlert("保存成功");
@@ -322,10 +264,10 @@
 		return false;
 	}
 
-	function getPasscardList(){
+	function getApplyList(){
 		var need = 0;
 		if($("#needResit").attr("checked")){ need = 1;}
-		$.get("diplomaControl.asp?op=getPasscardListByExam&refID=" + nodeID + "&status=" + $("#s_status").val() + "&keyID=" + $("#s_resit").val() + "&needResit=" + need + "&times=" + (new Date().getTime()),function(data){
+		$.get("diplomaControl.asp?op=getApplyListByExam&refID=" + nodeID + "&status=" + $("#s_status").val() + "&keyID=" + $("#s_resit").val() + "&needResit=" + need + "&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
@@ -417,7 +359,7 @@
 		$("#lock").hide();
 		$("#close").hide();
 		$("#open").hide();
-		$("#doPasscard").hide();
+		$("#doApply").hide();
 		$("#doImportScore").hide();
 		$("#sendMsgExam").hide();
 		$("#sendMsgScore").hide();
@@ -431,14 +373,14 @@
 			//$("#save").focus();
 		}else{
 			if(checkPermission("studentAdd")){
-				if(s==0){		//考前可以删除考试、调整人员
+				if(s==0){		//考前可以删除申报、调整人员
 					$("#save").show();
 					$("#del").show();
 					$("#lock").show();
 					$("#btnRemove").show();
 				}
-				if(s==1){		//锁定后可以做准考证，发考试通知，上传成绩，发成绩通知，安排补考
-					$("#doPasscard").show();
+				if(s==1){		//锁定后可以做准考证，发申报通知，上传成绩，发成绩通知，安排补考
+					$("#doApply").show();
 					$("#sendMsgExam").show();
 					$("#sendMsgScore").show();
 					$("#btnResit").show();
@@ -490,35 +432,30 @@
 			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
-				<td align="right">考试日期</td>
+				<td align="right">申报日期</td>
 				<td><input class="mustFill" type="text" id="startDate" size="25" /></td>
-				<td align="right">考试时间</td>
-				<td><input class="mustFill" type="text" id="startTime" size="25" /></td>
+				<td align="right">申报科目</td><input type="hidden" id="ID" /><input type="hidden" id="status" />
+				<td><select id="courseID" style="width:100%;"></select></td>
 			</tr>
 			<tr>
-				<td align="right">考试科目</td><input type="hidden" id="ID" /><input type="hidden" id="status" />
-				<td><select id="certID" style="width:100%;"></select></td>
-				<td align="right">人数</td>
-				<td><input class="readOnly" type="text" id="qty" size="3" readOnly="true" />&nbsp;&nbsp;&nbsp;&nbsp;起始编号&nbsp;<input class="readOnly" type="text" id="startNo" size="3" readOnly="true" /></td>
-			</tr>
-			<tr>
-				<td align="right">场次标识</td>
+				<td align="right">申报标识</td>
 				<td colspan="3"><input class="mustFill" type="text" id="title" style="width:70%;" />&nbsp;&nbsp;状态<input class="readOnly" type="text" id="statusName" size="5" readOnly="true" /></td>
 			</tr>
 			<tr>
-				<td align="right">考试地址</td>
-				<td><input type="text" id="address" size="25" /></td>
+				<td align="right">申报批号</td>
+				<td><input type="text" id="applyID" size="25" /></td>
 				<td colspan="2">
-					<span id="photo" style="margin-left:10px;"></span>
 					<span id="list" style="margin-left:10px;"></span>
-					<span id="sign" style="margin-left:10px;"></span>
-					<span id="score" style="margin-left:10px;"></span>
-					<span id="scoreResult" style="margin-left:10px;"></span>
 				</td>
 			</tr>
 			<tr>
-				<td align="right">注意事项</td>
-				<td colspan="3"><input type="text" id="notes" style="width:100%;" /></td>
+				<td align="right">申报结果</td>
+				<td colspan="3">
+					人数：<span id="qty" style="margin-left:10px;"></span>
+					待定：<span id="qtyNull" style="margin-left:10px;"></span>
+					通过：<span id="qtyYes" style="margin-left:10px;"></span>
+					未通过<span id="qtyNo" style="margin-left:10px;"></span>
+				</td>
 			</tr>
 			<tr>
 				<td align="right">备注</td>
@@ -530,22 +467,6 @@
 				<td align="right">制作人</td>
 				<td><input class="readOnly" type="text" id="registerName" size="25" readOnly="true" /></td>
 			</tr>
-			<tr>
-				<td align="right">考试通知</td>
-				<td colspan="5">
-					次数&nbsp;<input class="readOnly" type="text" id="send" size="2" readOnly="true" />&nbsp;&nbsp;
-					日期&nbsp;<input class="readOnly" type="text" id="sendDate" size="6" readOnly="true" />&nbsp;&nbsp;
-					发送人&nbsp;<input class="readOnly" type="text" id="senderName" size="5" readOnly="true" />&nbsp;&nbsp;
-				</td>
-			</tr>
-			<tr>
-				<td align="right">成绩通知</td>
-				<td colspan="5">
-					次数&nbsp;<input class="readOnly" type="text" id="sendScore" size="2" readOnly="true" />&nbsp;&nbsp;
-					日期&nbsp;<input class="readOnly" type="text" id="sendScoreDate" size="6" readOnly="true" />&nbsp;&nbsp;
-					发送人&nbsp;<input class="readOnly" type="text" id="senderScoreName" size="5" readOnly="true" />&nbsp;&nbsp;
-				</td>
-			</tr>
 			</table>
 			</form>
 			</div>
@@ -556,8 +477,8 @@
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
 		<input class="button" type="button" id="save" value="保存" />&nbsp;
 		<input class="button" type="button" id="del" value="删除" />&nbsp;
-		<input class="button" type="button" id="doPasscard" value="做准考证" />&nbsp;
-		<input class="button" type="button" id="sendMsgExam" value="考试通知" />&nbsp;
+		<input class="button" type="button" id="doApply" value="做准考证" />&nbsp;
+		<input class="button" type="button" id="sendMsgExam" value="申报通知" />&nbsp;
 		<input class="button" type="button" id="doImportScore" value="成绩导入" />&nbsp;
 		<input class="button" type="button" id="sendMsgScore" value="成绩通知" />&nbsp;
 		<input class="button" type="button" id="lock" value="锁定" />&nbsp;
@@ -567,13 +488,13 @@
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
 	<div style="width:100%;float:left;margin:0;">
 		<div style="border:solid 1px #e0e0e0;width:99%;margin:5px;background:#ffffff;line-height:18px;padding-left:20px;">
-			<span>鉴定结果&nbsp;<select id="s_status" style="width:70px"></select></span>
-			<span>&nbsp;&nbsp;申请补考&nbsp;<select id="s_resit" style="width:70px"></select></span>
+			<span>申报结果&nbsp;<select id="s_status" style="width:70px"></select></span>
+			<span>&nbsp;&nbsp;申请补申&nbsp;<select id="s_resit" style="width:70px"></select></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnSearch" value="查找" /></span>
 			<span><input style="border:0px;" type="checkbox" id="needResit" value="" />&nbsp;需补考&nbsp;</span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnSel" value="全选/取消" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnRemove" value="移出名单" /></span>
-			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnResit" value="加入补考购物车" /></span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnResit" value="加入补申购物车" /></span>
 		</div>
 	</div>
 	<hr size="1" noshadow />

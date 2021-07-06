@@ -543,9 +543,9 @@ if(op == "getGeneratePasscardList"){
 	if(where > ""){ // 有条件
 		where = "(className like('%" + where + "%'))";
 	}
-	//如果有班级
-	if(refID > ""){ // 
-		s = "classID='" + refID + "'";
+	//如果有状态
+	if(status > ""){ // 
+		s = "status=" + status;
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
@@ -784,6 +784,173 @@ if(op == "remove4GeneratePasscard"){
 	execSQL(sql);
 	Response.Write(nodeID);
 	//Response.Write(sql);
+}
+
+if(op == "getGenerateApplyList"){
+	result = "";
+	var s = "";
+	//如果有条件，按照条件查询
+	if(where > ""){ // 有条件
+		where = "(title like('%" + where + "%') or courseName like('%" + where + "%') or applyID like('%" + where + "%'))";
+	}
+	//如果有状态
+	if(status > ""){ // 
+		s = "status=" + status;
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//如果有课程
+	if(kindID > ""){ // 
+		s = "courseID='" + kindID + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	if(fStart > ""){
+		s = "startDate>='" + fStart + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	if(fEnd > ""){
+		s = "startDate<='" + fEnd + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+
+	if(where > ""){
+		where = " where " + where;
+	}
+	sql = " FROM v_generateApplyInfo " + where;
+	result = getBasketTip(sql,"");
+	ssql = "SELECT kindName,qty,hostName,memo,regDate,registerName" + sql + " order by ID";
+	sql = "SELECT top " + basket + " *" + sql + " order by ID desc";
+	
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("ID").value + "|" + rs("courseID").value + "|" + rs("courseName").value + "|" + rs("title").value + "|" + rs("qty").value + "|" + rs("applyID").value;
+		//6
+		result += "|" + rs("startDate").value + "|" + rs("filename").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value;
+		//11
+		result += "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("qtyYes").value + "|" + rs("qtyNo").value + "|" + rs("qtyNull").value;
+		rs.MoveNext();
+	}
+	rs.Close();
+	
+	Session(op) = ssql;
+	Response.Write(escape(result));
+}	
+
+if(op == "getApplyListByBatch"){
+	result = "";
+	var s = "";
+	//如果有批次
+	if(refID > ""){ // 
+		s = "refID=" + refID;
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//如果有状态
+	if(status > ""){ // 
+		s = "status=" + status;
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//如果有补申
+	if(keyID > ""){
+		s = "resit>=" + keyID;
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//如果需要补申
+	if(String(Request.QueryString("needResit"))==1){ // 
+		s = "status<>1";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+
+	if(where > ""){
+		where = " where " + where;
+	}
+	sql = " FROM v_applyInfo " + where;
+	ssql = "SELECT kindName,qty,hostName,memo,regDate,registerName" + sql + " order by ID";
+	sql = "SELECT *" + sql + " order by passNo, ID";
+	
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("ID").value + "|" + rs("refID").value + "|" + rs("enterID").value + "|" + rs("applyNo").value + "|" + rs("username").value + "|" + rs("name").value + "|" + rs("mobile").value;
+		//7
+		result += "|" + rs("resit").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value;
+		//13
+		result += "|" + rs("unit").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value;
+		rs.MoveNext();
+	}
+	rs.Close();
+	result = result.substr(2);
+	Session(op) = ssql;
+	Response.Write(escape(result));
+}	
+
+if(op == "getGenerateApplyNodeInfo"){
+	result = "";
+	sql = "SELECT * FROM v_generateApplyInfo where ID=" + nodeID;
+	rs = conn.Execute(sql);
+	if(!rs.EOF){
+		result = rs("ID").value + "|" + rs("courseID").value + "|" + rs("courseName").value + "|" + rs("title").value + "|" + rs("qty").value + "|" + rs("applyID").value;
+		//6
+		result += "|" + rs("startDate").value + "|" + rs("filename").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value;
+		//11
+		result += "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("qtyYes").value + "|" + rs("qtyNo").value + "|" + rs("qtyNull").value;
+	}
+	rs.Close();
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}	
+
+if(op == "updateGenerateApplyInfo"){
+	//@ID int,@courseID varchar(50),@applyID varchar(50),@title nvarchar(100),@startDate varchar(100),@memo nvarchar(500),@registerID
+	sql = "exec updateGenerateApplyInfo " + nodeID + ",'" + refID + "','" + keyID + "','" + item + "','" + String(Request.QueryString("startDate")) + "','" + memo + "','" + currUser + "'";
+	rs = conn.Execute(sql);
+	if(!rs.EOF){
+		result = rs("re").value;
+	}
+	rs.Close();
+	Response.Write(result);
+	//Response.Write(escape(sql));
+}
+
+if(op == "delGenerateApplyInfo"){
+	sql = "exec delGenerateApplyInfo '" + nodeID + "','" + currUser + "'";
+	execSQL(sql);
+	Response.Write(nodeID);
+}
+
+if(op == "closeGenerateApplyInfo"){
+	sql = "exec closeGenerateApplyInfo " + nodeID + "," + refID + ",'" + currUser + "'";
+	execSQL(sql);
+	Response.Write(nodeID);
 }
 
 %>

@@ -407,7 +407,7 @@
 			ar.shift();
 			arr1.push("<table class='table_help' width='100%'>");
 			arr1.push("<tr align='center' bgcolor='#e0e0e0'>");
-			arr1.push("<td width='25%'>课程</td><td width='12%'>批次</td><td width='15%'>班级</td><td width='10%'>学号</td><td width='10%'>材料</td><td width='10%'>缴费</td><td width='10%'>状态</td>");
+			arr1.push("<td width='25%'>课程</td><td width='12%'>批次</td><td width='15%'>班级</td><td width='10%'>学号</td><td width='10%'>材料</td><td width='10%'>缴费</td><td width='10%'>经办</td>");
 			arr1.push("</tr>");
 			var imgChk = "<img src='images/green_check.png'>";
 			if(ar > ""){
@@ -419,7 +419,7 @@
 						c = imgChk;
 					}
 					arr1.push("<tr>");
-					arr1.push("<td><a href='javascript:showEnterInfo(" + ar1[0] + ",\"" + $("#username").val() + "\",0,1,0);'>" + ar1[6] + "</a></td><td>" + ar1[41] + "</td><td>" + ar1[42] + "</td><td>" + ar1[43] + "</td><td>" + c + "</td><td>" + ar1[50] + "</td><td>" + ar1[4] + "</td>");
+					arr1.push("<td><a href='javascript:showEnterInfo(" + ar1[0] + ",\"" + $("#username").val() + "\",0,1,0);'>" + ar1[6] + "</a></td><td>" + ar1[41] + "</td><td>" + ar1[42] + "</td><td>" + ar1[43] + "</td><td>" + c + "</td><td>" + ar1[50] + "</td><td>" + ar1[40] + "</td>");
 					arr1.push("</tr>");
 				});
 			}

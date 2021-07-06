@@ -32,6 +32,7 @@
 		kindID = "<%=nodeID%>";
 		
 		getComList("examID","v_generatePasscardInfo","ID","title","status=0 order by ID desc",1);
+		getComList("applyID","v_generateApplyInfo","ID","title","status=0 order by ID desc",1);
 		
 		$.ajaxSetup({ 
 			async: false 
@@ -99,6 +100,11 @@
 				}
 			});
 		});
+
+		$("input[name='item']").change(function(){
+			setOption();
+		});
+		setOption();
 
 		getCartList();
 
@@ -174,6 +180,16 @@
 		});
 	}
 	
+	function setOption(){
+		$("#select0").hide();
+		$("#select1").hide();
+		$("#btnDo0").hide();
+		$("#btnDo1").hide();
+		var i = $("input[name='item']:checked").val();
+		$("#select" + i).show();
+		$("#btnDo" + i).show();
+	}
+	
 	function setButton(){
 		$("#btnDo").hide();
 		$("#btnRemove").hide();
@@ -200,15 +216,19 @@
 	
 	<div style="width:100%;float:left;margin:0;">
 		<div style="border:solid 1px #e0e0e0;width:99%;margin:5px;background:#ffffff;line-height:18px;padding-left:20px;">
-			<div>考试场次：<select id="examID" style="width:200px"></select></div>
+			<input style="border:0px;" type="radio" id="item0" name="item" value="0" checked />&nbsp;考试&nbsp;&nbsp;
+			<input style="border:0px;" type="radio" id="item1" name="item" value="1" />&nbsp;申报&nbsp;&nbsp;
+			<span id="select0">考试场次：<select id="examID" style="width:200px"></select></span>
+			<span id="select1">申报项目：<select id="applyID" style="width:200px"></select></span>
 		</div>
 	</div>
 	
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
   		<input class="button" type="button" id="btnCartSel" value="全选/取消" />&nbsp;
-  		<input class="button" type="button" id="btnDo" value="加入考试" />&nbsp;
-  		<input class="button" type="button" id="btnRemove" value="移除" />&nbsp;
+  		<input class="button" type="button" id="btnDo0" value="加入考试" />
+  		<input class="button" type="button" id="btnDo1" value="加入申报" />
+  		&nbsp;<input class="button" type="button" id="btnRemove" value="移除" />&nbsp;
   		<input class="button" type="button" id="btnEmpty" value="清空购物车" />&nbsp;
   	</div>
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>

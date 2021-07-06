@@ -427,13 +427,6 @@
 				$("#enterListLongItem5").hide();
 			}else{
 				if(checkPermission("studentAdd")){
-					if($("#searchEnterCourseID").val()>""){
-						$("#btnEnterApply").show();
-						$("#btnEnterApplyBack").show();
-					}else{
-						$("#btnEnterApply").hide();
-						$("#btnEnterApplyBack").show();
-					}
 					$("#enterListLongItem5").show();
 				}else{
 					$("#enterListLongItem5").hide();
