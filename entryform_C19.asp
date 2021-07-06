@@ -146,7 +146,7 @@
 		</div>
 		<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
 			<div style='margin: 20px;text-align:center;'><h2 style='font-size:1.3em;'>上海智能消防学校</h2></div>
-			<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>消防安全管理员培训报名表</h3></div>
+			<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>消防安全责任人培训报名表</h3></div>
 			<div style='margin: 12px;text-align:left; width:95%;'><span style='font-size:1.2em;'>学员编号：</span><span style='font-size:1.2em;' id="SNo"></span></div>
 			<table class='table_resume' style='width:100%;'>
 			<tr>
