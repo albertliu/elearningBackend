@@ -341,7 +341,8 @@
 			arr.push("<th width='14%'>电话</th>");
 			arr.push("<th width='10%'>成绩</th>");
 			arr.push("<th width='10%'>结果</th>");
-			arr.push("<th width='10%'>补考</th>");
+			arr.push("<th width='10%'>类型</th>");
+			arr.push("<th width='6%'>补</th>");
 			arr.push("<th width='6%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -366,6 +367,7 @@
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
 					arr.push("<td class='left'>" + ar1[7] + "</td>");
 					arr.push("<td class='left'>" + ar1[10] + "</td>");
+					arr.push("<td class='left'>" + ar1[17] + "</td>");
 					if(ar1[8]>0){
 						arr.push("<td class='center'>" + imgChk + "</td>");	//补考
 					}else{
@@ -383,6 +385,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
@@ -423,7 +426,7 @@
 		$("#sendMsgScore").hide();
 		$("#btnRemove").hide();
 		$("#btnResit").hide();
-		$("#needResit").hide();
+		$("#s_needResit").hide();
 		$("#startNo").prop("disabled",true);
 		if(op==1){
 			setEmpty();
@@ -437,15 +440,15 @@
 					$("#lock").show();
 					$("#btnRemove").show();
 				}
-				if(s==1){		//锁定后可以做准考证，发考试通知，上传成绩，发成绩通知，安排补考
+				if(s==1){		//锁定后可以做准考证，发考试通知，上传成绩，发成绩通知
 					$("#doPasscard").show();
 					$("#sendMsgExam").show();
 					$("#sendMsgScore").show();
-					$("#btnResit").show();
-					$("#needResit").show();
 				}
 				if(s==2){
-					//结束后什么都不能做
+					$("#btnResit").show();
+					$("#s_needResit").show();
+					//结束后，安排补考
 				}
 				if(s<2){
 					$("#close").show();
@@ -570,7 +573,7 @@
 			<span>鉴定结果&nbsp;<select id="s_status" style="width:70px"></select></span>
 			<span>&nbsp;&nbsp;申请补考&nbsp;<select id="s_resit" style="width:70px"></select></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnSearch" value="查找" /></span>
-			<span><input style="border:0px;" type="checkbox" id="needResit" value="" />&nbsp;需补考&nbsp;</span>
+			<span id="s_needResit"><input style="border:0px;" type="checkbox" id="needResit" value="" />&nbsp;需补考&nbsp;</span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnSel" value="全选/取消" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnRemove" value="移出名单" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnResit" value="加入补考购物车" /></span>

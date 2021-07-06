@@ -657,7 +657,7 @@ if(op == "getPasscardListByExam"){
 		//7
 		result += "|" + rs("score").value + "|" + rs("resit").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value;
 		//14
-		result += "|" + rs("unit").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value;
+		result += "|" + rs("unit").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value + "|" + rs("kind").value;
 		rs.MoveNext();
 	}
 	rs.Close();

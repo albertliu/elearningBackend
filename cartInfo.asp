@@ -73,7 +73,7 @@
 			});
 		});
 		
-		$("#btnDo").click(function(){
+		$("#btnDo0").click(function(){
 			getSelCart("");
 			if(selCount==0){
 				jAlert("请选择要添加的人员。");
@@ -90,7 +90,7 @@
 					$.post("cartControl.asp?op=pickExamer4cart&refID=" + $("#examID").val(), {"item":selList},function(data){
 						//jAlert(data);
 						if(data==0){
-							jAlert("保存成功。");
+							jAlert("操作成功。");
 							getCartList();
 							updateCount += 1;
 						}else{
