@@ -419,7 +419,7 @@
 						c = imgChk;
 					}
 					arr1.push("<tr>");
-					arr1.push("<td><a href='javascript:showEnterInfo(" + ar1[0] + ",\"" + $("#username").val() + "\",0,1,0);'>" + ar1[6] + "</a></td><td>" + ar1[41] + "</td><td>" + ar1[42] + "</td><td>" + ar1[43] + "</td><td>" + c + "</td><td>" + ar1[50] + "</td><td>" + ar1[40] + "</td>");
+					arr1.push("<td><a href='javascript:showEnterInfo(" + ar1[0] + ",\"" + $("#username").val() + "\",0,1,0);'>" + ar1[6] + "</a></td><td>" + ar1[41] + "</td><td>" + ar1[42] + "</td><td>" + ar1[43] + "</td><td>" + c + "</td><td>" + ar1[50] + "</td><td>" + ar1[67] + "</td>");
 					arr1.push("</tr>");
 				});
 			}
