@@ -238,7 +238,7 @@ if(op == "getNodeInfo"){
 		//33
 		result += "|" + rs("projectName").value + "|" + rs("className").value + "|" + rs("entryform").value + "|" + rs("certID").value + "|" + rs("unit").value + "|" + rs("dept").value + "|" + rs("host").value;
 		//40
-		result += "|" + rs("reexamine").value + "|" + rs("reexamineName").value + "|" + rs("examTimes").value + "|" + rs("missingItems").value;
+		result += "|" + rs("reexamine").value + "|" + rs("reexamineName").value + "|" + rs("examTimes").value + "|" + rs("missingItems").value + "|" + rs("submiterName").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

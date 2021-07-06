@@ -234,6 +234,7 @@
 				$("#className").val(ar[34]);
 				$("#certID").val(ar[36]);
 				$("#reexamineName").val(ar[41]);
+				$("#submiterName").val(ar[44]);
 
 				getPayDetailInfoByEnterID(ar[0]);
 			//getDownloadFile("studentCourseID");
@@ -564,7 +565,7 @@
 				类别&nbsp;<input class="readOnly" type="text" id="reexamineName" style="width:50px" readOnly="true" />
 				<br>
 				<span id="class1">所属班级&nbsp;<select id="classID" style="width:250px"></select>&nbsp;&nbsp;</span>
-				<span id="class0">所属班级&nbsp;<input class="readOnly" type="text" id="className" style="width:250px" readOnly="true" />&nbsp;&nbsp;</span>
+				<span id="class0">所属班级&nbsp;<input class="readOnly" type="text" id="className" style="width:250px" readOnly="true" />&nbsp;&nbsp;经办人&nbsp;<input class="readOnly" type="text" id="submiterName" style="width:50px" readOnly="true" />&nbsp;&nbsp;</span>
 				编号&nbsp;<input type="text" id="SNo" style="width:50px" />
 				<br>
 				报名表
