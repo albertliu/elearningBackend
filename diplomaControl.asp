@@ -601,6 +601,7 @@ if(op == "getGeneratePasscardList"){
 	
 	Session(op) = ssql;
 	Response.Write(escape(result));
+	//Response.Write(escape(sql));
 }	
 
 if(op == "getPasscardListByExam"){
