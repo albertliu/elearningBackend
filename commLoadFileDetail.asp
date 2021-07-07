@@ -47,6 +47,7 @@
 			//student material
 			arr.push('<input style="border:0px;" type="radio" id="uploadKind0" name="uploadKind" value="student_list" />学员报名表&nbsp;');
 			arr.push('<input style="border:0px;" type="radio" id="uploadKind1" name="uploadKind" value="score_list" />考试成绩单&nbsp;');
+			arr.push('<input style="border:0px;" type="radio" id="uploadKind2" name="uploadKind" value="ref_student_list" />预报名表&nbsp;');
 		}
 		if(mark=='mulitple'){
 			//student material

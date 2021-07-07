@@ -98,6 +98,12 @@
 				$("#className").val($("#certID").find("option:selected").text() + $("#dateStart").val().substr(2).replace(/-/g,""));
 			}
 		});
+
+		$("#doImportRef").click(function(){
+			showLoadFile("ref_student_list",$("#ID").val(),"studentList",'');
+			updateCount += 1;
+		});
+
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -124,6 +130,12 @@
 				$("#className").val(ar[17]);
 				$("#timetable").val(ar[18]);
 				$("#qty").val(ar[20]);
+				var c = "";
+				if(ar[21] > ""){
+					c += "<a href='/users" + ar[21] + "' target='_blank'>预报名表</a>";
+				}
+				if(c == ""){c = "&nbsp;&nbsp;";}
+				$("#photo").html(c);
 				
 				//getDownloadFile("classID");
 				setButton();
@@ -162,7 +174,7 @@
 	function setProjectList(id,s){
 		$("#projectID").empty();
 		//getComList("projectID","projectInfo","projectID","projectName"," status>0 and certID='" + id + "' order by projectID desc",1);
-		$.getJSON(uploadURL + "/public/getProjectListBycertID?certID=" + id ,function(data){
+		$.getJSON(uploadURL + "/public/getProjectListBycertID?certID=" + id + "&op=" + op ,function(data){
 			if(data>""){
 				//alert(data[0]["deptName"]);
 				//data = [{"id":1,"text":"text1"},{"id":2,"text":"text2"},{"id":3,"text":"text3"},{"id":4,"text":"text4"},{"id":5,"text":"text5"}];
@@ -270,9 +282,13 @@
 			</tr>
 			<tr>
 				<td align="right">学员人数</td>
-				<td><input type="text" class="readOnly" readOnly="true" id="qty" size="25" /></td>
-				<td align="right">合格人数</td>
-				<td><input type="text" class="readOnly" readOnly="true" id="qtyPass"  size="25" /></td>
+				<td>
+					<input type="text" class="readOnly" readOnly="true" id="qty" size="3" />
+					合格<input type="text" class="readOnly" readOnly="true" id="qtyPass"  size="3" />
+				</td>
+				<td colspan="2">
+					<span id="photo" style="margin-left:10px;"></span>
+				</td>
 			</tr>
 			<tr>
 				<td align="right">班主任</td>
@@ -305,7 +321,8 @@
   	<input class="button" type="button" id="save" value="保存" />&nbsp;&nbsp;
   	<input class="button" type="button" id="close" value="结课" />&nbsp;&nbsp;
   	<input class="button" type="button" id="open" value="开启" />&nbsp;&nbsp;
-  	<input class="button" type="button" id="del" value="删除" />
+  	<input class="button" type="button" id="del" value="删除" />&nbsp;&nbsp;
+		<input class="button" type="button" id="doImportRef" value="预报名表导入" />
   </div>
 </div>
 </body>

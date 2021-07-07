@@ -68,7 +68,9 @@ if(op == "getNodeInfo"){
 		//8
 		result += "|" + rs("adviserID").value + "|" + rs("adviserName").value + "|" + rs("dateStart").value + "|" + rs("dateEnd").value + "|" + rs("classroom").value;
 		//13
-		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("className").value + "|" + rs("timetable").value + "|" + rs("phone").value + "|" + rs("qty").value;
+		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("className").value;
+		//18
+		result += "|" + rs("timetable").value + "|" + rs("phone").value + "|" + rs("qty").value + "|" + rs("filename").value;
 		execSQL(sql);
 	}
 	rs.Close();
