@@ -237,9 +237,9 @@
 				});
 			}else{
 				if($("#searchEnterProjectID").val()>""){
-					arr.push("<th width='12%'>班级名称</th>");
+					arr.push("<th width='10%'>班级名称</th>");
 				}else{
-					arr.push("<th width='12%'>课程名称</th>");
+					arr.push("<th width='10%'>课程名称</th>");
 				}
 				if(currHost==""){
 					arr.push("<th width='8%'>公司</th>");
@@ -259,7 +259,7 @@
 				arr.push("<th width='6%'>次数</th>");
 			}else{
 				arr.push("<th width='5%'>缺</th>");
-				arr.push("<th width='5%'>编</th>");
+				arr.push("<th width='7%'>编</th>");
 			}
 			arr.push("<th width='5%'>申</th>");
 			arr.push("<th width='5%'>准</th>");
