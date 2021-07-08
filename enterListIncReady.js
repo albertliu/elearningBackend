@@ -254,16 +254,16 @@
 			}
 			//arr.push("<th width='6%'>单位</th>");
 			arr.push("<th width='5%'>表</th>");
+			arr.push("<th width='6%'>成绩</th>");
 			if(role){
-				arr.push("<th width='6%'>成绩</th>");
 				arr.push("<th width='6%'>次数</th>");
 			}else{
 				arr.push("<th width='5%'>缺</th>");
-				arr.push("<th width='7%'>编</th>");
 			}
-			arr.push("<th width='5%'>申</th>");
-			arr.push("<th width='5%'>准</th>");
-			arr.push("<th width='5%'>分</th>");
+			arr.push("<th width='7%'>编</th>");
+			arr.push("<th width='4%'>申</th>");
+			arr.push("<th width='4%'>准</th>");
+			arr.push("<th width='4%'>分</th>");
 			arr.push("<th width='2%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -316,7 +316,7 @@
 						if($("#searchEnterProjectID").val()>""){
 							arr.push("<td class='left'>" + ar1[52] + "</td>");
 						}else{
-							arr.push("<td class='left'>" + ar1[62] + "</td>");
+							arr.push("<td class='left' title='" + ar1[62] + "'>" + ar1[62].substring(0,7) + "</td>");
 						}	
 						if(currHost==""){
 							if(ar1[56]=="znxf"){	//非集团客户，显示自己的单位和部门
@@ -336,8 +336,8 @@
 					}
 					//arr.push("<td class='link1'><a href='javascript:window.open(\"entryform_" + ar1[60] + ".asp?keyID=0&nodeID=" + ar1[0] + "&refID=" + ar1[1] + ", \"_blank\");'>" + imgChk + "</a></td>");
 					arr.push("<td class='link1'><a href='javascript:openEntryForm(\"" + ar1[60] + "\"," + ar1[0] + ",\"" + ar1[1] + "\");'>" + imgChk + "</a></td>");
+					arr.push("<td class='left'>" + ar1[15] + "</td>");
 					if(role){
-						arr.push("<td class='left'>" + ar1[15] + "</td>");
 						arr.push("<td class='left'>" + ar1[59] + "</td>");
 					}else{
 						n = ar1[61].split(",").length;
@@ -346,8 +346,8 @@
 						}else{
 							arr.push("<td class='left'>&nbsp;</td>");
 						}
-						arr.push("<td class='left'>" + ar1[43] + "</td>");
 					}
+					arr.push("<td class='left'>" + ar1[43] + "</td>");
 					/*申报*/
 					if(ar1[65]>0){
 						arr.push("<td class='center'>" + imgChk1 + "</td>");	//申报
