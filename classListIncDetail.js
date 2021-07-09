@@ -5,6 +5,7 @@
 				          <input class="button" type="button" name="btnSearchClass" id="btnSearchClass" value="查找" />
 						      <input class="button" type="button" id="btnAddClass" name="btnAddClass" value="新增" />
 						      &nbsp;|&nbsp;
+							  班主任&nbsp;<select id="searchClassAdviser" style="width:90px"></select>&nbsp;&nbsp;
 					          &nbsp;课程&nbsp;<select id="searchClassCert" style="width:120px"></select>&nbsp;
 					          &nbsp;批次&nbsp;<select id="searchClassProject" style="width:120px"></select>&nbsp;
 							  状态&nbsp;<select id="searchClassStatus" style="width:50px"></select>&nbsp;

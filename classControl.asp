@@ -17,6 +17,15 @@ if(op == "getClassList"){
 			where = s;
 		}
 	}
+	//如果有班主任
+	if(kindID > ""){ // 
+		s = "adviserID='" + kindID + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 	//如果有状态
 	if(status > ""){ // 
 		s = "status=" + status;
