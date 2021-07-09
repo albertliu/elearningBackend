@@ -8,6 +8,7 @@
 		getComList("searchEnterCourseID","v_courseInfo","courseID","shortName","status=0 and type=0 order by courseID",1);
 		getComList("searchEnterProjectID","projectInfo","projectID","projectName","status>0 and status<9 order by ID desc",1);
 		getComList("searchEnterClassID","v_classInfo","classID","className","1=1 order by ID desc",1);
+		getComList("searchEnterClassAdviser","v_classAdviser","adviserID","adviserName","1=1",1);
 
 		getDicList("student","searchEnterKind",1);
 		getDicList("planStatus","searchEnterStatus",1);
@@ -96,6 +97,12 @@
 		$("#searchEnterCourseID").change(function(){
 			if($("#searchEnterCourseID").val()>""){
 				getComList("searchEnterClassID","v_classInfo","classID","className","certID in(select certID from courseInfo where courseID='" + $("#searchEnterCourseID").val() + "') order by ID desc",1);
+			}
+		});
+		
+		$("#searchEnterClassAdviser").change(function(){
+			if($("#searchEnterClassAdviser").val()>""){
+				getComList("searchEnterClassID","v_classInfo","classID","className","adviserID ='" + $("#searchEnterClassAdviser").val() + "' order by ID desc",1);
 			}
 		});
 		
@@ -254,7 +261,7 @@
 			}
 			//arr.push("<th width='6%'>单位</th>");
 			arr.push("<th width='5%'>表</th>");
-			arr.push("<th width='6%'>成绩</th>");
+			arr.push("<th width='6%'>模拟</th>");
 			if(role){
 				arr.push("<th width='6%'>次数</th>");
 			}else{
@@ -336,7 +343,7 @@
 					}
 					//arr.push("<td class='link1'><a href='javascript:window.open(\"entryform_" + ar1[60] + ".asp?keyID=0&nodeID=" + ar1[0] + "&refID=" + ar1[1] + ", \"_blank\");'>" + imgChk + "</a></td>");
 					arr.push("<td class='link1'><a href='javascript:openEntryForm(\"" + ar1[60] + "\"," + ar1[0] + ",\"" + ar1[1] + "\");'>" + imgChk + "</a></td>");
-					arr.push("<td class='left'>" + ar1[15] + "</td>");
+					arr.push("<td class='left'>" + nullNoDisp(ar1[15]) + "</td>");
 					if(role){
 						arr.push("<td class='left'>" + ar1[59] + "</td>");
 					}else{
@@ -365,7 +372,7 @@
 					}else{
 						arr.push("<td class='center'>&nbsp;</td>");
 					}*/
-					arr.push("<td class='left'>" + ar1[66] + "</td>");
+					arr.push("<td class='left'>" + nullNoDisp(ar1[66]) + "</td>");
 					arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchkEnter'>" + "</td>");
 					arr.push("</tr>");
 				});

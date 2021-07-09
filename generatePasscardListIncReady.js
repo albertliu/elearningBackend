@@ -3,7 +3,7 @@
 
 	$(document).ready(function (){
 		getComList("searchGeneratePasscardCert","v_certificateInfo","certID","certName","status=0 and type=0 order by certName",1);
-		getDicList("planStatus","searchGeneratePasscardStatus",0);
+		getDicList("planStatus","searchGeneratePasscardStatus",1);
 		$("#searchGeneratePasscardStart").click(function(){WdatePicker();});
 		$("#searchGeneratePasscardEnd").click(function(){WdatePicker();});
 		

@@ -31,6 +31,7 @@
 								<input class="button" type="button" id="btnEnterGoodPhoto" value="修正确认" />
 							</span>
 							<span id="enterListLongItem3">
+								班主任&nbsp;<select id="searchEnterClassAdviser" style="width:90px"></select>&nbsp;&nbsp;
 								班级&nbsp;<select id="searchEnterClassID" style="width:180px"></select>&nbsp;&nbsp;
 								类别&nbsp;<select id="searchEnterReexamine" style="width:50px"></select>&nbsp;&nbsp;
 							    &nbsp;<label id="searchEnterDateItem">报名日期</label>&nbsp;<input type="text" id="searchEnterStartDate" size="8" />-<input type="text" id="searchEnterEndDate" size="8" />
