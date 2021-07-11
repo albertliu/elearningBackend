@@ -561,6 +561,15 @@ if(op == "getGeneratePasscardList"){
 			where = s;
 		}
 	}
+	//如果有经办人
+	if(refID > ""){ // 
+		s = "registerID='" + refID + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 	if(fStart > ""){
 		s = "startDate>='" + fStart + "'";
 		if(where > ""){

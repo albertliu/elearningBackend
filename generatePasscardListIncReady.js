@@ -3,6 +3,7 @@
 
 	$(document).ready(function (){
 		getComList("searchGeneratePasscardCert","v_certificateInfo","certID","certName","status=0 and type=0 order by certName",1);
+		getComList("searchGeneratePasscardRegister","v_examRegister","registerID","registerName","1=1 order by ID desc",1);
 		getDicList("planStatus","searchGeneratePasscardStatus",1);
 		$("#searchGeneratePasscardStart").click(function(){WdatePicker();});
 		$("#searchGeneratePasscardEnd").click(function(){WdatePicker();});
@@ -34,7 +35,7 @@
 	function getGeneratePasscardList(){
 		sWhere = $("#txtSearchGeneratePasscard").val();
 		//alert((sWhere) + "&kindID=" + $("#searchGeneratePasscardCert").val() + "&host=" + $("#searchGeneratePasscardHost").val() + "&keyID=" + photo);
-		$.get("diplomaControl.asp?op=getGeneratePasscardList&where=" + escape(sWhere) + "&kindID=" + $("#searchGeneratePasscardCert").val() + "&status=" + $("#searchGeneratePasscardStatus").val() + "&fStart=" + $("#searchGeneratePasscardStart").val() + "&fEnd=" + $("#searchGeneratePasscardEnd").val() + "&dk=104&times=" + (new Date().getTime()),function(data){
+		$.get("diplomaControl.asp?op=getGeneratePasscardList&where=" + escape(sWhere) + "&kindID=" + $("#searchGeneratePasscardCert").val() + "&refID=" + $("#searchGeneratePasscardRegister").val() + "&status=" + $("#searchGeneratePasscardStatus").val() + "&fStart=" + $("#searchGeneratePasscardStart").val() + "&fEnd=" + $("#searchGeneratePasscardEnd").val() + "&dk=104&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");

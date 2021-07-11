@@ -4,6 +4,7 @@
 				          <input type="text" id="txtSearchGeneratePasscard" name="txtSearchGeneratePasscard" size="14" title="课程、班级名称" style="background:yellow;" />
 				          <input class="button" type="button" id="btnSearchGeneratePasscard" value="查找" />
 				          <input class="button" type="button" id="btnSearchGeneratePasscardAdd" value="添加" />
+					          &nbsp;&nbsp;经办人&nbsp;<select id="searchGeneratePasscardRegister" style="width:100px"></select>&nbsp;&nbsp;
 					          &nbsp;&nbsp;课程&nbsp;<select id="searchGeneratePasscardCert" style="width:100px"></select>&nbsp;&nbsp;
 					          状态&nbsp;<select id="searchGeneratePasscardStatus" style="width:80px"></select>&nbsp;&nbsp;
 							  &nbsp;&nbsp;<label>考试日期</label>
