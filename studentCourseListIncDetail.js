@@ -30,11 +30,11 @@
 							确认&nbsp;<select id="searchStudentCourseChecked" style="width:70px"></select>&nbsp;&nbsp;&nbsp;
 							报到&nbsp;<select id="searchStudentCourseSubmited" style="width:70px"></select>&nbsp;&nbsp;&nbsp;
 							计划内&nbsp;<select id="searchStudentCourseMark" style="width:70px"></select>&nbsp;&nbsp;&nbsp;
-							<span id="studentCourseListLongItem5">
 								<input class="button" type="button" id="btnStudentCourseSel" value="全选/取消" />&nbsp;&nbsp;
+								<input class="button" type="button" id="btnStudentCourseCall" value="上课通知" />&nbsp;&nbsp;
+							<span id="studentCourseListLongItem5">
 								<input class="button" type="button" id="btnStudentCourseCheck" value="名单确认" />&nbsp;&nbsp;
 								<input class="button" type="button" id="btnStudentCourseRefuse" value="剔除" />&nbsp;&nbsp;
-								<input class="button" type="button" id="btnStudentCourseCall" value="上课通知" />&nbsp;&nbsp;
 							</span>
 				        </form>
 							</div>
