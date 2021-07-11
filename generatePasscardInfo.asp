@@ -220,9 +220,9 @@
 				$("#send").val(ar[14]);
 				$("#sendDate").val(ar[15]);
 				$("#senderName").val(ar[16]);
-				$("#send").val(ar[20]);
-				$("#sendDate").val(ar[21]);
-				$("#senderName").val(ar[22]);
+				$("#sendScore").val(ar[20]);
+				$("#sendScoreDate").val(ar[21]);
+				$("#senderScoreName").val(ar[22]);
 				$("#status").val(ar[17]);
 				$("#statusName").val(ar[18]);
 				var c = "";

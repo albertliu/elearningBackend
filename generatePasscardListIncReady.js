@@ -12,6 +12,10 @@
 			getGeneratePasscardList();
 		});
 		
+		$("#searchGeneratePasscardRegister").change(function(){
+			getGeneratePasscardList();
+		});
+		
 		$("#txtSearchGeneratePasscard").keypress(function(event){
 			if(event.keyCode==13){
 				if($("#txtSearchGeneratePasscard").val()>""){
