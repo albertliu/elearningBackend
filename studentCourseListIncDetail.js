@@ -34,6 +34,7 @@
 								<input class="button" type="button" id="btnStudentCourseSel" value="全选/取消" />&nbsp;&nbsp;
 								<input class="button" type="button" id="btnStudentCourseCheck" value="名单确认" />&nbsp;&nbsp;
 								<input class="button" type="button" id="btnStudentCourseRefuse" value="剔除" />&nbsp;&nbsp;
+								<input class="button" type="button" id="btnStudentCourseCall" value="上课通知" />&nbsp;&nbsp;
 							</span>
 				        </form>
 							</div>

@@ -322,7 +322,7 @@
   	<input class="button" type="button" id="close" value="结课" />&nbsp;&nbsp;
   	<input class="button" type="button" id="open" value="开启" />&nbsp;&nbsp;
   	<input class="button" type="button" id="del" value="删除" />&nbsp;&nbsp;
-		<input class="button" type="button" id="doImportRef" value="预报名表导入" />
+	<input class="button" type="button" id="doImportRef" value="预报名表导入" />
   </div>
 </div>
 </body>

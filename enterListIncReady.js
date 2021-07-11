@@ -202,6 +202,28 @@
 				add2Cart("visitstockchkEnter","examer",r);
 			});
 		});
+		
+		$("#btnEnterCall").click(function(){
+			getSelCart("visitstockchkEnter");
+			if(selCount==0){
+				jAlert("请选择要通知的名单。");
+				return false;
+			}
+			jConfirm("确定要通知这些(" + selCount + "个)人补交报名材料吗？","确认",function(r){
+				if(r){
+					//alert($("#searchStudentCourseProjectID").val() + "&status=1&host=" + $("#searchStudentCourseHost").val() + "&keyID=" + selList);
+					//jAlert(selList);
+					jPrompt('材料内容:', '1张照片、学历证明复印件', '材料催缴通知', function (x) {
+						if(x > ""){
+							$.post(uploadURL + "/public/send_message_photo", {selList: selList, SMS:1, registerID: currUser} ,function(data){
+								//jAlert(data);
+								jAlert("发送成功。");
+							});
+						}
+					});
+				}
+			});
+		});
 		//getExamerList();
 		setCartNum("examer");
 	});

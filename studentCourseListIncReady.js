@@ -162,6 +162,23 @@
 				}
 			});
 		});
+		
+		$("#btnStudentCourseCall").click(function(){
+			getSelCart("visitstockchkCourse");
+			if(selCount==0){
+				jAlert("请选择要通知的名单。");
+				return false;
+			}
+			jConfirm("确定要通知这些(" + selCount + "个)人参加培训吗？","确认",function(r){
+				if(r){
+					//alert($("#searchStudentCourseProjectID").val() + "&status=1&host=" + $("#searchStudentCourseHost").val() + "&keyID=" + selList);
+					//jAlert(selList);
+					$.post(uploadURL + "/public/send_message_class", {batchID: $("#searchStudentCourseClassID").val(), selList: selList, SMS:1, registerID: currUser} ,function(data){
+						jAlert("发送成功。");
+					});
+				}
+			});
+		});
 
 		setHostChange();
 	});
@@ -231,11 +248,11 @@
 					arr.push("<td class='left'>" + ar1[14] + "</td>");
 					arr.push("<td class='left'>" + ar1[20] + ar1[22] + "</td>");
 					arr.push("<td class='center'>" + ar1[16] + "</td>");
-					if(ar1[15]==0 && ar1[23] > 0){
-						arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[23] + "' name='visitstockchkCourse'>" + "</td>");
-					}else{
-						arr.push("<td class='center'>&nbsp;</td>");
-					}
+					//if(ar1[15]==0 && ar1[23] > 0){
+						arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[1] + "' name='visitstockchkCourse'>" + "</td>");
+					//}else{
+						//arr.push("<td class='center'>&nbsp;</td>");
+					//}
 					arr.push("</tr>");
 				});
 			}

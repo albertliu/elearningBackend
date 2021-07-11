@@ -211,7 +211,7 @@
 			$("#menu9").hide();
 			$("#menu10").hide();
 		}else{
-			$("#menu2").hide();
+			//$("#menu2").hide();
 			//$("#menu3").hide();
 		}
 		
