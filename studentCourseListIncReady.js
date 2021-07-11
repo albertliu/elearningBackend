@@ -223,13 +223,13 @@
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + ar1[0] + "</td>");
 					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + ar1[1] + "\",0,1);'>" + ar1[1] + "</a></td>");
-					arr.push("<td class='center'>" + ar1[2] + "</td>");
-					arr.push("<td class='center'>" + ar1[3] + "</td>");
-					arr.push("<td class='center'>" + ar1[8] + "</td>");
-					arr.push("<td class='center'>" + ar1[6] + "</td>");
-					arr.push("<td class='center'>" + ar1[5] + "</td>");
-					arr.push("<td class='center'>" + ar1[14] + "</td>");
-					arr.push("<td class='center'>" + ar1[20] + ar1[22] + "</td>");
+					arr.push("<td class='left'>" + ar1[2] + "</td>");
+					arr.push("<td class='left'>" + ar1[3] + "</td>");
+					arr.push("<td class='left'>" + ar1[8] + "</td>");
+					arr.push("<td class='left'>" + ar1[6] + "</td>");
+					arr.push("<td class='left'>" + ar1[5] + "</td>");
+					arr.push("<td class='left'>" + ar1[14] + "</td>");
+					arr.push("<td class='left'>" + ar1[20] + ar1[22] + "</td>");
 					arr.push("<td class='center'>" + ar1[16] + "</td>");
 					if(ar1[15]==0 && ar1[23] > 0){
 						arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[23] + "' name='visitstockchkCourse'>" + "</td>");

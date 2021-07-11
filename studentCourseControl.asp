@@ -279,7 +279,7 @@ if(op == "getStudentListByClass"){
 	}
 	sql = " FROM dbo.getStudentListByClass('" + refID + "') " + where;
 	result = getBasketTip(sql,"");
-	ssql = "SELECT SNo,username,name,sexName,age,educationName,(case when host='znxf' then unit else hostName end),(case when host='znxf' then dept else dept1Name end),(case when host='znxf' then '' else dept2Name end),job,mobile,phone,checkName,projectID+projectName,classID,statusName,price,pay_typeName,pay_kindName,datePay,invoice,(case when diploma_score=0 then '' else cast(diploma_score as varchar) end),diplomaID,diploma_startDate,diploma_endDate,memo,regDate" + sql + " order by projectID,SNo";
+	ssql = "SELECT ID,SNo,username,name,education,deptName,stationName,job,mobile,memo,expireDate,invoice,checkDate,checkerName,submitDate,submitName,(case when mark=0 then '计划内' else '计划外' end) as kind" + sql + " order by mark,ID";
 	sql = "SELECT top " + basket + " *" + sql + " order by mark,ID";
 	
 	rs = conn.Execute(sql);
