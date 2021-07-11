@@ -323,7 +323,7 @@
 					<ul class="tabs-nav">
 						<li><a href="#fragment-0"><span>我的事务</span></a></li>
 						<li><a href="#fragment-1"><span>学员管理</span></a></li>
-						<li id="menu2"><a href="#fragment-2"><span>培训报名</span></a></li>
+						<li id="menu2"><a href="#fragment-2"><span>预报名管理</span></a></li>
 						<li id="menu10"><a href="#fragment-10"><span>报名管理</span></a></li>
 						<li id="menu9"><a href="#fragment-9"><span>班级管理</span></a></li>
 						<li id="menu3"><a href="#fragment-3"><span>证书管理</span></a></li>
@@ -426,10 +426,6 @@
 						<!--#include file="studentListIncDetail.js"-->
 					</div>
 					
-					<div id="fragment-2">
-						<!--#include file="studentCourseListIncDetail.js"-->
-					</div>
-					
 					<div id="fragment-10">
 						<div id="dhtmlgoodies_tabView10">
 							<div id="dtab101" class="dhtmlgoodies_aTab">
@@ -466,6 +462,10 @@
 						<script type="text/javascript">
 							initTabs('dhtmlgoodies_tabView9',Array("班级列表","花名册"),0,1060,400);
 						</script>
+					</div>
+					
+					<div id="fragment-2">
+						<!--#include file="studentCourseListIncDetail.js"-->
 					</div>
 					
 					<div id="fragment-3">
