@@ -223,6 +223,85 @@ if(op == "getStudentCourseList"){
 	//Response.Write((sql));
 }	
 
+if(op == "getStudentListByClass"){
+	var s = "";
+	//如果有条件，按照条件查询
+	if(where > ""){ // 有条件
+		where = "(name like('%" + where + "%') or username='" + where + "')";
+	}
+	//报到日期
+	if(fStart > "" && fStart !="undefined"){
+		s = "submitDate>='" + fStart + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//预报名
+	if(kindID > ""){
+		s = "mark=" + kindID;
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	if(fEnd > "" && fEnd !="undefined"){
+		s = "submitDate<='" + fEnd + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//确认
+	if(String(Request.QueryString("checked")) > "" && String(Request.QueryString("checked")) !="undefined"){
+		s = "checked=" + String(Request.QueryString("checked"));
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//报到
+	if(String(Request.QueryString("submited")) > "" && String(Request.QueryString("submited")) !="undefined"){
+		s = "submited=" + String(Request.QueryString("submited"));
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+
+	if(where > ""){
+		where = " where " + where;
+	}
+	sql = " FROM dbo.getStudentListByClass('" + refID + "') " + where;
+	result = getBasketTip(sql,"");
+	ssql = "SELECT SNo,username,name,sexName,age,educationName,(case when host='znxf' then unit else hostName end),(case when host='znxf' then dept else dept1Name end),(case when host='znxf' then '' else dept2Name end),job,mobile,phone,checkName,projectID+projectName,classID,statusName,price,pay_typeName,pay_kindName,datePay,invoice,(case when diploma_score=0 then '' else cast(diploma_score as varchar) end),diplomaID,diploma_startDate,diploma_endDate,memo,regDate" + sql + " order by projectID,SNo";
+	sql = "SELECT top " + basket + " *" + sql + " order by mark,ID";
+	
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("ID").value + "|" + rs("username").value + "|" + rs("name").value + "|" + rs("SNo").value + "|" + rs("education").value + "|" + rs("job").value + "|" + rs("mobile").value;
+		//7
+		result += "|" + rs("mark").value + "|" + rs("stationName").value + "|" + rs("dept1").value + "|" + rs("deptName").value + "|" + rs("expireDate").value;
+		//12
+		result += "|" + rs("invoice").value + "|" + rs("classID").value + "|" + rs("memo").value;
+		//15
+		result += "|" + rs("submited").value + "|" + rs("submitDate").value + "|" + rs("submiter").value + "|" + rs("submitName").value;
+		//19
+		result += "|" + rs("checked").value + "|" + rs("checkDate").value + "|" + rs("checker").value + "|" + rs("checkerName").value + "|" + rs("enterID").value;
+		rs.MoveNext();
+	}
+	rs.Close();
+	/**/
+	Session(op) = ssql;
+	Response.Write(escape(result));
+	//Response.Write((sql));
+}	
+
 if(op == "getNodeInfo"){
 	result = "";
 	sql = "SELECT *,[dbo].[getPassCondition](ID) as pass_condition,[dbo].[getMissingItems](ID) as missingItems FROM v_studentCourseList where ID=" + nodeID;
@@ -547,7 +626,7 @@ if(op == "delNode"){
 }
 
 if(op == "doStudentCourse_check"){
-	sql = "exec doStudentCourse_check '" + refID + "'," + status + ",'" + keyID + "','" + host + "','" + currUser + "'";
+	sql = "exec doStudentCourse_check " + status + ",'" + keyID + "','" + host + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(0);
 	//Response.Write(sql);

@@ -7,15 +7,15 @@
 					          &nbsp;公司&nbsp;<select id="searchStudentCourseHost" style="width:80px"></select>&nbsp;&nbsp;
 				          	</span>
 							<span id="studentCourseListLongItem2">
-					          &nbsp;部门&nbsp;<select id="searchStudentCourseDept" style="width:100px"></select>&nbsp;&nbsp;
+					          &nbsp;部门&nbsp;<select id="searchStudentCourseDept" style="width:80px"></select>&nbsp;&nbsp;
 				          	</span>
+							状态&nbsp;<select id="searchStudentCourseStatus" style="width:50px"></select>&nbsp;&nbsp;
 							<span id="studentCourseListLongItem6">
-								课程&nbsp;<select id="searchStudentCourseCertID" style="width:120px"></select>&nbsp;&nbsp;
+								课程&nbsp;<select id="searchStudentCourseID" style="width:120px"></select>&nbsp;&nbsp;
 							</span>
-							班级&nbsp;<select id="searchStudentCourseClassID" style="width:180px"></select>&nbsp;&nbsp;
+							批次&nbsp;<select id="searchStudentCourseProjectID" style="width:120px"></select>&nbsp;&nbsp;
+							<input style="border:0px;" type="checkbox" id="searchStudentCourseShowPhoto" value="" />&nbsp;图片&nbsp;&nbsp;
 							<span id="studentCourseListLongItem4">
-								<input style="border:0px;" type="checkbox" id="searchStudentCourseShowPhoto" value="" />&nbsp;图片&nbsp;&nbsp;
-								状态&nbsp;<select id="searchStudentCourseStatus" style="width:50px"></select>&nbsp;&nbsp;
 								状态&nbsp;<select id="searchStudentCoursePhotoStatus" style="width:50px"></select>&nbsp;&nbsp;
 								<input class="button" type="button" id="btnStudentCourseBadPhoto" value="修正通知" />&nbsp;&nbsp;
 								<input class="button" type="button" id="btnStudentCourseGoodPhoto" value="修正确认" />
@@ -27,13 +27,17 @@
 								<input class="button" type="button" name="btnDownLoad13" id="btnDownLoad13" onClick="outputFloat(13,'file')" value="下载" />
 							</span>
 							<br />
-							确认&nbsp;<select id="searchStudentCourseChecked" style="width:70px"></select>&nbsp;&nbsp;&nbsp;
-							报到&nbsp;<select id="searchStudentCourseSubmited" style="width:70px"></select>&nbsp;&nbsp;&nbsp;
-							计划内&nbsp;<select id="searchStudentCourseMark" style="width:70px"></select>&nbsp;&nbsp;&nbsp;
 							<span id="studentCourseListLongItem5">
+								确认&nbsp;<select id="searchStudentCourseChecked" style="width:50px"></select>&nbsp;&nbsp;
 								<input class="button" type="button" id="btnStudentCourseSel" value="全选/取消" />&nbsp;&nbsp;
 								<input class="button" type="button" id="btnStudentCourseCheck" value="名单确认" />&nbsp;&nbsp;
 								<input class="button" type="button" id="btnStudentCourseRefuse" value="剔除" />&nbsp;&nbsp;
+							</span>
+							<span id="studentCourseListLongItem7">
+								提交&nbsp;<select id="searchStudentCourseSubmited" style="width:50px"></select>&nbsp;&nbsp;
+								<input class="button" type="button" id="btnStudentCourseSel1" value="全选/取消" />&nbsp;&nbsp;
+								<input class="button" type="button" id="btnStudentCourseSubmit" value="名单提交" />&nbsp;&nbsp;
+								<input class="button" type="button" id="btnStudentCourseCallback" value="剔除" />&nbsp;&nbsp;
 							</span>
 				        </form>
 							</div>

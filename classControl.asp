@@ -123,4 +123,15 @@ if(op == "closeClass"){
 	execSQL(sql);
 	Response.Write(nodeID);
 }
+
+if(op == "getStatus"){
+	sql = "SELECT status FROM classInfo where classID='" + refID + "'";
+	rs = conn.Execute(sql);
+	if (!rs.EOF){
+		result = rs("status").value;
+	}
+	rs.Close();
+	Response.Write((result));
+}
+
 %>
