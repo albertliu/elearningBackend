@@ -28,7 +28,6 @@
 	var nodeID = "";
 	var refID = "";
 	var op = 0;
-	var fn = "";
 	var updateCount = 0;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
@@ -47,6 +46,42 @@
 		if(nodeID>0 && op==0){
 			getNodeInfo(nodeID);
 		}
+
+		$("#sendMsgExam").click(function(){
+			if($("#address").val()==""){
+				jAlert("请填写考试地址。");
+				return false;
+			}
+			jConfirm("确定向这批考生发送考试通知吗？","确认",function(r){
+				if(r){
+					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
+					$.getJSON(uploadURL + "/public/send_message_exam?SMS=1&batchID=" + nodeID + "&registerID=" + currUser ,function(data){
+						if(data>""){
+							jAlert("通知发送成功。");
+							getNodeInfo(nodeID);
+						}else{
+							jAlert("没有可供处理的数据。");
+						}
+					});
+				}
+			});
+		});
+
+		$("#sendMsgScore").click(function(){
+			jConfirm("确定向这批考生发送成绩单吗？","确认",function(r){
+				if(r){
+					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
+					$.getJSON(uploadURL + "/public/send_message_score?SMS=1&batchID=" + nodeID + "&registerID=" + currUser ,function(data){
+						if(data>""){
+							jAlert("通知发送成功。");
+							getNodeInfo(nodeID);
+						}else{
+							jAlert("没有可供处理的数据。");
+						}
+					});
+				}
+			});
+		});
 
 		$("#save").click(function(){
 			saveNode();
@@ -171,14 +206,25 @@
 				$("#qty").val(ar[4]);
 				$("#applyID").val(ar[5]);
 				$("#startDate").val(ar[6]);
-				//$("#filename").val(ar[9]);
-				fn = ar[7];
+				$("#address").val(ar[11]);
 				$("#memo").val(ar[8]);
 				$("#regDate").val(ar[9]);
 				$("#registerName").val(ar[10]);
-				$("#status").val(ar[11]);
-				$("#statusName").val(ar[12]);
+				$("#status").val(ar[15]);
+				$("#statusName").val(ar[16]);
+				$("#send").val(ar[12]);
+				$("#sendDate").val(ar[13]);
+				$("#senderName").val(ar[14]);
+				$("#sendScore").val(ar[18]);
+				$("#sendScoreDate").val(ar[19]);
+				$("#senderScoreName").val(ar[20]);
 				$("#list").html("<a href=''>申报名单</a>");
+				if(ar[7] > ""){
+					$("#sign").html("<a href='/users" + ar[7] + "' target='_blank'>申报结果</a>");
+				}
+				if(ar[17] > ""){
+					$("#scoreResult").html("<a href='/users" + ar[17] + "' target='_blank'>成绩单</a>");
+				}
 				//getDownloadFile("generateDiplomaID");
 				nodeID = ar[0];
 				setButton();
@@ -206,10 +252,6 @@
 		if($("#startNo").val()=="" || $("#startNo").val()<1 || $("#startNo").val()>1000){
 			jAlert("请检查起始编号值。");
 			return false;
-		}
-		var s = "确定要制作准考证吗?";
-		if(fn > ""){
-			s = "要重新制作准考证吗？请随后下载新的考站数据、签到表。";
 		}
 
 		jConfirm('确定要制作准考证吗?', '确认对话框', function(r) {
@@ -446,7 +488,13 @@
 				<td><input type="text" id="applyID" size="25" /></td>
 				<td colspan="2">
 					<span id="list" style="margin-left:10px;"></span>
+					<span id="sign" style="margin-left:10px;"></span>
+					<span id="scoreResult" style="margin-left:10px;"></span>
 				</td>
+			</tr>
+			<tr>
+				<td align="right">考试地址</td>
+				<td colspan="3"><input type="text" id="address" style="width:90%;" /></td>
 			</tr>
 			<tr>
 				<td align="right">申报结果</td>
@@ -455,6 +503,22 @@
 					待定：<span id="qtyNull" style="margin-left:10px;"></span>
 					通过：<span id="qtyYes" style="margin-left:10px;"></span>
 					未通过<span id="qtyNo" style="margin-left:10px;"></span>
+				</td>
+			</tr>
+			<tr>
+				<td align="right">考试通知</td>
+				<td colspan="5">
+					次数&nbsp;<input class="readOnly" type="text" id="send" size="2" readOnly="true" />&nbsp;&nbsp;
+					日期&nbsp;<input class="readOnly" type="text" id="sendDate" size="6" readOnly="true" />&nbsp;&nbsp;
+					发送人&nbsp;<input class="readOnly" type="text" id="senderName" size="5" readOnly="true" />&nbsp;&nbsp;
+				</td>
+			</tr>
+			<tr>
+				<td align="right">成绩通知</td>
+				<td colspan="5">
+					次数&nbsp;<input class="readOnly" type="text" id="sendScore" size="2" readOnly="true" />&nbsp;&nbsp;
+					日期&nbsp;<input class="readOnly" type="text" id="sendScoreDate" size="6" readOnly="true" />&nbsp;&nbsp;
+					发送人&nbsp;<input class="readOnly" type="text" id="senderScoreName" size="5" readOnly="true" />&nbsp;&nbsp;
 				</td>
 			</tr>
 			<tr>
@@ -477,8 +541,9 @@
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
 		<input class="button" type="button" id="save" value="保存" />&nbsp;
 		<input class="button" type="button" id="del" value="删除" />&nbsp;
-		<input class="button" type="button" id="doApply" value="做准考证" />&nbsp;
-		<input class="button" type="button" id="sendMsgExam" value="申报通知" />&nbsp;
+		<input class="button" type="button" id="doApply" value="申报" />&nbsp;
+		<input class="button" type="button" id="doImportScore" value="考试安排导入" />&nbsp;
+		<input class="button" type="button" id="sendMsgExam" value="考试通知" />&nbsp;
 		<input class="button" type="button" id="doImportScore" value="成绩导入" />&nbsp;
 		<input class="button" type="button" id="sendMsgScore" value="成绩通知" />&nbsp;
 		<input class="button" type="button" id="lock" value="锁定" />&nbsp;
@@ -489,12 +554,12 @@
 	<div style="width:100%;float:left;margin:0;">
 		<div style="border:solid 1px #e0e0e0;width:99%;margin:5px;background:#ffffff;line-height:18px;padding-left:20px;">
 			<span>申报结果&nbsp;<select id="s_status" style="width:70px"></select></span>
-			<span>&nbsp;&nbsp;申请补申&nbsp;<select id="s_resit" style="width:70px"></select></span>
+			<span>&nbsp;&nbsp;申请补考&nbsp;<select id="s_resit" style="width:70px"></select></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnSearch" value="查找" /></span>
 			<span><input style="border:0px;" type="checkbox" id="needResit" value="" />&nbsp;需补考&nbsp;</span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnSel" value="全选/取消" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnRemove" value="移出名单" /></span>
-			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnResit" value="加入补申购物车" /></span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnResit" value="加入补考购物车" /></span>
 		</div>
 	</div>
 	<hr size="1" noshadow />

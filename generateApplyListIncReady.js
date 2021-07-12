@@ -3,6 +3,7 @@
 
 	$(document).ready(function (){
 		getComList("searchGenerateApplyCourse","v_courseInfo","courseID","courseName","status=0 and type=0 and agencyID<>4 order by courseName",1);
+		getComList("searchGenerateApplyRegister","v_examRegister","registerID","registerName","1=1 order by ID desc",1);
 		getDicList("statusPlan","searchGenerateApplyStatus",0);
 		$("#searchGenerateApplyStart").click(function(){WdatePicker();});
 		$("#searchGenerateApplyEnd").click(function(){WdatePicker();});
@@ -19,6 +20,10 @@
 					jAlert("请输入查询条件");
 				}
 			}
+		});
+		
+		$("#searchGenerateApplyRegister").change(function(){
+			getGenerateApplyList();
 		});
 		
 		if(!checkPermission("studentAdd")){

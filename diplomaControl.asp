@@ -850,9 +850,11 @@ if(op == "getGenerateApplyList"){
 	while (!rs.EOF){
 		result += "%%" + rs("ID").value + "|" + rs("courseID").value + "|" + rs("courseName").value + "|" + rs("title").value + "|" + rs("qty").value + "|" + rs("applyID").value;
 		//6
-		result += "|" + rs("startDate").value + "|" + rs("filename").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value;
-		//11
-		result += "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("qtyYes").value + "|" + rs("qtyNo").value + "|" + rs("qtyNull").value;
+		result += "|" + rs("startDate").value + "|" + rs("filename").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value + "|" + rs("address").value;
+		//12
+		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("filescore").value;
+		//18
+		result += "|" + rs("sendScore").value + "|" + rs("sendScoreDate").value + "|" + rs("senderScoreName").value + "|" + rs("qtyYes").value + "|" + rs("qtyNo").value + "|" + rs("qtyNull").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -930,9 +932,11 @@ if(op == "getGenerateApplyNodeInfo"){
 	if(!rs.EOF){
 		result = rs("ID").value + "|" + rs("courseID").value + "|" + rs("courseName").value + "|" + rs("title").value + "|" + rs("qty").value + "|" + rs("applyID").value;
 		//6
-		result += "|" + rs("startDate").value + "|" + rs("filename").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value;
-		//11
-		result += "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("qtyYes").value + "|" + rs("qtyNo").value + "|" + rs("qtyNull").value;
+		result += "|" + rs("startDate").value + "|" + rs("filename").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value + "|" + rs("address").value;
+		//12
+		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("filescore").value;
+		//18
+		result += "|" + rs("sendScore").value + "|" + rs("sendScoreDate").value + "|" + rs("senderScoreName").value + "|" + rs("qtyYes").value + "|" + rs("qtyNo").value + "|" + rs("qtyNull").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

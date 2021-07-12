@@ -193,7 +193,7 @@
 					$.each(ar,function(iNum,val){
 						var ar1 = new Array();
 						ar1 = val.split("|");
-						s += ar1[0] + "&nbsp;" + ar1[1] + "&nbsp;<a style='color:red;'>[" + ar1[2].substring(0,ar1[2].length-ar1[2].indexOf('2')) + "]</a>&nbsp;\n";
+						s += "<a style='color:red;'>[" + ar1[2].substring(0,ar1[2].length-ar1[2].indexOf('2')) + "]</a>&nbsp;&nbsp;" + ar1[1] + "&nbsp;&nbsp;" + ar1[0] + "&nbsp;&nbsp;\n";
 					});
 					jAlert("发现有些人员可能应该报其他课程，请核实：\n" + s);
 				}else{

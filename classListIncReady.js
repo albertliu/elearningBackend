@@ -25,9 +25,8 @@
 			}else{
 				getComList("searchClassCert","certificateInfo","certID","shortName","status=0 and type=0 order by certID",1);
 			}
+			getClassList();
 		});
-		
-		//getClassList();
 	});
 
 	function getClassList(){

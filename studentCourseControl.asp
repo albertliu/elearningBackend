@@ -593,7 +593,7 @@ if(op == "getStudentListByClassCheck"){
 	result = "";
 	sql = "SELECT name,username,dbo.getClassRefrence(username,classID) as item FROM dbo.getStudentListByClass('" + refID + "') where dbo.getClassRefrence(username,classID)>''";
 	rs = conn.Execute(sql);
-	if(!rs.EOF){
+	while (!rs.EOF){
 		result += "%%" + rs("name").value + "|" + rs("username").value + "|" + rs("item").value;
 		rs.MoveNext();
 	}

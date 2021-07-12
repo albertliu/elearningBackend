@@ -4,6 +4,7 @@
 				          <input type="text" id="txtSearchGenerateApply" name="txtSearchGenerateApply" size="14" title="课程名称、申报批号、标题" style="background:yellow;" />
 				          <input class="button" type="button" id="btnSearchGenerateApply" value="查找" />
 				          <input class="button" type="button" id="btnSearchGenerateApplyAdd" value="添加" />
+					          &nbsp;&nbsp;经办人&nbsp;<select id="searchGenerateApplyRegister" style="width:100px"></select>&nbsp;&nbsp;
 					          &nbsp;&nbsp;课程&nbsp;<select id="searchGenerateApplyCourse" style="width:100px"></select>&nbsp;&nbsp;
 					          &nbsp;&nbsp;状态&nbsp;<select id="searchGenerateApplyCourse" style="width:100px"></select>&nbsp;&nbsp;
 							  &nbsp;&nbsp;<label>申报日期</label>
