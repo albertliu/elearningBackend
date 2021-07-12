@@ -589,6 +589,20 @@ if(op == "getFiremanEnterInfo"){
 	//Response.Write(escape(sql));
 }	
 
+if(op == "getStudentListByClassCheck"){
+	result = "";
+	sql = "SELECT name,username,dbo.getClassRefrence(username,classID) as item FROM dbo.getStudentListByClass('" + refID + "') where dbo.getClassRefrence(username,classID)>''";
+	rs = conn.Execute(sql);
+	if(!rs.EOF){
+		result += "%%" + rs("name").value + "|" + rs("username").value + "|" + rs("item").value;
+		rs.MoveNext();
+	}
+	rs.Close();
+	result = result.substr(2);
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}	
+
 if(op == "updatePayInfo"){
 	//@ID int,@invoice varchar(50),@projectID varchar(50),@kindID varchar(50),@type int,@status int,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo
 	sql = "exec updatePayInfo " + nodeID + ",'" + String(Request.QueryString("invoice")) + "','" + String(Request.QueryString("projectID")) + "','" + item + "','" + kindID + "','" + String(Request.QueryString("type")) + "','" + status + "','" + String(Request.QueryString("datePay")) + "','" + String(Request.QueryString("dateInvoice")) + "','" + String(Request.QueryString("dateInvoicePick")) + "','" + refID + "','" + memo + "','" + currUser + "',''";

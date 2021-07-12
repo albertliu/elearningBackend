@@ -179,6 +179,28 @@
 				}
 			});
 		});
+		
+		$("#btnStudentCourseError").click(function(){
+			if($("#searchStudentCourseClassID").val() == ""){
+				jAlert("请选择一个班级。");
+				return false;
+			}
+			$.get("studentCourseControl.asp?op=getStudentListByClassCheck&refID=" + $("#searchStudentCourseClassID").val(),function(data){
+				var ar = new Array();
+				ar = (unescape(data)).split("%%");
+				if(ar > ""){
+					var s = "";
+					$.each(ar,function(iNum,val){
+						var ar1 = new Array();
+						ar1 = val.split("|");
+						s += ar1[0] + "&nbsp;" + ar1[1] + "&nbsp;<a style='color:red;'>[" + ar1[2].substring(0,ar1[2].length-ar1[2].indexOf('2')) + "]</a>&nbsp;\n";
+					});
+					jAlert("发现有些人员可能应该报其他课程，请核实：\n" + s);
+				}else{
+					jAlert("该班级名单未发现可疑情况。");
+				}
+			});
+		});
 
 		setHostChange();
 	});
