@@ -119,6 +119,10 @@
 		
 		$("#btnStudentCourseCheck").click(function(){
 			getSelCart("visitstockchkCourse");
+			if($("#searchStudentCourseClassID").val() == ""){
+				jAlert("请选择一个班级。");
+				return false;
+			}
 			if(selCount==0){
 				jAlert("请选择要确认的名单。");
 				return false;
@@ -126,9 +130,9 @@
 			jConfirm("确定要确认这些(" + selCount + "个)人的报名吗？","确认",function(r){
 				if(r){
 					//alert($("#searchStudentCourseProjectID").val() + "&status=1&host=" + $("#searchStudentCourseHost").val() + "&keyID=" + selList);
-					//jAlert(selList);
-					$.get("studentCourseControl.asp?op=doStudentCourse_check&status=1&host=" + $("#searchStudentCourseHost").val() + "&keyID=" + selList ,function(data){
-						//jAlert(data);
+					//alert($("#searchStudentCourseHost").val() + "&keyID=" + selList);
+					$.get("studentCourseControl.asp?op=doStudentCourse_check&status=1&host=" + $("#searchStudentCourseHost").val() + "&keyID=" + selList + "&refID=" + $("#searchStudentCourseClassID").val(), function(data){
+						//alert(data);
 						if(data=="0"){
 							jAlert("确认成功");
 							getStudentCourseList();
@@ -142,6 +146,10 @@
 		
 		$("#btnStudentCourseRefuse").click(function(){
 			getSelCart("visitstockchkCourse");
+			if($("#searchStudentCourseClassID").val() == ""){
+				jAlert("请选择一个班级。");
+				return false;
+			}
 			if(selCount==0){
 				jAlert("请选择剔除的名单。");
 				return false;
@@ -150,7 +158,7 @@
 				if(r){
 					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
 					//jAlert(selList);
-					$.get("studentCourseControl.asp?op=doStudentCourse_check&status=2&host=" + $("#searchStudentCourseHost").val() + "&keyID=" + selList ,function(data){
+					$.get("studentCourseControl.asp?op=doStudentCourse_check&status=2&host=" + $("#searchStudentCourseHost").val() + "&keyID=" + selList + "&refID=" + $("#searchStudentCourseClassID").val() ,function(data){
 						//jAlert(data);
 						if(data=="0"){
 							jAlert("剔除成功");

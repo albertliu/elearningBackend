@@ -640,7 +640,7 @@ if(op == "delNode"){
 }
 
 if(op == "doStudentCourse_check"){
-	sql = "exec doStudentCourse_check " + status + ",'" + keyID + "','" + host + "','" + currUser + "'";
+	sql = "exec doStudentCourse_check " + status + ",'" + refID + "','" + keyID + "','" + host + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(0);
 	//Response.Write(sql);
