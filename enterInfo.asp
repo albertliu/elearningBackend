@@ -34,6 +34,7 @@
 	var updateCount = 0;
 	var lastone_item = new Array();
 	var entryform = "";
+	var refAlert = "";
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";	//enterID
@@ -306,22 +307,37 @@
 			jAlert("请选择班级。");
 			return false;
 		}
-		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-		//@ID int,@invoice varchar(50),@projectID varchar(50),@kindID varchar(50),@type int,@status int,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo
-		//alert($("#payID").val() + "&refID=" + $("#username").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + ($("#title").val()) + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#status").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&memo=" + ($("#memo").val()));
-		$.get("studentCourseControl.asp?op=updatePayInfo&nodeID=" + $("#payID").val() + "&refID=" + $("#username").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#status").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
-			//alert(unescape(re));
-			updateCount += 1;
-			jAlert("保存成功.","信息提示");
+		var id=$("#classID").val();
+		//alert(id);
+		
+		$.get("studentControl.asp?op=getClassRefrence&nodeID=" + $("#username").val() + "&refID=" + id, function(data){
+			data = unescape(data);
+			//alert(data);
+			if(refAlert != id && data > ""){
+				//参照预报名表进行校验，如果有出入则给出提示。同样的班级第二次则不给提示。
+				jAlert("根据预报名情况，此人可能要报<a style='color:red;'>" + data + "</a>课程，请核实。");
+				refAlert = id;
+				return false;
+			}else{
+				//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
+				//@ID int,@invoice varchar(50),@projectID varchar(50),@kindID varchar(50),@type int,@status int,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo
+				//alert($("#payID").val() + "&refID=" + $("#username").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + ($("#title").val()) + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#status").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&memo=" + ($("#memo").val()));
+				$.get("studentCourseControl.asp?op=updatePayInfo&nodeID=" + $("#payID").val() + "&refID=" + $("#username").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#status").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+					//alert(unescape(re));
+					updateCount += 1;
+					jAlert("保存成功.","信息提示");
+				});
+				$.get("studentCourseControl.asp?op=updatePayPrice&nodeID=" + $("#payDetailID").val() + "&refID=" + $("#price").val() + "&times=" + (new Date().getTime()),function(re){
+					//jAlert(unescape(re));
+				});
+				$.get("studentCourseControl.asp?op=updateEnterClass&nodeID=" + nodeID + "&refID=" + $("#classID").val() + "&keyID=" + $("#SNo").val() + "&times=" + (new Date().getTime()),function(re){
+					//jAlert(unescape(re));
+					getNodeInfo(nodeID);
+					printEntryform(1);
+				});
+			}
 		});
-		$.get("studentCourseControl.asp?op=updatePayPrice&nodeID=" + $("#payDetailID").val() + "&refID=" + $("#price").val() + "&times=" + (new Date().getTime()),function(re){
-			//jAlert(unescape(re));
-		});
-		$.get("studentCourseControl.asp?op=updateEnterClass&nodeID=" + nodeID + "&refID=" + $("#classID").val() + "&keyID=" + $("#SNo").val() + "&times=" + (new Date().getTime()),function(re){
-			//jAlert(unescape(re));
-			getNodeInfo(nodeID);
-			printEntryform(1);
-		});
+		
 		return false;
 	}
 	
@@ -341,22 +357,38 @@
 		lastone_item.push("kindID|" + $("#kindID").val());
 		lastone_item.push("classID|" + $("#classID").val());
 		setSession("lastone_item", lastone_item.join(","));
-		
-		//@username,@classID,@price,@invoice,@projectID,@kindID,@type,@status,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo,@registerID
-		$.get("studentCourseControl.asp?op=doEnter&nodeID=" + $("#username").val() + "&classID=" + $("#classID").val() + "&price=" + $("#price").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#status").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
-			//jAlert(unescape(re));
-			var ar = new Array();
-			ar = unescape(re).split("|");
-			if(ar[0] == 0){
-				op = 0;
-				updateCount += 1;
-				nodeID = ar[3];
-				getPayInfo(ar[2]);
-				getNodeInfo(ar[3]);
-				generateEntryForm(1);
-			}
-			jAlert(ar[1],"信息提示");
-		});
+
+		if($("#classID").val()>""){
+			var id=$("#classID").val();
+			//alert(id);
+			$.get("studentControl.asp?op=getClassRefrence&nodeID=" + $("#username").val() + "&refID=" + id, function(data){
+				data = unescape(data);
+				//alert(data);
+				if(refAlert != id && data > ""){
+					//参照预报名表进行校验，如果有出入则给出提示。同样的班级第二次则不给提示。
+					jAlert("根据预报名情况，此人可能要报<a style='color:red;'>" + data + "</a>课程，请核实。");
+					refAlert = id;
+					return false;
+				}else{
+					
+					//@username,@classID,@price,@invoice,@projectID,@kindID,@type,@status,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo,@registerID
+					$.get("studentCourseControl.asp?op=doEnter&nodeID=" + $("#username").val() + "&classID=" + $("#classID").val() + "&price=" + $("#price").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#status").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+						//jAlert(unescape(re));
+						var ar = new Array();
+						ar = unescape(re).split("|");
+						if(ar[0] == 0){
+							op = 0;
+							updateCount += 1;
+							nodeID = ar[3];
+							getPayInfo(ar[2]);
+							getNodeInfo(ar[3]);
+							generateEntryForm(1);
+						}
+						jAlert(ar[1],"信息提示");
+					});
+				}
+			});
+		}
 		return false;
 	}
 	

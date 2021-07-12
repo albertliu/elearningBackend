@@ -432,6 +432,18 @@ if(op == "getDeptRefrence"){
 	//Response.Write(escape(sql));
 }
 
+if(op == "getClassRefrence"){
+	result = "";
+	sql = "SELECT dbo.getClassRefrence('" + nodeID + "','" + refID + "') as item";
+	rs = conn.Execute(sql);
+	if(!rs.EOF){
+		result = rs("item").value;
+	}
+	rs.Close();
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}
+
 if(op == "getDeptRefrenceNo"){
 	result = 0;
 	sql = "SELECT * FROM dbo.getDeptRefrenceNo('" + nodeID + "','" + refID + "')";
