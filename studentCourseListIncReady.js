@@ -244,8 +244,8 @@
 			arr.push("<th width='10%'>电话</th>");
 			arr.push("<th width='8%'>岗位</th>");
 			arr.push("<th width='8%'>备注</th>");
-			arr.push("<th width='12%'>确认</th>");
-			arr.push("<th width='10%'>报到日期</th>");
+			arr.push("<th width='13%'>确认</th>");
+			arr.push("<th width='9%'>报到日期</th>");
 			arr.push("<th width='3%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
