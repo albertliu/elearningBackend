@@ -195,7 +195,7 @@
 						ar1 = val.split("|");
 						s += "<a style='color:red;'>[" + ar1[2].substring(0,ar1[2].length-ar1[2].indexOf('2')) + "]</a>&nbsp;&nbsp;" + ar1[1] + "&nbsp;&nbsp;" + ar1[0] + "&nbsp;&nbsp;\n";
 					});
-					jAlert("发现有些人员可能应该报其他课程，请核实：\n" + s);
+					jAlert("以下人员可能应该报其他课程，请核实：<hr />" + s);
 				}else{
 					jAlert("该班级名单未发现可疑情况。");
 				}
