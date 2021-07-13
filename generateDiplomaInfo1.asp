@@ -287,7 +287,7 @@
 			$("#redo").show();
 			//$("#save").show();
 		}
-		if(op==0 && checkPermission("diplomaPrint")){
+		if(op==0 && (checkPermission("diplomaPrint") || checkPermission("diplomaAdd"))){
 			$("#save").show();
 		}
 	}
