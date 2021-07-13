@@ -945,7 +945,7 @@ if(op == "getGenerateApplyNodeInfo"){
 
 if(op == "updateGenerateApplyInfo"){
 	//@ID int,@courseID varchar(50),@applyID varchar(50),@title nvarchar(100),@startDate varchar(100),@memo nvarchar(500),@registerID
-	sql = "exec updateGenerateApplyInfo " + nodeID + ",'" + refID + "','" + keyID + "','" + item + "','" + String(Request.QueryString("startDate")) + "','" + memo + "','" + currUser + "'";
+	sql = "exec updateGenerateApplyInfo " + nodeID + ",'" + refID + "','" + keyID + "','" + item + "','" + String(Request.QueryString("startDate")) + "','" + unescape(String(Request.QueryString("address"))) + "','" + memo + "','" + currUser + "'";
 	rs = conn.Execute(sql);
 	if(!rs.EOF){
 		result = rs("re").value;

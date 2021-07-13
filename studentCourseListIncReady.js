@@ -193,7 +193,7 @@
 				jAlert("请选择一个班级。");
 				return false;
 			}
-			$.get("studentCourseControl.asp?op=getStudentListByClassCheck&refID=" + $("#searchStudentCourseClassID").val(),function(data){
+			$.get("studentCourseControl.asp?op=getStudentListByClassCheck&refID=" + $("#searchStudentCourseClassID").val() + "&host=" + $("#searchStudentCourseHost").val(),function(data){
 				var ar = new Array();
 				ar = (unescape(data)).split("%%");
 				if(ar > ""){
@@ -221,7 +221,7 @@
 		}
 		//if($("#searchStudentCourseOld").attr("checked")){Old = 1;}
 		//alert($("#searchStudentCourseDept").val() + "&refID=" + $("#searchStudentCourseProjectID").val() + "&status=" + $("#searchStudentCourseStatus").val() + "&courseID=" + $("#searchStudentCourseID").val() + "&host=" + $("#searchStudentCourseHost").val());
-		$.get("studentCourseControl.asp?op=getStudentListByClass&where=" + escape(sWhere) + "&refID=" + $("#searchStudentCourseClassID").val() + "&kindID=" + $("#searchStudentCourseMark").val() + "&checked=" + $("#searchStudentCourseChecked").val() + "&submited=" + $("#searchStudentCourseSubmited").val() + "&fStart=" + $("#searchStudentCourseStartDate").val() + "&fEnd=" + $("#searchStudentCourseEndDate").val() + "&dk=13&times=" + (new Date().getTime()),function(data){
+		$.get("studentCourseControl.asp?op=getStudentListByClass&where=" + escape(sWhere) + "&refID=" + $("#searchStudentCourseClassID").val() + "&host=" + $("#searchStudentCourseHost").val() + "&kindID=" + $("#searchStudentCourseMark").val() + "&checked=" + $("#searchStudentCourseChecked").val() + "&submited=" + $("#searchStudentCourseSubmited").val() + "&fStart=" + $("#searchStudentCourseStartDate").val() + "&fEnd=" + $("#searchStudentCourseEndDate").val() + "&dk=13&times=" + (new Date().getTime()),function(data){
 		//$.getJSON("studentCourseControl.asp?op=getStudentCourseList",function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();

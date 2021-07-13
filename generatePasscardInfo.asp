@@ -471,7 +471,7 @@
 		$("#startTime").val("15:00 - 16:00");
 		$("#startNo").val(1);
 		$("#address").val("黄兴路158号1182幢D103室");
-		$("#notes").val("请务必携带身份证和准考证；迟到15分钟不得入场。");
+		$("#notes").val("请务必携带身份证原件和准考证；迟到15分钟不得入场。");
 	}
 	
 	function getUpdateCount(){

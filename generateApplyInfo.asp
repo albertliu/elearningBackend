@@ -291,7 +291,7 @@
 			return false;
 		}
 		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-		$.get("diplomaControl.asp?op=updateGenerateApplyInfo&nodeID=" + nodeID + "&refID=" + $("#courseID").val() + "&keyID=" + $("#startNo").val() + "&startDate=" + $("#startDate").val() + "&startTime=" + $("#startTime").val() + "&item=" + escape($("#title").val()) + "&address=" + escape($("#address").val()) + "&notes=" + escape($("#notes").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("diplomaControl.asp?op=updateGenerateApplyInfo&nodeID=" + nodeID + "&refID=" + $("#courseID").val() + "&keyID=" + $("#applyID").val() + "&startDate=" + $("#startDate").val() + "&item=" + escape($("#title").val()) + "&address=" + escape($("#address").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//alert(unescape(re));
 			if(re>0){
 				jAlert("保存成功");
@@ -449,10 +449,7 @@
 		$("#title").val("");
 		$("#startDate").val(currDate);
 		$("#qty").val(0);
-		$("#startTime").val("15:00 - 16:00");
-		$("#startNo").val(1);
-		$("#address").val("黄兴路158号1182幢D103室");
-		$("#notes").val("请务必携带身份证和准考证；迟到15分钟不得入场。");
+		$("#address").val("");
 	}
 	
 	function getUpdateCount(){

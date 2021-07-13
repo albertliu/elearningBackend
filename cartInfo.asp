@@ -100,6 +100,34 @@
 				}
 			});
 		});
+		
+		$("#btnDo1").click(function(){
+			getSelCart("");
+			if(selCount==0){
+				jAlert("请选择要添加的人员。");
+				return false;
+			}
+			if($("#applyID").val()==""){
+				jAlert("请选择要加入的申报批次。");
+				return false;
+			}
+			$.messager.confirm("确认","确定将这" + selCount + "人加入到'" + $("#applyID").find("option:selected").text() + "'批次吗？",function(r){
+				if(r){
+					//$.getJSON(uploadURL + "/outfiles/recommend_job4cart?jobID=" + $("#jobID").val() + "&selList=" + selList + "&username=" + currUser ,function(data){
+					//$.get("cartControl.asp?op=pickExamer4cart&refID=" + $("#examID").val() + "&item=" + escape(selList) + "&times=" + (new Date().getTime()),function(data){
+					$.post("cartControl.asp?op=pickApplyer4cart&refID=" + $("#applyID").val(), {"item":selList},function(data){
+						//jAlert(data);
+						if(data==0){
+							jAlert("操作成功。");
+							getCartList();
+							updateCount += 1;
+						}else{
+							jAlert("没有处理任何数据。");
+						}
+					});
+				}
+			});
+		});
 
 		$("input[name='item']").change(function(){
 			setOption();

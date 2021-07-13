@@ -80,9 +80,9 @@
 					arr.push("<td class='link1'><a href='javascript:showGenerateApplyInfo(" + ar1[0] + ",0,0,1);'>" + ar1[3] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[4] + "</td>");
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
-					arr.push("<td class='center'>" + ar1[12] + "</td>");
+					arr.push("<td class='center'>" + ar1[16] + "</td>");
 					arr.push("<td class='left'>" + ar1[5] + "</td>");
-					arr.push("<td class='left' title='通过/未通过/待定'>" + ar1[13] + "/" + ar1[14] + "/" + ar1[15] + "</td>");
+					arr.push("<td class='left' title='通过/未通过/待定'>" + ar1[21] + "/" + ar1[22] + "/" + ar1[23] + "</td>");
 					arr.push("<td class='left'>" + ar1[8] + "</td>");
 					arr.push("<td class='left'>" + ar1[10] + "</td>");
 					arr.push("</tr>");

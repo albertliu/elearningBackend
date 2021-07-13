@@ -95,8 +95,14 @@ if(op == "getCartCount"){
 }
 
 if(op == "pickExamer4cart"){
-	//sql = "exec pickExamer4cart '" + refID + "','" + item + "','" + currUser + "'";
 	sql = "exec pickExamer4cart '" + refID + "','" + String(Request.Form("item")) + "','" + currUser + "'";
+	execSQL(sql);
+	Response.Write(0);
+	//Response.Write(sql);
+}
+
+if(op == "pickApplyer4cart"){
+	sql = "exec pickApplyer4cart '" + refID + "','" + String(Request.Form("item")) + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(0);
 	//Response.Write(sql);

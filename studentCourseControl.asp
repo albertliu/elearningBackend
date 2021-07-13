@@ -111,7 +111,8 @@ if(op == "getStudentCourseList"){
 	}
 	//mark=1: 学校教务查询。
 	if(String(Request.QueryString("mark")) == 1){
-		s = "projectID>'' and ((host = 'spc' and checked=1) or host<>'spc')";
+		//s = "projectID>'' and ((host = 'spc' and checked=1) or host<>'spc')";
+		s = "projectID>''";
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
@@ -277,7 +278,7 @@ if(op == "getStudentListByClass"){
 	if(where > ""){
 		where = " where " + where;
 	}
-	sql = " FROM dbo.getStudentListByClass('" + refID + "') " + where;
+	sql = " FROM dbo.getStudentListByClass('" + refID + "','" + host + "') " + where;
 	result = getBasketTip(sql,"");
 	ssql = "SELECT ID,SNo,username,name,education,deptName,stationName,job,mobile,memo,expireDate,invoice,checkDate,checkerName,submitDate,submitName,(case when mark=0 then '计划内' else '计划外' end) as kind" + sql + " order by mark,ID";
 	sql = "SELECT top " + basket + " *" + sql + " order by mark,ID";
@@ -591,7 +592,7 @@ if(op == "getFiremanEnterInfo"){
 
 if(op == "getStudentListByClassCheck"){
 	result = "";
-	sql = "SELECT name,username,dbo.getClassRefrence(username,classID) as item FROM dbo.getStudentListByClass('" + refID + "') where dbo.getClassRefrence(username,classID)>''";
+	sql = "SELECT name,username,dbo.getClassRefrence(username,classID) as item FROM dbo.getStudentListByClass('" + refID + "','" + host + "') where dbo.getClassRefrence(username,classID)>''";
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
 		result += "%%" + rs("name").value + "|" + rs("username").value + "|" + rs("item").value;
