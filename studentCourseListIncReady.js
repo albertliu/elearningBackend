@@ -49,10 +49,6 @@
 			setSel("visitstockchkCourse");
 		});
 		
-		$("#btnStudentCourseSel1").click(function(){
-			setSel("visitstockchkCourse");
-		});
-		
 		$("#btnStudentCourseBadPhoto").click(function(){
 			getSelCart("visitstockchkCoursePhoto");
 			if(selCount==0){
@@ -95,6 +91,7 @@
 		});
 		
 		$("#searchStudentCourseHost").change(function(){
+			//alert($("#searchStudentCourseHost").val());
 			setHostChange();
 		});
 		
@@ -352,6 +349,7 @@
 }
 
 	function setClassList(){
+		//alert($("#searchStudentCourseHost").val() + "','" + $("#searchStudentCourseDept").val() + "','" + $("#searchStudentCourseCertID").val());
 		getComList("searchStudentCourseClassID","[dbo].[getClassListByDept]('" + $("#searchStudentCourseHost").val() + "','" + $("#searchStudentCourseDept").val() + "','" + $("#searchStudentCourseCertID").val() + "')","classID","className","1=1 order by classID desc",1);
 	}
 	

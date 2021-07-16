@@ -1,17 +1,17 @@
-﻿	var studentCourseListLong = 0;		//0: 标准栏目  1：短栏目
-	var studentCourseListChk = 0;
+﻿	var studentPreListLong = 0;		//0: 标准栏目  1：短栏目
+	var studentPreListChk = 0;
 	var studentPreProjectStatus = 0;
 
 	$(document).ready(function (){
-		var w1 = "status=0 and hostNo='" + currHost + "'";
-		var w2 = "status=0 and (kindID=0 or host='" + currHost + "')";
-		var w3 = " and deptID=" + currDeptID;
+		var w11 = "status=0 and hostNo='" + currHost + "'";
+		var w12 = "status=0 and (kindID=0 or host='" + currHost + "')";
+		var w13 = " and deptID=" + currDeptID;
 		if(currHost==""){	//公司用户只能看自己公司内容
 			getComList("searchStudentPreHost","hostInfo","hostNo","title","status=0 order by hostName",0);
 			$("#searchStudentPreHost").val("spc");
 			//getComList("searchStudentPreDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchStudentPreHost").val() + "' and pID=0) and dept_status<9",1);
 		}else{
-			getComList("searchStudentPreHost","hostInfo","hostNo","title",w1,0);
+			getComList("searchStudentPreHost","hostInfo","hostNo","title",w11,0);
 			$("#studentPreListLongItem1").hide();
 			/*
 			if(currDeptID>0){
@@ -45,10 +45,6 @@
 		});
 		
 		$("#btnStudentPreSel").click(function(){
-			setSel("visitstockchkPre");
-		});
-		
-		$("#btnStudentPreSel1").click(function(){
 			setSel("visitstockchkPre");
 		});
 		
@@ -94,7 +90,7 @@
 		});
 		
 		$("#searchStudentPreHost").change(function(){
-			setHostChange();
+			setHostPreChange();
 		});
 		
 		$("#searchStudentPreDept").change(function(){
@@ -111,7 +107,7 @@
 		
 		$("#searchStudentPreProjectID").change(function(){
 			if($("#searchStudentPreProjectID").val() > ""){
-				setStudentCourseItem();
+				setStudentPreItem();
 				getStudentPreList();
 			}
 		});
@@ -213,7 +209,7 @@
 			});
 		});
 
-		setHostChange();
+		setHostPreChange();
 	});
 
 	function getStudentPreList(){
@@ -224,7 +220,7 @@
 		}
 		//if($("#searchStudentPreOld").attr("checked")){Old = 1;}
 		//alert($("#searchStudentPreDept").val() + "&refID=" + $("#searchStudentPreProjectID").val() + "&status=" + $("#searchStudentPreStatus").val() + "&courseID=" + $("#searchStudentPreID").val() + "&host=" + $("#searchStudentPreHost").val());
-		$.get("studentCourseControl.asp?op=getStudentListByProject&where=" + escape(sWhere) + "&refID=" + $("#searchStudentPreProjectID").val() + "&host=" + $("#searchStudentPreHost").val() + "&kindID=" + $("#searchStudentPreMark").val() + "&checked=" + $("#searchStudentPreChecked").val() + "&submited=" + $("#searchStudentPreSubmited").val() + "&fStart=" + $("#searchStudentPreStartDate").val() + "&fEnd=" + $("#searchStudentPreEndDate").val() + "&dk=13&times=" + (new Date().getTime()),function(data){
+		$.get("studentCourseControl.asp?op=getStudentListByProject&where=" + escape(sWhere) + "&refID=" + $("#searchStudentPreProjectID").val() + "&host=" + $("#searchStudentPreHost").val() + "&kindID=" + $("#searchStudentPreMark").val() + "&checked=" + $("#searchStudentPreChecked").val() + "&submited=" + $("#searchStudentPreSubmited").val() + "&fStart=" + $("#searchStudentPreStartDate").val() + "&fEnd=" + $("#searchStudentPreEndDate").val() + "&dk=130&times=" + (new Date().getTime()),function(data){
 		//$.getJSON("studentCourseControl.asp?op=getStudentPreList",function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
@@ -336,7 +332,7 @@
 		});
 	}
 
-	function setStudentCourseItem(){
+	function setStudentPreItem(){
 		if($("#searchStudentPreProjectID").val()>""){
 			$.get("projectControl.asp?op=getStatus&refID=" + $("#searchStudentPreProjectID").val() ,function(data){
 				studentPreProjectStatus = data;
@@ -352,7 +348,7 @@
 		getStudentPreList();
 	}
 
-	function setHostChange(){
+	function setHostPreChange(){
 		//alert($("#searchStudentPreHost").val());
 		getComList("searchStudentPreCertID","dbo.getCertListByHost('" + $("#searchStudentPreHost").val() + "')","certID","shortName","1=1 order by certID",1);
 		if(currDeptID>0){

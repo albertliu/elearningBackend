@@ -25,7 +25,7 @@
 							    &nbsp;报名日期&nbsp;<input type="text" id="searchStudentPreStartDate" size="7" />-<input type="text" id="searchStudentPreEndDate" size="7" />
 							</span>
 						    <span style="float:right;">
-								<input class="button" type="button" name="btnDownLoad13" id="btnDownLoad13" onClick="outputFloat(13,'file')" value="下载" />
+								<input class="button" type="button" name="btnDownLoad130" id="btnDownLoad130" onClick="outputFloat(130,'file')" value="下载" />
 							</span>
 							<br />
 							确认&nbsp;<select id="searchStudentPreChecked" style="width:70px"></select>&nbsp;&nbsp;&nbsp;
