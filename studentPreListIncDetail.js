@@ -31,12 +31,12 @@
 							确认&nbsp;<select id="searchStudentPreChecked" style="width:70px"></select>&nbsp;&nbsp;&nbsp;
 							报到&nbsp;<select id="searchStudentPreSubmited" style="width:70px"></select>&nbsp;&nbsp;&nbsp;
 							<input class="button" type="button" id="btnStudentPreSel" value="全选/取消" />&nbsp;&nbsp;
-							<input class="button" type="button" id="btnStudentPreCall" value="上课通知" />&nbsp;&nbsp;
 							<span id="studentPreListLongItem5">
 								<input class="button" type="button" id="btnStudentPreCheck" value="名单确认" />&nbsp;&nbsp;
 								<input class="button" type="button" id="btnStudentPreRefuse" value="剔除" />&nbsp;&nbsp;
 							</span>
 							<input class="button" type="button" id="btnStudentPreError" value="名单检查" />&nbsp;&nbsp;
+							<input class="button" type="button" id="btnStudentPreCall" value="上课通知" />&nbsp;&nbsp;
 				        </form>
 							</div>
 							<hr size="1" noshadow />

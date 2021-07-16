@@ -685,7 +685,7 @@ if(op == "getStudentListByClassCheck"){
 
 if(op == "getStudentListByProjectCheck"){
 	result = "";
-	sql = "SELECT name,username,(courseName1 + ', ' + courseName2) FROM dbo.getProjectRefrence('" + refID + "')";
+	sql = "SELECT name,username,(courseName1 + ', ' + courseName2) as item FROM dbo.getProjectRefrence('" + refID + "')";
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
 		result += "%%" + rs("name").value + "|" + rs("username").value + "|" + rs("item").value;

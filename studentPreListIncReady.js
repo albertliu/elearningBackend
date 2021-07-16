@@ -45,15 +45,15 @@
 		});
 		
 		$("#btnStudentPreSel").click(function(){
-			setSel("visitstockchkCourse");
+			setSel("visitstockchkPre");
 		});
 		
 		$("#btnStudentPreSel1").click(function(){
-			setSel("visitstockchkCourse");
+			setSel("visitstockchkPre");
 		});
 		
 		$("#btnStudentPreBadPhoto").click(function(){
-			getSelCart("visitstockchkCoursePhoto");
+			getSelCart("visitstockchkPrePhoto");
 			if(selCount==0){
 				jAlert("请选择要通知重新上传图片的名单。");
 				return false;
@@ -75,7 +75,7 @@
 		});
 		
 		$("#btnStudentPreGoodPhoto").click(function(){
-			getSelCart("visitstockchkCoursePhoto");
+			getSelCart("visitstockchkPrePhoto");
 			if(selCount==0){
 				jAlert("请选择要确认图片的名单。");
 				return false;
@@ -121,7 +121,7 @@
 		$("#studentPreListLongItem5").hide();
 		
 		$("#btnStudentPreCheck").click(function(){
-			getSelCart("visitstockchkCourse");
+			getSelCart("visitstockchkPre");
 			if($("#searchStudentPreProjectID").val() == ""){
 				jAlert("请选择一个批次。");
 				return false;
@@ -148,7 +148,7 @@
 		});
 		
 		$("#btnStudentPreRefuse").click(function(){
-			getSelCart("visitstockchkCourse");
+			getSelCart("visitstockchkPre");
 			if($("#searchStudentPreProjectID").val() == ""){
 				jAlert("请选择一个批次。");
 				return false;
@@ -175,7 +175,7 @@
 		});
 		
 		$("#btnStudentPreCall").click(function(){
-			getSelCart("visitstockchkCourse");
+			getSelCart("visitstockchkPre");
 			if(selCount==0){
 				jAlert("请选择要通知的名单。");
 				return false;
@@ -196,7 +196,7 @@
 				jAlert("请选择一个批次。");
 				return false;
 			}
-			$.get("studentCourseControl.asp?op=getStudentListByClassCheck&refID=" + $("#searchStudentPreProjectID").val() + "&host=" + $("#searchStudentPreHost").val(),function(data){
+			$.get("studentCourseControl.asp?op=getStudentListByProjectCheck&refID=" + $("#searchStudentPreProjectID").val() + "&host=" + $("#searchStudentPreHost").val(),function(data){
 				var ar = new Array();
 				ar = (unescape(data)).split("%%");
 				if(ar > ""){
@@ -236,20 +236,22 @@
 			floatSum = "";
 			arr = [];
 			arr.push("<div>" + ar.shift() + "</div>");					
-			arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='studentCourseTab' width='99%'>");
+			arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='studentPreTab' width='99%'>");
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'></th>");
 			arr.push("<th width='6%'>学号</th>");
 			arr.push("<th width='12%'>身份证</th>");
 			arr.push("<th width='8%'>姓名</th>");
-			arr.push("<th width='8%'>性别</th>");
+			//arr.push("<th width='6%'>别</th>");
 			arr.push("<th width='10%'>部门</th>");
 			arr.push("<th width='10%'>电话</th>");
 			arr.push("<th width='8%'>岗位</th>");
-			arr.push("<th width='8%'>备注</th>");
+			//arr.push("<th width='7%'>备注</th>");
 			arr.push("<th width='13%'>确认</th>");
 			arr.push("<th width='9%'>报到日期</th>");
+			arr.push("<th width='7%'>练习</th>");
+			arr.push("<th width='7%'>成绩</th>");
 			arr.push("<th width='3%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -274,17 +276,19 @@
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
 					arr.push("<td class='center'>" + ar1[0] + "</td>");
-					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + ar1[1] + "\",0,1);'>" + ar1[1] + "</a></td>");
+					arr.push("<td class='link1'><a href='javascript:showEnterInfo(" + ar1[0] + ",\"" + ar1[1] + "\",0,1);'>" + ar1[1] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[2] + "</td>");
-					arr.push("<td class='left'>" + ar1[3] + "</td>");
+					//arr.push("<td class='left'>" + ar1[3] + "</td>");
 					arr.push("<td class='left'>" + ar1[8] + "</td>");
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
 					arr.push("<td class='left'>" + ar1[5] + "</td>");
-					arr.push("<td class='left'>" + ar1[14] + "</td>");
+					//arr.push("<td class='left'>" + ar1[14] + "</td>");
 					arr.push("<td class='left'>" + ar1[20] + ar1[22] + "</td>");
 					arr.push("<td class='center'>" + ar1[16] + "</td>");
+					arr.push("<td class='center'>" + nullNoDisp(ar1[15]) + "</td>");
+					arr.push("<td class='center'>" + nullNoDisp(ar1[66]) + "</td>");
 					//if(ar1[15]==0 && ar1[23] > 0){
-						arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[1] + "' name='visitstockchkCourse'>" + "</td>");
+						arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[1] + "' name='visitstockchkPre'>" + "</td>");
 					//}else{
 						//arr.push("<td class='center'>&nbsp;</td>");
 					//}
@@ -296,6 +300,8 @@
 			arr.push("<tr>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
+			//arr.push("<th>&nbsp;</th>");
+			//arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
