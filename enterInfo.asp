@@ -422,7 +422,7 @@
 		});
 		*/
 		var c = $("#certID").val();
-		if(c == "C21"){
+		if(c == "C21" || c == "C20A"){
 			c = "C20";
 		}
 		window.open("entryform_" + c + ".asp?nodeID=" + nodeID + "&refID=" + refID + "&keyID=1", "_self");
@@ -450,10 +450,10 @@
 	
 	function printEntryform(k){
 		var c = $("#certID").val();
-		if(c == "C21"){
+		if(c == "C21" || c == "C20A"){
 			c = "C20";
 		}
-		window.open("entryform_" + c + ".asp?keyID=" + k + "&nodeID=" + nodeID + "&refID=" + refID, "_self");
+		window.open("entryform_" + c + ".asp?keyID=" + k + "&nodeID=" + nodeID + "&refID=" + refID + "&kindID=" + $("#certID").val(), "_self");
 	}
 	
 	function setButton(){

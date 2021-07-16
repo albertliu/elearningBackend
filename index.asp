@@ -90,6 +90,7 @@
 	<!--#include file="rptTrainningIncReady.js"-->
 	<!--#include file="rptDiplomaIncReady.js"-->
 	<!--#include file="rptDiplomaLastIncReady.js"-->
+	<!--#include file="studentPreListIncReady.js"-->
 
 	unitListLong = 0;
 	memoListLong = 0;
@@ -210,11 +211,15 @@
 		if(currHost > ""){	//公司的人看不到班级
 			$("#menu9").hide();
 			$("#menu10").hide();
+			$("#menu2").hide();
 		}else{
-			//$("#menu2").hide();
+			$("#menu11").hide();
 			//$("#menu3").hide();
 		}
-		
+		if(currUser=="desk."){
+			$("#menu11").show();
+		}
+
 		if(currHostKind==0 && currHost > ""){	//集团用户不使用导入报名表, 照片批量上传，成绩导入功能
 			$("#generateStudent_Tab").hide();
 			$("#tab3").hide();
@@ -326,6 +331,7 @@
 						<li id="menu10"><a href="#fragment-10"><span>报名管理</span></a></li>
 						<li id="menu9"><a href="#fragment-9"><span>班级管理</span></a></li>
 						<li id="menu2"><a href="#fragment-2"><span>预报名管理</span></a></li>
+						<li id="menu11"><a href="#fragment-11"><span>预报名管理</span></a></li>
 						<li id="menu3"><a href="#fragment-3"><span>证书管理</span></a></li>
 						<li><a href="#fragment-4"><span>课程管理</span></a></li>
 						<li id="menu5"><a href="#fragment-5"><span>题库管理</span></a></li>
@@ -466,6 +472,10 @@
 					
 					<div id="fragment-2">
 						<!--#include file="studentCourseListIncDetail.js"-->
+					</div>
+					
+					<div id="fragment-11">
+						<!--#include file="studentPreListIncDetail.js"-->
 					</div>
 					
 					<div id="fragment-3">

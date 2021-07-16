@@ -17,6 +17,7 @@
 	var nodeID = 0;
 	var updateCount = 0;
 	var uploadURL = "<%=uploadURL%>";
+	var kindID = "";
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";  //enterID
 		$.ajaxSetup({ 
@@ -72,6 +73,7 @@
 				}else{
 					$("#img_photo").attr("src","images/blank_photo.png");
 				}
+				kindID = ar["certID"];
 				setKind4();
 			}
 		});
@@ -83,6 +85,13 @@
 			$("#fire_kind4_1").hide();
 		}else{
 			$("#fire_kind4_1").show();
+		}
+		if(kindID=="C20A"){
+			$("#fire_kind4_0").hide();
+			$("#fire_kind4_1").show();
+		}else{
+			$("#fire_kind4_0").show();
+			$("#fire_kind4_1").hide();
 		}
 	}
 </script>

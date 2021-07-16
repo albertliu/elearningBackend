@@ -1448,7 +1448,7 @@
 				setReturnLog("enter",iframe.nodeID);	
 				var re = iframe.updateCount;
 				if(re>0 && mark==1){
-					getStudentCourseList(refID);
+					getEnterList();
 				}
 				//alert(re + ":" + mark);
 				if(re>0 && mark==2){

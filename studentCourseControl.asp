@@ -303,6 +303,85 @@ if(op == "getStudentListByClass"){
 	//Response.Write((sql));
 }	
 
+if(op == "getStudentListByProject"){
+	var s = "";
+	//如果有条件，按照条件查询
+	if(where > ""){ // 有条件
+		where = "(name like('%" + where + "%') or username='" + where + "')";
+	}
+	//招生批次
+	if(refID > ""){
+		s = "projectID='" + refID + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//报到日期
+	if(fStart > "" && fStart !="undefined"){
+		s = "submitDate>='" + fStart + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	if(fEnd > "" && fEnd !="undefined"){
+		s = "submitDate<='" + fEnd + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//确认
+	if(String(Request.QueryString("checked")) > "" && String(Request.QueryString("checked")) !="undefined"){
+		s = "checked=" + String(Request.QueryString("checked"));
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//报到
+	if(String(Request.QueryString("submited")) > "" && String(Request.QueryString("submited")) !="undefined"){
+		s = "submited=" + String(Request.QueryString("submited"));
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+
+	if(where > ""){
+		where = " where " + where;
+	}
+	sql = " FROM v_studentCourseList" + where;
+	result = getBasketTip(sql,"");
+	ssql = "SELECT ID,username,name,educationName,dept1Name,dept2Name,job,mobile,memo,examScore,score,checkDate,checkerName,submitDate,submitName" + sql + " order by dept2Name,ID";
+	sql = "SELECT top " + basket + " *" + sql + " order by ID";
+	
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("ID").value + "|" + rs("username").value + "|" + rs("name").value + "|" + rs("sexName").value + "|" + rs("educationName").value + "|" + rs("job").value + "|" + rs("mobile").value;
+		//7
+		result += "|" + rs("examScore").value + "|" + rs("dept2Name").value + "|" + rs("dept1").value + "|" + rs("dept1Name").value + "|" + rs("score").value;
+		//12
+		result += "|" + rs("projectID").value + "|" + rs("classID").value + "|" + rs("memo").value;
+		//15
+		result += "|" + rs("submited").value + "|" + rs("submitDate").value + "|" + rs("submiter").value + "|" + rs("submitName").value;
+		//19
+		result += "|" + rs("checked").value + "|" + rs("checkDate").value + "|" + rs("checker").value + "|" + rs("checkerName").value;
+		rs.MoveNext();
+	}
+	rs.Close();
+	/**/
+	Session(op) = ssql;
+	Response.Write(escape(result));
+	//Response.Write((sql));
+}	
+
 if(op == "getNodeInfo"){
 	result = "";
 	sql = "SELECT *,[dbo].[getPassCondition](ID) as pass_condition,[dbo].[getMissingItems](ID) as missingItems FROM v_studentCourseList where ID=" + nodeID;
@@ -604,6 +683,20 @@ if(op == "getStudentListByClassCheck"){
 	//Response.Write(escape(sql));
 }	
 
+if(op == "getStudentListByProjectCheck"){
+	result = "";
+	sql = "SELECT name,username,(courseName1 + ', ' + courseName2) FROM dbo.getProjectRefrence('" + refID + "')";
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("name").value + "|" + rs("username").value + "|" + rs("item").value;
+		rs.MoveNext();
+	}
+	rs.Close();
+	result = result.substr(2);
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}	
+
 if(op == "updatePayInfo"){
 	//@ID int,@invoice varchar(50),@projectID varchar(50),@kindID varchar(50),@type int,@status int,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo
 	sql = "exec updatePayInfo " + nodeID + ",'" + String(Request.QueryString("invoice")) + "','" + String(Request.QueryString("projectID")) + "','" + item + "','" + kindID + "','" + String(Request.QueryString("type")) + "','" + status + "','" + String(Request.QueryString("datePay")) + "','" + String(Request.QueryString("dateInvoice")) + "','" + String(Request.QueryString("dateInvoicePick")) + "','" + refID + "','" + memo + "','" + currUser + "',''";
@@ -642,6 +735,13 @@ if(op == "delNode"){
 
 if(op == "doStudentCourse_check"){
 	sql = "exec doStudentCourse_check " + status + ",'" + refID + "','" + keyID + "','" + host + "','" + currUser + "'";
+	execSQL(sql);
+	Response.Write(0);
+	//Response.Write(sql);
+}	
+
+if(op == "doStudentPre_check"){
+	sql = "exec doStudentPre_check " + status + ",'" + refID + "','" + keyID + "','" + host + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(0);
 	//Response.Write(sql);

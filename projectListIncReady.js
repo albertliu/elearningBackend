@@ -32,7 +32,7 @@
 			$("#btnSearchProjectAdd").hide();
 		}
 		
-		getProjectList();
+		//getProjectList();
 	});
 
 	function getProjectList(){
@@ -133,7 +133,7 @@
 	function downloadProjectList(pID){
 		//alert(pID);
 		$("#searchStudentCourseProjectID").val(pID);
-		getStudentCourseList();
+		getProjectList();
 		outputFloat(13,'file');
 	}
 	

@@ -123,7 +123,7 @@
 		});
 		window.setTimeout(function () {
 			//window.parent.asyncbox.close("enterInfo");
-			window.parent.getStudentCourseList(refID);
+			window.parent.getEnterList();
 			window.parent.$.close("enterInfo");
 			//refreshMsg();
 		}, 1000);

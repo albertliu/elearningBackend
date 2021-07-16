@@ -19,7 +19,8 @@
 		getDicList("reexamine","searchEnterReexamine",1);
 		$("#searchEnterStartDate").click(function(){WdatePicker();});
 		$("#searchEnterEndDate").click(function(){WdatePicker();});
-		
+		//$("#searchEnterStartDate").val(currDate);
+
 		$("#btnSearchEnter").click(function(){
 			getEnterList();
 		});
@@ -231,6 +232,9 @@
 	function getEnterList(){
 		sWhere = $("#txtSearchEnter").val();
 		var Old = 0;
+		if($("#searchEnterClassID").val() == ""){
+			$("#searchEnterStartDate").val(currDate);
+		}
 		//if($("#searchEnterOld").attr("checked")){Old = 1;}
 		//alert($("#searchEnterDept").val() + "&refID=" + $("#searchEnterProjectID").val() + "&status=" + $("#searchEnterStatus").val() + "&photoStatus=" + $("#searchEnterPhotoStatus").val() + "&courseID=" + $("#searchEnterCourseID").val() + "&host=" + $("#searchEnterHost").val() + "&checked=" + $("#searchEnterChecked").val() + "&materialChecked=" + $("#searchEnterMaterialChecked").val() + "&classID=" + $("#searchEnterClassID").val());
 		$.get("studentCourseControl.asp?op=getStudentCourseList&where=" + escape(sWhere) + "&mark=1&kindID=" + $("#searchEnterDept").val() + "&refID=" + $("#searchEnterProjectID").val() + "&status=" + $("#searchEnterStatus").val() + "&reexamine=" + $("#searchEnterReexamine").val() + "&photoStatus=" + $("#searchEnterPhotoStatus").val() + "&courseID=" + $("#searchEnterCourseID").val() + "&host=" + $("#searchEnterHost").val() + "&checked=" + $("#searchEnterChecked").val() + "&materialChecked=" + $("#searchEnterMaterialChecked").val() + "&passcard=" + $("#searchEnterPasscard").val() + "&classID=" + $("#searchEnterClassID").val() + "&fStart=" + $("#searchEnterStartDate").val() + "&fEnd=" + $("#searchEnterEndDate").val() + "&dk=101&times=" + (new Date().getTime()),function(data){
@@ -470,7 +474,7 @@
 	}
 
 	function openEntryForm(c,n,f){
-		if(c == "C21"){
+		if(c == "C21" || c == "C20A"){
 			c = "C20";
 		}
 		window.open("entryform_" + c + ".asp?keyID=0&nodeID=" + n + "&refID=" + f, "_blank");

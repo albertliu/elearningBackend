@@ -39,12 +39,14 @@
 	var op = 0;
 	var refID = 0;
 	var keyID = 0;
+	kindID = "";
 	var updateCount = 1;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";		//enterID
 		refID = "<%=refID%>";		//username
 		keyID = "<%=keyID%>";		//0 预览  1 打印
+		kindID = "<%=kindID%>";		//certID
 		op = "<%=op%>";
 		$("#fire_employDate").click(function(){WdatePicker();});
 		$("#fire_gradeDate").click(function(){WdatePicker();});
@@ -81,6 +83,7 @@
 			//resize window
 			//$("#layout").css("width":"1000px");
 		}
+
 });
 
 	function getNodeInfo(id,ref){
@@ -92,6 +95,12 @@
 				$("#SNo").html(ar[25]);
 				$("#courseName").html(ar[6]);
 				$("#missingItems").html("缺项：" + ar[43]);
+				kindID = ar[36];
+				if(kindID=="C20A"){
+					$("#fire_kind4_0").prop("disabled",true);
+				}else{
+					$("#fire_kind4_1").prop("disabled",true);
+				}
 			}else{
 				//alert("没有找到要打印的内容。");
 				return false;
@@ -238,7 +247,7 @@
 		});
 		window.setTimeout(function () {
 			//window.parent.asyncbox.close("enterInfo");
-			window.parent.getStudentCourseList(refID);
+			window.parent.getEnterList();
 			window.parent.$.close("enterInfo");
 			//refreshMsg();
 		}, 1000);
@@ -249,6 +258,13 @@
 			$("#fire_kind4_1").hide();
 		}else{
 			$("#fire_kind4_1").show();
+		}
+		if(kindID=="C20A"){
+			$("#fire_kind4_0").hide();
+			$("#fire_kind4_1").show();
+		}else{
+			$("#fire_kind4_0").show();
+			$("#fire_kind4_1").hide();
 		}
 	}
 
