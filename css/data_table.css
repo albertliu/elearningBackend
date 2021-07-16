@@ -236,6 +236,14 @@ table.display tr.even.grade3 {
 	background-color: #ffffee;
 }
 
+table.display tr.odd.grade4 {
+	background-color: #fcfcfc;
+}
+
+table.display tr.even.grade4 {
+	background-color: #dfdfdf;
+}
+
 
 tr.odd {
 	background-color: #E2E4FF;

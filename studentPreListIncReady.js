@@ -161,7 +161,7 @@
 				if(r){
 					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
 					//jAlert(selList);
-					$.get("studentCourseControl.asp?op=doStudentCourse_check&status=2&host=" + $("#searchStudentPreHost").val() + "&keyID=" + selList + "&refID=" + $("#searchStudentPreProjectID").val() ,function(data){
+					$.get("studentCourseControl.asp?op=doStudentPre_check&status=2&host=" + $("#searchStudentPreHost").val() + "&keyID=" + selList + "&refID=" + $("#searchStudentPreProjectID").val() ,function(data){
 						//jAlert(data);
 						if(data=="0"){
 							jAlert("剔除成功");
@@ -266,7 +266,10 @@
 					i += 1;
 					c = 0;
 					if(ar1[19]==0){
-						c = 3;
+						c = 4;
+					}
+					if(ar1[19]==2){
+						c = 1;
 					}
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
