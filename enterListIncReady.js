@@ -97,13 +97,13 @@
 		
 		$("#searchEnterCourseID").change(function(){
 			if($("#searchEnterCourseID").val()>""){
-				getComList("searchEnterClassID","v_classInfo","classID","className","certID in(select certID from courseInfo where courseID='" + $("#searchEnterCourseID").val() + "') order by ID desc",1);
+				getComList("searchEnterClassID","v_classInfo","classID","className","certID in(select certID from courseInfo where courseID='" + $("#searchEnterCourseID").val() + "') order by dateStart desc",1);
 			}
 		});
 		
 		$("#searchEnterClassAdviser").change(function(){
 			if($("#searchEnterClassAdviser").val()>""){
-				getComList("searchEnterClassID","v_classInfo","classID","className","adviserID ='" + $("#searchEnterClassAdviser").val() + "' order by ID desc",1);
+				getComList("searchEnterClassID","v_classInfo","classID","className","adviserID ='" + $("#searchEnterClassAdviser").val() + "' order by dateStart desc",1);
 			}
 		});
 		
