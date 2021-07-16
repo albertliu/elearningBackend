@@ -121,7 +121,7 @@ if(op == "getStudentCourseList"){
 	}
 	//mark=2: 前台报名。
 	if(String(Request.QueryString("mark")) == 2){
-		s = "projectID>''";
+		s = "projectID>'' and ((host = 'spc' and checked<2) or host<>'spc')";
 		if(where > ""){
 			where = where + " and " + s;
 		}else{

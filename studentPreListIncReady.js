@@ -266,10 +266,10 @@
 					i += 1;
 					c = 0;
 					if(ar1[19]==0){
-						c = 4;
+						c = 3;
 					}
 					if(ar1[19]==2){
-						c = 1;
+						c = 2;
 					}
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");

@@ -414,12 +414,19 @@
 				$.each(ar,function(iNum,val){
 					var ar1 = new Array();
 					ar1 = val.split("|");
-					var c = "";
+					var d = "";
 					if(ar1[44]==1){
-						c = imgChk;
+						d = imgChk;
+					}
+					var c = "#90EE90;";
+					if(ar1[16]==0){
+						c = "#FFFACD;";
+					}
+					if(ar1[42] > ""){
+						c = "#E8E8E8;";
 					}
 					arr1.push("<tr style='background-color:" + c + "'>");
-					arr1.push("<td><a href='javascript:showEnterInfo(" + ar1[0] + ",\"" + $("#username").val() + "\",0,1,0);'>" + ar1[62] + "</a></td><td>" + ar1[41] + "</td><td>" + ar1[42] + "</td><td>" + ar1[43] + "</td><td>" + c + "</td><td>" + ar1[50] + "</td><td>" + ar1[67] + "</td>");
+					arr1.push("<td><a href='javascript:showEnterInfo(" + ar1[0] + ",\"" + $("#username").val() + "\",0,1,0);'>" + ar1[62] + "</a></td><td>" + ar1[41] + "</td><td>" + ar1[42] + "</td><td>" + ar1[43] + "</td><td>" + d + "</td><td>" + ar1[50] + "</td><td>" + ar1[67] + "</td>");
 					arr1.push("</tr>");
 				});
 			}
