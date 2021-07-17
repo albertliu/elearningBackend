@@ -237,20 +237,21 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'></th>");
-			arr.push("<th width='6%'>学号</th>");
+			arr.push("<th width='5%'>学号</th>");
 			arr.push("<th width='10%'>身份证</th>");
 			arr.push("<th width='6%'>姓名</th>");
 			//arr.push("<th width='6%'>别</th>");
 			arr.push("<th width='10%'>部门</th>");
-			arr.push("<th width='9%'>电话</th>");
+			arr.push("<th width='8%'>电话</th>");
 			arr.push("<th width='7%'>岗位</th>");
 			//arr.push("<th width='7%'>备注</th>");
 			arr.push("<th width='11%'>确认</th>");
 			arr.push("<th width='8%'>报到日期</th>");
-			arr.push("<th width='6%'>练习</th>");
+			arr.push("<th width='7%'>练习</th>");
 			arr.push("<th width='6%'>成绩</th>");
+			arr.push("<th width='6%'>准考</th>");
 			arr.push("<th width='6%'>补考</th>");
-			arr.push("<th width='9%'>证书编号</th>");
+			arr.push("<th width='6%'>证书</th>");
 			arr.push("<th width='3%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -290,12 +291,21 @@
 					arr.push("<td class='center'>" + ar1[16] + "</td>");
 					s = "";
 					if(ar1[27]>0){
-						s = nullNoDisp(ar1[7]) + "/" + nullNoDisp(ar1[27]);
+						s = nullNoDisp(ar1[7]) + " / " + nullNoDisp(ar1[27]);
 					}
 					arr.push("<td class='center'>" + s + "</td>");
 					arr.push("<td class='center'>" + nullNoDisp(ar1[11].replace(".00","")) + "</td>");
+					if(ar1[28]>0){
+						arr.push("<td class='center'>" + imgChk1 + "</td>");	//准考证
+					}else{
+						arr.push("<td class='center'>&nbsp;</td>");
+					}
 					arr.push("<td class='center'>" + nullNoDisp(ar1[26]) + "</td>");
-					arr.push("<td class='center'>" + ar1[23] + "</td>");
+					if(ar1[23]>0){
+						arr.push("<td class='center'>" + imgChk1 + "</td>");	//证书
+					}else{
+						arr.push("<td class='center'>&nbsp;</td>");
+					}
 					//if(ar1[15]==0 && ar1[23] > 0){
 						arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[1] + "' name='visitstockchkPre'>" + "</td>");
 					//}else{
@@ -311,6 +321,7 @@
 			arr.push("<th>&nbsp;</th>");
 			//arr.push("<th>&nbsp;</th>");
 			//arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");

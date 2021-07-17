@@ -374,7 +374,7 @@ if(op == "getStudentListByProject"){
 		//19
 		result += "|" + rs("checked").value + "|" + rs("checkDate").value + "|" + rs("checker").value + "|" + rs("checkerName").value;
 		//23
-		result += "|" + rs("diplomaID").value + "|" + rs("diploma_startDate").value + "|" + rs("diploma_endDate").value + "|" + rs("reExamCount").value + "|" + rs("examTimes").value;
+		result += "|" + rs("diplomaID").value + "|" + rs("diploma_startDate").value + "|" + rs("diploma_endDate").value + "|" + rs("reExamCount").value + "|" + rs("examTimes").value + "|" + rs("passcardID").value;
 		rs.MoveNext();
 	}
 	rs.Close();
