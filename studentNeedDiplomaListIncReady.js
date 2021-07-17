@@ -115,7 +115,7 @@
 			}
 		});
 
-		if(currHost>""){
+		if(currHost>"" && currDeptID ==0){
 			getStudentNeedDiplomaList();
 		}
 	});

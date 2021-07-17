@@ -150,32 +150,6 @@
 		$("#btnSearchEnterAdd").click(function(){
 			showStudentInfo(0,0,1,1);
 		});
-		$("#btnRefundList").click(function(){
-			getSelCart("visitstockchkEnter");
-			if(selCount==0){
-				jAlert("请选择制作退费单的人员。");
-				return false;
-			}
-			if($("#searchEnterClassID").val()==""){
-				jAlert("请选择一个班级。");
-				return false;
-			}
-			$.getJSON(uploadURL + "/outfiles/generate_refund_list?class=" + $("#searchEnterClassID").find("option:selected").text() + "&selList=" + selList + "&price=10" ,function(data){
-				if(data>""){
-					asyncbox.alert("已生成 <a href='" + data + "' target='_blank'>下载文件</a>",'操作成功',function(action){
-					　　//alert 返回action 值，分别是 'ok'、'close'。
-					　　if(action == 'ok'){
-					　　}
-					　　if(action == 'close'){
-					　　　　//alert('close');
-					　　}
-					});
-					//getNodeInfo(nodeID);
-				}else{
-					alert("没有可供处理的数据。");
-				}
-			});
-		});
 		$("#btnEnterCheck").hide();
 		//getEnterList();
 		$("#cart_examer").click(function(){
@@ -293,10 +267,11 @@
 			}else{
 				arr.push("<th width='5%'>缺</th>");
 			}
-			arr.push("<th width='7%'>编</th>");
-			arr.push("<th width='4%'>申</th>");
-			arr.push("<th width='4%'>准</th>");
-			arr.push("<th width='4%'>分</th>");
+			arr.push("<th width='7%'>学号</th>");
+			arr.push("<th width='6%'>申报</th>");
+			arr.push("<th width='6%'>准考</th>");
+			arr.push("<th width='6%'>成绩</th>");
+			arr.push("<th width='6%'>补考</th>");
 			arr.push("<th width='2%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -398,7 +373,8 @@
 					}else{
 						arr.push("<td class='center'>&nbsp;</td>");
 					}*/
-					arr.push("<td class='left'>" + nullNoDisp(ar1[66]) + "</td>");
+					arr.push("<td class='left'>" + nullNoDisp(ar1[66].replace(".00","")) + "</td>");
+					arr.push("<td class='center'>" + nullNoDisp(ar1[68]) + "</td>");
 					arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchkEnter'>" + "</td>");
 					arr.push("</tr>");
 				});
@@ -406,6 +382,8 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");

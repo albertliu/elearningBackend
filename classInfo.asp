@@ -55,7 +55,7 @@
 			saveNode();
 		});
 		$("#close").click(function(){
-			if(confirm('确定要结课吗?')){
+			if(confirm('确定要结束课程吗?')){
 				$.get("classControl.asp?op=closeClass&nodeID=" + $("#ID").val() + "&refID=2&times=" + (new Date().getTime()),function(data){
 					alert("已结课","信息提示");
 					getNodeInfo(nodeID);
@@ -103,6 +103,23 @@
 			showLoadFile("ref_student_list",$("#ID").val(),"studentList",'');
 			updateCount += 1;
 		});
+		$("#refundList").click(function(){
+			$.getJSON(uploadURL + "/outfiles/generate_refund_list?classID=" + $("#classID").val() + "&className=" + $("#className").val() + "&price=10" ,function(data){
+				if(data>""){
+					asyncbox.alert("已生成 <a href='" + data + "' target='_blank'>下载文件</a>",'操作成功',function(action){
+					　　//alert 返回action 值，分别是 'ok'、'close'。
+					　　if(action == 'ok'){
+					　　}
+					　　if(action == 'close'){
+					　　　　//alert('close');
+					　　}
+					});
+					//getNodeInfo(nodeID);
+				}else{
+					alert("没有可供处理的数据。");
+				}
+			});
+		});
 
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
@@ -136,6 +153,7 @@
 				}
 				if(c == ""){c = "&nbsp;&nbsp;";}
 				$("#photo").html(c);
+				$("#list").html("<a>退费清单</a>");
 				
 				//getDownloadFile("classID");
 				setButton();
@@ -287,7 +305,8 @@
 					合格<input type="text" class="readOnly" readOnly="true" id="qtyPass"  size="3" />
 				</td>
 				<td colspan="2">
-					<span id="photo" style="margin-left:10px;"></span>
+					<span id="photo" style="margin-left:10px;"></span>&nbsp;&nbsp;
+					<span id="refundList" style="margin-left:10px;"></span>
 				</td>
 			</tr>
 			<tr>
@@ -319,7 +338,7 @@
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
   	<input class="button" type="button" id="save" value="保存" />&nbsp;&nbsp;
-  	<input class="button" type="button" id="close" value="结课" />&nbsp;&nbsp;
+  	<input class="button" type="button" id="close" value="结束" />&nbsp;&nbsp;
   	<input class="button" type="button" id="open" value="开启" />&nbsp;&nbsp;
   	<input class="button" type="button" id="del" value="删除" />&nbsp;&nbsp;
 	<input class="button" type="button" id="doImportRef" value="预报名表导入" />

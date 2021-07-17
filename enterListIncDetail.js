@@ -40,7 +40,6 @@
 								<input class="button" type="button" id="btnEnterSel" value="全选/取消" />&nbsp;&nbsp;
 								<input class="button" type="button" id="btnEnterCheck" value="材料确认" />&nbsp;
 								准考证&nbsp;<select id="searchEnterPasscard" style="width:50px"></select>&nbsp;
-								<input class="button" type="button" id="btnRefundList" value="退费单" />&nbsp;
 								<input class="button" type="button" id="btnEnterCall" value="催材料" />&nbsp;
 							</span>
 							<span style="float:right;margin-right:20px;"><input class="button" type="button" id="btnEnterCartAdd" value="加入购物车" />&nbsp;&nbsp;</span>

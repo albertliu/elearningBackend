@@ -4,12 +4,13 @@
 		var w_project = "status=0 and hostNo='" + currHost + "'";
 		if(currHost==""){	//公司用户只能看自己公司内容
 			getComList("searchProjectHost","hostInfo","hostNo","title","status=0 order by hostName",1);
+			$("#searchProjectHost").val("spc");
 		}else{
 			getComList("searchProjectHost","hostInfo","hostNo","title",w_project,0);
 		}
 		$("#searchProjectStart").click(function(){WdatePicker();});
 		$("#searchProjectEnd").click(function(){WdatePicker();});
-		getComList("searchProjectCert","certificateInfo","certID","certName","status=0 order by certID",1);
+		getComList("searchProjectCert","certificateInfo","certID","certName","status=0 and type=0 order by certID",1);
 		getDicList("statusIssue","searchProjectStatus",1);
 
 		$("#btnSearchProject").click(function(){
@@ -32,7 +33,11 @@
 			$("#btnSearchProjectAdd").hide();
 		}
 		
-		//getProjectList();
+		$("#searchProjectHost").change(function(){
+			setHostProjectChange();
+		});
+		
+		setHostProjectChange();
 	});
 
 	function getProjectList(){
@@ -42,7 +47,7 @@
 		if(!checkPermission("projectAdd")){
 			s = 1;	//一般人只能看已发布的通知
 		}
-		$.get("projectControl.asp?op=getProjectList&where=" + escape(sWhere) + "&fStart=" + $("#searchProjectStart").val() + "&fEnd=" + $("#searchProjectEnd").val() + "&refID=" + $("#searchProjectCert").val() + "&status=" + s + "&host=" + $("#searchProjectHost").val() + "&dk=17&times=" + (new Date().getTime()),function(data){
+		$.get("projectControl.asp?op=getProjectList&where=" + escape(sWhere) + "&keyID=" + $("#searchProjectDept").val() + "&fStart=" + $("#searchProjectStart").val() + "&fEnd=" + $("#searchProjectEnd").val() + "&refID=" + $("#searchProjectCert").val() + "&status=" + s + "&host=" + $("#searchProjectHost").val() + "&dk=17&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
@@ -60,9 +65,11 @@
 			arr.push("<th width='12%'>批次</th>");
 			arr.push("<th width='20%'>标题</th>");
 			arr.push("<th width='12%'>截止日期</th>");
-			arr.push("<th width='10%'>报名确认</th>");
-			arr.push("<th width='8%'>提交</th>");
-			arr.push("<th width='10%'>资料修正</th>");
+			arr.push("<th width='8%'>总数</th>");
+			arr.push("<th width='8%'>确认</th>");
+			arr.push("<th width='8%'>待确认</th>");
+			arr.push("<th width='8%'>拒绝</th>");
+			arr.push("<th width='8%'>报名</th>");
 			arr.push("<th width='8%'>状态</th>");
 			arr.push("<th width='8%'>附件</th>");
 			arr.push("</tr>");
@@ -82,9 +89,11 @@
 					arr.push("<td class='link1'><a href='javascript:showProjectInfo(" + ar1[0] + ",0,0,1);'>" + ar1[1] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[2] + "</td>");
 					arr.push("<td class='left'>" + ar1[10] + "</td>");
-					arr.push("<td class='left' title='确认/拒绝/报名'><a href='javascript:downloadProjectList(\"" + ar1[1] + "\");'>" + ar1[20] + "</a></td>");
-					arr.push("<td class='left' title='提交/拒绝/确认'>" + ar1[27] + "</td>");
-					arr.push("<td class='left' title='确认/修改/通知'>" + ar1[26] + "</td>");
+					arr.push("<td class='left'>" + nullNoDisp(ar1[20]) + "</td>");
+					arr.push("<td class='left'>" + nullNoDisp(ar1[17]) + "</td>");
+					arr.push("<td class='left'>" + nullNoDisp(ar1[35]) + "</td>");
+					arr.push("<td class='left'>" + nullNoDisp(ar1[27]) + "</td>");
+					arr.push("<td class='left'>" + nullNoDisp(ar1[26]) + "</td>");
 					arr.push("<td class='left'>" + ar1[8] + "</td>");
 					if(ar1[21]==''){
 						arr.push("<td class='center'>&nbsp;</td>");
@@ -97,6 +106,8 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
@@ -135,6 +146,16 @@
 		$("#searchStudentCourseProjectID").val(pID);
 		getProjectList();
 		outputFloat(13,'file');
+	}
+
+	function setHostProjectChange(){
+		//alert($("#searchStudentPreHost").val());
+		if(currDeptID>0){
+			getComList("searchProjectDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchProjectHost").val() + "' and pID=0) and deptID=" + currDeptID,0);
+		}else{
+			getComList("searchProjectDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchProjectHost").val() + "' and pID=0) and kindID=0 and dept_status<9",1);
+		}
+		setProjectList();
 	}
 	
 	

@@ -343,7 +343,7 @@
 		if(currDeptID>0){
 			getComList("searchStudentCourseDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchStudentCourseHost").val() + "' and pID=0) and deptID=" + currDeptID,0);
 		}else{
-			getComList("searchStudentCourseDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchStudentCourseHost").val() + "' and pID=0) and dept_status<9",1);
+			getComList("searchStudentCourseDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchStudentCourseHost").val() + "' and pID=0) and kindID=0 and dept_status<9",1);
 		}
 		setClassList();
 }

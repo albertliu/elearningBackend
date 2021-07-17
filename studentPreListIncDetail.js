@@ -21,13 +21,13 @@
 								<input class="button" type="button" id="btnStudentPreBadPhoto" value="修正通知" />&nbsp;&nbsp;
 								<input class="button" type="button" id="btnStudentPreGoodPhoto" value="修正确认" />
 							</span>
-							<span id="studentPreListLongItem3">
-							    &nbsp;报名日期&nbsp;<input type="text" id="searchStudentPreStartDate" size="7" />-<input type="text" id="searchStudentPreEndDate" size="7" />
-							</span>
 						    <span style="float:right;">
 								<input class="button" type="button" name="btnDownLoad130" id="btnDownLoad130" onClick="outputFloat(130,'file')" value="下载" />
 							</span>
 							<br />
+							<span id="studentPreListLongItem3">
+							    &nbsp;报名日期&nbsp;<input type="text" id="searchStudentPreStartDate" size="7" />-<input type="text" id="searchStudentPreEndDate" size="7" />
+							</span>&nbsp;&nbsp;&nbsp;
 							确认&nbsp;<select id="searchStudentPreChecked" style="width:70px"></select>&nbsp;&nbsp;&nbsp;
 							报到&nbsp;<select id="searchStudentPreSubmited" style="width:70px"></select>&nbsp;&nbsp;&nbsp;
 							<input class="button" type="button" id="btnStudentPreSel" value="全选/取消" />&nbsp;&nbsp;

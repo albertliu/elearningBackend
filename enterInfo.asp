@@ -82,7 +82,7 @@
 				}
 			});
 		}else{
-			getComList("projectID","projectInfo","projectID","projectName","1=1 order by projectID desc",1);
+			getComList("projectID","projectInfo","projectID","projectName","status>0 order by projectID desc",1);
 			getNodeInfo(nodeID);
 		}
 

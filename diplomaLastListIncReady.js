@@ -2,17 +2,17 @@
 	var diplomalastListChk = 0;
 
 	$(document).ready(function (){
-		var w = "status=0 and hostNo='" + currHost + "'";
+		var www = "status=0 and hostNo='" + currHost + "'";
 		if(currHost==""){	//公司用户只能看自己公司内容
 			getComList("searchDiplomaLastHost","hostInfo","hostNo","title","status=0 order by hostName",1);
 			$("#diplomalastListLongItem2").hide();
 		}else{
-			getComList("searchDiplomaLastHost","hostInfo","hostNo","title",w,0);
+			getComList("searchDiplomaLastHost","hostInfo","hostNo","title",www,0);
 			$("#diplomalastListLongItem1").hide();
-			getComList("searchDiplomaLastDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchDiplomaLastHost").val() + "' and pID=0)",1);
+			setDiplomaLastDeptList();
 		}
 		
-		getComList("searchDiplomaLastKind","v_certificateInfo","certID","certName","status=0 and host='" + currHost + "' order by certName",1);
+		getComList("searchDiplomaLastKind","v_certificateInfo","certID","certName","status=0 and (host='" + currHost + "' or host='') order by certName",1);
 		getDicList("statusExpire","searchDiplomaLastStatus",1);
 		$("#searchDiplomaLastStartDate").click(function(){WdatePicker();});
 		$("#searchDiplomaLastEndDate").click(function(){WdatePicker();});
@@ -30,6 +30,9 @@
 				}
 			}
 		});
+		$("#searchDiplomaLastHost").change(function(){
+			setDiplomaLastDeptList();
+		});
 		
 		$("#searchDiplomaLastStartDate").val(currDate);
 		$("#searchDiplomaLastEndDate").val(addDays(currDate,30));
@@ -44,7 +47,7 @@
 			getDiplomaLastList();
 		});
 
-		//getDiplomaLastList();
+		setDiplomaLastDeptList();
 	});
 
 	function getDiplomaLastList(){
@@ -146,5 +149,16 @@
 			floatContent = "";	//records data for output
 			floatModel = 1;
 		});
+	}
+
+	function setDiplomaLastDeptList(){
+		//alert($("#searchDiplomaHost").val() + ":" + currDeptID);
+		if($("#searchDiplomaLastHost").val() > ""){
+			if(currDeptID > 0){
+				getComList("searchDiplomaLastDept","deptInfo","deptID","deptName","deptID=" + currDeptID,0);
+			}else{
+				getComList("searchDiplomaLastDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchDiplomaLastHost").val() + "' and pID=0)",1);
+			}
+		}
 	}
 	

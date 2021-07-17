@@ -2,26 +2,27 @@
 	var diplomaListChk = 0;
 
 	$(document).ready(function (){
-		var w = "status=0 and hostNo='" + currHost + "'";
+		var ww = "status=0 and hostNo='" + currHost + "'";
 		if(currHost==""){	//公司用户只能看自己公司内容
 			getComList("searchDiplomaHost","hostInfo","hostNo","title","status=0 order by hostName",1);
 			$("#diplomaListLongItem2").hide();
 		}else{
-			getComList("searchDiplomaHost","hostInfo","hostNo","title",w,0);
+			getComList("searchDiplomaHost","hostInfo","hostNo","title",ww,0);
 			$("#diplomaListLongItem1").hide();
-			getComList("searchDiplomaDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchDiplomaHost").val() + "' and pID=0)",1);
-			if(currDeptID > 0){
-				$("#searchDiplomaDept").val(currDeptID);
-			}
+			setDiplomaDeptList();
 		}
 		
-		getComList("searchDiplomaKind","v_certificateInfo","certID","certName","status=0 and host='" + currHost + "' order by certName",1);
+		getComList("searchDiplomaKind","v_certificateInfo","certID","certName","status=0 and (host='" + currHost + "' or host='') order by certName",1);
 		getDicList("statusExpire","searchDiplomaStatus",1);
 		$("#searchDiplomaStartDate").click(function(){WdatePicker();});
 		$("#searchDiplomaEndDate").click(function(){WdatePicker();});
 		
 		$("#btnSearchDiploma").click(function(){
 			getDiplomaList();
+		});
+		
+		$("#searchDiplomaHost").change(function(){
+			setDiplomaDeptList();
 		});
 		
 		$("#txtSearchDiploma").keypress(function(event){
@@ -33,7 +34,7 @@
 				}
 			}
 		});
-		
+		setDiplomaDeptList();
 		//getDiplomaList();
 	});
 
@@ -136,5 +137,16 @@
 			floatContent = "";	//records data for output
 			floatModel = 1;
 		});
+	}
+
+	function setDiplomaDeptList(){
+		//alert($("#searchDiplomaHost").val() + ":" + currDeptID);
+		if($("#searchDiplomaHost").val() > ""){
+			if(currDeptID > 0){
+				getComList("searchDiplomaDept","deptInfo","deptID","deptName","deptID=" + currDeptID,0);
+			}else{
+				getComList("searchDiplomaDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchDiplomaHost").val() + "' and pID=0)",1);
+			}
+		}
 	}
 	

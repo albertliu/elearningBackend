@@ -11,7 +11,7 @@
 <!-- InstanceBeginEditable name="head" -->
 <!-- InstanceEndEditable -->
 
-<link href="css/style_main.css?ver=1.14"  rel="stylesheet" type="text/css" />
+<link href="css/style_main.css?ver=1.15"  rel="stylesheet" type="text/css" />
 <link type="text/css" href="css/jquery-ui-1.7.2.custom.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="css/minimalTabs.css">
 <link href="css/data_table.css" rel="stylesheet" type="text/css" />
@@ -219,7 +219,6 @@
 		if(currUser=="desk."){
 			$("#menu11").show();
 		}
-
 		if(currHostKind==0 && currHost > ""){	//集团用户不使用导入报名表, 照片批量上传，成绩导入功能
 			$("#generateStudent_Tab").hide();
 			$("#tab3").hide();
@@ -453,7 +452,7 @@
 							</div>
 						</div>
 						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView10',Array("报名记录","考试管理","申报管理","收费记录","发票管理","日结报表"),0,1060,400);
+							initTabs('dhtmlgoodies_tabView10',Array("报名记录","考试管理","申报管理","收费记录","发票管理","日结报表"),0,1260,400);
 						</script>
 					</div>
 					
@@ -466,7 +465,7 @@
 							</div>
 						</div>
 						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView9',Array("班级列表","花名册"),0,1060,400);
+							initTabs('dhtmlgoodies_tabView9',Array("班级列表","花名册"),0,1260,400);
 						</script>
 					</div>
 					
@@ -497,7 +496,7 @@
 							</div>
 						</div>
 						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView3',Array("证书制作","证书打印","证书发放","证书查询","换证提醒"),0,1060,400);
+							initTabs('dhtmlgoodies_tabView3',Array("证书制作","证书打印","证书发放","证书查询","换证提醒"),0,1260,400);
 						</script>
 					</div>
 					
@@ -547,7 +546,7 @@
 							</div>
 						</div>
 						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView4',Array("认证项目","培训课程","视频管理","课件管理","知识点","试卷管理","认证机构","公司单位","公司部门"),0,1060,400);
+							initTabs('dhtmlgoodies_tabView4',Array("认证项目","培训课程","视频管理","课件管理","知识点","试卷管理","认证机构","公司单位","公司部门"),0,1260,400);
 						</script>
 					</div>
 					
@@ -571,7 +570,7 @@
 							</div>
 						</div>
 						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView6',Array("学员注册","学员培训","证书发放","证书到期"),0,1060,400);
+							initTabs('dhtmlgoodies_tabView6',Array("学员注册","学员培训","证书发放","证书到期"),0,1260,400);
 						</script>
 					</div>
 					

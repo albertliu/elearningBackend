@@ -22,6 +22,15 @@ if(op == "getProjectList"){
 			where = where + " and " + s;
 		}
 	}
+	//如果有部门
+	if(keyID > 0){ // 
+		s = "dbo.pf_inStrArray(dept,','," + keyID + ")=1";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 	//如果有起始日期
 	if(fStart > ""){ // 
 		s = "regDate>='" + fStart + "'";
@@ -75,17 +84,17 @@ if(op == "getProjectList"){
 	sql = " FROM v_projectInfo " + where;
 	result = getBasketTip(sql,"");
 	ssql = "SELECT projectID,projectName,statusName,certName,address,object,deadline,hostName,memo,regDate,registerName" + sql + " order by ID desc";
-	sql = "SELECT top " + basket + " *, dbo.getReaderCount('project',ID) as readerCount, dbo.getProjectCount(projectID," + currDeptID + ") as projectCount, dbo.getProjectBadPhotoCount(projectID," + currDeptID + ") as projectBadPhotoCount, dbo.getProjectSubmitCount(projectID," + currDeptID + ") as projectSubmitCount" + sql + " order by ID desc";
+	sql = "SELECT top " + basket + " *" + sql + " order by ID desc";
 
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
 		result += "%%" + rs("ID").value + "|" + rs("projectID").value + "|" + rs("projectName").value + "|" + rs("certID").value + "|" + rs("kindID").value + "|" + rs("status").value + "|" + rs("object").value + "|" + rs("certName").value + "|" + rs("statusName").value;
 		//9
-		result += "|" + rs("address").value + "|" + rs("deadline").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("readerCount").value;
+		result += "|" + rs("address").value + "|" + rs("deadline").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("qtyCheck").value;
 		//18
-		result += "|" + rs("phone").value + "|" + rs("email").value + "|" + rs("projectCount").value + "|" + rs("filename").value + "|" + rs("entryform").value + "|" + rs("dept").value + "|" + rs("linker").value + "|" + rs("mobile").value + "|" + rs("projectBadPhotoCount").value + "|" + rs("projectSubmitCount").value;
+		result += "|" + rs("phone").value + "|" + rs("email").value + "|" + rs("qty").value + "|" + rs("filename").value + "|" + rs("entryform").value + "|" + rs("dept").value + "|" + rs("linker").value + "|" + rs("mobile").value + "|" + rs("qtySubmit").value + "|" + rs("qtyRefuse").value;
 		//28
-		result += "|" + rs("price").value + "|" + rs("payKind").value + "|" + rs("payGroup").value + "|" + rs("reexamine").value + "|" + rs("reexamineName").value + "|" + rs("courseID").value + "|" + rs("courseName").value;
+		result += "|" + rs("price").value + "|" + rs("payKind").value + "|" + rs("payGroup").value + "|" + rs("reexamine").value + "|" + rs("reexamineName").value + "|" + rs("courseID").value + "|" + rs("courseName").value + "|" + rs("qtyWaitCheck").value;
 		rs.MoveNext();
 	}
 	Response.Write(escape(result));
@@ -93,16 +102,16 @@ if(op == "getProjectList"){
 }	
 
 if(op == "getNodeInfo"){
-	sql = "SELECT *, dbo.getReaderCount('project',ID) as readerCount, dbo.getProjectCount(projectID," + currDeptID + ") as projectCount, dbo.getProjectBadPhotoCount(projectID," + currDeptID + ") as projectBadPhotoCount, dbo.getProjectSubmitCount(projectID," + currDeptID + ") as projectSubmitCount FROM v_projectInfo where ID=" + nodeID;
+	sql = "SELECT * FROM v_projectInfo where ID=" + nodeID;
 	rs = conn.Execute(sql);
 	if (!rs.EOF){
 		result = rs("ID").value + "|" + rs("projectID").value + "|" + rs("projectName").value + "|" + rs("certID").value + "|" + rs("kindID").value + "|" + rs("status").value + "|" + rs("object").value + "|" + rs("certName").value + "|" + rs("statusName").value;
 		//9
-		result += "|" + rs("address").value + "|" + rs("deadline").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("readerCount").value;
+		result += "|" + rs("address").value + "|" + rs("deadline").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("qtyCheck").value;
 		//18
-		result += "|" + rs("phone").value + "|" + rs("email").value + "|" + rs("projectCount").value + "|" + rs("filename").value + "|" + rs("entryform").value + "|" + rs("dept").value + "|" + rs("linker").value + "|" + rs("mobile").value + "|" + rs("projectBadPhotoCount").value + "|" + rs("projectSubmitCount").value;
+		result += "|" + rs("phone").value + "|" + rs("email").value + "|" + rs("qty").value + "|" + rs("filename").value + "|" + rs("entryform").value + "|" + rs("dept").value + "|" + rs("linker").value + "|" + rs("mobile").value + "|" + rs("qtySubmit").value + "|" + rs("qtyRefuse").value;
 		//28
-		result += "|" + rs("price").value + "|" + rs("payKind").value + "|" + rs("payGroup").value + "|" + rs("reexamine").value + "|" + rs("reexamineName").value + "|" + rs("courseID").value + "|" + rs("courseName").value;
+		result += "|" + rs("price").value + "|" + rs("payKind").value + "|" + rs("payGroup").value + "|" + rs("reexamine").value + "|" + rs("reexamineName").value + "|" + rs("courseID").value + "|" + rs("courseName").value + "|" + rs("qtyWaitCheck").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

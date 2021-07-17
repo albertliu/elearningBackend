@@ -29,7 +29,8 @@
 		getDicList("statusAsk","searchStudentPrePhotoStatus",1);
 		$("#searchStudentPreStartDate").click(function(){WdatePicker();});
 		$("#searchStudentPreEndDate").click(function(){WdatePicker();});
-		
+		$("#searchStudentPreStartDate").val(addDays(currDate,-15));
+
 		$("#btnSearchStudentPre").click(function(){
 			getStudentPreList();
 		});
@@ -237,17 +238,19 @@
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'></th>");
 			arr.push("<th width='6%'>学号</th>");
-			arr.push("<th width='12%'>身份证</th>");
-			arr.push("<th width='8%'>姓名</th>");
+			arr.push("<th width='10%'>身份证</th>");
+			arr.push("<th width='6%'>姓名</th>");
 			//arr.push("<th width='6%'>别</th>");
 			arr.push("<th width='10%'>部门</th>");
-			arr.push("<th width='10%'>电话</th>");
-			arr.push("<th width='8%'>岗位</th>");
+			arr.push("<th width='9%'>电话</th>");
+			arr.push("<th width='7%'>岗位</th>");
 			//arr.push("<th width='7%'>备注</th>");
-			arr.push("<th width='13%'>确认</th>");
-			arr.push("<th width='9%'>报到日期</th>");
-			arr.push("<th width='7%'>练习</th>");
-			arr.push("<th width='7%'>成绩</th>");
+			arr.push("<th width='11%'>确认</th>");
+			arr.push("<th width='8%'>报到日期</th>");
+			arr.push("<th width='6%'>练习</th>");
+			arr.push("<th width='6%'>成绩</th>");
+			arr.push("<th width='6%'>补考</th>");
+			arr.push("<th width='9%'>证书编号</th>");
 			arr.push("<th width='3%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -256,6 +259,7 @@
 				var i = 0;
 				var c = 0;
 				var h = "";
+				var s = "";
 				var imgChk1 = "<img src='images/green_check.png'>";
 				var imgChk2 = "<img src='images/cancel.png'>";
 				$.each(ar,function(iNum,val){
@@ -269,6 +273,9 @@
 					if(ar1[19]==2){
 						c = 2;
 					}
+					if(ar1[15]==1){
+						c = 4;
+					}
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
 					arr.push("<td class='center'>" + ar1[0] + "</td>");
@@ -281,8 +288,14 @@
 					//arr.push("<td class='left'>" + ar1[14] + "</td>");
 					arr.push("<td class='left'>" + ar1[20] + ar1[22] + "</td>");
 					arr.push("<td class='center'>" + ar1[16] + "</td>");
-					arr.push("<td class='center'>" + nullNoDisp(ar1[15]) + "</td>");
-					arr.push("<td class='center'>" + nullNoDisp(ar1[66]) + "</td>");
+					s = "";
+					if(ar1[27]>0){
+						s = nullNoDisp(ar1[7]) + "/" + nullNoDisp(ar1[27]);
+					}
+					arr.push("<td class='center'>" + s + "</td>");
+					arr.push("<td class='center'>" + nullNoDisp(ar1[11].replace(".00","")) + "</td>");
+					arr.push("<td class='center'>" + nullNoDisp(ar1[26]) + "</td>");
+					arr.push("<td class='center'>" + ar1[23] + "</td>");
 					//if(ar1[15]==0 && ar1[23] > 0){
 						arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[1] + "' name='visitstockchkPre'>" + "</td>");
 					//}else{
@@ -298,6 +311,8 @@
 			arr.push("<th>&nbsp;</th>");
 			//arr.push("<th>&nbsp;</th>");
 			//arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
@@ -354,10 +369,10 @@
 		if(currDeptID>0){
 			getComList("searchStudentPreDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchStudentPreHost").val() + "' and pID=0) and deptID=" + currDeptID,0);
 		}else{
-			getComList("searchStudentPreDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchStudentPreHost").val() + "' and pID=0) and dept_status<9",1);
+			getComList("searchStudentPreDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchStudentPreHost").val() + "' and pID=0) and kindID=0 and dept_status<9",1);
 		}
 		setProjectList();
-}
+	}
 
 	function setProjectList(){
 		var x = "";

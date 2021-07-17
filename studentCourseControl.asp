@@ -214,7 +214,7 @@ if(op == "getStudentCourseList"){
 		//57
 		result += "|" + rs("reexamine").value + "|" + rs("reexamineName").value + "|" + rs("examTimes").value + "|" + rs("certID").value + "|" + rs("missingItems").value + "|" + rs("shortName").value + "|" + rs("job").value;
 		//64
-		result += "|" + rs("diplomaID").value + "|" + rs("applyID").value + "|" + rs("score").value + "|" + rs("submiterName").value;
+		result += "|" + rs("diplomaID").value + "|" + rs("applyID").value + "|" + rs("score").value + "|" + rs("submiterName").value + "|" + rs("reExamCount").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -280,7 +280,7 @@ if(op == "getStudentListByClass"){
 	}
 	sql = " FROM dbo.getStudentListByClass('" + refID + "','" + host + "') " + where;
 	result = getBasketTip(sql,"");
-	ssql = "SELECT ID,SNo,username,name,education,deptName,stationName,job,mobile,memo,expireDate,invoice,checkDate,checkerName,submitDate,submitName,(case when mark=0 then '计划内' else '计划外' end) as kind" + sql + " order by mark,ID";
+	ssql = "SELECT ID,SNo,username,name,education,deptName,stationName,job,mobile,memo,expireDate,invoice,checkDate,checkerName,submitDate,submiterName,(case when mark=0 then '计划内' else '计划外' end) as kind" + sql + " order by mark,ID";
 	sql = "SELECT top " + basket + " *" + sql + " order by mark,ID";
 	
 	rs = conn.Execute(sql);
@@ -291,7 +291,7 @@ if(op == "getStudentListByClass"){
 		//12
 		result += "|" + rs("invoice").value + "|" + rs("classID").value + "|" + rs("memo").value;
 		//15
-		result += "|" + rs("submited").value + "|" + rs("submitDate").value + "|" + rs("submiter").value + "|" + rs("submitName").value;
+		result += "|" + rs("submited").value + "|" + rs("submitDate").value + "|" + rs("submiter").value + "|" + rs("submiterName").value;
 		//19
 		result += "|" + rs("checked").value + "|" + rs("checkDate").value + "|" + rs("checker").value + "|" + rs("checkerName").value + "|" + rs("enterID").value;
 		rs.MoveNext();
@@ -318,9 +318,9 @@ if(op == "getStudentListByProject"){
 			where = s;
 		}
 	}
-	//报到日期
+	//报名日期
 	if(fStart > "" && fStart !="undefined"){
-		s = "submitDate>='" + fStart + "'";
+		s = "regDate>='" + fStart + "'";
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
@@ -328,7 +328,7 @@ if(op == "getStudentListByProject"){
 		}
 	}
 	if(fEnd > "" && fEnd !="undefined"){
-		s = "submitDate<='" + fEnd + "'";
+		s = "regDate<='" + fEnd + "'";
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
@@ -359,7 +359,7 @@ if(op == "getStudentListByProject"){
 	}
 	sql = " FROM v_studentCourseList" + where;
 	result = getBasketTip(sql,"");
-	ssql = "SELECT ID,username,name,educationName,dept1Name,dept2Name,job,mobile,memo,examScore,score,checkDate,checkerName,submitDate,submitName" + sql + " order by dept2Name,ID";
+	ssql = "SELECT ID,username,name,educationName,dept1Name,dept2Name,job,mobile,memo,examScore,score,checkDate,checkerName,submitDate,submiterName" + sql + " order by dept2Name,ID";
 	sql = "SELECT top " + basket + " *" + sql + " order by ID";
 	
 	rs = conn.Execute(sql);
@@ -370,9 +370,11 @@ if(op == "getStudentListByProject"){
 		//12
 		result += "|" + rs("projectID").value + "|" + rs("classID").value + "|" + rs("memo").value;
 		//15
-		result += "|" + rs("submited").value + "|" + rs("submitDate").value + "|" + rs("submiter").value + "|" + rs("submitName").value;
+		result += "|" + rs("submited").value + "|" + rs("submitDate").value + "|" + rs("submiter").value + "|" + rs("submiterName").value;
 		//19
 		result += "|" + rs("checked").value + "|" + rs("checkDate").value + "|" + rs("checker").value + "|" + rs("checkerName").value;
+		//23
+		result += "|" + rs("diplomaID").value + "|" + rs("diploma_startDate").value + "|" + rs("diploma_endDate").value + "|" + rs("reExamCount").value + "|" + rs("examTimes").value;
 		rs.MoveNext();
 	}
 	rs.Close();
