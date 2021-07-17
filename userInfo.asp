@@ -265,9 +265,9 @@
 	
 	function showUserRoleList(){
 		if($("#userID").val() > ""){
-			$.get("commonControl.asp?op=setSession&sName=pagePara" + "&anyStr=" + escape(userName + "|" + realName + "|" + 1) + "&times=" + (new Date().getTime()),function(re){
+			//$.get("commonControl.asp?op=setSession&sName=pagePara" + "&anyStr=" + escape(userName + "|" + realName + "|" + 1) + "&times=" + (new Date().getTime()),function(re){
 				asyncbox.open({
-					url:'userRoleList.asp?times=' + (new Date().getTime()),
+					url:'userRoleList.asp?refID=' + userName + '&item=' + escape(realName) + '&kindID=1&times=' + (new Date().getTime()),
 					title: '角色分配',
 					width : 730,
 					height : 520,
@@ -278,26 +278,26 @@
 	　　　　　			}
 		　　		}
 				});
-			});
+			//});
 		}
 	}
 	
 	function showUserPermissionList(){
 		if($("#userID").val() > ""){
-			$.get("commonControl.asp?op=setSession&sName=pagePara" + "&anyStr=" + escape(userName + "|" + realName + "|" + 1) + "&times=" + (new Date().getTime()),function(re){
+			//$.get("commonControl.asp?op=setSession&sName=pagePara" + "&anyStr=" + escape(userName + "|" + realName + "|" + 1) + "&times=" + (new Date().getTime()),function(re){
 				asyncbox.open({
-					url:'userPermissionList.asp?times=' + (new Date().getTime()),
+					url:'userPermissionList.asp?refID=' + userName + '&item=' + escape(realName) + '&kindID=1&times=' + (new Date().getTime()),
 					title: '权限分配',
-		　　　width : 730,
-		　　　height : 520,
-		　　　callback : function(action){
-	　　　　　if(action == 'close'){
-				    	getPermissionListByUser();
-				    	getAllPermissionListByUser();
-	　　　　　}
-		　　　}
+					width : 730,
+					height : 520,
+					callback : function(action){
+				　　	if(action == 'close'){
+							getPermissionListByUser();
+							getAllPermissionListByUser();
+		　　　　　		 }
+		　　　  	 }
 				});
-			});
+			//});
 		}
 	}
 

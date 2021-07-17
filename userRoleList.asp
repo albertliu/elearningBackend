@@ -30,6 +30,13 @@
 	var kindID = 1;
 	
 	$(document).ready(function (){
+		refID = "<%=refID%>";
+		item = "<%=item%>";
+		kindID = "<%=kindID%>";
+		$("#item").html("<h2>角色列表：" + item + "</h2>");
+		getUserRoleList();
+		getRoleList();
+		/*
 		$.get("commonControl.asp?op=getSession&sName=pagePara" + "&times=" + (new Date().getTime()),function(re){
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -39,7 +46,7 @@
 			$("#item").html("<h2>角色列表：" + item + "</h2>");
 			getUserRoleList();
 			getRoleList();
-		});
+		});*/
 	});
 	
 	function getRoleList(){

@@ -8,7 +8,7 @@
 			$("#btnAddUser").show();
 		}
 		$("#btnAddUser").click(function(){
-			showUserInfo(0,1,0,1);	//showUserInfo(nodeID,op,mark) op:0 浏览 1 新增  2 编辑  3 删除  4 审批; mark:0 不动作  1 有修改时刷新列表
+			showUserInfo(0,0,1,1);	//showUserInfo(nodeID,op,mark) op:0 浏览 1 新增  2 编辑  3 删除  4 审批; mark:0 不动作  1 有修改时刷新列表
 		});
 		
 		$("#btnSearchUser").click(function(){

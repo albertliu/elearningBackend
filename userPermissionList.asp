@@ -25,16 +25,12 @@
 	var kindID = 1;
 	
 	$(document).ready(function (){
-		$.get("commonControl.asp?op=getSession&sName=pagePara" + "&times=" + (new Date().getTime()),function(re){
-			var ar = new Array();
-			ar = unescape(re).split("|");
-			refID = ar[0];
-			item = ar[1];
-			kindID = ar[2];
-			$("#item").html("<h2>权限列表：" + item + "</h2>");
-			getUserPermissionList();
-			getPermissionList();
-		});
+		refID = "<%=refID%>";
+		item = "<%=item%>";
+		kindID = "<%=kindID%>";
+		$("#item").html("<h2>权限列表：" + item + "</h2>");
+		getUserPermissionList();
+		getPermissionList();
 	});
 	
 	function getPermissionList(){
