@@ -291,7 +291,7 @@
 					arr.push("<td class='center'>" + ar1[16] + "</td>");
 					s = "";
 					if(ar1[27]>0){
-						s = nullNoDisp(ar1[7]) + " / " + nullNoDisp(ar1[27]);
+						s = nullNoDisp(ar1[7]) + " * " + nullNoDisp(ar1[27]);
 					}
 					arr.push("<td class='center'>" + s + "</td>");
 					arr.push("<td class='center'>" + nullNoDisp(ar1[11].replace(".00","")) + "</td>");
