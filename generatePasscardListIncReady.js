@@ -54,15 +54,16 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
-			arr.push("<th width='20%'>考试场次</th>");
-			arr.push("<th width='8%'>人数</th>");
-			arr.push("<th width='10%'>考试日期</th>");
-			arr.push("<th width='10%'>状态</th>");
+			arr.push("<th width='18%'>考试场次</th>");
+			arr.push("<th width='8%'>考试日期</th>");
+			arr.push("<th width='6%'>人数</th>");
+			arr.push("<th width='8%'>结果统计</th>");
+			arr.push("<th width='6%'>状态</th>");
 			arr.push("<th width='10%'>考试通知</th>");
 			arr.push("<th width='10%'>成绩通知</th>");
-			arr.push("<th width='10%'>结果统计</th>");
+			arr.push("<th width='15%'>备注</th>");
 			arr.push("<th width='8%'>制作</th>");
-			arr.push("<th width='10%'>准考证</th>");
+			arr.push("<th width='8%'>准考证</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
@@ -79,16 +80,17 @@
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
 					arr.push("<td class='link1'><a href='javascript:showGeneratePasscardInfo(" + ar1[0] + ",0,0,1);'>" + ar1[3] + "</a></td>");
-					arr.push("<td class='left'>" + ar1[4] + "</td>");
 					arr.push("<td class='left'>" + ar1[8] + "</td>");
-					arr.push("<td class='center'>" + ar1[18] + "</td>");
-					arr.push("<td class='left'>" + ar1[15] + "</td>");
-					arr.push("<td class='left'>" + ar1[21] + "</td>");
+					arr.push("<td class='left'>" + ar1[4] + "</td>");
 					if(ar1[19]==''){
 						arr.push("<td class='center'>&nbsp;</td>");
 					}else{
 						arr.push("<td class='left' title='合格/不合格/缺考'>" + ar1[23] + "/" + ar1[24] + "/" + ar1[25] + "</td>");
 					}
+					arr.push("<td class='center'>" + ar1[18] + "</td>");
+					arr.push("<td class='left'>" + ar1[15] + "</td>");
+					arr.push("<td class='left'>" + ar1[21] + "</td>");
+					arr.push("<td class='left'>" + ar1[10] + "</td>");
 					arr.push("<td class='left'>" + ar1[12] + "</td>");
 					if(ar1[9]==''){
 						arr.push("<td class='center'>&nbsp;</td>");
@@ -101,6 +103,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");

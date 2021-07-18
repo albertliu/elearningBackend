@@ -38,6 +38,7 @@
 		});
 		
 		setHostProjectChange();
+		getProjectList();
 	});
 
 	function getProjectList(){
@@ -66,10 +67,10 @@
 			arr.push("<th width='20%'>标题</th>");
 			arr.push("<th width='12%'>截止日期</th>");
 			arr.push("<th width='8%'>总数</th>");
-			arr.push("<th width='8%'>确认</th>");
+			arr.push("<th width='8%'>已确认</th>");
 			arr.push("<th width='8%'>待确认</th>");
 			arr.push("<th width='8%'>拒绝</th>");
-			arr.push("<th width='8%'>报名</th>");
+			arr.push("<th width='8%'>报到</th>");
 			arr.push("<th width='8%'>状态</th>");
 			arr.push("<th width='8%'>附件</th>");
 			arr.push("</tr>");
