@@ -50,13 +50,14 @@
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
 			arr.push("<th width='15%'>证书名称</th>");
-			arr.push("<th width='8%'>数量</th>");
+			arr.push("<th width='6%'>数量</th>");
 			arr.push("<th width='20%'>编号范围</th>");
+			arr.push("<th width='10%'>照片移交</th>");
 			arr.push("<th width='10%'>打印日期</th>");
 			arr.push("<th width='10%'>发放日期</th>");
-			arr.push("<th width='20%'>说明</th>");
-			arr.push("<th width='15%'>证书制作</th>");
-			arr.push("<th width='6%'></th>");
+			arr.push("<th width='12%'>说明</th>");
+			arr.push("<th width='12%'>证书制作</th>");
+			arr.push("<th width='4%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
@@ -78,6 +79,7 @@
 					}
 					arr.push("<td class='left'>" + ar1[3] + "</td>");
 					arr.push("<td class='left'>" + ar1[8] + " ~ " + ar1[9] + "</td>");
+					arr.push("<td class='left'>" + ar1[19] + "</td>");
 					arr.push("<td class='left'>" + ar1[14] + "</td>");
 					arr.push("<td class='left'>" + ar1[16] + "</td>");
 					arr.push("<td class='left'>" + ar1[10] + "</td>");
@@ -93,6 +95,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");

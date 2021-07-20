@@ -141,6 +141,7 @@
 				$("#startDate").val(ar[17]);
 				$("#class_startDate").val(ar[18]);
 				$("#class_endDate").val(ar[19]);
+				$("#photoDate").val(ar[21]);
 				if(ar[13]==1){
 					$("#printed").prop("checked",true);
 				}else{
@@ -150,6 +151,11 @@
 					$("#delivery").prop("checked",true);
 				}else{
 					$("#delivery").prop("checked",false);
+				}
+				if(ar[20]==1){
+					$("#photos").prop("checked",true);
+				}else{
+					$("#photos").prop("checked",false);
 				}
 				var c = "";
 				if(ar[7] > ""){
@@ -259,8 +265,10 @@
 		if($("#printed").attr("checked")){printed = 1;}
 		var delivery = 0;
 		if($("#delivery").attr("checked")){delivery = 1;}
+		var photo = 0;
+		if($("#photos").attr("checked")){photo = 1;}
 		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-		$.get("diplomaControl.asp?op=updateGenerateDiplomaMemo&nodeID=" + $("#ID").val() + "&printed=" + printed + "&delivery=" + delivery + "&printDate=" + $("#printDate").val() + "&deliveryDate=" + $("#deliveryDate").val() + "&startDate=" + $("#startDate").val() + "&class_startDate=" + $("#class_startDate").val() + "&class_endDate=" + $("#class_endDate").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("diplomaControl.asp?op=updateGenerateDiplomaMemo&nodeID=" + $("#ID").val() + "&printed=" + printed + "&delivery=" + delivery + "&photo=" + photo + "&printDate=" + $("#printDate").val() + "&deliveryDate=" + $("#deliveryDate").val() + "&photoDate=" + $("#photoDate").val() + "&startDate=" + $("#startDate").val() + "&class_startDate=" + $("#class_startDate").val() + "&class_endDate=" + $("#class_endDate").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -344,10 +352,11 @@
 				</td>
 			</tr>
 			<tr>
-				<td align="right">证书打印</td>
-				<td><input style="border:0px;" type="checkbox" id="printed" value="" />&nbsp;&nbsp;<input class="readOnly" type="text" id="printDate" size="10" readOnly="true" /></td>
-				<td align="right">证书发放</td>
-				<td><input style="border:0px;" type="checkbox" id="delivery" value="" />&nbsp;&nbsp;<input class="readOnly" type="text" id="deliveryDate" size="10" readOnly="true" /></td>
+				<td align="right" colspan="6">
+				照片移交<input style="border:0px;" type="checkbox" id="photos" value="" />&nbsp;&nbsp;<input class="readOnly" type="text" id="photoDate" size="8" readOnly="true" />
+				&nbsp;证书打印<input style="border:0px;" type="checkbox" id="printed" value="" />&nbsp;&nbsp;<input class="readOnly" type="text" id="printDate" size="8" readOnly="true" />
+				&nbsp;证书发放<input style="border:0px;" type="checkbox" id="delivery" value="" />&nbsp;&nbsp;<input class="readOnly" type="text" id="deliveryDate" size="8" readOnly="true" />
+				</td>
 			</tr>
 			<tr>
 				<td align="right">制作日期</td>

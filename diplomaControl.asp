@@ -431,7 +431,7 @@ if(op == "getGenerateDiplomaList"){
 		//8
 		result += "|" + rs("firstID").value + "|" + rs("lastID").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value;
 		//13
-		result += "|" + rs("printed").value + "|" + rs("printDate").value + "|" + rs("delivery").value + "|" + rs("deliveryDate").value + "|" + rs("startDate").value;
+		result += "|" + rs("printed").value + "|" + rs("printDate").value + "|" + rs("delivery").value + "|" + rs("deliveryDate").value + "|" + rs("startDate").value + "|" + rs("photo").value + "|" + rs("photoDate").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -452,7 +452,9 @@ if(op == "getGenerateDiplomaNodeInfo"){
 		//8
 		result += "|" + rs("firstID").value + "|" + rs("lastID").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value;
 		//13
-		result += "|" + rs("printed").value + "|" + rs("printDate").value + "|" + rs("delivery").value + "|" + rs("deliveryDate").value + "|" + rs("startDate").value + "|" + rs("class_startDate").value + "|" + rs("class_endDate").value;
+		result += "|" + rs("printed").value + "|" + rs("printDate").value + "|" + rs("delivery").value + "|" + rs("deliveryDate").value + "|" + rs("startDate").value;
+		//18
+		result += "|" + rs("class_startDate").value + "|" + rs("class_endDate").value + "|" + rs("photo").value + "|" + rs("photoDate").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -715,7 +717,7 @@ if(op == "updateGenerateDiplomaInfo"){
 
 if(op == "updateGenerateDiplomaMemo"){
 	//@ID int,@classID varchar(50),@title nvarchar(100),@qty int,@startTime varchar(100),@address nvarchar(100),@notes nvarchar(500),@memo nvarchar(500),@registerID
-	sql = "exec updateGenerateDiplomaMemo " + nodeID + ",'" + String(Request.QueryString("startDate")) + "','" + String(Request.QueryString("class_startDate")) + "','" + String(Request.QueryString("class_endDate")) + "','" + String(Request.QueryString("printed")) + "','" + String(Request.QueryString("printDate")) + "','" + String(Request.QueryString("delivery")) + "','" + String(Request.QueryString("deliveryDate")) + "','" + memo + "','" + currUser + "'";
+	sql = "exec updateGenerateDiplomaMemo " + nodeID + ",'" + String(Request.QueryString("startDate")) + "','" + String(Request.QueryString("class_startDate")) + "','" + String(Request.QueryString("class_endDate")) + "','" + String(Request.QueryString("photo")) + "','" + String(Request.QueryString("photoDate")) + "','" + String(Request.QueryString("printed")) + "','" + String(Request.QueryString("printDate")) + "','" + String(Request.QueryString("delivery")) + "','" + String(Request.QueryString("deliveryDate")) + "','" + memo + "','" + currUser + "'";
 	rs = conn.Execute(sql);
 	Response.Write(escape(0));
 	//Response.Write(escape(sql));

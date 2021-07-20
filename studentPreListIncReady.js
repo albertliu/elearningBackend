@@ -201,7 +201,7 @@
 					$.each(ar,function(iNum,val){
 						var ar1 = new Array();
 						ar1 = val.split("|");
-						s += "<a style='color:red;'>[" + ar1[2].substring(0,ar1[2].length-ar1[2].indexOf('2')) + "]</a>&nbsp;&nbsp;" + ar1[1] + "&nbsp;&nbsp;" + ar1[0] + "&nbsp;&nbsp;\n&nbsp;";
+						s += "<a style='color:red;'>[" + ar1[2].substring(0,ar1[2].length-ar1[2].indexOf('2')) + "]</a>&nbsp;&nbsp;" + ar1[1] + "&nbsp;&nbsp;" + ar1[0] + "\n&nbsp;&nbsp;";
 					});
 					jAlert("以下人员同时报名的课程有冲突，请核实：<hr />" + s);
 				}else{
@@ -293,7 +293,7 @@
 					if(ar1[27]>0){
 						s = nullNoDisp(ar1[7]) + " * " + nullNoDisp(ar1[27]);
 					}
-					arr.push("<td class='center'>" + s + "</td>");
+					arr.push("<td class='right'>" + s + "</td>");
 					arr.push("<td class='center'>" + nullNoDisp(ar1[11].replace(".00","")) + "</td>");
 					if(ar1[28]>0){
 						arr.push("<td class='center'>" + imgChk1 + "</td>");	//准考证
