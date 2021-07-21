@@ -457,4 +457,8 @@
 		}
 		window.open("entryform_" + c + ".asp?keyID=0&nodeID=" + n + "&refID=" + f, "_blank");
 	}
+
+	function getStudentCourseLists(id){
+		//do nothing, just callback for entryform return's event
+	}
 	

@@ -305,7 +305,7 @@
 					$("#kindID").hide();
 				}
 				original_item = arr.join("").substr(1);
-				getStudentCourseList(ar[1]);
+				getStudentCourseLists(ar[1]);
 				setButton();
 			}else{
 				jAlert("该信息未找到！","信息提示");
@@ -396,7 +396,7 @@
 		}
 	}
 
-	function getStudentCourseList(id){
+	function getStudentCourseLists(id){
 		//alert(id);
 		$.get("studentCourseControl.asp?op=getStudentCourseList&mark=2&keyID=" + id,function(data1){
 			//alert(unescape(data1));
