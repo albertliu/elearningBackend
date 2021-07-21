@@ -682,6 +682,10 @@
 		});
 	}
 
+	function getEnterList(){
+		//nothing, just callback enterInfo return's event
+	}
+
 	function getUpdateCount(){
 		return updateCount;
 	}

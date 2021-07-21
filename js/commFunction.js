@@ -1449,6 +1449,7 @@
 				var re = iframe.updateCount;
 				if(re>0 && mark==1){
 					getEnterList();
+					getStudentCourseLists(iframe.refID);
 				}
 				//alert(re + ":" + mark);
 				if(re>0 && mark==2){
