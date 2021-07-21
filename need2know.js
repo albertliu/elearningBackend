@@ -41,18 +41,46 @@
 				arr.push('		<tr>');
 				arr.push('			<td colspan="4" style="height:30px;"><p style="font-size:1.3em;text-indent:30px;">欢迎参加' + val["courseName"] + '培训课程，为顺利完成学习任务，请遵守以下规定：</p></td>');
 				arr.push('		</tr>');
-				arr.push('		<tr>');
-				arr.push('			<td colspan="4" style="height:30px;"><p style="font-size:1.3em;">1. 填写报名表并签字。准备一张  寸照片，背面写上编号、姓名、部门。</p></td>');
-				arr.push('		</tr>');
-				arr.push('		<tr>');
-				arr.push('			<td colspan="4" style="height:30px;"><p style="font-size:1.3em;">2. 到教室将上述材料一起交给老师审核，并领取教材，开始上课。</p></td>');
-				arr.push('		</tr>');
-				arr.push('		<tr>');
-				arr.push('			<td colspan="4" style="height:30px;"><p style="font-size:1.3em;">3. 不迟到不早退不大声喧哗，保持环境卫生。</p></td>');
-				arr.push('		</tr>');
-				arr.push('		<tr>');
-				arr.push('			<td colspan="4" style="height:30px;"><p style="font-size:1.3em;">4. 服从老师安排，有事请及时与老师沟通。</p></td>');
-				arr.push('		</tr>');
+				//特种设备操作员有特殊事项
+				if(val["certID"]=="C13"){
+					arr.push('		<tr>');
+					arr.push('			<td colspan="4" style="height:30px;"><p style="font-size:1.3em;">1. 一网通网申报考试成功后，注意每周周初登录查看考试安排。抓紧时间网上学习。</p></td>');
+					arr.push('		</tr>');
+					arr.push('		<tr>');
+					arr.push('			<td colspan="4" style="height:30px;"><p style="font-size:1.3em;">2. 收到考试通知短信后，注意认真阅读，明确考试时间和地点。</p></td>');
+					arr.push('		</tr>');
+					arr.push('		<tr>');
+					arr.push('			<td colspan="4" style="height:30px;"><p style="font-size:1.3em;">3. 考试当天带好身份证和一张2吋照片，准时参加考试。</p></td>');
+					arr.push('		</tr>');
+					arr.push('		<tr>');
+					arr.push('			<td colspan="4" style="height:30px;"><p style="font-size:1.3em;">4. 考试题型：判断题50题、单选题40题、多选题10题，考试时间90分钟。70分合格。</p></td>');
+					arr.push('		</tr>');
+					arr.push('		<tr>');
+					arr.push('			<td colspan="4" style="height:30px;"><p style="font-size:1.3em;">5. 做题结束交卷时，如提示“再检查一下”，先不要急着交卷，检查一遍试卷后再交卷。</p></td>');
+					arr.push('		</tr>');
+					arr.push('		<tr>');
+					arr.push('			<td colspan="4" style="height:30px;"><p style="font-size:1.3em;">6. 交卷成功会提示“合格”或“不合格”。</p></td>');
+					arr.push('		</tr>');
+					arr.push('		<tr>');
+					arr.push('			<td colspan="4" style="height:30px;"><p style="font-size:1.3em;">7. 如果“合格”去底楼大厅办理证书；如果“不合格”去底楼大厅办理补考。</p></td>');
+					arr.push('		</tr>');
+					arr.push('		<tr>');
+					arr.push('			<td colspan="4" style="height:30px;"><p style="font-size:1.3em;">8. 证书一般在一个月后领取。</p></td>');
+					arr.push('		</tr>');
+				}else{
+					arr.push('		<tr>');
+					arr.push('			<td colspan="4" style="height:30px;"><p style="font-size:1.3em;">1. 填写报名表并签字。准备一张  寸照片，背面写上编号、姓名、部门。</p></td>');
+					arr.push('		</tr>');
+					arr.push('		<tr>');
+					arr.push('			<td colspan="4" style="height:30px;"><p style="font-size:1.3em;">2. 到教室将上述材料一起交给老师审核，并领取教材，开始上课。</p></td>');
+					arr.push('		</tr>');
+					arr.push('		<tr>');
+					arr.push('			<td colspan="4" style="height:30px;"><p style="font-size:1.3em;">3. 不迟到不早退不大声喧哗，保持环境卫生。</p></td>');
+					arr.push('		</tr>');
+					arr.push('		<tr>');
+					arr.push('			<td colspan="4" style="height:30px;"><p style="font-size:1.3em;">4. 服从老师安排，有事请及时与老师沟通。</p></td>');
+					arr.push('		</tr>');
+				}
 				arr.push('		<tr>');
 				arr.push('			<td class="foot" colspan="4" style="height:30px;"><h3></h3></td>');
 				arr.push('		</tr>');
