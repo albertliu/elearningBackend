@@ -5,7 +5,7 @@
 		var ww = "status=0 and hostNo='" + currHost + "'";
 		if(currHost==""){	//公司用户只能看自己公司内容
 			getComList("searchDiplomaHost","hostInfo","hostNo","title","status=0 order by hostName",1);
-			$("#diplomaListLongItem2").hide();
+			//$("#diplomaListLongItem2").hide();
 		}else{
 			getComList("searchDiplomaHost","hostInfo","hostNo","title",ww,0);
 			$("#diplomaListLongItem1").hide();
@@ -82,7 +82,7 @@
 					i += 1;
 					c = 0;
 					h = ar1[13];	//公司用户显示部门1名称
-					if(ar1[9]>=55){c = 2;}	//55岁红色
+					if(ar1[3]>0){c = 2;}	//失效红色
 					if(currHost==""){h = ar1[12];}	//系统用户显示公司名称
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
