@@ -120,7 +120,7 @@ if(op == "getStudentList"){
 		//7
 		result += "|" + rs("mobile").value + "|" + rs("sexName").value + "|" + rs("age").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("hostName").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value + "|" + rs("photo").value + "|" + rs("job_status").value;
 		//17
-		result += "|" + rs("unit").value + "|" + rs("dept").value + "|" + rs("host").value;
+		result += "|" + rs("unit").value + "|" + rs("dept").value + "|" + rs("host").value + "|" + rs("courseCount").value;
 		rs.MoveNext();
 	}
 	rs.Close();

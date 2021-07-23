@@ -89,6 +89,7 @@
 			}
 			arr.push("<th width='10%'>电话</th>");
 			arr.push("<th width='6%'>状态</th>");
+			arr.push("<th width='6%'>报名</th>");
 			arr.push("<th width='6%'>资料</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -125,6 +126,7 @@
 					}
 					arr.push("<td class='left'>" + ar1[7] + "</td>");
 					arr.push("<td class='left'>" + ar1[4] + "</td>");
+					arr.push("<td class='left'>" + nullNoDisp(ar1[20]) + "</td>");
 					arr.push("<td class='left'>" + ar1[15] + "</td>");
 					arr.push("</tr>");
 				});
@@ -132,6 +134,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
