@@ -914,7 +914,7 @@ if(op == "getApplyListByBatch"){
 	
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
-		result += "%%" + rs("ID").value + "|" + rs("refID").value + "|" + rs("enterID").value + "|" + rs("applyNo").value + "|" + rs("username").value + "|" + rs("name").value + "|" + rs("mobile").value;
+		result += "%%" + rs("ID").value + "|" + rs("refID").value + "|" + rs("enterID").value + "|" + rs("passNo").value + "|" + rs("username").value + "|" + rs("name").value + "|" + rs("mobile").value;
 		//7
 		result += "|" + rs("resit").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value;
 		//13
@@ -938,7 +938,7 @@ if(op == "getGenerateApplyNodeInfo"){
 		//12
 		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("filescore").value;
 		//18
-		result += "|" + rs("sendScore").value + "|" + rs("sendScoreDate").value + "|" + rs("senderScoreName").value + "|" + rs("qtyYes").value + "|" + rs("qtyNo").value + "|" + rs("qtyNull").value;
+		result += "|" + rs("sendScore").value + "|" + rs("sendScoreDate").value + "|" + rs("senderScoreName").value + "|" + rs("qtyYes").value + "|" + rs("qtyNo").value + "|" + rs("qtyNull").value + "|" + rs("reexamineName").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

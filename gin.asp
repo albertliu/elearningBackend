@@ -243,6 +243,12 @@
     if model = 5 then		'没有表头
 	    rs.movenext			'第1行标题
 	    rs.movenext			'第2行表头
+	   	if floatTitle > "" then
+		    rs(5)	= floatTitle
+    	end if
+	   	if floatItem > "" then
+		    rs(8)	= floatItem
+    	end if
 	    rs.movenext			'第1行标题
 	    rs.movenext			'第2行表头
 	    '第5行开始为正式数据

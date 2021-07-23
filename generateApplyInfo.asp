@@ -151,7 +151,8 @@
 			doApply();
 		});
 		$("#list").click(function(){
-			outputExcelBySQL('x05','file',nodeID,0,0);
+			//alert(nodeID+$("#courseName").val()+$("#reexamineName").val());
+			outputExcelBySQL('x05','file',nodeID,$("#courseName").val(),$("#reexamineName").val());
 		});
 		$("#courseID").change(function(){
 			var c = $("#courseID").find("option:selected").text();
@@ -201,7 +202,7 @@
 			if(ar > ""){
 				$("#ID").val(ar[0]);
 				$("#courseID").val(ar[1]);
-				//$("#courseName").val(ar[2]);
+				$("#courseName").val(ar[2]);
 				$("#title").val(ar[3]);
 				$("#qty").val(ar[4]);
 				$("#applyID").val(ar[5]);
@@ -218,6 +219,7 @@
 				$("#sendScore").val(ar[18]);
 				$("#sendScoreDate").val(ar[19]);
 				$("#senderScoreName").val(ar[20]);
+				$("#reexamineName").val(ar[24]);
 				$("#list").html("<a href=''>申报名单</a>");
 				if(ar[7] > ""){
 					$("#sign").html("<a href='/users" + ar[7] + "' target='_blank'>申报结果</a>");
@@ -309,7 +311,7 @@
 	function getApplyList(){
 		var need = 0;
 		if($("#needResit").attr("checked")){ need = 1;}
-		$.get("diplomaControl.asp?op=getApplyListByExam&refID=" + nodeID + "&status=" + $("#s_status").val() + "&keyID=" + $("#s_resit").val() + "&needResit=" + need + "&times=" + (new Date().getTime()),function(data){
+		$.get("diplomaControl.asp?op=getApplyListByBatch&refID=" + nodeID + "&status=" + $("#s_status").val() + "&keyID=" + $("#s_resit").val() + "&needResit=" + need + "&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
@@ -346,7 +348,7 @@
 					arr.push("<td class='center'>" + i + "</td>");
 					arr.push("<td class='link1'><a href='javascript:showEnterInfo(\"" + ar1[2] + "\",0,0,1);'>" + ar1[4] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[5] + "</td>");
-					arr.push("<td class='left'>" + ar1[14] + ar1[15].substring(0,2) + "." + ar1[16] + "</td>");
+					arr.push("<td class='left'>" + ar1[13] + "." + ar1[14] + "</td>");
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
 					arr.push("<td class='left'>" + ar1[7] + "</td>");
 					arr.push("<td class='left'>" + ar1[10] + "</td>");
@@ -474,7 +476,7 @@
 				<td align="right">申报日期</td>
 				<td><input class="mustFill" type="text" id="startDate" size="25" /></td>
 				<td align="right">申报科目</td><input type="hidden" id="ID" /><input type="hidden" id="status" />
-				<td><select id="courseID" style="width:100%;"></select></td>
+				<td><select id="courseID" style="width:100%;"></select></td><input type="hidden" id="courseName" /><input type="hidden" id="reexamineName" />
 			</tr>
 			<tr>
 				<td align="right">申报标识</td>

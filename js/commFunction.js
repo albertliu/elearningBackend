@@ -267,8 +267,10 @@
 		}
 		if(id=='x05'){
 			p = "getApplyList";
-			floatModel = 2;
-			sql = "select name,sexName,educationName,username,mobile,unit from v_applyInfo where refID=" + p1 + " order by applyNo";
+			floatModel = 5;
+			floatTitle = p2;
+			floatItem = p3;
+			sql = "select name,sexName,educationName,username,mobile,unit,dept1Name from v_applyInfo where refID=" + p1 + " order by passNo,ID";
 		}
 		setSession(p, sql);
 		setSession("dk" + id, p);
