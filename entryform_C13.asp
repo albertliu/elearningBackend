@@ -54,7 +54,7 @@
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar > "0"){
-				$("#SNo").html(ar[25]);
+				$("#SNo").html(ar[25] + "&nbsp;&nbsp;班级：" + ar[34]);
 				//$("#reexamine").html(ar[41]);
 				$("#courseName").html(ar[6]);
 			}else{

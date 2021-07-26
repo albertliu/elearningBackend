@@ -29,6 +29,7 @@
 	var refID = "";
 	var op = 0;
 	var updateCount = 0;
+	var address = "";
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";		//
@@ -48,14 +49,14 @@
 		}
 
 		$("#sendMsgExam").click(function(){
-			if($("#address").val()==""){
-				jAlert("请填写考试地址。");
+			if(address==""){
+				jAlert("请填写考试地址并保存。");
 				return false;
 			}
 			jConfirm("确定向这批考生发送考试通知吗？","确认",function(r){
 				if(r){
 					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
-					$.getJSON(uploadURL + "/public/send_message_exam?SMS=1&batchID=" + nodeID + "&registerID=" + currUser ,function(data){
+					$.getJSON(uploadURL + "/public/send_message_exam_apply?SMS=1&batchID=" + nodeID + "&registerID=" + currUser ,function(data){
 						if(data>""){
 							jAlert("通知发送成功。");
 							getNodeInfo(nodeID);
@@ -71,7 +72,7 @@
 			jConfirm("确定向这批考生发送成绩单吗？","确认",function(r){
 				if(r){
 					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
-					$.getJSON(uploadURL + "/public/send_message_score?SMS=1&batchID=" + nodeID + "&registerID=" + currUser ,function(data){
+					$.getJSON(uploadURL + "/public/send_message_score_apply?SMS=1&batchID=" + nodeID + "&registerID=" + currUser ,function(data){
 						if(data>""){
 							jAlert("通知发送成功。");
 							getNodeInfo(nodeID);
@@ -115,7 +116,7 @@
 		$("#lock").click(function(){
 			if(confirm('确定要锁定本次申报吗? 将无法调整考生名单。')){
 				$.get("diplomaControl.asp?op=closeGenerateApply&nodeID=" + $("#ID").val() + "&refID=1&times=" + (new Date().getTime()),function(data){
-					jAlert("已关闭申报","信息提示");
+					jAlert("已锁定申报","信息提示");
 					getNodeInfo(nodeID);
 					updateCount += 1;
 				});
@@ -146,9 +147,6 @@
 					});
 				}
 			});
-		});
-		$("#doApply").click(function(){
-			doApply();
 		});
 		$("#list").click(function(){
 			//alert(nodeID+$("#courseName").val()+$("#reexamineName").val());
@@ -185,9 +183,19 @@
 				}
 			});
 		});
-		$("#doImportScore").click(function(){
-			showLoadFile("score_list",$("#ID").val(),"studentList",'');
+		$("#doImportApply").click(function(){
+			showLoadFile("apply_list",$("#ID").val(),"studentList",'');
 			updateCount += 1;
+		});
+		$("#doImportScore").click(function(){
+			jPrompt('发证日期:', currDate, '附加信息', function (r) {
+				if (r>"" && isDate(r)) {
+					showLoadFile("apply_score_list",$("#ID").val(),"studentList",'',r);
+					updateCount += 1;
+				}else{
+					jAlert("请输入正确的发证日期");
+				}
+			});
 		});
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
@@ -208,6 +216,7 @@
 				$("#applyID").val(ar[5]);
 				$("#startDate").val(ar[6]);
 				$("#address").val(ar[11]);
+				address = ar[11];
 				$("#memo").val(ar[8]);
 				$("#regDate").val(ar[9]);
 				$("#registerName").val(ar[10]);
@@ -236,43 +245,6 @@
 				setEmpty();
 			}
 		});
-	}
-	
-	function doApply(){
-		if($("#title").val()==""){
-			jAlert("请填写标题。");
-			return false;
-		}
-		if($("#startDate").val()==""){
-			jAlert("请填写申报日期。");
-			return false;
-		}
-		if($("#startTime").val()==""){
-			jAlert("请填写申报时间。");
-			return false;
-		}
-		if($("#startNo").val()=="" || $("#startNo").val()<1 || $("#startNo").val()>1000){
-			jAlert("请检查起始编号值。");
-			return false;
-		}
-
-		jConfirm('确定要制作准考证吗?', '确认对话框', function(r) {
-			if(r){
-				//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-				$.getJSON(uploadURL + "/outfiles/generate_apply_byExamID?mark=0&ID=" + nodeID + "&username=" + currUser ,function(data){
-					if(data>""){
-						jAlert("准考证制作成功");
-						op = 0;
-						updateCount = 1;
-						nodeID = data;
-						getNodeInfo(data);
-					}else{
-						jAlert("没有可供处理的数据。");
-					}
-				});
-			}
-		});
-		return false;
 	}
 	
 	function saveNode(){
@@ -321,14 +293,15 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='4%'>No</th>");
-			arr.push("<th width='18%'>身份证</th>");
+			arr.push("<th width='15%'>身份证</th>");
 			arr.push("<th width='10%'>姓名</th>");
 			arr.push("<th width='22%'>单位</th>");
-			arr.push("<th width='14%'>电话</th>");
-			arr.push("<th width='10%'>成绩</th>");
-			arr.push("<th width='10%'>结果</th>");
-			arr.push("<th width='10%'>补考</th>");
-			arr.push("<th width='6%'></th>");
+			arr.push("<th width='11%'>电话</th>");
+			arr.push("<th width='8%'>申报</th>");
+			arr.push("<th width='8%'>成绩</th>");
+			arr.push("<th width='8%'>结果</th>");
+			arr.push("<th width='10%'>安排补考</th>");
+			arr.push("<th width='4%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
@@ -350,9 +323,10 @@
 					arr.push("<td class='left'>" + ar1[5] + "</td>");
 					arr.push("<td class='left'>" + ar1[13] + "." + ar1[14] + "</td>");
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
+					arr.push("<td class='left'>" + ar1[17] + "</td>");
 					arr.push("<td class='left'>" + ar1[7] + "</td>");
-					arr.push("<td class='left'>" + ar1[10] + "</td>");
-					if(ar1[8]>0){
+					arr.push("<td class='left'>" + ar1[9] + "</td>");
+					if(ar1[7]>0){
 						arr.push("<td class='center'>" + imgChk + "</td>");	//补考
 					}else{
 						arr.push("<td class='center'>&nbsp;</td>");
@@ -369,6 +343,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
@@ -403,14 +378,13 @@
 		$("#lock").hide();
 		$("#close").hide();
 		$("#open").hide();
-		$("#doApply").hide();
+		$("#doImportApply").hide();
 		$("#doImportScore").hide();
 		$("#sendMsgExam").hide();
 		$("#sendMsgScore").hide();
 		$("#btnRemove").hide();
 		$("#btnResit").hide();
-		$("#needResit").hide();
-		$("#startNo").prop("disabled",true);
+		$("#s_needResit").hide();
 		if(op==1){
 			setEmpty();
 			$("#save").show();
@@ -423,15 +397,16 @@
 					$("#lock").show();
 					$("#btnRemove").show();
 				}
-				if(s==1){		//锁定后可以做准考证，发申报通知，上传成绩，发成绩通知，安排补考
-					$("#doApply").show();
+				if(s==1){		//锁定后可以导入申报结果，发考试通知，上传成绩，发成绩通知，安排补考
+					$("#save").show();
+					$("#doImportApply").show();
 					$("#sendMsgExam").show();
-					$("#sendMsgScore").show();
-					$("#btnResit").show();
-					$("#needResit").show();
 				}
 				if(s==2){
 					//结束后什么都不能做
+					$("#sendMsgScore").show();
+					$("#btnResit").show();
+					$("#s_needResit").show();
 				}
 				if(s<2){
 					$("#close").show();
@@ -540,10 +515,9 @@
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
 		<input class="button" type="button" id="save" value="保存" />&nbsp;
 		<input class="button" type="button" id="del" value="删除" />&nbsp;
-		<input class="button" type="button" id="doApply" value="申报" />&nbsp;
-		<input class="button" type="button" id="doImportScore" value="考试安排导入" />&nbsp;
+		<input class="button" type="button" id="doImportApply" value="考试安排导入" />&nbsp;
 		<input class="button" type="button" id="sendMsgExam" value="考试通知" />&nbsp;
-		<input class="button" type="button" id="doImportScore" value="成绩导入" />&nbsp;
+		<input class="button" type="button" id="doImportScore" value="成绩证书导入" />&nbsp;
 		<input class="button" type="button" id="sendMsgScore" value="成绩通知" />&nbsp;
 		<input class="button" type="button" id="lock" value="锁定" />&nbsp;
 		<input class="button" type="button" id="close" value="结束" />&nbsp;
@@ -555,7 +529,7 @@
 			<span>申报结果&nbsp;<select id="s_status" style="width:70px"></select></span>
 			<span>&nbsp;&nbsp;申请补考&nbsp;<select id="s_resit" style="width:70px"></select></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnSearch" value="查找" /></span>
-			<span><input style="border:0px;" type="checkbox" id="needResit" value="" />&nbsp;需补考&nbsp;</span>
+			<span id="s_needResit"><input style="border:0px;" type="checkbox" id="needResit" value="" />&nbsp;需补考&nbsp;</span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnSel" value="全选/取消" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnRemove" value="移出名单" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnResit" value="加入补考购物车" /></span>

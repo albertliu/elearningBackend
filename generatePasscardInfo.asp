@@ -112,7 +112,7 @@
 		$("#lock").click(function(){
 			if(confirm('确定要锁定本场考试吗? 将无法调整考生名单。')){
 				$.get("diplomaControl.asp?op=closeGeneratePasscard&nodeID=" + $("#ID").val() + "&refID=1&times=" + (new Date().getTime()),function(data){
-					jAlert("已关闭考试","信息提示");
+					jAlert("已锁定考试","信息提示");
 					getNodeInfo(nodeID);
 					updateCount += 1;
 				});
@@ -341,8 +341,8 @@
 			arr.push("<th width='11%'>电话</th>");
 			arr.push("<th width='8%'>成绩</th>");
 			arr.push("<th width='8%'>结果</th>");
-			arr.push("<th width='20%'>类型</th>");
-			arr.push("<th width='6%'>补</th>");
+			arr.push("<th width='12%'>类型</th>");
+			arr.push("<th width='10%'>安排补考</th>");
 			arr.push("<th width='4%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");

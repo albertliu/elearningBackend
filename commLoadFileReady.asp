@@ -16,7 +16,7 @@
 				return false;
 			}
             var form = new FormData(document.getElementById("formUpload"));
-			var act = action + "?upID=" + $("input[name='uploadKind']:checked").val() + "&username=" + username + "&currUser=" + currUser + "&host=" + $("#commLoadFileHost").val();
+			var act = action + "?upID=" + $("input[name='uploadKind']:checked").val() + "&username=" + username + "&currUser=" + currUser + "&host=" + $("#commLoadFileHost").val() + "&para=" + para;
             $.ajax({
                 url: act,
                 type:"post",
@@ -33,7 +33,7 @@
 						}
 					}
 					alert(msg, "上传结果");
-					if(mark != "mulitple"){
+					if(commMark != "mulitple"){
 						document.getElementById("lightLoadFile").style.display="none";
 						document.getElementById("fadeLoadFile").style.display="none";
 						getNodeInfo(nodeID);

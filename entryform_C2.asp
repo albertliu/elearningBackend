@@ -53,7 +53,7 @@
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar > "0"){
-				$("#SNo").html(ar[25]);
+				$("#SNo").html(ar[25] + "&nbsp;&nbsp;班级：" + ar[34]);
 			}else{
 				//alert("没有找到要打印的内容。");
 				return false;

@@ -816,7 +816,16 @@ if(op == "getGenerateApplyList"){
 	}
 	//如果有课程
 	if(kindID > ""){ // 
-		s = "courseID='" + kindID + "'";
+		s = "certID='" + kindID + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//如果有经办人
+	if(refID > ""){ // 
+		s = "registerID='" + refID + "'";
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
@@ -857,6 +866,8 @@ if(op == "getGenerateApplyList"){
 		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("filescore").value;
 		//18
 		result += "|" + rs("sendScore").value + "|" + rs("sendScoreDate").value + "|" + rs("senderScoreName").value + "|" + rs("qtyYes").value + "|" + rs("qtyNo").value + "|" + rs("qtyNull").value;
+		//24
+		result += "|" + rs("reexamineName").value + "|" + rs("importApplyDate").value + "|" + rs("importScoreDate").value + "|" + rs("diplomaStartDate").value + "|" + rs("diplomaEndDate").value + "|" + rs("diplomaTerm").value + "|" + rs("qtyCheck").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -879,7 +890,7 @@ if(op == "getApplyListByBatch"){
 	}
 	//如果有状态
 	if(status > ""){ // 
-		s = "status=" + status;
+		s = "statusApply=" + status;
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
@@ -897,7 +908,7 @@ if(op == "getApplyListByBatch"){
 	}
 	//如果需要补申
 	if(String(Request.QueryString("needResit"))==1){ // 
-		s = "status<>1";
+		s = "status=2";
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
@@ -918,7 +929,7 @@ if(op == "getApplyListByBatch"){
 		//7
 		result += "|" + rs("resit").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value;
 		//13
-		result += "|" + rs("unit").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value;
+		result += "|" + rs("unit").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value + "|" + rs("statusApply").value + "|" + rs("statusApplyName").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -938,7 +949,9 @@ if(op == "getGenerateApplyNodeInfo"){
 		//12
 		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("filescore").value;
 		//18
-		result += "|" + rs("sendScore").value + "|" + rs("sendScoreDate").value + "|" + rs("senderScoreName").value + "|" + rs("qtyYes").value + "|" + rs("qtyNo").value + "|" + rs("qtyNull").value + "|" + rs("reexamineName").value;
+		result += "|" + rs("sendScore").value + "|" + rs("sendScoreDate").value + "|" + rs("senderScoreName").value + "|" + rs("qtyYes").value + "|" + rs("qtyNo").value + "|" + rs("qtyNull").value;
+		//24
+		result += "|" + rs("reexamineName").value + "|" + rs("importApplyDate").value + "|" + rs("importScoreDate").value + "|" + rs("diplomaStartDate").value + "|" + rs("diplomaEndDate").value + "|" + rs("diplomaTerm").value + "|" + rs("qtyCheck").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -963,7 +976,7 @@ if(op == "delGenerateApplyInfo"){
 	Response.Write(nodeID);
 }
 
-if(op == "closeGenerateApplyInfo"){
+if(op == "closeGenerateApply"){
 	sql = "exec closeGenerateApplyInfo " + nodeID + "," + refID + ",'" + currUser + "'";
 	execSQL(sql);
 	Response.Write(nodeID);

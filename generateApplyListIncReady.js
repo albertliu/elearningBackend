@@ -2,9 +2,9 @@
 	var generateApplyListChk = 0;
 
 	$(document).ready(function (){
-		getComList("searchGenerateApplyCourse","v_courseInfo","courseID","courseName","status=0 and type=0 and agencyID<>4 order by courseName",1);
-		getComList("searchGenerateApplyRegister","v_examRegister","registerID","registerName","1=1 order by ID desc",1);
-		getDicList("statusPlan","searchGenerateApplyStatus",0);
+		getComList("searchGenerateApplyCert","v_certificateInfo","certID","certName","status=0 and type=0 order by certName",1);
+		getComList("searchGenerateApplyRegister","v_applyRegister","registerID","registerName","1=1 order by ID desc",1);
+		getDicList("planStatus","searchGenerateApplyStatus",1);
 		$("#searchGenerateApplyStart").click(function(){WdatePicker();});
 		$("#searchGenerateApplyEnd").click(function(){WdatePicker();});
 		
@@ -39,7 +39,7 @@
 	function getGenerateApplyList(){
 		sWhere = $("#txtSearchGenerateApply").val();
 		//alert((sWhere) + "&kindID=" + $("#searchGenerateApplyCourse").val() + "&host=" + $("#searchGenerateApplyHost").val() + "&keyID=" + photo);
-		$.get("diplomaControl.asp?op=getGenerateApplyList&where=" + escape(sWhere) + "&kindID=" + $("#searchGenerateApplyCourse").val() + "&status=" + $("#searchGenerateApplyStatus").val() + "&fStart=" + $("#searchGenerateApplyStart").val() + "&fEnd=" + $("#searchGenerateApplyEnd").val() + "&dk=106&times=" + (new Date().getTime()),function(data){
+		$.get("diplomaControl.asp?op=getGenerateApplyList&where=" + escape(sWhere) + "&kindID=" + $("#searchGenerateApplyCert").val() + "&refID=" + $("#searchGenerateApplyRegister").val()  + "&status=" + $("#searchGenerateApplyStatus").val() + "&fStart=" + $("#searchGenerateApplyStart").val() + "&fEnd=" + $("#searchGenerateApplyEnd").val() + "&dk=106&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
@@ -54,13 +54,16 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
-			arr.push("<th width='20%'>申报名称</th>");
-			arr.push("<th width='8%'>人数</th>");
-			arr.push("<th width='10%'>申报日期</th>");
-			arr.push("<th width='10%'>状态</th>");
-			arr.push("<th width='12%'>申报批号</th>");
-			arr.push("<th width='10%'>申报结果</th>");
-			arr.push("<th width='20%'>备注</th>");
+			arr.push("<th width='18%'>申报名称</th>");
+			arr.push("<th width='6%'>人数</th>");
+			arr.push("<th width='8%'>申报日期</th>");
+			arr.push("<th width='6%'>状态</th>");
+			arr.push("<th width='8%'>申报导入</th>");
+			arr.push("<th width='8%'>成绩导入</th>");
+			arr.push("<th width='10%'>申报批号</th>");
+			arr.push("<th width='6%'>申报</th>");
+			arr.push("<th width='6%'>考试</th>");
+			arr.push("<th width='8%'>备注</th>");
 			arr.push("<th width='8%'>制作</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -81,8 +84,11 @@
 					arr.push("<td class='left'>" + ar1[4] + "</td>");
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
 					arr.push("<td class='center'>" + ar1[16] + "</td>");
+					arr.push("<td class='left'>" + ar1[25] + "</td>");
+					arr.push("<td class='center'>" + ar1[26] + "</td>");
 					arr.push("<td class='left'>" + ar1[5] + "</td>");
-					arr.push("<td class='left' title='通过/未通过/待定'>" + ar1[21] + "/" + ar1[22] + "/" + ar1[23] + "</td>");
+					arr.push("<td class='left' title='成功/失败'>" + ar1[30] + "/" + ar1[23] + "</td>");
+					arr.push("<td class='left' title='合格/不合格'>" + ar1[21] + "/" + ar1[22] + "</td>");
 					arr.push("<td class='left'>" + ar1[8] + "</td>");
 					arr.push("<td class='left'>" + ar1[10] + "</td>");
 					arr.push("</tr>");
@@ -91,6 +97,9 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");

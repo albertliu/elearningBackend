@@ -5,8 +5,8 @@
 				          <input class="button" type="button" id="btnSearchGenerateApply" value="查找" />
 				          <input class="button" type="button" id="btnSearchGenerateApplyAdd" value="添加" />
 					          &nbsp;&nbsp;经办人&nbsp;<select id="searchGenerateApplyRegister" style="width:100px"></select>&nbsp;&nbsp;
-					          &nbsp;&nbsp;课程&nbsp;<select id="searchGenerateApplyCourse" style="width:100px"></select>&nbsp;&nbsp;
-					          &nbsp;&nbsp;状态&nbsp;<select id="searchGenerateApplyCourse" style="width:100px"></select>&nbsp;&nbsp;
+					          &nbsp;&nbsp;课程&nbsp;<select id="searchGenerateApplyCert" style="width:100px"></select>&nbsp;&nbsp;
+					          &nbsp;&nbsp;状态&nbsp;<select id="searchGenerateApplyStatus" style="width:100px"></select>&nbsp;&nbsp;
 							  &nbsp;&nbsp;<label>申报日期</label>
 				          	<input type="text" id="searchGenerateApplyStart" size="8" title="起始日期" style="background:#AAFFAA;" />
 				          	-

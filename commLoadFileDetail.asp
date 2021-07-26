@@ -2,13 +2,17 @@
 	var username = "";
 	var action = uploadURL + "/outfiles/uploadSingle";
 	var host = "";
+	var para = "";
+	var commMark = "";
 	//alert(action);
 	//mark:student,host,course
 	//etc. ("student_photo","310102199209090021","student","spc"),  ("student_photo","0","mulitple","spc")
-	function showLoadFile(loadOp,loadID,mark,p_host){
+	function showLoadFile(loadOp,loadID,mark,p_host,par){
 		username = loadID;
 		host = p_host;
 		arr = [];
+		para = par;
+		commMark = mark;
 		if(host > ""){
 			$("#commLoadFileHost").val(host);
 		}
@@ -47,7 +51,9 @@
 			//student material
 			arr.push('<input style="border:0px;" type="radio" id="uploadKind0" name="uploadKind" value="student_list" />学员报名表&nbsp;');
 			arr.push('<input style="border:0px;" type="radio" id="uploadKind1" name="uploadKind" value="score_list" />考试成绩单&nbsp;');
-			arr.push('<input style="border:0px;" type="radio" id="uploadKind2" name="uploadKind" value="ref_student_list" />预报名表&nbsp;');
+			arr.push('<input style="border:0px;" type="radio" id="uploadKind2" name="uploadKind" value="apply_list" />申报结果&nbsp;');
+			arr.push('<input style="border:0px;" type="radio" id="uploadKind3" name="uploadKind" value="apply_score_list" />申报成绩和证书&nbsp;');
+			arr.push('<input style="border:0px;" type="radio" id="uploadKind4" name="uploadKind" value="ref_student_list" />预报名表&nbsp;');
 		}
 		if(mark=='mulitple'){
 			//student material

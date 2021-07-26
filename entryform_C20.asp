@@ -92,7 +92,7 @@
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar > "0"){
-				$("#SNo").html(ar[25]);
+				$("#SNo").html(ar[25] + "&nbsp;&nbsp;班级：" + ar[34]);
 				$("#courseName").html(ar[6]);
 				$("#missingItems").html("缺项：" + ar[43]);
 				kindID = ar[36];
