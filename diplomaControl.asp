@@ -798,6 +798,13 @@ if(op == "remove4GeneratePasscard"){
 	//Response.Write(sql);
 }
 
+if(op == "remove4GenerateApply"){
+	sql = "exec changeApplier " + nodeID + ",'" + String(Request.Form("selList")) + "','" + currUser + "'";
+	execSQL(sql);
+	Response.Write(nodeID);
+	//Response.Write(sql);
+}
+
 if(op == "getGenerateApplyList"){
 	result = "";
 	var s = "";
@@ -970,7 +977,7 @@ if(op == "updateGenerateApplyInfo"){
 	//Response.Write(escape(sql));
 }
 
-if(op == "delGenerateApplyInfo"){
+if(op == "delGenerateApply"){
 	sql = "exec delGenerateApplyInfo '" + nodeID + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(nodeID);
