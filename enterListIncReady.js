@@ -234,8 +234,8 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='2%'>No</th>");
-			arr.push("<th width='9%'>身份证</th>");
-			arr.push("<th width='7%'>姓名</th>");
+			arr.push("<th width='8%'>身份证</th>");
+			arr.push("<th width='6%'>姓名</th>");
 			if($("#searchEnterProjectID").val()>"" && $("#searchEnterShowPhoto").attr("checked")){
 				$.each(ar2,function(iNum1,val1){
 					var ar3 = new Array();
@@ -244,22 +244,23 @@
 				});
 			}else{
 				if($("#searchEnterProjectID").val()>""){
-					arr.push("<th width='10%'>班级名称</th>");
+					arr.push("<th width='8%'>班级名称</th>");
 				}else{
-					arr.push("<th width='10%'>课程名称</th>");
+					arr.push("<th width='8%'>课程名称</th>");
 				}
 				if(currHost==""){
-					arr.push("<th width='8%'>公司</th>");
+					arr.push("<th width='7%'>公司</th>");
 				}else{
-					arr.push("<th width='8%'>部门</th>");
+					arr.push("<th width='7%'>部门</th>");
 				}
 				if(currHost==""){
-					arr.push("<th width='12%'>经办人</th>");
+					arr.push("<th width='10%'>经办人</th>");
 				}else{
-					arr.push("<th width='9%'>报名日期</th>");
+					arr.push("<th width='8%'>报名日期</th>");
 				}
 			}
 			//arr.push("<th width='6%'>单位</th>");
+			arr.push("<th width='8%'>电话</th>");
 			arr.push("<th width='5%'>表</th>");
 			arr.push("<th width='6%'>模拟</th>");
 			if(role){
@@ -267,11 +268,11 @@
 			}else{
 				arr.push("<th width='5%'>缺</th>");
 			}
-			arr.push("<th width='7%'>学号</th>");
-			arr.push("<th width='6%'>申报</th>");
-			arr.push("<th width='6%'>准考</th>");
-			arr.push("<th width='6%'>成绩</th>");
-			arr.push("<th width='6%'>补考</th>");
+			arr.push("<th width='6%'>学号</th>");
+			arr.push("<th width='5%'>申报</th>");
+			arr.push("<th width='5%'>准考</th>");
+			arr.push("<th width='5%'>成绩</th>");
+			arr.push("<th width='5%'>补考</th>");
 			arr.push("<th width='2%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -343,6 +344,7 @@
 						
 					}
 					//arr.push("<td class='link1'><a href='javascript:window.open(\"entryform_" + ar1[60] + ".asp?keyID=0&nodeID=" + ar1[0] + "&refID=" + ar1[1] + ", \"_blank\");'>" + imgChk + "</a></td>");
+					arr.push("<td class='left'>" + ar1[69] + "</td>");
 					arr.push("<td class='link1'><a href='javascript:openEntryForm(\"" + ar1[60] + "\"," + ar1[0] + ",\"" + ar1[1] + "\");'>" + imgChk + "</a></td>");
 					arr.push("<td class='left'>" + nullNoDisp(ar1[15]) + "</td>");
 					if(role){
@@ -382,6 +384,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
