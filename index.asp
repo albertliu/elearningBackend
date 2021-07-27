@@ -216,7 +216,7 @@
 			$("#menu11").hide();
 			//$("#menu3").hide();
 		}
-		if(currUser=="desk."){
+		if(currUser=="desk." || currUser=="kongdebei."){
 			$("#menu11").show();
 		}
 		if(currHostKind==0 && currHost > ""){	//集团用户不使用导入报名表, 照片批量上传，成绩导入功能
