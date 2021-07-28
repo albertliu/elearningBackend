@@ -124,9 +124,9 @@
 				if(op == 1){
 					//op = 0;
 					//getNodeInfo(ar[1]);
+					jAlert("保存成功！","信息提示");
 					window.parent.$.close("dept");
 				}
-				jAlert("保存成功！","信息提示");
 			}
 			if(ar[0] != 0){
 				jAlert("未能成功提交，请退出后重试。","信息提示");

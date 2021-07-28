@@ -244,9 +244,9 @@
 				});
 			}else{
 				if($("#searchEnterProjectID").val()>""){
-					arr.push("<th width='8%'>班级名称</th>");
+					arr.push("<th width='9%'>班级名称</th>");
 				}else{
-					arr.push("<th width='8%'>课程名称</th>");
+					arr.push("<th width='9%'>课程名称</th>");
 				}
 				if(currHost==""){
 					arr.push("<th width='7%'>公司</th>");
@@ -262,7 +262,7 @@
 			//arr.push("<th width='6%'>单位</th>");
 			arr.push("<th width='8%'>电话</th>");
 			arr.push("<th width='5%'>表</th>");
-			arr.push("<th width='6%'>模拟</th>");
+			arr.push("<th width='5%'>模拟</th>");
 			if(role){
 				arr.push("<th width='6%'>次数</th>");
 			}else{
