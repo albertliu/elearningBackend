@@ -788,14 +788,14 @@ if(op == "updateEnterClass"){
 if(op == "doEnter"){
 	//@username varchar(50),@classID varchar(50),@price int,@invoice varchar(50),@projectID varchar(50),@kindID varchar(50),@type int,@status int,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo,@registerID
 	sql = "exec doEnter '" + nodeID + "','" + String(Request.QueryString("classID")) + "','" + String(Request.QueryString("price")) + "','" + String(Request.QueryString("invoice")) + "','" + String(Request.QueryString("projectID")) + "','" + item + "'," + kindID + "," + String(Request.QueryString("type")) + "," + status + ",'" + String(Request.QueryString("datePay")) + "','" + String(Request.QueryString("dateInvoice")) + "','" + String(Request.QueryString("dateInvoicePick"))  + "','" + memo + "','" + currUser + "'";
-	
+	/*
 	rs = conn.Execute(sql);
 	if (!rs.EOF){
 		result = rs("re").value + "|" + rs("msg").value + "|" + rs("payID").value + "|" + rs("enterID").value;
 	}
-	rs.Close();/**/
-	Response.Write(result);
-	//Response.Write(escape(sql));
+	rs.Close();*/
+	//Response.Write(result);
+	Response.Write(escape(sql));
 }
 
 %>

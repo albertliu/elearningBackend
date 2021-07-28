@@ -187,6 +187,7 @@
 			arr.push("<th width='18%'>身份证</th>");
 			arr.push("<th width='14%'>姓名</th>");
 			arr.push("<th width='30%'>部门</th>");
+			arr.push("<th width='15%'>学号</th>");
 			arr.push("<th width='12%'>照</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -206,6 +207,7 @@
 					arr.push("<td class='left'>" + ar1[2] + "</td>");
 					arr.push("<td class='left'>" + ar1[3] + "</td>");
 					imgChk = "<img src='users" + ar1[5] + "' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'>";
+					arr.push("<td class='left'>" + ar1[7] + "</td>");
 					arr.push("<td class='center'>" + imgChk + "</td>");
 					if(ar1[4]==1){
 						h = "checked"
@@ -218,6 +220,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");

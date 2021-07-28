@@ -373,7 +373,7 @@
 					
 					//@username,@classID,@price,@invoice,@projectID,@kindID,@type,@status,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo,@registerID
 					$.get("studentCourseControl.asp?op=doEnter&nodeID=" + $("#username").val() + "&classID=" + $("#classID").val() + "&price=" + $("#price").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#status").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
-						//jAlert(unescape(re));
+						jAlert(unescape(re));
 						var ar = new Array();
 						ar = unescape(re).split("|");
 						if(ar[0] == 0){
@@ -384,7 +384,7 @@
 							getNodeInfo(ar[3]);
 							generateEntryForm(1);
 						}
-						jAlert(ar[1],"信息提示");
+						//jAlert(ar[1],"信息提示");
 					});
 				}
 			});

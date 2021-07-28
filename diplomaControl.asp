@@ -202,10 +202,11 @@ if(op == "getDiplomaLastList"){
 }	
 
 if(op == "getDiplomaListByBatch"){
-	sql = "SELECT * FROM v_diplomaInfo where batchID=" + refID;
+	sql = "select a.*,c.SNo from v_diplomaInfo a, studentCertList b, v_studentCourseList c where b.ID=c.refID and a.diplomaID=b.diplomaID and a.batchID=" + refID + " order by c.SNo";
+	//sql = "SELECT * FROM v_diplomaInfo where batchID=" + refID;
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
-		result += "%%" + rs("ID").value + "|" + rs("username").value + "|" + rs("name").value + "|" + rs("dept1Name").value + "|" + rs("stamp").value + "|" + rs("photo_filename").value + "|" + rs("age").value;
+		result += "%%" + rs("ID").value + "|" + rs("username").value + "|" + rs("name").value + "|" + rs("dept1Name").value + "|" + rs("stamp").value + "|" + rs("photo_filename").value + "|" + rs("age").value + "|" + rs("SNo").value;
 		rs.MoveNext();
 	}
 	rs.Close();
