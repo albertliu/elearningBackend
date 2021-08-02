@@ -44,7 +44,7 @@
 		$("#print").click(function(){
 			resumePrint();
 		});
-		getNeed2know(nodeID);
+		//getNeed2know(nodeID);
 		getNodeInfo(nodeID, refID);
 });
 
@@ -219,7 +219,6 @@
 			</tr>
 			</table>
 			<p style='font-size:1.2em;'>注：参加初审人员填写此表后，请携带身份证、学历证明和一张一寸标准照片办理报名手续；参加复审人员同时携带即将到期的证书，到相关培训机构办理报名手续。</p>
-			<div style="page-break-after:always"></div>
 			<div id="needCover"></div>
 		</div>
 	</div>
