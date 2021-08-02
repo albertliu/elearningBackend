@@ -61,6 +61,8 @@ if(op == "getClassList"){
 		result += "|" + rs("adviserID").value + "|" + rs("adviserName").value + "|" + rs("dateStart").value + "|" + rs("dateEnd").value + "|" + rs("classroom").value;
 		//13
 		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("className").value + "|" + rs("timetable").value + "|" + rs("phone").value + "|" + rs("qty").value;
+		//21
+		result += "|" + rs("fileArchive").value + "|" + rs("archiver").value + "|" + rs("archiveDate").value;
 		rs.MoveNext();
 	}
 /**/
@@ -80,6 +82,8 @@ if(op == "getNodeInfo"){
 		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("className").value;
 		//18
 		result += "|" + rs("timetable").value + "|" + rs("phone").value + "|" + rs("qty").value + "|" + rs("filename").value;
+		//22
+		result += "|" + rs("fileArchive").value + "|" + rs("archiver").value + "|" + rs("archiveDate").value;
 		execSQL(sql);
 	}
 	rs.Close();
