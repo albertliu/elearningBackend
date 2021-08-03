@@ -100,7 +100,8 @@
 		});
 
 		$("#doImportRef").click(function(){
-			showLoadFile("ref_student_list",$("#ID").val(),"studentList",'');
+			//showLoadFile("ref_student_list",$("#ID").val(),"studentList",'');
+			showLoadFile("student_list",$("#ID").val(),"studentList",'');
 			updateCount += 1;
 		});
 		$("#refundList").click(function(){
@@ -149,7 +150,7 @@
 				$("#qty").val(ar[20]);
 				var c = "";
 				if(ar[21] > ""){
-					c += "<a href='/users" + ar[21] + "' target='_blank'>预报名表</a>";
+					c += "<a href='/users" + ar[21] + "' target='_blank'>报名清单</a>";
 				}
 				if(c == ""){c = "&nbsp;&nbsp;";}
 				$("#photo").html(c);
@@ -341,7 +342,7 @@
   	<input class="button" type="button" id="close" value="结束" />&nbsp;&nbsp;
   	<input class="button" type="button" id="open" value="开启" />&nbsp;&nbsp;
   	<input class="button" type="button" id="del" value="删除" />&nbsp;&nbsp;
-	<input class="button" type="button" id="doImportRef" value="预报名表导入" />
+	<input class="button" type="button" id="doImportRef" value="报名表导入" />
   </div>
 </div>
 </body>
