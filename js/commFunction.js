@@ -1400,7 +1400,7 @@
 			url:"classInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "班级信息",
 			width: 640,
-			height: 440,
+			height: 540,
 			cover : {
 	          //透明度
 	          opacity : 0,

@@ -49,9 +49,9 @@
 			arr.push("<th width='3%'>No</th>");
 			arr.push("<th width='8%'>编号</th>");
 			arr.push("<th width='20%'>班级名称</th>");
-			arr.push("<th width='12%'>开课日期</th>");
-			arr.push("<th width='12%'>结束日期</th>");
-			arr.push("<th width='10%'>班主任</th>");
+			arr.push("<th width='10%'>开课日期</th>");
+			arr.push("<th width='10%'>结束日期</th>");
+			arr.push("<th width='8%'>班主任</th>");
 			arr.push("<th width='8%'>状态</th>");
 			arr.push("<th width='6%'>人数</th>");
 			arr.push("<th width='6%'>退课</th>");

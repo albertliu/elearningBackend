@@ -100,6 +100,10 @@
 		});
 
 		$("#doImportRef").click(function(){
+			if($("#projectID").val()==""){
+				alert("请选择招生批次。");
+				return false;
+			}
 			//showLoadFile("ref_student_list",$("#ID").val(),"studentList",'');
 			showLoadFile("student_list",$("#ID").val(),"studentList",'');
 			updateCount += 1;
@@ -148,6 +152,7 @@
 				$("#className").val(ar[17]);
 				$("#timetable").val(ar[18]);
 				$("#qty").val(ar[20]);
+				$("#summary").val(ar[25]);
 				var c = "";
 				if(ar[21] > ""){
 					c += "<a href='/users" + ar[21] + "' target='_blank'>报名清单</a>";
@@ -171,7 +176,8 @@
 			return false;
 		}
 		//alert($("#adviserID").val() + "&item=" + ($("#memo").val()));
-		$.get("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&className=" + escape($("#className").val()) + "&classroom=" + escape($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&adviserID=" + $("#adviserID").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		//$.get("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&className=" + escape($("#className").val()) + "&classroom=" + escape($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&adviserID=" + $("#adviserID").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.post("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&className=" + escape($("#className").val()) + "&classroom=" + escape($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&adviserID=" + $("#adviserID").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val(), {"memo":$("#memo").val(), "summary":$("#summary").val()},function(re){
 			//alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -321,8 +327,8 @@
 				<td colspan="5"><textarea id="timetable" style="padding:2px;" rows="4" cols="75"></textarea></td>
 			</tr>
 			<tr>
-				<td align="right">说明</td>
-				<td colspan="5"><textarea id="memo" style="padding:2px;" rows="1" cols="75"></textarea></td>
+				<td align="right">工作小结</td><input id="memo" type="hidden" />
+				<td colspan="5"><textarea id="summary" style="padding:2px;" rows="5" cols="75"></textarea></td>
 			</tr>
 			<tr>
 				<td align="right">登记人</td>
