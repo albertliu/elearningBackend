@@ -60,8 +60,8 @@
 			arr.push("<th width='6%'>人数</th>");
 			arr.push("<th width='8%'>结果统计</th>");
 			arr.push("<th width='6%'>状态</th>");
-			arr.push("<th width='10%'>考试通知</th>");
-			arr.push("<th width='10%'>成绩通知</th>");
+			arr.push("<th width='8%'>考试通知</th>");
+			arr.push("<th width='8%'>成绩通知</th>");
 			arr.push("<th width='10%'>备注</th>");
 			arr.push("<th width='8%'>制作</th>");
 			arr.push("<th width='8%'>准考证</th>");

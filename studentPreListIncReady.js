@@ -29,7 +29,7 @@
 		getDicList("statusAsk","searchStudentPrePhotoStatus",1);
 		$("#searchStudentPreStartDate").click(function(){WdatePicker();});
 		$("#searchStudentPreEndDate").click(function(){WdatePicker();});
-		$("#searchStudentPreStartDate").val(addDays(currDate,-15));
+		$("#searchStudentPreStartDate").val(addDays(currDate,-30));
 
 		$("#btnSearchStudentPre").click(function(){
 			getStudentPreList();

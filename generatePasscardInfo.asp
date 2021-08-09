@@ -350,7 +350,7 @@
 			arr.push("<th width='11%'>电话</th>");
 			arr.push("<th width='8%'>成绩</th>");
 			arr.push("<th width='8%'>结果</th>");
-			arr.push("<th width='12%'>类型</th>");
+			arr.push("<th width='12%'>备注</th>");
 			arr.push("<th width='10%'>安排补考</th>");
 			arr.push("<th width='8%'>学号</th>");
 			arr.push("<th width='4%'></th>");

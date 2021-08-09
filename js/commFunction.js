@@ -258,7 +258,7 @@
 		if(id=='x03'){
 			p = "getExamerScoreList";
 			floatModel = 2;
-			sql = "select passNo,name,username,'' from v_passcardInfo where refID=" + p1 + " order by passNo";
+			sql = "select passNo,name,username,(case when kindID=1 then cast(score as varchar) else '' end) as score from v_passcardInfo where refID=" + p1 + " order by passNo";
 		}
 		if(id=='x04'){
 			p = "getDiplomaIssueList";
