@@ -62,9 +62,9 @@
 			arr.push("<th width='6%'>状态</th>");
 			arr.push("<th width='8%'>考试通知</th>");
 			arr.push("<th width='8%'>成绩通知</th>");
-			arr.push("<th width='10%'>备注</th>");
-			arr.push("<th width='8%'>制作</th>");
-			arr.push("<th width='8%'>准考证</th>");
+			arr.push("<th width='14%'>备注</th>");
+			arr.push("<th width='6%'>制作</th>");
+			arr.push("<th width='6%'>准考</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
