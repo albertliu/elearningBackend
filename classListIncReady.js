@@ -84,9 +84,9 @@
 					}
 					arr.push("<td class='left'>" + ar1[20] + "</td>");
 					arr.push("<td class='left'></td>");
-					arr.push("<td class='left'></td>");
-					arr.push("<td class='left'></td>");
-					arr.push("<td class='left'></td>");
+					arr.push("<td class='left'>" + nullNoDisp(ar1[24]) + "</td>");
+					arr.push("<td class='left'>" + nullNoDisp(ar1[25]) + "</td>");
+					arr.push("<td class='left'>" + nullNoDisp(ar1[26]) + "</td>");
 					arr.push("</tr>");
 				});
 			}

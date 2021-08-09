@@ -596,7 +596,7 @@ if(op == "getGeneratePasscardList"){
 	sql = " FROM v_generatePasscardInfo " + where;
 	result = getBasketTip(sql,"");
 	ssql = "SELECT kindName,qty,hostName,memo,regDate,registerName" + sql + " order by ID";
-	sql = "SELECT top " + basket + " *" + sql + " order by ID desc";
+	sql = "SELECT top " + basket + " *" + sql + " order by startDate desc";
 	
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
@@ -607,6 +607,8 @@ if(op == "getGeneratePasscardList"){
 		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("filescore").value;
 		//20
 		result += "|" + rs("sendScore").value + "|" + rs("sendScoreDate").value + "|" + rs("senderScoreName").value + "|" + rs("qtyYes").value + "|" + rs("qtyNo").value + "|" + rs("qtyNull").value;
+		//26
+		result += "|" + rs("kindID").value + "|" + rs("kindName").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -690,6 +692,8 @@ if(op == "getGeneratePasscardNodeInfo"){
 		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("filescore").value;
 		//20
 		result += "|" + rs("sendScore").value + "|" + rs("sendScoreDate").value + "|" + rs("senderScoreName").value + "|" + rs("qtyYes").value + "|" + rs("qtyNo").value + "|" + rs("qtyNull").value;
+		//26
+		result += "|" + rs("kindID").value + "|" + rs("kindName").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -698,7 +702,7 @@ if(op == "getGeneratePasscardNodeInfo"){
 
 if(op == "updateGeneratePasscardInfo"){
 	//@ID int,@certID varchar(50),@title nvarchar(100),@startNo int,@startDate varchar(100),@startTime varchar(100),@address nvarchar(100),@notes nvarchar(500),@memo nvarchar(500),@registerID
-	sql = "exec updateGeneratePasscardInfo1 " + nodeID + ",'" + refID + "','" + item + "','" + keyID + "','" + String(Request.QueryString("startDate")) + "','" + String(Request.QueryString("startTime")) + "','" + unescape(String(Request.QueryString("address"))) + "','" + unescape(String(Request.QueryString("notes"))) + "','" + memo + "','" + currUser + "'";
+	sql = "exec updateGeneratePasscardInfo1 " + nodeID + ",'" + refID + "','" + item + "','" + keyID + "','" + kindID + "','" + String(Request.QueryString("startDate")) + "','" + String(Request.QueryString("startTime")) + "','" + unescape(String(Request.QueryString("address"))) + "','" + unescape(String(Request.QueryString("notes"))) + "','" + memo + "','" + currUser + "'";
 	rs = conn.Execute(sql);
 	if(!rs.EOF){
 		result = rs("re").value;

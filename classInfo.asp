@@ -90,6 +90,15 @@
 				}
 			}
 		});
+		$("#btnSummary").click(function(){
+			$.get("classControl.asp?op=getRandSummary&refID=" + $("#ID").val() + "&times=" + (new Date().getTime()),function(data){
+				if(data==""){
+					alert("没有找到相关记录。","信息提示");
+				}else{
+					$("#summary").val(unescape(data));
+				}
+			});
+		});
 
 		$("#certID").change(function(){
 			if($("#certID").val()>""){
@@ -126,6 +135,19 @@
 			});
 		});
 
+		$("#archive").click(function(){
+			if($("#summary").val()==""){
+				alert("请填写工作小结。");
+				return false;
+			}
+			if($("#dateEnd").val()==""){
+				alert("请填写班级结束日期。");
+				return false;
+			}
+			//showLoadFile("ref_student_list",$("#ID").val(),"studentList",'');
+			window.open("class_archives.asp?nodeID=" + nodeID + "&keyID=1", "_self");
+		});
+
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -159,7 +181,8 @@
 				}
 				if(c == ""){c = "&nbsp;&nbsp;";}
 				$("#photo").html(c);
-				$("#list").html("<a>退费清单</a>");
+				$("#refundList").html("<a>退费清单</a>");
+				$("#archive").html("<a>班级档案</a>");
 				
 				//getDownloadFile("classID");
 				setButton();
@@ -171,6 +194,10 @@
 	}
 	
 	function saveNode(){
+		if(op==0 && $("#adviserID").val()!=currUser){
+			//alert("只有该班的班主任才能操作。");
+			//return false;
+		}
 		if($("#className").val()==0){
 			alert("请填写班级名称。");
 			return false;
@@ -184,7 +211,8 @@
 			if(ar[0] == 0){
 				if(op == 1){
 					op = 0;
-					getNodeInfo(ar[1]);
+					nodeID = ar[0];
+					getNodeInfo(ar[0]);
 				}
 				alert("保存成功！","信息提示");
 				updateCount += 1;
@@ -313,7 +341,8 @@
 				</td>
 				<td colspan="2">
 					<span id="photo" style="margin-left:10px;"></span>&nbsp;&nbsp;
-					<span id="refundList" style="margin-left:10px;"></span>
+					<span id="refundList" style="margin-left:10px;"></span>&nbsp;&nbsp;
+					<span id="archive" style="margin-left:10px;"></span>
 				</td>
 			</tr>
 			<tr>
@@ -327,7 +356,10 @@
 				<td colspan="5"><textarea id="timetable" style="padding:2px;" rows="4" cols="75"></textarea></td>
 			</tr>
 			<tr>
-				<td align="right">工作小结</td><input id="memo" type="hidden" />
+				<td align="right">
+					工作小结<br />
+					<div class="comm" align="center"><input class="button" type="button" id="btnSummary" value="..." /></div>
+				</td><input id="memo" type="hidden" />
 				<td colspan="5"><textarea id="summary" style="padding:2px;" rows="5" cols="75"></textarea></td>
 			</tr>
 			<tr>

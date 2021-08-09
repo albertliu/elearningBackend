@@ -27,15 +27,13 @@
 
 <script language="javascript">
 	var nodeID = 0;
-	var op = 0;
 	var refID = 0;
 	var updateCount = 1;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
-		nodeID = "<%=nodeID%>";		//enterID
+		nodeID = "<%=nodeID%>";		//ID
 		refID = "<%=refID%>";		//username
 		keyID = "<%=keyID%>";		//0 预览  1 打印
-		op = "<%=op%>";
 		
 		$.ajaxSetup({ 
 			async: false 
@@ -43,68 +41,41 @@
 		$("#print").click(function(){
 			resumePrint();
 		});
-		getNodeInfo(nodeID, refID);
-});
+		getNodeInfo(nodeID);
+	});
 
-	function getNodeInfo(id,ref){
-		$.get("studentCourseControl.asp?op=getNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
+	function getNodeInfo(id){
+		$.get("classControl.asp?op=getNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
 			//alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
-			if(ar > "0"){
-				$("#SNo").html(ar[25] + "&nbsp;&nbsp;班级：" + ar[34]);
-				$("#reexamine").html(ar[41]);
-				$("#courseName").html(ar[6]);
-			}else{
-				//alert("没有找到要打印的内容。");
-				return false;
-			}
-		});
-		$.get("studentControl.asp?op=getNodeInfo&nodeID=0&refID=" + ref + "&times=" + (new Date().getTime()),function(re){
-			//alert(ref + ":" + unescape(re));
-			var ar = new Array();
-			ar = unescape(re).split("|");
+			var x = 0;
 			if(ar > ""){
-				$("#username").html(ar[1]);
-				$("#name").html(ar[2]);
-				$("#sexName").html(ar[8]);
-				$("#mobile").html(ar[7] + "&nbsp;&nbsp;" + ar[17]);
-				$("#age").html(ar[9]);
-				$("#job").html(ar[18]);
-				//$("#phone").html(ar[17]);
-				$("#job").html(ar[18]);
-				if(ar[29]=="znxf"){
-					$("#company").html(ar[35] + "." + ar[36]);
-					//$("#dept2").html(ar[36]);
+				$("#dateEnd").html(ar[11]);
+				$("#classID").html(ar[1] + "&nbsp;&nbsp;[" + ar[17] + "]");
+				$("#qty").html(ar[20]);
+				$("#summary").html(ar[25]);
+				$("#qtyExam").html(nullNoDisp(ar[27]));
+				$("#qtyPass").html(nullNoDisp(ar[28]));
+				x = ar[27];
+				if(x > 0 && ar[28] > 0){
+					x = (ar[28]*100/ar[27]).toFixed(2) + "%";
 				}else{
-					$("#company").html(ar[12] + "." + ar[13] + "." + ar[14]);
-					//$("#dept2").html(ar[14]);
+					x = "%";
 				}
-				$("#educationName").html(ar[31]);
-				$("#birthday").html(ar[33].substr(0,7));
-				$("#address").html(ar[34]);
-				$("#ethnicity").html(ar[37]);
-				if(ar[21] > ""){
-					$("#img_photo").attr("src","/users" + ar[21]);
+				$("#pass_rate_exam").html(x);
+				x = ar[20];
+				if(x > 0 && ar[28] > 0){
+					x = (ar[28]*100/ar[20]).toFixed(2) + "%";
 				}else{
-					$("#img_photo").attr("src","images/blank_photo.png");
+					x = "%";
 				}
-				if(ar[22] > ""){
-					$("#img_cardA").attr("src","/users" + ar[22]);
-				}else{
-					$("#img_cardA").attr("src","images/blank_cardA.png");
-				}
-				if(ar[23] > ""){
-					$("#img_cardB").attr("src","/users" + ar[23]);
-				}else{
-					$("#img_cardB").attr("src","images/blank_cardB.png");
-				}
-				$("#date").html(currDate);
+				$("#pass_rate_training").html(x);
 				if(keyID==1){
 					resumePrint();
 				}
 			}else{
-				alert("没有找到要打印的内容。");
+				//alert("没有找到要打印的内容。");
 				return false;
 			}
 		});
@@ -128,10 +99,8 @@
 			append : "<br/>"
 		});
 		window.setTimeout(function () {
-			//window.parent.asyncbox.close("enterInfo");
-			window.parent.getStudentCourseLists(refID);
-			window.parent.$.close("enterInfo");
-			//refreshMsg();
+			//window.parent.getStudentCourseLists(refID);
+			window.parent.$.close("classInfo");
 		}, 1000);
 	}
 
@@ -150,76 +119,60 @@
 		<div style="text-align:center;">
 		<input class="button" type="button" id="print" value="打印" />&nbsp;
 		</div>
-		<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
-			<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>上海市特种作业人员安全技术考核申请表（2020版）</h3></div>
-			<div style='margin: 12px;text-align:left; width:95%;'><span style='font-size:1.2em;'>学员编号：</span><span style='font-size:1.2em;' id="SNo"></span></div>
+		<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;padding-left:20px;">
+			<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>培训结果统计表</h3></div>
+			<div style='margin: 12px;text-align:right; width:95%;'><span style='font-size:1.2em;'>班级编号：</span><span style='font-size:1.2em;' id="classID"></span></div>
 			<table class='table_resume' style='width:99%;'>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='55px;'>姓名</td><td align="center" width='15%'><p style='font-size:1em;' id="name"></p></td>
-				<td align="center" class='table_resume_title' width='13%'>性别</td><td align="center" width='13%'><p style='font-size:1em;' id="sexName"></p></td>
-				<td align="center" class='table_resume_title' width='13%'>出生年月</td><td class='table_resume_title' width='11%'><p style='font-size:1em;' id="birthday"></p></td>
-				<td rowspan="4" colspan="2" align="center" class='table_resume_title' width='20%'>
-					<img id="img_photo" src="" value="" style='width:100px;border:none;' />
+				<td align="center" class='table_resume_title' width='100%' height='55px;' colspan="6"><h3 style='font-size:1.25em;'>培训鉴定情况分析</h3></td>
+			</tr>
+			<tr>
+				<td align="center" class='table_resume_title' width='16%' height='55px;'>注册人数</td><td align="center" width='16%'>出勤率</td>
+				<td align="center" class='table_resume_title' width='16%'>鉴定人数</td><td align="center" width='16%'>获证人数</td>
+				<td align="center" class='table_resume_title' width='18%'>鉴定合格率</td><td class='table_resume_title' width='18%'>培训合格率</td>
+			</tr>
+			<tr>
+				<td align="center" class='table_resume_title' width='15%' height='55px;'><p style='font-size:1em;' id="qty"></p></td><td align="right">%&nbsp;&nbsp;</td>
+				<td align="center" class='table_resume_title' width='15%'><p style='font-size:1em;' id="qtyExam"></p></td><td align="center" width='15%'><p style='font-size:1em;' id="qtyPass"></p></td>
+				<td align="right" width='18%'><p style='font-size:1em; padding-right:10px;' id="pass_rate_exam"></p></td><td align="right" width='18%'><p style='font-size:1em; padding-right:10px;' id="pass_rate_training"></p></td>
+			</tr>
+			<tr>
+				<td align="left" class='table_resume_title' height='110px;' rowspan="2" colspan="4">
+				<p style="text-align:left; padding-left:10px;font-size:1em;">
+				出勤率=全体学员实际出勤总次数/全体学员应出勤总次数<br />
+				鉴定合格率=获证人数/鉴定人数<br />
+				培训合格率=获证人数/注册人数
+				</p>
+				</td>
+				<td align="center" height='55px;'>统计人签名</td>
+				<td align="center">日&nbsp;&nbsp;期</td>
+			</tr>
+			<tr>
+				<td align="center" height='55px;'>&nbsp;</td>
+				<td align="center"><p style='font-size:1em;' id="dateEnd"></p></td>
+			</tr>
+			<tr>
+				<td align="center" class='table_resume_title' width='100%' height='55px;' colspan="6"><h4 style='font-size:1em;'>班级工作小结</h4></td>
+			</tr>
+			<tr>
+				<td align="center" class='table_resume_title' width='100%' height='400px;' colspan="6">
+					<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr height='345px;'><td>
+					<div style="float:left; padding-left:15px; font-size:1.15em;" id="summary"></div>
+					</td></tr><tr height='55px;'><td>
+					<div style="float:left; padding-left:50%; font-size:1.15em;">班主任（签名）：</div>
+					</td></tr></table>
 				</td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='55px;'>国籍</td><td align="center" width='13%'><p style='font-size:1em;'>中国</p></td>
-				<td align="center" class='table_resume_title' width='13%'>民族</td><td align="center" width='13%'><p style='font-size:1em;' id="ethnicity"></p></td>
-				<td align="center" class='table_resume_title' width='13%'>文化程度</td><td class='table_resume_title' width='11%'><p style='font-size:1em;' id="educationName"></p></td>
-			</tr>
-			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='55px;'>证件号码</td><td align="center" colspan="5"><p style='font-size:1em;' id="username"></p></td>
-			</tr>
-			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='55px;'>单位名称</td><td align="center" colspan="3"><p style='font-size:1em;' id="company"></p></td>
-				<td align="center" class='table_resume_title' width='13%'>从事岗位</td><td align="center"><p style='font-size:1em;' id="job"></p></td>
-			</tr>
-			<tr>
-				<td align="center" class='table_resume_title' width='13%' height='55px;'>联系地址</td><td align="center" colspan="3"><p style='font-size:1em;' id="address"></p></td>
-				<td align="center" class='table_resume_title' width='13%'>联系方式</td><td align="center" width='13%' colspan="3"><p style='font-size:1em;' id="mobile"></p></td>
-			</tr>
-			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='55px;'>申请考核工种</td><td align="center" colspan="7"><p style='font-size:1em;' id="courseName"></p></td>
-			</tr>
-			<tr>
-				<td align="center" height='55px;' colspan="4" class='table_resume_title' width='15%' height='250px;'>
-					<img id="img_cardA" src="" value="" style='width:340px;border:none;' />
-				</td>
-				<td align="center" colspan="4" class='table_resume_title' width='15%' height='250px;'>
-					<img id="img_cardB" src="" value="" style='width:340px;border:none;' />
-				</td>
-			</tr>
-			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='55px;'>考核类型</td><td align="center" width='13%' colspan="2"><p id="reexamine" style='font-size:1em;'></p></td>
-				<td align="center" class='table_resume_title' width='13%' colspan="2">是否参加相应培训</td><td align="center" width='13%' colspan="3"><p style='font-size:1em;'><input type="checkbox" />&nbsp;&nbsp;是&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" />&nbsp;&nbsp;否</p></td>
-			</tr>
-			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='55px;'>承担高危行业相关岗位情况</td>
-				<td align="left" colspan="7" style="padding-left:5px;">
-					<p style='font-size:1em;'><input type="checkbox" />&nbsp;&nbsp;本人是初次参加高危行业人员安全知识和管理能力考核。</p>
-					<p style='font-size:1em;'><input type="checkbox" />&nbsp;&nbsp;本人此次参加高危行业人员安全知识和管理能力复审考核，在持原特种作业操作证书从事相应岗位期间，未发生过事故。</p>
-					<p style='font-size:1em;'><input type="checkbox" />&nbsp;&nbsp;本人因未按时参加复审导致原操作证书过期，重新申请参加高危行业人员安全知识和管理能力考核。</p>
-					<p style='font-size:1em;'><input type="checkbox" />&nbsp;&nbsp;其他：</p>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" class='table_resume_title' width='15%' height='55px;' colspan="4">
-					<p style='font-size:1em;float:left;'>申请人签名：</p>
-					<br><br>
-					<p id="date" style='font-size:1em;float:right;padding-right:5px;'></p>
-				</td>
-				<td align="left" class='table_resume_title' width='15%' height='55px;' colspan="4">
-					<p style='font-size:1em;float:left;'>审核意见：</p>
-					<br><br>
-					<span style='font-size:1em;float:center;padding-right:50px;'>经办人签名：</span>
-					<span style='font-size:1em;float:right;'>年&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;日</span>
+				<td align="center" class='table_resume_title' width='5%' height='150px;'>领导意见</td>
+				<td align="left" class='table_resume_title' colspan="5">
+					<br><br><br>
+					<span style='font-size:1em;float:center;padding-right:30px;'>签名：</span>
+					<span style='font-size:1em;float:right; padding-right:10px;'>年&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;日</span>
 				</td>
 			</tr>
 			</table>
-			<p style='font-size:1.2em;'>注：参加初审人员填写此表后，请携带身份证、学历证明和一张一寸标准照片办理报名手续；参加复审人员同时携带即将到期的证书，到相关培训机构办理报名手续。</p>
-			<div id="needCover"></div>
 		</div>
 	</div>
-  </div>
 </div>
 </body>

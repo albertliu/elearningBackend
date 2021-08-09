@@ -1396,7 +1396,7 @@
 	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
 	function showClassInfo(nodeID,refID,op,mark){
 		asyncbox.open({
-			id: "class",
+			id: "classInfo",
 			url:"classInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "班级信息",
 			width: 640,
@@ -2516,8 +2516,19 @@
 			jAlert("非法数字，请核实。");
 			$("#" + objID).val(0);
 			$("#" + objID).focus();
+			return false;
 		}
 	}
+
+//验证字符串是否是非零正整数
+function checkNumber(theObj) {
+	var reg = /^[1-9][0-9]*$/;
+	if (reg.test(theObj)) {
+		return true;
+	}else{
+		return false;
+	}
+  }
 
 Date.prototype.format = function(format) //author: meizz 
 { 
@@ -2623,6 +2634,22 @@ function getLastDay(theDate) {
 	 //如果当前是12月，则转至下一年
 	 var new_date = new Date(new_year,new_month,0);
 	 return new_year + "-" + new_month + "-" + new_date.getDate();
+}
+
+//myDate.dateAdd("d",5)
+Date.prototype.dateAdd = function (strInterval, number) {
+    //y年 q季度 m月 d日 w周 h小时 n分钟 s秒 ms毫秒
+    var dtTmp = this;
+    switch (strInterval) {
+    case 's': return new Date(Date.parse(dtTmp) + (1000 * number));
+    case 'n': return new Date(Date.parse(dtTmp) + (60000 * number));
+    case 'h': return new Date(Date.parse(dtTmp) + (3600000 * number));
+    case 'd': return new Date(Date.parse(dtTmp) + (86400000 * number));
+    case 'w': return new Date(Date.parse(dtTmp) + ((86400000 * 7) * number));
+    case 'q': return new Date(dtTmp.getFullYear(), (dtTmp.getMonth()) + number * 3, dtTmp.getDate(), dtTmp.getHours(), dtTmp.getMinutes(), dtTmp.getSeconds());
+    case 'm': return new Date(dtTmp.getFullYear(), (dtTmp.getMonth()) + number, dtTmp.getDate(), dtTmp.getHours(), dtTmp.getMinutes(), dtTmp.getSeconds());
+    case 'y': return new Date((dtTmp.getFullYear() + number), dtTmp.getMonth(), dtTmp.getDate(), dtTmp.getHours(), dtTmp.getMinutes(), dtTmp.getSeconds());
+    }
 }
 
 //要求字符串必须包含数字和字母

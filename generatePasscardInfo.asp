@@ -42,7 +42,9 @@
 		getComList("certID","certificateInfo","certID","shortName","status=0 and type=0 order by certID",1);
 		getDicList("examResult","s_status",1);
 		getDicList("statusNo","s_resit",1);
-		$("#startDate").click(function(){WdatePicker();});
+		getDicList("online","kindID",0);
+		$("#startDate").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd HH:mm', onpicked:pickerChange});});
+		$("#startTime").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'});});
 		setButton();
 		if(nodeID>0 && op==0){
 			getNodeInfo(nodeID);
@@ -225,6 +227,7 @@
 				$("#senderScoreName").val(ar[22]);
 				$("#status").val(ar[17]);
 				$("#statusName").val(ar[18]);
+				$("#kindID").val(ar[26]);
 				var c = "";
 				if(ar[9] > ""){
 					c += "<a href='/users" + ar[9] + "' target='_blank'>准考证</a>";
@@ -295,19 +298,25 @@
 			return false;
 		}
 		if($("#startDate").val()==""){
-			jAlert("请填写考试日期。");
-			return false;
-		}
-		if($("#startTime").val()==""){
 			jAlert("请填写考试时间。");
 			return false;
 		}
+		
+		if($("#kindID").val()==1 && $("#startTime").val()==""){
+			jAlert("请填写截止时间。");
+			return false;
+		}
+		
 		if($("#certID").val()==""){
 			jAlert("请选择考试科目。");
 			return false;
 		}
+		/*if(checkNumber($("#startTime").val())==false){
+			jAlert("请正确填写考试时长。");
+			return false;
+		}*/
 		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-		$.get("diplomaControl.asp?op=updateGeneratePasscardInfo&nodeID=" + nodeID + "&refID=" + $("#certID").val() + "&keyID=" + $("#startNo").val() + "&startDate=" + $("#startDate").val() + "&startTime=" + $("#startTime").val() + "&item=" + escape($("#title").val()) + "&address=" + escape($("#address").val()) + "&notes=" + escape($("#notes").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("diplomaControl.asp?op=updateGeneratePasscardInfo&nodeID=" + nodeID + "&refID=" + $("#certID").val() + "&kindID=" + $("#kindID").val() + "&keyID=" + $("#startNo").val() + "&startDate=" + $("#startDate").val() + "&startTime=" + $("#startTime").val() + "&item=" + escape($("#title").val()) + "&address=" + escape($("#address").val()) + "&notes=" + escape($("#notes").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//alert(unescape(re));
 			if(re>0){
 				jAlert("保存成功");
@@ -416,6 +425,12 @@
 		});
 	}
 	
+	function pickerChange(){
+		if($("#startDate").val()>""){
+			$("#startTime").val(new Date($("#startDate").val()).dateAdd("n",90).format("yyyy-MM-dd hh:mm"));
+		}
+	}
+
 	function setButton(){
 		var s = $("#status").val();
 		$("#save").hide();
@@ -469,9 +484,9 @@
 	function setEmpty(){
 		//$("#title").val("中石化从业人员安全知识考核");
 		$("#title").val("");
-		$("#startDate").val(currDate);
+		$("#startDate").val(currDate + " 15:00");
 		$("#qty").val(0);
-		$("#startTime").val("15:00 - 16:00");
+		$("#startTime").val(currDate + " 16:30");
 		$("#startNo").val(1);
 		$("#address").val("黄兴路158号1182幢D103室");
 		$("#notes").val("请务必携带身份证原件和准考证；迟到15分钟不得入场。");
@@ -496,20 +511,20 @@
 			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
-				<td align="right">考试日期</td>
-				<td><input class="mustFill" type="text" id="startDate" size="25" /></td>
 				<td align="right">考试时间</td>
-				<td><input class="mustFill" type="text" id="startTime" size="25" /></td>
+				<td><input class="mustFill" type="text" id="startDate" size="25" /></td>
+				<td align="right">截止时间</td>
+				<td><input type="text" id="startTime" size="25" /></td>
 			</tr>
 			<tr>
-				<td align="right">考试科目</td><input type="hidden" id="ID" /><input type="hidden" id="status" />
+				<td align="right">考试科目</td><input type="hidden" id="ID" /><input type="hidden" id="status" /><input type="hidden" id="startNo" />
 				<td><select id="certID" style="width:100%;"></select></td>
 				<td align="right">人数</td>
-				<td><input class="readOnly" type="text" id="qty" size="3" readOnly="true" />&nbsp;&nbsp;&nbsp;&nbsp;起始编号&nbsp;<input class="readOnly" type="text" id="startNo" size="3" readOnly="true" /></td>
+				<td><input class="readOnly" type="text" id="qty" size="5" readOnly="true" />&nbsp;&nbsp;&nbsp;类型&nbsp;<select id="kindID" style="width:60px;"></select></td>
 			</tr>
 			<tr>
 				<td align="right">场次标识</td>
-				<td colspan="3"><input class="mustFill" type="text" id="title" style="width:70%;" />&nbsp;&nbsp;状态<input class="readOnly" type="text" id="statusName" size="5" readOnly="true" /></td>
+				<td colspan="3"><input class="mustFill" type="text" id="title" style="width:70%;" />&nbsp;&nbsp;状态&nbsp;<input class="readOnly" type="text" id="statusName" size="5" readOnly="true" /></td>
 			</tr>
 			<tr>
 				<td align="right">考试地址</td>
