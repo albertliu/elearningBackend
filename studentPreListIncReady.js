@@ -272,7 +272,7 @@
 			arr.push("<th width='7%'>岗位</th>");
 			//arr.push("<th width='7%'>备注</th>");
 			arr.push("<th width='11%'>确认</th>");
-			arr.push("<th width='8%'>报到日期</th>");
+			arr.push("<th width='8%'>班级编号</th>");
 			arr.push("<th width='7%'>练习</th>");
 			arr.push("<th width='6%'>成绩</th>");
 			arr.push("<th width='6%'>准考</th>");
@@ -314,7 +314,7 @@
 					arr.push("<td class='left'>" + ar1[5] + "</td>");
 					//arr.push("<td class='left'>" + ar1[14] + "</td>");
 					arr.push("<td class='left'>" + ar1[20] + ar1[22] + "</td>");
-					arr.push("<td class='center'>" + ar1[16] + "</td>");
+					arr.push("<td class='center'>" + ar1[13] + "</td>");
 					s = "";
 					if(ar1[27]>0){
 						s = nullNoDisp(ar1[7]) + " * " + nullNoDisp(ar1[27]);
