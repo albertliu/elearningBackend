@@ -113,10 +113,19 @@
 				alert("请选择招生批次。");
 				return false;
 			}
-			//showLoadFile("ref_student_list",$("#ID").val(),"studentList",'');
+			showLoadFile("ref_student_list",$("#ID").val(),"studentList",'');
+			updateCount += 1;
+		});
+
+		$("#doImport").click(function(){
+			if($("#projectID").val()==""){
+				alert("请选择招生批次。");
+				return false;
+			}
 			showLoadFile("student_list",$("#ID").val(),"studentList",'');
 			updateCount += 1;
 		});
+
 		$("#refundList").click(function(){
 			$.getJSON(uploadURL + "/outfiles/generate_refund_list?classID=" + $("#classID").val() + "&className=" + $("#className").val() + "&price=10" ,function(data){
 				if(data>""){
@@ -202,8 +211,6 @@
 			alert("请填写班级名称。");
 			return false;
 		}
-		//alert($("#adviserID").val() + "&item=" + ($("#memo").val()));
-		//$.get("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&className=" + escape($("#className").val()) + "&classroom=" + escape($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&adviserID=" + $("#adviserID").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 		$.post("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&className=" + escape($("#className").val()) + "&classroom=" + escape($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&adviserID=" + $("#adviserID").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val(), {"memo":$("#memo").val(), "summary":$("#summary").val()},function(re){
 			//alert(unescape(re));
 			var ar = new Array();
@@ -380,7 +387,8 @@
   	<input class="button" type="button" id="close" value="结束" />&nbsp;&nbsp;
   	<input class="button" type="button" id="open" value="开启" />&nbsp;&nbsp;
   	<input class="button" type="button" id="del" value="删除" />&nbsp;&nbsp;
-	<input class="button" type="button" id="doImportRef" value="报名表导入" />
+	<input class="button" type="button" id="doImportRef" value="石化预报名表" />
+	<input class="button" type="button" id="doImport" value="报名表导入" />
   </div>
 </div>
 </body>

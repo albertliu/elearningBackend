@@ -54,15 +54,15 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
-			arr.push("<th width='18%'>考试场次</th>");
-			arr.push("<th width='12%'>考试日期</th>");
+			arr.push("<th width='16%'>考试场次</th>");
+			arr.push("<th width='10%'>考试日期</th>");
 			arr.push("<th width='6%'>类型</th>");
 			arr.push("<th width='6%'>人数</th>");
 			arr.push("<th width='8%'>结果统计</th>");
 			arr.push("<th width='6%'>状态</th>");
 			arr.push("<th width='8%'>考试通知</th>");
 			arr.push("<th width='8%'>成绩通知</th>");
-			arr.push("<th width='14%'>备注</th>");
+			arr.push("<th width='18%'>备注</th>");
 			arr.push("<th width='6%'>制作</th>");
 			arr.push("<th width='6%'>准考</th>");
 			arr.push("</tr>");

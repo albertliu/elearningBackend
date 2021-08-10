@@ -109,6 +109,40 @@ if(op == "update"){
 	//Response.Write(escape(sql));
 }
 
+if(op == "getStudentListByClassID"){
+	var s = "";
+	where = "";
+	//如果有班级
+	if(refID > ""){ // 
+		s = "classID='" + refID + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+
+	if(where>""){
+		where = " where " + where;
+	}
+
+	sql = " FROM v_studentCourseList " + where;
+	sql = "SELECT *, (case when host='znxf' then unit else hostName end) as unit1" + sql + " order by SNo";
+
+	result = "";
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("username").value + "|" + rs("name").value + "|" + rs("sexName").value + "|" + rs("age").value + "|" + rs("SNo").value;
+		//5
+		result += "|" + rs("mobile").value + "|" + rs("unit1").value + "|" + rs("score").value + "|" + rs("diploma_startDate").value + "|" + rs("diplomaID").value;
+		rs.MoveNext();
+	}
+	result = result.substr(2);
+	Session(op) = ssql;
+	Response.Write(escape(result));/**/
+	//Response.Write(escape(sql));
+}	
+
 if(op == "cancelNode"){
 	sql = "exec doCancelClass " + nodeID;
 	execSQL(sql);
