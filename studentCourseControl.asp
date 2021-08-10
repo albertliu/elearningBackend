@@ -743,11 +743,23 @@ if(op == "doStudentCourse_check"){
 }	
 
 if(op == "doStudentPre_check"){
-	sql = "exec doStudentPre_check " + status + ",'" + refID + "','" + keyID + "','" + host + "','" + currUser + "'";
+	sql = "exec doStudentPre_check " + status + ",'" + keyID + "','" + host + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(0);
 	//Response.Write(sql);
 }	
+
+if(op == "pick_students4class"){
+	result = "";
+	sql = "exec pickStudents4Class '" + String(Request.Form("batchID")) + "','" + String(Request.Form("selList")) + "','" + currUser + "'";
+	rs = conn.Execute(sql);
+	if (!rs.EOF){
+		result = rs("re").value;
+		execSQL(sql);
+	}
+	rs.Close();
+	Response.Write(result);
+}
 
 if(op == "doStudentCourse_submit"){
 	sql = "exec doStudentCourse_submit '" + refID + "'," + status + ",'" + keyID + "','" + host + "','" + currUser + "'";

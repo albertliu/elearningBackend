@@ -131,7 +131,7 @@
 				if(r){
 					//alert($("#searchStudentPreProjectID").val() + "&status=1&host=" + $("#searchStudentPreHost").val() + "&keyID=" + selList);
 					//alert($("#searchStudentPreHost").val() + "&keyID=" + selList);
-					$.get("studentCourseControl.asp?op=doStudentPre_check&status=1&host=" + $("#searchStudentPreHost").val() + "&keyID=" + selList + "&refID=" + $("#searchStudentPreProjectID").val(), function(data){
+					$.get("studentCourseControl.asp?op=doStudentPre_check&status=1&host=" + $("#searchStudentPreHost").val() + "&keyID=" + selList, function(data){
 						//alert(data);
 						if(data=="0"){
 							jAlert("确认成功");
@@ -174,7 +174,7 @@
 		$("#btnStudentPreCall").click(function(){
 			getSelCart("visitstockchkPre");
 			if(selCount==0){
-				jAlert("请选择要通知的名单。");
+				jAlert("请选择要通知的学员名单。");
 				return false;
 			}
 			jConfirm("确定要通知这些(" + selCount + "个)人参加培训吗？","确认",function(r){
@@ -184,6 +184,31 @@
 					$.post(uploadURL + "/public/send_message_class", {batchID: $("#searchStudentPreProjectID").val(), selList: selList, SMS:1, registerID: currUser} ,function(data){
 						jAlert("发送成功。");
 					});
+				}
+			});
+		});
+		
+		$("#btnStudentPreClass").click(function(){
+			getSelCart("visitstockchkPre");
+			if(selCount==0){
+				jAlert("请选择要编班的学员名单。");
+				return false;
+			}
+			jPrompt("请输入班级编号：", "", "目标班级",function(d){
+				d = d.replace(/\s*/g,"");
+				if(d > ""){
+					//alert($("#searchStudentPreProjectID").val() + "&status=1&host=" + $("#searchStudentPreHost").val() + "&keyID=" + selList);
+					//jAlert(selList);
+					$.post("studentCourseControl.asp?op=pick_students4class", {batchID: d, selList: selList} ,function(data){
+						//alert(data);
+						if(data>0){
+							jAlert("成功将" + data + "个学员编入班级。");
+						}else{
+							jAlert("操作失败，没有符合要求的学员。");
+						}
+					});
+				}else{
+					jAlert("班级编号不能为空。");
 				}
 			});
 		});
@@ -211,6 +236,7 @@
 		});
 
 		setHostPreChange();
+		$("#btnStudentPreCall").hide();
 	});
 
 	function getStudentPreList(){
@@ -307,7 +333,7 @@
 						arr.push("<td class='center'>&nbsp;</td>");
 					}
 					//if(ar1[15]==0 && ar1[23] > 0){
-						arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[1] + "' name='visitstockchkPre'>" + "</td>");
+						arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchkPre'>" + "</td>");
 					//}else{
 						//arr.push("<td class='center'>&nbsp;</td>");
 					//}

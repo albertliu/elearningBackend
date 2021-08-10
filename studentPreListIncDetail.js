@@ -36,6 +36,7 @@
 								<input class="button" type="button" id="btnStudentPreRefuse" value="剔除" />&nbsp;&nbsp;
 							</span>
 							<input class="button" type="button" id="btnStudentPreError" value="名单检查" />&nbsp;&nbsp;
+							<input class="button" type="button" id="btnStudentPreClass" value="编入班级" />
 							<input class="button" type="button" id="btnStudentPreCall" value="上课通知" />&nbsp;&nbsp;
 				        </form>
 							</div>
