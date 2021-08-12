@@ -82,7 +82,7 @@
 					arr.push('		</tr>');
 					arr.push('		<tr>');
 					arr.push('			<td><h3>考试时间：</h3></td>');
-					arr.push('			<td class="foot" colspan="3"><h3>' + val["startDate"] + '&nbsp;&nbsp;' + val["startTime"] + '</h3></td>');
+					arr.push('			<td class="foot" colspan="3"><h3>' + val["startDate"] + '</h3></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
 					arr.push('			<td><h3>考试地点：</h3></td>');
