@@ -231,7 +231,7 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='2%'>No</th>");
-			arr.push("<th width='8%'>身份证</th>");
+			arr.push("<th width='7%'>身份证</th>");
 			arr.push("<th width='6%'>姓名</th>");
 			if($("#searchEnterProjectID").val()>"" && $("#searchEnterShowPhoto").attr("checked")){
 				$.each(ar2,function(iNum1,val1){
@@ -241,9 +241,9 @@
 				});
 			}else{
 				if($("#searchEnterProjectID").val()>""){
-					arr.push("<th width='9%'>班级名称</th>");
+					arr.push("<th width='11%'>班级名称</th>");
 				}else{
-					arr.push("<th width='9%'>课程名称</th>");
+					arr.push("<th width='11%'>课程名称</th>");
 				}
 				if(currHost==""){
 					arr.push("<th width='7%'>公司</th>");
@@ -257,7 +257,7 @@
 				}
 			}
 			//arr.push("<th width='6%'>单位</th>");
-			arr.push("<th width='8%'>电话</th>");
+			arr.push("<th width='7%'>电话</th>");
 			arr.push("<th width='5%'>表</th>");
 			arr.push("<th width='5%'>模拟</th>");
 			if(role){
@@ -265,9 +265,9 @@
 			}else{
 				arr.push("<th width='5%'>缺</th>");
 			}
-			arr.push("<th width='6%'>学号</th>");
-			arr.push("<th width='5%'>申报</th>");
-			arr.push("<th width='5%'>准考</th>");
+			arr.push("<th width='7%'>学号</th>");
+			arr.push("<th width='5%'>准申</th>");
+			//arr.push("<th width='5%'>准考</th>");
 			arr.push("<th width='5%'>成绩</th>");
 			arr.push("<th width='5%'>补考</th>");
 			arr.push("<th width='2%'></th>");
@@ -322,7 +322,7 @@
 						if($("#searchEnterProjectID").val()>""){
 							arr.push("<td class='left'>" + ar1[52] + "</td>");
 						}else{
-							arr.push("<td class='left' title='" + ar1[62] + "'>" + ar1[62].substring(0,7) + "</td>");
+							arr.push("<td class='left' title='" + ar1[62] + "'>" + ar1[62].substring(0,9) + "</td>");
 						}	
 						if(currHost==""){
 							if(ar1[56]=="znxf"){	//非集团客户，显示自己的单位和部门
@@ -356,17 +356,18 @@
 					}
 					arr.push("<td class='left'>" + ar1[43] + "</td>");
 					/*申报*/
-					if(ar1[65]>0){
-						arr.push("<td class='center'>" + imgChk1 + "</td>");	//申报
+					if(ar1[65]>0 || ar1[53]>0){
+						arr.push("<td class='center'>" + imgChk1 + "</td>");	//申报/准考证
 					}else{
 						arr.push("<td class='center'>&nbsp;</td>");
 					}
+					/*
 					if(ar1[53]>0){
 						arr.push("<td class='center'>" + imgChk1 + "</td>");	//准考证
 					}else{
 						arr.push("<td class='center'>&nbsp;</td>");
 					}
-					/*
+					
 					if(ar1[64]>""){
 						arr.push("<td class='center'>" + imgChk1 + "</td>");	//证书
 					}else{
@@ -381,7 +382,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
-			arr.push("<th>&nbsp;</th>");
+			//arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");

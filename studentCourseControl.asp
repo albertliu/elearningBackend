@@ -155,18 +155,18 @@ if(op == "getStudentCourseList"){
 			where = s;
 		}
 	}
-	//未做准考证
+	//未做准考证/申报
 	if(String(Request.QueryString("passcard")) == "0"){
-		s = "passcardID=0";
+		s = "passcardID=0 and applyID=0";
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
 			where = s;
 		}
 	}
-	//已做准考证
+	//已做准考证/申报
 	if(String(Request.QueryString("passcard")) == "1"){
-		s = "passcardID>0";
+		s = "(passcardID>0 or applyID>0)";
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
