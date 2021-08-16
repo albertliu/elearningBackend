@@ -810,4 +810,11 @@ if(op == "doEnter"){
 	//Response.Write(escape(sql));
 }
 
+if(op == "closeStudentCourse"){
+	result = "";
+	sql = "exec closeStudentCourse '" + nodeID + "','" + currUser + "'";
+	execSQL(sql);
+	Response.Write(0);
+}
+
 %>

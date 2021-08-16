@@ -184,6 +184,18 @@
 				}
 			});
 		});
+
+		$("#btnCloseStudentCourse").click(function(){
+			jConfirm('确定要关闭这个学员的课程吗?', '确认对话框', function(r) {
+				if(r){
+					$.get("studentCourseControl.asp?op=closeStudentCourse&nodeID=" + $("#studentCourseID").val() + "&times=" + (new Date().getTime()),function(re){
+						jAlert("关闭成功。");
+						updateCount += 1;
+						getNodeInfo($("#studentCourseID").val());
+					});
+				}
+			});
+		});
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -468,6 +480,7 @@
 		$("#btnDel").hide();
 		$("#btnEntryform").hide();
 		$("#btnFiremanMaterials").hide();
+		$("#btnCloseStudentCourse").hide();
 		$("#btnPrint").hide();
 		if($("#status").val()==0 && $("#kindID").val()==0){
 			//未支付的个人付款可以支付，团体付款应到发票管理中操作。
@@ -483,13 +496,13 @@
 			$("#class1").show();
 			setEmpty();
 			$("#btnEnter").focus();
-		}
-		else{
+		}else{
 			if(checkPermission("studentAdd")){
 				//编辑状态：显示保存按钮；一定条件下可以退学、退款
 				$("#btnReturn").show();
 				$("#btnRefund").show();
 				$("#save").show();
+				$("#btnCloseStudentCourse").show();
 				if(!$("#materialCheck").attr("checked")){
 					$("#btnMaterialCheck").show();
 				}
@@ -661,6 +674,7 @@
 		<input class="button" type="button" id="btnReturn" value="退课" />&nbsp;
 		<input class="button" type="button" id="btnRefund" value="退款" />&nbsp;
 		<input class="button" type="button" id="btnDel" value="删除" />&nbsp;
+		<input class="button" type="button" id="btnCloseStudentCourse" value="关闭课程学习" />&nbsp;
   	</div>
 </div>
 </body>
