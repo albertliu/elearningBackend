@@ -184,6 +184,13 @@
 				$("#timetable").val(ar[18]);
 				$("#qty").val(ar[20]);
 				$("#summary").val(ar[25]);
+				$("#archiveDate").val(ar[24]);
+				$("#archiverName").val(ar[29]);
+				if(ar[24]>""){
+					$("#archived").prop("checked",true);
+				}else{
+					$("#archived").prop("checked",false);
+				}
 				var c = "";
 				if(ar[21] > ""){
 					c += "<a href='/users" + ar[21] + "' target='_blank'>报名清单</a>";
@@ -211,20 +218,21 @@
 			alert("请填写班级名称。");
 			return false;
 		}
-		$.post("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&className=" + escape($("#className").val()) + "&classroom=" + escape($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&adviserID=" + $("#adviserID").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val(), {"memo":$("#memo").val(), "summary":$("#summary").val()},function(re){
+		var photo = 0;
+		if($("#archived").prop("checked")){photo = 1;}
+		$.post("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&className=" + escape($("#className").val()) + "&classroom=" + escape($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&adviserID=" + $("#adviserID").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&archived=" + photo, {"memo":$("#memo").val(), "summary":$("#summary").val()},function(re){
 			//alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar[0] == 0){
 				if(op == 1){
 					op = 0;
-					nodeID = ar[0];
-					getNodeInfo(ar[0]);
+					nodeID = ar[1];
 				}
 				alert("保存成功！","信息提示");
+				getNodeInfo(ar[1]);
 				updateCount += 1;
-			}
-			if(ar[0] != 0){
+			}else{
 				alert("未能成功提交，请退出后重试。","信息提示");
 			}
 		});
@@ -347,9 +355,6 @@
 					合格<input type="text" class="readOnly" readOnly="true" id="qtyPass"  size="3" />
 				</td>
 				<td colspan="2">
-					<span id="photo" style="margin-left:10px;"></span>&nbsp;&nbsp;
-					<span id="refundList" style="margin-left:10px;"></span>&nbsp;&nbsp;
-					<span id="archive" style="margin-left:10px;"></span>
 				</td>
 			</tr>
 			<tr>
@@ -357,6 +362,16 @@
 				<td><select id="adviserID" style="width:180px;"></select></td>
 				<td align="right">上课地点</td>
 				<td><input type="text" id="classroom" size="25" /></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					资料归档<input style="border:0px;" type="checkbox" id="archived" value="" />&nbsp;&nbsp;<input class="readOnly" type="text" id="archiverName" size="8" readOnly="true" />&nbsp;&nbsp;<input class="readOnly" type="text" id="archiveDate" size="8" readOnly="true" />
+				</td>
+				<td colspan="2">
+					<span id="photo" style="margin-left:10px;"></span>&nbsp;&nbsp;
+					<span id="refundList" style="margin-left:10px;"></span>&nbsp;&nbsp;
+					<span id="archive" style="margin-left:10px;"></span>
+				</td>
 			</tr>
 			<tr>
 				<td align="right">课程安排</td>

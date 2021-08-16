@@ -35,7 +35,7 @@
 <script type="text/javascript" src="js/moment.min.js"></script>
 <script type="text/javascript" src="js/fullcalendar.min.js"></script>
 <script type="text/javascript" src="js/zh-cn.js"></script>
-<script src="js/jquery.alerts.js?v=1.0" type="text/javascript"></script>
+<script src="js/jquery.alerts.js?v=1.2" type="text/javascript"></script>
 <script src="js/datepicker/WdatePicker.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/ajax.js"></script>
 	<script type="text/javascript" src="js/tab-view.js"></script>

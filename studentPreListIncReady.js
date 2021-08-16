@@ -194,22 +194,27 @@
 				jAlert("请选择要编班的学员名单。");
 				return false;
 			}
-			jPrompt("请输入班级编号：", "", "目标班级",function(d){
-				d = d.replace(/\s*/g,"");
-				if(d > ""){
-					//alert($("#searchStudentPreProjectID").val() + "&status=1&host=" + $("#searchStudentPreHost").val() + "&keyID=" + selList);
-					//jAlert(selList);
-					$.post("studentCourseControl.asp?op=pick_students4class", {batchID: d, selList: selList} ,function(data){
-						//alert(data);
-						if(data>0){
-							jAlert("成功将" + data + "个学员编入班级。");
-						}else{
-							jAlert("操作失败，没有符合要求的学员。");
-						}
-					});
-				}else{
-					jAlert("班级编号不能为空。");
-				}
+			//jPrompt("请输入班级编号：", "", "目标班级",function(d){
+			$.get("classControl.asp?op=getClassListByProject&refID=" + $("#searchStudentPreProjectID").val(),function(data){
+				//alert(unescape(data));
+				var ar = $.parseJSON(unescape(data));
+				jSelect("请输入班级编号：", ar, "目标班级",function(d){
+					d = d.replace(/\s*/g,"");
+					if(d > ""){
+						//alert($("#searchStudentPreProjectID").val() + "&status=1&host=" + $("#searchStudentPreHost").val() + "&keyID=" + selList);
+						//jAlert(selList);
+						$.post("studentCourseControl.asp?op=pick_students4class", {batchID: d, selList: selList} ,function(data){
+							//alert(data);
+							if(data>0){
+								jAlert("成功将" + data + "个学员编入班级。");
+							}else{
+								jAlert("操作失败，没有符合要求的学员。");
+							}
+						});
+					}else{
+						jAlert("班级编号不能为空。");
+					}
+				});
 			});
 		});
 		

@@ -62,7 +62,7 @@ if(op == "getClassList"){
 		//13
 		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("className").value + "|" + rs("timetable").value + "|" + rs("phone").value + "|" + rs("qty").value;
 		//21
-		result += "|" + rs("fileArchive").value + "|" + rs("archiver").value + "|" + rs("archiveDate").value + "|" + rs("qtyApply").value + "|" + rs("qtyExam").value + "|" + rs("qtyPass").value;
+		result += "|" + rs("fileArchive").value + "|" + rs("archiver").value + "|" + rs("archiveDate").value + "|" + rs("qtyApply").value + "|" + rs("qtyExam").value + "|" + rs("qtyPass").value + "|" + rs("archiverName").value;
 		rs.MoveNext();
 	}
 /**/
@@ -83,7 +83,7 @@ if(op == "getNodeInfo"){
 		//18
 		result += "|" + rs("timetable").value + "|" + rs("phone").value + "|" + rs("qty").value + "|" + rs("filename").value;
 		//22
-		result += "|" + rs("fileArchive").value + "|" + rs("archiver").value + "|" + rs("archiveDate").value + "|" + rs("summary").value + "|" + rs("qtyApply").value + "|" + rs("qtyExam").value + "|" + rs("qtyPass").value;
+		result += "|" + rs("fileArchive").value + "|" + rs("archiver").value + "|" + rs("archiveDate").value + "|" + rs("summary").value + "|" + rs("qtyApply").value + "|" + rs("qtyExam").value + "|" + rs("qtyPass").value + "|" + rs("archiverName").value;
 		execSQL(sql);
 	}
 	rs.Close();
@@ -93,7 +93,7 @@ if(op == "getNodeInfo"){
 if(op == "update"){
 	result = 0;
 	if(result == 0){
-		sql = "exec updateClassInfo " + nodeID + ",'" + unescape(String(Request.QueryString("className"))) + "','" + String(Request.QueryString("certID")) + "','" + String(Request.QueryString("projectID")) + "','" + String(Request.QueryString("adviserID")) + "'," + kindID + "," + status + ",'" + String(Request.QueryString("dateStart")) + "','" + String(Request.QueryString("dateEnd")) + "','" + unescape(String(Request.QueryString("classroom"))) + "','" + unescape(String(Request.QueryString("timetable"))) + "','" + String(Request.Form("summary")) + "','" + String(Request.Form("memo")) + "','" + currUser + "'";
+		sql = "exec updateClassInfo " + nodeID + ",'" + unescape(String(Request.QueryString("className"))) + "','" + String(Request.QueryString("certID")) + "','" + String(Request.QueryString("projectID")) + "','" + String(Request.QueryString("adviserID")) + "'," + kindID + "," + status + ",'" + String(Request.QueryString("dateStart")) + "','" + String(Request.QueryString("dateEnd")) + "','" + unescape(String(Request.QueryString("classroom"))) + "','" + unescape(String(Request.QueryString("timetable"))) + "','" + String(Request.QueryString("archived")) + "','" + String(Request.Form("summary")) + "','" + String(Request.Form("memo")) + "','" + currUser + "'";
 
 		execSQL(sql);
 		if(nodeID == 0){
@@ -139,6 +139,20 @@ if(op == "getStudentListByClassID"){
 	}
 	result = result.substr(2);
 	Session(op) = ssql;
+	Response.Write(escape(result));/**/
+	//Response.Write(escape(sql));
+}	
+
+if(op == "getClassListByProject"){
+	sql = "SELECT classID,className FROM [dbo].[getClassListByProject]('" + refID + "') order by classID desc";;
+
+	result = "";
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += ',"' + rs("classID").value + '":"' + rs("className").value + '"';
+		rs.MoveNext();
+	}
+	result = "{" + result.substr(1) + "}";
 	Response.Write(escape(result));/**/
 	//Response.Write(escape(sql));
 }	

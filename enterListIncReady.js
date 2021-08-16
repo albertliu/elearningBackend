@@ -241,9 +241,9 @@
 				});
 			}else{
 				if($("#searchEnterProjectID").val()>""){
-					arr.push("<th width='10%'>班级名称</th>");
+					arr.push("<th width='9%'>班级名称</th>");
 				}else{
-					arr.push("<th width='10%'>课程名称</th>");
+					arr.push("<th width='9%'>课程名称</th>");
 				}
 				if(currHost==""){
 					arr.push("<th width='7%'>公司</th>");
@@ -266,7 +266,7 @@
 			}else{
 				arr.push("<th width='5%'>缺</th>");
 			}
-			arr.push("<th width='7%'>学号</th>");
+			arr.push("<th width='6%'>学号</th>");
 			arr.push("<th width='5%'>准申</th>");
 			arr.push("<th width='5%'>成绩</th>");
 			arr.push("<th width='5%'>补考</th>");

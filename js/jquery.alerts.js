@@ -59,7 +59,13 @@
 				if( callback ) callback(result);
 			});
 		},
-		
+		select: function(message, value, title, callback) {
+			if( title == null ) title = 'Select';
+			$.alerts._show(title, message, value, 'select', function(result) {
+				if( callback ) callback(result);
+			});
+		},
+
 		// Private methods
 		
 		_show: function(title, msg, value, type, callback) {
@@ -146,6 +152,33 @@
 					if( value ) $("#popup_prompt").val(value);
 					$("#popup_prompt").focus().select();
 				break;
+				case 'select':
+					var result = '';
+					for(var key in value){
+						//result+=('<option value="'+value[key].substr(0,value[key].lastIndexOf(','))+'">'+value[key].substr(value[key].lastIndexOf(',')+1,value[key].length)+'</option>');
+						result+=('<option value="'+ key +'">' + value[key] + '</option>');
+					}
+					$("#popup_message").append('<br /><select id="popup_select">'+result+'</select>').after('<div id="popup_panel"><input type="button" value="' + $.alerts.okButton + '" id="popup_ok" /> <input type="button" value="' + $.alerts.cancelButton + '" id="popup_cancel" /></div>');
+					$("#popup_select").width( $("#popup_message").width() );
+					$("#popup_ok").click( function() {
+						var val = $("#popup_select").val();
+						$.alerts._hide();
+						if( callback ){
+							callback( val );
+						};
+					});
+					$("#popup_cancel").click( function() {
+						$.alerts._hide();
+						if( callback ) callback( null );
+					});
+					$("#popup_select, #popup_ok, #popup_cancel").keypress( function(e) {
+						if( e.keyCode == 13 ) $("#popup_ok").trigger('click');
+						if( e.keyCode == 27 ) $("#popup_cancel").trigger('click');
+					});
+					
+					if( value ) $("#popup_select").val(value);
+					$("#popup_select").focus().select();
+				break;
 			}
 			
 			// Make draggable
@@ -229,6 +262,9 @@
 		
 	jPrompt = function(message, value, title, callback) {
 		$.alerts.prompt(message, value, title, callback);
+	};
+	jSelect = function(message, value, title, callback) {
+		$.alerts.select(message, value, title, callback);
 	};
 	
 })(jQuery);
