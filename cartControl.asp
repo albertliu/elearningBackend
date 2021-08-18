@@ -4,6 +4,7 @@
 
 if(op == "getCartList"){
 	var s = "";
+	where = "registerID='" + currUser + "'";
 	//如果有分类
 	if(kindID > ""){ // 
 		s = "kindID='" + kindID + "'";
@@ -84,7 +85,7 @@ if(op == "add2cart"){
 }
 
 if(op == "getCartCount"){
-	sql = "SELECT count(*) as count FROM cartBill where kindID='" + kindID + "'";
+	sql = "SELECT count(*) as count FROM cartBill where kindID='" + kindID + "' and registerID='" + currUser + "'";
 	rs = conn.Execute(sql);
 	if (!rs.EOF){
 		result =  rs("count").value;
@@ -115,7 +116,7 @@ if(op == "remove4cart"){
 }
 
 if(op == "emptyCart"){
-	sql = "exec setCartEmpty '" + kindID + "'";
+	sql = "exec setCartEmpty '" + kindID + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(0);
 }
