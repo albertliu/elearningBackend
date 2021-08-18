@@ -222,6 +222,7 @@
 		$("#btnDo").hide();
 		$("#btnRemove").hide();
 		$("#btnEmpty").hide();
+		$("#btnEmpty").prop("disabled",true);
 		if(checkPermission("studentAdd")){
 			$("#btnDo").show();
 			$("#btnRemove").show();

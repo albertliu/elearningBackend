@@ -185,6 +185,25 @@
 			});
 		});
 
+		$("#btnReturn").click(function(){
+			jPrompt("请输入退课原因：","","输入窗口",function(x){
+				if(x && x>""){
+					jConfirm("确实要退课吗？", "确认对话框",function(r){
+						if(r){
+							$.get("studentCourseControl.asp?op=doReturn&nodeID=" + $("#studentCourseID").val() + "&where=" + escape(x) + "&times=" + (new Date().getTime()),function(re){
+								var ar = unescape(re).split("|");
+								jAlert(ar[1]);
+								if(ar[0]==0){
+									updateCount += 1;
+									setButton();
+								}
+							});
+						}
+					});
+				}
+			});
+		});
+
 		$("#btnCloseStudentCourse").click(function(){
 			jConfirm('确定要关闭这个学员的课程吗?', '确认对话框', function(r) {
 				if(r){

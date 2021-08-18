@@ -735,6 +735,18 @@ if(op == "delNode"){
 	Response.Write(escape(result));
 }
 
+if(op == "doReturn"){
+	result = "";
+	sql = "exec returnEnter '" + nodeID + "','" + where + "','" + currUser + "'";
+	rs = conn.Execute(sql);
+	if (!rs.EOF){
+		result = rs("status").value + "|" + rs("msg").value;
+		execSQL(sql);
+	}
+	rs.Close();
+	Response.Write(escape(result));
+}
+
 if(op == "doStudentCourse_check"){
 	sql = "exec doStudentCourse_check " + status + ",'" + refID + "','" + keyID + "','" + host + "','" + currUser + "'";
 	execSQL(sql);
