@@ -157,6 +157,23 @@
 			window.open("class_archives.asp?nodeID=" + nodeID + "&keyID=1", "_self");
 		});
 
+		$("#btnSel").click(function(){
+			setSel("");
+		});
+		
+		$("#btnClassCall").click(function(){
+			getSelCart("visitstockchk");
+			if(selCount==0){
+				alert("请选择要通知的名单。");
+				return false;
+			}
+			if(confirm("确定要通知这" + selCount + "个学员参加培训吗？")){
+				$.post(uploadURL + "/public/send_message_class", {batchID: $("#classID").val(), selList: selList, SMS:1, registerID: currUser} ,function(data){
+					alert("发送成功。");
+				});
+			}
+		});
+
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -199,13 +216,109 @@
 				$("#photo").html(c);
 				$("#refundList").html("<a>退费清单</a>");
 				$("#archive").html("<a>班级档案</a>");
-				
+				getStudentList();
 				//getDownloadFile("classID");
 				setButton();
 			}else{
 				alert("该信息未找到！","信息提示");
 				setEmpty();
 			}
+		});
+	}
+
+	function getStudentList(){
+		//alert($("#classID").val());
+		$.get("studentCourseControl.asp?op=getStudentCourseList&classID=" + $("#classID").val() + "&times=" + (new Date().getTime()),function(data){
+			//alert(unescape(data));
+			var ar = new Array();
+			ar = (unescape(data)).split("%%");
+			$("#cover").empty();
+			var ar0 = new Array();
+			ar0 = ar.shift().split("|");
+			arr = [];		
+			arr.push("<div>" + ar.shift() + "</div>");					
+			arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='cardTab' width='100%'>");
+			arr.push("<thead>");
+			arr.push("<tr align='center'>");
+			arr.push("<th width='4%'>No</th>");
+			arr.push("<th width='11%'>身份证</th>");
+			arr.push("<th width='6%'>姓名</th>");
+			arr.push("<th width='6%'>学号</th>");
+			arr.push("<th width='13%'>单位</th>");
+			arr.push("<th width='10%'>电话</th>");
+			arr.push("<th width='5%'>模拟</th>");
+			arr.push("<th width='5%'>准申</th>");
+			arr.push("<th width='5%'>成绩</th>");
+			arr.push("<th width='5%'>补考</th>");
+			arr.push("<th width='4%'></th>");
+			arr.push("</tr>");
+			arr.push("</thead>");
+			arr.push("<tbody id='tbody'>");
+			if(ar>""){
+				var i = 0;
+				var c = 0;
+				var h = "";
+				var k = 0;
+				var s = $("#status").val();
+				var imgChk = "<img src='images/green_check.png'>";
+				$.each(ar,function(iNum,val){
+					var ar1 = new Array();
+					ar1 = val.split("|");
+					i += 1;
+					c = 0;
+					arr.push("<tr class='grade" + c + "'>");
+					arr.push("<td class='center'>" + i + "</td>");
+					arr.push("<td class='link1'><a href='javascript:showEnterInfo(" + ar1[0] + ",\"" + ar1[1] + "\",0,1);'>" + ar1[1] + "</a></td>");
+					arr.push("<td class='left'>" + ar1[2] + "</td>");
+					arr.push("<td class='left'>" + ar1[43] + "</td>");
+					if(ar1[56]=="znxf"){	//非集团客户，显示自己的单位和部门
+						arr.push("<td class='left'>" + ar1[54].substr(0,4) + "</td>");
+					}else{
+						arr.push("<td class='left'>" + ar1[12].substr(0,4) + "</td>");
+					}
+					arr.push("<td class='left'>" + ar1[69] + "</td>");
+					arr.push("<td class='left'>" + nullNoDisp(ar1[15]) + "</td>");
+					//申报
+					if(ar1[65]>0 || ar1[53]>0){
+						arr.push("<td class='center'>" + imgChk + "</td>");	//申报/准考证
+					}else{
+						arr.push("<td class='center'>&nbsp;</td>");
+					}
+					arr.push("<td class='left'>" + nullNoDisp(ar1[66].replace(".00","")) + "</td>");
+					arr.push("<td class='center'>" + nullNoDisp(ar1[68]) + "</td>");
+					arr.push("<td class='left'><input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[1] + "' name='visitstockchk'></td>");
+					arr.push("</tr>");
+				});
+			}
+			arr.push("</tbody>");
+			arr.push("<tfoot>");
+			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("</tr>");
+			arr.push("</tfoot>");
+			arr.push("</table>");
+			$("#cover").html(arr.join(""));
+			arr = [];
+			$('#cardTab').dataTable({
+				"aaSorting": [],
+				"bFilter": true,
+				"bPaginate": true,
+				"bLengthChange": true,
+				"aLengthMenu":[15,30,50,100,500],
+				"iDisplayLength": 500,
+				"bInfo": true,
+				"aoColumnDefs": []
+			});
 		});
 	}
 	
@@ -404,6 +517,17 @@
   	<input class="button" type="button" id="del" value="删除" />&nbsp;&nbsp;
 	<input class="button" type="button" id="doImportRef" value="石化预报名表" />
 	<input class="button" type="button" id="doImport" value="报名表导入" />
+
+	<div style="width:100%;float:left;margin:10;height:4px;"></div>
+	<div style="width:100%;float:left;margin:0;">
+		<div style="border:solid 1px #e0e0e0;width:99%;margin:5px;background:#ffffff;line-height:18px;padding-left:20px;">
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnSel" value="全选/取消" /></span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassCall" value="开课通知" /></span>
+		</div>
+	</div>
+	<hr size="1" noshadow />
+	<div id="cover" style="float:top;margin:3px;background:#f8fff8;">
+	</div>
   </div>
 </div>
 </body>
