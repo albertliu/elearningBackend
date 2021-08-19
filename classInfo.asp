@@ -241,11 +241,12 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='4%'>No</th>");
-			arr.push("<th width='11%'>身份证</th>");
+			arr.push("<th width='10%'>身份证</th>");
 			arr.push("<th width='6%'>姓名</th>");
 			arr.push("<th width='6%'>学号</th>");
 			arr.push("<th width='13%'>单位</th>");
-			arr.push("<th width='10%'>电话</th>");
+			arr.push("<th width='8%'>电话</th>");
+			arr.push("<th width='6%'>进度</th>");
 			arr.push("<th width='5%'>模拟</th>");
 			arr.push("<th width='5%'>准申</th>");
 			arr.push("<th width='5%'>成绩</th>");
@@ -272,11 +273,18 @@
 					arr.push("<td class='left'>" + ar1[2] + "</td>");
 					arr.push("<td class='left'>" + ar1[43] + "</td>");
 					if(ar1[56]=="znxf"){	//非集团客户，显示自己的单位和部门
-						arr.push("<td class='left'>" + ar1[54].substr(0,4) + "</td>");
+						arr.push("<td class='left'>" + ar1[54].substr(0,12) + "</td>");
 					}else{
-						arr.push("<td class='left'>" + ar1[12].substr(0,4) + "</td>");
+						arr.push("<td class='left'>" + ar1[12].substr(0,12) + "</td>");
 					}
 					arr.push("<td class='left'>" + ar1[69] + "</td>");
+					c = ar1[10];
+					if(c>0){
+						c = c + "%";
+					}else{
+						c = "";
+					}
+					arr.push("<td class='center'>" + c + "</td>");	//学习进度
 					arr.push("<td class='left'>" + nullNoDisp(ar1[15]) + "</td>");
 					//申报
 					if(ar1[65]>0 || ar1[53]>0){
@@ -293,6 +301,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
