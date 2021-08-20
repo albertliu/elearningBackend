@@ -260,7 +260,7 @@
 			arr.push("<th width='7%'>电话</th>");
 			arr.push("<th width='5%'>表</th>");
 			arr.push("<th width='5%'>模拟</th>");
-			arr.push("<th width='5%'>进度</th>");
+			arr.push("<th width='5%'>进度%</th>");
 			if(role){
 				arr.push("<th width='6%'>次数</th>");
 			}else{
@@ -346,7 +346,7 @@
 					arr.push("<td class='left'>" + nullNoDisp(ar1[15]) + "</td>");
 					c = ar1[10];
 					if(c>0){
-						c = c + "%";
+						c = c;
 					}else{
 						c = "";
 					}
