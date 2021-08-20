@@ -432,7 +432,7 @@
 		$("#status").val(0);
 		$("#kindID").val(0);
 		$("#classroom").val("黄兴路158号D103");
-		$("#dateStart").val(addDays(currDate,3));
+		$("#dateStart").val(addDays(currDate,3) + " 8:30");
 		$("#dateEnd").val("");
 		$("#regDate").val(currDate);
 		$("#registerID").val(currUser);
