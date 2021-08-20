@@ -246,7 +246,7 @@
 			arr.push("<th width='6%'>学号</th>");
 			arr.push("<th width='13%'>单位</th>");
 			arr.push("<th width='8%'>电话</th>");
-			arr.push("<th width='6%'>进度</th>");
+			arr.push("<th width='6%'>进度%</th>");
 			arr.push("<th width='5%'>模拟</th>");
 			arr.push("<th width='5%'>准申</th>");
 			arr.push("<th width='5%'>成绩</th>");
@@ -280,7 +280,7 @@
 					arr.push("<td class='left'>" + ar1[69] + "</td>");
 					c = ar1[10];
 					if(c>0){
-						c = c + "%";
+						c = c;
 					}else{
 						c = "";
 					}
