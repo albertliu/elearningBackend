@@ -47,11 +47,12 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
-			arr.push("<th width='8%'>编号</th>");
-			arr.push("<th width='20%'>班级名称</th>");
+			arr.push("<th width='6%'>编号</th>");
+			arr.push("<th width='18%'>班级名称</th>");
 			arr.push("<th width='8%'>开课日期</th>");
 			arr.push("<th width='8%'>结束日期</th>");
 			arr.push("<th width='7%'>班主任</th>");
+			arr.push("<th width='8%'>开课通知</th>");
 			arr.push("<th width='8%'>归档日期</th>");
 			arr.push("<th width='6%'>状态</th>");
 			arr.push("<th width='6%'>人数</th>");
@@ -75,9 +76,10 @@
 					arr.push("<td class='center'>" + i + "</td>");
 					arr.push("<td class='link1'><a href='javascript:showClassInfo(" + ar1[0] + ",0,0,1);'>" + ar1[1] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[17] + "</td>");
-					arr.push("<td class='left'>" + ar1[10] + "</td>");
+					arr.push("<td class='left'>" + ar1[10].substring(0,10) + "</td>");
 					arr.push("<td class='left'>" + ar1[11] + "</td>");
 					arr.push("<td class='left'>" + ar1[9] + "</td>");
+					arr.push("<td class='left'>" + ar1[29] + "</td>");
 					arr.push("<td class='left'>" + ar1[23] + "</td>");
 					if(ar1[6]==0){
 						arr.push("<td class='center'>&nbsp;</td>");
@@ -90,7 +92,7 @@
 					arr.push("<td class='left'>" + nullNoDisp(ar1[26]) + "</td>");
 					var x = ar1[20];
 					if(x > 0 && ar1[26] > 0){
-						x = (ar1[26]*100/ar1[20]).toFixed(2) + "%";
+						x = (ar1[26]*100/ar1[20]).toFixed(2);
 					}else{
 						x = "";
 					}
@@ -101,6 +103,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");

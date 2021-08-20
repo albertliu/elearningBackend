@@ -39,7 +39,7 @@
 		getComList("projectID","projectInfo","projectID","projectName","status=1 order by projectID desc",1);
 		getComList("adviserID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='adviser') order by realName",1);
 		getDicList("planStatus","status",0);
-		$("#dateStart").click(function(){WdatePicker();});
+		$("#dateStart").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'});});
 		$("#dateEnd").click(function(){WdatePicker();});
 		
 		$.ajaxSetup({ 
@@ -169,6 +169,7 @@
 			}
 			if(confirm("确定要通知这" + selCount + "个学员参加培训吗？")){
 				$.post(uploadURL + "/public/send_message_class", {batchID: $("#classID").val(), selList: selList, SMS:1, registerID: currUser} ,function(data){
+					getNodeInfo(nodeID);
 					alert("发送成功。");
 				});
 			}
@@ -200,9 +201,13 @@
 				$("#className").val(ar[17]);
 				$("#timetable").val(ar[18]);
 				$("#qty").val(ar[20]);
+				$("#qtyPass").val(ar[28]);
 				$("#summary").val(ar[25]);
 				$("#archiveDate").val(ar[24]);
 				$("#archiverName").val(ar[29]);
+				$("#send").val(ar[30]);
+				$("#sendDate").val(ar[31]);
+				$("#senderName").val(ar[32]);
 				if(ar[24]>""){
 					$("#archived").prop("checked",true);
 				}else{
@@ -505,6 +510,14 @@
 					<div class="comm" align="center"><input class="button" type="button" id="btnSummary" value="..." /></div>
 				</td><input id="memo" type="hidden" />
 				<td colspan="5"><textarea id="summary" style="padding:2px;" rows="5" cols="75"></textarea></td>
+			</tr>
+			<tr>
+				<td align="right">开课通知</td>
+				<td colspan="5">
+					次数&nbsp;<input class="readOnly" type="text" id="send" size="2" readOnly="true" />&nbsp;&nbsp;
+					日期&nbsp;<input class="readOnly" type="text" id="sendDate" size="6" readOnly="true" />&nbsp;&nbsp;
+					发送人&nbsp;<input class="readOnly" type="text" id="senderName" size="5" readOnly="true" />&nbsp;&nbsp;
+				</td>
 			</tr>
 			<tr>
 				<td align="right">登记人</td>

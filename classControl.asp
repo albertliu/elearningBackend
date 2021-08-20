@@ -63,6 +63,8 @@ if(op == "getClassList"){
 		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("className").value + "|" + rs("timetable").value + "|" + rs("phone").value + "|" + rs("qty").value;
 		//21
 		result += "|" + rs("fileArchive").value + "|" + rs("archiver").value + "|" + rs("archiveDate").value + "|" + rs("qtyApply").value + "|" + rs("qtyExam").value + "|" + rs("qtyPass").value + "|" + rs("archiverName").value;
+		//28
+		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value;
 		rs.MoveNext();
 	}
 /**/
@@ -84,6 +86,8 @@ if(op == "getNodeInfo"){
 		result += "|" + rs("timetable").value + "|" + rs("phone").value + "|" + rs("qty").value + "|" + rs("filename").value;
 		//22
 		result += "|" + rs("fileArchive").value + "|" + rs("archiver").value + "|" + rs("archiveDate").value + "|" + rs("summary").value + "|" + rs("qtyApply").value + "|" + rs("qtyExam").value + "|" + rs("qtyPass").value + "|" + rs("archiverName").value;
+		//30
+		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value;
 		execSQL(sql);
 	}
 	rs.Close();
