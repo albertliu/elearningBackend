@@ -259,7 +259,7 @@
 			//arr.push("<th width='6%'>单位</th>");
 			arr.push("<th width='7%'>电话</th>");
 			arr.push("<th width='5%'>表</th>");
-			arr.push("<th width='5%'>模拟</th>");
+			arr.push("<th width='5%'>练习</th>");
 			arr.push("<th width='5%'>进度%</th>");
 			if(role){
 				arr.push("<th width='6%'>次数</th>");

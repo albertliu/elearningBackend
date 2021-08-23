@@ -268,17 +268,18 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'></th>");
-			arr.push("<th width='5%'>学号</th>");
-			arr.push("<th width='10%'>身份证</th>");
-			arr.push("<th width='6%'>姓名</th>");
+			arr.push("<th width='4%'>学号</th>");
+			arr.push("<th width='9%'>身份证</th>");
+			arr.push("<th width='7%'>姓名</th>");
 			//arr.push("<th width='6%'>别</th>");
 			arr.push("<th width='10%'>部门</th>");
-			arr.push("<th width='8%'>电话</th>");
+			arr.push("<th width='6%'>电话</th>");
 			arr.push("<th width='7%'>岗位</th>");
 			//arr.push("<th width='7%'>备注</th>");
 			arr.push("<th width='11%'>确认</th>");
-			arr.push("<th width='8%'>班级编号</th>");
+			arr.push("<th width='6%'>班级</th>");
 			arr.push("<th width='7%'>练习</th>");
+			arr.push("<th width='6%'>进度%</th>");
 			arr.push("<th width='6%'>成绩</th>");
 			arr.push("<th width='6%'>准考</th>");
 			arr.push("<th width='6%'>补考</th>");
@@ -325,6 +326,13 @@
 						s = nullNoDisp(ar1[7]) + " * " + nullNoDisp(ar1[27]);
 					}
 					arr.push("<td class='right'>" + s + "</td>");
+					var j = ar1[29];
+					if(j>0){
+						j = j;
+					}else{
+						j = "";
+					}
+					arr.push("<td class='center'>" + j + "</td>");	//学习进度
 					arr.push("<td class='center'>" + nullNoDisp(ar1[11].replace(".00","")) + "</td>");
 					if(ar1[28]>0){
 						arr.push("<td class='center'>" + imgChk1 + "</td>");	//准考证
