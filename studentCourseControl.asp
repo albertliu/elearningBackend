@@ -189,7 +189,7 @@ if(op == "getStudentCourseList"){
 	}
 	sql = " FROM v_studentCourseList " + where;
 	result = getBasketTip(sql,"");
-	ssql = "SELECT SNo,username,name,sexName,age,educationName,(case when host='znxf' then unit else hostName end),(case when host='znxf' then dept else dept1Name end),(case when host='znxf' then '' else dept2Name end),job,mobile,phone,checkName,projectID+projectName,classID,statusName,price,pay_typeName,pay_kindName,datePay,invoice,(case when diploma_score=0 then '' else cast(diploma_score as varchar) end),diplomaID,diploma_startDate,diploma_endDate,memo,regDate" + sql + " order by projectID,SNo";
+	ssql = "SELECT SNo,username,name,sexName,age,educationName,(case when host='znxf' then unit else hostName end),(case when host='znxf' then dept else dept1Name end),(case when host='znxf' then '' else dept2Name end),job,mobile,phone,checkName,projectID+projectName,classID,statusName,price,pay_typeName,pay_kindName,datePay,invoice,completion,(case when diploma_score=0 then '' else cast(diploma_score as varchar) end),diplomaID,diploma_startDate,diploma_endDate,memo,regDate" + sql + " order by projectID,SNo";
 	sql = "SELECT top " + basket + " *,[dbo].[getMissingItems](ID) as missingItems" + sql + " order by ID desc";
 	
 	rs = conn.Execute(sql);
@@ -359,7 +359,7 @@ if(op == "getStudentListByProject"){
 	}
 	sql = " FROM v_studentCourseList" + where;
 	result = getBasketTip(sql,"");
-	ssql = "SELECT ID,username,name,educationName,dept1Name,dept2Name,job,mobile,memo,examScore,score,checkDate,checkerName,submitDate,submiterName" + sql + " order by dept2Name,ID";
+	ssql = "SELECT ID,username,name,educationName,dept1Name,dept2Name,job,mobile,memo,completion,examScore,score,checkDate,checkerName,submitDate,submiterName" + sql + " order by dept2Name,ID";
 	sql = "SELECT top " + basket + " *" + sql + " order by ID";
 	
 	rs = conn.Execute(sql);
