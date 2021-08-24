@@ -272,6 +272,11 @@
 			floatItem = p3;
 			sql = "select name,sexName,educationName,username,mobile,unit,dept1Name from v_applyInfo where refID=" + p1 + " order by passNo,ID";
 		}
+		if(id=='x06'){
+			p = "getDiplomaIssueList3rd";
+			floatModel = 5;
+			sql = "select a.name,(case when a.host='znxf' then a.unit else a.dept1Name end) as dept1Name,a.diplomaID,a.username,a.mobile,a.educationName from v_diplomaInfo a, v_generateApplyInfo b where a.batchID=b.ID and a.certID=b.certID and a.batchID=" + p1 + " order by a.dept1Name,a.diplomaID";
+		}
 		setSession(p, sql);
 		setSession("dk" + id, p);
 		setSession("dk" + id + "_count", 60);

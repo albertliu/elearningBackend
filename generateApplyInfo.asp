@@ -152,6 +152,9 @@
 			//alert(nodeID+$("#courseName").val()+$("#reexamineName").val());
 			outputExcelBySQL('x05','file',nodeID,$("#courseName").val(),$("#reexamineName").val());
 		});
+		$("#diplomaSign").click(function(){
+			outputExcelBySQL('x06','file',nodeID,0,0);
+		});
 		$("#courseID").change(function(){
 			var c = $("#courseID").find("option:selected").text();
 			if($("#startDate").val()>"" && c > ""){
@@ -230,12 +233,16 @@
 				$("#senderScoreName").val(ar[20]);
 				$("#reexamineName").val(ar[24]);
 				$("#list").html("<a href=''>申报名单</a>");
+				$("#diplomaSign").html("<a href=''>证书签收单</a>");
 				if(ar[7] > ""){
 					$("#sign").html("<a href='/users" + ar[7] + "' target='_blank'>申报结果</a>");
 				}
 				if(ar[17] > ""){
 					$("#scoreResult").html("<a href='/users" + ar[17] + "' target='_blank'>成绩单</a>");
-				}
+                    $("#diplomaSign").show();
+				}else{
+                    $("#diplomaSign").hide();
+                }
 				//getDownloadFile("generateDiplomaID");
 				nodeID = ar[0];
 				setButton();
@@ -429,7 +436,7 @@
 		$("#title").val("");
 		$("#startDate").val(currDate);
 		$("#qty").val(0);
-		$("#address").val("");
+		$("#address").val("黄兴路158号D103");
 	}
 	
 	function getUpdateCount(){
@@ -467,6 +474,7 @@
 					<span id="list" style="margin-left:10px;"></span>
 					<span id="sign" style="margin-left:10px;"></span>
 					<span id="scoreResult" style="margin-left:10px;"></span>
+					<span id="diplomaSign" style="margin-left:10px;"></span>
 				</td>
 			</tr>
 			<tr>
