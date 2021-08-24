@@ -275,7 +275,7 @@
 		if(id=='x06'){
 			p = "getDiplomaIssueList3rd";
 			floatModel = 5;
-			sql = "select a.name,(case when a.host='znxf' then a.unit else a.dept1Name end) as dept1Name,a.diplomaID,a.username,a.mobile from v_diplomaInfo a, v_generateApplyInfo b where a.batchID=b.ID and a.certID=b.certID and a.batchID=" + p1 + " order by a.dept1Name,a.diplomaID";
+			sql = "select a.name,(case when a.host='znxf' then a.unit else a.dept1Name end) as dept1Name,a.diplomaID,a.mobile from v_diplomaInfo a, v_generateApplyInfo b where a.batchID=b.ID and a.certID=b.certID and a.batchID=" + p1 + " order by a.dept1Name,a.diplomaID";
 		}
 		setSession(p, sql);
 		setSession("dk" + id, p);
