@@ -84,6 +84,27 @@
 			});
 		});
 
+		$("#sendMsgDiploma").click(function(){
+			getSelCart("");
+			if(selCount==0){
+				jAlert("请选择要通知的人员。");
+				return false;
+			}
+			jConfirm("确定通知这些人领证吗？","确认",function(r){
+				if(r){
+					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
+					$.post(uploadURL + "/public/send_message_diploma_apply?SMS=1&batchID=" + nodeID + "&registerID=" + currUser,{"selList":selList} ,function(data){
+						if(data>""){
+							jAlert("通知发送成功。");
+							getNodeInfo(nodeID);
+						}else{
+							jAlert("没有可供处理的数据。");
+						}
+					});
+				}
+			});
+		});
+
 		$("#save").click(function(){
 			saveNode();
 		});
@@ -392,6 +413,7 @@
 		$("#doImportScore").hide();
 		$("#sendMsgExam").hide();
 		$("#sendMsgScore").hide();
+		$("#sendMsgDiploma").hide();
 		$("#btnRemove").hide();
 		$("#btnResit").hide();
 		$("#s_needResit").hide();
@@ -415,6 +437,7 @@
 				if(s==2){
 					//结束后什么都不能做
 					$("#sendMsgScore").show();
+					$("#sendMsgDiploma").show();
 					$("#btnResit").show();
 					$("#s_needResit").show();
 				}
@@ -543,7 +566,8 @@
 			<span id="s_needResit"><input style="border:0px;" type="checkbox" id="needResit" value="" />&nbsp;需补考&nbsp;</span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnSel" value="全选/取消" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnRemove" value="移出名单" /></span>
-			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnResit" value="加入补考购物车" /></span>
+            <span>&nbsp;&nbsp;<input class="button" type="button" id="btnResit" value="加入补考购物车" /></span>
+            <span>&nbsp;&nbsp;<input class="button" type="button" id="sendMsgDiploma" value="领证通知" /></span>
 		</div>
 	</div>
 	<hr size="1" noshadow />
