@@ -354,7 +354,7 @@
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
 					arr.push("<td class='left'>" + ar1[17] + "</td>");
 					arr.push("<td class='left'>" + ar1[18] + "</td>");
-					arr.push("<td class='left'>" + ar1[7] + "</td>");
+					arr.push("<td class='left'>" + ar1[19] + "</td>");
 					arr.push("<td class='left'>" + ar1[9] + "</td>");
 					if(ar1[7]>0){
 						arr.push("<td class='center'>" + imgChk + "</td>");	//补考
@@ -433,6 +433,9 @@
 					$("#save").show();
 					$("#doImportApply").show();
 					$("#sendMsgExam").show();
+                    if($("#sign").html()>""){
+                        $("#btnResit").show();
+                    }
 				}
 				if(s==2){
 					//结束后什么都不能做

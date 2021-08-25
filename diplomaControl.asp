@@ -942,6 +942,8 @@ if(op == "getApplyListByBatch"){
 		result += "|" + rs("resit").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value;
 		//13
 		result += "|" + rs("unit").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value + "|" + rs("statusApply").value + "|" + rs("statusApplyName").value + "|" + rs("examDate").value;
+		//19
+		result += "|" + rs("score").value;
 		rs.MoveNext();
 	}
 	rs.Close();
