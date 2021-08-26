@@ -164,6 +164,18 @@
 				$("#title").val(c + $("#startDate").val());
 			}
 		});
+		$("#kindID").change(function(){
+            //alert($("#certID").val() + ":" + $("#kindID").val());
+            $.get("diplomaControl.asp?op=getLastExamAddress&refID=" + $("#certID").val() + "&kindID=" + $("#kindID").val() + "&times=" + (new Date().getTime()),function(re){
+                //alert(unescape(re));
+                var ar = new Array();
+                ar = unescape(re).split("|");
+                if(ar > ""){
+                    $("#address").val(ar[0]);
+                    $("#notes").val(ar[1]);
+                }
+            });
+		});
 		$("#btnSearch").click(function(){
 			getPasscardList();
 		});

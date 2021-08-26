@@ -181,6 +181,14 @@
 			if($("#startDate").val()>"" && c > ""){
 				$("#title").val(c + $("#startDate").val());
 			}
+            $.get("diplomaControl.asp?op=getLastApplyAddress&refID=" + $("#courseID").val() + "&times=" + (new Date().getTime()),function(re){
+                //alert(unescape(re));
+                var ar = new Array();
+                ar = unescape(re).split("|");
+                if(ar > ""){
+                    $("#address").val(ar[0]);
+                }
+            });
 		});
 		$("#btnSearch").click(function(){
 			getApplyList();

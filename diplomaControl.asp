@@ -996,4 +996,26 @@ if(op == "closeGenerateApply"){
 	Response.Write(nodeID);
 }
 
+if(op == "getLastExamAddress"){
+	sql = "select top 1 address, notes from v_generatePasscardInfo where certID='" + refID + "' and kindID=" + kindID + " order by ID desc";
+	rs = conn.Execute(sql);
+	if(!rs.EOF){
+		result = rs("address").value + "|" + rs("notes").value;
+	}
+	rs.Close();
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}
+
+if(op == "getLastApplyAddress"){
+	sql = "select top 1 address from v_generateApplyInfo where courseID='" + refID + "' order by ID desc";
+	rs = conn.Execute(sql);
+	if(!rs.EOF){
+		result = rs("address").value;
+	}
+	rs.Close();
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}
+
 %>
