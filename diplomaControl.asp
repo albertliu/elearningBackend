@@ -680,6 +680,37 @@ if(op == "getPasscardListByExam"){
 	Response.Write(escape(result));
 }	
 
+if(op == "getPasscardExamList"){
+	result = "";
+	var s = "";
+	//如果有考试场次
+	if(refID > ""){ // 
+		s = "a.refID=" + refID;
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+
+	sql = " FROM v_passcardInfo a, v_studentExamList b where a.ID=b.refID and " + where;
+	sql = "SELECT a.ID,a.username,a.name,a.SNo,a.unit,a.dept1Name,a.dept2Name,a.mobile, b.score, b.status,b.statusName,b.startDate,b.endDate,b.secondRest/60 as secondRest" + sql + " order by passNo, ID";
+	
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("ID").value + "|" + rs("username").value + "|" + rs("name").value + "|" + rs("mobile").value;
+		//4
+		result += "|" + rs("score").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("startDate").value + "|" + rs("endDate").value + "|" + rs("secondRest").value;
+		//10
+		result += "|" + rs("unit").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value + "|" + rs("SNo").value;
+		rs.MoveNext();
+	}
+	rs.Close();
+	result = result.substr(2);
+	Response.Write(escape(result));
+    //Response.Write(escape(sql));
+}	
+
 if(op == "getGeneratePasscardNodeInfo"){
 	result = "";
 	sql = "SELECT * FROM v_generatePasscardInfo where ID=" + nodeID;

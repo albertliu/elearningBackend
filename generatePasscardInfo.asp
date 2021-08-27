@@ -179,6 +179,9 @@
 		$("#btnSearch").click(function(){
 			getPasscardList();
 		});
+		$("#examStatus").click(function(){
+			getPasscardExamList();
+		});
 
 		$("#btnSel").click(function(){
 			setSel("");
@@ -436,6 +439,83 @@
 			});
 		});
 	}
+
+	function getPasscardExamList(){
+		$.get("diplomaControl.asp?op=getPasscardExamList&refID=" + nodeID + "&times=" + (new Date().getTime()),function(data){
+			//jAlert(unescape(data));
+			var ar = new Array();
+			ar = (unescape(data)).split("%%");
+			$("#cover").empty();
+			arr = [];		
+			arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='cardTab' width='100%'>");
+			arr.push("<thead>");
+			arr.push("<tr align='center'>");
+			arr.push("<th width='4%'>No</th>");
+			arr.push("<th width='13%'>身份证</th>");
+			arr.push("<th width='8%'>姓名</th>");
+			arr.push("<th width='11%'>电话</th>");
+			arr.push("<th width='8%'>成绩</th>");
+			arr.push("<th width='8%'>状态</th>");
+			arr.push("<th width='12%'>开始时间</th>");
+			arr.push("<th width='10%'>剩余时间</th>");
+			arr.push("<th width='12%'>交卷时间</th>");
+			arr.push("</tr>");
+			arr.push("</thead>");
+			arr.push("<tbody id='tbody'>");
+			if(ar>""){
+				var i = 0;
+				var c = 0;
+				var h = "";
+				var k = 0;
+				var s = $("#status").val();
+				var imgChk = "<img src='images/green_check.png'>";
+				$.each(ar,function(iNum,val){
+					var ar1 = new Array();
+					ar1 = val.split("|");
+					i += 1;
+					c = 0;
+					arr.push("<tr class='grade" + c + "'>");
+					arr.push("<td class='center'>" + i + "</td>");
+					arr.push("<td class='left'>" + ar1[1] + "</td>");
+					arr.push("<td class='left'>" + ar1[2] + "</td>");
+					arr.push("<td class='left'>" + ar1[3] + "</td>");
+					arr.push("<td class='left'>" + ar1[4] + "</td>");
+					arr.push("<td class='left'>" + ar1[6] + "</td>");
+					arr.push("<td class='left'>" + ar1[7] + "</td>");
+					arr.push("<td class='left'>" + ar1[9] + "分钟</td>");
+					arr.push("<td class='left'>" + ar1[8] + "</td>");
+					arr.push("</tr>");
+				});
+			}
+			arr.push("</tbody>");
+			arr.push("<tfoot>");
+			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("</tr>");
+			arr.push("</tfoot>");
+			arr.push("</table>");
+			$("#cover").html(arr.join(""));
+			arr = [];
+			$('#cardTab').dataTable({
+				"aaSorting": [],
+				"bFilter": true,
+				"bPaginate": true,
+				"bLengthChange": true,
+				"aLengthMenu":[15,30,50,100,500],
+				"iDisplayLength": 500,
+				"bInfo": true,
+				"aoColumnDefs": []
+			});
+		});
+	}
 	
 	function pickerChange(){
 		if($("#startDate").val()>""){
@@ -457,6 +537,7 @@
 		$("#btnRemove").hide();
 		$("#btnResit").hide();
 		$("#s_needResit").hide();
+		$("#examStatus").hide();
 		$("#startNo").prop("disabled",true);
 		if(op==1){
 			setEmpty();
@@ -489,6 +570,9 @@
 			}
 			if(checkPermission("examOpen") && s > 0){
 				$("#open").show();
+			}
+			if($("#kindID").val()==1){
+				$("#examStatus").show();
 			}
 		}
 	}
@@ -596,6 +680,7 @@
 		<input class="button" type="button" id="lock" value="锁定" />&nbsp;
 		<input class="button" type="button" id="close" value="结束" />&nbsp;
 		<input class="button" type="button" id="open" value="开启" />&nbsp;
+		<input class="button" type="button" id="examStatus" value="考试情况" />&nbsp;
   	</div>
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
 	<div style="width:100%;float:left;margin:0;">
