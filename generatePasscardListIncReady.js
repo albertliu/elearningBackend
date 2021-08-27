@@ -71,6 +71,7 @@
 			if(ar>""){
 				var i = 0;
 				var c = 0;
+				var k = "";
 				var h = "";
 				var imgChk = "<img src='images/printer1.png'>";
 				var imgChk1 = "<img src='images/green_check.png'>";
@@ -82,7 +83,11 @@
 					arr.push("<td class='center'>" + i + "</td>");
 					arr.push("<td class='link1'><a href='javascript:showGeneratePasscardInfo(" + ar1[0] + ",0,0,1);'>" + ar1[3] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[8] + "</td>");
-					arr.push("<td class='left'>" + ar1[27] + "</td>");
+					k = ar1[27];
+					if(k=="线下"){
+						k = "";
+					}
+					arr.push("<td class='left'>" + k + "</td>");
 					arr.push("<td class='left'>" + ar1[4] + "</td>");
 					if(ar1[19]==''){
 						arr.push("<td class='center'>&nbsp;</td>");
