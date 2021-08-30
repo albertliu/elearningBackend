@@ -30,6 +30,7 @@
 	var op = 0;
 	var updateCount = 0;
 	var address = "";
+    var certID = "";
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";		//
@@ -261,6 +262,7 @@
 				$("#sendScoreDate").val(ar[19]);
 				$("#senderScoreName").val(ar[20]);
 				$("#reexamineName").val(ar[24]);
+				certID = ar[31];
 				$("#list").html("<a href=''>申报名单</a>");
 				$("#diplomaSign").html("<a href=''>证书签收单</a>");
 				if(ar[7] > ""){
@@ -362,7 +364,11 @@
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
 					arr.push("<td class='left'>" + ar1[17] + "</td>");
 					arr.push("<td class='left'>" + ar1[18] + "</td>");
-					arr.push("<td class='left'>" + ar1[19] + "</td>");
+                    h = ar1[19];
+                    if(certID=="C12"){
+                        h = ar1[20] + "/" + ar1[21];
+                    }
+					arr.push("<td class='left'>" + h + "</td>");
 					arr.push("<td class='left'>" + ar1[9] + "</td>");
 					if(ar1[7]>0){
 						arr.push("<td class='center'>" + imgChk + "</td>");	//补考

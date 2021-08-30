@@ -175,6 +175,9 @@
                     $("#notes").val(ar[1]);
                 }
             });
+            if($("#photo").html()>""){
+                jAlert("如果改变考试类型，请重新生成准考证。");
+            }
 		});
 		$("#btnSearch").click(function(){
 			getPasscardList();
@@ -253,7 +256,6 @@
 						$("#scoreResult").html("<a href='/users" + ar[19] + "' target='_blank'>成绩单</a>");
 					}
 				}
-				if(c == ""){c = "&nbsp;&nbsp;还未生成";}
 				$("#photo").html(c);
 				//getDownloadFile("generateDiplomaID");
 				nodeID = ar[0];
