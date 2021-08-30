@@ -29,6 +29,7 @@
 	var nodeID = 0;
 	var refID = "";
 	var updateCount = 1;
+    var certID = "";
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";		//ID
@@ -61,6 +62,7 @@
 				$("#summary").html(ar[25].replace(/\n/g,"<br/>"));
 				$("#qtyExam").html(nullNoDisp(ar[27]));
 				$("#qtyPass").html(nullNoDisp(ar[28]));
+                certID = ar[3];
 				x = ar[27];
 				if(x > 0 && ar[28] > 0){
 					x = (ar[28]*100/ar[27]).toFixed(2) + "&nbsp;%";
@@ -84,6 +86,7 @@
 		$.get("classControl.asp?op=getStudentListByClassID&refID=" + refID + "&times=" + (new Date().getTime()),function(data){
 			//alert(unescape(data));
 			var ar = new Array();
+            var h = 0;
 			ar = (unescape(data)).split("%%");
 			$("#studentCover").empty();
 			arr = [];			
@@ -139,7 +142,11 @@
 					arr.push("<td align='center'>" + ar1[1] + "</td>");
 					arr.push("<td align='center'>" + ar1[2] + "</td>");
 					arr.push("<td align='center'>" + ar1[0] + "</td>");
-					arr.push("<td align='center'>" + ar1[7] + "</td>");
+                    h = ar1[7];
+                    if(certID=="C12"){
+                        h = ar1[10].replace(".00","") + "/" + ar1[11].replace(".00","");
+                    }
+					arr.push("<td align='center'>" + h + "</td>");
 					arr.push("<td align='center'>" + ar1[9] + "</td>");
 					arr.push("<td align='center'>" + ar1[8] + "</td>");
 					arr.push("</tr>");

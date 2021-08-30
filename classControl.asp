@@ -139,6 +139,8 @@ if(op == "getStudentListByClassID"){
 		result += "%%" + rs("username").value + "|" + rs("name").value + "|" + rs("sexName").value + "|" + rs("age").value + "|" + rs("SNo").value;
 		//5
 		result += "|" + rs("mobile").value + "|" + rs("unit1").value + "|" + rs("score").value + "|" + rs("diploma_startDate").value + "|" + rs("diplomaID").value;
+		//10
+		result += "|" + rs("score1").value + "|" + rs("score2").value;
 		rs.MoveNext();
 	}
 	result = result.substr(2);

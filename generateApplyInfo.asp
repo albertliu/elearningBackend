@@ -175,7 +175,7 @@
 			outputExcelBySQL('x05','file',nodeID,$("#courseName").val(),$("#reexamineName").val());
 		});
 		$("#diplomaSign").click(function(){
-			outputExcelBySQL('x06','file',nodeID,0,0);
+			outputExcelBySQL('x06','file',nodeID,$("#courseName").val(),$("#reexamineName").val());
 		});
 		$("#courseID").change(function(){
 			var c = $("#courseID").find("option:selected").text();
@@ -366,7 +366,7 @@
 					arr.push("<td class='left'>" + ar1[18] + "</td>");
                     h = ar1[19];
                     if(certID=="C12"){
-                        h = ar1[20] + "/" + ar1[21];
+                        h = ar1[20].replace(".00","") + "/" + ar1[21].replace(".00","");
                     }
 					arr.push("<td class='left'>" + h + "</td>");
 					arr.push("<td class='left'>" + ar1[9] + "</td>");

@@ -214,7 +214,7 @@ if(op == "getStudentCourseList"){
 		//57
 		result += "|" + rs("reexamine").value + "|" + rs("reexamineName").value + "|" + rs("examTimes").value + "|" + rs("certID").value + "|" + rs("missingItems").value + "|" + rs("shortName").value + "|" + rs("job").value;
 		//64
-		result += "|" + rs("diplomaID").value + "|" + rs("applyID").value + "|" + rs("score").value + "|" + rs("submiterName").value + "|" + rs("reExamCount").value + "|" + rs("mobile").value;
+		result += "|" + rs("diplomaID").value + "|" + rs("applyID").value + "|" + rs("score").value + "|" + rs("submiterName").value + "|" + rs("reExamCount").value + "|" + rs("mobile").value + "|" + rs("score1").value + "|" + rs("score2").value;
 		rs.MoveNext();
 	}
 	rs.Close();

@@ -297,7 +297,11 @@
 					}else{
 						arr.push("<td class='center'>&nbsp;</td>");
 					}
-					arr.push("<td class='left'>" + nullNoDisp(ar1[66].replace(".00","")) + "</td>");
+                    h = ar1[66];
+                    if($("#certID").val()=="C12"){
+                        h = ar1[70].replace(".00","") + "/" + ar1[71].replace(".00","");
+                    }
+					arr.push("<td class='left'>" + nullNoDisp(h) + "</td>");
 					arr.push("<td class='center'>" + nullNoDisp(ar1[68]) + "</td>");
 					arr.push("<td class='left'><input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[1] + "' name='visitstockchk'></td>");
 					arr.push("</tr>");
