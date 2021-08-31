@@ -92,12 +92,13 @@
 			arr = [];			
 			arr.push("<table cellpadding='0' cellspacing='0' border='1' width='99%'>");
 			arr.push("<tr align='center'>");
-			arr.push("<td align='center' width='10%' height='35px'>学号</td>");
+			arr.push("<td align='center' width='9%' height='35px'>学号</td>");
 			arr.push("<td align='center' width='8%'>姓名</td>");
 			arr.push("<td align='center' width='6%'>性别</td>");
 			arr.push("<td align='center' width='18%'>证件号码</td>");
 			arr.push("<td align='center' width='14%'>联系电话</td>");
-			arr.push("<td align='center' width='39%'>工作单位</td>");
+			arr.push("<td align='center' width='34%'>工作单位</td>");
+			arr.push("<td align='center' width='6%'>状态</td>");
 			arr.push("</tr>");
 			var i = 0;
 			
@@ -113,6 +114,7 @@
 					arr.push("<td align='center'>" + ar1[0] + "</td>");
 					arr.push("<td align='center'>" + ar1[5] + "</td>");
 					arr.push("<td>" + ar1[6] + "</td>");
+					arr.push("<td align='center'>" + ar1[12] + "</td>");
 					arr.push("</tr>");
 				});
 			}

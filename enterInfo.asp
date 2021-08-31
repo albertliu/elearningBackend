@@ -525,11 +525,11 @@
 				if(!$("#materialCheck").attr("checked")){
 					$("#btnMaterialCheck").show();
 				}
-				if($("#status").val()==0 && $("#invoice").val()=="" && $("#dateInvoicePick").val()==""){
-					//未支付未开票的可以删除。
-					$("#btnDel").show();
-				}
 			}
+            if(checkPermission("studentDel") && $("#className").val()=="" && $("#status").val()==0 && $("#invoice").val()=="" && $("#dateInvoicePick").val()==""){
+                //未支付未开票的可以删除。
+                $("#btnDel").show();
+            }
 			$("#project0").show();
 			$("#project1").hide();
 			$("#class0").hide();
@@ -577,7 +577,7 @@
 			<form id="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
-				<td align="right">姓名</td><input type="hidden" id="studentCourseID" /><input type="hidden" id="certID" />
+				<td align="right">姓名</td><input type="hidden" id="studentCourseID" /><input type="hidden" id="certID" /><input type="hidden" id="status" />
 				<td><input class="readOnly" type="text" id="name" size="25" readOnly="true" /></td>
 				<td align="right">身份证</td>
 				<td><input class="readOnly" type="text" id="username" size="25" readOnly="true" /></td>

@@ -724,7 +724,7 @@ if(op == "getGeneratePasscardNodeInfo"){
 		//20
 		result += "|" + rs("sendScore").value + "|" + rs("sendScoreDate").value + "|" + rs("senderScoreName").value + "|" + rs("qtyYes").value + "|" + rs("qtyNo").value + "|" + rs("qtyNull").value;
 		//26
-		result += "|" + rs("kindID").value + "|" + rs("kindName").value;
+		result += "|" + rs("kindID").value + "|" + rs("kindName").value + "|" + rs("closeDate").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -1049,6 +1049,12 @@ if(op == "getLastApplyAddress"){
 	rs.Close();
 	Response.Write(escape(result));
 	//Response.Write(escape(sql));
+}
+
+if(op == "closeExam"){
+	sql = "exec closeExam " + nodeID + ",'" + currUser + "'";
+	execSQL(sql);
+	Response.Write(nodeID);
 }
 
 %>

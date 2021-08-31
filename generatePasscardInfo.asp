@@ -183,7 +183,23 @@
 			getPasscardList();
 		});
 		$("#examStatus").click(function(){
+            if($("#closeDate").val()==""){
+                $("#examClose").show();
+            }
 			getPasscardExamList();
+		});
+		$("#examClose").click(function(){
+			jConfirm('确定要收卷吗? 收卷后所有考生将强制交卷。', "确认对话框",function(r){
+				if(r){
+					$.get("diplomaControl.asp?op=closeExam&nodeID=" + nodeID,function(data){
+						//jAlert(data);
+						jAlert("已成功收卷","信息提示");
+						getNodeInfo(nodeID);
+						updateCount += 1;
+                        getPasscardExamList();
+					});
+				}
+			});
 		});
 
 		$("#btnSel").click(function(){
@@ -246,6 +262,7 @@
 				$("#status").val(ar[17]);
 				$("#statusName").val(ar[18]);
 				$("#kindID").val(ar[26]);
+				$("#closeDate").val(ar[28]);
 				var c = "";
 				if(ar[9] > ""){
 					c += "<a href='/users" + ar[9] + "' target='_blank'>准考证</a>";
@@ -540,6 +557,7 @@
 		$("#btnResit").hide();
 		$("#s_needResit").hide();
 		$("#examStatus").hide();
+        $("#examClose").hide();
 		$("#startNo").prop("disabled",true);
 		if(op==1){
 			setEmpty();
@@ -609,7 +627,7 @@
 			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
-				<td align="right">考试时间</td>
+				<td align="right">考试时间</td><input type="hidden" id="closeDate" />
 				<td><input class="mustFill" type="text" id="startDate" size="25" /></td>
 				<td align="right">截止时间</td>
 				<td><input type="text" id="startTime" size="25" /></td>
@@ -683,6 +701,7 @@
 		<input class="button" type="button" id="close" value="结束" />&nbsp;
 		<input class="button" type="button" id="open" value="开启" />&nbsp;
 		<input class="button" type="button" id="examStatus" value="考试情况" />&nbsp;
+		<input class="button" type="button" id="examClose" value="收卷" />&nbsp;
   	</div>
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
 	<div style="width:100%;float:left;margin:0;">

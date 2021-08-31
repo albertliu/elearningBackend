@@ -201,7 +201,10 @@
 				$("#className").val(ar[17]);
 				$("#timetable").val(ar[18]);
 				$("#qty").val(ar[20]);
+				$("#qtyApply").val(ar[26]);
+				$("#qtyExam").val(ar[27]);
 				$("#qtyPass").val(ar[28]);
+				$("#qtyReturn").val(ar[33]);
 				$("#summary").val(ar[25]);
 				$("#archiveDate").val(ar[24]);
 				$("#archiverName").val(ar[29]);
@@ -256,6 +259,7 @@
 			arr.push("<th width='5%'>准申</th>");
 			arr.push("<th width='5%'>成绩</th>");
 			arr.push("<th width='5%'>补考</th>");
+			arr.push("<th width='5%'>状态</th>");
 			arr.push("<th width='4%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -303,6 +307,7 @@
                     }
 					arr.push("<td class='left'>" + nullNoDisp(h) + "</td>");
 					arr.push("<td class='center'>" + nullNoDisp(ar1[68]) + "</td>");
+					arr.push("<td class='left'>" + ar1[4] + "</td>");
 					arr.push("<td class='left'><input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[1] + "' name='visitstockchk'></td>");
 					arr.push("</tr>");
 				});
@@ -310,6 +315,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
@@ -481,11 +487,12 @@
 			</tr>
 			<tr>
 				<td align="right">学员人数</td>
-				<td>
+				<td colspan="3">
 					<input type="text" class="readOnly" readOnly="true" id="qty" size="3" />
+					申报<input type="text" class="readOnly" readOnly="true" id="qtyApply"  size="3" />
+					考试<input type="text" class="readOnly" readOnly="true" id="qtyExam"  size="3" />
 					合格<input type="text" class="readOnly" readOnly="true" id="qtyPass"  size="3" />
-				</td>
-				<td colspan="2">
+					退课<input type="text" class="readOnly" readOnly="true" id="qtyReturn"  size="3" />
 				</td>
 			</tr>
 			<tr>

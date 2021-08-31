@@ -64,7 +64,7 @@ if(op == "getClassList"){
 		//21
 		result += "|" + rs("fileArchive").value + "|" + rs("archiver").value + "|" + rs("archiveDate").value + "|" + rs("qtyApply").value + "|" + rs("qtyExam").value + "|" + rs("qtyPass").value + "|" + rs("archiverName").value;
 		//28
-		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value;
+		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value + "|" + rs("qtyReturn").value;
 		rs.MoveNext();
 	}
 /**/
@@ -87,7 +87,7 @@ if(op == "getNodeInfo"){
 		//22
 		result += "|" + rs("fileArchive").value + "|" + rs("archiver").value + "|" + rs("archiveDate").value + "|" + rs("summary").value + "|" + rs("qtyApply").value + "|" + rs("qtyExam").value + "|" + rs("qtyPass").value + "|" + rs("archiverName").value;
 		//30
-		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value;
+		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value + "|" + rs("qtyReturn").value;
 		execSQL(sql);
 	}
 	rs.Close();
@@ -140,7 +140,7 @@ if(op == "getStudentListByClassID"){
 		//5
 		result += "|" + rs("mobile").value + "|" + rs("unit1").value + "|" + rs("score").value + "|" + rs("diploma_startDate").value + "|" + rs("diplomaID").value;
 		//10
-		result += "|" + rs("score1").value + "|" + rs("score2").value;
+		result += "|" + rs("score1").value + "|" + rs("score2").value + "|" + rs("statusName").value;
 		rs.MoveNext();
 	}
 	result = result.substr(2);
