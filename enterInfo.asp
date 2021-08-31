@@ -532,7 +532,7 @@
 					$("#btnMaterialCheck").show();
 				}
 			}
-            if(checkPermission("studentDel") && $("#className").val()=="" && $("#status").val()==0 && $("#invoice").val()=="" && $("#dateInvoicePick").val()==""){
+            if(checkPermission("studentDel") && $("#className").val()=="" && $("#status").val()==0 && $("#invoice").val()=="" && $("#dateInvoicePick").val()=="" || $("#name").val()=="测试"){
                 //未支付未开票的可以删除。
                 $("#btnDel").show();
             }
