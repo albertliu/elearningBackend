@@ -456,6 +456,9 @@
 		if(c == "C21" || c == "C20A"){
 			c = "C20";
 		}
+		if(c == "C24" || c == "C25" || c == "C26"){
+			c = "C12";
+		}
 		window.open("entryform_" + c + ".asp?nodeID=" + nodeID + "&refID=" + refID + "&keyID=1", "_self");
 	}
 	
@@ -483,6 +486,9 @@
 		var c = $("#certID").val();
 		if(c == "C21" || c == "C20A"){
 			c = "C20";
+		}
+		if(c == "C24" || c == "C25" || c == "C26"){
+			c = "C12";
 		}
 		window.open("entryform_" + c + ".asp?keyID=" + k + "&nodeID=" + nodeID + "&refID=" + refID + "&kindID=" + $("#certID").val(), "_self");
 	}
