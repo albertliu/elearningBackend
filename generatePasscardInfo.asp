@@ -579,6 +579,7 @@
 				if(s==2){
 					$("#btnResit").show();
 					$("#s_needResit").show();
+					$("#sendMsgScore").show();
 					//结束后，安排补考
 				}
 				if(s<2){
