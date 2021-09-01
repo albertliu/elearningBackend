@@ -50,6 +50,7 @@
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			var x = 0;
+            var qty = 0;
 			if(ar > ""){
 				refID = ar[1];
 				$("#home_classID").html(ar[1]);
@@ -58,7 +59,8 @@
 				$("#home_startDate").html(ar[10] + "&nbsp;-&nbsp;" + ar[11]);
 				$("#dateEnd").html(ar[11]);
 				$("#classID").html(ar[1] + "&nbsp;&nbsp;[" + ar[17] + "]");
-				$("#qty").html(ar[20]);
+                qty = ar[20] - ar[33];
+				$("#qty").html(qty);
 				$("#summary").html(ar[25].replace(/\n/g,"<br/>"));
 				$("#qtyExam").html(nullNoDisp(ar[27]));
 				$("#qtyPass").html(nullNoDisp(ar[28]));
@@ -70,9 +72,9 @@
 					x = "%";
 				}
 				$("#pass_rate_exam").html(x);
-				x = ar[20];
+				x = qty;
 				if(x > 0 && ar[28] > 0){
-					x = (ar[28]*100/ar[20]).toFixed(2) + "&nbsp;%";
+					x = (ar[28]*100/qty).toFixed(2) + "&nbsp;%";
 				}else{
 					x = "%";
 				}
