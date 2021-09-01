@@ -498,10 +498,14 @@
 					arr.push("<td class='left'>" + ar1[1] + "</td>");
 					arr.push("<td class='left'>" + ar1[2] + "</td>");
 					arr.push("<td class='left'>" + ar1[3] + "</td>");
-					arr.push("<td class='left'>" + ar1[4] + "</td>");
+					arr.push("<td class='left'>" + nullNoDisp(ar1[4]) + "</td>");
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
 					arr.push("<td class='left'>" + ar1[7] + "</td>");
-					arr.push("<td class='left'>" + ar1[9] + "分钟</td>");
+                    h = "";
+                    if(ar1[5]==1){
+                        h = ar1[9] + "分钟";
+                    }
+					arr.push("<td class='left'>" + h + "</td>");
 					arr.push("<td class='left'>" + ar1[8] + "</td>");
 					arr.push("</tr>");
 				});
