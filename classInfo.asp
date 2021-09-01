@@ -104,7 +104,7 @@
 			if($("#certID").val()>""){
 				var id=$("#certID").val();
 				setProjectList(id,[]);
-				$("#className").val($("#certID").find("option:selected").text() + $("#dateStart").val().substr(2).replace(/-/g,""));
+				$("#className").val($("#certID").find("option:selected").text() + $("#dateStart").val().substr(2,8).replace(/-/g,""));
 			}
 		});
 
