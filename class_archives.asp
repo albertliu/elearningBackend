@@ -147,8 +147,11 @@
 					arr.push("<td align='center'>" + ar1[2] + "</td>");
 					arr.push("<td align='center'>" + ar1[0] + "</td>");
                     h = ar1[7];
-                    if(certID=="C12"){
+                    if(certID=="C12" || certID=="C24" || certID=="C25" || certID=="C26"){
                         h = ar1[10].replace(".00","") + "/" + ar1[11].replace(".00","");
+                    }
+                    if(ar1[7]=="" || ar1[7]==0){
+                        h = "缺考";
                     }
 					arr.push("<td align='center'>" + h + "</td>");
 					arr.push("<td align='center'>" + ar1[9] + "</td>");
