@@ -48,7 +48,7 @@
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
 			arr.push("<th width='6%'>编号</th>");
-			arr.push("<th width='18%'>班级名称</th>");
+			arr.push("<th width='17%'>班级名称</th>");
 			arr.push("<th width='8%'>开课日期</th>");
 			arr.push("<th width='8%'>结束日期</th>");
 			arr.push("<th width='7%'>班主任</th>");
@@ -59,7 +59,7 @@
 			arr.push("<th width='6%'>报考</th>");
 			arr.push("<th width='6%'>考试</th>");
 			arr.push("<th width='6%'>合格</th>");
-			arr.push("<th width='7%'>通过率</th>");
+			arr.push("<th width='8%'>通过率</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
