@@ -27,6 +27,7 @@
 		getDicList("statusCheck","searchStudentPreChecked",1);
 		getDicList("statusSubmit","searchStudentPreSubmited",1);
 		getDicList("statusAsk","searchStudentPrePhotoStatus",1);
+		getDicList("statusYes","searchStudentPreClass",1);
 		$("#searchStudentPreStartDate").click(function(){WdatePicker();});
 		$("#searchStudentPreEndDate").click(function(){WdatePicker();});
 		$("#searchStudentPreStartDate").val(addDays(currDate,-30));
@@ -242,6 +243,7 @@
 
 		setHostPreChange();
 		$("#btnStudentPreCall").hide();
+		$("#searchStudentPreClass").val(1);
 	});
 
 	function getStudentPreList(){
@@ -252,7 +254,7 @@
 		}
 		//if($("#searchStudentPreOld").attr("checked")){Old = 1;}
 		//alert($("#searchStudentPreDept").val() + "&refID=" + $("#searchStudentPreProjectID").val() + "&status=" + $("#searchStudentPreStatus").val() + "&courseID=" + $("#searchStudentPreID").val() + "&host=" + $("#searchStudentPreHost").val());
-		$.get("studentCourseControl.asp?op=getStudentListByProject&where=" + escape(sWhere) + "&refID=" + $("#searchStudentPreProjectID").val() + "&host=" + $("#searchStudentPreHost").val() + "&kindID=" + $("#searchStudentPreMark").val() + "&checked=" + $("#searchStudentPreChecked").val() + "&submited=" + $("#searchStudentPreSubmited").val() + "&fStart=" + $("#searchStudentPreStartDate").val() + "&fEnd=" + $("#searchStudentPreEndDate").val() + "&dk=130&times=" + (new Date().getTime()),function(data){
+		$.get("studentCourseControl.asp?op=getStudentListByProject&where=" + escape(sWhere) + "&refID=" + $("#searchStudentPreProjectID").val() + "&host=" + $("#searchStudentPreHost").val() + "&kindID=" + $("#searchStudentPreMark").val() + "&checked=" + $("#searchStudentPreChecked").val() + "&submited=" + $("#searchStudentPreSubmited").val() + "&class=" + $("#searchStudentPreClass").val() + "&fStart=" + $("#searchStudentPreStartDate").val() + "&fEnd=" + $("#searchStudentPreEndDate").val() + "&dk=130&times=" + (new Date().getTime()),function(data){
 		//$.getJSON("studentCourseControl.asp?op=getStudentPreList",function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
@@ -272,12 +274,12 @@
 			arr.push("<th width='9%'>身份证</th>");
 			arr.push("<th width='7%'>姓名</th>");
 			//arr.push("<th width='6%'>别</th>");
-			arr.push("<th width='10%'>部门</th>");
+			arr.push("<th width='9%'>部门</th>");
 			arr.push("<th width='6%'>电话</th>");
 			arr.push("<th width='7%'>岗位</th>");
 			//arr.push("<th width='7%'>备注</th>");
 			arr.push("<th width='11%'>确认</th>");
-			arr.push("<th width='6%'>班级</th>");
+			arr.push("<th width='7%'>班级</th>");
 			arr.push("<th width='7%'>练习</th>");
 			arr.push("<th width='6%'>进度%</th>");
 			arr.push("<th width='6%'>成绩</th>");

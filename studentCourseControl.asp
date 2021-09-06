@@ -353,6 +353,20 @@ if(op == "getStudentListByProject"){
 			where = s;
 		}
 	}
+	//编班
+	if(String(Request.QueryString("class")) > "" && String(Request.QueryString("class")) !="undefined"){
+        if(String(Request.QueryString("class"))==0){
+            s = "classID>''";
+        }
+        if(String(Request.QueryString("class"))==1){
+            s = "classID=''";
+        }
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 
 	if(where > ""){
 		where = " where " + where;

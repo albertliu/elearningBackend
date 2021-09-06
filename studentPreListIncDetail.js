@@ -30,6 +30,7 @@
 							</span>&nbsp;&nbsp;&nbsp;
 							确认&nbsp;<select id="searchStudentPreChecked" style="width:70px"></select>&nbsp;&nbsp;&nbsp;
 							报到&nbsp;<select id="searchStudentPreSubmited" style="width:70px"></select>&nbsp;&nbsp;&nbsp;
+							已编班&nbsp;<select id="searchStudentPreClass" style="width:50px"></select>&nbsp;&nbsp;&nbsp;
 							<input class="button" type="button" id="btnStudentPreSel" value="全选/取消" />&nbsp;&nbsp;
 							<span id="studentPreListLongItem5">
 								<input class="button" type="button" id="btnStudentPreCheck" value="名单确认" />&nbsp;&nbsp;
