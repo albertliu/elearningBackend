@@ -331,7 +331,7 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='4%'>No</th>");
-			arr.push("<th width='8%'>学号</th>");
+			arr.push("<th width='9%'>学号</th>");
 			arr.push("<th width='10%'>身份证</th>");
 			arr.push("<th width='8%'>姓名</th>");
 			arr.push("<th width='16%'>单位</th>");
@@ -341,7 +341,7 @@
 			arr.push("<th width='8%'>成绩</th>");
 			arr.push("<th width='8%'>结果</th>");
 			arr.push("<th width='8%'>补考</th>");
-			arr.push("<th width='4%'></th>");
+			arr.push("<th width='2%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
