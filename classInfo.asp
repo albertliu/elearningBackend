@@ -249,9 +249,9 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='4%'>No</th>");
+			arr.push("<th width='6%'>学号</th>");
 			arr.push("<th width='10%'>身份证</th>");
 			arr.push("<th width='6%'>姓名</th>");
-			arr.push("<th width='6%'>学号</th>");
 			arr.push("<th width='13%'>单位</th>");
 			arr.push("<th width='8%'>电话</th>");
 			arr.push("<th width='6%'>进度%</th>");
@@ -278,9 +278,9 @@
 					c = 0;
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
+					arr.push("<td class='left'>" + ar1[43] + "</td>");
 					arr.push("<td class='link1'><a href='javascript:showEnterInfo(" + ar1[0] + ",\"" + ar1[1] + "\",0,1);'>" + ar1[1] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[2] + "</td>");
-					arr.push("<td class='left'>" + ar1[43] + "</td>");
 					if(ar1[56]=="znxf"){	//非集团客户，显示自己的单位和部门
 						arr.push("<td class='left'>" + ar1[54].substr(0,12) + "</td>");
 					}else{
