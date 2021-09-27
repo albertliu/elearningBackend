@@ -76,7 +76,7 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
-			arr.push("<th width='15%'>身份证</th>");
+			arr.push("<th width='12%'>身份证</th>");
 			arr.push("<th width='8%'>姓名</th>");
 			arr.push("<th width='6%'>别</th>");
 			arr.push("<th width='6%'>龄</th>");
@@ -87,10 +87,11 @@
 				arr.push("<th width='12%'>部门</th>");
 				arr.push("<th width='10%'>二级部门</th>");
 			}
-			arr.push("<th width='10%'>电话</th>");
-			arr.push("<th width='6%'>状态</th>");
-			arr.push("<th width='6%'>报名</th>");
-			arr.push("<th width='6%'>资料</th>");
+			arr.push("<th width='8%'>电话</th>");
+			arr.push("<th width='8%'>学历</th>");
+			arr.push("<th width='5%'>状态</th>");
+			arr.push("<th width='5%'>报名</th>");
+			arr.push("<th width='5%'>资料</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
@@ -125,6 +126,7 @@
 						arr.push("<td class='left'>" + ar1[14].substr(0,10) + "</td>");
 					}
 					arr.push("<td class='left'>" + ar1[7] + "</td>");
+					arr.push("<td class='left'>" + ar1[21] + "</td>");
 					arr.push("<td class='left'>" + ar1[4] + "</td>");
 					arr.push("<td class='left'>" + nullNoDisp(ar1[20]) + "</td>");
 					arr.push("<td class='left'>" + ar1[15] + "</td>");
@@ -134,6 +136,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
