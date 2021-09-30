@@ -378,15 +378,16 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='4%'>No</th>");
-			arr.push("<th width='13%'>身份证</th>");
+			arr.push("<th width='12%'>身份证</th>");
 			arr.push("<th width='8%'>姓名</th>");
+			arr.push("<th width='8%'>准考证</th>");
 			arr.push("<th width='13%'>单位</th>");
-			arr.push("<th width='11%'>电话</th>");
+			arr.push("<th width='10%'>电话</th>");
 			arr.push("<th width='8%'>成绩</th>");
 			arr.push("<th width='8%'>结果</th>");
 			arr.push("<th width='12%'>备注</th>");
-			arr.push("<th width='10%'>安排补考</th>");
-			arr.push("<th width='8%'>学号</th>");
+			arr.push("<th width='8%'>补考</th>");
+			arr.push("<th width='9%'>学号</th>");
 			arr.push("<th width='4%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -407,11 +408,12 @@
 					arr.push("<td class='center'>" + i + "</td>");
 					arr.push("<td class='link1'><a href='javascript:showEnterInfo(\"" + ar1[2] + "\",0,0,1);'>" + ar1[4] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[5] + "</td>");
+					arr.push("<td class='left'>" + ar1[3] + "</td>");
 					arr.push("<td class='left'>" + ar1[14] + ar1[15].substring(0,2) + "." + ar1[16] + "</td>");
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
 					arr.push("<td class='left'>" + ar1[7] + "</td>");
 					arr.push("<td class='left'>" + ar1[10] + "</td>");
-					arr.push("<td class='left'>" + ar1[17] + "</td>");
+					arr.push("<td class='left' title='" + ar1[17] + "'>" + ar1[17].substring(0,8) + "</td>");
 					if(ar1[8]>0){
 						arr.push("<td class='center'>" + imgChk + "</td>");	//补考
 					}else{
@@ -430,6 +432,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
