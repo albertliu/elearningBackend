@@ -253,7 +253,7 @@
 		if(id=='x02'){
 			p = "getExamerSignList";
 			floatModel = 3;
-			sql = "select passNo,name,username,mobile from v_passcardInfo where refID=" + p1 + " order by passNo";
+			sql = "select passNo,name,dept2Name,mobile from v_passcardInfo where refID=" + p1 + " order by passNo";
 		}
 		if(id=='x03'){
 			p = "getExamerScoreList";
