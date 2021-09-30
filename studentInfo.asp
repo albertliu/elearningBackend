@@ -251,6 +251,7 @@
 				$("#IDdateEnd").val(ar[41]);
 				$("#experience").val(ar[42]);
 				$("#linker").val(ar[46]);
+				$("#fromID").val(ar[47]);
 				//$("#upload1").html("<a href='javascript:showLoadFile(\"student_education\",\"" + ar[1] + "\",\"student\",\"\");' style='padding:3px;'>上传</a>");
 				//<a href='/users" + ar[21] + "' target='_blank'></a>
 				arr = [];
@@ -335,7 +336,7 @@
 		var k = 0;
 		if(op==0){k=1;}
 		//alert("nodeID=" + $("#username").val() + "&name=" + ($("#name").val()) + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + ($("#mobile").val()) + "&phone=" + ($("#phone").val()) + "&email=" + ($("#email").val()) + "&job=" + ($("#job").val()) + "&education=" + ($("#education").val()) + "&memo=" + ($("#memo").val()));
-		$.get("studentControl.asp?op=update&nodeID=" + $("#username").val() + "&name=" + escape($("#name").val()) + "&linker=" + escape($("#linker").val()) + "&unit=" + escape($("#unit").val()) + "&dept=" + escape($("#dept").val()) + "&ethnicity=" + escape($("#ethnicity").val()) + "&IDaddress=" + escape($("#IDaddress").val()) + "&bureau=" + escape($("#bureau").val()) + "&IDdateStart=" + $("#IDdateStart").val() + "&IDdateEnd=" + $("#IDdateEnd").val() + "&experience=" + escape($("#experience").val()) + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&job_status=" + $("#job_status").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + escape($("#mobile").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&address=" + escape($("#address").val()) + "&job=" + escape($("#job").val()) + "&education=" + $("#education").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("studentControl.asp?op=update&nodeID=" + $("#username").val() + "&name=" + escape($("#name").val()) + "&linker=" + escape($("#linker").val()) + "&unit=" + escape($("#unit").val()) + "&dept=" + escape($("#dept").val()) + "&ethnicity=" + escape($("#ethnicity").val()) + "&IDaddress=" + escape($("#IDaddress").val()) + "&bureau=" + escape($("#bureau").val()) + "&IDdateStart=" + $("#IDdateStart").val() + "&IDdateEnd=" + $("#IDdateEnd").val() + "&experience=" + escape($("#experience").val()) + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&job_status=" + $("#job_status").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + escape($("#mobile").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&address=" + escape($("#address").val()) + "&job=" + escape($("#job").val()) + "&education=" + $("#education").val() + "&fromID=" + $("#fromID").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -708,7 +709,7 @@
 			<input type="hidden" id="IDdateStart" /><input type="hidden" id="IDdateEnd" /><input type="hidden" id="experience" />
 			<tr>
 				<td align="right">身份证</td><input type="hidden" id="status" /><input type="hidden" id="host" />
-				<td><input type="text" id="username" size="25" /></td>
+				<td><input type="text" id="username" size="25" /></td><input type="hidden" id="fromID" />
 				<td align="right">姓名</td><input type="hidden" id="studentID" />
 				<td><input class="mustFill" type="text" id="name" size="25" /></td>
 			</tr>

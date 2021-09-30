@@ -49,6 +49,7 @@
 		$("#dateRefund").click(function(){WdatePicker();});
 		$("#dateInvoice").click(function(){WdatePicker();});
 		$("#dateInvoicePick").click(function(){WdatePicker();});
+		$("#currDiplomaDate").click(function(){WdatePicker();});
 		$.ajaxSetup({ 
 			async: false 
 		}); 
@@ -267,6 +268,8 @@
 				$("#certID").val(ar[36]);
 				$("#reexamineName").val(ar[41]);
 				$("#submiterName").val(ar[44]);
+				$("#currDiplomaID").val(ar[45]);
+				$("#currDiplomaDate").val(ar[46]);
 
 				getPayDetailInfoByEnterID(ar[0]);
 			//getDownloadFile("studentCourseID");
@@ -361,7 +364,7 @@
 				$.get("studentCourseControl.asp?op=updatePayPrice&nodeID=" + $("#payDetailID").val() + "&refID=" + $("#price").val() + "&times=" + (new Date().getTime()),function(re){
 					//jAlert(unescape(re));
 				});
-				$.get("studentCourseControl.asp?op=updateEnterClass&nodeID=" + nodeID + "&refID=" + $("#classID").val() + "&keyID=" + $("#SNo").val() + "&times=" + (new Date().getTime()),function(re){
+				$.get("studentCourseControl.asp?op=updateEnterClass&nodeID=" + nodeID + "&refID=" + $("#classID").val() + "&keyID=" + $("#SNo").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&times=" + (new Date().getTime()),function(re){
 					//jAlert(unescape(re));
 					getNodeInfo(nodeID);
 					printEntryform(1);
@@ -403,7 +406,7 @@
 				}else{
 					
 					//@username,@classID,@price,@invoice,@projectID,@kindID,@type,@status,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo,@registerID
-					$.get("studentCourseControl.asp?op=doEnter&nodeID=" + $("#username").val() + "&classID=" + $("#classID").val() + "&price=" + $("#price").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#status").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+					$.get("studentCourseControl.asp?op=doEnter&nodeID=" + $("#username").val() + "&classID=" + $("#classID").val() + "&price=" + $("#price").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#status").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 						//jAlert(unescape(re));
 						var ar = new Array();
 						ar = unescape(re).split("|");
@@ -637,6 +640,16 @@
 				<span id="class1">所属班级&nbsp;<select id="classID" style="width:250px"></select>&nbsp;&nbsp;</span>
 				<span id="class0">所属班级&nbsp;<input class="readOnly" type="text" id="className" style="width:250px" readOnly="true" />&nbsp;&nbsp;经办人&nbsp;<input class="readOnly" type="text" id="submiterName" style="width:50px" readOnly="true" />&nbsp;&nbsp;</span>
 				编号&nbsp;<input type="text" id="SNo" style="width:50px" />
+                <form style="width:98%;float:right;margin:1px;padding-left:2px;background:#f8f8ee;">
+                <table>
+                <tr>
+                    <td align="right">初训证书编号</td>
+                    <td><input type="text" id="currDiplomaID" style="width:150px;" /></td>
+                    <td align="right">有效日期</td>
+                    <td><input type="text" id="currDiplomaDate" style="width:150px;" /></td>
+                </tr>
+                </table>
+                </form>
 				<br>
 				报名表
 					<span id="entryform" style="margin-left:20px;"></span>
