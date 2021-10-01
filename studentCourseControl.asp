@@ -128,6 +128,15 @@ if(op == "getStudentCourseList"){
 			where = s;
 		}
 	}
+	//mark=3: 当前用户为销售
+	if(String(Request.QueryString("mark")) == 3){
+		s = "fromID='" + currUser.replace(".","") + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 	//课程
 	if(String(Request.QueryString("courseID")) > "" && String(Request.QueryString("courseID")) !="undefined"){
 		s = "courseID='" + String(Request.QueryString("courseID")) + "'";
@@ -506,6 +515,15 @@ if(op == "getPayList"){
 	//课程
 	if(String(Request.QueryString("courseID")) > "" && String(Request.QueryString("courseID")) !="undefined"){
 		s = "courseID='" + String(Request.QueryString("courseID")) + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//mark=3: 当前用户为销售
+	if(String(Request.QueryString("mark")) == 3){
+		s = "fromID='" + currUser.replace(".","") + "'";
 		if(where > ""){
 			where = where + " and " + s;
 		}else{

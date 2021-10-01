@@ -48,6 +48,8 @@
 		getDicList("student","kindID",0);
 		getDicList("statusJob","job_status",0);
 		getDicList("education","education",1);
+        getComList("fromID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='saler') order by realName",1);
+
 		var w = "dept_status=0 and pID=0 and host='" + currHost + "'";
 		if(currHost==""){	//公司用户只能看自己公司内容
 			getComList("companyID","deptInfo","deptID","deptName","dept_status=0 and pID=0 order by deptID",0);
@@ -442,7 +444,7 @@
 		$("#save").hide();
 		$("#open").hide();
 		$("#close").hide();
-		$("#upload1").hide();
+		//$("#upload1").hide();
 		$("#enter").hide();
 		$("#username").prop("disabled",true);
 		$("*[tag='plus'").hide();
@@ -467,7 +469,7 @@
 				$("#save").show();
 			}
 			if(checkPermission("studentPhoto")){
-				$("#upload1").show();
+				//$("#upload1").show();
 				$("*[tag='plus'").show();
 			}
 			if(checkPermission("studentDel")){
@@ -709,7 +711,7 @@
 			<input type="hidden" id="IDdateStart" /><input type="hidden" id="IDdateEnd" /><input type="hidden" id="experience" />
 			<tr>
 				<td align="right">身份证</td><input type="hidden" id="status" /><input type="hidden" id="host" />
-				<td><input type="text" id="username" size="25" /></td><input type="hidden" id="fromID" />
+				<td><input type="text" id="username" size="25" /></td>
 				<td align="right">姓名</td><input type="hidden" id="studentID" />
 				<td><input class="mustFill" type="text" id="name" size="25" /></td>
 			</tr>
@@ -774,11 +776,7 @@
 			<tr>
 				<td align="right">注册日期</td>
 				<td><input class="readOnly" type="text" id="regDate" size="25" readOnly="true" /></td>
-				<td align="right">其他资料</td>
-				<td>
-					<span id="upload1" style="margin-left:20px;border:1px solid orange;"></span>
-					<span id="photo" style="margin-left:20px;"></span>
-				</td>
+				<td align="right">销售标识</td><td><select id="fromID" style="width:100px;"></select></td>
 			</tr>
 			</table>
 			</form>

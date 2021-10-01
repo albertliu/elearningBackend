@@ -49,9 +49,13 @@
 			jAlert("请至少指定一个汇总项目。")
 			return false;
 		}
+        var fromID = "";
+        if(checkRole("saler")){
+            fromID = currUser.replace(".","");
+        }
 		//alert("op=diplomalast&mark=" + mark + "&host=" + $("#rptDiplomaLastHost").val() + "&kindID=" + $("#rptDiplomaLastKind").val() + "&startDate=" + $("#rptDiplomaLastStartDate").val() + "&endDate=" + $("#rptDiplomaLastEndDate").val() + "&groupHost=" + g1 + "&groupDept1=" + g2 + "&groupKindID=" + g3 + "&groupDate=" + g4);
 		//@host varchar(50),@startDate varchar(50),@endDate varchar(50),@kindID varchar(20),@groupHost int,@groupDept1 int,@groupKindID int,@groupDate
-		$.getJSON(uploadURL + "/public/getRptList?op=diplomaLast&mark=" + mark + "&host=" + $("#rptDiplomaLastHost").val() + "&kindID=" + $("#rptDiplomaLastKind").val() + "&certID=" + $("#rptDiplomaLastCert").val() + "&status=" + $("#rptDiplomaLastStatus").val() + "&agencyID=" + $("#rptDiplomaLastAgency").val() + "&startDate=" + $("#rptDiplomaLastStartDate").val() + "&endDate=" + $("#rptDiplomaLastEndDate").val() + "&groupHost=" + g1 + "&groupDept1=" + g2 + "&groupKindID=" + g3 + "&groupCertID=" + g4 + "&groupStatus=" + g5 + "&groupAgencyID=" + g6 + "&groupDate=" + g11,function(data){
+		$.getJSON(uploadURL + "/public/getRptList?op=diplomaLast&mark=" + mark + "&fromID=" + fromID + "&host=" + $("#rptDiplomaLastHost").val() + "&kindID=" + $("#rptDiplomaLastKind").val() + "&certID=" + $("#rptDiplomaLastCert").val() + "&status=" + $("#rptDiplomaLastStatus").val() + "&agencyID=" + $("#rptDiplomaLastAgency").val() + "&startDate=" + $("#rptDiplomaLastStartDate").val() + "&endDate=" + $("#rptDiplomaLastEndDate").val() + "&groupHost=" + g1 + "&groupDept1=" + g2 + "&groupKindID=" + g3 + "&groupCertID=" + g4 + "&groupStatus=" + g5 + "&groupAgencyID=" + g6 + "&groupDate=" + g11,function(data){
 			//jAlert(data);
 			if(data==""){
 				jAlert("没有符合要求的数据。","提示")

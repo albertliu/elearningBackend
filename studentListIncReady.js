@@ -54,6 +54,10 @@
 	function getStudentList(){
 		sWhere = $("#txtSearchStudent").val();
 		var Old = $("#searchStudentOld").val();
+        var mark = 1;
+        if(checkRole("saler")){
+            mark = 3;
+        }
 		//var photo = 0;
 		//var IDcard = 0;
 		//if($("#searchStudentOld").attr("checked")){Old = 1;}
@@ -61,7 +65,7 @@
 		//if($("#searchStudentIDcard").attr("checked")){IDcard = 1;}
 		//alert((sWhere) + "&kindID=" + $("#searchStudentKind").val() + "&host=" + $("#searchStudentHost").val() + "&Old=" + Old + "&keyID=" + $("#searchStudentMaterial").val() + "&refID=" + $("#searchStudentProjectID").val() + "&fStart=" + $("#searchStudentStartDate").val() + "&fEnd=" + $("#searchStudentEndDate").val());
 		//$.get("studentControl.asp?op=getStudentList&where=" + escape(sWhere) + "&kindID=" + $("#searchStudentKind").val() + "&host=" + $("#searchStudentHost").val() + "&Old=" + Old + "&IDcard=" + IDcard + "&photo=" + photo + "&fStart=" + $("#searchStudentStartDate").val() + "&fEnd=" + $("#searchStudentEndDate").val() + "&dk=11&times=" + (new Date().getTime()),function(data){
-		$.get("studentControl.asp?op=getStudentList&where=" + escape(sWhere) + "&kindID=" + $("#searchStudentKind").val() + "&host=" + $("#searchStudentHost").val() + "&Old=" + Old + "&keyID=" + $("#searchStudentMaterial").val() + "&refID=" + $("#searchStudentProjectID").val() + "&fStart=" + $("#searchStudentStartDate").val() + "&fEnd=" + $("#searchStudentEndDate").val() + "&dk=11&times=" + (new Date().getTime()),function(data){
+		$.get("studentControl.asp?op=getStudentList&where=" + escape(sWhere) + "&mark=" + mark + "&kindID=" + $("#searchStudentKind").val() + "&host=" + $("#searchStudentHost").val() + "&Old=" + Old + "&keyID=" + $("#searchStudentMaterial").val() + "&refID=" + $("#searchStudentProjectID").val() + "&fStart=" + $("#searchStudentStartDate").val() + "&fEnd=" + $("#searchStudentEndDate").val() + "&dk=11&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
@@ -75,11 +79,11 @@
 			arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='studentTab' width='99%'>");
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
-			arr.push("<th width='3%'>No</th>");
-			arr.push("<th width='12%'>身份证</th>");
-			arr.push("<th width='8%'>姓名</th>");
-			arr.push("<th width='6%'>别</th>");
-			arr.push("<th width='6%'>龄</th>");
+			arr.push("<th width='2%'>No</th>");
+			arr.push("<th width='10%'>身份证</th>");
+			arr.push("<th width='6%'>姓名</th>");
+			arr.push("<th width='5%'>性别</th>");
+			arr.push("<th width='5%'>年龄</th>");
 			if(currHost==""){
 				arr.push("<th width='12%'>公司</th>");
 				arr.push("<th width='12%'>部门</th>");
@@ -90,6 +94,7 @@
 			arr.push("<th width='8%'>电话</th>");
 			arr.push("<th width='8%'>学历</th>");
 			arr.push("<th width='5%'>状态</th>");
+			arr.push("<th width='8%'>注册</th>");
 			arr.push("<th width='5%'>报名</th>");
 			arr.push("<th width='5%'>资料</th>");
 			arr.push("</tr>");
@@ -128,6 +133,7 @@
 					arr.push("<td class='left'>" + ar1[7] + "</td>");
 					arr.push("<td class='left'>" + ar1[21] + "</td>");
 					arr.push("<td class='left'>" + ar1[4] + "</td>");
+					arr.push("<td class='left'>" + ar1[11] + "</td>");
 					arr.push("<td class='left'>" + nullNoDisp(ar1[20]) + "</td>");
 					arr.push("<td class='left'>" + ar1[15] + "</td>");
 					arr.push("</tr>");
@@ -136,6 +142,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");

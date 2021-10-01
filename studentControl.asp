@@ -105,6 +105,15 @@ if(op == "getStudentList"){
 			where = s;
 		}
 	}
+	//mark=3: 当前用户为销售
+	if(String(Request.QueryString("mark")) == 3){
+		s = "fromID='" + currUser.replace(".","") + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 
 	if(where>""){
 		where = " where " + where;

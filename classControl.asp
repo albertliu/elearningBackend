@@ -44,6 +44,15 @@ if(op == "getClassList"){
 			where = s;
 		}
 	}
+	//mark=3: 当前用户为销售
+	if(String(Request.QueryString("mark")) == 3){
+		s = "classID in (select * from dbo.getClassListBySaler('" + currUser.replace(".","") + "'))";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 
 	if(where>""){
 		where = " where " + where;

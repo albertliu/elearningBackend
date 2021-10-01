@@ -31,8 +31,12 @@
 
 	function getClassList(){
 		sWhere = $("#txtSearchClass").val();
+        var mark = 1;
+        if(checkRole("saler")){
+            mark = 3;
+        }
 		//alert((sWhere) + "&refID=" + $("#searchClassCert").val() + "&status=" + $("#searchClassStatus").val() + "&project=" + $("#searchClassProject").val());
-		$.get("classControl.asp?op=getClassList&where=" + escape(sWhere) + "&refID=" + $("#searchClassCert").val() + "&status=" + $("#searchClassStatus").val() + "&kindID=" + $("#searchClassAdviser").val() + "&project=" + $("#searchClassProject").val() + "&dk=91&times=" + (new Date().getTime()),function(data){
+		$.get("classControl.asp?op=getClassList&where=" + escape(sWhere) + "&mark=" + mark + "&refID=" + $("#searchClassCert").val() + "&status=" + $("#searchClassStatus").val() + "&kindID=" + $("#searchClassAdviser").val() + "&project=" + $("#searchClassProject").val() + "&dk=91&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");

@@ -236,7 +236,11 @@
 
 	function getStudentList(){
 		//alert($("#classID").val());
-		$.get("studentCourseControl.asp?op=getStudentCourseList&classID=" + $("#classID").val() + "&times=" + (new Date().getTime()),function(data){
+        var mark = 1;
+        if(checkRole("saler")){
+            mark = 3;
+        }
+		$.get("studentCourseControl.asp?op=getStudentCourseList&classID=" + $("#classID").val() + "&mark=" + mark + "&times=" + (new Date().getTime()),function(data){
 			//alert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
@@ -414,6 +418,9 @@
 		$("#close").hide();
 		$("#open").hide();
 		$("#del").hide();
+		$("#doImportRef").hide();
+		$("#doImport").hide();
+		$("#btnClassCall").hide();
 		if(op ==1){
 			setEmpty();
 		}else{
@@ -429,6 +436,8 @@
 		}
 		if(checkPermission("classAdd") && s < 2){
 			$("#save").show();
+			$("#doImport").show();
+			$("#btnClassCall").show();
 		}
 	}
 	

@@ -236,6 +236,17 @@
 		if(currUser != "desk."){
 			$("#compress").hide();
 		}
+		if(checkRole("saler")){
+			$("#menu2").hide();
+			$("#menu3").hide();
+			$("#menu4").hide();
+			$("#menu5").hide();
+			$("#menu11").hide();
+			$("#menu12").hide();
+			deleteTab("发票管理");
+		}
+        deleteTab("日结报表");
+        deleteTab("花名册");
 		
 	    refreshMsg();
 	});
@@ -334,7 +345,7 @@
 						<li id="menu2"><a href="#fragment-2"><span>预报名管理</span></a></li>
 						<li id="menu12"><a href="#fragment-12"><span>考试申报</span></a></li>
 						<li id="menu3"><a href="#fragment-3"><span>证书管理</span></a></li>
-						<li><a href="#fragment-4"><span>课程管理</span></a></li>
+						<li id="menu4"><a href="#fragment-4"><span>课程管理</span></a></li>
 						<li id="menu5"><a href="#fragment-5"><span>题库管理</span></a></li>
 						<li><a href="#fragment-6"><span>统计报表</span></a></li>
 						<li><a href="#fragment-7"><span>用户管理</span></a></li>

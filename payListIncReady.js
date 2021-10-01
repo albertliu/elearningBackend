@@ -48,9 +48,13 @@
 	function getPayList(){
 		sWhere = $("#txtSearchPay").val();
 		var Old = 0;
+        var mark = 1;
+        if(checkRole("saler")){
+            mark = 3;
+        }
 		//if($("#searchPayOld").attr("checked")){Old = 1;}
 		//alert($("#searchPayDept").val() + "&refID=" + $("#searchPayProjectID").val() + "&status=" + $("#searchPayStatus").val() + "&photoStatus=" + $("#searchPayPhotoStatus").val() + "&courseID=" + $("#searchPayCourseID").val() + "&host=" + $("#searchPayHost").val() + "&checked=" + $("#searchPayChecked").val() + "&materialChecked=" + $("#searchPayMaterialChecked").val() + "&classID=" + $("#searchPayClassID").val());
-		$.get("studentCourseControl.asp?op=getPayList&where=" + escape(sWhere) + "&kindID=" + $("#searchPayDept").val() + "&refID=" + $("#searchPayProjectID").val() + "&status=" + $("#searchPayStatus").val() + "&courseID=" + $("#searchPayCourseID").val() + "&host=" + $("#searchPayHost").val() + "&classID=" + $("#searchPayClassID").val() + "&fStart=" + $("#searchPayStartDate").val() + "&fEnd=" + $("#searchPayEndDate").val() + "&dk=102&times=" + (new Date().getTime()),function(data){
+		$.get("studentCourseControl.asp?op=getPayList&where=" + escape(sWhere) + "&mark=" + mark + "&kindID=" + $("#searchPayDept").val() + "&refID=" + $("#searchPayProjectID").val() + "&status=" + $("#searchPayStatus").val() + "&courseID=" + $("#searchPayCourseID").val() + "&host=" + $("#searchPayHost").val() + "&classID=" + $("#searchPayClassID").val() + "&fStart=" + $("#searchPayStartDate").val() + "&fEnd=" + $("#searchPayEndDate").val() + "&dk=102&times=" + (new Date().getTime()),function(data){
 		//$.getJSON("payControl.asp?op=getPayList",function(data){
 			//alert(unescape(data));
 			var ar = new Array();
