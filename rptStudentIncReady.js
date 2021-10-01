@@ -38,7 +38,7 @@
 		}
         var fromID = "";
         if(checkRole("saler")){
-            fromID = currUser.replace(".","");
+            fromID = currUser;
         }
 		//alert("op=student&mark=" + mark + "&host=" + $("#rptStudentHost").val() + "&kindID=" + $("#rptStudentKind").val() + "&startDate=" + $("#rptStudentStartDate").val() + "&endDate=" + $("#rptStudentEndDate").val() + "&groupHost=" + g1 + "&groupDept1=" + g2 + "&groupKindID=" + g3 + "&groupDate=" + g4);
 		//@host varchar(50),@startDate varchar(50),@endDate varchar(50),@kindID varchar(20),@groupHost int,@groupDept1 int,@groupKindID int,@groupDate

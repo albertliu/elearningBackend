@@ -46,7 +46,7 @@
 		}
         var fromID = "";
         if(checkRole("saler")){
-            fromID = currUser.replace(".","");
+            fromID = currUser;
         }
 		//alert("op=trainning&mark=" + mark + "&host=" + $("#rptTrainningHost").val() + "&kindID=" + $("#rptTrainningKind").val() + "&startDate=" + $("#rptTrainningStartDate").val() + "&endDate=" + $("#rptTrainningEndDate").val() + "&groupHost=" + g1 + "&groupDept1=" + g2 + "&groupKindID=" + g3 + "&groupDate=" + g4);
 		//@host varchar(50),@startDate varchar(50),@endDate varchar(50),@kindID varchar(20),@groupHost int,@groupDept1 int,@groupKindID int,@groupDate

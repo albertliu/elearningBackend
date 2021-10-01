@@ -130,7 +130,7 @@ if(op == "getStudentCourseList"){
 	}
 	//mark=3: 当前用户为销售
 	if(String(Request.QueryString("mark")) == 3){
-		s = "fromID='" + currUser.replace(".","") + "'";
+		s = "fromID='" + currUser + "'";
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
@@ -523,7 +523,7 @@ if(op == "getPayList"){
 	}
 	//mark=3: 当前用户为销售
 	if(String(Request.QueryString("mark")) == 3){
-		s = "fromID='" + currUser.replace(".","") + "'";
+		s = "fromID='" + currUser + "'";
 		if(where > ""){
 			where = where + " and " + s;
 		}else{

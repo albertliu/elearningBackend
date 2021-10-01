@@ -51,7 +51,7 @@
 		}
         var fromID = "";
         if(checkRole("saler")){
-            fromID = currUser.replace(".","");
+            fromID = currUser;
         }
 		//alert("op=diplomalast&mark=" + mark + "&host=" + $("#rptDiplomaLastHost").val() + "&kindID=" + $("#rptDiplomaLastKind").val() + "&startDate=" + $("#rptDiplomaLastStartDate").val() + "&endDate=" + $("#rptDiplomaLastEndDate").val() + "&groupHost=" + g1 + "&groupDept1=" + g2 + "&groupKindID=" + g3 + "&groupDate=" + g4);
 		//@host varchar(50),@startDate varchar(50),@endDate varchar(50),@kindID varchar(20),@groupHost int,@groupDept1 int,@groupKindID int,@groupDate
