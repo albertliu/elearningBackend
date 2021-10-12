@@ -72,7 +72,7 @@
             });
             var chartsOption = {
               title: {
-                text: 'Stacked Line'
+                text: '报名来源分布'
               },
                   tooltip: {
                     trigger: 'axis',
