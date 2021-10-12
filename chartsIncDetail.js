@@ -9,7 +9,7 @@
 								<input style="border:0px;" type="radio" id="rptChartsGroupDate2" name="rptChartsGroupDate" value="w" checked />周
 								<input style="border:0px;" type="radio" id="rptChartsGroupDate3" name="rptChartsGroupDate" value="m" />月
 								<input style="border:0px;" type="radio" id="rptChartsGroupDate4" name="rptChartsGroupDate" value="y" />年
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;快速选择&nbsp;&nbsp;
 								<input style="border:0px;" type="radio" id="rptChartsDate1" name="rptChartsDate" value="1" />最近一周
 								<input style="border:0px;" type="radio" id="rptChartsDate2" name="rptChartsDate" value="2" checked />最近三个月
 								<input style="border:0px;" type="radio" id="rptChartsDate3" name="rptChartsDate" value="3" />最近一年
