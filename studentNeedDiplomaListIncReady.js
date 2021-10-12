@@ -146,16 +146,16 @@
 			arr.push("<th width='3%'>No</th>");
 			arr.push("<th width='8%'>学号</th>");
 			arr.push("<th width='11%'>身份证</th>");
-			arr.push("<th width='8%'>姓名</th>");
-			arr.push("<th width='7%'>年龄</th>");
-			arr.push("<th width='15%'>证书名称</th>");
+			arr.push("<th width='7%'>姓名</th>");
+			arr.push("<th width='6%'>年龄</th>");
+			arr.push("<th width='12%'>证书名称</th>");
 			if(currHost==""){
 				arr.push("<th width='15%'>班级</th>");
-				arr.push("<th width='10%'>学历</th>");
+				arr.push("<th width='8%'>学历</th>");
 			}else{
-				arr.push("<th width='15%'>部门</th>");
 				arr.push("<th width='10%'>结束日期</th>");
 			}
+			arr.push("<th width='10%'>部门</th>");
 			arr.push("<th width='6%'>照</th>");
 			arr.push("<th width='5%'>证</th>");
 			if(currHost>""){
@@ -188,9 +188,9 @@
 						arr.push("<td class='left'>" + ar1[15] + "</td>");
 						arr.push("<td class='left'>" + ar1[18] + "</td>");
 					}else{
-						arr.push("<td class='left'>" + ar1[9] + "</td>");
 						arr.push("<td class='left'>" + ar1[11] + "</td>");
 					}
+					arr.push("<td class='left'>" + ar1[9] + "</td>");
 					if($("#searchStudentNeedDiplomaShowPhoto").attr("checked")){
 						imgChk = "<img src='users" + ar1[13] + "' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'>";
 					}
@@ -210,7 +210,9 @@
 			arr.push("<tfoot>");
 			arr.push("<tr>");
 			arr.push("<th>&nbsp;</th>");
-			arr.push("<th>&nbsp;</th>");
+			if(currHost==""){
+				arr.push("<th>&nbsp;</th>");
+			}
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");

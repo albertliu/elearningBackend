@@ -21,7 +21,7 @@
 			$("#feedbackListLongItem1").hide();
 		}
 		
-		getFeedbackList();
+		//getFeedbackList();
 	});
 
 	function getFeedbackList(){
