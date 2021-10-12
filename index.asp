@@ -211,6 +211,7 @@
 			$("#menu10").hide();
 			$("#menu12").hide();
 			$("#menu2").hide();
+			deleteTab("统计图表");
 		}else{
 			$("#menu11").hide();
 			$("#menu2").hide();

@@ -4,6 +4,11 @@
 
 	$(document).ready(function (){
       getComList("searchChartsCert","certificateInfo","certID","shortName","status=0 and type=0 order by certID",1);
+      if(checkRole("saler")){
+          getComList("searchChartsFromID","userInfo","username","realName","status=0 and username='" + currUser + "' order by realName",0);
+      }else{
+          getComList("searchChartsFromID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='saler') order by realName",1);
+      }
       $("#searchChartsStartDate").click(function(){WdatePicker();});
       $("#searchChartsEndDate").click(function(){WdatePicker();});
       $("#searchChartsStartDate").val(addDays(currDate,-90));
@@ -42,13 +47,18 @@
 
 	function getCharts(){
       var mark = 1;
+      var fromID = "";
       if(checkRole("saler")){
           mark = 3;
+          fromID = currUser;
+      }
+      if($("#searchChartsFromID").val()>""){
+          fromID = $("#searchChartsFromID").val();
       }
       var g4 = $("input[name='rptChartsGroupDate']:checked").val();
       var total = 0;
       //alert((sWhere) + "&refID=" + $("#searchChartsCert").val() + "&status=" + $("#searchChartsStatus").val() + "&project=" + $("#searchChartsProject").val());
-      $.post(uploadURL + "/public/getEnterRpt",{refID:g4, certID:$("#searchChartsCert").val(), startDate:$("#searchChartsStartDate").val(), endDate:$("#searchChartsEndDate").val(), mark:mark},function(data){
+      $.post(uploadURL + "/public/getEnterRpt",{refID:g4, certID:$("#searchChartsCert").val(), startDate:$("#searchChartsStartDate").val(), endDate:$("#searchChartsEndDate").val(), mark:mark, fromID:fromID},function(data){
             //var data = {title:['2021-10-01', '2021-10-02', '2021-10-03', '2021-10-04', '2021-10-05', '2021-10-06', '2021-10-07', '2021-10-08', '2021-10-09', '2021-10-10'],list:[{key:"社会",val:[320, 302, 301, 334, , 330, 320, 302, , 334]},{key:"中石化",val:[120, , 101, 134, 90, 230, 210, 132, , 134]},{key:"地铁",val:[220, 182, 191, 234, 290, 330, 310, 191, , 290]}]};
             var series = new Array();
             var obj;
@@ -103,7 +113,7 @@
             chartsOption && myChart.setOption(chartsOption, true);
 		  });
 
-		  $.post(uploadURL + "/public/getEnterRptPie1",{refID:g4, startDate:$("#searchChartsStartDate").val(), endDate:$("#searchChartsEndDate").val(), mark:mark},function(data){
+		  $.post(uploadURL + "/public/getEnterRptPie1",{refID:g4, startDate:$("#searchChartsStartDate").val(), endDate:$("#searchChartsEndDate").val(), mark:mark, fromID:fromID},function(data){
             var chartsOption = {
               title: {
                 text: '报名课程分布',
@@ -119,7 +129,7 @@
                   name: '证书名称',
                   type: 'pie',
                   radius: '70%',
-                  center: ['50%', '60%'],
+                  center: ['50%', '55%'],
                   data: data,
                   emphasis: {
                     itemStyle: {

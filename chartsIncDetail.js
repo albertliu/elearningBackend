@@ -2,8 +2,9 @@
 							<div charts="comm" align='left' style="background:#fdfdfd;">
 								<form>
 				          <input class="button" type="button" id="btnSearchCharts" value="查询" />&nbsp;&nbsp;
-					          &nbsp;课程&nbsp;<select id="searchChartsCert" style="width:120px"></select>&nbsp;
+					          &nbsp;课程&nbsp;<select id="searchChartsCert" style="width:120px"></select>&nbsp;&nbsp;
 					          <label id="searchChartsDateItem">日期</label>&nbsp;<input type="text" id="searchChartsStartDate" size="8" />-<input type="text" id="searchChartsEndDate" size="8" />
+					          &nbsp;&nbsp;销售&nbsp;<select id="searchChartsFromID" style="width:90px"></select>
 							  &nbsp;&nbsp;&nbsp;&nbsp;汇总方式&nbsp;&nbsp;
 								<input style="border:0px;" type="radio" id="rptChartsGroupDate1" name="rptChartsGroupDate" value="d" />日
 								<input style="border:0px;" type="radio" id="rptChartsGroupDate2" name="rptChartsGroupDate" value="w" checked />周
