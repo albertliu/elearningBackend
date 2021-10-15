@@ -10,6 +10,11 @@
       $("#searchChartsClassEndDate").click(function(){WdatePicker();});
       $("#searchChartsClassStartDate").val(addDays(currDate,-90));
       $("#searchChartsClassEndDate").val(currDate);
+
+      if(checkRole("adviser")){
+        $("#searchChartsClassAdviserID").val(currUser);
+      }
+
       $("#btnSearchChartsClass").click(function(){
 				if($("#searchChartsClassStartDate").val()>"" && $("#searchChartsClassEndDate").val()>""){
 					getChartsClass();
