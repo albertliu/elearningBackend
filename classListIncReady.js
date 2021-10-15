@@ -54,7 +54,7 @@
 			arr.push("<th width='7%'>编号</th>");
 			arr.push("<th width='15%'>班级名称</th>");
 			arr.push("<th width='8%'>开课日期</th>");
-			arr.push("<th width='8%'>结束日期</th>");
+			arr.push("<th width='8%'>结课日期</th>");
 			arr.push("<th width='7%'>班主任</th>");
 			arr.push("<th width='8%'>开课通知</th>");
 			arr.push("<th width='8%'>归档日期</th>");

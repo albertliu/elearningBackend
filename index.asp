@@ -93,6 +93,7 @@
 	<!--#include file="rptDiplomaLastIncReady.js"-->
 	<!--#include file="studentPreListIncReady.js"-->
 	<!--#include file="chartsIncReady.js"-->
+	<!--#include file="chartsClassIncReady.js"-->
 
 	unitListLong = 0;
 	memoListLong = 0;
@@ -583,6 +584,9 @@
 							<div id="dtab69" class="dhtmlgoodies_aTab">
 								<!--#include file="chartsIncDetail.js"-->
 							</div>
+							<div id="dtab68" class="dhtmlgoodies_aTab">
+								<!--#include file="chartsClassIncDetail.js"-->
+							</div>
 							<div id="dtab60" class="dhtmlgoodies_aTab">
 								<!--#include file="rptStudentIncDetail.js"-->
 							</div>
@@ -597,7 +601,7 @@
 							</div>
 						</div>
 						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView6',Array("统计图表","学员注册","学员培训","证书发放","证书到期"),0,1260,400);
+							initTabs('dhtmlgoodies_tabView6',Array("统计图表","班级图表","学员注册","学员培训","证书发放","证书到期"),0,1260,400);
 						</script>
 					</div>
 					

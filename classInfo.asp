@@ -479,7 +479,7 @@
 			<tr>
 				<td align="right">开课日期</td>
 				<td><input type="text" id="dateStart" size="15" /></td>
-				<td align="right">结束日期</td>
+				<td align="right">结课日期</td>
 				<td><input type="text" id="dateEnd" size="15" />&nbsp;预计</td>
 			</tr>
 			<tr>
