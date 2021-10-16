@@ -208,7 +208,7 @@
           },
           legend: {
             type: "plain", // 图例的类型 'plain':普通图例  'scroll':可滚动翻页的图例
-            bottom: 3
+            bottom: 0
           },
           tooltip: {},
           grid: {
@@ -255,7 +255,7 @@
           },
           legend: {
             type: "plain", // 图例的类型 'plain':普通图例  'scroll':可滚动翻页的图例
-            bottom: 3
+            bottom: 0
           },
           tooltip: {},
           grid: {
