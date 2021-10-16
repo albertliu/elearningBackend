@@ -14,5 +14,5 @@
 							</div>
 							<hr size="1" noshadow />
 							<div id="chartsclassTotal" style="padding:3px; background:#f8f8f8;"></div>
-							<div id="chartsclassCover" style="float:left;margin:0px;background:#f8fff8;width: 100%;height:605px;"></div>
+							<div id="chartsclassCover" style="float:left;margin:0px;background:#f8fff8;width: 100%;height:910px;"></div>
 						</div>

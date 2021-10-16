@@ -20,6 +20,9 @@
 								班级&nbsp;<select id="searchStudentNeedDiplomaClassID" style="width:180px"></select>&nbsp;&nbsp;
 							    &nbsp;考试日期&nbsp;<input type="text" id="searchStudentNeedDiplomaStartDate" size="8" />-<input type="text" id="searchStudentNeedDiplomaEndDate" size="8" />
 							</span>
+						    <span style="float:right;">
+							<label>已选记录:</label>&nbsp;<label style="color: red; padding-right:10px;" id="searchStudentNeedDiplomaPick"></label>
+							</span>
 				        </form>
 					</div>
 					<hr size="1" noshadow />

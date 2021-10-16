@@ -42,7 +42,10 @@
 								准考证/申报&nbsp;<select id="searchEnterPasscard" style="width:50px"></select>&nbsp;
 								<input class="button" type="button" id="btnEnterCall" value="催材料" />&nbsp;
 							</span>
-							<span style="float:right;margin-right:20px;"><input class="button" type="button" id="btnEnterCartAdd" value="加入购物车" />&nbsp;&nbsp;</span>
+							<span style="float:right;margin-right:20px;">
+								<input class="button" type="button" id="btnEnterCartAdd" value="加入购物车" />&nbsp;&nbsp;&nbsp;&nbsp;
+								<label>已选记录:</label>&nbsp;<label style="color: red; padding-right:10px;" id="searchEnterPick"></label>
+							</span>
 							<span style="float:right;margin-right:10px;"><img id="cart_examer_img" src="images/cart.png" /></span>
 							<span id="cart_examer" style="float:right;">0</span>
 				        </form>

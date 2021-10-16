@@ -43,6 +43,7 @@
 		
 		$("#btnEnterSel").click(function(){
 			setSel("visitstockchkEnter");
+			$("#searchEnterPick").html(selCount);
 		});
 		
 		$("#btnEnterBadPhoto").click(function(){
@@ -432,6 +433,11 @@
 			floatKey = "";		//
 			floatContent = "";	//records data for output
 			floatModel = 1;
+			$("#searchEnterPick").html(0);
+			$('input[type=checkbox][name=visitstockchkEnter]').change(function(){
+				getSelCart("visitstockchkEnter");
+				$("#searchEnterPick").html(selCount);
+			});
 		});
 	}
 

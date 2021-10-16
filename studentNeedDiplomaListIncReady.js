@@ -36,6 +36,7 @@
 				selCount1 = 0;
 			}
 			setSel1("visitstockchkStamp");
+			$("#searchStudentNeedDiplomaPick").html(selCount);
 		});
 		
 		$("#searchStudentNeedDiplomaCert").change(function(){
@@ -249,6 +250,11 @@
 			if($("#searchStudentNeedDiplomaCert").val()>""){
 				setSel("");
 			}
+			$("#searchStudentNeedDiplomaPick").html(0);
+			$('input[type=checkbox][name=visitstockchkNeed]').change(function(){
+				getSelCart("visitstockchkNeed");
+				$("#searchStudentNeedDiplomaPick").html(selCount);
+			});
 		});
 	}
 	

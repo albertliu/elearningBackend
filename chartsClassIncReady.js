@@ -22,9 +22,9 @@
 					jAlert("请选择日期范围。");
 				}
       });
-      if(checkRole("leader")){
-        getChartsClass();
-      }
+      //if(checkRole("leader")){
+      //  getChartsClass();
+      //}
       $('input[type=radio][name=rptChartsClassDate]').change(function() {
         if(this.value==1){
           //this week
@@ -61,7 +61,7 @@
             var list = data["list"];
             var lists = data["lists"];
             var i = 0;
-            var zoom = 100-2000/total;
+            var zoom = 100-3000/total;
             if(zoom<0){
               zomm = 0;
             }
@@ -118,7 +118,8 @@
 
             var chartsclassOption = {
               title: {
-                text: '班级运行情况'
+                text: '班级运行情况',
+                top: 5
               },
                   tooltip: {
                     trigger: 'axis',
@@ -129,18 +130,26 @@
                     formatter: function (params,ticket,callback) {
                       var res = params[0].name;
                       var adviser = "未指定";
+                      var examScore = 0;
+                      var examTimes = 0;
                       //var i = data["title"].indexof(res);
                       var i = $.inArray(res,data["title"]);
                       if(i>=0){
                         adviser = data["adviser"][i];
+                        examScore = data["examScore"][i];
+                        examTimes = data["examTimes"][i];
                       }
-                      res += "<br/>" + "班主任：" + adviser;
+                      res += "<br/>" + "班主任：" + adviser + "<br/>" + "模拟考试：" + examTimes + "次 " + examScore + "分";
                       for (var i = 0, l = params.length; i < l; i++) {
                           //val = params[i].value;
                           res += '<br/>' + params[i].seriesName + ' ：' + (params[i].seriesName=="结束" && params[i].value>"" ? "已结束":params[i].value > "" ? params[i].value+"天":"");//要填充的内容
                       }
                       return res;
                     }
+                  },
+                  color: ['#000','#ff0', '#0f0','#00f', '#f00'],
+                  legend: {
+                    top: "3%" // bottom:"20%" // 组件离容器的距离
                   },
                   grid: {
                     left: '3%',

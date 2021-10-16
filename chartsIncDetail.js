@@ -18,8 +18,12 @@
 							</div>
 							<hr size="1" noshadow />
 							<div id="chartsTotal" style="padding:3px; background:#f8f8f8;"></div>
-							<div id="chartsCover" style="float:left;margin:0px;background:#f8fff8;width: 60%;height:605px;"></div>
+							<div id="chartsPie" style="float:left;margin:0px;background:#f8fff8;width: 60%;height:300px;"></div>
 							<div id="chartsPie1" style="float:right;margin:0px;background:#f8f8ff;width: 40%;height:300px;"></div>
 							<div style="float:right;margin:0px;background:#dddddd;width: 40%;height:5px;"></div>
+							<div style="float:left;margin:0px;background:#dddddd;width: 60%;height:5px;"></div>
+							<div id="chartsCover" style="float:left;margin:0px;background:#f8fff8;width: 60%;height:605px;"></div>
 							<div id="chartsPie2" style="float:right;margin:0px;background:#f8f8ff;width: 40%;height:300px;"></div>
+							<div style="float:right;margin:0px;background:#dddddd;width: 40%;height:5px;"></div>
+							<div id="chartsPie3" style="float:right;margin:0px;background:#f8f8ff;width: 40%;height:300px;"></div>
 						</div>
