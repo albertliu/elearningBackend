@@ -67,6 +67,8 @@ if(op == "getNodeInfo"){
 		result += "|" + rs("agencyID").value + "|" + rs("agencyName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("hours").value;
 		//15
 		result += "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("termExt").value + "|" + rs("type").value + "|" + rs("mark").value + "|" + rs("markName").value + "|" + rs("shortName").value;
+		//22
+		result += "|" + rs("days_study").value + "|" + rs("days_exam").value + "|" + rs("days_diploma").value + "|" + rs("days_archive").value;
 		execSQL(sql);
 	}
 	rs.Close();
@@ -76,7 +78,7 @@ if(op == "getNodeInfo"){
 if(op == "update"){
 	result = 0;
 	if(result == 0){
-		sql = "exec updateCertificateInfo " + nodeID + ",'" + String(Request.QueryString("certID")) + "','" + unescape(String(Request.QueryString("certName"))) + "','" + unescape(String(Request.QueryString("shortName"))) + "','" + String(Request.QueryString("term")) + "','" + String(Request.QueryString("termExt")) + "'," + String(Request.QueryString("agencyID")) + "," + kindID + "," + status + "," + String(Request.QueryString("type")) + "," + String(Request.QueryString("mark")) + ",'" + host + "','" + memo + "','" + currUser + "'";
+		sql = "exec updateCertificateInfo " + nodeID + ",'" + String(Request.QueryString("certID")) + "','" + unescape(String(Request.QueryString("certName"))) + "','" + unescape(String(Request.QueryString("shortName"))) + "','" + String(Request.QueryString("term")) + "','" + String(Request.QueryString("termExt")) + "'," + String(Request.QueryString("agencyID")) + "," + kindID + "," + status + "," + String(Request.QueryString("type")) + "," + String(Request.QueryString("mark")) + "," + String(Request.QueryString("days_study")) + "," + String(Request.QueryString("days_exam")) + "," + String(Request.QueryString("days_diploma")) + "," + String(Request.QueryString("days_archive")) + ",'" + host + "','" + memo + "','" + currUser + "'";
 
 		execSQL(sql);
 		if(nodeID == 0){

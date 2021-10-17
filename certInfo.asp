@@ -75,6 +75,10 @@
 				$("#type").val(ar[18]);
 				$("#mark").val(ar[19]);
 				$("#shortName").val(ar[21]);
+				$("#days_study").val(ar[22]);
+				$("#days_exam").val(ar[23]);
+				$("#days_diploma").val(ar[24]);
+				$("#days_archive").val(ar[25]);
 				
 				//getDownloadFile("certID");
 				setButton();
@@ -87,7 +91,7 @@
 	
 	function saveNode(){
 		//alert($("#certID").val() + "&item=" + ($("#memo").val()));
-		$.get("certControl.asp?op=update&nodeID=" + $("#ID").val() + "&certID=" + $("#certID").val() + "&certName=" + escape($("#certName").val()) + "&shortName=" + escape($("#shortName").val()) + "&term=" + $("#term").val() + "&termExt=" + $("#termExt").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&type=" + $("#type").val() + "&mark=" + $("#mark").val() + "&host=" + $("#host").val() + "&agencyID=" + $("#agencyID").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("certControl.asp?op=update&nodeID=" + $("#ID").val() + "&certID=" + $("#certID").val() + "&certName=" + escape($("#certName").val()) + "&shortName=" + escape($("#shortName").val()) + "&term=" + $("#term").val() + "&termExt=" + $("#termExt").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&type=" + $("#type").val() + "&mark=" + $("#mark").val() + "&host=" + $("#host").val() + "&agencyID=" + $("#agencyID").val() + "&days_study=" + $("#days_study").val() + "&days_exam=" + $("#days_exam").val() + "&days_diploma=" + $("#days_diploma").val() + "&days_archive=" + $("#days_archive").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -181,6 +185,18 @@
 				<td><select id="mark" style="width:180px;"></select></td>
 				<td align="right">简称</td>
 				<td><input type="text" id="shortName" size="25" /></td>
+			</tr>
+			<tr>
+				<td align="right">上课周期</td>
+				<td><input type="text" id="days_study" size="25" /></td>
+				<td align="right">考试周期</td>
+				<td><input type="text" id="days_exam" size="25" /></td>
+			</tr>
+			<tr>
+				<td align="right">制证周期</td>
+				<td><input type="text" id="days_diploma" size="25" /></td>
+				<td align="right">归档周期</td>
+				<td><input type="text" id="days_archive" size="25" /></td>
 			</tr>
 			<tr>
 				<td align="right">说明</td>

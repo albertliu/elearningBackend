@@ -733,6 +733,20 @@ if(op == "getStudentListByProjectCheck"){
 	//Response.Write(escape(sql));
 }	
 
+if(op == "getStudentExamStat"){
+	result = "";
+	sql = "SELECT * FROM dbo.getStudentExamStat('" + refID + "')";
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("regDate").value + "|" + rs("knowpointName").value + "|" + rs("kindName").value + "|" + rs("score").value + "|" + rs("qty").value + "|" + rs("qtyYes").value + "|" + rs("seq").value + "|" + rs("examID").value + "|" + rs("examName").value;
+		rs.MoveNext();
+	}
+	rs.Close();
+	result = result.substr(2);
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}	
+
 if(op == "updatePayInfo"){
 	//@ID int,@invoice varchar(50),@projectID varchar(50),@kindID varchar(50),@type int,@status int,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo
 	sql = "exec updatePayInfo " + nodeID + ",'" + String(Request.QueryString("invoice")) + "','" + String(Request.QueryString("projectID")) + "','" + item + "','" + kindID + "','" + String(Request.QueryString("type")) + "','" + status + "','" + String(Request.QueryString("datePay")) + "','" + String(Request.QueryString("dateInvoice")) + "','" + String(Request.QueryString("dateInvoicePick")) + "','" + refID + "','" + memo + "','" + currUser + "',''";
