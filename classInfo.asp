@@ -175,6 +175,10 @@
 			}
 		});
 
+		$("#btnMockView").click(function(){
+			showClassExamStat($("#classID").val(),$("#className").val(),0,0);
+		});
+
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -253,13 +257,13 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='4%'>No</th>");
-			arr.push("<th width='6%'>学号</th>");
-			arr.push("<th width='10%'>身份证</th>");
+			arr.push("<th width='7%'>学号</th>");
+			arr.push("<th width='9%'>身份证</th>");
 			arr.push("<th width='6%'>姓名</th>");
 			arr.push("<th width='13%'>单位</th>");
-			arr.push("<th width='8%'>电话</th>");
-			arr.push("<th width='6%'>进度%</th>");
-			arr.push("<th width='5%'>模拟</th>");
+			arr.push("<th width='6%'>电话</th>");
+			arr.push("<th width='5%'>进度%</th>");
+			arr.push("<th width='7%'>模拟</th>");
 			arr.push("<th width='5%'>准申</th>");
 			arr.push("<th width='5%'>成绩</th>");
 			arr.push("<th width='5%'>补考</th>");
@@ -298,7 +302,7 @@
 						c = "";
 					}
 					arr.push("<td class='center'>" + c + "</td>");	//学习进度
-					arr.push("<td class='left'>" + nullNoDisp(ar1[15]) + "</td>");
+					arr.push("<td title='最好成绩*次数' class='link1'><a href='javascript:showStudentExamStat(" + ar1[0] + ",\"" + ar1[2] + "\",0,0);'>" + nullNoDisp(ar1[15]) + "*" + nullNoDisp(ar1[59]) + "</td>");
 					//申报
 					if(ar1[65]>0 || ar1[53]>0){
 						arr.push("<td class='center'>" + imgChk + "</td>");	//申报/准考证
@@ -421,6 +425,7 @@
 		$("#doImportRef").hide();
 		$("#doImport").hide();
 		$("#btnClassCall").hide();
+		$("#btnMockView").hide();
 		if(op ==1){
 			setEmpty();
 		}else{
@@ -433,6 +438,7 @@
 			if(checkPermission("classAdd")){
 				$("#del").show();
 			}
+			$("#btnMockView").show();
 		}
 		if(checkPermission("classAdd") && s < 2){
 			$("#save").show();
@@ -565,6 +571,7 @@
 		<div style="border:solid 1px #e0e0e0;width:99%;margin:5px;background:#ffffff;line-height:18px;padding-left:20px;">
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnSel" value="全选/取消" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassCall" value="开课通知" /></span>
+			<span id="btnMockView">&nbsp;&nbsp;查看模拟考试情况</span>
 		</div>
 	</div>
 	<hr size="1" noshadow />

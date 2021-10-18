@@ -31,19 +31,21 @@
 	var updateCount = 0;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
-		nodeID = "<%=nodeID%>";		//enterID
-		refID = "<%=refID%>";		//学员姓名
-		$("#studentName").val(refID);
+		nodeID = "<%=nodeID%>";		//classID
+		refID = "<%=refID%>";		//班级名称
+		$("#classID").val(nodeID);
+		$("#className").val(refID);
 		
 		$.ajaxSetup({ 
 			async: false 
 		}); 
 
-		getStudentExamStat();
+		getClassExamStat();
 	});
 
-	function getStudentExamStat(){
-		$.get("studentCourseControl.asp?op=getStudentExamStat&refID=" + nodeID + "&times=" + (new Date().getTime()),function(data){
+	function getClassExamStat(){
+		//alert(nodeID);
+		$.get("studentCourseControl.asp?op=getClassExamStat&refID=" + nodeID + "&times=" + (new Date().getTime()),function(data){
 			//alert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
@@ -56,12 +58,10 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='5%'>序号</th>");
-			arr.push("<th width='10%'>提交日期</th>");
-			arr.push("<th width='4%'>No</th>");
 			arr.push("<th width='15%'>考试名称</th>");
+			arr.push("<th width='4%'>No</th>");
 			arr.push("<th width='12%'>知识点</th>");
 			arr.push("<th width='6%'>类型</th>");
-			arr.push("<th width='6%'>得分</th>");
 			arr.push("<th width='6%'>题目数</th>");
 			arr.push("<th width='6%'>正确数</th>");
 			arr.push("<th width='6%'>正确率</th>");
@@ -81,24 +81,22 @@
 					ar1 = val.split("|");
 					j += 1;
 					c = 0;
-					if(ar1[6] == seq){
+					if(ar1[0] == seq){
 						h = "";
 						h1 = "";
 						h2 = "";
 					}else{
 						i += 1;
 						j = 1;
-						h = ar1[6];
-						h1 = ar1[0];
+						h = ar1[0];
+						h1 = ar1[1];
 						h2 = i;
-						seq = ar1[6];
+						seq = ar1[0];
 					}
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='left'>" + h2 + "</td>");
 					arr.push("<td class='left'>" + h1 + "</td>");
 					arr.push("<td class='center'>" + j + "</td>");
-					arr.push("<td class='left'>" + ar1[8] + "</td>");
-					arr.push("<td class='left'>" + ar1[1] + "</td>");
 					arr.push("<td class='left'>" + ar1[2] + "</td>");
 					arr.push("<td class='left'>" + ar1[3] + "</td>");
 					arr.push("<td class='left'>" + ar1[4] + "</td>");
@@ -110,8 +108,6 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
-			arr.push("<th>&nbsp;</th>");
-			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
@@ -151,10 +147,10 @@
 			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
-				<td align="left">学员姓名：</td>
-				<td><input type="text" id="studentName" class="readOnly" readOnly="true" size="15" /></td>
-				<td align="left"></td>
-				<td>&nbsp;</td>
+				<td align="left">班级编号：</td>
+				<td><input type="text" id="classID" class="readOnly" readOnly="true" size="15" /></td>
+				<td align="left">班级名称：</td>
+				<td><input type="text" id="className" class="readOnly" readOnly="true" size="45" /></td>
 			</tr>
 			</table>
 			</form>

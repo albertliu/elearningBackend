@@ -1690,9 +1690,28 @@
 		asyncbox.open({
 			id: "studentExamStat",
 			url:"studentExamStat.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
-			title: "用户信息",
-			width: 680,
-			height: 500,
+			title: "学员模拟练习情况",
+			width: 1080,
+			height: 780,
+			cover : {
+	          //透明度
+	          opacity : 0,
+	          //背景颜色
+	           background : '#000'
+	          },
+
+			btnsbar : false
+		});
+	}
+	
+	//nodeID: ID; op: 0 浏览 1 新增  2 编辑  3 删除  4 审批; mark: 0 不动作  1 有修改时刷新列表  2 有修改时刷新对象
+	function showClassExamStat(nodeID,refID,op,mark){
+		asyncbox.open({
+			id: "classExamStat",
+			url:"classExamStat.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
+			title: "班级模拟练习情况",
+			width: 1080,
+			height: 780,
 			cover : {
 	          //透明度
 	          opacity : 0,

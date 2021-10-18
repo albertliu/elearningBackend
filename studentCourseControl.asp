@@ -735,10 +735,24 @@ if(op == "getStudentListByProjectCheck"){
 
 if(op == "getStudentExamStat"){
 	result = "";
-	sql = "SELECT * FROM dbo.getStudentExamStat('" + refID + "')";
+	sql = "EXEC getStudentExamStat " + refID;
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
 		result += "%%" + rs("regDate").value + "|" + rs("knowpointName").value + "|" + rs("kindName").value + "|" + rs("score").value + "|" + rs("qty").value + "|" + rs("qtyYes").value + "|" + rs("seq").value + "|" + rs("examID").value + "|" + rs("examName").value;
+		rs.MoveNext();
+	}
+	rs.Close();
+	result = result.substr(2);
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}	
+
+if(op == "getClassExamStat"){
+	result = "";
+	sql = "EXEC getClassExamStat '" + refID + "'";
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("examID").value + "|" + rs("examName").value + "|" + rs("knowPointName").value + "|" + rs("kindName").value + "|" + rs("qty").value + "|" + rs("qtyYes").value;
 		rs.MoveNext();
 	}
 	rs.Close();
