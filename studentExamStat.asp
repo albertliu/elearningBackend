@@ -75,24 +75,51 @@
 				var h1 = "";
 				var h2 = "";
 				var j = 0;
+				var score = 0;
+				var qty = 0;
+				var qtyYes = 0;
 				var seq = 0;
+				var n = 0;
+				var lens = ar.length;
 				$.each(ar,function(iNum,val){
 					var ar1 = new Array();
 					ar1 = val.split("|");
 					j += 1;
 					c = 0;
+					n += 1;
 					if(ar1[6] == seq){
 						h = "";
 						h1 = "";
 						h2 = "";
 					}else{
+						if(n>1){
+							//total row
+							arr.push("<tr class='grade" + c + "'>");
+							arr.push("<td class='left'></td>");
+							arr.push("<td class='left'></td>");
+							arr.push("<td class='center'>合计</td>");
+							arr.push("<td class='left'></td>");
+							arr.push("<td class='left'></td>");
+							arr.push("<td class='left'></td>");
+							arr.push("<td class='left'>" + nullNoDisp(score) + "</td>");
+							arr.push("<td class='left'>" + nullNoDisp(qty) + "</td>");
+							arr.push("<td class='left'>" + nullNoDisp(qtyYes) + "</td>");
+							arr.push("<td class='left'>" + nullNoDisp(Math.round(qtyYes*10000/qty)/100) + "</td>");
+							arr.push("</tr>");
+						}
 						i += 1;
 						j = 1;
 						h = ar1[6];
 						h1 = ar1[0];
 						h2 = i;
 						seq = ar1[6];
+						score = 0;
+						qty = 0;
+						qtyYes = 0;
 					}
+					score += parseInt(ar1[3]);
+					qty += parseInt(ar1[4]);
+					qtyYes += parseInt(ar1[5]);
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='left'>" + h2 + "</td>");
 					arr.push("<td class='left'>" + h1 + "</td>");
@@ -105,6 +132,21 @@
 					arr.push("<td class='left'>" + ar1[5] + "</td>");
 					arr.push("<td class='left'>" + nullNoDisp(Math.round(ar1[5]*10000/ar1[4])/100) + "</td>");
 					arr.push("</tr>");
+					if(n == lens){
+						//total row
+						arr.push("<tr class='grade" + c + "'>");
+						arr.push("<td class='left'></td>");
+						arr.push("<td class='left'></td>");
+						arr.push("<td class='center'>合计</td>");
+						arr.push("<td class='left'></td>");
+						arr.push("<td class='left'></td>");
+						arr.push("<td class='left'></td>");
+						arr.push("<td class='left'>" + nullNoDisp(score) + "</td>");
+						arr.push("<td class='left'>" + nullNoDisp(qty) + "</td>");
+						arr.push("<td class='left'>" + nullNoDisp(qtyYes) + "</td>");
+						arr.push("<td class='left'>" + nullNoDisp(Math.round(qtyYes*10000/qty)/100) + "</td>");
+						arr.push("</tr>");
+					}
 				});
 			}
 			arr.push("</tbody>");
