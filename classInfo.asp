@@ -179,6 +179,10 @@
 			showClassExamStat($("#classID").val(),$("#className").val(),0,0);
 		});
 
+		$("#btnMockDetail").click(function(){
+			outputExcelBySQL('x07','file',$("#classID").val(),0,0);
+		});
+
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -571,7 +575,8 @@
 		<div style="border:solid 1px #e0e0e0;width:99%;margin:5px;background:#ffffff;line-height:18px;padding-left:20px;">
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnSel" value="全选/取消" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassCall" value="开课通知" /></span>
-			<span id="btnMockView">&nbsp;&nbsp;查看模拟考试情况</span>
+			<span id="btnMockView">&nbsp;&nbsp;模拟考试汇总</span>
+			<span id="btnMockDetail">&nbsp;&nbsp;模拟考试明细</span>
 		</div>
 	</div>
 	<hr size="1" noshadow />

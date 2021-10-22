@@ -279,6 +279,11 @@
 			floatItem = p3;
 			sql = "select (case when a.host='znxf' then a.unit else a.dept1Name end) as dept1Name,a.name,left(c.examDate,10),(case when b.certID='C12' then cast(c.score1 as varchar) + '/' + cast(c.score2 as varchar) else cast(c.score as varchar) end),a.diplomaID,a.mobile from v_diplomaInfo a, v_generateApplyInfo b, v_applyInfo c where a.batchID=b.ID and a.certID=b.certID and b.ID=c.refID and a.username=c.username and a.batchID=" + p1 + " order by a.dept1Name,a.diplomaID";
 		}
+		if(id=='x07'){
+			p = "getStudentExamStatByClass";
+			floatModel = 3;
+			sql = "select username,name,examName,startDate,endDate,score1,scorePer1,socre2,scorePer2,score3,scorePer3,score,scorePer from dbo.getStudentExamStatByClass('" + p1 + "')";
+		}
 		setSession(p, sql);
 		setSession("dk" + id, p);
 		setSession("dk" + id + "_count", 60);
