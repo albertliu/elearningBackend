@@ -282,7 +282,7 @@
 		if(id=='x07'){
 			p = "getStudentExamStatByClass";
 			floatModel = 3;
-			sql = "select username,name,examName,startDate,endDate,score1,scorePer1,socre2,scorePer2,score3,scorePer3,score,scorePer from dbo.getStudentExamStatByClass('" + p1 + "')";
+			sql = "select username,name,examName,startDate,endDate,score1,scorePer1,score2,scorePer2,score3,scorePer3,score,scorePer from dbo.getStudentExamStatByClass('" + p1 + "')";
 		}
 		setSession(p, sql);
 		setSession("dk" + id, p);
