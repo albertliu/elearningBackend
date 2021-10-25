@@ -216,6 +216,18 @@
 				}
 			});
 		});
+
+		$("#btnRebuildStudentLesson").click(function(){
+			jConfirm('确定要刷新这个学员的课表和模拟练习吗?', '确认对话框', function(r) {
+				if(r){
+					$.get("studentCourseControl.asp?op=rebuildStudentLesson&nodeID=" + $("#studentCourseID").val() + "&times=" + (new Date().getTime()),function(re){
+						jAlert("刷新成功。");
+						//updateCount += 1;
+						//getNodeInfo($("#studentCourseID").val());
+					});
+				}
+			});
+		});
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -713,6 +725,7 @@
 		<input class="button" type="button" id="btnRefund" value="退款" />&nbsp;
 		<input class="button" type="button" id="btnDel" value="删除" />&nbsp;
 		<input class="button" type="button" id="btnCloseStudentCourse" value="关闭课程学习" />&nbsp;
+		<input class="button" type="button" id="btnRebuildStudentLesson" value="刷新课表" />&nbsp;
   	</div>
 </div>
 </body>
