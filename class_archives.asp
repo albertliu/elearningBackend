@@ -53,7 +53,7 @@
             var qty = 0;
 			if(ar > ""){
 				refID = ar[1];
-				$("#home_classID").html(ar[1]);
+				$("#home_classID").html(ar[1] + "(" + ar[17] + ")");
 				$("#home_adviser").html(ar[9]);
 				$("#home_certName").html(ar[4]);
 				$("#home_startDate").html(ar[10] + "&nbsp;-&nbsp;" + ar[11]);
@@ -214,22 +214,22 @@
 				<td style="width:30%; height:60px; text-align:right; vertical-align: bottom; font-size:1.8em;">培训机构</td><td style="width:65%; border-bottom: #333333 1px solid; font-size:1.8em; vertical-align: bottom; padding-left:15px;">上海智能消防学校</td><td style="width:5%; text-align:left; vertical-align: bottom; font-size:1.8em;">（章）</td>
 			</tr>
 			<tr>
-				<td style="width:30%; height:60px; text-align:right; vertical-align: bottom; font-size:1.8em;">班级编号</td><td style="width:65%; border-bottom: #333333 1px solid; font-size:1.8em; vertical-align: bottom; padding-left:15px;" id="home_classID"></td><td></td>
+				<td style="width:30%; height:60px; text-align:right; vertical-align: bottom; font-size:1.8em;">班级编号</td><td colspan="2" style="width:65%; border-bottom: #333333 1px solid; font-size:1.7em; vertical-align: bottom; padding-left:15px;" id="home_classID"></td>
 			</tr>
 			<tr>
-				<td style="width:30%; height:60px; text-align:right; vertical-align: bottom; font-size:1.8em;">&nbsp;&nbsp;&nbsp;&nbsp;标&nbsp;&nbsp;&nbsp;&nbsp;号</td><td style="width:65%; border-bottom: #333333 1px solid; font-size:1.8em; vertical-align: bottom; padding-left:15px;" id="home_classID"></td><td></td>
+				<td style="width:30%; height:60px; text-align:right; vertical-align: bottom; font-size:1.8em;">&nbsp;&nbsp;&nbsp;&nbsp;标&nbsp;&nbsp;&nbsp;&nbsp;号</td><td colspan="2" style="width:65%; border-bottom: #333333 1px solid; font-size:1.8em; vertical-align: bottom; padding-left:15px;" id="home_applyID"></td>
 			</tr>
 			<tr>
-				<td style="width:30%; height:60px; text-align:right; vertical-align: bottom; font-size:1.8em;">培训职业</td><td style="width:65%; border-bottom: #333333 1px solid; font-size:1.8em; vertical-align: bottom; padding-left:15px;" id="home_certName"></td><td></td>
+				<td style="width:30%; height:60px; text-align:right; vertical-align: bottom; font-size:1.8em;">培训职业</td><td colspan="2" style="width:65%; border-bottom: #333333 1px solid; font-size:1.8em; vertical-align: bottom; padding-left:15px;" id="home_certName"></td>
 			</tr>
 			<tr>
-				<td style="width:30%; height:60px; text-align:right; vertical-align: bottom; font-size:1.8em;">培训等级</td><td style="width:65%; border-bottom: #333333 1px solid; font-size:1.8em; vertical-align: bottom; padding-left:15px;" id="home_reexamine"></td><td></td>
+				<td style="width:30%; height:60px; text-align:right; vertical-align: bottom; font-size:1.8em;">培训等级</td><td colspan="2" style="width:65%; border-bottom: #333333 1px solid; font-size:1.8em; vertical-align: bottom; padding-left:15px;" id="home_reexamine"></td>
 			</tr>
 			<tr>
-				<td style="width:30%; height:60px; text-align:right; vertical-align: bottom; font-size:1.8em;">班&nbsp;主&nbsp;任</td><td style="width:65%; border-bottom: #333333 1px solid; font-size:1.8em; vertical-align: bottom; padding-left:15px;" id="home_adviser"></td><td></td>
+				<td style="width:30%; height:60px; text-align:right; vertical-align: bottom; font-size:1.8em;">班&nbsp;主&nbsp;任</td><td colspan="2" style="width:65%; border-bottom: #333333 1px solid; font-size:1.8em; vertical-align: bottom; padding-left:15px;" id="home_adviser"></td>
 			</tr>
 			<tr>
-				<td style="width:30%; height:60px; text-align:right; vertical-align: bottom; font-size:1.8em;">起迄日期</td><td style="width:65%; border: 0px; font-size:1.8em; vertical-align: bottom; padding-left:15px;" id="home_startDate"></td><td></td>
+				<td style="width:30%; height:60px; text-align:right; vertical-align: bottom; font-size:1.8em;">起迄日期</td><td colspan="2" style="width:65%; border: 0px; font-size:1.8em; vertical-align: bottom; padding-left:15px;" id="home_startDate"></td>
 			</tr>
 			</table>
 			
