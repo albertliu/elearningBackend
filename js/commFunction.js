@@ -1462,13 +1462,13 @@
 				setReturnLog("enter",iframe.nodeID);	
 				var re = iframe.updateCount;
 				if(re>0 && mark==1){
-					getEnterList();
-					getStudentCourseLists(iframe.refID);
+					//getEnterList();
+					getStudentCourseList(iframe.refID);
 				}
 				//alert(re + ":" + mark);
 				if(re>0 && mark==2){
 					//alert(iframe.getValList());
-					setObjValue("enter",iframe.getValList(),0,0);  //根据请求，返回任意个数的项目，为相应的对象赋值。objList:传入的Object列表；valList：输出的值；mark：0 不动作 1 关闭本窗口（与objList同名）; loc: 0 同级别  1 父窗体
+					//setObjValue("enter",iframe.getValList(),0,0);  //根据请求，返回任意个数的项目，为相应的对象赋值。objList:传入的Object列表；valList：输出的值；mark：0 不动作 1 关闭本窗口（与objList同名）; loc: 0 同级别  1 父窗体
 				}
 　　　		}
 		});

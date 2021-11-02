@@ -187,7 +187,7 @@
 			append : "<br/>"
 		});
 		window.setTimeout(function () {
-			//window.parent.getStudentCourseLists(refID);
+			//window.parent.getStudentCourseList(refID);
 			window.parent.$.close("classInfo");
 		}, 1000);
 	}

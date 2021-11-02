@@ -232,7 +232,7 @@
 				$("#photo").html(c);
 				$("#refundList").html("<a>退费清单</a>");
 				$("#archive").html("<a>班级档案</a>");
-				getStudentList();
+				getStudentCourseList();
 				//getDownloadFile("classID");
 				setButton();
 			}else{
@@ -242,7 +242,7 @@
 		});
 	}
 
-	function getStudentList(){
+	function getStudentCourseList(){
 		//alert($("#classID").val());
         var mark = 1;
         if(checkRole("saler")){
