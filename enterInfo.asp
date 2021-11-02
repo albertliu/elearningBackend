@@ -20,7 +20,7 @@
 <script language="javascript" src="js/jquery.form.js"></script>
 <script type="text/javascript" src="js/jquery.easyui.min.js"></script>
 <script src="js/jquery.alerts.js" type="text/javascript"></script>
-<script type="text/javascript" src="js/asyncbox.v1.5.min.js"></script>
+<script type="text/javascript" src="js/AsyncBox.v1.4.js"></script>
 <script language="javascript" type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 <script src="js/datepicker/WdatePicker.js" type="text/javascript"></script>
 <script type='text/javascript' src='js/jquery.autocomplete.js'></script>
@@ -227,6 +227,10 @@
 					});
 				}
 			});
+		});
+		$("#smsList").click(function(){
+			//alert($("#username").val() + ":" + $("#studentCourseID").val());
+			showStudentSmsList($("#username").val(),$("#studentCourseID").val(),0,1);
 		});
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
@@ -726,6 +730,7 @@
 		<input class="button" type="button" id="btnDel" value="删除" />&nbsp;
 		<input class="button" type="button" id="btnCloseStudentCourse" value="关闭课程学习" />&nbsp;
 		<input class="button" type="button" id="btnRebuildStudentLesson" value="刷新课表" />&nbsp;
+		<input class="button" type="button" id="smsList" value="查看通知" />&nbsp;
   	</div>
 </div>
 </body>

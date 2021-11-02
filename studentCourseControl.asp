@@ -761,6 +761,43 @@ if(op == "getClassExamStat"){
 	//Response.Write(escape(sql));
 }	
 
+if(op == "getStudentSMSList"){
+	result = "";
+	s = "";
+	//如果有username
+	if(nodeID > "" && nodeID != "null" && nodeID !="undefined"){ // 
+		s = "username='" + nodeID + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//如果有enterID
+	if(refID > "0" && refID != "null" && refID !="undefined"){ // 
+		s = "refID=" + refID;
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	if(where > ""){
+		where = " where " + where;
+	}
+	sql = "select * from v_log_sendsms " + where;
+	
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("kind").value + "|" + rs("message").value + "|" + rs("regDate").value + "|" + rs("registerName").value + "|" + rs("mobile").value;
+		rs.MoveNext();
+	}
+	rs.Close();
+	result = result.substr(2);/**/
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}	
+
 if(op == "updatePayInfo"){
 	//@ID int,@invoice varchar(50),@projectID varchar(50),@kindID varchar(50),@type int,@status int,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo
 	sql = "exec updatePayInfo " + nodeID + ",'" + String(Request.QueryString("invoice")) + "','" + String(Request.QueryString("projectID")) + "','" + item + "','" + kindID + "','" + String(Request.QueryString("type")) + "','" + status + "','" + String(Request.QueryString("datePay")) + "','" + String(Request.QueryString("dateInvoice")) + "','" + String(Request.QueryString("dateInvoicePick")) + "','" + refID + "','" + memo + "','" + currUser + "',''";

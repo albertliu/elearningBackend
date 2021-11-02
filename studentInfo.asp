@@ -71,6 +71,9 @@
 		$("#enter").click(function(){
 			showEnterInfo(0,$("#username").val(),1,1,$("#companyID").val(),0);
 		});
+		$("#smsList").click(function(){
+			showStudentSmsList($("#username").val(),0,0,1);
+		});
 		$("#save").click(function(){
 			fromCard = 0;
 			saveNode();
@@ -791,6 +794,7 @@
 		<input class="button" type="button" id="open" value="解禁" />&nbsp;
 		<input class="button" type="button" id="close" value="禁用" />&nbsp;
 		<input class="button" type="button" id="reply" value="发通知" />&nbsp;
+		<input class="button" type="button" id="smsList" value="查看通知" />&nbsp;
   	</div>
 
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
