@@ -49,6 +49,8 @@
 		getDicList("statusJob","job_status",0);
 		getDicList("education","education",1);
         getComList("fromID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='saler') order by realName",1);
+		$("#IDdateStart").click(function(){WdatePicker();});
+		$("#IDdateEnd").click(function(){WdatePicker();});
 
 		var w = "dept_status=0 and pID=0 and host='" + currHost + "'";
 		if(currHost==""){	//公司用户只能看自己公司内容
@@ -711,7 +713,7 @@
 			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table style="width:100%;">
 			<input type="hidden" id="ethnicity" /><input type="hidden" id="IDaddress" /><input type="hidden" id="bureau" />
-			<input type="hidden" id="IDdateStart" /><input type="hidden" id="IDdateEnd" /><input type="hidden" id="experience" />
+			<input type="hidden" id="experience" />
 			<tr>
 				<td align="right">身份证</td><input type="hidden" id="status" /><input type="hidden" id="host" />
 				<td><input type="text" id="username" size="25" /></td>
@@ -723,6 +725,10 @@
 				<td><input class="readOnly" type="text" id="sexName" size="25" readOnly="true" /></td>
 				<td align="right">年龄</td>
 				<td><input class="readOnly" readOnly="true" type="text" id="age" size="25" /></td>
+			</tr>
+			<tr>
+				<td align="left" colspan="2">身份证起始日期<input type="text" id="IDdateStart" size="15" /></td>
+				<td align="left" colspan="2">身份证截止日期<input type="text" id="IDdateEnd" size="15" /></td>
 			</tr>
 			<tr>
 				<td align="right">状态</td>
