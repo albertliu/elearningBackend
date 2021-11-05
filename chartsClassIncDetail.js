@@ -9,7 +9,8 @@
 							&nbsp;&nbsp;&nbsp;&nbsp;快速选择&nbsp;&nbsp;
 								<input style="border:0px;" type="radio" id="rptChartsClassDate1" name="rptChartsClassDate" value="1" />最近一周
 								<input style="border:0px;" type="radio" id="rptChartsClassDate2" name="rptChartsClassDate" value="2" />最近三个月
-								<input style="border:0px;" type="radio" id="rptChartsClassDate3" name="rptChartsClassDate" value="3" checked />最近一年
+								<input style="border:0px;" type="radio" id="rptChartsClassDate3" name="rptChartsClassDate" value="3" checked />最近六个月
+								<input style="border:0px;" type="radio" id="rptChartsClassDate4" name="rptChartsClassDate" value="4" />最近一年
 				        </form>
 							</div>
 							<hr size="1" noshadow />

@@ -94,6 +94,7 @@
 	<!--#include file="studentPreListIncReady.js"-->
 	<!--#include file="chartsIncReady.js"-->
 	<!--#include file="chartsClassIncReady.js"-->
+	<!--#include file="chartsIncomeIncReady.js"-->
 
 	unitListLong = 0;
 	memoListLong = 0;
@@ -248,6 +249,9 @@
 			$("#menu11").hide();
 			$("#menu12").hide();
 			deleteTab("发票管理");
+		}
+		if(!checkRole("leader") && !checkRole("saler") && currUser != "desk."){
+			deleteTab("收费概况");
 		}
         deleteTab("日结报表");
         deleteTab("花名册");
@@ -584,6 +588,9 @@
 							<div id="dtab69" class="dhtmlgoodies_aTab">
 								<!--#include file="chartsIncDetail.js"-->
 							</div>
+							<div id="dtab67" class="dhtmlgoodies_aTab">
+								<!--#include file="chartsIncomeIncDetail.js"-->
+							</div>
 							<div id="dtab68" class="dhtmlgoodies_aTab">
 								<!--#include file="chartsClassIncDetail.js"-->
 							</div>
@@ -601,7 +608,7 @@
 							</div>
 						</div>
 						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView6',Array("统计图表","班级图表","学员注册","学员培训","证书发放","证书到期"),0,1260,400);
+							initTabs('dhtmlgoodies_tabView6',Array("招生概况","收费概况","班级概况","学员注册","学员培训","证书发放","证书到期"),0,1260,400);
 						</script>
 					</div>
 					

@@ -8,7 +8,7 @@
       getDicList("statusYes","searchChartsClassArchive",1);
       $("#searchChartsClassStartDate").click(function(){WdatePicker();});
       $("#searchChartsClassEndDate").click(function(){WdatePicker();});
-      $("#searchChartsClassStartDate").val(addDays(currDate,-90));
+      $("#searchChartsClassStartDate").val(addDays(currDate,-183));
       $("#searchChartsClassEndDate").val(currDate);
 
       if(checkRole("adviser")){
@@ -37,7 +37,12 @@
           $("#searchChartsClassEndDate").val(currDate);
         }
         if(this.value==3){
-          //this year
+          //half a year
+          $("#searchChartsClassStartDate").val(addDays(currDate,-183));
+          $("#searchChartsClassEndDate").val(currDate);
+        }
+        if(this.value==4){
+          //one year
           $("#searchChartsClassStartDate").val(addDays(currDate,-365));
           $("#searchChartsClassEndDate").val(currDate);
         }

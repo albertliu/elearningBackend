@@ -11,7 +11,7 @@
       }
       $("#searchChartsStartDate").click(function(){WdatePicker();});
       $("#searchChartsEndDate").click(function(){WdatePicker();});
-      $("#searchChartsStartDate").val(addDays(currDate,-90));
+      $("#searchChartsStartDate").val(addDays(currDate,-183));
       $("#searchChartsEndDate").val(currDate);
       $("#btnSearchCharts").click(function(){
 				if($("#searchChartsStartDate").val()>"" && $("#searchChartsEndDate").val()>""){
@@ -37,7 +37,13 @@
           $('input[name=rptChartsGroupDate][value=w]').prop("checked",true)
         }
         if(this.value==3){
-          //this year
+          //half a year
+          $("#searchChartsStartDate").val(addDays(currDate,-183));
+          $("#searchChartsEndDate").val(currDate);
+          $('input[name=rptChartsGroupDate][value=m]').prop("checked",true)
+        }
+        if(this.value==4){
+          //one year
           $("#searchChartsStartDate").val(addDays(currDate,-365));
           $("#searchChartsEndDate").val(currDate);
           $('input[name=rptChartsGroupDate][value=m]').prop("checked",true)
