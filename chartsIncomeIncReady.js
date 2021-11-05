@@ -68,7 +68,7 @@
             //var data = {title:['2021-10-01', '2021-10-02', '2021-10-03', '2021-10-04', '2021-10-05', '2021-10-06', '2021-10-07', '2021-10-08', '2021-10-09', '2021-10-10'],list:[{key:"社会",val:[320, 302, 301, 334, , 330, 320, 302, , 334]},{key:"中石化",val:[120, , 101, 134, 90, 230, 210, 132, , 134]},{key:"地铁",val:[220, 182, 191, 234, 290, 330, 310, 191, , 290]}]};
             var series = new Array();
             var obj;
-            $("#chartsIncomeTotal").html("收费合计：" + data["total"]);
+            $("#chartsIncomeTotal").html("收费合计：" + data["total"].toLocaleString());
             total = data["total"];
             var list = data["list"];
             list.forEach((item) =>{
