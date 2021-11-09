@@ -211,6 +211,10 @@
         if(checkRole("saler")){
             mark = 3;
         }
+		var photo = 0;
+		if($("#searchEnterShowPhoto").attr("checked")){
+			photo = 1;
+		}
 		//if($("#searchEnterOld").attr("checked")){Old = 1;}
 		//alert($("#searchEnterDept").val() + "&refID=" + $("#searchEnterProjectID").val() + "&status=" + $("#searchEnterStatus").val() + "&photoStatus=" + $("#searchEnterPhotoStatus").val() + "&courseID=" + $("#searchEnterCourseID").val() + "&host=" + $("#searchEnterHost").val() + "&checked=" + $("#searchEnterChecked").val() + "&materialChecked=" + $("#searchEnterMaterialChecked").val() + "&classID=" + $("#searchEnterClassID").val());
 		$.get("studentCourseControl.asp?op=getStudentCourseList&where=" + escape(sWhere) + "&mark=" + mark + "&kindID=" + $("#searchEnterDept").val() + "&refID=" + $("#searchEnterProjectID").val() + "&status=" + $("#searchEnterStatus").val() + "&reexamine=" + $("#searchEnterReexamine").val() + "&photoStatus=" + $("#searchEnterPhotoStatus").val() + "&courseID=" + $("#searchEnterCourseID").val() + "&host=" + $("#searchEnterHost").val() + "&checked=" + $("#searchEnterChecked").val() + "&materialChecked=" + $("#searchEnterMaterialChecked").val() + "&passcard=" + $("#searchEnterPasscard").val() + "&classID=" + $("#searchEnterClassID").val() + "&fStart=" + $("#searchEnterStartDate").val() + "&fEnd=" + $("#searchEnterEndDate").val() + "&dk=101&times=" + (new Date().getTime()),function(data){
@@ -226,10 +230,10 @@
 			var ar2 = new Array();
 			var role = checkRole("teacher");
 			//alert(role);
-			$.get("certControl.asp?op=getCertNeedMaterialListByProjectID&refID=" + $("#searchEnterProjectID").val(),function(data1){
+			//$.get("certControl.asp?op=getCertNeedMaterialListByProjectID&refID=" + $("#searchEnterProjectID").val(),function(data1){
 				//jAlert($("#searchEnterProjectID").val() + ":" + unescape(data1));
-				ar2 = (unescape(data1)).split("%%");
-			});
+			//	ar2 = (unescape(data1)).split("%%");
+			//});
 			arr = [];
 			arr.push("<div>" + ar.shift() + "</div>");					
 			arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='enterTab' width='100%'>");
@@ -238,28 +242,20 @@
 			arr.push("<th width='2%'>No</th>");
 			arr.push("<th width='6%'>身份证</th>");
 			arr.push("<th width='6%'>姓名</th>");
-			if($("#searchEnterProjectID").val()>"" && $("#searchEnterShowPhoto").attr("checked")){
-				$.each(ar2,function(iNum1,val1){
-					var ar3 = new Array();
-					ar3 = val1.split("|");
-					arr.push("<th width='10%'>" + ar3[2] + "</th>");
-				});
+			if($("#searchEnterProjectID").val()>""){
+				arr.push("<th width='9%'>班级名称</th>");
 			}else{
-				if($("#searchEnterProjectID").val()>""){
-					arr.push("<th width='9%'>班级名称</th>");
-				}else{
-					arr.push("<th width='9%'>课程名称</th>");
-				}
-				if(currHost==""){
-					arr.push("<th width='7%'>公司</th>");
-				}else{
-					arr.push("<th width='7%'>部门</th>");
-				}
-				if(currHost==""){
-					arr.push("<th width='10%'>经办人</th>");
-				}else{
-					arr.push("<th width='8%'>报名日期</th>");
-				}
+				arr.push("<th width='9%'>课程名称</th>");
+			}
+			if(currHost==""){
+				arr.push("<th width='7%'>公司</th>");
+			}else{
+				arr.push("<th width='7%'>部门</th>");
+			}
+			if(currHost==""){
+				arr.push("<th width='10%'>经办人</th>");
+			}else{
+				arr.push("<th width='8%'>报名日期</th>");
 			}
 			//arr.push("<th width='6%'>单位</th>");
 			arr.push("<th width='7%'>电话</th>");
@@ -273,8 +269,12 @@
 			}
 			arr.push("<th width='6%'>学号</th>");
 			arr.push("<th width='5%'>准申</th>");
-			arr.push("<th width='5%'>成绩</th>");
-			arr.push("<th width='5%'>补考</th>");
+			if(photo == 0){
+				arr.push("<th width='5%'>成绩</th>");
+				arr.push("<th width='5%'>补考</th>");
+			}else{
+				arr.push("<th width='10%'>照片</th>");
+			}
 			arr.push("<th width='2%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -380,8 +380,12 @@
 					}else{
 						arr.push("<td class='center'>&nbsp;</td>");
 					}*/
-					arr.push("<td class='left'>" + nullNoDisp(ar1[66].replace(".00","")) + "</td>");
-					arr.push("<td class='center'>" + nullNoDisp(ar1[68]) + "</td>");
+					if(photo == 0){
+						arr.push("<td class='left'>" + nullNoDisp(ar1[66].replace(".00","")) + "</td>");
+						arr.push("<td class='center'>" + nullNoDisp(ar1[68]) + "</td>");
+					}else{
+						arr.push("<td class='center'><img src='users" + ar1[18] + "' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
+					}
 					arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchkEnter'>" + "</td>");
 					arr.push("</tr>");
 				});
@@ -401,7 +405,6 @@
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
-			arr.push("<th>&nbsp;</th>");
 			if($("#searchEnterProjectID").val()>"" && $("#searchEnterShowPhoto").attr("checked")){
 				$.each(ar2,function(iNum1,val1){
 					arr.push("<th>&nbsp;</th>");
@@ -409,6 +412,9 @@
 			}else{
 				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
+				arr.push("<th>&nbsp;</th>");
+			}
+			if(photo == 0){
 				arr.push("<th>&nbsp;</th>");
 			}
 			arr.push("</tr>");

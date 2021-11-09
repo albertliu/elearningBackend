@@ -17,7 +17,7 @@
 								课程&nbsp;<select id="searchEnterCourseID" style="width:80px"></select>&nbsp;&nbsp;
 							</span>
 							批次&nbsp;<select id="searchEnterProjectID" style="width:180px"></select>&nbsp;
-							<input style="border:0px;" type="checkbox" id="searchEnterShowPhoto" value="" />&nbsp;图片&nbsp;
+							<input style="border:0px;" type="checkbox" id="searchEnterShowPhoto" value="" />&nbsp;显示照片&nbsp;
 						    <span style="float:right;">
 								<input class="button" type="button" onClick="outputFloat(101,'file')" value="下载" />
 							</span>
