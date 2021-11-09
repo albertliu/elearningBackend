@@ -384,7 +384,11 @@
 						arr.push("<td class='left'>" + nullNoDisp(ar1[66].replace(".00","")) + "</td>");
 						arr.push("<td class='center'>" + nullNoDisp(ar1[68]) + "</td>");
 					}else{
-						arr.push("<td class='center'><img src='users" + ar1[18] + "' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
+						if(ar1[18] > ""){
+							arr.push("<td class='center'><img src='users" + ar1[18] + "' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
+						}else{
+							arr.push("<td class='center'>&nbsp;</td>");
+						}
 					}
 					arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchkEnter'>" + "</td>");
 					arr.push("</tr>");

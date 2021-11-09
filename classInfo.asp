@@ -182,6 +182,9 @@
 		$("#btnMockDetail").click(function(){
 			outputExcelBySQL('x07','file',$("#classID").val(),0,0);
 		});
+		$("#showPhoto").change(function(){
+			getStudentCourseList();
+		});
 
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
@@ -248,6 +251,10 @@
         if(checkRole("saler")){
             mark = 3;
         }
+		var photo = 0;
+		if($("#showPhoto").attr("checked")){
+			photo = 1;
+		}
 		$.get("studentCourseControl.asp?op=getStudentCourseList&classID=" + $("#classID").val() + "&mark=" + mark + "&times=" + (new Date().getTime()),function(data){
 			//alert(unescape(data));
 			var ar = new Array();
@@ -269,8 +276,12 @@
 			arr.push("<th width='5%'>进度%</th>");
 			arr.push("<th width='7%'>模拟</th>");
 			arr.push("<th width='5%'>准申</th>");
-			arr.push("<th width='5%'>成绩</th>");
-			arr.push("<th width='5%'>补考</th>");
+			if(photo == 0){
+				arr.push("<th width='5%'>成绩</th>");
+				arr.push("<th width='5%'>补考</th>");
+			}else{
+				arr.push("<th width='10%'>照片</th>");
+			}
 			arr.push("<th width='5%'>状态</th>");
 			arr.push("<th width='4%'></th>");
 			arr.push("</tr>");
@@ -317,8 +328,16 @@
                     if($("#certID").val()=="C12"){
                         h = ar1[70].replace(".00","") + "/" + ar1[71].replace(".00","");
                     }
-					arr.push("<td class='left'>" + nullNoDisp(h) + "</td>");
-					arr.push("<td class='center'>" + nullNoDisp(ar1[68]) + "</td>");
+					if(photo == 0){
+						arr.push("<td class='left'>" + nullNoDisp(h) + "</td>");
+						arr.push("<td class='center'>" + nullNoDisp(ar1[68]) + "</td>");
+					}else{
+						if(ar1[18] > ""){
+							arr.push("<td class='center'><img src='users" + ar1[18] + "' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
+						}else{
+							arr.push("<td class='center'>&nbsp;</td>");
+						}
+					}
 					arr.push("<td class='left'>" + ar1[4] + "</td>");
 					arr.push("<td class='left'><input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[1] + "' name='visitstockchk'></td>");
 					arr.push("</tr>");
@@ -339,7 +358,9 @@
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
-			arr.push("<th>&nbsp;</th>");
+			if(photo == 0){
+				arr.push("<th>&nbsp;</th>");
+			}
 			arr.push("</tr>");
 			arr.push("</tfoot>");
 			arr.push("</table>");
@@ -577,6 +598,9 @@
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassCall" value="开课通知" /></span>
 			<span id="btnMockView">&nbsp;&nbsp;模拟考试汇总</span>
 			<span id="btnMockDetail">&nbsp;&nbsp;模拟考试明细</span>
+		</div>
+		<div>
+			<input style="border:0px;" type="checkbox" id="showPhoto" value="" />&nbsp;显示照片&nbsp;
 		</div>
 	</div>
 	<hr size="1" noshadow />
