@@ -44,7 +44,7 @@
 
 		getDicList("payKind","kindID",0);
 		getDicList("payType","type",0);
-		getDicList("statusPay","status",0);
+		getDicList("statusPay","statusPay",0);
 		$("#datePay").click(function(){WdatePicker();});
 		$("#dateRefund").click(function(){WdatePicker();});
 		$("#dateInvoice").click(function(){WdatePicker();});
@@ -138,7 +138,7 @@
 		});
 
 		$("#btnPay").click(function(){
-			$("#status").val(1);
+			$("#statusPay").val(1);
 			$("#datePay").val(currDate);
 			$("#dateInvoice").val(currDate);
 			$("#dateInvoicePick").val(currDate);
@@ -332,7 +332,7 @@
 			if(ar > ""){
 				$("#payID").val(ar[0]);
 				$("#invoice").val(ar[1]);
-				$("#status").val(ar[3]);
+				$("#statusPay").val(ar[3]);
 				$("#kindID").val(ar[5]);
 				$("#type").val(ar[7]);
 				$("#datePay").val(ar[9]);
@@ -372,7 +372,7 @@
 				//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
 				//@ID int,@invoice varchar(50),@projectID varchar(50),@kindID varchar(50),@type int,@status int,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo
 				//alert($("#payID").val() + "&refID=" + $("#username").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + ($("#title").val()) + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#status").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&memo=" + ($("#memo").val()));
-				$.get("studentCourseControl.asp?op=updatePayInfo&nodeID=" + $("#payID").val() + "&refID=" + $("#username").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#status").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+				$.get("studentCourseControl.asp?op=updatePayInfo&nodeID=" + $("#payID").val() + "&refID=" + $("#username").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#statusPay").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 					//alert(unescape(re));
 					updateCount += 1;
 					jAlert("保存成功.","信息提示");
@@ -422,7 +422,7 @@
 				}else{
 					
 					//@username,@classID,@price,@invoice,@projectID,@kindID,@type,@status,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo,@registerID
-					$.get("studentCourseControl.asp?op=doEnter&nodeID=" + $("#username").val() + "&classID=" + $("#classID").val() + "&price=" + $("#price").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#status").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+					$.get("studentCourseControl.asp?op=doEnter&nodeID=" + $("#username").val() + "&classID=" + $("#classID").val() + "&price=" + $("#price").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#statusPay").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 						//jAlert(unescape(re));
 						var ar = new Array();
 						ar = unescape(re).split("|");
@@ -526,7 +526,7 @@
 		$("#btnFiremanMaterials").hide();
 		$("#btnCloseStudentCourse").hide();
 		$("#btnPrint").hide();
-		if($("#status").val()==0 && $("#kindID").val()==0){
+		if($("#statusPay").val()==0 && $("#kindID").val()==0){
 			//未支付的个人付款可以支付，团体付款应到发票管理中操作。
 			$("#btnPay").show();
 		}
@@ -551,7 +551,7 @@
 					$("#btnMaterialCheck").show();
 				}
 			}
-            if(checkPermission("studentDel") && ($("#className").val()=="" || dateDiff(currDate, $("#regDate").val())<180) && $("#status").val()==0 && $("#invoice").val()=="" && $("#dateInvoicePick").val()=="" || $("#name").val().indexOf("测试")>-1){
+            if(checkPermission("studentDel") && ($("#className").val()=="" || dateDiff(currDate, $("#regDate").val())<180) && $("#statusPay").val()==0 && $("#invoice").val()=="" && $("#dateInvoicePick").val()=="" || $("#name").val().indexOf("测试")>-1){
                 //未支付未开票的可以删除。
                 $("#btnDel").show();
             }
@@ -690,7 +690,7 @@
 				<td align="right">支付方式</td>
 				<td><select id="type" style="width:180px;"></select></td>
 				<td align="right">支付状态</td>
-				<td><select id="status" style="width:180px;"></select></td>
+				<td><select id="statusPay" style="width:180px;"></select></td>
 			</tr>
 			<tr>
 				<td align="right">付款日期</td>
