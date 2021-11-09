@@ -212,7 +212,7 @@
             mark = 3;
         }
 		var photo = 0;
-		if($("#searchEnterShowPhoto").attr("checked")){
+		if($("#searchEnterShowPhoto").prop("checked")){
 			photo = 1;
 		}
 		//if($("#searchEnterOld").attr("checked")){Old = 1;}

@@ -252,7 +252,7 @@
             mark = 3;
         }
 		var photo = 0;
-		if($("#showPhoto").attr("checked")){
+		if($("#showPhoto").prop("checked")){
 			photo = 1;
 		}
 		$.get("studentCourseControl.asp?op=getStudentCourseList&classID=" + $("#classID").val() + "&mark=" + mark + "&times=" + (new Date().getTime()),function(data){
