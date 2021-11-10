@@ -271,7 +271,7 @@
 			arr.push("<th width='7%'>学号</th>");
 			arr.push("<th width='9%'>身份证</th>");
 			arr.push("<th width='6%'>姓名</th>");
-			arr.push("<th width='13%'>单位</th>");
+			arr.push("<th width='9%'>单位</th>");
 			arr.push("<th width='6%'>电话</th>");
 			arr.push("<th width='5%'>进度%</th>");
 			arr.push("<th width='7%'>模拟</th>");
@@ -306,9 +306,9 @@
 					arr.push("<td class='link1'><a href='javascript:showEnterInfo(" + ar1[0] + ",\"" + ar1[1] + "\",0,1);'>" + ar1[1] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[2] + "</td>");
 					if(ar1[56]=="znxf"){	//非集团客户，显示自己的单位和部门
-						arr.push("<td class='left'>" + ar1[54].substr(0,12) + "</td>");
+						arr.push("<td class='left'>" + ar1[54].substr(0,8) + "</td>");
 					}else{
-						arr.push("<td class='left'>" + ar1[12].substr(0,12) + "</td>");
+						arr.push("<td class='left'>" + ar1[12].substr(0,8) + "</td>");
 					}
 					arr.push("<td class='left'>" + ar1[69] + "</td>");
 					c = ar1[10];
