@@ -145,14 +145,15 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
-			arr.push("<th width='8%'>学号</th>");
+			arr.push("<th width='6%'>学号</th>");
 			arr.push("<th width='11%'>身份证</th>");
-			arr.push("<th width='7%'>姓名</th>");
-			arr.push("<th width='6%'>年龄</th>");
+			arr.push("<th width='6%'>姓名</th>");
+			arr.push("<th width='5%'>年龄</th>");
 			arr.push("<th width='12%'>证书名称</th>");
 			if(currHost==""){
 				arr.push("<th width='15%'>班级</th>");
 				arr.push("<th width='8%'>学历</th>");
+				arr.push("<th width='5%'>学费</th>");
 			}else{
 				arr.push("<th width='10%'>结束日期</th>");
 			}
@@ -188,6 +189,11 @@
 					if(currHost==""){
 						arr.push("<td class='left'>" + ar1[15] + "</td>");
 						arr.push("<td class='left'>" + ar1[18] + "</td>");
+						if(ar1[21]==1){
+							arr.push("<td class='left'>" + imgChk + "</td>");
+						}else{
+							arr.push("<td class='left'>&nbsp;</td>");
+						}
 					}else{
 						arr.push("<td class='left'>" + ar1[11] + "</td>");
 					}
@@ -200,7 +206,9 @@
 					}else{
 						arr.push("<td class='center'>" + imgChk + "</td>");
 					}
-					arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchkNeed'>" + "</td>");
+					if(currHost>"" || ar1[21]==1){	//未交费的不能做证书
+						arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchkNeed'>" + "</td>");
+					}
 					if(currHost>""){
 						arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchkStamp'>" + "</td>");
 					}
@@ -212,6 +220,7 @@
 			arr.push("<tr>");
 			arr.push("<th>&nbsp;</th>");
 			if(currHost==""){
+				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
 			}
 			arr.push("<th>&nbsp;</th>");
