@@ -657,6 +657,7 @@
 				<span id="class1">所属班级&nbsp;<select id="classID" style="width:250px"></select>&nbsp;&nbsp;</span>
 				<span id="class0">所属班级&nbsp;<input class="readOnly" type="text" id="className" style="width:250px" readOnly="true" />&nbsp;&nbsp;经办人&nbsp;<input class="readOnly" type="text" id="submiterName" style="width:50px" readOnly="true" />&nbsp;&nbsp;</span>
 				编号&nbsp;<input type="text" id="SNo" style="width:50px" />
+				<div>
                 <form style="width:98%;float:right;margin:1px;padding-left:2px;background:#f8f8ee;">
                 <table>
                 <tr>
@@ -667,8 +668,8 @@
                 </tr>
                 </table>
                 </form>
+				</div>
 				<br>
-				报名表
 					<span id="entryform" style="margin-left:20px;"></span>
 					<input class="button" type="button" id="btnEntryform" value="生成" />
 					<input class="button" type="button" id="save" value="保存" />
