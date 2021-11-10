@@ -306,9 +306,9 @@
 					arr.push("<td class='link1'><a href='javascript:showEnterInfo(" + ar1[0] + ",\"" + ar1[1] + "\",0,1);'>" + ar1[1] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[2] + "</td>");
 					if(ar1[56]=="znxf"){	//非集团客户，显示自己的单位和部门
-						arr.push("<td class='left'>" + ar1[54].substr(0,8) + "</td>");
+						arr.push("<td class='left' title='" + ar1[54] + "'>" + ar1[54].substr(0,8) + "</td>");
 					}else{
-						arr.push("<td class='left'>" + ar1[12].substr(0,8) + "</td>");
+						arr.push("<td class='left' title='" + ar1[12] + "'>>" + ar1[12].substr(0,8) + "</td>");
 					}
 					arr.push("<td class='left'>" + ar1[69] + "</td>");
 					c = ar1[10];

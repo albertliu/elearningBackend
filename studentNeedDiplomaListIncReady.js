@@ -231,6 +231,7 @@
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
 			if(currHost>""){
 				arr.push("<th>&nbsp;</th>");
 			}
