@@ -607,7 +607,7 @@
 		</div>
 	</div>
 	<hr size="1" noshadow />
-	<div id="cover" style="float:top;margin:3px;background:#f8fff8;">
+	<div id="cover" style="float:top;background:#f8fff8;">
 	</div>
   </div>
 </div>
