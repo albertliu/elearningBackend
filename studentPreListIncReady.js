@@ -274,7 +274,7 @@
 			arr.push("<th width='9%'>身份证</th>");
 			arr.push("<th width='7%'>姓名</th>");
 			//arr.push("<th width='6%'>别</th>");
-			arr.push("<th width='9%'>部门</th>");
+			arr.push("<th width='9%'>单位</th>");
 			arr.push("<th width='6%'>电话</th>");
 			arr.push("<th width='7%'>岗位</th>");
 			//arr.push("<th width='7%'>备注</th>");
@@ -317,7 +317,7 @@
 					arr.push("<td class='link1'><a href='javascript:showEnterInfo(" + ar1[0] + ",\"" + ar1[1] + "\",0,1);'>" + ar1[1] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[2] + "</td>");
 					//arr.push("<td class='left'>" + ar1[3] + "</td>");
-					arr.push("<td class='left'>" + ar1[8] + "</td>");
+					arr.push("<td class='left'>" + (ar1[8] || ar1[10] || ar1[30]).substring(0,6) + "</td>");
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
 					arr.push("<td class='left'>" + ar1[5] + "</td>");
 					//arr.push("<td class='left'>" + ar1[14] + "</td>");
