@@ -568,9 +568,10 @@
 	function setEmpty(){
 		if($("#kindID").val()==0){
 			//个人缴费
-			//$("#datePay").val(currDate);
-			//$("#dateInvoice").val(currDate);
-			//$("#dateInvoicePick").val(currDate);
+			$("#statusPay").val(1);
+			$("#datePay").val(currDate);
+			$("#dateInvoice").val(currDate);
+			$("#dateInvoicePick").val(currDate);
 			//$("#invoice").val(parseInt(getDicItem(0,"invoiceNo")) + 1);
 		}
 		if($("#kindID").val()==1){
