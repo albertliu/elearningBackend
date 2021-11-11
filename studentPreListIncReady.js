@@ -315,7 +315,7 @@
 					arr.push("<td class='center'>" + i + "</td>");
 					arr.push("<td class='center'>" + ar1[0] + "</td>");
 					arr.push("<td class='link1'><a href='javascript:showEnterInfo(" + ar1[0] + ",\"" + ar1[1] + "\",0,1);'>" + ar1[1] + "</a></td>");
-					arr.push("<td class='left'>" + ar1[2] + "</td>");
+					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + ar1[1] + "\",0,1);'>" + ar1[2] + "</a></td>");
 					//arr.push("<td class='left'>" + ar1[3] + "</td>");
 					arr.push("<td class='left'>" + (ar1[8] || ar1[10] || ar1[30]).substring(0,6) + "</td>");
 					arr.push("<td class='left'>" + ar1[6] + "</td>");

@@ -4,15 +4,15 @@
 				          <input type="text" id="txtSearchStudentPre" name="txtSearchStudentPre" size="10" title="姓名、身份证" style="background:yellow;" />
 				          <input class="button" type="button" id="btnSearchStudentPre" value="查找" />
 						  	<span id="studentPreListLongItem1">&nbsp;
-					          &nbsp;公司&nbsp;<select id="searchStudentPreHost" style="width:80px"></select>&nbsp;&nbsp;
+					          &nbsp;公司&nbsp;<select id="searchStudentPreHost" style="width:150px"></select>&nbsp;&nbsp;
 				          	</span>
 							<span id="studentPreListLongItem2">
 					          &nbsp;部门&nbsp;<select id="searchStudentPreDept" style="width:100px"></select>&nbsp;&nbsp;
 				          	</span>
 							<span id="studentPreListLongItem6">
-								课程&nbsp;<select id="searchStudentPreCertID" style="width:120px"></select>&nbsp;&nbsp;
+								课程&nbsp;<select id="searchStudentPreCertID" style="width:150px"></select>&nbsp;&nbsp;
 							</span>
-							批次&nbsp;<select id="searchStudentPreProjectID" style="width:180px"></select>&nbsp;&nbsp;
+							批次&nbsp;<select id="searchStudentPreProjectID" style="width:200px"></select>&nbsp;&nbsp;
 							<input style="border:0px;" type="checkbox" id="searchStudentPreActive" value="" checked />&nbsp;当前批次&nbsp;&nbsp;
 							<span id="studentPreListLongItem4">
 								<input style="border:0px;" type="checkbox" id="searchStudentPreShowPhoto" value="" />&nbsp;图片&nbsp;&nbsp;
