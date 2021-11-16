@@ -331,12 +331,12 @@
 						}	
 						if(currHost==""){
 							if(ar1[56]=="znxf"){	//非集团客户，显示自己的单位和部门
-								arr.push("<td class='left'>" + ar1[54].substr(0,4) + "</td>");
+								arr.push("<td class='left' title='" + ar1[54] + "'>" + ar1[54].substr(0,4) + "</td>");
 							}else{
-								arr.push("<td class='left'>" + ar1[12].substr(0,4) + "</td>");
+								arr.push("<td class='left' title='" + ar1[12] + "'>" + ar1[12].substr(0,4) + "</td>");
 							}
 						}else{
-							arr.push("<td class='left'>" + ar1[13].substr(0,5) + "</td>");
+							arr.push("<td class='left' title='" + ar1[13] + "'>" + ar1[13].substr(0,5) + "</td>");
 						}
 						if(currHost==""){
 							arr.push("<td class='left'>" + ar1[39] + ar1[67] + "</td>");
