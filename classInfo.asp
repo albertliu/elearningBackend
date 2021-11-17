@@ -326,7 +326,7 @@
 						arr.push("<td class='center'>&nbsp;</td>");
 					}
                     h = ar1[66];
-                    if($("#certID").val()=="C12"){
+                    if($("#certID").val()=="C12" || $("#certID").val()=="C14" || $("#certID").val()=="C15" || $("#certID").val()=="C24" || $("#certID").val()=="C25" || $("#certID").val()=="C26"){
                         h = ar1[70].replace(".00","") + "/" + ar1[71].replace(".00","");
                     }
 					if(photo == 0){
