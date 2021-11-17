@@ -91,7 +91,11 @@
 						arr.push("<td class='center'>" + ar1[7] + "</td>");
 					}
 					arr.push("<td class='left'>" + ar1[20] + "</td>");
-					arr.push("<td class='left'>" + nullNoDisp(ar1[24]) + "</td>");
+					if(ar1[24] ==0 || ar1[24]==ar1[20]){
+						arr.push("<td class='left'>" + nullNoDisp(ar1[24]) + "</td>");
+					}else{	//有未报考人员，显示为红色
+						arr.push("<td class='left' style='background: #ffff00;'>" + nullNoDisp(ar1[24]) + "</td>");
+					}
 					arr.push("<td class='left'>" + nullNoDisp(ar1[25]) + "</td>");
 					arr.push("<td class='left'>" + nullNoDisp(ar1[26]) + "</td>");
 					var x = ar1[20];
