@@ -93,8 +93,8 @@
 					arr.push("<td class='left'>" + ar1[20] + "</td>");
 					if(ar1[24] ==0 || ar1[24]==ar1[20]){
 						arr.push("<td class='left'>" + nullNoDisp(ar1[24]) + "</td>");
-					}else{	//有未报考人员，显示为红色
-						arr.push("<td class='left' style='background: #ffff00;'>" + nullNoDisp(ar1[24]) + "</td>");
+					}else{	//有未报考人员，显示为灰色
+						arr.push("<td class='left' style='color: #999999;'>" + nullNoDisp(ar1[24]) + "</td>");
 					}
 					arr.push("<td class='left'>" + nullNoDisp(ar1[25]) + "</td>");
 					arr.push("<td class='left'>" + nullNoDisp(ar1[26]) + "</td>");
@@ -135,6 +135,8 @@
 				"bFilter": true,
 				"bPaginate": true,
 				"bLengthChange": true,
+				"aLengthMenu":[15,30,50,100],
+				"iDisplayLength": 100,
 				"bInfo": true,
 				"aoColumnDefs": []
 			});
