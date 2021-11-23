@@ -1130,7 +1130,7 @@
 		asyncbox.open({
 			id: "studentNeedDiploma",
 			url:"studentNeedDiplomaInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
-			title: "学员培训信息",
+			title: "证书制作信息",
 			width: 640,
 			height: 400,
 			cover : {

@@ -45,6 +45,7 @@
 		getDicList("payKind","kindID",0);
 		getDicList("payType","type",0);
 		getDicList("statusPay","statusPay",0);
+        getComList("fromID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='saler') order by realName",1);
 		$("#datePay").click(function(){WdatePicker();});
 		$("#dateRefund").click(function(){WdatePicker();});
 		$("#dateInvoice").click(function(){WdatePicker();});
@@ -286,6 +287,7 @@
 				$("#submiterName").val(ar[44]);
 				$("#currDiplomaID").val(ar[45]);
 				$("#currDiplomaDate").val(ar[46]);
+				$("#fromID").val(ar[47]);
 
 				getPayDetailInfoByEnterID(ar[0]);
 			//getDownloadFile("studentCourseID");
@@ -380,7 +382,7 @@
 				$.get("studentCourseControl.asp?op=updatePayPrice&nodeID=" + $("#payDetailID").val() + "&refID=" + $("#price").val() + "&times=" + (new Date().getTime()),function(re){
 					//jAlert(unescape(re));
 				});
-				$.get("studentCourseControl.asp?op=updateEnterClass&nodeID=" + nodeID + "&refID=" + $("#classID").val() + "&keyID=" + $("#SNo").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&times=" + (new Date().getTime()),function(re){
+				$.get("studentCourseControl.asp?op=updateEnterClass&nodeID=" + nodeID + "&refID=" + $("#classID").val() + "&keyID=" + $("#SNo").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&fromID=" + $("#fromID").val() + "&times=" + (new Date().getTime()),function(re){
 					//jAlert(unescape(re));
 					getNodeInfo(nodeID);
 					printEntryform(1);
@@ -659,13 +661,13 @@
 				<span id="class0">所属班级&nbsp;<input class="readOnly" type="text" id="className" style="width:250px" readOnly="true" />&nbsp;&nbsp;经办人&nbsp;<input class="readOnly" type="text" id="submiterName" style="width:50px" readOnly="true" />&nbsp;&nbsp;</span>
 				编号&nbsp;<input type="text" id="SNo" style="width:50px" />
 				<div>
-                <form style="width:98%;float:right;margin:1px;padding-left:2px;background:#f8f8ee;">
+                <form style="width:99%;float:right;margin:1px;padding-left:2px;background:#f8f8ee;">
                 <table>
                 <tr>
                     <td align="right">初训证书编号</td>
-                    <td><input type="text" id="currDiplomaID" style="width:150px;" /></td>
-                    <td align="right">有效日期</td>
-                    <td><input type="text" id="currDiplomaDate" style="width:150px;" /></td>
+                    <td><input type="text" id="currDiplomaID" style="width:140px;" /></td>
+                    <td align="right">有效期</td>
+                    <td><input type="text" id="currDiplomaDate" style="width:80px;" />&nbsp;销售<select id="fromID" style="width:80px;"></select></td>
                 </tr>
                 </table>
                 </form>

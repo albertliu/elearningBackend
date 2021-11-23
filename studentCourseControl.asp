@@ -425,6 +425,8 @@ if(op == "getNodeInfo"){
 		result += "|" + rs("projectName").value + "|" + rs("className").value + "|" + rs("entryform").value + "|" + rs("certID").value + "|" + rs("unit").value + "|" + rs("dept").value + "|" + rs("host").value;
 		//40
 		result += "|" + rs("reexamine").value + "|" + rs("reexamineName").value + "|" + rs("examTimes").value + "|" + rs("missingItems").value + "|" + rs("submiterName").value + "|" + rs("currDiplomaID").value + "|" + rs("currDiplomaDate").value;
+		//47
+		result += "|" + rs("fromID").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -903,7 +905,7 @@ if(op == "updatePayPrice"){
 }	
 
 if(op == "updateEnterClass"){
-	sql = "exec updateEnterClass " + nodeID + ",'" + refID + "','" + keyID + "','" + String(Request.QueryString("currDiplomaID")) + "','" + String(Request.QueryString("currDiplomaDate")) + "','" + currUser + "'";
+	sql = "exec updateEnterClass " + nodeID + ",'" + refID + "','" + keyID + "','" + String(Request.QueryString("currDiplomaID")) + "','" + String(Request.QueryString("currDiplomaDate")) + "','" + String(Request.QueryString("fromID")) + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(0);
 }	
