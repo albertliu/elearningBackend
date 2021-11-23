@@ -542,6 +542,7 @@
 			$("#class1").show();
 			setEmpty();
 			$("#btnEnter").focus();
+			$("#fromID").prop("disabled",true);
 		}else{
 			if(checkPermission("studentAdd")){
 				//编辑状态：显示保存按钮；一定条件下可以退学、退款
@@ -566,6 +567,7 @@
 			//$("#btnEntryform").show();
 			//$("#btnFiremanMaterials").show();
 			$("#btnPrint").show();
+			$("#fromID").prop("disabled",false);
 		}
 	}
 	function setEmpty(){
