@@ -1462,8 +1462,11 @@
 				setReturnLog("enter",iframe.nodeID);	
 				var re = iframe.updateCount;
 				if(re>0 && mark==1){
-					//getEnterList();
-					getStudentCourseList(iframe.refID);
+					if(companyID=="*"){
+						getEnterList();
+					}else{
+						getStudentCourseList(iframe.refID);
+					}
 				}
 				//alert(re + ":" + mark);
 				if(re>0 && mark==2){

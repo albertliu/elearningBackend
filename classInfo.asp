@@ -454,11 +454,15 @@
 		$("#doImport").hide();
 		$("#btnClassCall").hide();
 		$("#btnMockView").hide();
+		$("#archived").prop("disabled",true);
 		if(op ==1){
 			setEmpty();
 		}else{
 			if(checkPermission("classAdd") && s < 2){
 				$("#close").show();
+			}
+			if(checkPermission("classAdd") && s == 2 && $("#qtyExam").val()>0){
+				$("#archived").prop("disabled",false);
 			}
 			if(checkPermission("classOpen") && s > 0){
 				$("#open").show();

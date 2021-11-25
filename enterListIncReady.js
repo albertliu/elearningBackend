@@ -297,7 +297,7 @@
 					if(currHost==""){h = ar1[12];}	//系统用户显示公司名称
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
-					arr.push("<td class='link1'><a href='javascript:showEnterInfo(" + ar1[0] + ",\"" + ar1[1] + "\",0,1);'>" + ar1[1] + "</a></td>");
+					arr.push("<td class='link1'><a href='javascript:showEnterInfo(" + ar1[0] + ",\"" + ar1[1] + "\",0,1,\"*\");'>" + ar1[1] + "</a></td>");
 					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + ar1[1] + "\",0,1);'>" + ar1[2] + "</a></td>");
 					if($("#searchEnterProjectID").val()>"" && $("#searchEnterShowPhoto").attr("checked")){
 						$.each(ar2,function(iNum1,val1){
