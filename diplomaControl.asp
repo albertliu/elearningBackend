@@ -329,7 +329,7 @@ if(op == "getStudentNeedDiplomaList"){
 	sql = " FROM v_studentCertList a INNER JOIN v_studentCourseList b ON a.ID = b.refID LEFT OUTER JOIN  dbo.classInfo d ON b.classID = d.classID LEFT OUTER JOIN v_generatePasscardInfo c ON b.passcardID = c.ID where a.type=" + String(Request.QueryString("mark")) + " and a.result=1" + where;
 	result = getBasketTip(sql,"");
 	ssql = "SELECT a.username,name,sexName,age,certName,agencyName,hostName,dept1Name,dept2Name,job,mobile,closeDate,examScore,a.memo" + sql + " order by name";
-	sql = "SELECT top " + basket + " a.*, isnull(d.className,'') as className,isnull(b.classID,'') as classID, isnull(c.startDate,'') as testDate, b.SNo, b.pay_status,b.pay_statusName" + sql + " order by a.ID";
+	sql = "SELECT top " + basket + " a.*,b.ID as enterID, isnull(d.className,'') as className,isnull(b.classID,'') as classID, isnull(c.startDate,'') as testDate, b.SNo, b.pay_status,b.pay_statusName" + sql + " order by a.ID";
 	
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
@@ -341,7 +341,7 @@ if(op == "getStudentNeedDiplomaList"){
 		//15
 		result += "|" + rs("className").value + "|" + rs("testDate").value + "|" + rs("classID").value + "|" + rs("educationName").value + "|" + rs("SNo").value;
 		//20
-		result += "|" + rs("pay_statusName").value + "|" + rs("pay_status").value;
+		result += "|" + rs("pay_statusName").value + "|" + rs("pay_status").value + "|" + rs("enterID").value;
 		rs.MoveNext();
 	}
 	rs.Close();
