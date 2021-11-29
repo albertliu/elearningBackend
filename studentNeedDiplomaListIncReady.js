@@ -46,6 +46,10 @@
 			getStudentNeedDiplomaList();
 		});
 		
+		$("#searchStudentNeedDiplomaClassID").change(function(){
+			getStudentNeedDiplomaList();
+		});
+		
 		$("#btnStudentNeedDiplomaIssue").click(function(){
 			getSelCart("visitstockchkNeed");
 			getSelCart1("visitstockchkStamp");	//是否盖章
