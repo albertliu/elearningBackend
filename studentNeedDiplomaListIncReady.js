@@ -212,6 +212,8 @@
 					}
 					if(currHost>"" || ar1[21]==1){	//未交费的不能做证书
 						arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchkNeed'>" + "</td>");
+					}else{
+						arr.push("<td class='center'>&nbsp;</td>");
 					}
 					if(currHost>""){
 						arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchkStamp'>" + "</td>");
