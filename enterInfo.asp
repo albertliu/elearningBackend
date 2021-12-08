@@ -334,7 +334,11 @@
 			if(ar > ""){
 				$("#payID").val(ar[0]);
 				$("#invoice").val(ar[1]);
-				$("#statusPay").val(ar[3]);
+				if($("#classID").val()>""){
+					$("#statusPay").val(ar[3]);
+				}else{
+					$("#statusPay").val(1);	//网上报名的，编班时默认为已付费。
+				}
 				$("#kindID").val(ar[5]);
 				$("#type").val(ar[7]);
 				$("#datePay").val(ar[9]);
