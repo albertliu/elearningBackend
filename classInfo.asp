@@ -461,7 +461,7 @@
 			if(checkPermission("classAdd") && s < 2){
 				$("#close").show();
 			}
-			if(checkPermission("classAdd") && s == 2 && $("#qtyExam").val()>0){
+			if(checkPermission("classAdd") && $("#qtyExam").val()>0){
 				$("#archived").prop("disabled",false);
 			}
 			if(checkPermission("classOpen") && s > 0){
