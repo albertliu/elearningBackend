@@ -581,6 +581,7 @@
 		}
 		if($("#kindID").val()==1){
 			//团体缴费
+			$("#statusPay").val(1);
 			$("#datePay").val("");
 			$("#dateInvoice").val("");
 			$("#dateInvoicePick").val("");
