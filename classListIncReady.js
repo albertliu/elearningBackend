@@ -79,7 +79,7 @@
 					arr.push("<tr class='grade0'>");
 					arr.push("<td class='center'>" + i + "</td>");
 					arr.push("<td class='link1'><a href='javascript:showClassInfo(" + ar1[0] + ",0,0,1);'>" + ar1[1] + "</a></td>");
-					arr.push("<td class='left'>" + ar1[17] + "</td>");
+					arr.push("<td class='left'>" + ar1[17] + "&nbsp;" + ar1[13] + "</td>");
 					arr.push("<td class='left'>" + ar1[10].substring(0,10) + "</td>");
 					arr.push("<td class='left'>" + ar1[11] + "</td>");
 					arr.push("<td class='left'>" + ar1[9] + "</td>");

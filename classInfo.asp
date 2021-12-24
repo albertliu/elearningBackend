@@ -104,7 +104,9 @@
 			if($("#certID").val()>""){
 				var id=$("#certID").val();
 				setProjectList(id,[]);
-				$("#className").val($("#certID").find("option:selected").text() + $("#dateStart").val().substr(2,8).replace(/-/g,""));
+				if(currDate<"2022-01-01"){
+					$("#className").val($("#certID").find("option:selected").text() + $("#dateStart").val().substr(2,8).replace(/-/g,""));
+				}
 			}
 		});
 
@@ -326,7 +328,7 @@
 						arr.push("<td class='center'>&nbsp;</td>");
 					}
                     h = ar1[66];
-                    if($("#certID").val()=="C12" || $("#certID").val()=="C14" || $("#certID").val()=="C15" || $("#certID").val()=="C24" || $("#certID").val()=="C25" || $("#certID").val()=="C26"){
+                    if($("#certID").val()=="C12" || $("#certID").val()=="C14" || $("#certID").val()=="C15" || $("#certID").val()=="C24" || $("#certID").val()=="C25" || $("#certID").val()=="C26" || $("#certID").val()=="C25B" || $("#certID").val()=="C26B"){
                         h = ar1[70].replace(".00","") + "/" + ar1[71].replace(".00","");
                     }
 					if(photo == 0){
@@ -387,8 +389,12 @@
 			//alert("只有该班的班主任才能操作。");
 			//return false;
 		}
-		if($("#className").val()==0){
+		if(currDate<"2022-01-01" && $("#className").val()==""){
 			alert("请填写班级名称。");
+			return false;
+		}
+		if($("#dateStart").val()==""){
+			alert("请填写开班日期。");
 			return false;
 		}
 		var photo = 0;
@@ -477,6 +483,9 @@
 			$("#doImport").show();
 			$("#btnClassCall").show();
 		}
+		if(currDate>="2022-01-01"){
+			$("#className").prop("disabled",true);
+		}
 	}
 	
 	function setEmpty(){
@@ -516,7 +525,7 @@
 			<table>
 			<tr>
 				<td align="right">开课日期</td>
-				<td><input type="text" id="dateStart" size="15" /></td>
+				<td><input type="text" id="dateStart" class="mustFill" size="15" /></td>
 				<td align="right">结课日期</td>
 				<td><input type="text" id="dateEnd" size="15" />&nbsp;预计</td>
 			</tr>
@@ -566,7 +575,7 @@
 				<td align="right">
 					工作小结<br />
 					<div class="comm" align="center"><input class="button" type="button" id="btnSummary" value="..." /></div>
-				</td><input id="memo" type="hidden" />
+				</td>
 				<td colspan="5"><textarea id="summary" style="padding:2px;" rows="5" cols="75"></textarea></td>
 			</tr>
 			<tr>
@@ -579,9 +588,9 @@
 			</tr>
 			<tr>
 				<td align="right">登记人</td>
-				<td><input class="readOnly" readOnly="true" type="text" id="registerName" size="25" /></td>
-				<td align="right">登记日期</td>
-				<td><input class="readOnly" type="text" id="regDate" size="25" readOnly="true" /></td>
+				<td><input class="readOnly" readOnly="true" type="text" id="registerName" size="3" />&nbsp;&nbsp;登记日期&nbsp;<input class="readOnly" type="text" id="regDate" size="7" readOnly="true" /></td>
+				<td align="right">备注</td>
+				<td><input type="text" id="memo" size="25" /></td>
 			</tr>
 			</table>
 			</form>
