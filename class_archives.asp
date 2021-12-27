@@ -106,10 +106,10 @@
 					arr1.push("<td align='center' width='8%' colspan='3'>" + ar[17] + "</td>");
 					arr1.push("<td align='center' width='6%'>培训人数 </td>");
 					arr1.push("<td align='center' width='8%'>" + qty + "</td>");
-					arr1.push("<td align='center' width='8%'>补贴人数</td>");
-					arr1.push("<td align='center' width='8%'></td>");
 					arr1.push("<td align='center' width='6%'>班主任</td>");
-					arr1.push("<td align='center' width='15%'>" + ar[9] + "</td>");
+					arr1.push("<td align='center' width='8%'>" + ar[9] + "</td>");
+					arr1.push("<td align='center' width='8%'>开班号（申报批号）</td>");
+					arr1.push("<td align='center' width='8%'></td>");
 					arr1.push("</tr>");
 					arr1.push("<tr align='center'>");
 					arr1.push("<td align='center' width='9%' height='35px'>课次</td>");
