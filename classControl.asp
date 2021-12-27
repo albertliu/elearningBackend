@@ -172,6 +172,44 @@ if(op == "getClassListByProject"){
 	//Response.Write(escape(sql));
 }	
 
+if(op == "getClassSchedule"){
+	var s = "";
+	where = "";
+	//如果有班级
+	if(refID > ""){ // 
+		s = "classID='" + refID + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+
+	if(where>""){
+		where = " where " + where;
+	}
+
+	sql = " FROM v_classSchedule " + where;
+	sql = "SELECT * " + sql + " order by seq";
+
+	result = "";
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("ID").value + "|" + rs("classID").value + "|" + rs("courseID").value + "|" + rs("seq").value + "|" + rs("kindID").value + "|" + rs("typeID").value + "|" + rs("status").value;
+		//7
+		result += "|" + rs("hours").value + "|" + rs("period").value + "|" + rs("theDate").value + "|" + rs("theWeek").value + "|" + rs("item").value + "|" + rs("address").value + "|" + rs("teacher").value;
+		//14
+		result += "|" + rs("kindName").value + "|" + rs("typeName").value + "|" + rs("teacherName").value;
+		//17
+		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value;
+		rs.MoveNext();
+	}
+	result = result.substr(2);
+	Session(op) = ssql;
+	Response.Write(escape(result));/**/
+	//Response.Write(escape(sql));
+}	
+
 if(op == "cancelNode"){
 	sql = "exec doCancelClass " + nodeID;
 	execSQL(sql);

@@ -227,6 +227,7 @@
 				$("#classID").val(ar[1]);
 				//$("#projectID").val(ar[2]);
 				$("#certID").val(ar[3]);
+				getComList("teacher","v_courseTeacherList","teacherID","teacherName","status=0 and courseID='" + $("#certID").val() + "' order by teacherID",1);
 				setProjectList(ar[3],ar[2]);
 				$("#kindID").val(ar[5]);
 				$("#status").val(ar[6]);
@@ -251,7 +252,7 @@
 				$("#sendDate").val(ar[31]);
 				$("#senderName").val(ar[32]);
 				$("#teacher").val(ar[34]);
-				$("#scheduleDate").val(ar[34]);
+				$("#scheduleDate").val(ar[35]);
 				if(ar[24]>""){
 					$("#archived").prop("checked",true);
 				}else{
