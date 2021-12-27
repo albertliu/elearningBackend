@@ -81,18 +81,22 @@
 				$("#pass_rate_training").html(x);
 
 				$.get("classControl.asp?op=getClassSchedule&refID=" + refID + "&times=" + (new Date().getTime()),function(data1){
-					//alert(unescape(data));
+					//alert(unescape(data1));
 					var ar2 = new Array();
 					ar2 = (unescape(data1)).split("%%");
 					$("#scheduleCover").empty();
-					var arr1 = [];			
+					var arr1 = [];		
+					var cn = "";
+					if(ar2>""){
+						cn = ar2[0].split("|")[21];
+					}
 					arr1.push("<table cellpadding='0' cellspacing='0' border='1' width='99%'>");
 					arr1.push("<tr align='center'>");
 					arr1.push("<td align='center' width='9%' height='35px'>培训职业（工种）</td>");
-					arr1.push("<td align='center' width='20%' colspan='3'>" + ar[4] + "</td>");
+					arr1.push("<td align='center' width='20%' colspan='3'>" + cn + "</td>");
 					arr1.push("<td align='center' width='10%'>开班日期 </td>");
-					arr1.push("<td align='center' width='8%'>" + ar[10] + "</td>");
-					arr1.push("<td align='center' width='10%'>结业日期</td>");
+					arr1.push("<td align='center' width='10%'>" + ar[10].substring(0,10) + "</td>");
+					arr1.push("<td align='center' width='8%'>结业日期</td>");
 					arr1.push("<td align='center' width='10%'>" + ar[11] + "</td>");
 					arr1.push("<td align='center' width='20%'>所属区县</td>");
 					arr1.push("<td align='center' width='15%'>杨浦</td>");
@@ -102,7 +106,7 @@
 					arr1.push("<td align='center' width='8%' colspan='3'>" + ar[17] + "</td>");
 					arr1.push("<td align='center' width='6%'>培训人数 </td>");
 					arr1.push("<td align='center' width='8%'>" + qty + "</td>");
-					arr1.push("<td align='center' width='14%'>补贴人数</td>");
+					arr1.push("<td align='center' width='8%'>补贴人数</td>");
 					arr1.push("<td align='center' width='8%'></td>");
 					arr1.push("<td align='center' width='6%'>班主任</td>");
 					arr1.push("<td align='center' width='15%'>" + ar[9] + "</td>");
@@ -111,10 +115,10 @@
 					arr1.push("<td align='center' width='9%' height='35px'>课次</td>");
 					arr1.push("<td align='center' width='8%'>上课日期</td>");
 					arr1.push("<td align='center' width='4%'>星期</td>");
-					arr1.push("<td align='center' width='8%'>上课时段</td>");
+					arr1.push("<td align='center' width='8%'>时段</td>");
 					arr1.push("<td align='center' width='10%'>上课时间</td>");
-					arr1.push("<td align='center' width='8%'>课时</td>");
-					arr1.push("<td align='center' width='10%'>上课类型</td>");
+					arr1.push("<td align='center' width='10%'>课时</td>");
+					arr1.push("<td align='center' width='8%'>上课类型</td>");
 					arr1.push("<td align='center' width='10%'>授课教师</td>");
 					arr1.push("<td align='center' width='20%'>授课内容</td>");
 					arr1.push("<td align='center' width='15%'>上课地点</td>");
@@ -124,7 +128,6 @@
 						$.each(ar2,function(iNum,val){
 							var ar3 = new Array();
 							ar3 = val.split("|");
-							i += 1;
 							arr1.push("<tr>");
 							arr1.push("<td align='center' height='35px'>" + ar3[3] + "</td>");
 							arr1.push("<td align='center'>" + ar3[9] + "</td>");
@@ -136,7 +139,7 @@
 							arr1.push("<td align='center'>" + ar3[16] + "</td>");
 							arr1.push("<td align='center'>" + ar3[11] + "</td>");
 							arr1.push("<td align='center'>" + ar3[12] + "</td>");
-							arr1.push("</tr>");
+							arr1.push("</tr>");/**/
 						});
 					}
 					arr1.push("</table>");

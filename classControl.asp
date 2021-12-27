@@ -193,6 +193,7 @@ if(op == "getClassSchedule"){
 	sql = "SELECT * " + sql + " order by seq";
 
 	result = "";
+	
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
 		result += "%%" + rs("ID").value + "|" + rs("classID").value + "|" + rs("courseID").value + "|" + rs("seq").value + "|" + rs("kindID").value + "|" + rs("typeID").value + "|" + rs("status").value;
@@ -201,7 +202,7 @@ if(op == "getClassSchedule"){
 		//14
 		result += "|" + rs("kindName").value + "|" + rs("typeName").value + "|" + rs("teacherName").value;
 		//17
-		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value;
+		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("shortName").value;
 		rs.MoveNext();
 	}
 	result = result.substr(2);
