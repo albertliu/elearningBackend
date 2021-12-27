@@ -37,6 +37,7 @@
 		
 		getComList("certID","certificateInfo","certID","shortName","status=0 and type=0 order by certID",1);
 		getComList("projectID","projectInfo","projectID","projectName","status=1 order by projectID desc",1);
+		getComList("teacher","v_courseTeacherList","teacherID","teacherName","status=0 group by teacherID,teacherName",1);
 		getComList("adviserID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='adviser') order by realName",1);
 		getDicList("planStatus","status",0);
 		$("#dateStart").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'});});
@@ -107,6 +108,7 @@
 				if(currDate<"2022-01-01"){
 					$("#className").val($("#certID").find("option:selected").text() + $("#dateStart").val().substr(2,8).replace(/-/g,""));
 				}
+				getComList("teacher","v_courseTeacherList","teacherID","teacherName","status=0 and courseID='" + $("#certID").val() + "' order by teacherID",1);
 			}
 		});
 
@@ -184,8 +186,32 @@
 		$("#btnMockDetail").click(function(){
 			outputExcelBySQL('x07','file',$("#classID").val(),0,0);
 		});
+		$("#schedule").click(function(){
+			window.open("class_schedule.asp?nodeID=" + $("#classID").val(), "_self");
+		});
 		$("#showPhoto").change(function(){
 			getStudentCourseList();
+		});
+		
+		$("#btnSchedule").click(function(){
+			if($("#dateStart").val()==""){
+				alert("请确定开课日期。");
+				return false;
+			}
+			if($("#teacher").val()==""){
+				alert("请确定任课教师。");
+				return false;
+			}
+			if($("#classroom").val()==""){
+				alert("请确定上课地点。");
+				return false;
+			}
+			if(confirm("确定要编排课表吗？")){
+				$.get("classControl.asp?op=generateClassSchedule&refID=" + $("#classID").val() + "&kindID=0&times=" + (new Date().getTime()),function(re){
+					getNodeInfo(nodeID);
+					alert("课表编排完毕。");
+				});
+			}
 		});
 
 	  	<!--#include file="commLoadFileReady.asp"-->
@@ -224,6 +250,8 @@
 				$("#send").val(ar[30]);
 				$("#sendDate").val(ar[31]);
 				$("#senderName").val(ar[32]);
+				$("#teacher").val(ar[34]);
+				$("#scheduleDate").val(ar[34]);
 				if(ar[24]>""){
 					$("#archived").prop("checked",true);
 				}else{
@@ -237,6 +265,9 @@
 				$("#photo").html(c);
 				$("#refundList").html("<a>退费清单</a>");
 				$("#archive").html("<a>班级档案</a>");
+				if(ar[34]>""){
+					$("#schedule").html("<a>课程表</a>");
+				}
 				getStudentCourseList();
 				//getDownloadFile("classID");
 				setButton();
@@ -399,7 +430,7 @@
 		}
 		var photo = 0;
 		if($("#archived").prop("checked")){photo = 1;}
-		$.post("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&className=" + escape($("#className").val()) + "&classroom=" + escape($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&adviserID=" + $("#adviserID").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&archived=" + photo, {"memo":$("#memo").val(), "summary":$("#summary").val()},function(re){
+		$.post("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&className=" + escape($("#className").val()) + "&classroom=" + escape($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&adviserID=" + $("#adviserID").val() + "&teacher=" + $("#teacher").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&archived=" + photo, {"memo":$("#memo").val(), "summary":$("#summary").val()},function(re){
 			//alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -460,12 +491,14 @@
 		$("#doImport").hide();
 		$("#btnClassCall").hide();
 		$("#btnMockView").hide();
+		$("#btnSchedule").hide();
 		$("#archived").prop("disabled",true);
 		if(op ==1){
 			setEmpty();
 		}else{
 			if(checkPermission("classAdd") && s < 2){
 				$("#close").show();
+				$("#btnSchedule").show();
 			}
 			if(checkPermission("classAdd") && $("#qtyExam").val()>0){
 				$("#archived").prop("disabled",false);
@@ -556,6 +589,12 @@
 				<td><select id="adviserID" style="width:180px;"></select></td>
 				<td align="right">上课地点</td>
 				<td><input type="text" id="classroom" size="25" /></td>
+			</tr>
+			<tr>
+				<td align="right">任课教师</td>
+				<td><select id="teacher" style="width:180px;"></select></td>
+				<td align="right"><input class="button" type="button" id="btnSchedule" value="排课表" /></td>
+				<td><input type="text" id="scheduleDate" size="10" class="readOnly" readOnly="true" />&nbsp;&nbsp;<span id="schedule" style="margin-left:10px;"></span></td>
 			</tr>
 			<tr>
 				<td colspan="2">

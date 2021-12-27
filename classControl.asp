@@ -73,7 +73,7 @@ if(op == "getClassList"){
 		//21
 		result += "|" + rs("fileArchive").value + "|" + rs("archiver").value + "|" + rs("archiveDate").value + "|" + rs("qtyApply").value + "|" + rs("qtyExam").value + "|" + rs("qtyPass").value + "|" + rs("archiverName").value;
 		//28
-		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value + "|" + rs("qtyReturn").value;
+		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value + "|" + rs("qtyReturn").value + "|" + rs("teacher").value + "|" + rs("scheduleDate").value;
 		rs.MoveNext();
 	}
 /**/
@@ -96,7 +96,7 @@ if(op == "getNodeInfo"){
 		//22
 		result += "|" + rs("fileArchive").value + "|" + rs("archiver").value + "|" + rs("archiveDate").value + "|" + rs("summary").value + "|" + rs("qtyApply").value + "|" + rs("qtyExam").value + "|" + rs("qtyPass").value + "|" + rs("archiverName").value;
 		//30
-		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value + "|" + rs("qtyReturn").value;
+		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value + "|" + rs("qtyReturn").value + "|" + rs("teacher").value + "|" + rs("scheduleDate").value;
 		execSQL(sql);
 	}
 	rs.Close();
@@ -106,7 +106,7 @@ if(op == "getNodeInfo"){
 if(op == "update"){
 	result = 0;
 	if(result == 0){
-		sql = "exec updateClassInfo " + nodeID + ",'" + unescape(String(Request.QueryString("className"))) + "','" + String(Request.QueryString("certID")) + "','" + String(Request.QueryString("projectID")) + "','" + String(Request.QueryString("adviserID")) + "'," + kindID + "," + status + ",'" + String(Request.QueryString("dateStart")) + "','" + String(Request.QueryString("dateEnd")) + "','" + unescape(String(Request.QueryString("classroom"))) + "','" + unescape(String(Request.QueryString("timetable"))) + "','" + String(Request.QueryString("archived")) + "','" + String(Request.Form("summary")) + "','" + String(Request.Form("memo")) + "','" + currUser + "'";
+		sql = "exec updateClassInfo " + nodeID + ",'" + unescape(String(Request.QueryString("className"))) + "','" + String(Request.QueryString("certID")) + "','" + String(Request.QueryString("projectID")) + "','" + String(Request.QueryString("adviserID")) + "','" + String(Request.QueryString("teacher")) + "'," + kindID + "," + status + ",'" + String(Request.QueryString("dateStart")) + "','" + String(Request.QueryString("dateEnd")) + "','" + unescape(String(Request.QueryString("classroom"))) + "','" + unescape(String(Request.QueryString("timetable"))) + "','" + String(Request.QueryString("archived")) + "','" + String(Request.Form("summary")) + "','" + String(Request.Form("memo")) + "','" + currUser + "'";
 
 		execSQL(sql);
 		if(nodeID == 0){
@@ -211,4 +211,9 @@ if(op == "getRandSummary"){
 	Response.Write(escape(result));
 }
 
+if(op == "generateClassSchedule"){
+	sql = "exec autoSetClassSchedule '" + refID + "',0,'','" + currUser + "'";
+	execSQL(sql);
+	Response.Write(0);
+}
 %>
