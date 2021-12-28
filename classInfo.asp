@@ -35,7 +35,7 @@
 		refID = "<%=refID%>";
 		op = "<%=op%>";
 		
-		getComList("certID","certificateInfo","certID","shortName","status=0 and type=0 order by certID",1);
+		getComList("courseID","v_courseInfo","courseID","shortName","status=0 and host='' order by courseID",1);
 		getComList("projectID","projectInfo","projectID","projectName","status=1 order by projectID desc",1);
 		getComList("teacher","v_courseTeacherList","teacherID","teacherName","status=0 group by teacherID,teacherName",1);
 		getComList("adviserID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='adviser') order by realName",1);
@@ -101,14 +101,14 @@
 			});
 		});
 
-		$("#certID").change(function(){
-			if($("#certID").val()>""){
-				var id=$("#certID").val();
+		$("#courseID").change(function(){
+			if($("#courseID").val()>""){
+				var id=$("#courseID").val();
 				setProjectList(id,[]);
 				if(currDate<"2022-01-01"){
-					$("#className").val($("#certID").find("option:selected").text() + $("#dateStart").val().substr(2,8).replace(/-/g,""));
+					$("#className").val($("#courseID").find("option:selected").text() + $("#dateStart").val().substr(2,8).replace(/-/g,""));
 				}
-				getComList("teacher","v_courseTeacherList","teacherID","teacherName","status=0 and courseID='" + $("#certID").val() + "' order by teacherID",1);
+				getComList("teacher","v_courseTeacherList a, courseInfo b","teacherID","teacherName","a.courseID=b.certID and a.status=0 and b.courseID='" + $("#courseID").val() + "' order by teacherID",1);
 			}
 		});
 
@@ -228,7 +228,6 @@
 				//$("#projectID").val(ar[2]);
 				$("#certID").val(ar[3]);
 				getComList("teacher","v_courseTeacherList","teacherID","teacherName","status=0 and courseID='" + $("#certID").val() + "' order by teacherID",1);
-				setProjectList(ar[3],ar[2]);
 				$("#kindID").val(ar[5]);
 				$("#status").val(ar[6]);
 				$("#adviserID").val(ar[8]);
@@ -253,6 +252,8 @@
 				$("#senderName").val(ar[32]);
 				$("#teacher").val(ar[34]);
 				$("#scheduleDate").val(ar[35]);
+				$("#courseID").val(ar[36]);
+				setProjectList(ar[36],ar[2]);
 				if(ar[24]>""){
 					$("#archived").prop("checked",true);
 				}else{
@@ -431,7 +432,7 @@
 		}
 		var photo = 0;
 		if($("#archived").prop("checked")){photo = 1;}
-		$.post("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&className=" + escape($("#className").val()) + "&classroom=" + escape($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&adviserID=" + $("#adviserID").val() + "&teacher=" + $("#teacher").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&archived=" + photo, {"memo":$("#memo").val(), "summary":$("#summary").val()},function(re){
+		$.post("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&className=" + escape($("#className").val()) + "&classroom=" + escape($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&courseID=" + $("#courseID").val() + "&adviserID=" + $("#adviserID").val() + "&teacher=" + $("#teacher").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&archived=" + photo, {"memo":$("#memo").val(), "summary":$("#summary").val()},function(re){
 			//alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -566,8 +567,8 @@
 			<tr>
 				<td align="right">班级编号</td><input id="ID" type="hidden" /><input id="kindID" type="hidden" /><input id="status" type="hidden" />
 				<td><input type="text" id="classID" size="25" class="readOnly" readOnly="true" /></td>
-				<td align="right">课程名称</td>
-				<td><select id="certID" style="width:180px;"></select></td>
+				<td align="right">课程名称</td><input id="certID" type="hidden" />
+				<td><select id="courseID" style="width:180px;"></select></td>
 			</tr>
 			<tr>
 				<td align="right">班级名称</td>

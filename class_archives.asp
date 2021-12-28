@@ -55,7 +55,7 @@
 				refID = ar[1];
 				$("#home_classID").html(ar[1] + "(" + ar[17] + ")");
 				$("#home_adviser").html(ar[9]);
-				$("#home_certName").html(ar[4]);
+				$("#home_certName").html(ar[37]);
 				$("#home_startDate").html(ar[10].substring(0,10) + "&nbsp;至&nbsp;" + ar[11]);
 				$("#dateEnd").html(ar[11]);
 				$("#classID").html(ar[1] + "&nbsp;&nbsp;[" + ar[17] + "]");
@@ -86,14 +86,11 @@
 					ar2 = (unescape(data1)).split("%%");
 					$("#scheduleCover").empty();
 					var arr1 = [];		
-					var cn = "";
-					if(ar2>""){
-						cn = ar2[0].split("|")[21];
-					}
+					//cn = ar2[0].split("|")[21];
 					arr1.push("<table cellpadding='0' cellspacing='0' border='1' width='99%'>");
 					arr1.push("<tr align='center'>");
 					arr1.push("<td align='center' width='9%' height='35px'>培训职业（工种）</td>");
-					arr1.push("<td align='center' width='20%' colspan='3'>" + cn + "</td>");
+					arr1.push("<td align='center' width='20%' colspan='3'>" + ar[37] + "</td>");
 					arr1.push("<td align='center' width='10%'>开班日期 </td>");
 					arr1.push("<td align='center' width='10%'>" + ar[10].substring(0,10) + "</td>");
 					arr1.push("<td align='center' width='8%'>结业日期</td>");

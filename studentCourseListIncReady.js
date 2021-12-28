@@ -213,7 +213,7 @@
 	function getStudentCourseList(){
 		sWhere = $("#txtSearchStudentCourse").val();
 		if($("#searchStudentCourseClassID").val() == ""){
-			jAlert("请选择一个班级。");
+			//jAlert("请选择一个班级。");
 			return false;
 		}
 		//if($("#searchStudentCourseOld").attr("checked")){Old = 1;}

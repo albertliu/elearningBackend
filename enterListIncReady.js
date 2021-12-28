@@ -204,6 +204,9 @@
 		setCartNum("examer");
 	});
 
+	function getStudentCourseList(){
+	}
+
 	function getEnterList(){
 		sWhere = $("#txtSearchEnter").val();
 		var Old = 0;

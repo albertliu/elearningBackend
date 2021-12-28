@@ -57,7 +57,6 @@
 	<!--#include file="feedbackListIncReady.js"-->
 	<!--#include file="messageListIncReady.js"-->
 	<!--#include file="studentListIncReady.js"-->
-	<!--#include file="studentCourseListIncReady.js"-->
 	<!--#include file="diplomaListIncReady.js"-->
 	<!--#include file="diplomaLastListIncReady.js"-->
 	<!--#include file="certListIncReady.js"-->
@@ -485,7 +484,7 @@
 					</div>
 					
 					<div id="fragment-2">
-						<!--#include file="studentCourseListIncDetail.js"-->
+						
 					</div>
 					
 					<div id="fragment-11">

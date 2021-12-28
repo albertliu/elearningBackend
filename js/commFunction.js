@@ -1459,7 +1459,7 @@
 
 			btnsbar : false,
 			callback : function(action,iframe){
-				setReturnLog("enter",iframe.nodeID);	
+				//setReturnLog("enter",iframe.nodeID);	
 				var re = iframe.updateCount;
 				if(re>0 && mark==1){
 					if(companyID=="*"){
