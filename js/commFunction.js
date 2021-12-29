@@ -284,6 +284,18 @@
 			floatModel = 3;
 			sql = "select username,name,examName,startDate,endDate,score1,scorePer1,score2,scorePer2,score3,scorePer3,score,scorePer from dbo.getStudentExamStatByClass('" + p1 + "')";
 		}
+		if(id=='x08'){
+			p = "getSignListByClass";
+			floatModel = 4;
+			floatTitle = p2;
+			sql = "select name from v_studentCourseList where classID='" + p1 + "' order by SNo";
+		}
+		if(id=='x09'){
+			p = "getSign1ListByClass";
+			floatModel = 4;
+			floatTitle = p2;
+			sql = "select name from v_studentCourseList where classID='" + p1 + "' order by SNo";
+		}
 		setSession(p, sql);
 		setSession("dk" + id, p);
 		setSession("dk" + id + "_count", 60);

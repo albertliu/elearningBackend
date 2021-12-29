@@ -53,7 +53,7 @@
             var qty = 0;
 			if(ar > ""){
 				refID = ar[1];
-				$("#home_classID").html(ar[1] + "(" + ar[17] + ")");
+				$("#home_classID").html(ar[17] + "(" + ar[1] + ")");
 				$("#home_adviser").html(ar[9]);
 				$("#home_certName").html(ar[37]);
 				$("#home_startDate").html(ar[10].substring(0,10) + "&nbsp;至&nbsp;" + ar[11]);
@@ -163,8 +163,8 @@
 			arr.push("<td align='center' width='6%'>性别</td>");
 			arr.push("<td align='center' width='18%'>证件号码</td>");
 			arr.push("<td align='center' width='14%'>联系电话</td>");
-			arr.push("<td align='center' width='34%'>工作单位</td>");
-			arr.push("<td align='center' width='6%'>状态</td>");
+			arr.push("<td align='center' width='30%'>工作单位</td>");
+			arr.push("<td align='center' width='10%'>学历</td>");
 			arr.push("</tr>");
 			var i = 0;
 			
@@ -180,7 +180,7 @@
 					arr.push("<td align='center'>" + ar1[0] + "</td>");
 					arr.push("<td align='center'>" + ar1[5] + "</td>");
 					arr.push("<td>" + ar1[6] + "</td>");
-					arr.push("<td align='center'>" + ar1[12] + "</td>");
+					arr.push("<td align='center'>" + ar1[13] + "</td>");
 					arr.push("</tr>");
 				});
 			}
@@ -269,7 +269,7 @@
 	
 	<div style="width:100%;float:left;margin:0;">
 		<div style="text-align:center;">
-		<input class="button" type="button" id="print" value="打印" />&nbsp;
+			<input class="button" type="button" id="print" value="打印" />&nbsp;
 		</div>
 		<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;padding-left:20px;">
 			<div style='text-align:center; margin:150px 0 0 0;'><h3 style='font-size:3em;'>班级管理表册</h3></div>
@@ -296,6 +296,21 @@
 				<td style="width:30%; height:60px; text-align:right; vertical-align: bottom; font-size:1.8em;">起迄日期</td><td colspan="2" style="width:65%; border: 0px; font-size:1.8em; vertical-align: bottom; padding-left:15px;" id="home_startDate"></td>
 			</tr>
 			</table>
+
+			<div style="page-break-after:always"></div>
+
+			<div style='text-align:center; margin:10px 0 0 0;'><h3 style='font-size:1.8em;'>授课计划表</h3></div>
+			<div id="scheduleCover" style="float:center; margin:15px; font-size:1.2em;"></div>
+
+			<div style="page-break-after:always"></div>
+
+			<div style='text-align:center; margin:10px 0 0 0;'><h3 style='font-size:1.8em;'>学员花名册</h3></div>
+			<div id="studentCover" style="float:center; margin:15px; font-size:1.2em;"></div>
+
+			<div style="page-break-after:always"></div>
+
+			<div style='text-align:center; margin:10px 0 0 0;'><h3 style='font-size:1.8em;'>学员成绩册</h3></div>
+			<div id="scoreCover" style="float:center; margin:15px; font-size:1.2em;"></div>
 			
 			<div style="page-break-after:always"></div>
 
@@ -353,21 +368,6 @@
 				</td>
 			</tr>
 			</table>
-
-			<div style="page-break-after:always"></div>
-
-			<div style='text-align:center; margin:10px 0 0 0;'><h3 style='font-size:1.8em;'>授课计划表</h3></div>
-			<div id="scheduleCover" style="float:center; margin:15px; font-size:1.2em;"></div>
-
-			<div style="page-break-after:always"></div>
-
-			<div style='text-align:center; margin:10px 0 0 0;'><h3 style='font-size:1.8em;'>班级成员</h3></div>
-			<div id="studentCover" style="float:center; margin:15px; font-size:1.2em;"></div>
-
-			<div style="page-break-after:always"></div>
-
-			<div style='text-align:center; margin:10px 0 0 0;'><h3 style='font-size:1.8em;'>成绩登记表</h3></div>
-			<div id="scoreCover" style="float:center; margin:15px; font-size:1.2em;"></div>
 		</div>
 	</div>
 </div>

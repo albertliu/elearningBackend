@@ -44,6 +44,15 @@ if(op == "getClassList"){
 			where = s;
 		}
 	}
+	//如果有批次
+	if(String(Request.QueryString("partnerID")) > "" && String(Request.QueryString("partnerID")) !="undefined"){ // 
+		s = "partnerID='" + String(Request.QueryString("partnerID")) + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 	//mark=3: 当前用户为销售
 	if(String(Request.QueryString("mark")) == 3){
 		s = "classID in (select * from dbo.getClassListBySaler('" + currUser + "'))";
@@ -74,6 +83,8 @@ if(op == "getClassList"){
 		result += "|" + rs("fileArchive").value + "|" + rs("archiver").value + "|" + rs("archiveDate").value + "|" + rs("qtyApply").value + "|" + rs("qtyExam").value + "|" + rs("qtyPass").value + "|" + rs("archiverName").value;
 		//28
 		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value + "|" + rs("qtyReturn").value + "|" + rs("teacher").value + "|" + rs("scheduleDate").value + "|" + rs("courseID").value + "|" + rs("courseName").value;
+		//36
+		result += "|" + rs("teacherName").value + "|" + rs("partnerID").value;
 		rs.MoveNext();
 	}
 /**/
@@ -97,6 +108,8 @@ if(op == "getNodeInfo"){
 		result += "|" + rs("fileArchive").value + "|" + rs("archiver").value + "|" + rs("archiveDate").value + "|" + rs("summary").value + "|" + rs("qtyApply").value + "|" + rs("qtyExam").value + "|" + rs("qtyPass").value + "|" + rs("archiverName").value;
 		//30
 		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value + "|" + rs("qtyReturn").value + "|" + rs("teacher").value + "|" + rs("scheduleDate").value + "|" + rs("courseID").value + "|" + rs("courseName").value;
+		//38
+		result += "|" + rs("teacherName").value + "|" + rs("partnerID").value;
 		execSQL(sql);
 	}
 	rs.Close();
@@ -106,7 +119,7 @@ if(op == "getNodeInfo"){
 if(op == "update"){
 	result = 0;
 	if(result == 0){
-		sql = "exec updateClassInfo " + nodeID + ",'" + unescape(String(Request.QueryString("className"))) + "','" + String(Request.QueryString("certID")) + "','" + String(Request.QueryString("courseID")) + "','" + String(Request.QueryString("projectID")) + "','" + String(Request.QueryString("adviserID")) + "','" + String(Request.QueryString("teacher")) + "'," + kindID + "," + status + ",'" + String(Request.QueryString("dateStart")) + "','" + String(Request.QueryString("dateEnd")) + "','" + unescape(String(Request.QueryString("classroom"))) + "','" + unescape(String(Request.QueryString("timetable"))) + "','" + String(Request.QueryString("archived")) + "','" + String(Request.Form("summary")) + "','" + String(Request.Form("memo")) + "','" + currUser + "'";
+		sql = "exec updateClassInfo " + nodeID + ",'" + unescape(String(Request.QueryString("className"))) + "','" + String(Request.QueryString("certID")) + "','" + String(Request.QueryString("courseID")) + "','" + String(Request.QueryString("projectID")) + "','" + String(Request.QueryString("adviserID")) + "','" + String(Request.QueryString("partnerID")) + "','" + String(Request.QueryString("teacher")) + "'," + kindID + "," + status + ",'" + String(Request.QueryString("dateStart")) + "','" + String(Request.QueryString("dateEnd")) + "','" + unescape(String(Request.QueryString("classroom"))) + "','" + unescape(String(Request.QueryString("timetable"))) + "','" + String(Request.QueryString("archived")) + "','" + String(Request.Form("summary")) + "','" + String(Request.Form("memo")) + "','" + currUser + "'";
 
 		execSQL(sql);
 		if(nodeID == 0){
@@ -149,7 +162,7 @@ if(op == "getStudentListByClassID"){
 		//5
 		result += "|" + rs("mobile").value + "|" + rs("unit1").value + "|" + rs("score").value + "|" + rs("diploma_startDate").value + "|" + rs("diplomaID").value;
 		//10
-		result += "|" + rs("score1").value + "|" + rs("score2").value + "|" + rs("statusName").value;
+		result += "|" + rs("score1").value + "|" + rs("score2").value + "|" + rs("statusName").value + "|" + rs("educationName").value;
 		rs.MoveNext();
 	}
 	result = result.substr(2);
@@ -202,7 +215,7 @@ if(op == "getClassSchedule"){
 		//14
 		result += "|" + rs("kindName").value + "|" + rs("typeName").value + "|" + rs("teacherName").value;
 		//17
-		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("shortName").value;
+		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value;
 		rs.MoveNext();
 	}
 	result = result.substr(2);

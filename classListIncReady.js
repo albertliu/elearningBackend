@@ -5,6 +5,7 @@
 		getDicList("planStatus","searchClassStatus",1);
 		getComList("searchClassProject","projectInfo","projectID","projectName","status>0 and status<9 order by projectID desc",1);
 		getComList("searchClassAdviser","v_classAdviser","adviserID","adviserName","1=1",1);
+		getComList("searchClassPartner","partnerInfo","partnerID","partnerName","status=0 order by partnerID",1);
 		
 		if(checkPermission("classAdd")){
 			$("#btnAddClass").show();
@@ -36,7 +37,7 @@
             mark = 3;
         }
 		//alert((sWhere) + "&refID=" + $("#searchClassCert").val() + "&status=" + $("#searchClassStatus").val() + "&project=" + $("#searchClassProject").val());
-		$.get("classControl.asp?op=getClassList&where=" + escape(sWhere) + "&mark=" + mark + "&refID=" + $("#searchClassCert").val() + "&status=" + $("#searchClassStatus").val() + "&kindID=" + $("#searchClassAdviser").val() + "&project=" + $("#searchClassProject").val() + "&dk=91&times=" + (new Date().getTime()),function(data){
+		$.get("classControl.asp?op=getClassList&where=" + escape(sWhere) + "&mark=" + mark + "&refID=" + $("#searchClassCert").val() + "&partnerID=" + $("#searchClassPartner").val() + "&status=" + $("#searchClassStatus").val() + "&kindID=" + $("#searchClassAdviser").val() + "&project=" + $("#searchClassProject").val() + "&dk=91&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");

@@ -39,6 +39,7 @@
 		getComList("projectID","projectInfo","projectID","projectName","status=1 order by projectID desc",1);
 		getComList("teacher","v_courseTeacherList","teacherID","teacherName","status=0 group by teacherID,teacherName",1);
 		getComList("adviserID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='adviser') order by realName",1);
+		getComList("partnerID","partnerInfo","partnerID","partnerName","status=0 order by partnerID",1);
 		getDicList("planStatus","status",0);
 		$("#dateStart").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'});});
 		$("#dateEnd").click(function(){WdatePicker();});
@@ -131,7 +132,8 @@
 		});
 
 		$("#refundList").click(function(){
-			$.getJSON(uploadURL + "/outfiles/generate_refund_list?classID=" + $("#classID").val() + "&className=" + $("#className").val() + "&price=10" ,function(data){
+			getMarkList("退费清单",currDate,'');
+			$.getJSON(uploadURL + "/outfiles/generate_refund_list?classID=" + $("#classID").val() + "&className=" + $("#className").val() + "&price=10&mark=退费清单" ,function(data){
 				if(data>""){
 					asyncbox.alert("已生成 <a href='" + data + "' target='_blank'>下载文件</a>",'操作成功',function(action){
 					　　//alert 返回action 值，分别是 'ok'、'close'。
@@ -146,6 +148,12 @@
 					alert("没有可供处理的数据。");
 				}
 			});
+		});
+		$("#sign").click(function(){
+			getMarkList("签到表",$("#teacherName").val(),$("#adviserName").val());
+		});
+		$("#sign1").click(function(){
+			getMarkList("考勤表",$("#dateStart").val().substr(0,10),$("#adviserName").val());
 		});
 
 		$("#archive").click(function(){
@@ -231,6 +239,7 @@
 				$("#kindID").val(ar[5]);
 				$("#status").val(ar[6]);
 				$("#adviserID").val(ar[8]);
+				$("#adviserName").val(ar[9]);
 				$("#dateStart").val(ar[10]);
 				$("#dateEnd").val(ar[11]);
 				$("#classroom").val(ar[12]);
@@ -253,6 +262,8 @@
 				$("#teacher").val(ar[34]);
 				$("#scheduleDate").val(ar[35]);
 				$("#courseID").val(ar[36]);
+				$("#teacherName").val(ar[38]);
+				$("#partnerID").val(ar[39]);
 				setProjectList(ar[36],ar[2]);
 				if(ar[24]>""){
 					$("#archived").prop("checked",true);
@@ -265,11 +276,13 @@
 				}
 				if(c == ""){c = "&nbsp;&nbsp;";}
 				$("#photo").html(c);
-				$("#refundList").html("<a>退费清单</a>");
+				$("#refundList").html("<a>退费单</a>");
 				$("#archive").html("<a>班级档案</a>");
 				if(ar[34]>""){
 					$("#schedule").html("<a>课程表</a>");
 				}
+				$("#sign").html("<a>签到表</a>");
+				$("#sign1").html("<a>考勤记录</a>");
 				getStudentCourseList();
 				//getDownloadFile("classID");
 				setButton();
@@ -432,7 +445,7 @@
 		}
 		var photo = 0;
 		if($("#archived").prop("checked")){photo = 1;}
-		$.post("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&className=" + escape($("#className").val()) + "&classroom=" + escape($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&courseID=" + $("#courseID").val() + "&adviserID=" + $("#adviserID").val() + "&teacher=" + $("#teacher").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&archived=" + photo, {"memo":$("#memo").val(), "summary":$("#summary").val()},function(re){
+		$.post("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&className=" + escape($("#className").val()) + "&classroom=" + escape($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&courseID=" + $("#courseID").val() + "&adviserID=" + $("#adviserID").val() + "&partnerID=" + $("#partnerID").val() + "&teacher=" + $("#teacher").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&archived=" + photo, {"memo":$("#memo").val(), "summary":$("#summary").val()},function(re){
 			//alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -479,6 +492,24 @@
 						// });
 					}
 				});
+			}
+		});
+	}
+	
+	function getMarkList(mark, dt, ad){
+		$.getJSON(uploadURL + "/outfiles/generate_refund_list?classID=" + $("#classID").val() + "&className=" + $("#className").val() + "&price=10&mark=" + mark + "&date=" + dt + "&adviser=" + ad ,function(data){
+			if(data>""){
+				asyncbox.alert("已生成 <a href='" + data + "' target='_blank'>下载文件</a>",'操作成功',function(action){
+				　　//alert 返回action 值，分别是 'ok'、'close'。
+				　　if(action == 'ok'){
+				　　}
+				　　if(action == 'close'){
+				　　　　//alert('close');
+				　　}
+				});
+				//getNodeInfo(nodeID);
+			}else{
+				alert("没有可供处理的数据。");
 			}
 		});
 	}
@@ -587,13 +618,13 @@
 				</td>
 			</tr>
 			<tr>
-				<td align="right">班主任</td>
+				<td align="right">班主任</td><input id="adviserName" type="hidden" />
 				<td><select id="adviserID" style="width:180px;"></select></td>
 				<td align="right">上课地点</td>
 				<td><input type="text" id="classroom" size="25" /></td>
 			</tr>
 			<tr>
-				<td align="right">任课教师</td>
+				<td align="right">任课教师</td><input id="teacherName" type="hidden" />
 				<td><select id="teacher" style="width:180px;"></select></td>
 				<td align="right"><input class="button" type="button" id="btnSchedule" value="排课表" /></td>
 				<td><input type="text" id="scheduleDate" size="10" class="readOnly" readOnly="true" />&nbsp;&nbsp;<span id="schedule" style="margin-left:10px;"></span></td>
@@ -603,9 +634,11 @@
 					资料归档<input style="border:0px;" type="checkbox" id="archived" value="" />&nbsp;&nbsp;<input class="readOnly" type="text" id="archiverName" size="8" readOnly="true" />&nbsp;&nbsp;<input class="readOnly" type="text" id="archiveDate" size="8" readOnly="true" />
 				</td>
 				<td colspan="2">
-					<span id="photo" style="margin-left:10px;"></span>&nbsp;&nbsp;
-					<span id="refundList" style="margin-left:10px;"></span>&nbsp;&nbsp;
+					<span id="photo" style="margin-left:10px;"></span>
+					<span id="refundList" style="margin-left:10px;"></span>
 					<span id="archive" style="margin-left:10px;"></span>
+					<span id="sign" style="margin-left:10px;"></span>
+					<span id="sign1" style="margin-left:10px;"></span>
 				</td>
 			</tr>
 			<tr>
@@ -628,10 +661,16 @@
 				</td>
 			</tr>
 			<tr>
-				<td align="right">登记人</td>
-				<td><input class="readOnly" readOnly="true" type="text" id="registerName" size="3" />&nbsp;&nbsp;登记日期&nbsp;<input class="readOnly" type="text" id="regDate" size="7" readOnly="true" /></td>
+				<td align="right">属性</td>
+				<td><select id="partnerID" style="width:180px;"></select></td>
 				<td align="right">备注</td>
 				<td><input type="text" id="memo" size="25" /></td>
+			</tr>
+			<tr>
+				<td align="right">登记人</td>
+				<td><input class="readOnly" readOnly="true" type="text" id="registerName" size="25" /></td>
+				<td align="right">登记日期</td>
+				<td><input class="readOnly" type="text" id="regDate" size="25" readOnly="true" /></td>
 			</tr>
 			</table>
 			</form>
