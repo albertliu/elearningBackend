@@ -5,7 +5,7 @@
 		getDicList("planStatus","searchClassStatus",1);
 		getComList("searchClassProject","projectInfo","projectID","projectName","status>0 and status<9 order by projectID desc",1);
 		getComList("searchClassAdviser","v_classAdviser","adviserID","adviserName","1=1",1);
-		getComList("searchClassPartner","partnerInfo","partnerID","partnerName","status=0 order by partnerID",1);
+		getComList("searchClassPartner","hostInfo","hostNo","title","status=0 and kindID=1 order by ID",1);
 		
 		if(checkPermission("classAdd")){
 			$("#btnAddClass").show();
@@ -37,7 +37,7 @@
             mark = 3;
         }
 		//alert((sWhere) + "&refID=" + $("#searchClassCert").val() + "&status=" + $("#searchClassStatus").val() + "&project=" + $("#searchClassProject").val());
-		$.get("classControl.asp?op=getClassList&where=" + escape(sWhere) + "&mark=" + mark + "&refID=" + $("#searchClassCert").val() + "&partnerID=" + $("#searchClassPartner").val() + "&status=" + $("#searchClassStatus").val() + "&kindID=" + $("#searchClassAdviser").val() + "&project=" + $("#searchClassProject").val() + "&dk=91&times=" + (new Date().getTime()),function(data){
+		$.get("classControl.asp?op=getClassList&where=" + escape(sWhere) + "&mark=" + mark + "&refID=" + $("#searchClassCert").val() + "&host=" + $("#searchClassPartner").val() + "&status=" + $("#searchClassStatus").val() + "&kindID=" + $("#searchClassAdviser").val() + "&project=" + $("#searchClassProject").val() + "&dk=91&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
@@ -83,7 +83,11 @@
 					arr.push("<td class='left'>" + ar1[17] + "&nbsp;" + ar1[13] + "</td>");
 					arr.push("<td class='left'>" + ar1[10].substring(0,10) + "</td>");
 					arr.push("<td class='left'>" + ar1[11] + "</td>");
-					arr.push("<td class='left'>" + ar1[9] + "</td>");
+					if(ar1[37]>""){
+						arr.push("<td class='left'>" + ar1[9] + "*</td>");	//合作单位
+					}else{
+						arr.push("<td class='left'>" + ar1[9] + "</td>");
+					}
 					arr.push("<td class='left'>" + ar1[29] + "</td>");
 					arr.push("<td class='left'>" + ar1[23] + "</td>");
 					if(ar1[6]==0){

@@ -10,6 +10,9 @@
 			getComList("searchStudentHost","hostInfo","hostNo","title",w,0);
 			getComList("searchStudentProjectID","projectInfo","projectID","projectID","host='" + currHost + "' and status=1 or status=2 order by ID desc",1);
 		}
+		if(currHost!="spc" && currHost!=""){
+			$("#searchStudentKind").prop("disabled",true);
+		}
 		getDicList("student","searchStudentKind",1);
 		getDicList("material","searchStudentMaterial",1);
 		$("#searchStudentStartDate").click(function(){WdatePicker();});

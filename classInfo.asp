@@ -39,7 +39,7 @@
 		getComList("projectID","projectInfo","projectID","projectName","status=1 order by projectID desc",1);
 		getComList("teacher","v_courseTeacherList","teacherID","teacherName","status=0 group by teacherID,teacherName",1);
 		getComList("adviserID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='adviser') order by realName",1);
-		getComList("partnerID","partnerInfo","partnerID","partnerName","status=0 order by partnerID",1);
+		getComList("host","hostInfo","hostNo","title","status=0 and kindID=1 order by ID",1);
 		getDicList("planStatus","status",0);
 		$("#dateStart").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'});});
 		$("#dateEnd").click(function(){WdatePicker();});
@@ -132,28 +132,13 @@
 		});
 
 		$("#refundList").click(function(){
-			getMarkList("退费清单",currDate,'');
-			$.getJSON(uploadURL + "/outfiles/generate_refund_list?classID=" + $("#classID").val() + "&className=" + $("#className").val() + "&price=10&mark=退费清单" ,function(data){
-				if(data>""){
-					asyncbox.alert("已生成 <a href='" + data + "' target='_blank'>下载文件</a>",'操作成功',function(action){
-					　　//alert 返回action 值，分别是 'ok'、'close'。
-					　　if(action == 'ok'){
-					　　}
-					　　if(action == 'close'){
-					　　　　//alert('close');
-					　　}
-					});
-					//getNodeInfo(nodeID);
-				}else{
-					alert("没有可供处理的数据。");
-				}
-			});
+			getMarkList("generate_refund_list","退费清单",currDate,'',0,0);
 		});
 		$("#sign").click(function(){
-			getMarkList("签到表",$("#teacherName").val(),$("#adviserName").val());
+			getMarkList("student_list_in_class","签到表",$("#teacherName").val(),$("#adviserName").val(),29,4);
 		});
 		$("#sign1").click(function(){
-			getMarkList("考勤表",$("#dateStart").val().substr(0,10),$("#adviserName").val());
+			getMarkList("student_list_in_class","考勤表",$("#dateStart").val().substr(0,10),$("#adviserName").val(),0,0);
 		});
 
 		$("#archive").click(function(){
@@ -263,7 +248,7 @@
 				$("#scheduleDate").val(ar[35]);
 				$("#courseID").val(ar[36]);
 				$("#teacherName").val(ar[38]);
-				$("#partnerID").val(ar[39]);
+				$("#host").val(ar[39]);
 				setProjectList(ar[36],ar[2]);
 				if(ar[24]>""){
 					$("#archived").prop("checked",true);
@@ -445,7 +430,7 @@
 		}
 		var photo = 0;
 		if($("#archived").prop("checked")){photo = 1;}
-		$.post("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&className=" + escape($("#className").val()) + "&classroom=" + escape($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&courseID=" + $("#courseID").val() + "&adviserID=" + $("#adviserID").val() + "&partnerID=" + $("#partnerID").val() + "&teacher=" + $("#teacher").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&archived=" + photo, {"memo":$("#memo").val(), "summary":$("#summary").val()},function(re){
+		$.post("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&className=" + escape($("#className").val()) + "&classroom=" + escape($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&courseID=" + $("#courseID").val() + "&adviserID=" + $("#adviserID").val() + "&host=" + $("#host").val() + "&teacher=" + $("#teacher").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&archived=" + photo, {"memo":$("#memo").val(), "summary":$("#summary").val()},function(re){
 			//alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -496,8 +481,8 @@
 		});
 	}
 	
-	function getMarkList(mark, dt, ad){
-		$.getJSON(uploadURL + "/outfiles/generate_refund_list?classID=" + $("#classID").val() + "&className=" + $("#className").val() + "&price=10&mark=" + mark + "&date=" + dt + "&adviser=" + ad ,function(data){
+	function getMarkList(tag,mark, dt, ad, r, t){
+		$.getJSON(uploadURL + "/outfiles/generate_student_list_class?tag=" + tag + "&classID=" + $("#classID").val() + "&className=" + $("#className").val() + "&price=10&mark=" + mark + "&date=" + dt + "&adviser=" + ad + "&teacher=" + $("#teacherName").val() + "&row=" + r + "&top=" + t ,function(data){
 			if(data>""){
 				asyncbox.alert("已生成 <a href='" + data + "' target='_blank'>下载文件</a>",'操作成功',function(action){
 				　　//alert 返回action 值，分别是 'ok'、'close'。
@@ -662,7 +647,7 @@
 			</tr>
 			<tr>
 				<td align="right">属性</td>
-				<td><select id="partnerID" style="width:180px;"></select></td>
+				<td><select id="host" style="width:180px;"></select></td>
 				<td align="right">备注</td>
 				<td><input type="text" id="memo" size="25" /></td>
 			</tr>

@@ -55,10 +55,14 @@
 		$("#birthday").click(function(){WdatePicker();});
 
 		var w = "dept_status=0 and pID=0 and host='" + currHost + "'";
-		if(currHost==""){	//公司用户只能看自己公司内容
+		if(currHost==""){
 			getComList("companyID","deptInfo","deptID","deptName","dept_status=0 and pID=0 order by deptID",0);
 		}else{
-			getComList("companyID","deptInfo","deptID","deptName",w,0);
+			if(checkRole("partner")){
+				getComList("companyID","deptInfo","deptID","deptName","deptID=46",0);	//合作单位以消防学校名义招生
+			}else{
+				getComList("companyID","deptInfo","deptID","deptName",w,0);
+			}
 		}
 		//setButton();
 		if(op==0){
@@ -566,7 +570,7 @@
 		$("#job_status").val(1);	//默认就业
 		$("#memo").val("");
 		$("#regDate").val(currDate);
-		//$("#host").val();
+		$("#host").val(currHost);
 		$("#education").val(0);
 		$("#enterCover").empty();
 		$("#img_photo").attr("src","");
