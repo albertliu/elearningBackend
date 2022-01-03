@@ -52,14 +52,14 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='6%'>课次</th>");
-			arr.push("<th width='10%'>上课日期</th>");
+			arr.push("<th width='12%'>上课日期</th>");
 			arr.push("<th width='6%'>星期</th>");
 			arr.push("<th width='6%'>时段</th>");
 			arr.push("<th width='12%'>上课时间</th>");
 			arr.push("<th width='6%'>课时</th>");
 			arr.push("<th width='10%'>上课类型</th>");
 			arr.push("<th width='10%'>授课教师</th>");
-			arr.push("<th width='25%'>授课内容</th>");
+			arr.push("<th width='24%'>授课内容</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
