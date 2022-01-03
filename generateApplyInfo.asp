@@ -40,9 +40,15 @@
 		$.ajaxSetup({ 
 			async: false 
 		}); 
-		getComList("courseID","v_courseInfo","courseID","shortName","status=0 and type=0 and agencyID<>4 order by courseID",1);
 		getDicList("statusApply","s_status",1);
 		getDicList("statusNo","s_resit",1);
+		if(currHost==""){
+			getComList("host","hostInfo","hostNo","title","status=0 and kindID=1 order by ID",1);
+			getComList("courseID","v_courseInfo","courseID","shortName","status=0 and type=0 and agencyID<>4 order by courseID",1);
+		}else{
+			getComList("host","hostInfo","hostNo","title","status=0 and kindID=1 and hostNo='" + currHost + "' order by ID",0);
+			getComList("courseID","v_courseInfo a, hostCourseList b","a.courseID","a.shortName","a.courseID=b.courseID and a.status=0 and b.host='" + currHost + "' order by a.courseID",1);
+		}
 		$("#startDate").click(function(){WdatePicker();});
 		setButton();
 		if(nodeID>0 && op==0){
@@ -262,6 +268,7 @@
 				$("#sendScoreDate").val(ar[19]);
 				$("#senderScoreName").val(ar[20]);
 				$("#reexamineName").val(ar[24]);
+				$("#host").val(ar[32]);
 				certID = ar[31];
 				$("#list").html("<a href=''>申报名单</a>");
 				$("#diplomaSign").html("<a href=''>证书签收单</a>");
@@ -303,7 +310,7 @@
 			return false;
 		}
 		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-		$.get("diplomaControl.asp?op=updateGenerateApplyInfo&nodeID=" + nodeID + "&refID=" + $("#courseID").val() + "&keyID=" + $("#applyID").val() + "&startDate=" + $("#startDate").val() + "&item=" + escape($("#title").val()) + "&address=" + escape($("#address").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("diplomaControl.asp?op=updateGenerateApplyInfo&nodeID=" + nodeID + "&refID=" + $("#courseID").val() + "&host=" + $("#host").val() + "&keyID=" + $("#applyID").val() + "&startDate=" + $("#startDate").val() + "&item=" + escape($("#title").val()) + "&address=" + escape($("#address").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//alert(unescape(re));
 			if(re>0){
 				jAlert("保存成功");
@@ -521,8 +528,10 @@
 				</td>
 			</tr>
 			<tr>
+				<td align="right">属性</td>
+				<td><select id="host" style="width:180px;"></select></td>
 				<td align="right">考试地址</td>
-				<td colspan="3"><input type="text" id="address" style="width:90%;" /></td>
+				<td><input type="text" id="address" style="width:100%;" /></td>
 			</tr>
 			<tr>
 				<td align="right">申报结果</td>

@@ -220,7 +220,7 @@
 		if(currUser=="desk." || checkRole("adviser")){
 			$("#menu11").show();
 		}
-		if(currHostKind==0 && currHost > ""){	//集团用户不使用导入报名表, 照片批量上传，成绩导入功能
+		if(currHost > ""){	//集团用户不使用导入报名表, 照片批量上传，成绩导入功能
 			$("#generateStudent_Tab").hide();
 			$("#tab3").hide();
 			$("#generateScore_Tab").hide();
@@ -236,9 +236,17 @@
 		if(currUser != "desk."){
 			$("#compress").hide();
 		}
-		if(!checkRole("leader")){
-			//$("#chart_Tab").hide();
-			//$("#tab9").hide();
+		if(checkRole("partner")){
+			$("#menu4").hide();		//课程
+			$("#menu3").hide();		//证书
+			$("#menu6").hide();		//统计
+			$("#menu11").hide();	//预报名
+			$("#menu9").show();		//班级
+			$("#menu10").show();	//报名
+			$("#menu12").show();	//考试
+			deleteTab("收费记录");
+			deleteTab("发票管理");
+			deleteTab("考试管理");
 		}
 		if(checkRole("saler")){
 			$("#menu2").hide();
@@ -354,7 +362,7 @@
 						<li id="menu3"><a href="#fragment-3"><span>证书管理</span></a></li>
 						<li id="menu4"><a href="#fragment-4"><span>课程管理</span></a></li>
 						<li id="menu5"><a href="#fragment-5"><span>题库管理</span></a></li>
-						<li><a href="#fragment-6"><span>统计报表</span></a></li>
+						<li id="menu6"><a href="#fragment-6"><span>统计报表</span></a></li>
 						<li><a href="#fragment-7"><span>用户管理</span></a></li>
 						<li><a href="#fragment-8"><span>基础数据</span></a></li>
 					</ul>
@@ -516,10 +524,10 @@
 					
 					<div id="fragment-12">
 						<div id="dhtmlgoodies_tabView12">
-							<div id="dtab104" class="dhtmlgoodies_aTab">
+							<div id="dtab121" class="dhtmlgoodies_aTab">
 								<!--#include file="generatePasscardListIncDetail.js"-->
 							</div>
-							<div id="dtab106" class="dhtmlgoodies_aTab">
+							<div id="dtab122" class="dhtmlgoodies_aTab">
 								<!--#include file="generateApplyListIncDetail.js"-->
 							</div>
 						</div>

@@ -5,6 +5,12 @@
 		getComList("searchGenerateApplyCert","v_certificateInfo","certID","certName","status=0 and type=0 order by certName",1);
 		getComList("searchGenerateApplyRegister","v_applyRegister","registerID","registerName","1=1 order by ID desc",1);
 		getDicList("planStatus","searchGenerateApplyStatus",1);
+		if(currHost==""){
+			getComList("searchGenerateApplyPartner","hostInfo","hostNo","title","status=0 and kindID=1 order by ID",1);
+		}else{
+			getComList("searchGenerateApplyPartner","hostInfo","hostNo","title","status=0 and kindID=1 and hostNo='" + currHost + "' order by ID",0);
+			$("#searchGenerateApplyRegister").hide();
+		}
 		$("#searchGenerateApplyStart").click(function(){WdatePicker();});
 		$("#searchGenerateApplyEnd").click(function(){WdatePicker();});
 		
@@ -39,7 +45,7 @@
 	function getGenerateApplyList(){
 		sWhere = $("#txtSearchGenerateApply").val();
 		//alert((sWhere) + "&kindID=" + $("#searchGenerateApplyCourse").val() + "&host=" + $("#searchGenerateApplyHost").val() + "&keyID=" + photo);
-		$.get("diplomaControl.asp?op=getGenerateApplyList&where=" + escape(sWhere) + "&kindID=" + $("#searchGenerateApplyCert").val() + "&refID=" + $("#searchGenerateApplyRegister").val()  + "&status=" + $("#searchGenerateApplyStatus").val() + "&fStart=" + $("#searchGenerateApplyStart").val() + "&fEnd=" + $("#searchGenerateApplyEnd").val() + "&dk=106&times=" + (new Date().getTime()),function(data){
+		$.get("diplomaControl.asp?op=getGenerateApplyList&where=" + escape(sWhere) + "&host=" + $("#searchGenerateApplyPartner").val() + "&kindID=" + $("#searchGenerateApplyCert").val() + "&refID=" + $("#searchGenerateApplyRegister").val()  + "&status=" + $("#searchGenerateApplyStatus").val() + "&fStart=" + $("#searchGenerateApplyStart").val() + "&fEnd=" + $("#searchGenerateApplyEnd").val() + "&dk=106&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");

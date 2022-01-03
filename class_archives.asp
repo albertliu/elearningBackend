@@ -53,12 +53,12 @@
             var qty = 0;
 			if(ar > ""){
 				refID = ar[1];
-				$("#home_classID").html(ar[17] + "(" + ar[1] + ")");
+				$("#home_classID").html(ar[17]);
 				$("#home_adviser").html(ar[9]);
 				$("#home_certName").html(ar[37]);
 				$("#home_startDate").html(ar[10].substring(0,10) + "&nbsp;至&nbsp;" + ar[11]);
 				$("#dateEnd").html(ar[11]);
-				$("#classID").html(ar[1] + "&nbsp;&nbsp;[" + ar[17] + "]");
+				$("#classID").html(ar[17] + "&nbsp;&nbsp;[" + ar[1] + "]");
                 qty = ar[20] - ar[33];
 				$("#qty").html(qty);
 				$("#summary").html(ar[25].replace(/\n/g,"<br/>"));
@@ -143,94 +143,103 @@
 					$("#scheduleCover").html(arr1.join(""));
 					arr1 = [];
 				});
+
+				$.get("classControl.asp?op=getStudentListByClassID&refID=" + refID + "&times=" + (new Date().getTime()),function(data2){
+					//alert(unescape(data));
+					var ar4 = new Array();
+					ar4 = (unescape(data2)).split("%%");
+					$("#studentCover").empty();
+					var arr2 = [];			
+					var h = "";
+					$("#date_studentList").html(ar[10].substring(0,10));
+					$("#title_studentList").html(ar[17] + "培训学员花名册");
+					arr2.push("<table cellpadding='0' cellspacing='0' border='1' width='99%'>");
+					arr2.push("<tr align='center'>");
+					arr2.push("<td align='center' width='9%' height='35px'>学号</td>");
+					arr2.push("<td align='center' width='8%'>姓名</td>");
+					arr2.push("<td align='center' width='6%'>性别</td>");
+					arr2.push("<td align='center' width='18%'>证件号码</td>");
+					arr2.push("<td align='center' width='10%'>学历</td>");
+					arr2.push("<td align='center' width='30%'>工作单位</td>");
+					arr2.push("<td align='center' width='14%'>联系电话</td>");
+					arr2.push("</tr>");
+					var i = 0;
+					
+					if(ar4>""){
+						$.each(ar4,function(iNum,val){
+							var ar5 = new Array();
+							ar5 = val.split("|");
+							i += 1;
+							arr2.push("<tr>");
+							arr2.push("<td align='center' height='35px'>" + ar5[4] + "</td>");
+							arr2.push("<td align='center'>" + ar5[1] + "</td>");
+							arr2.push("<td align='center'>" + ar5[2] + "</td>");
+							arr2.push("<td align='center'>" + ar5[0] + "</td>");
+							arr2.push("<td align='center'>" + ar5[13] + "</td>");
+							arr2.push("<td>" + ar5[6] + "</td>");
+							arr2.push("<td align='center'>" + ar5[5] + "</td>");
+							arr2.push("</tr>");
+						});
+					}
+					arr2.push("</table>");
+					$("#studentCover").html(arr2.join(""));
+					arr2 = [];
+
+					$("#date_scoreList").html(ar[10].substring(0,10));
+					$("#adviser_scoreList").html(ar[9]);
+					$("#title_scoreList").html(ar[17] + "培训学员成绩册");
+					arr2.push("<table cellpadding='0' cellspacing='0' border='1' width='100%'>");
+					arr2.push("<tr align='center'>");
+					arr2.push("<td align='center' width='10%' height='35px'>学号</td>");
+					arr2.push("<td align='center' width='8%'>姓名</td>");
+					arr2.push("<td align='center' width='6%'>性别</td>");
+					arr2.push("<td align='center' width='18%'>证件号码</td>");
+					arr2.push("<td align='center' width='10%'>学历</td>");
+					arr2.push("<td align='center' width='24%'>工作单位</td>");
+					arr2.push("<td align='center' width='14%'>联系电话</td>");
+					arr2.push("<td align='center' width='6%'>应知</td>");
+					arr2.push("<td align='center' width='6%'>应会</td>");
+					arr2.push("</tr>");
+					var i = 0;
+					
+					if(ar4>""){
+						$.each(ar4,function(iNum,val){
+							var ar5 = new Array();
+							ar5 = val.split("|");
+							i += 1;
+							arr2.push("<tr>");
+							arr2.push("<td align='center' height='35px'>" + ar5[4] + "</td>");
+							arr2.push("<td align='center'>" + ar5[1] + "</td>");
+							arr2.push("<td align='center'>" + ar5[2] + "</td>");
+							arr2.push("<td align='center'>" + ar5[0] + "</td>");
+							arr2.push("<td align='center'>" + ar5[13] + "</td>");
+							arr2.push("<td>" + ar5[6] + "</td>");
+							arr2.push("<td align='center'>" + ar5[5] + "</td>");
+							h = ar5[10].replace(".00","");
+							/*
+							if(certID=="C12" || certID=="C14" || certID=="C15" || certID=="C24" || certID=="C25" || certID=="C26" || c == "C25B" || c == "C26B"){
+								h = ar5[10].replace(".00","") + "/" + ar5[11].replace(".00","");
+							}*/
+							if(ar5[7]=="" || ar5[7]==0){
+								h = "缺考";
+							}
+							arr2.push("<td align='center'>" + h + "</td>");
+							arr2.push("<td align='center'>" + ar5[11].replace(".00","") + "</td>");
+							arr2.push("</tr>");
+						});
+					}
+					arr2.push("</table>");
+					$("#scoreCover").html(arr2.join(""));
+
+					if(keyID==1){
+						resumePrint();
+					}
+				});
 			}else{
 				//alert("没有找到要打印的内容。");
 				return false;
 			}
 		});
-
-		$.get("classControl.asp?op=getStudentListByClassID&refID=" + refID + "&times=" + (new Date().getTime()),function(data){
-			//alert(unescape(data));
-			var ar = new Array();
-            var h = 0;
-			ar = (unescape(data)).split("%%");
-			$("#studentCover").empty();
-			arr = [];			
-			arr.push("<table cellpadding='0' cellspacing='0' border='1' width='99%'>");
-			arr.push("<tr align='center'>");
-			arr.push("<td align='center' width='9%' height='35px'>学号</td>");
-			arr.push("<td align='center' width='8%'>姓名</td>");
-			arr.push("<td align='center' width='6%'>性别</td>");
-			arr.push("<td align='center' width='18%'>证件号码</td>");
-			arr.push("<td align='center' width='14%'>联系电话</td>");
-			arr.push("<td align='center' width='30%'>工作单位</td>");
-			arr.push("<td align='center' width='10%'>学历</td>");
-			arr.push("</tr>");
-			var i = 0;
-			
-			if(ar>""){
-				$.each(ar,function(iNum,val){
-					var ar1 = new Array();
-					ar1 = val.split("|");
-					i += 1;
-					arr.push("<tr>");
-					arr.push("<td align='center' height='35px'>" + ar1[4] + "</td>");
-					arr.push("<td align='center'>" + ar1[1] + "</td>");
-					arr.push("<td align='center'>" + ar1[2] + "</td>");
-					arr.push("<td align='center'>" + ar1[0] + "</td>");
-					arr.push("<td align='center'>" + ar1[5] + "</td>");
-					arr.push("<td>" + ar1[6] + "</td>");
-					arr.push("<td align='center'>" + ar1[13] + "</td>");
-					arr.push("</tr>");
-				});
-			}
-			arr.push("</table>");
-			$("#studentCover").html(arr.join(""));
-			arr = [];
-
-			arr.push("<table cellpadding='0' cellspacing='0' border='1' width='99%'>");
-			arr.push("<tr align='center'>");
-			arr.push("<td align='center' width='10%' height='35px'>学号</td>");
-			arr.push("<td align='center' width='8%'>姓名</td>");
-			arr.push("<td align='center' width='6%'>性别</td>");
-			arr.push("<td align='center' width='18%'>证件号码</td>");
-			arr.push("<td align='center' width='8%'>成绩</td>");
-			arr.push("<td align='center' width='15%'>证书编号</td>");
-			arr.push("<td align='center' width='10%'>发证日期</td>");
-			arr.push("</tr>");
-			var i = 0;
-			
-			if(ar>""){
-				$.each(ar,function(iNum,val){
-					var ar1 = new Array();
-					ar1 = val.split("|");
-					i += 1;
-					arr.push("<tr>");
-					arr.push("<td align='center' height='35px'>" + ar1[4] + "</td>");
-					arr.push("<td align='center'>" + ar1[1] + "</td>");
-					arr.push("<td align='center'>" + ar1[2] + "</td>");
-					arr.push("<td align='center'>" + ar1[0] + "</td>");
-                    h = ar1[7];
-                    if(certID=="C12" || certID=="C14" || certID=="C15" || certID=="C24" || certID=="C25" || certID=="C26" || c == "C25B" || c == "C26B"){
-                        h = ar1[10].replace(".00","") + "/" + ar1[11].replace(".00","");
-                    }
-                    if(ar1[7]=="" || ar1[7]==0){
-                        h = "缺考";
-                    }
-					arr.push("<td align='center'>" + h + "</td>");
-					arr.push("<td align='center'>" + ar1[9] + "</td>");
-					arr.push("<td align='center'>" + ar1[8] + "</td>");
-					arr.push("</tr>");
-				});
-			}
-			arr.push("</table>");
-			$("#scoreCover").html(arr.join(""));
-
-			if(keyID==1){
-				resumePrint();
-			}
-		});
-
 	}
 
 	function resumePrint(){
@@ -304,12 +313,14 @@
 
 			<div style="page-break-after:always"></div>
 
-			<div style='text-align:center; margin:10px 0 0 0;'><h3 style='font-size:1.8em;'>学员花名册</h3></div>
+			<div style='text-align:center; margin:10px 0 0 0;'><h3 style='font-size:1.8em;' id='title_studentList'>学员花名册</h3></div>
+			<div style='margin: 12px;text-align:left; width:95%;'><span style='font-size:1.2em; padding-left:10px;'>培训日期：</span><span style='font-size:1.2em;' id='date_studentList'></span><span style='font-size:1.2em; padding-left:100px;'>考试日期：</span></div>
 			<div id="studentCover" style="float:center; margin:15px; font-size:1.2em;"></div>
 
 			<div style="page-break-after:always"></div>
 
-			<div style='text-align:center; margin:10px 0 0 0;'><h3 style='font-size:1.8em;'>学员成绩册</h3></div>
+			<div style='text-align:center; margin:10px 0 0 0;'><h3 style='font-size:1.8em;' id='title_scoreList'>学员成绩册</h3></div>
+			<div style='margin: 12px;text-align:left; width:95%;'><span style='font-size:1.2em; padding-left:10px;'>培训日期：</span><span style='font-size:1.2em;' id='date_scoreList'></span><span style='font-size:1.2em; padding-left:100px;'>考试日期：</span><span style='font-size:1.2em; padding-left:100px;'>班主任：</span><span style='font-size:1.2em;' id='adviser_scoreList'></span></div>
 			<div id="scoreCover" style="float:center; margin:15px; font-size:1.2em;"></div>
 			
 			<div style="page-break-after:always"></div>

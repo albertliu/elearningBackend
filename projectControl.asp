@@ -82,6 +82,7 @@ if(op == "getProjectList"){
 	}
 
 	sql = " FROM v_projectInfo " + where;
+	/**/
 	result = getBasketTip(sql,"");
 	ssql = "SELECT projectID,projectName,statusName,certName,address,object,deadline,hostName,memo,regDate,registerName" + sql + " order by ID desc";
 	sql = "SELECT top " + basket + " *" + sql + " order by ID desc";
@@ -100,7 +101,7 @@ if(op == "getProjectList"){
 	Response.Write(escape(result));
 	//Response.Write(escape(sql));
 }	
-
+/**/
 if(op == "getNodeInfo"){
 	sql = "SELECT * FROM v_projectInfo where ID=" + nodeID;
 	rs = conn.Execute(sql);
@@ -121,7 +122,6 @@ if(op == "update"){
 	result = 0;
 	if(result == 0){
 		sql = "exec updateProjectInfo " + nodeID + ",'" + keyID + "','" + item + "','" + refID + "','" + unescape(String(Request.QueryString("object"))) + "','" + unescape(String(Request.QueryString("address"))) + "','" + String(Request.QueryString("deadline")) + "'," + kindID + ",'" + unescape(String(Request.QueryString("linker"))) + "','" + unescape(String(Request.QueryString("mobile"))) + "','" + unescape(String(Request.QueryString("phone"))) + "','" + unescape(String(Request.QueryString("email"))) + "','" + String(Request.QueryString("price")) + "','" + String(Request.QueryString("payKind")) + "','" + String(Request.QueryString("payGroup")) + "','" + host + "','" + String(Request.QueryString("dept")) + "','" + memo + "','" + currUser + "'";
-
 		execSQL(sql);
 		if(nodeID == 0){
 			//这是一个新增的记录

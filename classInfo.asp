@@ -35,11 +35,16 @@
 		refID = "<%=refID%>";
 		op = "<%=op%>";
 		
-		getComList("courseID","v_courseInfo","courseID","shortName","status=0 and host='' order by courseID",1);
 		getComList("projectID","projectInfo","projectID","projectName","status=1 order by projectID desc",1);
 		getComList("teacher","v_courseTeacherList","teacherID","teacherName","status=0 group by teacherID,teacherName",1);
 		getComList("adviserID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='adviser') order by realName",1);
-		getComList("host","hostInfo","hostNo","title","status=0 and kindID=1 order by ID",1);
+		if(currHost==""){
+			getComList("host","hostInfo","hostNo","title","status=0 and kindID=1 order by ID",1);
+			getComList("courseID","v_courseInfo","courseID","shortName","status=0 and host='' order by courseID",1);
+		}else{
+			getComList("host","hostInfo","hostNo","title","status=0 and kindID=1 and hostNo='" + currHost + "' order by ID",0);
+			getComList("courseID","v_courseInfo a, hostCourseList b","a.courseID","a.shortName","a.courseID=b.courseID and a.status=0 and b.host='" + currHost + "' order by a.courseID",1);
+		}
 		getDicList("planStatus","status",0);
 		$("#dateStart").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'});});
 		$("#dateEnd").click(function(){WdatePicker();});
@@ -180,7 +185,7 @@
 			outputExcelBySQL('x07','file',$("#classID").val(),0,0);
 		});
 		$("#schedule").click(function(){
-			window.open("class_schedule.asp?nodeID=" + $("#classID").val(), "_self");
+			showClassSchedule($("#classID").val(), 0,0,1);
 		});
 		$("#showPhoto").change(function(){
 			getStudentCourseList();

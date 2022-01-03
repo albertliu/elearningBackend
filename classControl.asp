@@ -110,7 +110,7 @@ if(op == "getNodeInfo"){
 		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value + "|" + rs("qtyReturn").value + "|" + rs("teacher").value + "|" + rs("scheduleDate").value + "|" + rs("courseID").value + "|" + rs("courseName").value;
 		//38
 		result += "|" + rs("teacherName").value + "|" + rs("host").value;
-		execSQL(sql);
+		//execSQL(sql);
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -223,6 +223,36 @@ if(op == "getClassSchedule"){
 	Response.Write(escape(result));/**/
 	//Response.Write(escape(sql));
 }	
+
+if(op == "getClassScheduleInfo"){
+	sql = "SELECT * FROM v_classSchedule where ID=" + nodeID;
+	result = "";
+	
+	rs = conn.Execute(sql);
+	if (!rs.EOF){
+		result = rs("ID").value + "|" + rs("classID").value + "|" + rs("courseID").value + "|" + rs("seq").value + "|" + rs("kindID").value + "|" + rs("typeID").value + "|" + rs("status").value;
+		//7
+		result += "|" + rs("hours").value + "|" + rs("period").value + "|" + rs("theDate").value + "|" + rs("theWeek").value + "|" + rs("item").value + "|" + rs("address").value + "|" + rs("teacher").value;
+		//14
+		result += "|" + rs("kindName").value + "|" + rs("typeName").value + "|" + rs("teacherName").value;
+		//17
+		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value;
+	}
+	Session(op) = ssql;
+	Response.Write(escape(result));/**/
+	//Response.Write(escape(sql));
+}	
+
+if(op == "updateClassSchedule"){
+	result = 0;
+	//@ID int,@seq int,@kindID int,@typeID int,@hours int,@period varchar(50),@theDate varchar(50),@teacher varchar(50),@memo varchar(500),@registerID
+	sql = "exec updateClassSchedule " + nodeID + "," + String(Request.QueryString("seq")) + "," + kindID + "," + refID + "," + String(Request.QueryString("hours")) + ",'" + String(Request.QueryString("period")) + "','" + String(Request.QueryString("theDate")) + "','" + String(Request.QueryString("teacher")) + "','" + String(Request.Form("memo")) + "','" + currUser + "'";
+	execSQL(sql);
+
+	result += "|" + nodeID;
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}
 
 if(op == "cancelNode"){
 	sql = "exec doCancelClass " + nodeID;

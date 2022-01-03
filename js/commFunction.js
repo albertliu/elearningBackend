@@ -1448,6 +1448,56 @@
 		});
 	}
 	
+	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
+	function showClassSchedule(nodeID,refID,op,mark){
+		asyncbox.open({
+			id: "class_schedule",
+			url:"class_schedule.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
+			title: "授课计划表",
+			width: 880,
+			height: 780,
+			cover : {
+	          //透明度
+	          opacity : 0,
+	          //背景颜色
+	           background : '#000'
+	          },
+
+			btnsbar : false,
+			callback : function(action,iframe){	
+				var re = iframe.updateCount;
+				if(re>0 && mark==1){
+					//getClassScheduleList();
+				}
+　　　		}
+		});
+	}
+	
+	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
+	function showScheduleInfo(nodeID,refID,op,mark){
+		asyncbox.open({
+			id: "schedule",
+			url:"scheduleInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
+			title: "授课计划",
+			width: 680,
+			height: 380,
+			cover : {
+	          //透明度
+	          opacity : 0,
+	          //背景颜色
+	           background : '#000'
+	          },
+
+			btnsbar : false,
+			callback : function(action,iframe){	
+				var re = iframe.updateCount;
+				if(re>0 && mark==1){
+					getClassScheduleList();
+				}
+　　　		}
+		});
+	}
+	
 	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表; re:0 normal  1 big window
 	function showEnterInfo(nodeID,refID,op,mark,companyID,re){
 		var w = 750;

@@ -118,6 +118,7 @@
 			saveNode();
 		});
 		$("#host").change(function(){
+			setPrice();
 			setDeptList($("#host").val(),0,[]);
 		});
 		$("#payKind").change(function(){
@@ -204,9 +205,9 @@
 			alert("标题内容请至少填写3个字的内容。");
 			return false;
 		}
-		//alert($('#dept').combobox('getValues'));
+		//alert($("#ID").val() + "&keyID=" + $("#projectID").val() + "&item=" + ($("#projectName").val()) + "&price=" + $("#price").val() + "&payKind=" + $("#payKind").val() + "&payGroup=" + $("#payGroup").val() + "&refID=" + $("#courseID").val() + "&kindID=" + $("#kindID").val() + "&deadline=" + $("#deadline").val() + "&object=" + ($("#object").val()) + "&address=" + ($("#address").val()) + "&dept=" + $("#dept").combobox("getValues") + "&linker=" + ($("#linker").val()) + "&mobile=" + ($("#mobile").val()) + "&phone=" + ($("#phone").val()) + "&email=" + ($("#email").val()) + "&host=" + $("#host").val());
 		$.get("projectControl.asp?op=update&nodeID=" + $("#ID").val() + "&keyID=" + $("#projectID").val() + "&item=" + escape($("#projectName").val()) + "&price=" + $("#price").val() + "&payKind=" + $("#payKind").val() + "&payGroup=" + $("#payGroup").val() + "&refID=" + $("#courseID").val() + "&kindID=" + $("#kindID").val() + "&deadline=" + $("#deadline").val() + "&object=" + escape($("#object").val()) + "&address=" + escape($("#address").val()) + "&dept=" + $("#dept").combobox("getValues") + "&linker=" + escape($("#linker").val()) + "&mobile=" + escape($("#mobile").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&host=" + $("#host").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
-			//jAlert(unescape(re));
+			//alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar[0] == 0){
@@ -296,9 +297,9 @@
 	}
 	
 	function setPrice(){
-		if($("#courseID").val()>""){
+		if($("#courseID").val()>"" && $("#host").val()>""){
 			//获取费用标准
-			$.get("courseControl.asp?op=getCoursePrice&nodeID=" + $("#courseID").val() + "&refID=&keyID=0&times=" + (new Date().getTime()),function(re){
+			$.get("courseControl.asp?op=getCoursePrice&nodeID=" + $("#courseID").val() + "&refID=&keyID=0&host=" + $("#host").val() + "&times=" + (new Date().getTime()),function(re){
 				$("#price").val(re);
 			});
 			if(op==1){

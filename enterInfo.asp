@@ -556,12 +556,14 @@
 		}else{
 			if(checkPermission("studentAdd")){
 				//编辑状态：显示保存按钮；一定条件下可以退学、退款
-				$("#btnReturn").show();
-				$("#btnRefund").show();
 				$("#save").show();
-				$("#btnCloseStudentCourse").show();
-				if(!$("#materialCheck").attr("checked")){
-					$("#btnMaterialCheck").show();
+				if(!checkRole("partner")){
+					$("#btnReturn").show();
+					$("#btnRefund").show();
+					$("#btnCloseStudentCourse").show();
+					if(!$("#materialCheck").attr("checked")){
+						$("#btnMaterialCheck").show();
+					}
 				}
 			}
             //if(checkPermission("studentDel") && ($("#className").val()=="" || dateDiff(currDate, $("#regDate").val())<180) && $("#statusPay").val()==0 && $("#invoice").val()=="" && $("#dateInvoicePick").val()=="" || $("#name").val().indexOf("测试")>-1){
@@ -573,7 +575,7 @@
 			$("#project1").hide();
 			$("#class0").hide();
 			//$("#class1").hide();
-			$("#reply").show();
+			//$("#reply").show();
 			//$("#btnEntryform").show();
 			//$("#btnFiremanMaterials").show();
 			$("#btnPrint").show();

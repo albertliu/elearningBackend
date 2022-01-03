@@ -5,7 +5,13 @@
 		getDicList("planStatus","searchClassStatus",1);
 		getComList("searchClassProject","projectInfo","projectID","projectName","status>0 and status<9 order by projectID desc",1);
 		getComList("searchClassAdviser","v_classAdviser","adviserID","adviserName","1=1",1);
-		getComList("searchClassPartner","hostInfo","hostNo","title","status=0 and kindID=1 order by ID",1);
+		if(currHost==""){
+			getComList("searchClassPartner","hostInfo","hostNo","title","status=0 and kindID=1 order by ID",1);
+		}else{
+			getComList("searchClassPartner","hostInfo","hostNo","title","status=0 and kindID=1 and hostNo='" + currHost + "' order by ID",0);
+			$("#searchClassProject").hide();
+			$("#searchClassAdviser").hide();
+		}
 		
 		if(checkPermission("classAdd")){
 			$("#btnAddClass").show();

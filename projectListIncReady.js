@@ -48,6 +48,7 @@
 		if(!checkPermission("projectAdd")){
 			s = 1;	//一般人只能看已发布的通知
 		}
+		//alert($("#searchProjectDept").val() + "&fStart=" + $("#searchProjectStart").val() + "&fEnd=" + $("#searchProjectEnd").val() + "&refID=" + $("#searchProjectCert").val() + "&status=" + s + "&host=" + $("#searchProjectHost").val());
 		$.get("projectControl.asp?op=getProjectList&where=" + escape(sWhere) + "&keyID=" + $("#searchProjectDept").val() + "&fStart=" + $("#searchProjectStart").val() + "&fEnd=" + $("#searchProjectEnd").val() + "&refID=" + $("#searchProjectCert").val() + "&status=" + s + "&host=" + $("#searchProjectHost").val() + "&dk=17&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
