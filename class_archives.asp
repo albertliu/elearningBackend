@@ -64,6 +64,7 @@
 				$("#summary").html(ar[25].replace(/\n/g,"<br/>"));
 				$("#qtyExam").html(nullNoDisp(ar[27]));
 				$("#qtyPass").html(nullNoDisp(ar[28]));
+				$("#home_transaction_id").html(nullNoDisp(ar[40]));
                 certID = ar[3];
 				x = ar[27];
 				if(x > 0 && ar[28] > 0){
@@ -106,7 +107,7 @@
 					arr1.push("<td align='center' width='6%'>班主任</td>");
 					arr1.push("<td align='center' width='8%'>" + ar[9] + "</td>");
 					arr1.push("<td align='center' width='8%'>开班号（申报批号）</td>");
-					arr1.push("<td align='center' width='8%'></td>");
+					arr1.push("<td align='center' width='8%'>" + ar[40] + "</td>");
 					arr1.push("</tr>");
 					arr1.push("<tr align='center'>");
 					arr1.push("<td align='center' width='9%' height='35px'>课次</td>");
@@ -290,7 +291,7 @@
 				<td style="width:30%; height:60px; text-align:right; vertical-align: bottom; font-size:1.8em;">班级编号</td><td colspan="2" style="width:65%; border-bottom: #333333 1px solid; font-size:1.7em; vertical-align: bottom; padding-left:15px;" id="home_classID"></td>
 			</tr>
 			<tr>
-				<td style="width:30%; height:60px; text-align:right; vertical-align: bottom; font-size:1.8em;">&nbsp;&nbsp;&nbsp;&nbsp;标&nbsp;&nbsp;&nbsp;&nbsp;号</td><td colspan="2" style="width:65%; border-bottom: #333333 1px solid; font-size:1.8em; vertical-align: bottom; padding-left:15px;" id="home_applyID"></td>
+				<td style="width:30%; height:60px; text-align:right; vertical-align: bottom; font-size:1.8em;">&nbsp;&nbsp;&nbsp;&nbsp;标&nbsp;&nbsp;&nbsp;&nbsp;号</td><td colspan="2" style="width:65%; border-bottom: #333333 1px solid; font-size:1.8em; vertical-align: bottom; padding-left:15px;" id="home_transaction_id"></td>
 			</tr>
 			<tr>
 				<td style="width:30%; height:60px; text-align:right; vertical-align: bottom; font-size:1.8em;">培训职业</td><td colspan="2" style="width:65%; border-bottom: #333333 1px solid; font-size:1.8em; vertical-align: bottom; padding-left:15px;" id="home_certName"></td>

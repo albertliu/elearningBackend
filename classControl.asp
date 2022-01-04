@@ -84,7 +84,7 @@ if(op == "getClassList"){
 		//28
 		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value + "|" + rs("qtyReturn").value + "|" + rs("teacher").value + "|" + rs("scheduleDate").value + "|" + rs("courseID").value + "|" + rs("courseName").value;
 		//36
-		result += "|" + rs("teacherName").value + "|" + rs("host").value;
+		result += "|" + rs("teacherName").value + "|" + rs("host").value + "|" + rs("transaction_id").value;
 		rs.MoveNext();
 	}
 /**/
@@ -109,7 +109,7 @@ if(op == "getNodeInfo"){
 		//30
 		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value + "|" + rs("qtyReturn").value + "|" + rs("teacher").value + "|" + rs("scheduleDate").value + "|" + rs("courseID").value + "|" + rs("courseName").value;
 		//38
-		result += "|" + rs("teacherName").value + "|" + rs("host").value;
+		result += "|" + rs("teacherName").value + "|" + rs("host").value + "|" + rs("transaction_id").value;
 		//execSQL(sql);
 	}
 	rs.Close();
@@ -119,7 +119,7 @@ if(op == "getNodeInfo"){
 if(op == "update"){
 	result = 0;
 	if(result == 0){
-		sql = "exec updateClassInfo " + nodeID + ",'" + unescape(String(Request.QueryString("className"))) + "','" + String(Request.QueryString("certID")) + "','" + String(Request.QueryString("courseID")) + "','" + String(Request.QueryString("projectID")) + "','" + String(Request.QueryString("adviserID")) + "','" + host + "','" + String(Request.QueryString("teacher")) + "'," + kindID + "," + status + ",'" + String(Request.QueryString("dateStart")) + "','" + String(Request.QueryString("dateEnd")) + "','" + unescape(String(Request.QueryString("classroom"))) + "','" + unescape(String(Request.QueryString("timetable"))) + "','" + String(Request.QueryString("archived")) + "','" + String(Request.Form("summary")) + "','" + String(Request.Form("memo")) + "','" + currUser + "'";
+		sql = "exec updateClassInfo " + nodeID + ",'" + unescape(String(Request.QueryString("className"))) + "','" + String(Request.QueryString("certID")) + "','" + String(Request.QueryString("courseID")) + "','" + String(Request.QueryString("projectID")) + "','" + String(Request.QueryString("adviserID")) + "','" + host + "','" + String(Request.QueryString("teacher")) + "'," + kindID + "," + status + ",'" + String(Request.QueryString("dateStart")) + "','" + String(Request.QueryString("dateEnd")) + "','" + unescape(String(Request.QueryString("classroom"))) + "','" + unescape(String(Request.QueryString("timetable"))) + "','" + String(Request.QueryString("archived")) + "','" + String(Request.Form("summary")) + "','" + String(Request.QueryString("transaction_id")) + "','" + String(Request.Form("memo")) + "','" + currUser + "'";
 
 		execSQL(sql);
 		if(nodeID == 0){

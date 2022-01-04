@@ -186,7 +186,7 @@
 		});
 		$("#schedule").click(function(){
 			//setSession("page_params",{className:$("#className").val(), courseName:$("#courseName").val(), startDate:$("#dateStart").val(), endDate:$("#dateEnd").val(), adviser:$("#adviserName").val(), qty:$("#qty").val()});
-			showClassSchedule($("#classID").val(),"{className:'" + $("#className").val()+"', courseName:'" + $("#courseName").val()+"', startDate:'"+$("#dateStart").val().substr(0,10)+"', endDate:'"+$("#dateEnd").val()+"', adviser:'"+$("#adviserName").val()+"', qty:"+$("#qty").val()+"}",0,1);
+			showClassSchedule($("#classID").val(),"{className:'" + $("#className").val()+"', courseName:'" + $("#courseName").val()+"', transaction_id:'" + $("#transaction_id").val()+"', startDate:'"+$("#dateStart").val().substr(0,10)+"', endDate:'"+$("#dateEnd").val()+"', adviser:'"+$("#adviserName").val()+"', qty:"+$("#qty").val()+"}",0,1);
 		});
 		$("#showPhoto").change(function(){
 			getStudentCourseList();
@@ -256,6 +256,7 @@
 				$("#courseName").val(ar[37]);
 				$("#teacherName").val(ar[38]);
 				$("#host").val(ar[39]);
+				$("#transaction_id").val(ar[40]);
 				setProjectList(ar[36],ar[2]);
 				if(ar[24]>""){
 					$("#archived").prop("checked",true);
@@ -437,7 +438,7 @@
 		}
 		var photo = 0;
 		if($("#archived").prop("checked")){photo = 1;}
-		$.post("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&className=" + escape($("#className").val()) + "&classroom=" + escape($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&courseID=" + $("#courseID").val() + "&adviserID=" + $("#adviserID").val() + "&host=" + $("#host").val() + "&teacher=" + $("#teacher").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&archived=" + photo, {"memo":$("#memo").val(), "summary":$("#summary").val()},function(re){
+		$.post("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&className=" + escape($("#className").val()) + "&classroom=" + escape($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&courseID=" + $("#courseID").val() + "&adviserID=" + $("#adviserID").val() + "&host=" + $("#host").val() + "&teacher=" + $("#teacher").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&transaction_id=" + $("#transaction_id").val() + "&archived=" + photo, {"memo":$("#memo").val(), "summary":$("#summary").val()},function(re){
 			//alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -553,6 +554,7 @@
 		$("#adviserID").val("");
 		$("#memo").val("");
 		$("#className").val("");
+		$("#transaction_id").val("");
 		$("#status").val(0);
 		$("#kindID").val(0);
 		$("#classroom").val("黄兴路158号D103");
@@ -635,7 +637,7 @@
 			</tr>
 			<tr>
 				<td align="right">课程安排</td>
-				<td colspan="5"><textarea id="timetable" style="padding:2px;" rows="4" cols="75"></textarea></td>
+				<td colspan="5"><textarea id="timetable" style="padding:2px;" rows="3" cols="75"></textarea></td>
 			</tr>
 			<tr>
 				<td align="right">
@@ -655,8 +657,12 @@
 			<tr>
 				<td align="right">属性</td>
 				<td><select id="host" style="width:180px;"></select></td>
+				<td align="right">申报标号</td>
+				<td><input type="text" id="transaction_id" size="25" /></td>
+			</tr>
+			<tr>
 				<td align="right">备注</td>
-				<td><input type="text" id="memo" size="25" /></td>
+				<td colspan="3"><input type="text" id="memo" style="width:100%;" /></td>
 			</tr>
 			<tr>
 				<td align="right">登记人</td>
