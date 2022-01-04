@@ -31,13 +31,31 @@
 	var updateCount = 0;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
-		nodeID = "<%=nodeID%>";
+		nodeID = "<%=nodeID%>";	//classID
 		refID = "<%=refID%>";
 		op = "<%=op%>";
-		
+		//var pobj = getSession("page_params");
+		alert(refID);
 		$.ajaxSetup({ 
 			async: false 
 		}); 
+		$("#btnDownload").click(function(){
+			$.getJSON(uploadURL + "/outfiles/generate_excel?tag=class_schedule&mark=班级授课计划&classID=" + nodeID + "&pobj=" + refID ,function(data){
+				if(data>""){
+					asyncbox.alert("<a href='" + data + "' target='_blank'>下载文件</a>",'课表',function(action){
+					　　//alert 返回action 值，分别是 'ok'、'close'。
+					　　if(action == 'ok'){
+					　　}
+					　　if(action == 'close'){
+					　　　　//alert('close');
+					　　}
+					});
+					//getNodeInfo(nodeID);
+				}else{
+					alert("没有可供处理的数据。");
+				}
+			});
+		});
 		getClassScheduleList();
 	});
 
@@ -121,6 +139,7 @@
 
 <div id='layout' align='left' style="background:#f0f0f0;">	
 	<div style='text-align:center; margin:10px 0 10px 0;'><h3 style='font-size:1.8em;'>授课计划表</h3></div>
+	<div style='float:right; padding-right:50px;'><input class="button" type="button" id="btnDownload" value="下载" /></div>
 	<div id="cover" style="float:top;background:#f8fff8;">
 	</div>
 </div>

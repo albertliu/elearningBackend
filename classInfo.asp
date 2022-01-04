@@ -185,7 +185,8 @@
 			outputExcelBySQL('x07','file',$("#classID").val(),0,0);
 		});
 		$("#schedule").click(function(){
-			showClassSchedule($("#classID").val(), 0,0,1);
+			//setSession("page_params",{className:$("#className").val(), courseName:$("#courseName").val(), startDate:$("#dateStart").val(), endDate:$("#dateEnd").val(), adviser:$("#adviserName").val(), qty:$("#qty").val()});
+			showClassSchedule($("#classID").val(),"{className:'" + $("#className").val()+"', courseName:'" + $("#courseName").val()+"', startDate:'"+$("#dateStart").val().substr(0,10)+"', endDate:'"+$("#dateEnd").val()+"', adviser:'"+$("#adviserName").val()+"', qty:"+$("#qty").val()+"}",0,1);
 		});
 		$("#showPhoto").change(function(){
 			getStudentCourseList();
@@ -252,6 +253,7 @@
 				$("#teacher").val(ar[34]);
 				$("#scheduleDate").val(ar[35]);
 				$("#courseID").val(ar[36]);
+				$("#courseName").val(ar[37]);
 				$("#teacherName").val(ar[38]);
 				$("#host").val(ar[39]);
 				setProjectList(ar[36],ar[2]);
@@ -487,7 +489,7 @@
 	}
 	
 	function getMarkList(tag,mark, dt, ad, r, t){
-		$.getJSON(uploadURL + "/outfiles/generate_student_list_class?tag=" + tag + "&classID=" + $("#classID").val() + "&className=" + $("#className").val() + "&price=10&mark=" + mark + "&date=" + dt + "&adviser=" + ad + "&teacher=" + $("#teacherName").val() + "&row=" + r + "&top=" + t ,function(data){
+		$.getJSON(uploadURL + "/outfiles/generate_excel?tag=" + tag + "&classID=" + $("#classID").val() + "&className=" + $("#className").val() + "&price=10&mark=" + mark + "&date=" + dt + "&adviser=" + ad + "&teacher=" + $("#teacherName").val() + "&row=" + r + "&top=" + t ,function(data){
 			if(data>""){
 				asyncbox.alert("已生成 <a href='" + data + "' target='_blank'>下载文件</a>",'操作成功',function(action){
 				　　//alert 返回action 值，分别是 'ok'、'close'。
@@ -588,7 +590,7 @@
 			<tr>
 				<td align="right">班级编号</td><input id="ID" type="hidden" /><input id="kindID" type="hidden" /><input id="status" type="hidden" />
 				<td><input type="text" id="classID" size="25" class="readOnly" readOnly="true" /></td>
-				<td align="right">课程名称</td><input id="certID" type="hidden" />
+				<td align="right">课程名称</td><input id="certID" type="hidden" /><input id="courseName" type="hidden" />
 				<td><select id="courseID" style="width:180px;"></select></td>
 			</tr>
 			<tr>
