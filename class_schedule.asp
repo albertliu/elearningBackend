@@ -34,8 +34,7 @@
 		nodeID = "<%=nodeID%>";	//classID
 		refID = "<%=refID%>";
 		op = "<%=op%>";
-		//var pobj = getSession("page_params");
-		alert(refID);
+		
 		$.ajaxSetup({ 
 			async: false 
 		}); 
