@@ -114,7 +114,19 @@
 				if(currDate<"2022-01-01"){
 					$("#className").val($("#courseID").find("option:selected").text() + $("#dateStart").val().substr(2,8).replace(/-/g,""));
 				}
-				getComList("teacher","v_courseTeacherList a, courseInfo b","teacherID","teacherName","a.courseID=b.certID and a.status=0 and b.courseID='" + $("#courseID").val() + "' order by teacherID",1);
+				if($("#host").val()>""){
+					getComList("teacher","v_courseTeacherList a, courseInfo b","teacherID","teacherName","a.courseID=b.certID and a.status=0 and b.courseID='" + $("#courseID").val() + "' and a.host='" + $("#host").val() + "' order by teacherID",1);
+				}else{
+					getComList("teacher","v_courseTeacherList a, courseInfo b","teacherID","teacherName","a.courseID=b.certID and a.status=0 and b.courseID='" + $("#courseID").val() + "' order by teacherID",1);
+				}
+			}
+		});
+		$("#host").change(function(){
+			if($("#host").val()>""){
+				getComList("courseID","[dbo].[getHostCourseList]('" + $("#host").val() + "')","courseID","courseName","1=1",1);
+				getComList("adviserID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='adviser' and host='" + $("#host").val() + "') order by realName",1);
+			}else{
+				getComList("courseID","v_courseInfo","courseID","shortName","status=0 and host='' order by courseID",1);
 			}
 		});
 
@@ -460,7 +472,7 @@
 	function setProjectList(id,s){
 		$("#projectID").empty();
 		//getComList("projectID","projectInfo","projectID","projectName"," status>0 and certID='" + id + "' order by projectID desc",1);
-		$.getJSON(uploadURL + "/public/getProjectListBycertID?certID=" + id + "&op=" + op ,function(data){
+		$.getJSON(uploadURL + "/public/getProjectListBycertID?certID=" + id + "&op=" + op + "&host=" + $("#host").val() ,function(data){
 			if(data>""){
 				//alert(data[0]["deptName"]);
 				//data = [{"id":1,"text":"text1"},{"id":2,"text":"text2"},{"id":3,"text":"text3"},{"id":4,"text":"text4"},{"id":5,"text":"text5"}];
@@ -590,8 +602,9 @@
 				<td><input type="text" id="dateEnd" size="15" />&nbsp;预计</td>
 			</tr>
 			<tr>
-				<td align="right">班级编号</td><input id="ID" type="hidden" /><input id="kindID" type="hidden" /><input id="status" type="hidden" />
-				<td><input type="text" id="classID" size="25" class="readOnly" readOnly="true" /></td>
+				<input id="ID" type="hidden" /><input id="kindID" type="hidden" /><input id="status" type="hidden" /><input id="classID" type="hidden" />
+				<td align="right">属性</td>
+				<td><select id="host" style="width:180px;"></select></td>
 				<td align="right">课程名称</td><input id="certID" type="hidden" /><input id="courseName" type="hidden" />
 				<td><select id="courseID" style="width:180px;"></select></td>
 			</tr>
@@ -655,10 +668,8 @@
 				</td>
 			</tr>
 			<tr>
-				<td align="right">属性</td>
-				<td><select id="host" style="width:180px;"></select></td>
 				<td align="right">申报标号</td>
-				<td><input type="text" id="transaction_id" size="25" /></td>
+				<td colspan="3"><input type="text" id="transaction_id" style="width:100%;" /></td>
 			</tr>
 			<tr>
 				<td align="right">备注</td>

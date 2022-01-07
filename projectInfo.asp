@@ -120,6 +120,7 @@
 		$("#host").change(function(){
 			setPrice();
 			setDeptList($("#host").val(),0,[]);
+			getComList("courseID","[dbo].[getHostCourseList]('" + $("#host").val() + "')","courseID","courseName","1=1",1);
 		});
 		$("#payKind").change(function(){
 			setPayGroup();
