@@ -531,6 +531,7 @@
 		$("#btnMockView").hide();
 		$("#btnSchedule").hide();
 		$("#archived").prop("disabled",true);
+		$("#className").prop("disabled",true);
 		if(op ==1){
 			setEmpty();
 		}else{
@@ -549,13 +550,10 @@
 			}
 			$("#btnMockView").show();
 		}
-		if(checkPermission("classAdd") && s < 2){
+		if(checkPermission("classAdd") && s < 2 && currHost==""){
 			$("#save").show();
 			$("#doImport").show();
 			$("#btnClassCall").show();
-		}
-		if(currDate>="2022-01-01"){
-			$("#className").prop("disabled",true);
 		}
 	}
 	

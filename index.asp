@@ -217,7 +217,7 @@
 			$("#menu11").hide();
 			$("#menu2").hide();
 		}
-		if(currUser=="desk." || checkRole("adviser")){
+		if(currUser=="desk." || checkRole("adviser") || checkRole("operator")){
 			$("#menu11").show();
 		}
 		if(currHost > ""){	//集团用户不使用导入报名表, 照片批量上传，成绩导入功能
