@@ -94,6 +94,7 @@
 	<!--#include file="chartsIncReady.js"-->
 	<!--#include file="chartsClassIncReady.js"-->
 	<!--#include file="chartsIncomeIncReady.js"-->
+	<!--#include file="teacherListIncReady.js"-->
 
 	unitListLong = 0;
 	memoListLong = 0;
@@ -621,7 +622,17 @@
 					
 					
 					<div id="fragment-7">
-						<!--#include file="userListIncDetail.js"-->
+						<div id="dhtmlgoodies_tabView7">
+							<div id="dtab71" class="dhtmlgoodies_aTab">
+								<!--#include file="userListIncDetail.js"-->
+							</div>
+							<div id="dtab72" class="dhtmlgoodies_aTab">
+								<!--#include file="teacherListIncDetail.js"-->
+							</div>
+						</div>
+						<script type="text/javascript">
+							initTabs('dhtmlgoodies_tabView7',Array("用户管理","教师管理"),0,1260,400);
+						</script>
 					</div>
 					
 					<div id="fragment-8">

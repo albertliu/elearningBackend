@@ -331,6 +331,101 @@ if(op == "removePermission4User"){
 	Response.Write("0");
 }	
 
+if(op == "getCourseListByTeacher"){
+	sql = "select ID,courseID,shortName from v_courseTeacherList where teacherID='" + refID + "'";
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("ID").value + "|" + rs("courseID").value + "|" + rs("shortName").value;
+		rs.MoveNext();
+	}
+	result = result.substr(2);
+	rs.Close();
+	Response.Write(escape(result));
+}	
+
+if(op == "getTeacherCourseList"){
+	sql = "select certID,certName from dbo.getTeacherCourseList('" + refID + "')";
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("certID").value + "|" + rs("certName").value;
+		rs.MoveNext();
+	}
+	result = result.substr(2);
+	rs.Close();
+	Response.Write(escape(result));
+}	
+
+if(op == "addCourse2Teacher"){
+	sql = "insert into courseTeacherList(courseID,teacherID,registerID) values('" + nodeID + "','" + refID + "','" + currUser + "')";
+	execSQL(sql);
+	Response.Write("0");
+}	
+
+if(op == "removeCourse4Teacher"){
+	sql = "delete from courseTeacherList where ID=" + nodeID;
+	execSQL(sql);
+	Response.Write("0");
+}	
+
+if(op == "getTeacherList"){
+	var s = "";
+	//如果有条件，按照条件查询
+	if(where > ""){ // 有条件
+		where = "(teacherName like('%" + where + "%') or teacherID like('%" + where + "%'))";
+	}
+
+	if(where>""){
+		where = " where " + where + " and host='" + host + "'";
+	}else{
+		where = " where host='" + host + "'";
+	}
+	sql = " FROM v_teacherInfo " + where
+	result = getBasketTip(sql,"");
+	ssql = "SELECT teacherID,teacherName,statusName,host,memo,regDate,registerName" + sql + " order by teacherID";
+	sql = "SELECT top " + basket + " *" + sql + " order by teacherID";
+	
+	rs = conn.Execute(sql);
+	var c = 0;
+	while (!rs.EOF){
+		c += 1;
+		result += "%%" + rs("ID") + "|" + rs("teacherID") + "|" + rs("teacherName") + "|" + rs("status") + "|" + rs("statusName") + "|" + rs("host");
+		//6
+		result += "|" + rs("hostName") + "|" + rs("memo") + "|" + rs("regDate") + "|" + rs("registerID") + "|" + rs("registerName");
+		rs.MoveNext();
+	}
+	//result = result.substr(2);
+	rs.Close();
+	
+	Session(op) = ssql;
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}	
+
+if(op == "getTeacherInfo"){
+	sql = "SELECT * FROM v_teacherInfo where ID=" + nodeID;
+	rs = conn.Execute(sql);
+	if(!rs.EOF){
+		result = rs("ID") + "|" + rs("teacherID") + "|" + rs("teacherName") + "|" + rs("status") + "|" + rs("statusName") + "|" + rs("host");
+		//6
+		result += "|" + rs("hostName") + "|" + rs("memo") + "|" + rs("regDate") + "|" + rs("registerID") + "|" + rs("registerName");
+	}
+	rs.Close();
+	Response.Write(escape(result));
+}	
+
+if(op == "updateTeacherInfo"){
+	result = 0;
+	sql = "exec updateTeacherInfo " + nodeID + ",'" + refID + "','" + item + "','" + host + "','" + memo + "','" + currUser + "'";
+
+	rs = conn.Execute(sql);
+	if(!rs.EOF){
+		result = rs("re");
+	}
+
+	Response.Write(result);
+	//Response.Write(escape(sql));
+}
+
 if(op == "findPwd1"){
 	//根据密码问题验证用户身份
 	var answer1 = unescape(String(Request.QueryString("answer1")));
