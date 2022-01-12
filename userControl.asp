@@ -385,9 +385,7 @@ if(op == "getTeacherList"){
 	sql = "SELECT top " + basket + " *" + sql + " order by teacherID";
 	
 	rs = conn.Execute(sql);
-	var c = 0;
 	while (!rs.EOF){
-		c += 1;
 		result += "%%" + rs("ID") + "|" + rs("teacherID") + "|" + rs("teacherName") + "|" + rs("status") + "|" + rs("statusName") + "|" + rs("host");
 		//6
 		result += "|" + rs("hostName") + "|" + rs("memo") + "|" + rs("regDate") + "|" + rs("registerID") + "|" + rs("registerName");

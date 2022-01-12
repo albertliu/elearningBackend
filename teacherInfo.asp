@@ -7,12 +7,13 @@
 
 <title></title>
 
-<link href="css/style_inner1.css"  rel="stylesheet" type="text/css" />
+<link href="css/style_inner1.css?v=1.3"  rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/easyui/easyui.css">
 <link rel="stylesheet" type="text/css" href="css/easyui/icon.css">
+<link href="css/data_table_mini.css?v=20150411" rel="stylesheet" type="text/css" />
 <link href="css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
-<link href="css/data_table.css" rel="stylesheet" type="text/css" />
 <link href="css/asyncbox/asyncbox.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
 <script language="javascript" src="js/jquery-1.7.2.min.js"></script>
 <script language="javascript" src="js/jquery.form.js"></script>
 <script type="text/javascript" src="js/jquery.easyui.min.js"></script>
@@ -20,6 +21,7 @@
 <script type="text/javascript" src="js/AsyncBox.v1.4.js"></script>
 <script language="javascript" type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 <script src="js/datepicker/WdatePicker.js" type="text/javascript"></script>
+<script type='text/javascript' src='js/jquery.autocomplete.js'></script>
 <!--#include file="js/clickMenu.js"-->
 
 <script language="javascript">
@@ -110,7 +112,7 @@
 				$("#registerID").val(ar[9]);
 				$("#registerName").val(ar[10]);
 				getTeacherCourseList();
-				//getCourseListByTeacher();
+				getCourseListByTeacher();
 			}else{
 				jAlert("该信息未找到！","信息提示");
 				setEmpty();
@@ -152,9 +154,9 @@
 		return updateCount;
 	}
 
-	function getCourseListByTeacher(){
+	function getTeacherCourseList(){
 		//alert($("#teacherID").val());
-		$.get("userControl.asp?op=getCourseListByTeacher&refID=" + $("#teacherID").val() + "&times=" + (new Date().getTime()),function(data){
+		$.get("userControl.asp?op=getTeacherCourseList&refID=" + $("#teacherID").val() + "&times=" + (new Date().getTime()),function(data){
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
 			//alert(ar);
@@ -178,8 +180,8 @@
 					arr.push("<tr class='grade0'>");
 					arr.push("<td width='10%' class='left'>" + i + "</td>");
 					arr.push("<td width='40%' class='left'>" + ar1[1] + "</td>");
-					if(kindID==1){
-						arr.push("<td width='10%' class='link1'><a href='javascript:doAddUser(\"" + ar1[0] + "\");'><img src='images/add.png' border='0' title='选中'></a></td>");
+					if(checkPermission("teacherAdd")){
+						arr.push("<td width='10%' class='link1'><a href='javascript:doAddUser(\"" + ar1[0] + "\");'><img src='images/add.png' border='0' title='添加'></a></td>");
 					}else{
 						arr.push("<td width='10%' class='link1'>&nbsp;</td>");
 					}
@@ -200,18 +202,19 @@
 			$('#userListTab').dataTable({
 				"aaSorting": [],
 				"bLengthChange": false,
-				"aLengthMenu": [[15, 25, 30, -1], [15, 25, 30, "All"]],
-				"bFilter": true,
+				"aLengthMenu": [15, 25, 30, 50],
+				"iDisplayLength": 50,
+				"bFilter": false,
 				"aoColumnDefs": []
 			});
 		});
 	}
 	
-	function getTeacherCourseList(){
-		$.get("userControl.asp?op=getTeacherCourseList&refID=" + $("#teacherID").val() + "&times=" + (new Date().getTime()),function(data){
+	function getCourseListByTeacher(){
+		$.get("userControl.asp?op=getCourseListByTeacher&refID=" + $("#teacherID").val() + "&times=" + (new Date().getTime()),function(data){
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
-			alert(ar);
+			//alert(ar);
 			$("#taskUserCover").empty();
 			arr = [];
 			arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='taskUserTab' width='95%'>");
@@ -231,8 +234,8 @@
 					i += 1;
 					arr.push("<tr class='grade0'>");
 					arr.push("<td width='10%' class='left'>" + i + "</td>");
-					arr.push("<td width='40%' class='left'>" + ar1[1] + "</td>");
-					if(kindID==1){
+					arr.push("<td width='40%' class='left'>" + ar1[2] + "</td>");
+					if(checkPermission("teacherAdd")){
 						arr.push("<td width='10%' class='link1'><a href='javascript:doRemoveUser(\"" + ar1[0] + "\");'><img src='images/remove.png' border='0' title='撤销'></a></td>");
 					}else{
 						arr.push("<td width='10%' class='link1'>&nbsp;</td>");
@@ -254,7 +257,8 @@
 			$('#taskUserTab').dataTable({
 				"aaSorting": [],
 				"bLengthChange": false,
-				"aLengthMenu": [[15, 25, 30, -1], [15, 25, 30, "All"]],
+				"aLengthMenu": [15, 25, 30, 50],
+				"iDisplayLength": 50,
 				"bFilter": false,
 				"aoColumnDefs": []
 			});
@@ -262,10 +266,11 @@
 	}
 
 	function doAddUser(user){
-		$.get("userControl.asp?op=addCourse2Teacher&refID=" + refID + "&nodeID=" + user + "&times=" + (new Date().getTime()),function(re){
-			if(re>""){
+		$.get("userControl.asp?op=addCourse2Teacher&refID=" + $("#teacherID").val() + "&nodeID=" + user + "&times=" + (new Date().getTime()),function(re){
+			if(re==0){
 				getTeacherCourseList();
 				getCourseListByTeacher();
+				jAlert("添加成功。","信息提示");
 			}
 		});
 	}
@@ -277,6 +282,7 @@
 					if(re>""){
 						getTeacherCourseList();
 						getCourseListByTeacher();
+						jAlert("删除成功。","信息提示");
 					}
 				});
 			}
