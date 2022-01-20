@@ -36,7 +36,7 @@
 		op = "<%=op%>";
 		
 		getComList("projectID","projectInfo","projectID","projectName","status=1 order by projectID desc",1);
-		getComList("teacher","v_courseTeacherList","teacherID","teacherName","status=0 group by teacherID,teacherName",1);
+		//getComList("teacher","v_courseTeacherList","teacherID","teacherName","status=0 group by teacherID,teacherName",1);
 		getComList("adviserID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='adviser') order by realName",1);
 		if(currHost==""){
 			getComList("host","hostInfo","hostNo","title","status=0 and kindID=1 order by ID",1);
@@ -113,11 +113,6 @@
 				setProjectList(id,[]);
 				if(currDate<"2022-01-01"){
 					$("#className").val($("#courseID").find("option:selected").text() + $("#dateStart").val().substr(2,8).replace(/-/g,""));
-				}
-				if($("#host").val()>""){
-					getComList("teacher","v_courseTeacherList a, courseInfo b","teacherID","teacherName","a.courseID=b.certID and a.status=0 and b.courseID='" + $("#courseID").val() + "' and a.host='" + $("#host").val() + "' order by teacherID",1);
-				}else{
-					getComList("teacher","v_courseTeacherList a, courseInfo b","teacherID","teacherName","a.courseID=b.certID and a.status=0 and b.courseID='" + $("#courseID").val() + "' order by teacherID",1);
 				}
 			}
 		});
@@ -238,7 +233,7 @@
 				$("#classID").val(ar[1]);
 				//$("#projectID").val(ar[2]);
 				$("#certID").val(ar[3]);
-				getComList("teacher","v_courseTeacherList","teacherID","teacherName","status=0 and courseID='" + $("#certID").val() + "' order by teacherID",1);
+				//getComList("teacher","v_courseTeacherList","teacherID","teacherName","status=0 and courseID='" + $("#certID").val() + "' order by teacherID",1);
 				$("#kindID").val(ar[5]);
 				$("#status").val(ar[6]);
 				$("#adviserID").val(ar[8]);
@@ -262,7 +257,6 @@
 				$("#send").val(ar[30]);
 				$("#sendDate").val(ar[31]);
 				$("#senderName").val(ar[32]);
-				$("#teacher").val(ar[34]);
 				$("#scheduleDate").val(ar[35]);
 				$("#courseID").val(ar[36]);
 				$("#courseName").val(ar[37]);
@@ -289,6 +283,7 @@
 				$("#sign").html("<a>签到表</a>");
 				$("#sign1").html("<a>考勤记录</a>");
 				getStudentCourseList();
+				$("#teacher").val(ar[34]);
 				//getDownloadFile("classID");
 				setButton();
 			}else{
@@ -499,6 +494,16 @@
 				});
 			}
 		});
+		if($("#scheduleDate").val()>""){
+			if($("#host").val()>""){
+				getComList("teacher","v_courseTeacherList a, courseInfo b","teacherID","teacherName","a.courseID=b.certID and a.status=0 and b.courseID='" + $("#courseID").val() + "' and a.host='" + $("#host").val() + "' order by teacherID",1);
+			}else{
+				getComList("teacher","v_courseTeacherList a, courseInfo b","teacherID","teacherName","a.courseID=b.certID and a.status=0 and b.courseID='" + $("#courseID").val() + "' order by teacherID",1);
+			}
+		}else{
+			getComList("teacher","dbo.getFreeTeacherList('','" + $("#classID").val() + "')","teacherID","teacherName","1=1 order by freePoint desc",1);
+		//alert($("#classID").val());
+		}
 	}
 	
 	function getMarkList(tag,mark, dt, ad, r, t){
