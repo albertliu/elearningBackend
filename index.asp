@@ -365,7 +365,6 @@
 						<li id="menu5"><a href="#fragment-5"><span>题库管理</span></a></li>
 						<li id="menu6"><a href="#fragment-6"><span>统计报表</span></a></li>
 						<li><a href="#fragment-7"><span>用户管理</span></a></li>
-						<li><a href="#fragment-8"><span>基础数据</span></a></li>
 					</ul>
 					<div id="fragment-0">
 						<div align="center" style="width:480px; text-align: center;"><h4></h4></div>
@@ -633,9 +632,6 @@
 						<script type="text/javascript">
 							initTabs('dhtmlgoodies_tabView7',Array("用户管理","教师管理"),0,1260,400);
 						</script>
-					</div>
-					
-					<div id="fragment-8">
 					</div>
 				</div>
 			</td>
