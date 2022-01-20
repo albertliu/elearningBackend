@@ -157,6 +157,10 @@
 				<td><select id="teacher" style="width:100px;"></select></td>
 			</tr>
 			<tr>
+				<td align="right">备注</td>
+				<td colspan="3"><input type="text" id="memo" style="width:100%;"/></td>
+			</tr>
+			<tr>
 				<td align="right">登记人</td>
 				<td><input class="readOnly" type="text" id="registerName" size="25" readOnly="true" /></td>
 				<td align="right">登记日期</td>
