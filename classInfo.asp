@@ -230,7 +230,6 @@
 				//getComList("teacher","v_courseTeacherList","teacherID","teacherName","status=0 and courseID='" + $("#certID").val() + "' order by teacherID",1);
 				$("#kindID").val(ar[5]);
 				$("#status").val(ar[6]);
-				$("#adviserID").val(ar[8]);
 				$("#adviserName").val(ar[9]);
 				$("#dateStart").val(ar[10]);
 				$("#dateEnd").val(ar[11]);
@@ -256,9 +255,12 @@
 				$("#teacherName").val(ar[38]);
 				$("#host").val(ar[39]);
 				$("#transaction_id").val(ar[40]);
+				$("#courseID").val(ar[36]);
+				$("#adviserID").val(ar[8]);
 				setProjectList(ar[36],ar[2]);
 				setHostChange();
 				$("#courseID").val(ar[36]);
+				$("#adviserID").val(ar[8]);
 				if(ar[24]>""){
 					$("#archived").prop("checked",true);
 				}else{
