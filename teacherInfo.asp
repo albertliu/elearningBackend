@@ -39,7 +39,11 @@
 			async: false 
 		}); 
 		
-		getComList("host","hostInfo","hostNo","title","status=0 and kindID=1 order by ID",1);
+		if(currHost==""){
+			getComList("host","hostInfo","hostNo","title","status=0 and kindID=1 order by ID",1);
+		}else{
+			getComList("host","hostInfo","hostNo","title","status=0 and kindID=1 and hostNo='" + currHost + "' order by ID",0);
+		}
 		getDicList("userStatus","status",0);
 		
 		if(op==1){
