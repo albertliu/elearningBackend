@@ -37,7 +37,6 @@
 		
 		getComList("projectID","projectInfo","projectID","projectName","status=1 order by projectID desc",1);
 		//getComList("teacher","v_courseTeacherList","teacherID","teacherName","status=0 group by teacherID,teacherName",1);
-		getComList("adviserID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='adviser') order by realName",1);
 		if(currHost==""){
 			getComList("host","hostInfo","hostNo","title","status=0 and kindID=1 order by ID",1);
 			getComList("courseID","v_courseInfo","courseID","shortName","status=0 and host='' order by courseID",1);
@@ -117,12 +116,7 @@
 			}
 		});
 		$("#host").change(function(){
-			if($("#host").val()>""){
-				getComList("courseID","[dbo].[getHostCourseList]('" + $("#host").val() + "')","courseID","courseName","1=1",1);
-				getComList("adviserID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='adviser' and host='" + $("#host").val() + "') order by realName",1);
-			}else{
-				getComList("courseID","v_courseInfo","courseID","shortName","status=0 and host='' order by courseID",1);
-			}
+			setHostChange();
 		});
 
 		$("#doImportRef").click(function(){
@@ -258,12 +252,13 @@
 				$("#sendDate").val(ar[31]);
 				$("#senderName").val(ar[32]);
 				$("#scheduleDate").val(ar[35]);
-				$("#courseID").val(ar[36]);
 				$("#courseName").val(ar[37]);
 				$("#teacherName").val(ar[38]);
 				$("#host").val(ar[39]);
 				$("#transaction_id").val(ar[40]);
 				setProjectList(ar[36],ar[2]);
+				setHostChange();
+				$("#courseID").val(ar[36]);
 				if(ar[24]>""){
 					$("#archived").prop("checked",true);
 				}else{
@@ -506,6 +501,16 @@
 		}
 	}
 	
+	function setHostChange(){
+		if($("#host").val()>""){
+			getComList("courseID","[dbo].[getHostCourseList]('" + $("#host").val() + "')","courseID","courseName","1=1",1);
+			getComList("adviserID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='adviser' and host='" + $("#host").val() + "') order by realName",1);
+		}else{
+			getComList("courseID","v_courseInfo","courseID","shortName","status=0 and host='' order by courseID",1);
+			getComList("adviserID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='adviser' and host='') order by realName",1);
+		}
+	}
+	
 	function getMarkList(tag,mark, dt, ad, r, t){
 		$.getJSON(uploadURL + "/outfiles/generate_excel?tag=" + tag + "&classID=" + $("#classID").val() + "&className=" + $("#className").val() + "&price=10&mark=" + mark + "&date=" + dt + "&adviser=" + ad + "&teacher=" + $("#teacherName").val() + "&row=" + r + "&top=" + t ,function(data){
 			if(data>""){
@@ -544,7 +549,11 @@
 				$("#close").show();
 				$("#btnSchedule").show();
 			}
-			if(checkPermission("classAdd") && $("#qtyExam").val()>0){
+			if(checkPermission("teacherAdd") && s < 2){
+				$("#save").show();
+				$("#btnSchedule").show();
+			}
+			if(checkPermission("classAdd") && $("#qtyExam").val()>0 && currHost==""){
 				$("#archived").prop("disabled",false);
 			}
 			if(checkPermission("classOpen") && s > 0){
