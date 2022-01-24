@@ -155,7 +155,7 @@
 		$("#changeRole").hide();
 		$("#changePermission").hide();
 		if(op == 0){
-			if(($("#registerID").val() == currUser && $("#regDate").val() == currDate) || checkPermission("userAdd")){
+			if(($("#registerID").val() == currUser && $("#regDate").val() == currDate) || (checkPermission("userAdd") && currHost=="")){
 				$("#save").show();
 				$("#del").show();
 			}
