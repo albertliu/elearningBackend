@@ -463,6 +463,7 @@
 	
 	function setProjectList(id,s){
 		$("#projectID").empty();
+		//alert(id + "&op=" + op + "&host=" + $("#host").val());
 		//getComList("projectID","projectInfo","projectID","projectName"," status>0 and certID='" + id + "' order by projectID desc",1);
 		$.getJSON(uploadURL + "/public/getProjectListBycertID?certID=" + id + "&op=" + op + "&host=" + $("#host").val() ,function(data){
 			if(data>""){
@@ -589,6 +590,7 @@
 		$("#regDate").val(currDate);
 		$("#registerID").val(currUser);
 		$("#registerName").val(currUserName);
+		setHostChange();
 	}
 	
 	function getUpdateCount(){
