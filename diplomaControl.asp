@@ -263,6 +263,20 @@ if(op == "getStudentNeedDiplomaList"){
 			where = s;
 		}
 	}
+	//如果有部门
+	var dept = String(Request.QueryString("dept"));
+	if(dept > "" && dept != "null" && dept !="undefined"){ // 
+		if(dept==99){
+			s = "a.student_kindID=1";
+		}else{
+			s = "a.dept1=" + dept;
+		}
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 	//如果有分类(证书类型)
 	if(kindID > ""){ // 
 		s = "a.certID='" + kindID + "'";

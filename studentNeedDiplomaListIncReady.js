@@ -23,6 +23,11 @@
 			}
 			$("#searchStudentNeedDiplomaItem1").hide();
 		}
+		if(currHost!="spc"){	//
+			$("#searchStudentNeedDiplomaItem2").hide();
+		}else{
+			getComList("searchStudentNeedDiplomaDept","dbo.getDept1List()","deptID","deptName","0=0 order by deptID",1);
+		}
 		
 		$("#btnSearchStudentNeedDiploma").click(function(){
 			getStudentNeedDiplomaList();
@@ -134,7 +139,7 @@
 		if($("#searchStudentNeedDiplomaPhoto").attr("checked")){photo = 1;}
 		if($("#searchStudentNeedDiplomaRefuse").attr("checked")){refuse = 1;}
 		//alert((sWhere) + "&kindID=" + $("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&keyID=" + photo);
-		$.get("diplomaControl.asp?op=getStudentNeedDiplomaList&where=" + escape(sWhere) + "&mark=" + mark + "&kindID=" + $("#searchStudentNeedDiplomaCert").val() + "&classID=" + $("#searchStudentNeedDiplomaClassID").val() + "&fStart=" + $("#searchStudentNeedDiplomaStartDate").val() + "&fEnd=" + $("#searchStudentNeedDiplomaEndDate").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&keyID=" + photo + "&refID=" + refuse + "&dk=21&times=" + (new Date().getTime()),function(data){
+		$.get("diplomaControl.asp?op=getStudentNeedDiplomaList&where=" + escape(sWhere) + "&mark=" + mark + "&kindID=" + $("#searchStudentNeedDiplomaCert").val() + "&classID=" + $("#searchStudentNeedDiplomaClassID").val() + "&fStart=" + $("#searchStudentNeedDiplomaStartDate").val() + "&fEnd=" + $("#searchStudentNeedDiplomaEndDate").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&dept=" + $("#searchStudentNeedDiplomaDept").val() + "&keyID=" + photo + "&refID=" + refuse + "&dk=21&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");

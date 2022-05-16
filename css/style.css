@@ -61,6 +61,24 @@ h5 {
   font-family: "黑体",Arial, Helvetica, sans-serif;
   color: #000;
 }
+h6 {
+  margin: 0;
+  padding-top: 8px;
+  padding-bottom: 3px;
+  padding-left: 3px;
+  font-size: 32px;
+  font-family: "幼圆",Arial, Helvetica, sans-serif;
+  color: #000;
+}
+h6A {
+  margin: 0;
+  padding-top: 8px;
+  padding-bottom: 3px;
+  padding-left: 3px;
+  font-size: 32px;
+  font-family: "幼圆",Arial, Helvetica, sans-serif;
+  color: #014991;
+}
 td.foot {
   border-bottom:#888 solid 1px;
   text-align: center;
@@ -103,6 +121,15 @@ td.foot {
   position: relative;
   width: 350mm;
   height: 238mm;
+  margin: 0;
+  padding: 0;
+  text-align: left; 
+  border: none;
+}
+.login-form-wrap3p {
+  position: relative;
+  width: 172mm;
+  height: 108mm;
   margin: 0;
   padding: 0;
   text-align: left; 

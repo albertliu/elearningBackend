@@ -19,7 +19,7 @@
 							批次&nbsp;<select id="searchEnterProjectID" style="width:180px"></select>&nbsp;
 							<input style="border:0px;" type="checkbox" id="searchEnterShowPhoto" value="" />&nbsp;显示照片&nbsp;
 						    <span style="float:right;">
-								<input class="button" type="button" onClick="outputFloat(101,'file')" value="下载" />
+								<input class="button" type="button" id="btnSearchEnterDownload" value="下载" />
 							</span>
 							<br/>
 							<hr style="margin:3px 0;" />

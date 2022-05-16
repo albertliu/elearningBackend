@@ -180,6 +180,11 @@
 				showCartInfo("examer",0,0,1);
 			}
 		});
+
+		$("#btnSearchEnterDownload").click(function(){
+			getEnterList();
+			outputFloat(101,'file');
+		});
 		
 		$("#btnEnterCartAdd").click(function(){
 			getSelCart("visitstockchkEnter");
