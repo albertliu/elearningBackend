@@ -214,6 +214,8 @@
 			$("#menu12").hide();
 			$("#menu2").hide();
 			deleteTab("统计图表");
+			deleteTab("招生概况");
+			deleteTab("收费概况");
 		}else{
 			$("#menu11").hide();
 			$("#menu2").hide();
