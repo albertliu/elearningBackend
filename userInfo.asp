@@ -165,6 +165,7 @@
 			}
 			if(checkPermission("userAdd")){
 				$("#addNew").show();
+				$("#save").show();
 				$("#changeRole").show();
 				$("#changePermission").show();
 			}
