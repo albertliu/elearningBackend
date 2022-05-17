@@ -170,6 +170,9 @@
 					$("#changeRole").show();
 					$("#changePermission").show();
 				}
+				if(currDeptID > "" && $("#deptID").val() == ""){
+					$("#save").hide();	//部门主管不能修改上级用户
+				}
 			}
 		}
 		if(op == 1){
