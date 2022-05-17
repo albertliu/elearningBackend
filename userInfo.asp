@@ -196,6 +196,9 @@
 		$("#allPermissionList").empty();
 		userName = "";
 		realName = "";
+		if(currDeptID > ""){
+			$("#deptID").val(currDeptID);
+		}
 
 		//$("#downloadFile_userID").html("");
 	}
