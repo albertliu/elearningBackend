@@ -1,7 +1,7 @@
 ﻿	var userListLong = 0;		//0: 标准栏目  1：短栏目
 
 	$(document).ready(function (){
-		getComList("searchUserDeptID","deptInfo","deptID","deptName","dbo.[getHostDeptList]('" + currHost + "')",1);
+		getComList("searchUserDeptID","dbo.[getHostDeptList]('" + currHost + "')","deptID","deptName","1=1",1);
 		getDicList("userStatus","searchUserStatus",1);
 		$("#btnAddUser").hide();
 		if(checkPermission("userAdd")){
