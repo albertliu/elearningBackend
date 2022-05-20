@@ -106,6 +106,18 @@
     $("#changePermission").click(function(){
     	showUserPermissionList();
     });
+    
+    $("#userNo").change(function(){
+    	if($("#userNo").val()>""){
+			$.get("userControl.asp?op=chkUser&nodeID=" + $("#userID").val() + "&userNo=" + escape($("#userNo").val()) + "&times=" + (new Date().getTime()),function(data){
+				if(data == 1){
+					jAlert("该用户名已经存在。","信息提示");
+					$("#userNo").val("");
+					$("#userNo").focus();
+				}
+			});
+		}
+    });
 
   	<!--#include file="commLoadFileReady.asp"-->
 	});

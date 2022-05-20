@@ -12,7 +12,7 @@ if (String(Request.QueryString("uID")) != "undefined" &&
 }
 if (String(Request.QueryString("userNo")) != "undefined" && 
     String(Request.QueryString("userNo")) != "") { 
-  userNo = String(Request.QueryString("userNo"));
+  userNo = unescape(String(Request.QueryString("userNo")));
 }
 if (String(Request.QueryString("userName")) != "undefined" && 
     String(Request.QueryString("userName")) != "") { 
@@ -518,6 +518,18 @@ if(op == "chkUserName"){
 		result = 1;
 	}
 	rs.close();
+	Response.Write(result);
+}	
+
+if(op == "chkUser"){
+	result = 0;
+	sql = "SELECT userName FROM userInfo where userID<>" + nodeID + " and userNo='" + userNo + "' and host='" + currHost + "'";
+	var rs1 = conn.Execute(sql);
+	if (!rs1.EOF){
+		//同名的用户已经存在
+		result = 1;
+	}
+	rs1.close();
 	Response.Write(result);
 }	
 
