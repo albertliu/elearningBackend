@@ -1,7 +1,7 @@
 ﻿				  	<div style="width:100%;float:right;margin:0;">
 						<div class="comm" align='left' style="background:#fdfdfd;">
 							<form><label>搜索:</label>
-								<input type="text" id="txtSearchDiploma" name="txtSearchDiploma" size="14" title="姓名、身份证、证书编号" style="background:yellow;" />
+								<input type="text" id="txtSearchDiploma" name="txtSearchDiploma" size="14" title="姓名、身份证、单位名称、证书编号" style="background:yellow;" />
 								<input class="button" type="button" id="btnSearchDiploma" value="查找" />
 								<span id="diplomaListLongItem1">&nbsp;&nbsp;
 									&nbsp;&nbsp;公司&nbsp;<select id="searchDiplomaHost" style="width:100px"></select>&nbsp;&nbsp;
