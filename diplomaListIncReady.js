@@ -142,10 +142,10 @@
 	function setDiplomaDeptList(){
 		//alert($("#searchDiplomaHost").val() + ":" + currDeptID);
 		if($("#searchDiplomaHost").val() > ""){
-			if(currDeptID > 0){
-				getComList("searchDiplomaDept","deptInfo","deptID","deptName","deptID=" + currDeptID,0);
-			}else{
+			if(currHost!="spc"){
 				getComList("searchDiplomaDept","deptInfo","deptID","deptName","pID=(select deptID from deptInfo where host='" + $("#searchDiplomaHost").val() + "' and pID=0)",1);
+			}else{
+				getComList("searchDiplomaDept","dbo.getDept1List()","deptID","deptName","0=0 order by deptID",1);
 			}
 		}
 	}
