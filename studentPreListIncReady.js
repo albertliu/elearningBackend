@@ -244,6 +244,9 @@
 		setHostPreChange();
 		$("#btnStudentPreCall").hide();
 		$("#searchStudentPreClass").val(1);
+		if(!checkPermission("classAdd")){
+			$("#btnStudentPreClass").hide();
+		}
 	});
 
 	function getStudentPreList(){
