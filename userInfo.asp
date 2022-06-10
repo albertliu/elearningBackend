@@ -178,11 +178,11 @@
 			if(checkPermission("userAdd")){
 				$("#addNew").show();
 				$("#save").show();
-				if(currDeptID==""){		//部门主管不能变更角色和权限，但可以添加修改用户
+				if(currDeptID=="" || currDeptID=="0"){		//部门主管不能变更角色和权限，但可以添加修改用户
 					$("#changeRole").show();
 					$("#changePermission").show();
 				}
-				if(currDeptID > "" && $("#deptID").val() == ""){
+				if(currDeptID > "0" && $("#deptID").val() == ""){
 					$("#save").hide();	//部门主管不能修改上级用户
 				}
 			}

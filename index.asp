@@ -402,7 +402,7 @@
 						</div>
 						<div id="minialDiv" style="width:85%;float:right;">
 							<ul id="tabs">
-							    <li id="project_Tab"><a href="#" name="#tab0">招生通知</a></li> 
+							    <li id="project_Tab"><a href="#" name="#tab0">招生计划</a></li> 
 							    <li id="mTab1"><a href="#" name="#tab1">学员反馈</a></li>
 							    <li><a href="#" name="#tab2">回复信息</a></li>
 							    <li id="generateStudent_Tab"><a href="#" name="#tab3">学员报名</a></li> 
