@@ -94,7 +94,7 @@
 				}else{
 					$("#img_cardA").attr("src","images/blank_cardA.png");
 				}
-				$("#date").html(currDate);
+				//$("#date").html(currDate);
 				if(keyID==1){
 					resumePrint();
 				}

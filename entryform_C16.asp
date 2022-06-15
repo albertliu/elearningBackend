@@ -86,6 +86,7 @@
 				$("#birthday").html(ar[33].substr(0,7));
 				$("#address").html(ar[34]);
 				$("#ethnicity").html(ar[37]);
+				$("#IDdate").html(ar[40] + " " + ar[41]);
 				if(ar[21] > ""){
 					$("#img_photo").attr("src","/users" + ar[21]);
 				}else{
@@ -101,7 +102,7 @@
 				}else{
 					$("#img_cardB").attr("src","images/blank_cardB.png");
 				}
-				$("#date").html(currDate);
+				//$("#date").html(currDate);
 				if(keyID==1){
 					resumePrint();
 				}
@@ -153,24 +154,25 @@
 		<input class="button" type="button" id="print" value="打印" />&nbsp;
 		</div>
 		<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
-			<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>上海市特种作业人员安全技术考核申请表（2020版）</h3></div>
+			<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>上海市特种作业人员安全技术考核申请表（2021版）</h3></div>
 			<div style='margin: 12px;text-align:left; width:95%;'><span style='font-size:1.2em;'>学员编号：</span><span style='font-size:1.2em;' id="SNo"></span></div>
 			<table class='table_resume' style='width:99%;'>
 			<tr>
 				<td align="center" class='table_resume_title' width='15%' height='55px;'>姓名</td><td align="center" width='15%'><p style='font-size:1em;' id="name"></p></td>
-				<td align="center" class='table_resume_title' width='13%'>性别</td><td align="center" width='13%'><p style='font-size:1em;' id="sexName"></p></td>
-				<td align="center" class='table_resume_title' width='13%'>出生年月</td><td class='table_resume_title' width='11%'><p style='font-size:1em;' id="birthday"></p></td>
+				<td align="center" class='table_resume_title' width='13%'>性别</td><td align="center" width='10%'><p style='font-size:1em;' id="sexName"></p></td>
+				<td align="center" class='table_resume_title' width='13%'>出生年月</td><td class='table_resume_title' width='14%'><p style='font-size:1em;' id="birthday"></p></td>
 				<td rowspan="4" colspan="2" align="center" class='table_resume_title' width='20%'>
 					<img id="img_photo" src="" value="" style='width:100px;border:none;' />
 				</td>
 			</tr>
 			<tr>
 				<td align="center" class='table_resume_title' width='15%' height='55px;'>国籍</td><td align="center" width='13%'><p style='font-size:1em;'>中国</p></td>
-				<td align="center" class='table_resume_title' width='13%'>民族</td><td align="center" width='13%'><p style='font-size:1em;' id="ethnicity"></p></td>
-				<td align="center" class='table_resume_title' width='13%'>文化程度</td><td class='table_resume_title' width='11%'><p style='font-size:1em;' id="educationName"></p></td>
+				<td align="center" class='table_resume_title' width='13%'>民族</td><td align="center" width='10%'><p style='font-size:1em;' id="ethnicity"></p></td>
+				<td align="center" class='table_resume_title' width='13%'>文化程度</td><td class='table_resume_title' width='14%'><p style='font-size:1em;' id="educationName"></p></td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='55px;'>证件号码</td><td align="center" colspan="5"><p style='font-size:1em;' id="username"></p></td>
+				<td align="center" class='table_resume_title' width='15%' height='55px;'>证件号码</td><td align="center" colspan="3"><p style='font-size:1em;' id="username"></p></td>
+				<td align="center" class='table_resume_title' width='13%'>有效期限</td><td class='table_resume_title' width='14%'><p style='font-size:1em;' id="IDdate"></p></td>
 			</tr>
 			<tr>
 				<td align="center" class='table_resume_title' width='15%' height='55px;'>单位名称</td><td align="center" colspan="3"><p style='font-size:1em;' id="company"></p></td>
@@ -208,7 +210,7 @@
 				<td align="left" class='table_resume_title' width='15%' height='55px;' colspan="4">
 					<p style='font-size:1em;float:left;'>申请人签名：</p>
 					<br><br>
-					<p id="date" style='font-size:1em;float:right;padding-right:5px;'></p>
+					<p id="date" style='font-size:1em;float:right;padding-right:5px;'>年&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;日</p>
 				</td>
 				<td align="left" class='table_resume_title' width='15%' height='55px;' colspan="4">
 					<p style='font-size:1em;float:left;'>审核意见：</p>

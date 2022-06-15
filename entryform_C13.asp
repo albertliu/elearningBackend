@@ -102,7 +102,7 @@
 				}else{
 					$("#img_cardB").attr("src","images/blank_cardB.png");
 				}
-				$("#date").html(currDate);
+				//$("#date").html(currDate);
 				if(keyID==1){
 					resumePrint();
 				}
