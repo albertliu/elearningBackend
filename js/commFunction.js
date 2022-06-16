@@ -2154,12 +2154,12 @@
 		});
 	}
 
-	function getDeptTree(id){
+	function getDeptTree(id,idx){
 		ctree = 0;
 		var bk = [];
 		//$.get("deptControl.asp?op=getDeptJson&qf=0&nodeID=" + id + "&dk=0&times=" + (new Date().getTime()),function(re){
 		//alert(uploadURL);
-		$.get(uploadURL + "/public/getDeptTreeJson?nodeID=" + id,function(re){
+		$.get(uploadURL + "/public/getDeptTreeJson?nodeID=" + id + "&indexByDate=" + idx,function(re){
 			//jAlert(re);
 			//var dt = eval("(" + re + ")");
 			//bk = getDeptJsonTree(dt.list,id);

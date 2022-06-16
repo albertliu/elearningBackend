@@ -17,6 +17,10 @@
 		$("#searchDeptHost").change(function(){
 			getDeptList($("#searchDeptHost").val());
 		});
+
+		$("#searchDeptHostIndexByDate").change(function(){
+			getDeptList($("#searchDeptHost").val());
+		});
 		
 		$("#btnMergeDepts").click(function(){
 			var x = new Array();
@@ -72,6 +76,9 @@
 	});
 
 	function getDeptList(host){
+		if(host==""){
+			host = currHost;
+		}
 		$.get("deptControl.asp?op=getRootDeptByHost&refID=" + host + "&times=" + (new Date().getTime()),function(re){
 			if(re>0){
 				deptRoot = host;
@@ -79,7 +86,9 @@
 				if(currDeptID > 0){
 					re = currDeptID;
 				}
-				var dtree = getDeptTree(re);
+				var idx = 0;
+				if($("#searchDeptHostIndexByDate").attr("checked")){idx = 1;}
+				var dtree = getDeptTree(re,idx);
 				//jAlert(dtree);
 				$("#tree1").treeview({
 					data: dtree,
