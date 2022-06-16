@@ -359,7 +359,7 @@ if(op == "getStudentNeedDiplomaList"){
 		//15
 		result += "|" + rs("className").value + "|" + rs("testDate").value + "|" + rs("classID").value + "|" + rs("educationName").value + "|" + rs("SNo").value;
 		//20
-		result += "|" + rs("pay_statusName").value + "|" + rs("pay_status").value + "|" + rs("enterID").value;
+		result += "|" + rs("pay_statusName").value + "|" + rs("pay_status").value + "|" + rs("enterID").value + "|" + rs("c555").value;
 		rs.MoveNext();
 	}
 	rs.Close();

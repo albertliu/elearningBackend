@@ -33,6 +33,7 @@
 		
 		getDicList("student","kindID",0);
 		getDicList("statusEffect","status",0);
+		getDicList("statusNo","c555",0);
 		
 		$.ajaxSetup({ 
 			async: false 
@@ -92,6 +93,7 @@
 				$("#registerName").val(ar[15]);
 				$("#No").val(ar[16]);
 				$("#area").val(ar[17]);
+				$("#c555").val(ar[18]);
 				
 				if(ar[11] !== "spc"){
 					$("#kindID").hide();
@@ -115,18 +117,19 @@
 			jAlert("上级部门缺失，请重新添加。");
 			return false;
 		}
-		$.get("deptControl.asp?op=update&nodeID=" + $("#deptID").val() + "&refID=" + $("#pID").val() + "&deptName=" + escape($("#deptName").val()) + "&linker=" +  escape($("#linker").val()) + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&host=" + $("#host").val() + "&phone=" +  escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&address=" + escape($("#address").val()) + "&No=" + $("#No").val() + "&area=" + escape($("#area").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("deptControl.asp?op=update&nodeID=" + $("#deptID").val() + "&refID=" + $("#pID").val() + "&deptName=" + escape($("#deptName").val()) + "&linker=" +  escape($("#linker").val()) + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&host=" + $("#host").val() + "&phone=" +  escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&address=" + escape($("#address").val()) + "&No=" + $("#No").val() + "&area=" + escape($("#area").val()) + "&c555=" + $("#c555").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar[0] == 0){
 				updateCount += 1;
-				if(op == 1){
+				//if(op == 1){
 					//op = 0;
 					//getNodeInfo(ar[1]);
-					jAlert("保存成功！","信息提示");
+					alert("保存成功！","信息提示");
 					window.parent.$.close("dept");
-				}
+				//}
+				//jAlert("保存成功！","信息提示");
 			}
 			if(ar[0] != 0){
 				jAlert("未能成功提交，请退出后重试。","信息提示");
@@ -161,6 +164,7 @@
 		$("#phone").val("");
 		$("#email").val("");
 		$("#address").val("");
+		$("#c555").val(0);
 		$("#memo").val("");
 		$("#regDate").val(currDate);
 		$("#registerName").val(currUserName);
@@ -213,6 +217,10 @@
 				<td><input type="text" id="No" size="25" /></td>
 				<td align="right">所属区</td>
 				<td><input type="text" id="area" size="25" /></td>
+			</tr>
+			<tr>
+				<td align="right">超龄取证</td>
+				<td colspan="3"><select id="c555" style="width:100px;"></select>&nbsp;*55岁-60岁可取得施工作业上岗证</td>
 			</tr>
 			<tr>
 				<td align="right">说明</td>
