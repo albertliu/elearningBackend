@@ -219,7 +219,7 @@
 			submit_feedback();
 		});
 
-		var timer = setInterval(getFeedbackList, 5000);
+		var timer = setInterval(getFeedbackList, 30000);
 		//var div = document.getElementById('feedback_list');
 		//div.scrollTop = div.scrollHeight; 
 
