@@ -219,6 +219,10 @@
 			submit_feedback();
 		});
 
+		var timer = setInterval(getFeedbackList, 5000);
+		//var div = document.getElementById('feedback_list');
+		//div.scrollTop = div.scrollHeight; 
+
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -539,10 +543,20 @@
 	}
 	
 	function getFeedbackList(){
-		alert(currUser + "&classID=" + $("#classID").val());
+		//alert(currUser + "&classID=" + $("#classID").val());
 		$.getJSON(uploadURL + "/public/get_feedback_class_list?username=" + currUser + "&classID=" + $("#classID").val() + "&type=1" ,function(data){
 			if(data>""){
-				alert(data.length);
+				//alert(data[0]["item"]);
+				var ar = Array();
+				ar.push("<ul style='list-style-type:none;width:100%;margin:0px;text-align:left;'>");
+				$.each(data,function(iNum,val){
+					ar.push("<li style='width:100%; float:left; color:#555;background:#EEE;'" + (val["title"]!="我"?" onclick='setAtUser(\"" + val["title"] + "\",\"" + val["username"] + "\");'":"") + ">" + val["title"] + "&nbsp;&nbsp;&nbsp;&nbsp;" + val["regDate"] + (val["title"]=="我" && val["cancelAllow"]==1?"&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:doCancelFeedback(" + val["ID"] + ");'>撤回</a>":"") + "</li>");
+					ar.push("<li style='width:100%; word-break: break-all;" + (val["title"]=="我"?"background:#00FF7F;":"") + "'>" + "&nbsp;&nbsp;&nbsp;&nbsp;" + val["item"] + "</li>");
+				});
+				ar.push("</ul>");
+				$("#feedback_list").html(ar.join(""));
+				var div = document.getElementById('feedback_list');
+				div.scrollTop = div.scrollHeight; 
 			}else{
 				alert("没有可供处理的数据。");
 			}
@@ -550,17 +564,46 @@
 	}
 	
 	function submit_feedback(){
-		if($("#feedback_item").val()){
-			jAlert("请输入要发送的信息。");
+		if($("#feedback_item").val()==""){
+			alert("请输入要发送的信息。");
 			return false;
 		}
 		var item = $("#feedback_item").val();
-		$.post(uploadURL + "/public/submit_feedback_class", {username:currUser, classID: $("#classID").val(),item:item, type: 1, refID:at_ref, readerID: at_username} ,function(data){
+		var at = "@" + at_name;
+		if(item.indexOf(at)>=0){
+			item = item.replace(at, "");
+		}else{
+			at_username = "";
+		}
+		var params = {username:currUser, classID: $("#classID").val(),item:item, type: 1, refID:0, readerID: at_username};
+		//alert(params);
+		
+		$.post(uploadURL + "/public/submit_feedback_class", params ,function(data){
 			getFeedbackList();
 			at_name = "";
 			at_username = "";
 			$("#feedback_item").val("");
+			//div.scrollTop = div.scrollHeight; 
 		});
+	}
+	
+	function doCancelFeedback(id){
+		if(confirm("确定要撤回这条消息吗？")){
+			$.post(uploadURL + "/public/cancel_feedback_class", {ID:id} ,function(data){
+				getFeedbackList();
+				at_name = "";
+				at_username = "";
+				$("#feedback_item").val("");
+				//div.scrollTop = div.scrollHeight; 
+			});
+		}
+	}
+	
+	function setAtUser(att,atu){
+		at_username = atu;
+		at_name = att;
+		$("#feedback_item").val("@" + att + " ");
+		$("#feedback_item").focus();
 	}
 	
 	function setButton(){
@@ -739,10 +782,10 @@
 			<form id="feedback" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
-				<td align="right" colspan="2" style="width:100%;"><input type="text" id="feedback_list" style="width:500px; height:458px;" /></td>
+				<td align="right" colspan="2" style="width:100%;"><div id="feedback_list" style="width:500px; height:458px;float:left;border:2px solid #888;padding:5px 10px;overflow:auto;"></div></td>
 			</tr>
 			<tr>
-				<td style="background:#f5f5ff;"><input class="mustFill" type="text" id="feedback_item" style="width:400px; height:30px;" /></td>
+				<td style="background:#f5f5ff;"><input class="mustFill" type="text" id="feedback_item" style="width:450px; height:30px;" /></td>
 				<td><input class="button" type="button" id="btn_feedback_submit" value="发送" /></td>
 			</tr>
 			</table>
