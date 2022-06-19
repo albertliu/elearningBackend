@@ -56,7 +56,11 @@ if(op == "getFeedbackList"){
 
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
-		result += "%%" + rs("ID").value + "|" + rs("refID").value + "|" + rs("item").value + "|" + rs("username").value + "|" + rs("kindID").value + "|" + rs("status").value + "|" + rs("emergency").value + "|" + rs("kindName").value + "|" + rs("statusName").value + "|" + rs("emergencyName").value + "|" + rs("email").value + "|" + rs("mobile").value + "|" + rs("readDate").value + "|" + rs("readerName").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("name").value + "|" + rs("dealDate").value + "|" + rs("dealerName").value;
+		result += "%%" + rs("ID").value + "|" + rs("refID").value + "|" + rs("item").value + "|" + rs("username").value + "|" + rs("kindID").value + "|" + rs("status").value + "|" + rs("emergency").value + "|" + rs("kindName").value + "|" + rs("statusName").value + "|" + rs("emergencyName").value;
+		//10
+		result += "|" + rs("email").value + "|" + rs("mobile").value + "|" + rs("readDate").value + "|" + rs("readerName").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("name").value;
+		//19
+		result += "|" + rs("dealDate").value + "|" + rs("dealerName").value + "|" + rs("type").value + "|" + rs("classID").value;
 		rs.MoveNext();
 	}
 
@@ -68,7 +72,11 @@ if(op == "getNodeInfo"){
 	sql = "SELECT * FROM v_studentFeedbackInfo where ID=" + nodeID;
 	rs = conn.Execute(sql);
 	if (!rs.EOF){
-		result = rs("ID").value + "|" + rs("refID").value + "|" + rs("item").value + "|" + rs("username").value + "|" + rs("kindID").value + "|" + rs("status").value + "|" + rs("emergency").value + "|" + rs("kindName").value + "|" + rs("statusName").value + "|" + rs("emergencyName").value + "|" + rs("email").value + "|" + rs("mobile").value + "|" + rs("readDate").value + "|" + rs("readerName").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("name").value + "|" + rs("dealDate").value + "|" + rs("dealerName").value;
+		result = rs("ID").value + "|" + rs("refID").value + "|" + rs("item").value + "|" + rs("username").value + "|" + rs("kindID").value + "|" + rs("status").value + "|" + rs("emergency").value + "|" + rs("kindName").value + "|" + rs("statusName").value + "|" + rs("emergencyName").value;
+		//10
+		result += "|" + rs("email").value + "|" + rs("mobile").value + "|" + rs("readDate").value + "|" + rs("readerName").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("name").value;
+		//19
+		result += "|" + rs("dealDate").value + "|" + rs("dealerName").value + "|" + rs("type").value + "|" + rs("classID").value;
 		//标记为已阅读
 		sql = "exec setStudentFeedbackRead " + nodeID + ",'" + currUser + "'";
 		execSQL(sql);

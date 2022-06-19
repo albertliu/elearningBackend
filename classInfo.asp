@@ -29,6 +29,8 @@
 	var op = 0;
 	var refID = 0;
 	var updateCount = 0;
+	var at_name = "";	//@name
+	var at_username = "";
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";
@@ -213,6 +215,9 @@
 				});
 			}
 		});
+		$("#btn_feedback_submit").click(function(){
+			submit_feedback();
+		});
 
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
@@ -282,6 +287,7 @@
 				getStudentCourseList();
 				$("#teacher").val(ar[34]);
 				//getDownloadFile("classID");
+				getFeedbackList();
 				setButton();
 			}else{
 				alert("该信息未找到！","信息提示");
@@ -532,6 +538,31 @@
 		});
 	}
 	
+	function getFeedbackList(){
+		alert(currUser + "&classID=" + $("#classID").val());
+		$.getJSON(uploadURL + "/public/get_feedback_class_list?username=" + currUser + "&classID=" + $("#classID").val() + "&type=1" ,function(data){
+			if(data>""){
+				alert(data.length);
+			}else{
+				alert("没有可供处理的数据。");
+			}
+		});
+	}
+	
+	function submit_feedback(){
+		if($("#feedback_item").val()){
+			jAlert("请输入要发送的信息。");
+			return false;
+		}
+		var item = $("#feedback_item").val();
+		$.post(uploadURL + "/public/submit_feedback_class", {username:currUser, classID: $("#classID").val(),item:item, type: 1, refID:at_ref, readerID: at_username} ,function(data){
+			getFeedbackList();
+			at_name = "";
+			at_username = "";
+			$("#feedback_item").val("");
+		});
+	}
+	
 	function setButton(){
 		var s = $("#status").val();
 		$("#save").hide();
@@ -547,6 +578,7 @@
 		$("#className").prop("disabled",true);
 		if(op ==1){
 			setEmpty();
+			$("#feedback_item").prop("disabled",true);
 		}else{
 			if(checkPermission("classAdd") && s < 2){
 				$("#close").show();
@@ -564,6 +596,9 @@
 			}
 			if(checkPermission("classAdd")){
 				$("#del").show();
+			}
+			if(checkPermission("feedbackAdd")){
+				$("#feedback_item").prop("disabled",false);
 			}
 			$("#btnMockView").show();
 		}
@@ -608,8 +643,8 @@
 	
 	<div style="width:100%;float:left;margin:0;">
 		<div style="border:solid 1px #e0e0e0;width:99%;margin:1px;background:#ffffff;line-height:18px;">
-			<div class="comm" style="background:#f5faf8;">
-			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
+			<div class="comm" style="background:#f5faf8; width:50%; float:left;">
+			<form id="detailCover" name="detailCover" style="width:98%;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
 				<td align="right">开课日期</td>
@@ -696,6 +731,19 @@
 				<td><input class="readOnly" readOnly="true" type="text" id="registerName" size="25" /></td>
 				<td align="right">登记日期</td>
 				<td><input class="readOnly" type="text" id="regDate" size="25" readOnly="true" /></td>
+			</tr>
+			</table>
+			</form>
+			</div>
+			<div class="comm" style="background:#f5f5f5; width:48%; float:left;">
+			<form id="feedback" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
+			<table>
+			<tr>
+				<td align="right" colspan="2" style="width:100%;"><input type="text" id="feedback_list" style="width:500px; height:458px;" /></td>
+			</tr>
+			<tr>
+				<td style="background:#f5f5ff;"><input class="mustFill" type="text" id="feedback_item" style="width:400px; height:30px;" /></td>
+				<td><input class="button" type="button" id="btn_feedback_submit" value="发送" /></td>
 			</tr>
 			</table>
 			</form>
