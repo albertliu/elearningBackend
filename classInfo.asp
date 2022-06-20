@@ -558,7 +558,7 @@
 				var div = document.getElementById('feedback_list');
 				div.scrollTop = div.scrollHeight; 
 			}else{
-				alert("没有可供处理的数据。");
+				$("#feedback_list").html("没有任何消息。");
 			}
 		});
 	}
