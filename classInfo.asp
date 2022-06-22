@@ -179,6 +179,20 @@
 				});
 			}
 		});
+		
+		$("#btnClassAlert").click(function(){
+			getSelCart("visitstockchk");
+			if(selCount==0){
+				alert("请选择要通知的名单。");
+				return false;
+			}
+			if(confirm("确定要提醒这" + selCount + "个学员抓紧学习进度吗？")){
+				$.post(uploadURL + "/public/send_message_study_alert", {batchID: $("#classID").val(), selList: selList, SMS:1, registerID: currUser} ,function(data){
+					getNodeInfo(nodeID);
+					alert("发送成功。");
+				});
+			}
+		});
 
 		$("#btnMockView").click(function(){
 			showClassExamStat($("#classID").val(),$("#className").val(),0,0);
@@ -808,6 +822,7 @@
 		<div style="border:solid 1px #e0e0e0;width:99%;margin:5px;background:#ffffff;line-height:18px;padding-left:20px;">
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnSel" value="全选/取消" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassCall" value="开课通知" /></span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassAlert" value="进度提醒" /></span>
 			<span id="btnMockView">&nbsp;&nbsp;模拟考试汇总</span>
 			<span id="btnMockDetail">&nbsp;&nbsp;模拟考试明细</span>
 		</div>
