@@ -451,7 +451,7 @@
 	function setClassList(id){
 		$("#classID").empty();
 		if(op==1){
-			getComList("classID","[dbo].[getClassListByProject]('" + id + "')","classID","classNameMmeo"," status=0 order by classID desc",1);
+			getComList("classID","[dbo].[getClassListByProject]('" + id + "')","classID","classNameMemo"," status=0 order by classID desc",1);
 		}else{
 			getComList("classID","[dbo].[getClassListByProject]('" + id + "')","classID","classNameMemo"," 1=1 order by classID desc",1);
 		}
