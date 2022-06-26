@@ -38,7 +38,6 @@
 	function jSignatureTest(){
 		var $sigdiv = $("#signature");
 		var datapair = $sigdiv.jSignature("getData", "image")
-		alert(datapair);
 //          datapair = ["image/svg+xml;base64","PD94bWwgdmVyc2lvbj0iMS4wIi
 //          BlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PCFET0NUWVBFIHN2Zy
 //          BQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My
@@ -53,7 +52,7 @@
 		img.src = "data:" + datapair[0] + "," + datapair[1];
 		$(img).appendTo($("#image"));
 
-		jConfirm('确定要提交签名吗?' + nodeID, '确认对话框', function(r) {
+		jConfirm('确定要提交签名吗?', '确认对话框', function(r) {
 			if(r){
 				$.post(uploadURL + "/outfiles/uploadBase64img",{upID:"student_letter_signature",username:nodeID,currUser:currUser,imgData:datapair[1]},function(re){
 					alert("签名成功。");
