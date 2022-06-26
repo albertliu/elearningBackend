@@ -190,9 +190,11 @@
 		});
 		
 		$("#compress").click(function(){
+			showSignatureInfo(36167);
+			/*
 			$.getJSON(uploadURL + "/outfiles/compressImages?path=users/upload/students/photos",function(data){
 				jAlert(data);
-			});
+			});*/
 		});
 		
 		window.setInterval(function () {

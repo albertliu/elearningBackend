@@ -1775,6 +1775,25 @@
 	}
 	
 	//nodeID: ID; op: 0 浏览 1 新增  2 编辑  3 删除  4 审批; mark: 0 不动作  1 有修改时刷新列表  2 有修改时刷新对象
+	function showSignatureInfo(nodeID,refID,op,mark){
+		asyncbox.open({
+			id: "signature",
+			url:"hand_signature.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
+			title: "签字",
+			width: 480,
+			height: 580,
+			cover : {
+	          //透明度
+	          opacity : 0,
+	          //背景颜色
+	           background : '#000'
+	          },
+
+			btnsbar : false
+		});
+	}
+	
+	//nodeID: ID; op: 0 浏览 1 新增  2 编辑  3 删除  4 审批; mark: 0 不动作  1 有修改时刷新列表  2 有修改时刷新对象
 	function showTeacherInfo(nodeID,refID,op,mark){
 		asyncbox.open({
 			id: "teacherInfo",
