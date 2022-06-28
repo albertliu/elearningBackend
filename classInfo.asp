@@ -387,7 +387,8 @@
 						c = "";
 					}
 					arr.push("<td class='center'>" + c + "</td>");	//学习进度
-					arr.push("<td title='最好成绩' class='link1'><a href='javascript:showStudentExamStat(" + ar1[0] + ",\"" + ar1[2] + "\",0,0);'>" + nullNoDisp(ar1[15]) + "</td>");
+					//arr.push("<td title='最好成绩' class='link1'><a href='javascript:showStudentExamStat(" + ar1[0] + ",\"" + ar1[2] + "\",0,0);'>" + c + "</a></td>");
+					arr.push("<td title='最好成绩' class='link1' onclick='showStudentExamStat(" + ar1[0] + ",\"" + ar1[2] + "\",0,0);'>" + nullNoDisp(ar1[15]) + "</td>");
 					//申报
 					if(ar1[65]>0 || ar1[53]>0){
 						arr.push("<td class='center'>" + imgChk + "</td>");	//申报/准考证
