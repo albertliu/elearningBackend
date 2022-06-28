@@ -190,7 +190,7 @@
 		});
 		
 		$("#compress").click(function(){
-			showSignatureInfo(36167);
+			showSignatureInfo(33612);
 			/*
 			$.getJSON(uploadURL + "/outfiles/compressImages?path=users/upload/students/photos",function(data){
 				jAlert(data);

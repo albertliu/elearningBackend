@@ -56,6 +56,12 @@
 			ar = unescape(re).split("|");
 			if(ar > "0"){
 				$("#SNo").html(ar[25] + "&nbsp;&nbsp;班级：" + ar[34]);
+				if(ar[48] > ""){
+					$("#img_signature").attr("src","/users" + ar[48]);
+					$("#signatureDate").html(ar[49]);
+				}else{
+					$("#img_signature").attr("src","images/blank_signature.png");
+				}
 			}else{
 				//alert("没有找到要打印的内容。");
 				return false;
@@ -189,8 +195,8 @@
 			</tr>
 			</table>
 			<div style='margin: 12px;text-align:left; width:95%;'><p style='font-size:1.2em;'>&bull; 提交1张2寸免冠彩色照片。</p></div>
-			<div style='margin: 12px;text-align:right; width:95%; padding-right:100px;'><p style='font-size:1.3em;'>学员签名：</p></div>
-			<div style='margin: 12px;text-align:right; width:95%;'><p id="date" style='font-size:1.3em;'></p></div>
+			<div style='margin: 12px;text-align:right; width:95%; padding-right:0;'><span style='font-size:1.3em;'>学员签名：</span><span><img id="img_signature" src="" value="" style='width:100px;border:none;float:right;' /></span></div>
+			<div style='margin: 12px;text-align:right; width:95%;'><p id="signatureDate" style='font-size:1em;color:#A0A0A0;'></p></div>
 			<div id="needCover"></div>
 		</div>
 	</div>

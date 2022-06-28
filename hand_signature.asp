@@ -56,6 +56,7 @@
 			if(r){
 				$.post(uploadURL + "/outfiles/uploadBase64img",{upID:"student_letter_signature",username:nodeID,currUser:currUser,imgData:datapair[1]},function(re){
 					alert("签名成功。");
+					window.parent.$.close("signature");
 				});
 			}
 		});
