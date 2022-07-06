@@ -135,11 +135,13 @@
 				$("#save").show();
 				//$("#del").show();
 				$("#addNew").show();
+				$("#teacherID").attr("disabled",true);
 			}
 		}
 		if(op == 1){
 			setEmpty();
 			$("#save").show();
+			$("#teacherID").attr("disabled",false);
 		}
 	}
 	
