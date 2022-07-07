@@ -241,7 +241,7 @@
 		}
 		//if($("#searchEnterOld").attr("checked")){Old = 1;}
 		//alert($("#searchEnterDept").val() + "&refID=" + $("#searchEnterProjectID").val() + "&status=" + $("#searchEnterStatus").val() + "&photoStatus=" + $("#searchEnterPhotoStatus").val() + "&courseID=" + $("#searchEnterCourseID").val() + "&host=" + $("#searchEnterHost").val() + "&checked=" + $("#searchEnterChecked").val() + "&materialChecked=" + $("#searchEnterMaterialChecked").val() + "&classID=" + $("#searchEnterClassID").val());
-		$.get("studentCourseControl.asp?op=getStudentCourseList&where=" + escape(sWhere) + "&mark=" + mark + "&kindID=" + $("#searchEnterDept").val() + "&refID=" + $("#searchEnterProjectID").val() + "&status=" + $("#searchEnterStatus").val() + "&reexamine=" + $("#searchEnterReexamine").val() + "&photoStatus=" + $("#searchEnterPhotoStatus").val() + "&courseID=" + $("#searchEnterCourseID").val() + "&host=" + $("#searchEnterHost").val() + "&checked=" + $("#searchEnterChecked").val() + "&materialChecked=" + $("#searchEnterMaterialChecked").val() + "&passcard=" + $("#searchEnterPasscard").val() + "&classID=" + $("#searchEnterClassID").val() + "&fStart=" + $("#searchEnterStartDate").val() + "&fEnd=" + $("#searchEnterEndDate").val() + "&dk=101&times=" + (new Date().getTime()),function(data){
+		$.get("studentCourseControl.asp?op=getStudentCourseList&where=" + escape(sWhere) + "&mark=" + mark + "&kindID=" + $("#searchEnterDept").val() + "&refID=" + $("#searchEnterProjectID").val() + "&status=" + $("#searchEnterStatus").val() + "&reexamine=" + $("#searchEnterReexamine").val() + "&photoStatus=" + $("#searchEnterPhotoStatus").val() + "&courseID=" + $("#searchEnterCourseID").val() + "&host=" + $("#searchEnterHost").val() + "&checked=" + $("#searchEnterChecked").val() + "&materialChecked=" + $("#searchEnterMaterialChecked").val() + "&passcard=" + $("#searchEnterPasscard").val() + "&classID=" + $("#searchEnterClassID").val() + "&fStart=" + $("#searchEnterStartDate").val() + "&fEnd=" + $("#searchEnterEndDate").val() + "&completion1=" + $("#searchEnter_completion1").val() + "&score1=" + $("#searchEnter_score1").val() + "&dk=101&times=" + (new Date().getTime()),function(data){
 		//$.getJSON("enterControl.asp?op=getEnterList",function(data){
 			//alert(unescape(data));
 			var ar = new Array();
@@ -284,8 +284,8 @@
 			//arr.push("<th width='6%'>单位</th>");
 			arr.push("<th width='7%'>电话</th>");
 			arr.push("<th width='5%'>表</th>");
-			arr.push("<th width='5%'>练习</th>");
 			arr.push("<th width='5%'>进度%</th>");
+			arr.push("<th width='5%'>练习</th>");
 			if(role){
 				arr.push("<th width='6%'>次数</th>");
 			}else{
@@ -372,7 +372,6 @@
 					//arr.push("<td class='link1'><a href='javascript:window.open(\"entryform_" + ar1[60] + ".asp?keyID=0&nodeID=" + ar1[0] + "&refID=" + ar1[1] + ", \"_blank\");'>" + imgChk + "</a></td>");
 					arr.push("<td class='left'>" + ar1[69] + "</td>");
 					arr.push("<td class='link1'><a href='javascript:openEntryForm(\"" + ar1[60] + "\"," + ar1[0] + ",\"" + ar1[1] + "\");'>" + imgChk + "</a></td>");
-					arr.push("<td class='link1' onclick='showStudentExamStat(" + ar1[0] + ",\"" + ar1[2] + "\",0,0);'>" + nullNoDisp(ar1[15]) + "</td>");
 					c = ar1[10];
 					if(c>0){
 						c = c;
@@ -380,6 +379,7 @@
 						c = "";
 					}
 					arr.push("<td class='center'>" + c + "</td>");	//学习进度
+					arr.push("<td class='link1' onclick='showStudentExamStat(" + ar1[0] + ",\"" + ar1[2] + "\",0,0);'>" + nullNoDisp(ar1[15]) + "</td>");
 					if(role){
 						arr.push("<td class='left'>" + ar1[59] + "</td>");
 					}else{

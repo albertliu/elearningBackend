@@ -327,7 +327,7 @@
 		if($("#showPhoto").prop("checked")){
 			photo = 1;
 		}
-		$.get("studentCourseControl.asp?op=getStudentCourseList&classID=" + $("#classID").val() + "&mark=" + mark + "&completion1=" + $("#s_completion1").val() + "&completion2=" + $("#s_completion2").val() + "&score1=" + $("#s_score1").val() + "&score2=" + $("#s_score2").val() + "&times=" + (new Date().getTime()),function(data){
+		$.get("studentCourseControl.asp?op=getStudentCourseList&classID=" + $("#classID").val() + "&mark=" + mark + "&completion1=" + $("#s_completion1").val() + "&score1=" + $("#s_score1").val() + "&times=" + (new Date().getTime()),function(data){
 			//alert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
@@ -831,8 +831,8 @@
 			<span id="btnMockDetail">&nbsp;&nbsp;模拟考试明细</span>
 		</div>
 		<div>
-			学习进度&nbsp;<input type="text" id="s_completion1" size="2" />-<input type="text" id="s_completion2" size="2" />
-			&nbsp;&nbsp;模拟成绩&nbsp;<input type="text" id="s_score1" size="2" />-<input type="text" id="s_score2" size="2" />
+			学习进度&nbsp;&gt;=<input type="text" id="s_completion1" size="2" />%
+			&nbsp;&nbsp;模拟成绩&nbsp;&gt;=<input type="text" id="s_score1" size="2" />
 			&nbsp;&nbsp;<input class="button" type="button" id="btnFindStudent" value="查找" />&nbsp;&nbsp;
 			&nbsp;&nbsp;<input style="border:0px;" type="checkbox" id="showPhoto" value="" />&nbsp;显示照片&nbsp;&nbsp;
 		</div>
