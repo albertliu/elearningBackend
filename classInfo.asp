@@ -47,6 +47,7 @@
 			getComList("courseID","v_courseInfo a, hostCourseList b","a.courseID","a.shortName","a.certID=b.courseID and a.status=0 and b.host='" + currHost + "' order by a.courseID",1);
 		}
 		getDicList("planStatus","status",0);
+		getDicList("online","kindID",0);
 		$("#dateStart").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'});});
 		$("#dateEnd").click(function(){WdatePicker();});
 		
@@ -193,6 +194,20 @@
 				});
 			}
 		});
+		
+		$("#btnClassExamDeny").click(function(){
+			getSelCart("visitstockchk");
+			if(selCount==0){
+				alert("请选择要通知的名单。");
+				return false;
+			}
+			if(confirm("确定要通知这" + selCount + "个学员暂不安排考试吗？")){
+				$.post(uploadURL + "/public/send_message_exam_deny", {batchID: $("#classID").val(), selList: selList, SMS:1, registerID: currUser} ,function(data){
+					getNodeInfo(nodeID);
+					alert("发送成功。");
+				});
+			}
+		});
 
 		$("#btnMockView").click(function(){
 			showClassExamStat($("#classID").val(),$("#className").val(),0,0);
@@ -327,7 +342,7 @@
 		if($("#showPhoto").prop("checked")){
 			photo = 1;
 		}
-		$.get("studentCourseControl.asp?op=getStudentCourseList&classID=" + $("#classID").val() + "&mark=" + mark + "&completion1=" + $("#s_completion1").val() + "&score1=" + $("#s_score1").val() + "&times=" + (new Date().getTime()),function(data){
+		$.get("studentCourseControl.asp?op=getStudentCourseList&classID=" + $("#classID").val() + "&mark=" + mark + "&completion2=" + $("#s_completion2").val() + "&score2=" + $("#s_score2").val() + "&times=" + (new Date().getTime()),function(data){
 			//alert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
@@ -714,7 +729,7 @@
 				<td><input type="text" id="dateEnd" size="15" />&nbsp;预计</td>
 			</tr>
 			<tr>
-				<input id="ID" type="hidden" /><input id="kindID" type="hidden" /><input id="status" type="hidden" /><input id="classID" type="hidden" />
+				<input id="ID" type="hidden" /><input id="status" type="hidden" /><input id="classID" type="hidden" />
 				<td align="right">属性</td>
 				<td><select id="host" style="width:180px;"></select></td>
 				<td align="right">课程名称</td><input id="certID" type="hidden" /><input id="courseName" type="hidden" />
@@ -743,8 +758,10 @@
 				<td><input type="text" id="classroom" size="25" /></td>
 			</tr>
 			<tr>
-				<td align="right">任课教师</td><input id="teacherName" type="hidden" />
-				<td><select id="teacher" style="width:180px;"></select></td>
+				<td align="left" colspan="2"><input id="teacherName" type="hidden" />
+					任课教师&nbsp;<select id="teacher" style="width:75px;"></select>
+					&nbsp;&nbsp;类型&nbsp;<select id="kindID" style="width:60px;"></select>
+				</td>
 				<td align="right"><input class="button" type="button" id="btnSchedule" value="排课表" /></td>
 				<td><input type="text" id="scheduleDate" size="10" class="readOnly" readOnly="true" />&nbsp;&nbsp;<span id="schedule" style="margin-left:10px;"></span></td>
 			</tr>
@@ -827,12 +844,13 @@
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnSel" value="全选/取消" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassCall" value="开课通知" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassAlert" value="进度提醒" /></span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassExamDeny" value="不安排考试通知" /></span>
 			<span id="btnMockView">&nbsp;&nbsp;模拟考试汇总</span>
 			<span id="btnMockDetail">&nbsp;&nbsp;模拟考试明细</span>
 		</div>
 		<div>
-			学习进度&nbsp;&gt;=<input type="text" id="s_completion1" size="2" />%
-			&nbsp;&nbsp;模拟成绩&nbsp;&gt;=<input type="text" id="s_score1" size="2" />
+			学习进度&nbsp;&lt;=<input type="text" id="s_completion2" size="2" />%
+			&nbsp;&nbsp;模拟成绩&nbsp;&lt;=<input type="text" id="s_score2" size="2" />
 			&nbsp;&nbsp;<input class="button" type="button" id="btnFindStudent" value="查找" />&nbsp;&nbsp;
 			&nbsp;&nbsp;<input style="border:0px;" type="checkbox" id="showPhoto" value="" />&nbsp;显示照片&nbsp;&nbsp;
 		</div>

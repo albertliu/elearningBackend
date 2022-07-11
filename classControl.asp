@@ -84,7 +84,7 @@ if(op == "getClassList"){
 		//28
 		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value + "|" + rs("qtyReturn").value + "|" + rs("teacher").value + "|" + rs("scheduleDate").value + "|" + rs("courseID").value + "|" + rs("courseName").value;
 		//36
-		result += "|" + rs("teacherName").value + "|" + rs("host").value + "|" + rs("transaction_id").value + "|" + rs("re").value + "|" + rs("reexamineName").value;
+		result += "|" + rs("teacherName").value + "|" + rs("host").value + "|" + rs("transaction_id").value + "|" + rs("re").value + "|" + rs("reexamineName").value + "|" + rs("kindName").value;
 		rs.MoveNext();
 	}
 /**/
@@ -109,7 +109,7 @@ if(op == "getNodeInfo"){
 		//30
 		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value + "|" + rs("qtyReturn").value + "|" + rs("teacher").value + "|" + rs("scheduleDate").value + "|" + rs("courseID").value + "|" + rs("courseName").value;
 		//38
-		result += "|" + rs("teacherName").value + "|" + rs("host").value + "|" + rs("transaction_id").value + "|" + rs("re").value + "|" + rs("reexamineName").value;
+		result += "|" + rs("teacherName").value + "|" + rs("host").value + "|" + rs("transaction_id").value + "|" + rs("re").value + "|" + rs("reexamineName").value + "|" + rs("kindName").value;
 		//execSQL(sql);
 	}
 	rs.Close();

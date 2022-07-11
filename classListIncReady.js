@@ -60,7 +60,7 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='2%'>No</th>");
-			arr.push("<th width='7%'>编号</th>");
+			arr.push("<th width='6%'>编号</th>");
 			arr.push("<th width='15%'>班级名称</th>");
 			arr.push("<th width='8%'>开课日期</th>");
 			arr.push("<th width='8%'>结课日期</th>");
@@ -72,13 +72,15 @@
 			arr.push("<th width='6%'>报考</th>");
 			arr.push("<th width='6%'>考试</th>");
 			arr.push("<th width='6%'>证书</th>");
-			arr.push("<th width='9%'>通过率</th>");
+			arr.push("<th width='6%'>通过率</th>");
+			arr.push("<th width='6%'>类型</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
 			var i = 0;
 			var c = 0;
 			var mNew = "";
+			var k = "";
 			var imgChk = "<img src='images/green_check.png'>";
 			if(ar>""){
 				$.each(ar,function(iNum,val){
@@ -118,12 +120,18 @@
 						x = "";
 					}
 					arr.push("<td align='right'>" + x + "</td>");
+					k = ar1[41];
+					if(k=="线下"){
+						k = "";
+					}
+					arr.push("<td class='left'>" + k + "</td>");
 					arr.push("</tr>");
 				});
 			}
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
