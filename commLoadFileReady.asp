@@ -28,6 +28,12 @@
 					if(msg == ""){
 						if(data.count>0){
 							msg = "成功上传" + data.count + "个文件。";
+							if(data.err_user > ""){
+								msg += "\n" + data.err_msg;
+							}
+							if(data.exist_user > ""){
+								msg += "\n" + data.exist_msg;
+							}
 						}else{
 							msg = "没有上传有效文件。";
 						}
