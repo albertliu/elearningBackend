@@ -71,8 +71,8 @@
 			arr.push("<th width='6%'>人数</th>");
 			arr.push("<th width='6%'>报考</th>");
 			arr.push("<th width='6%'>考试</th>");
-			arr.push("<th width='6%'>证书</th>");
-			arr.push("<th width='6%'>通过率</th>");
+			arr.push("<th width='6%'>合格/证</th>");
+			arr.push("<th width='6%'>通过%</th>");
 			arr.push("<th width='6%'>类型</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -112,7 +112,7 @@
 						arr.push("<td class='left' style='color: #999999;'>" + nullNoDisp(ar1[24]) + "</td>");
 					}
 					arr.push("<td class='left'>" + nullNoDisp(ar1[25]) + "</td>");
-					arr.push("<td class='left'>" + nullNoDisp(ar1[26]) + "</td>");
+					arr.push("<td class='left' title='合格/发证'>" + nullNoDisp(ar1[26]) + (ar1[26]>0?"/"+ar1[42]:"") + "</td>");
 					var x = ar1[20];
 					if(x > 0 && ar1[26] > 0){
 						x = (ar1[26]*100/ar1[20]).toFixed(2);
