@@ -117,3 +117,21 @@ body { background:#fff url(../images/bg0.gif); }
 #img_education{-webkit-filter: grayscale(100%);-moz-filter: grayscale(100%);-ms-filter: grayscale(100%);-o-filter: grayscale(100%);filter: grayscale(100%);filter: gray;}
 */
 
+ol{
+	list-style-type: none;
+	counter-reset: mycounter;
+}
+ol li:before{
+	content: counter(mycounter) "、";
+	counter-increment: mycounter;
+}
+ol li{
+	padding: 3px;
+}
+ul li:before{
+	content: none;
+	counter-increment: none;
+}
+ul li{
+	padding-left: 15px;
+}

@@ -405,7 +405,7 @@
 						arr.push("<td class='center'>&nbsp;</td>");
 					}*/
 					if(photo == 0){
-						arr.push("<td class='left'>" + nullNoDisp(ar1[66].replace(".00","")) + "</td>");
+						arr.push("<td class='left'><a href='javascript:showStudentExamPaper(" + ar1[0] + ",\"" + ar1[2] + "\");'>" + nullNoDisp(ar1[66].replace(".00","")) + "</a></td>");
 						arr.push("<td class='center'>" + nullNoDisp(ar1[68]) + "</td>");
 					}else{
 						if(ar1[18] > ""){

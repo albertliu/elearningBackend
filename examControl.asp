@@ -92,4 +92,31 @@ if(op == "delNode"){
 	execSQL(sql);
 	Response.Write(nodeID);
 }
+
+if(op == "getStudentExamByEnterID"){
+	sql = "SELECT a.* FROM v_studentExamList a, v_passcardInfo b where a.refID=b.ID and b.enterID=" + refID;
+	rs = conn.Execute(sql);
+	if (!rs.EOF){
+		result = rs("paperID").value + "|" + rs("examID").value + "|" + rs("score").value + "|" + rs("scorePass").value + "|" + rs("startDate").value + "|" + rs("endDate").value;
+		//6
+		result += "|" + rs("statusName").value + "|" + rs("username").value;
+		execSQL(sql);
+	}
+	rs.Close();
+	Response.Write(escape(result));
+}
+
+if(op == "getStudentQuestionList"){
+	sql = "select * from v_studentQuestionList where refID=" + refID;
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("kindID").value + "|" + rs("questionName").value + "|" + rs("scorePer").value + "|" + rs("score").value + "|" + rs("answer").value + "|" + rs("myAnswer").value;
+		//6
+		result += "|" + rs("A").value + "|" + rs("B").value + "|" + rs("C").value + "|" + rs("D").value + "|" + rs("E").value + "|" + rs("F").value + "|" + rs("image").value;
+		//13
+		result += "|" + rs("imageA").value + "|" + rs("imageB").value + "|" + rs("imageC").value + "|" + rs("imageD").value + "|" + rs("imageE").value + "|" + rs("imageF").value + "|" + rs("questionID").value;
+		rs.MoveNext();
+	}
+	Response.Write(escape(result.substr(2)));
+}	
 %>

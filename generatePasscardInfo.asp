@@ -411,7 +411,7 @@
 					arr.push("<td class='left'>" + ar1[3] + "</td>");
 					arr.push("<td class='left'>" + ar1[14] + ar1[15].substring(0,2) + "." + ar1[16] + "</td>");
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
-					arr.push("<td class='left'>" + ar1[7] + "</td>");
+					arr.push("<td class='left'><a href='javascript:showStudentExamPaper(" + ar1[2] + ",\"" + ar1[5] + "\");'>" + ar1[7] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[10] + "</td>");
 					arr.push("<td class='left' title='" + ar1[17] + "'>" + ar1[17].substring(0,8) + "</td>");
 					if(ar1[8]>0){
@@ -503,7 +503,7 @@
 					arr.push("<td class='left'>" + ar1[3] + "</td>");
 					arr.push("<td class='left'>" + nullNoDisp(ar1[4]) + "</td>");
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
-					arr.push("<td class='left'>" + ar1[7] + "</td>");
+					arr.push("<td class='left'><a href='javascript:showStudentExamPaper(" + ar1[2] + ",\"" + ar1[5] + "\");'>" + ar1[7] + "</a></td>");
                     h = "";
                     if(ar1[5]==1){
                         h = ar1[9] + "分钟";

@@ -418,7 +418,7 @@
                         h = ar1[70].replace(".00","") + "/" + ar1[71].replace(".00","");
                     }
 					if(photo == 0){
-						arr.push("<td class='left'>" + nullNoDisp(h) + "</td>");
+						arr.push("<td class='left'><a href='javascript:showStudentExamPaper(" + ar1[0] + ",\"" + ar1[2] + "\");'>" + nullNoDisp(h) + "</a></td>");
 						arr.push("<td class='center'>" + nullNoDisp(ar1[68]) + "</td>");
 					}else{
 						if(ar1[18] > ""){
