@@ -174,7 +174,7 @@
 
 <body style="background:#f0f0f0;">
 
-<div id='layout' align='left' style="background:#f0f0f0;">	
+<div id='layout' align='left' style="background:#f0f0f0;width:1000px;">	
 	
 	<div style="width:100%;float:left;margin:0;">
 		<div style="text-align:center;">
