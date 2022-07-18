@@ -111,7 +111,7 @@
 					c += "<a href='/users" + ar[24] + "' target='_blank'>学历证明</a>";
 				}
 				if(c == ""){c = "&nbsp;&nbsp;缺少学历证明";}
-				$("#fire_materials").html(c);
+				$("#img_education").html(c);
 				c = "";
 				if(ar[49] > ""){
 					c += "<a href='/users" + ar[49] + "' target='_blank'>身份证正反面</a>";
@@ -182,6 +182,7 @@
 		</div>
 		<div>
 		申报文件
+			<span id="img_education" style="margin-left:20px;"></span>
 			<span id="fire_materials" style="margin-left:20px;"></span>
 			<input class="button" style="margin-left:20px;" type="button" id="btnFiremanMaterials" value="生成文件" />
 		</div>
