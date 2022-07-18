@@ -54,6 +54,8 @@
 				arr.push('</table>');
 				
 				$("#cover").html(arr.join(""));
+			}else{
+				alert("没有找到任何素材。");
 			}
 		});
 	}
