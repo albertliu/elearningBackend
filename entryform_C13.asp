@@ -44,6 +44,10 @@
 		$("#print").click(function(){
 			resumePrint();
 		});
+
+		$("#btnFiremanMaterials").click(function(){
+			generateFiremanMaterials();
+		});
 		getNeed2know(nodeID);
 		getNodeInfo(nodeID, refID);
 });
@@ -87,6 +91,7 @@
 				$("#address").html(ar[34]);
 				$("#IDaddress").html(ar[38]);
 				//$("#ethnicity").html(ar[37]);
+				var c = "";
 				if(ar[21] > ""){
 					$("#img_photo").attr("src","/users" + ar[21]);
 				}else{
@@ -102,6 +107,17 @@
 				}else{
 					$("#img_cardB").attr("src","images/blank_cardB.png");
 				}
+				if(ar[24] > ""){
+					c += "<a href='/users" + ar[24] + "' target='_blank'>学历证明</a>";
+				}
+				if(c == ""){c = "&nbsp;&nbsp;缺少学历证明";}
+				$("#fire_materials").html(c);
+				c = "";
+				if(ar[49] > ""){
+					c += "<a href='/users" + ar[49] + "' target='_blank'>身份证正反面</a>";
+				}
+				if(c == ""){c = "&nbsp;&nbsp;身份证正反面还未生成";}
+				$("#fire_materials").html(c);
 				//$("#date").html(currDate);
 				if(keyID==1){
 					resumePrint();
@@ -109,6 +125,17 @@
 			}else{
 				alert("没有找到要打印的内容。");
 				return false;
+			}
+		});
+	}
+	
+	function generateFiremanMaterials(){
+		$.getJSON(uploadURL + "/outfiles/generate_IDcard_materials?username=" + refID + "&registerID=" + currUser ,function(data){
+			if(data>""){
+				alert("已生成文件");
+				getNodeInfo(nodeID, refID);
+			}else{
+				alert("没有可供处理的数据。");
 			}
 		});
 	}
@@ -152,6 +179,11 @@
 	<div style="width:100%;float:left;margin:0;">
 		<div style="text-align:center;">
 		<input class="button" type="button" id="print" value="打印" />&nbsp;
+		</div>
+		<div>
+		申报文件
+			<span id="fire_materials" style="margin-left:20px;"></span>
+			<input class="button" style="margin-left:20px;" type="button" id="btnFiremanMaterials" value="生成文件" />
 		</div>
 		<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
 			<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>特种设备作业人员资格申请表</h3></div>

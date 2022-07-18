@@ -16,10 +16,12 @@
 <script language="javascript">
 	var kindID = 0;
 	var item = "";
+	var refID = 0;  //IDcard
 	var updateCount = 0;
 	var uploadURL = "<%=uploadURL%>";
 	$(document).ready(function (){
 		kindID = "<%=kindID%>";
+		refID = "<%=refID%>";
 		item = "<%=item%>";
 		$.ajaxSetup({ 
 			async: false 
@@ -32,7 +34,7 @@
 	});
 
 	function getNodeInfo(id){
-		$.getJSON(uploadURL + "/public/getStudentMaterials?username=" + id,function(data){
+		$.getJSON(uploadURL + "/public/getStudentMaterials?username=" + id + "&IDcard=" + refID,function(data){
 			//jAlert(unescape(data));
 			var c = "";
 			$("#cover").empty();
