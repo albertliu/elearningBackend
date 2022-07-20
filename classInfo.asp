@@ -250,6 +250,9 @@
 		$("#btn_feedback_submit").click(function(){
 			submit_feedback();
 		});
+		$("#btnDownload").click(function(){
+			outputFloat(9101,'file');
+		});
 
 		var timer = setInterval(getFeedbackList, 30000);
 		//var div = document.getElementById('feedback_list');
@@ -342,12 +345,13 @@
 		if($("#showPhoto").prop("checked")){
 			photo = 1;
 		}
-		$.get("studentCourseControl.asp?op=getStudentCourseList&classID=" + $("#classID").val() + "&mark=" + mark + "&completion2=" + $("#s_completion2").val() + "&score2=" + $("#s_score2").val() + "&times=" + (new Date().getTime()),function(data){
+		$.get("studentCourseControl.asp?op=getStudentCourseList&classID=" + $("#classID").val() + "&mark=" + mark + "&completion2=" + $("#s_completion2").val() + "&score2=" + $("#s_score2").val() + "&dk=9101&times=" + (new Date().getTime()),function(data){
 			//alert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
 			$("#cover").empty();
 			var ar0 = new Array();
+			var i = 0;
 			ar0 = ar.shift().split("|");
 			arr = [];		
 			arr.push("<div>" + ar.shift() + "</div>");					
@@ -376,7 +380,6 @@
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
 			if(ar>""){
-				var i = 0;
 				var c = 0;
 				var h = "";
 				var k = 0;
@@ -467,6 +470,7 @@
 				"bInfo": true,
 				"aoColumnDefs": []
 			});
+			floatCount = i;
 		});
 	}
 	
@@ -713,7 +717,6 @@
 
 <body style="background:#f0f0f0;">
  <!--#include file='commFloatDetail.asp' -->
- <!--#include file='commLoadFileDetail.asp' -->
 
 <div id='layout' align='left' style="background:#f0f0f0;">	
 	
@@ -853,6 +856,7 @@
 			&nbsp;&nbsp;模拟成绩&nbsp;&lt;=<input type="text" id="s_score2" size="2" />
 			&nbsp;&nbsp;<input class="button" type="button" id="btnFindStudent" value="查找" />&nbsp;&nbsp;
 			&nbsp;&nbsp;<input style="border:0px;" type="checkbox" id="showPhoto" value="" />&nbsp;显示照片&nbsp;&nbsp;
+			&nbsp;&nbsp;<input class="button" type="button" id="btnDownload" value="名单下载" />
 		</div>
 	</div>
 	<hr size="1" noshadow />
