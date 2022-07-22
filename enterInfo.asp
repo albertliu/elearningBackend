@@ -583,6 +583,7 @@
 		}
 	}
 	function setEmpty(){
+		$("#SNo").val("");
 		if($("#kindID").val()==0){
 			//个人缴费
 			$("#statusPay").val(1);

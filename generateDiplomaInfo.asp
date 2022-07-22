@@ -216,7 +216,7 @@
 		var delivery = 0;
 		if($("#delivery").attr("checked")){delivery = 1;}
 		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-		$.get("diplomaControl.asp?op=updateGenerateDiplomaMemo&nodeID=" + $("#ID").val() + "&printed=" + printed + "&delivery=" + delivery + "&printDate=" + $("#printDate").val() + "&deliveryDate=" + $("#deliveryDate").val() + "&startDate=" + $("#startDate").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("diplomaControl.asp?op=updateGenerateDiplomaMemo&nodeID=" + $("#ID").val() + "&kindID=0&printed=" + printed + "&delivery=" + delivery + "&printDate=" + $("#printDate").val() + "&deliveryDate=" + $("#deliveryDate").val() + "&startDate=" + $("#startDate").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");

@@ -45,6 +45,7 @@
 		$("#startDate").click(function(){WdatePicker();});
 		$("#class_startDate").click(function(){WdatePicker();});
 		$("#class_endDate").click(function(){WdatePicker();});
+		getDicList("diplomaFontSize","kindID",0);
 		setButton();
 		
 		if(op==0){
@@ -97,7 +98,7 @@
 			jConfirm("确定要重新制作证书吗？证书编号将保持不变。","确认",function(r){
 				if(r){
 					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
-					$.post(uploadURL + "/outfiles/generate_diploma_byClassID?ID=" + $("#ID").val() + "&mark=0&certID=" + $("#certID").val() + "&startDate=" + $("#startDate").val() + "&class_startDate=" + $("#class_startDate").val() + "&class_endDate=" + $("#class_endDate").val() + "&registerID=" + currUser, {selList:""} ,function(data){
+					$.post(uploadURL + "/outfiles/generate_diploma_byClassID?ID=" + $("#ID").val() + "&mark=0&certID=" + $("#certID").val() + "&kindID=" + $("#kindID").val() + "&startDate=" + $("#startDate").val() + "&class_startDate=" + $("#class_startDate").val() + "&class_endDate=" + $("#class_endDate").val() + "&registerID=" + currUser, {selList:""} ,function(data){
 						if(data>""){
 							jAlert("证书重新制作成功 <a href='" + data + "' target='_blank'>下载文件</a>");
 							updateCount += 1;
@@ -142,6 +143,7 @@
 				$("#class_startDate").val(ar[18]);
 				$("#class_endDate").val(ar[19]);
 				$("#photoDate").val(ar[21]);
+				$("#kindID").val(ar[22]);
 				if(ar[13]==1){
 					$("#printed").prop("checked",true);
 				}else{
@@ -271,7 +273,7 @@
 		var photo = 0;
 		if($("#photos").attr("checked")){photo = 1;}
 		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-		$.get("diplomaControl.asp?op=updateGenerateDiplomaMemo&nodeID=" + $("#ID").val() + "&printed=" + printed + "&delivery=" + delivery + "&photo=" + photo + "&printDate=" + $("#printDate").val() + "&deliveryDate=" + $("#deliveryDate").val() + "&photoDate=" + $("#photoDate").val() + "&startDate=" + $("#startDate").val() + "&class_startDate=" + $("#class_startDate").val() + "&class_endDate=" + $("#class_endDate").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("diplomaControl.asp?op=updateGenerateDiplomaMemo&nodeID=" + $("#ID").val() + "&kindID=" + $("#kindID").val() + "&printed=" + printed + "&delivery=" + delivery + "&photo=" + photo + "&printDate=" + $("#printDate").val() + "&deliveryDate=" + $("#deliveryDate").val() + "&photoDate=" + $("#photoDate").val() + "&startDate=" + $("#startDate").val() + "&class_startDate=" + $("#class_startDate").val() + "&class_endDate=" + $("#class_endDate").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -362,10 +364,10 @@
 				</td>
 			</tr>
 			<tr>
-				<td align="right">制作日期</td>
-				<td><input class="readOnly" type="text" id="regDate" size="25" readOnly="true" /></td>
-				<td align="right">制作人</td>
-				<td><input class="readOnly" type="text" id="registerName" size="25" readOnly="true" /></td>
+				<td align="right">证书字体</td>
+				<td><select id="kindID" style="width:100px;"></select></td>
+				<td align="right">制作</td>
+				<td><input class="readOnly" type="text" id="registerName" size="10" readOnly="true" />&nbsp;&nbsp;<input class="readOnly" type="text" id="regDate" size="10" readOnly="true" /></td>
 			</tr>
 			<tr>
 				<td align="right">备注</td>

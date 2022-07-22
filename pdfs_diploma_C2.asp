@@ -15,10 +15,12 @@
 
 <script language="javascript">
 	var refID = 0;
+	var kindID = 0;
 	var updateCount = 0;
 	var uploadURL = "<%=uploadURL%>";
 	$(document).ready(function (){
 		refID = "<%=refID%>";
+		kindID = "<%=kindID%>";		//diplomaFontSize  0 normal  1 big
 		$.ajaxSetup({ 
 			async: false 
 		}); 
@@ -39,6 +41,10 @@
 				var m = 2;  //rows per table
 				var n = 2;  //columns per row
 				var k = 0;
+				var diplomaFontSize = "";
+				if(kindID==1){
+					diplomaFontSize = "A";
+				}
 				$.each(data,function(iNum,val){
 					k += 1;
 					if(i == 0){
@@ -59,15 +65,15 @@
 					arr.push('		</tr>');
 					arr.push('		<tr>');
 					arr.push('			<td style="height:80px;"><h4>姓名：</h4></td>');
-					arr.push('			<td><h4>' + val["name"] + '</h4></td>');
+					arr.push('			<td><h4' + diplomaFontSize + '>' + val["name"] + '</h4' + diplomaFontSize + '></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
 					arr.push('			<td style="height:80px;"><h4>性别：</h4></td>');
-					arr.push('			<td><h4>' + val["sexName"] + '</h4></td>');
+					arr.push('			<td><h4' + diplomaFontSize + '>' + val["sexName"] + '</h4' + diplomaFontSize + '></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
 					arr.push('			<td style="height:80px;"><h4>身份证号：</h4></td>');
-					arr.push('			<td><h4>' + val["username"] + '</h4></td>');
+					arr.push('			<td><h4' + diplomaFontSize + '>' + val["username"] + '</h4' + diplomaFontSize + '></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
 					arr.push('			<td style="height:80px;"><h4>单位：</h4></td>');
@@ -75,22 +81,22 @@
 					arr.push('		</tr>');
 					arr.push('		<tr>');
 					arr.push('			<td style="height:80px;"><h4>职务：</h4></td>');
-					arr.push('			<td><h4>' + val["job"] + '</h4></td>');
+					arr.push('			<td><h4' + diplomaFontSize + '>' + val["job"] + '</h4' + diplomaFontSize + '></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
 					arr.push('			<td style="height:80px;"><h4>证书编号：</h4></td>');
-					arr.push('			<td><h4>' + val["diplomaID"] + '</h4></td>');
+					arr.push('			<td><h4' + diplomaFontSize + '>' + val["diplomaID"] + '</h4' + diplomaFontSize + '></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
 					arr.push('			<td style="height:80px;"><h4>发证日期：</h4></td>');
-					arr.push('			<td><h4>' + val["startDate"] + '</h4></td>');
+					arr.push('			<td><h4' + diplomaFontSize + '>' + val["startDate"] + '</h4' + diplomaFontSize + '></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
 					arr.push('			<td style="height:80px;"><h4>有效期限：</h4></td>');
-					arr.push('			<td><h4>' + val["term"] + '年</h4></td>');
+					arr.push('			<td><h4' + diplomaFontSize + '>' + val["term"] + '年</h4' + diplomaFontSize + '></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
-					arr.push('			<td style="height:80px;" colspan="4"><h4 style="float:left;padding-left:20px;">' + val["diplomaNo"] + '</h4>');
+					arr.push('			<td style="height:80px;" colspan="4"><h4' + diplomaFontSize + ' style="float:left;padding-left:20px;">' + val["diplomaNo"] + '</h4' + diplomaFontSize + '>');
 					arr.push('			<h4 style="float:right;padding-right:150px;">（发证机关印章）</h4></td>');
 					arr.push('		</tr>');
 					arr.push('	</table>');
