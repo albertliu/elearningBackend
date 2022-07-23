@@ -202,8 +202,13 @@ if(op == "getStudentCourseList"){
 		}
 	}
 	//学习进度
-	if(String(Request.QueryString("completion2")) > "" && String(Request.QueryString("completion2")) !="undefined"){
-		s = "completion<=" + String(Request.QueryString("completion2"));
+	var completion2 = String(Request.QueryString("completion2"));
+	var score2 = String(Request.QueryString("score2"));
+	if(completion2 > "" && completion2 !="undefined"){
+		s = "completion<=" + completion2;
+		if(score2 > "" && score2 !="undefined"){
+			s = "(" + s;
+		}
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
@@ -220,12 +225,17 @@ if(op == "getStudentCourseList"){
 		}
 	}
 	//模拟成绩
-	if(String(Request.QueryString("score2")) > "" && String(Request.QueryString("score2")) !="undefined"){
-		s = "examScore<=" + String(Request.QueryString("score2"));
-		if(where > ""){
-			where = where + " and " + s;
+	if(score2 > "" && score2 !="undefined"){
+		s = "examScore<=" + score2;
+		if(completion2 > "" && completion2 !="undefined"){
+			s = " or " + s + ")";
+			where = where + s;
 		}else{
-			where = s;
+			if(where > ""){
+				where = where + " and " + s;
+			}else{
+				where = s;
+			}
 		}
 	}
 
