@@ -717,6 +717,7 @@
 
 <body style="background:#f0f0f0;">
  <!--#include file='commFloatDetail.asp' -->
+ <!--#include file='commLoadFileDetail.asp' -->
 
 <div id='layout' align='left' style="background:#f0f0f0;">	
 	
