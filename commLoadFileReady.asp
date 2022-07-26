@@ -29,16 +29,18 @@
 						if(data.count>0){
 							msg = "成功上传" + data.count + "个文件。";
 						}else{
-							msg = "没有上传有效文件。";
+							msg = "没有上传有效文件。\n";
 						}
 						if(data.err_msg > ""){
-							msg += "\n" + data.err_msg;
+							msg += data.err_msg;
 						}
 						if(data.exist_msg > ""){
-							msg += "\n" + data.exist_msg;
+							msg += data.exist_msg;
 						}
+						alert(msg, "上传结果");
+					}else{
+						alert(msg, "上传结果");
 					}
-					alert(msg, "上传结果");
 					if(commMark != "mulitple"){
 						document.getElementById("lightLoadFile").style.display="none";
 						document.getElementById("fadeLoadFile").style.display="none";
