@@ -714,7 +714,7 @@ if(op == "getPasscardExamList"){
 	}
 
 	sql = " FROM v_passcardInfo a, v_studentExamList b where a.ID=b.refID and " + where;
-	sql = "SELECT a.ID,a.username,a.name,a.SNo,a.unit,a.dept1Name,a.dept2Name,a.mobile, b.score, b.status,b.statusName,b.startDate,b.endDate,b.secondRest/60 as secondRest" + sql + " order by passNo, ID";
+	sql = "SELECT a.ID,a.enterID,a.username,a.name,a.SNo,a.unit,a.dept1Name,a.dept2Name,a.mobile, b.score, b.status,b.statusName,b.startDate,b.endDate,b.secondRest/60 as secondRest" + sql + " order by passNo, ID";
 	
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
@@ -722,7 +722,7 @@ if(op == "getPasscardExamList"){
 		//4
 		result += "|" + rs("score").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("startDate").value + "|" + rs("endDate").value + "|" + rs("secondRest").value;
 		//10
-		result += "|" + rs("unit").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value + "|" + rs("SNo").value;
+		result += "|" + rs("unit").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value + "|" + rs("SNo").value + "|" + rs("enterID").value;
 		rs.MoveNext();
 	}
 	rs.Close();
