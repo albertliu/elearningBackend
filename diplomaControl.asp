@@ -689,7 +689,7 @@ if(op == "getPasscardListByExam"){
 	while (!rs.EOF){
 		result += "%%" + rs("ID").value + "|" + rs("refID").value + "|" + rs("enterID").value + "|" + rs("passNo").value + "|" + rs("username").value + "|" + rs("name").value + "|" + rs("mobile").value;
 		//7
-		result += "|" + rs("score").value + "|" + rs("resit").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value;
+		result += "|" + rs("score").value + "|" + rs("reExamCount").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value;
 		//14
 		result += "|" + rs("unit").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value + "|" + rs("kind").value + "|" + rs("SNo").value + "|" + rs("diplomaID").value;
 		rs.MoveNext();
