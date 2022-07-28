@@ -99,7 +99,7 @@
 						arr.push("<td class='center'>&nbsp;</td>");
 					}else{
 						k = "";
-						if(ar1[23] != ar1[28]){
+						if(parseInt(ar1[23]) > parseInt(ar1[28])){
 							k = " style='background-color:#EEEEEE;'";
 						}
 						arr.push("<td class='left' title='合格/证书'" + k + ">" + ar1[23] + "/" + ar1[28] + "</td>");
