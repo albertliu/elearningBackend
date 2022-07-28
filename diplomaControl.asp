@@ -628,7 +628,7 @@ if(op == "getGeneratePasscardList"){
 		//20
 		result += "|" + rs("sendScore").value + "|" + rs("sendScoreDate").value + "|" + rs("senderScoreName").value + "|" + rs("qtyYes").value + "|" + rs("qtyNo").value + "|" + rs("qtyNull").value;
 		//26
-		result += "|" + rs("kindID").value + "|" + rs("kindName").value;
+		result += "|" + rs("kindID").value + "|" + rs("kindName").value + "|" + rs("qtyDiploma").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -691,7 +691,7 @@ if(op == "getPasscardListByExam"){
 		//7
 		result += "|" + rs("score").value + "|" + rs("resit").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value;
 		//14
-		result += "|" + rs("unit").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value + "|" + rs("kind").value + "|" + rs("SNo").value;
+		result += "|" + rs("unit").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value + "|" + rs("kind").value + "|" + rs("SNo").value + "|" + rs("diplomaID").value;
 		rs.MoveNext();
 	}
 	rs.Close();

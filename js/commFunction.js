@@ -1605,7 +1605,7 @@
 			id: "generatePasscard",
 			url:"generatePasscardInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "考试场次信息",
-			width: 1080,
+			width: 1150,
 			height: 880,
 			cover : {
 	          //透明度
