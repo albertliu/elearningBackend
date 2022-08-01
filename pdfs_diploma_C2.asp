@@ -61,7 +61,7 @@
 					arr.push('	<table style="width:100%; padding-left:10mm;padding-top:15mm;">');
 					arr.push('		<tr>');
 					arr.push('			<td style="height:80px;width:28%;"><h4>岗位：</h4></td>');
-					arr.push('			<td style="height:80px;width:72%;"><h4>' + val["title"] + '</h4></td>');
+					arr.push('			<td style="height:80px;width:72%;"><h4' + diplomaFontSize + '>' + val["title"] + '</h4' + diplomaFontSize + '></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
 					arr.push('			<td style="height:80px;"><h4>姓名：</h4></td>');
