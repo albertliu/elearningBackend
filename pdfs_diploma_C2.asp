@@ -58,7 +58,7 @@
 					arr.push('<div style="position: relative;">');
 					arr.push('<div style="position: absolute; z-index:10; width:100%;padding-left:8mm;">');
 					arr.push('<div style="float:left;width:100%;">');
-					arr.push('	<table style="width:100%; padding-left:10mm;padding-top:1mm;">');
+					arr.push('	<table style="width:100%; padding-left:10mm;padding-top:10mm;">');
 					arr.push('		<tr>');
 					arr.push('			<td style="height:80px;width:28%;"><h4>岗位：</h4></td>');
 					arr.push('			<td style="height:80px;width:72%;"><h4' + diplomaFontSize + '>' + val["title"] + '</h4' + diplomaFontSize + '></td>');
@@ -97,7 +97,7 @@
 					arr.push('		</tr>');
 					arr.push('		<tr>');
 					arr.push('			<td style="height:80px;" colspan="4"><h4' + diplomaFontSize + ' style="float:left;padding-left:20px;">' + val["diplomaNo"] + '</h4' + diplomaFontSize + '>');
-					arr.push('			<h4 style="float:right;padding-right:150px;">（发证机关印章）</h4></td>');
+					arr.push('			<h4 style="float:right;padding-right:100px;">（发证机关印章）</h4></td>');
 					arr.push('		</tr>');
 					arr.push('	</table>');
 					arr.push('</div>');
