@@ -16,7 +16,7 @@
 				return false;
 			}
             var form = new FormData(document.getElementById("formUpload"));
-			var act = action + "?upID=" + $("input[name='uploadKind']:checked").val() + "&username=" + username + "&currUser=" + currUser + "&host=" + $("#commLoadFileHost").val() + "&para=" + para;
+			var act = action + "?upID=" + $("input[name='uploadKind']:checked").val() + "&username=" + username + "&currUser=" + currUser + "&host=" + $("#commLoadFileHost").val() + "&commMark=" + commMark + "&para=" + para;
             $.ajax({
                 url: act,
                 type:"post",
