@@ -108,6 +108,7 @@
 					i += 1;
 					if(i%n == 0){
 						arr.push('</tr>');
+						arr.push('<tr style="height:10mm;"></tr>');
 					}else{
 						arr.push('<td style="width:3.5%;"></td>');
 					}
