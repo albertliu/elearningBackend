@@ -60,8 +60,8 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='2%'>No</th>");
-			arr.push("<th width='6%'>编号</th>");
-			arr.push("<th width='15%'>班级名称</th>");
+			arr.push("<th width='7%'>编号</th>");
+			arr.push("<th width='14%'>班级名称</th>");
 			arr.push("<th width='8%'>开课日期</th>");
 			arr.push("<th width='8%'>结课日期</th>");
 			arr.push("<th width='7%'>班主任</th>");

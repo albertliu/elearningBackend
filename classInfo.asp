@@ -723,7 +723,7 @@
 	
 	<div style="width:100%;float:left;margin:0;">
 		<div style="border:solid 1px #e0e0e0;width:99%;margin:1px;background:#ffffff;line-height:18px;">
-			<div class="comm" style="background:#f5faf8; width:50%; float:left;">
+			<div class="comm" style="background:#f5faf8; width:48%; float:left;">
 			<form id="detailCover" name="detailCover" style="width:98%;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
@@ -783,14 +783,14 @@
 			</tr>
 			<tr>
 				<td align="right">课程安排</td>
-				<td colspan="5"><textarea id="timetable" style="padding:2px;" rows="3" cols="75"></textarea></td>
+				<td colspan="5"><textarea id="timetable" style="padding:2px;width:100%;" rows="3"></textarea></td>
 			</tr>
 			<tr>
 				<td align="right">
 					工作小结<br />
 					<div class="comm" align="center"><input class="button" type="button" id="btnSummary" value="..." /></div>
 				</td>
-				<td colspan="5"><textarea id="summary" style="padding:2px;" rows="5" cols="75"></textarea></td>
+				<td colspan="5"><textarea id="summary" style="padding:2px;width:100%;" rows="5"></textarea></td>
 			</tr>
 			<tr>
 				<td align="right">开课通知</td>
