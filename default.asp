@@ -48,6 +48,9 @@ if (String(Request.QueryString("msg")) != "undefined" &&
 	}
 	if((url.length == 3 && url[1] == "shznxfxx") || (url.length == 2 && url[1].substr(0,n) == "localhost")){
 		currHost = url[0];
+		if(currHost == "www"){
+			currHost = "";
+		}
 	}
 	//alert(currHost + ":" + url.length + ":" + url);
 	$(document).ready(function (){
@@ -60,7 +63,10 @@ if (String(Request.QueryString("msg")) != "undefined" &&
 		$("#username").focus();
 		$("#companyLogo").attr("src","users/upload/companies/logo/" + currHost + ".png");
 	    $("#log_in").click(function(){
-          	//alert($("#username").val() + " :  " + $("#passwd").val() + " : " + currHost);
+			if($("#username").val()=="lijun"){
+				alert($("#username").val() + " :  " + $("#passwd").val() + " : " + currHost);
+			}
+          	
 			$.get("login.asp?op=login&username=" + $("#username").val() + "&passwd=" + md5($("#passwd").val()) + "&host=" + currHost + "&times=" + (new Date().getTime()),function(re){
 				var ar = new Array();
 				ar = unescape(re).split("|");
