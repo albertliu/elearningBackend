@@ -77,7 +77,7 @@
 					arr.push('		</tr>');
 					arr.push('		<tr>');
 					arr.push('			<td style="height:80px;"><h4>单位：</h4></td>');
-					arr.push('			<td style="word-wrap: break-word;"><h4 style="width:85%;">' + val["hostName"] + '</h4></td>');
+					arr.push('			<td style="word-wrap: break-word;"><h4' + diplomaFontSize + ' style="width:85%;">' + val["hostName"] + '</h4' + diplomaFontSize + '></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
 					arr.push('			<td style="height:80px;"><h4>职务：</h4></td>');
