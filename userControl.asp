@@ -204,6 +204,12 @@ if(op == "delNode"){
 	Response.Write(nodeID);
 }
 
+if(op == "resetPasswd"){
+	sql = "exec resetUserPasswd " + nodeID + ",'" + currUser + "'";
+	execSQL(sql);
+	Response.Write(nodeID);
+}
+
 if(op == "getUserNameListByWhere"){
 	sql = "SELECT * FROM v_userInfo where " + where;
 	rs = conn.Execute(sql);

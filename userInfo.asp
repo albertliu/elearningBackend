@@ -98,6 +98,20 @@
 				}
 			});
 		});
+
+		$("#reset").click(function(){
+			if($("#kindID").val()==1){
+				jAlert("固定用户不可重置密码");
+				return false;
+			}
+			jConfirm('你确定要将这个用户密码重置吗?', '确认对话框', function(r) {
+				if(r){
+					$.get("userControl.asp?op=resetPasswd&nodeID=" + $("#userID").val() + "&times=" + (new Date().getTime()),function(data){
+						jAlert("操作成功！新密码为：123456","信息提示");
+					});
+				}
+			});
+		});
     
     $("#changeRole").click(function(){
     	showUserRoleList();
@@ -163,6 +177,7 @@
 		$("#addNew").hide();
 		$("#save").hide();
 		$("#del").hide();
+		$("#reset").hide();
 		$("#userNo").attr("disabled",true);
 		$("#changeRole").hide();
 		$("#changePermission").hide();
@@ -178,6 +193,7 @@
 			if(checkPermission("userAdd")){
 				$("#addNew").show();
 				$("#save").show();
+				$("#reset").show();
 				if(currDeptID=="" || currDeptID=="0"){		//部门主管不能变更角色和权限，但可以添加修改用户
 					$("#changeRole").show();
 					$("#changePermission").show();
@@ -375,9 +391,10 @@
 		          </table>
 							<div style="width:100%;float:left;margin:10;height:4px;"></div>
 						  <div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
-						  	<input class="button" type="button" id="save" name="save" value="保存" />&nbsp;&nbsp;&nbsp;
-						  	<input class="button" type="button" id="addNew" name="addNew" value="新增" />&nbsp;&nbsp;&nbsp;
-						  	<input class="button" type="button" id="del" name="del" value="删除" />
+						  	<input class="button" type="button" id="save" value="保存" />&nbsp;&nbsp;&nbsp;
+						  	<input class="button" type="button" id="addNew" value="新增" />&nbsp;&nbsp;&nbsp;
+						  	<input class="button" type="button" id="del" value="删除" />&nbsp;&nbsp;&nbsp;
+						  	<input class="button" type="button" id="reset" value="重置密码" />
 						  </div>
 		        </form>
 					</div>
