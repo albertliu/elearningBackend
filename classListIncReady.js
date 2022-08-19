@@ -23,6 +23,13 @@
 		$("#btnSearchClass").click(function(){
 			getClassList();
 		});
+		$("#btnCheckStudent").click(function(){
+			if($("#searchClassCert").val()==""){
+				alert("请选择一个课程。");
+				return false;
+			}
+			showLoadFile("check_student_list",$("#searchClassCert").val(),"studentList",'');
+		});
 		
 		$("#btnAddClass").click(function(){
 			showClassInfo(0,0,1,1);	//showClassInfo(nodeID,refID,op,mark) op:0 浏览 1 新增; mark:0 不动作  1 有修改时刷新列表

@@ -200,7 +200,7 @@
 			</tr>
 			<tr>
 				<td align="right">说明</td>
-				<td colspan="5"><textarea id="memo" style="padding:2px;" rows="5" cols="75"></textarea></td>
+				<td colspan="5"><textarea id="memo" style="padding:2px; width:100%;" rows="5"></textarea></td>
 			</tr>
 			<tr>
 				<td align="right">登记人</td>

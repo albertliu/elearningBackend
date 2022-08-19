@@ -268,7 +268,7 @@
 		}
         deleteTab("日结报表");
         deleteTab("花名册");
-		
+		<!--#include file="commLoadFileReady.asp"-->
 	    refreshMsg();
 	});
 
@@ -350,6 +350,7 @@
 	<h1>SLC NAC</h1>
 	</div>
  <!--#include file='commFloatDetail.asp' -->
+ <!--#include file='commLoadFileDetail.asp' -->
 
  <!-- InstanceBeginEditable name="EditRegion" -->
 
