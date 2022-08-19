@@ -11,7 +11,8 @@
 							  状态&nbsp;<select id="searchClassStatus" style="width:50px"></select>&nbsp;
 							  属性&nbsp;<select id="searchClassPartner" style="width:90px"></select>&nbsp;
 						      	<span style="float:right;">
-								  	<input class="button" type="button" id="btnCheckStudent" value="核对学员信息" />
+								  	<input class="button" type="button" id="btnCheckStudent" value="核对学员信息" />&nbsp;&nbsp;
+									<a href="output/学员信息核对模板.xlsx">模板下载</a>&nbsp;&nbsp;
 								    <input class="button" type="button" onClick="outputFloat(91,'file')" value="下载" />
 								</span>
 				        </form>
