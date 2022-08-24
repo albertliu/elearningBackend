@@ -112,7 +112,7 @@
 					if(ar1[9]==''){
 						arr.push("<td class='center'>&nbsp;</td>");
 					}else{
-						arr.push("<td class='center'><a href='/users" + ar1[9] + "' target='_blank'>" + imgChk + "</a></td>");
+						arr.push("<td class='center'><a href='/users" + ar1[9] + "?t=" + (new Date().getTime()) + "' target='_blank'>" + imgChk + "</a></td>");
 					}
 					arr.push("</tr>");
 				});
