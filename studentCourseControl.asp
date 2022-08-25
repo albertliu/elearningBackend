@@ -373,6 +373,15 @@ if(op == "getStudentListByProject"){
 			where = s;
 		}
 	}
+	//部门
+	if(keyID > ""){
+		s = "dept1='" + keyID + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 	//报名日期
 	if(fStart > "" && fStart !="undefined"){
 		s = "regDate>='" + fStart + "'";
