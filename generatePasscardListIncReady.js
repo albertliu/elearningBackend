@@ -100,7 +100,7 @@
 					}else{
 						k = "";
 						if(parseInt(ar1[23]) > parseInt(ar1[28])){
-							k = " style='background-color:#EEEEEE;'";
+							k = " style='background-color:#FFFF00;'";
 						}
 						arr.push("<td class='left' title='合格/证书'" + k + ">" + ar1[23] + "/" + ar1[28] + "</td>");
 					}

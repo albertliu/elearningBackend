@@ -90,6 +90,7 @@
 	<!--#include file="rptTrainningIncReady.js"-->
 	<!--#include file="rptDiplomaIncReady.js"-->
 	<!--#include file="rptDiplomaLastIncReady.js"-->
+	<!--#include file="rptOtherIncReady.js"-->
 	<!--#include file="studentPreListIncReady.js"-->
 	<!--#include file="chartsIncReady.js"-->
 	<!--#include file="chartsClassIncReady.js"-->
@@ -619,9 +620,12 @@
 							<div id="dtab63" class="dhtmlgoodies_aTab">
 								<!--#include file="rptDiplomaLastIncDetail.js"-->
 							</div>
+							<div id="dtab64" class="dhtmlgoodies_aTab">
+								<!--#include file="rptOtherIncDetail.js"-->
+							</div>
 						</div>
 						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView6',Array("招生概况","收费概况","班级概况","学员注册","学员培训","证书发放","证书到期"),0,1260,400);
+							initTabs('dhtmlgoodies_tabView6',Array("招生概况","收费概况","班级概况","学员注册","学员培训","证书发放","证书到期","其他报表"),0,1260,400);
 						</script>
 					</div>
 					

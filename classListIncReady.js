@@ -116,10 +116,10 @@
 					if(ar1[24] ==0 || ar1[24]==ar1[20]){
 						arr.push("<td class='left'>" + nullNoDisp(ar1[24]) + "</td>");
 					}else{	//有未报考人员，显示为灰色
-						arr.push("<td class='left' style='background-color:#EEEEEE;'>" + nullNoDisp(ar1[24]) + "</td>");
+						arr.push("<td class='left' style='background-color:#FFFF00;'>" + nullNoDisp(ar1[24]) + "</td>");
 					}
 					arr.push("<td class='left'>" + nullNoDisp(ar1[25]) + "</td>");
-					arr.push("<td class='left' title='合格/发证'" + (ar1[26]>0 && parseInt(ar1[26])>parseInt(ar1[42])?" style='background-color:#EEEEEE;'":"") + ">" + nullNoDisp(ar1[26]) + (ar1[26]>0?"/"+ar1[42]:"") + "</td>");
+					arr.push("<td class='left' title='合格/发证'" + (ar1[26]>0 && parseInt(ar1[26])>parseInt(ar1[42])?" style='background-color:#FFFF00;'":"") + ">" + nullNoDisp(ar1[26]) + (ar1[26]>0?"/"+ar1[42]:"") + "</td>");
 					var x = ar1[20];
 					if(x > 0 && ar1[26] > 0){
 						x = (ar1[26]*100/ar1[20]).toFixed(2);
