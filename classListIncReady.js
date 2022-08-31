@@ -95,8 +95,8 @@
 					ar1 = val.split("|");
 					i += 1;
 					arr.push("<tr class='grade0'>");
-					arr.push("<td class='center'>" + i + "</td>");
-					arr.push("<td class='link1'><a href='javascript:showClassInfo(" + ar1[0] + ",0,0,1);'>" + ar1[1] + "</a></td>");
+					arr.push("<td class='center'>" + ar1[0] + "</td>");
+					arr.push("<td class='link1' title='序号：" + ar1[0] + "'><a href='javascript:showClassInfo(" + ar1[0] + ",0,0,1);'>" + ar1[1] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[17] + (ar1[13]>""?"&nbsp;" + ar1[13]:"") + (ar1[39]==1?"&nbsp;" + ar1[40]:"") + "</td>");
 					arr.push("<td class='left'>" + ar1[10].substring(0,10) + "</td>");
 					arr.push("<td class='left'>" + ar1[11] + "</td>");

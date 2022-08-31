@@ -324,7 +324,7 @@
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
 					arr.push("<td class='left'>" + ar1[5] + "</td>");
 					//arr.push("<td class='left'>" + ar1[14] + "</td>");
-					arr.push("<td class='left'>" + ar1[20] + ar1[22] + "</td>");
+					arr.push("<td class='left' title='" + ar1[22] + "'>" + ar1[20] + ar1[22].substring(0,2) + "</td>");
 					arr.push("<td class='center'>" + ar1[13] + "</td>");
 					s = "";
 					if(ar1[27]>0){
