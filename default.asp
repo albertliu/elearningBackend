@@ -239,7 +239,7 @@ if (String(Request.QueryString("msg")) != "undefined" &&
 						<td width="150">
 					<div style="background:#fcfcfc;border:solid 1px gray; width:80%;"> 
 						<br><br>
-						&nbsp;&nbsp;<a href="output\用户操作指南.doc">查看帮助</a>&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;<a href="output\系统使用手册_前台.docx">查看帮助</a>&nbsp;&nbsp;&nbsp;&nbsp;
 						<br><br><br>
 					</div>
 						</td>
