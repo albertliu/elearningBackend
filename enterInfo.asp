@@ -233,6 +233,9 @@
 			//alert($("#username").val() + ":" + $("#studentCourseID").val());
 			showStudentSmsList($("#username").val(),$("#studentCourseID").val(),0,1);
 		});
+		$("#examList").click(function(){
+			showStudentExamList($("#username").val(),$("#name").val(),0,1);
+		});
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -752,6 +755,7 @@
 		<input class="button" type="button" id="btnCloseStudentCourse" value="关闭课程学习" />&nbsp;
 		<input class="button" type="button" id="btnRebuildStudentLesson" value="刷新课表" />&nbsp;
 		<input class="button" type="button" id="smsList" value="查看通知" />&nbsp;
+		<input class="button" type="button" id="examList" value="查看考试信息" />
   	</div>
 </div>
 </body>

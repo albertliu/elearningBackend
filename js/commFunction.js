@@ -1844,8 +1844,8 @@
 			id: "studentSmsList",
 			url:"studentSmsList.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "向学员发送的短信通知",
-			width: 740,
-			height: 680,
+			width: 700,
+			height: 600,
 			cover : {
 	          //透明度
 	          opacity : 0,
@@ -1863,8 +1863,8 @@
 			id: "studentExamList",
 			url:"studentExamList.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "学员参加的考试情况",
-			width: 810,
-			height: 680,
+			width: 700,
+			height: 600,
 			cover : {
 	          //透明度
 	          opacity : 0,
