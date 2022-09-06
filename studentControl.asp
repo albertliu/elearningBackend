@@ -430,6 +430,15 @@ if(op == "delNode"){
 	Response.Write(nodeID);
 }
 
+if(op == "reset"){
+	result = 0;
+	if(result == 0){
+		sql = "exec resetStudentPwd " + nodeID + ",'" + currUser + "'";
+		execSQL(sql);
+	}
+	Response.Write(escape(result));
+}
+
 if(op == "studentExist"){
 	result = 0;
 	sql = "SELECT userID FROM studentInfo where username='" + nodeID + "'";

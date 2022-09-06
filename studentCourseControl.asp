@@ -855,6 +855,35 @@ if(op == "getStudentSMSList"){
 	//Response.Write(escape(sql));
 }	
 
+if(op == "getStudentExamList"){
+	result = "";
+	s = "";
+	//如果有username
+	if(nodeID > "" && nodeID != "null" && nodeID !="undefined"){ // 
+		s = "username='" + nodeID + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	if(where > ""){
+		where = " where " + where;
+	}
+	sql = "select 0 as a, enterID, certName, examDate, statusName, cast(score as varchar) as score, resultName, diplomaID from v_studentExamList" + where + " and kind=1";
+	sql += " union select 1 as a, enterID, courseName, examDate, '', score1 + '/' + score2 , resultName, diplomaID from v_studentApplyList" + where;
+	
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("enterID").value + "|" + rs("certName").value + "|" + rs("examDate").value + "|" + rs("statusName").value + "|" + rs("score").value + "|" + rs("resultName").value + "|" + rs("diplomaID").value + "|" + rs("a").value;
+		rs.MoveNext();
+	}
+	rs.Close();
+	result = result.substr(2);/**/
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}	
+
 if(op == "updatePayInfo"){
 	//@ID int,@invoice varchar(50),@projectID varchar(50),@kindID varchar(50),@type int,@status int,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo
 	sql = "exec updatePayInfo " + nodeID + ",'" + String(Request.QueryString("invoice")) + "','" + String(Request.QueryString("projectID")) + "','" + item + "','" + kindID + "','" + String(Request.QueryString("type")) + "','" + status + "','" + String(Request.QueryString("datePay")) + "','" + String(Request.QueryString("dateInvoice")) + "','" + String(Request.QueryString("dateInvoicePick")) + "','" + refID + "','" + memo + "','" + currUser + "',''";

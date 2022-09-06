@@ -183,8 +183,8 @@
 			</tr>
 			<tr>
 				<td align="center" class='table_resume_title' width='15%' height='55px;'>工作部门</td><td align="center" width='13%'><p style='font-size:1em;' id="dept2"></p></td>
-				<td align="center" class='table_resume_title' width='13%'>从事工作</td><td align="center" width='13%'><p style='font-size:1em;' id="job"></p></td>
-				<td align="center" class='table_resume_title' width='13%'>职务</td><td class='table_resume_title' width='13%'></td>
+				<td align="center" class='table_resume_title' width='13%'>从事工作</td><td align="center" width='13%'></td>
+				<td align="center" class='table_resume_title' width='13%'>职务</td><td class='table_resume_title' width='13%'><p style='font-size:1em;' id="job"></p></td>
 				<td align="center" class='table_resume_title' width='10%'>职称</td><td class='table_resume_title' width='10%'></td>
 			</tr>
 			<tr>

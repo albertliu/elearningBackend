@@ -82,6 +82,9 @@
 		$("#smsList").click(function(){
 			showStudentSmsList($("#username").val(),0,0,1);
 		});
+		$("#examList").click(function(){
+			showStudentExamList($("#username").val(),$("#name").val(),0,1);
+		});
 		$("#save").click(function(){
 			fromCard = 0;
 			saveNode();
@@ -104,6 +107,15 @@
 						jAlert("成功解禁！","信息提示");
 						getNodeInfo(nodeID,"");
 						updateCount += 1;
+					});
+				}
+			});
+		});
+		$("#reset").click(function(){
+			jConfirm('你确定要重置密码吗?', '确认对话框', function(r) {
+				if(r){
+					$.get("studentControl.asp?op=reset&nodeID=" + $("#studentID").val() + "&times=" + (new Date().getTime()),function(data){
+						jAlert("重置完成，当前密码为123456","信息提示");
 					});
 				}
 			});
@@ -504,6 +516,7 @@
 		$("#save").hide();
 		$("#open").hide();
 		$("#close").hide();
+		$("#reset").hide();
 		//$("#upload1").hide();
 		$("#enter").hide();
 		$("#username").prop("disabled",true);
@@ -527,6 +540,7 @@
 			}
 			if(checkPermission("studentEdit")){
 				$("#save").show();
+				$("#reset").show();
 			}
 			if(checkPermission("studentPhoto")){
 				//$("#upload1").show();
@@ -855,7 +869,9 @@
 		<input class="button" type="button" id="open" value="解禁" />&nbsp;
 		<input class="button" type="button" id="close" value="禁用" />&nbsp;
 		<input class="button" type="button" id="reply" value="发通知" />&nbsp;
+		<input class="button" type="button" id="reset" value="重置密码" />&nbsp;
 		<input class="button" type="button" id="smsList" value="查看通知" />&nbsp;
+		<input class="button" type="button" id="examList" value="查看考试信息" />&nbsp;
   	</div>
 
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
