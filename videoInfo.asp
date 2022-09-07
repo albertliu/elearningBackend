@@ -69,6 +69,7 @@
 				$("#minutes").val(ar[3]);
 				$("#kindID").val(ar[4]);
 				$("#status").val(ar[5]);
+				$("#filename").val(ar[7]);
 				$("#lessonID").val(ar[8]);
 				$("#type").val(ar[9]);
 				$("#author").val(ar[10]);
@@ -182,7 +183,7 @@
 			</tr>
 			<tr>
 				<td align="right">说明</td>
-				<td colspan="5"><textarea id="memo" style="padding:2px;" rows="5" cols="75"></textarea></td>
+				<td colspan="5"><textarea id="memo" style="padding:2px; width:100%;" rows="5"></textarea></td>
 			</tr>
 			<tr>
 				<td align="right">登记日期</td>
@@ -192,6 +193,10 @@
 					<span id="upload1" style="margin-left:20px;"></span>
 					<span id="photo" style="margin-left:20px;"></span>
 				</td>
+			</tr>
+			<tr>
+				<td align="right">视频文件</td>
+				<td colspan="5"><input class="readOnly" type="text" id="filename" style="padding:2px; width:100%;" readOnly="true" /></td>
 			</tr>
 			</table>
 			</form>

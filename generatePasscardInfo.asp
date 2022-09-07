@@ -263,6 +263,8 @@
 				$("#statusName").val(ar[18]);
 				$("#kindID").val(ar[26]);
 				$("#closeDate").val(ar[28]);
+				$("#sendMsgExam").hide();
+				$("#sendMsgScore").hide();
 				var c = "";
 				if(ar[9] > ""){
 					c += "<a href='/users" + ar[9] + "' target='_blank'>准考证</a>";
@@ -271,6 +273,10 @@
 					$("#score").html("<a href=''>评分表</a>");
 					if(ar[19] > ""){
 						$("#scoreResult").html("<a href='/users" + ar[19] + "' target='_blank'>成绩单</a>");
+					}
+					if(checkPermission("studentAdd") && ar[17]==1){
+						$("#sendMsgExam").show();
+						$("#sendMsgScore").show();
 					}
 				}
 				$("#photo").html(c);
@@ -569,8 +575,8 @@
 		$("#open").hide();
 		$("#doPasscard").hide();
 		$("#doImportScore").hide();
-		$("#sendMsgExam").hide();
-		$("#sendMsgScore").hide();
+		//$("#sendMsgExam").hide();
+		//$("#sendMsgScore").hide();
 		$("#btnRemove").hide();
 		$("#btnResit").hide();
 		$("#s_needResit").hide();
@@ -591,8 +597,8 @@
 				}
 				if(s==1){		//锁定后可以做准考证，发考试通知，上传成绩，发成绩通知
 					$("#doPasscard").show();
-					$("#sendMsgExam").show();
-					$("#sendMsgScore").show();
+					//$("#sendMsgExam").show();
+					//$("#sendMsgScore").show();
 				}
 				if(s==2){
 					$("#btnResit").show();
