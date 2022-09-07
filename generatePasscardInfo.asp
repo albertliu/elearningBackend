@@ -179,6 +179,9 @@
                 jAlert("如果改变考试类型，请重新生成准考证。");
             }
 		});
+		$("#needResit").change(function(){
+			getPasscardList();
+		});
 		$("#btnSearch").click(function(){
 			getPasscardList();
 		});
