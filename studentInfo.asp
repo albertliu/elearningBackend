@@ -521,6 +521,8 @@
 		$("#enter").hide();
 		$("#username").prop("disabled",true);
 		$("*[tag='plus'").hide();
+		$("#sex").prop("disabled",true);
+		$("#birthday").prop("disabled",true);
 		if(op==1){
 			$("#save").show();
 			$("#add_img_education").hide();
@@ -826,7 +828,7 @@
 			<tr>
 				<td align="right">三级部门</td>
 				<td><select id="dept3" style="width:180px;"></select></td>
-				<td align="right">岗位</td>
+				<td align="right">岗位/职务</td>
 				<td><input type="text" id="job" size="25" /></td>
 			</tr>
 			<tr>

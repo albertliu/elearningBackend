@@ -81,7 +81,7 @@
 					ar1 = val.split("|");
 					i += 1;
 					arr.push("<tr class='grade" + c + "'>");
-					arr.push("<td class='center'>" + i + "</td>");
+					arr.push("<td class='center'>" + ar1[0] + "</td>");
 					arr.push("<td class='link1'><a href='javascript:showGeneratePasscardInfo(" + ar1[0] + ",0,0,1);'>" + ar1[3] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[8] + "</td>");
 					k = ar1[27];

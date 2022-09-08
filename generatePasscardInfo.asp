@@ -241,7 +241,7 @@
 			var c = "";
 			ar = unescape(re).split("|");
 			if(ar > ""){
-				$("#ID").val(ar[0]);
+				$("#ID").html("&nbsp;&nbsp;&nbsp;" + ar[0] + "&nbsp;&nbsp;&nbsp;");
 				$("#certID").val(ar[1]);
 				//$("#className").val(ar[2]);
 				$("#title").val(ar[3]);
@@ -656,12 +656,12 @@
 			<table>
 			<tr>
 				<td align="right">考试时间</td><input type="hidden" id="closeDate" />
-				<td><input class="mustFill" type="text" id="startDate" size="25" /></td>
+				<td></label><input class="mustFill" type="text" id="startDate" size="18" /><label id="ID" style="background:#ffff00;"></td>
 				<td align="right">截止时间</td>
 				<td><input type="text" id="startTime" size="25" /></td>
 			</tr>
 			<tr>
-				<td align="right">考试科目</td><input type="hidden" id="ID" /><input type="hidden" id="status" /><input type="hidden" id="startNo" />
+				<td align="right">考试科目</td><input type="hidden" id="status" /><input type="hidden" id="startNo" />
 				<td><select id="certID" style="width:100%;"></select></td>
 				<td align="right">人数</td>
 				<td><input class="readOnly" type="text" id="qty" size="5" readOnly="true" />&nbsp;&nbsp;&nbsp;类型&nbsp;<select id="kindID" style="width:60px;"></select></td>
