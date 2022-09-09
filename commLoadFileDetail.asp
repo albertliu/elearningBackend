@@ -16,6 +16,9 @@
 		if(host > ""){
 			$("#commLoadFileHost").val(host);
 		}
+		if(mark=="studentList"){
+			$("#commLoadFileHost").attr("disabled",true);
+		}
 		//alert(action + ":" + loadID + ":" + loadOp);
 		//$("#formUpload").attr("action", action + "?upID=" + loadOp + "&username=" + loadID + "&currUser=" + currUser);
 		
