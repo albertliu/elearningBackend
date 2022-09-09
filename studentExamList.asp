@@ -67,7 +67,7 @@
 					c = 0;
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
-					arr.push("<td class='left'>" + ar1[1] + "</td>");
+					arr.push("<td class='left'>" + ar1[8] + "&nbsp;" + ar1[1] + "</td>");
 					arr.push("<td class='left'>" + ar1[2] + "</td>");
 					arr.push("<td class='left'>" + ar1[3] + "</td>");
 					if(ar1[7]==0){

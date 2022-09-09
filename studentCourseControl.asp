@@ -870,12 +870,12 @@ if(op == "getStudentExamList"){
 	if(where > ""){
 		where = " where " + where;
 	}
-	sql = "select 0 as a, enterID, certName, examDate, statusName, cast(score as varchar) as score, resultName, diplomaID from v_studentExamList" + where + " and kind=1";
-	sql += " union select 1 as a, enterID, courseName, examDate, '', score1 + '/' + score2 , resultName, diplomaID from v_studentApplyList" + where;
+	sql = "select 0 as a, enterID, certName, examDate, statusName, cast(score as varchar) as score, resultName, diplomaID,ID from v_studentExamList" + where + " and kind=1";
+	sql += " union select 1 as a, enterID, courseName, examDate, '', score1 + '/' + score2 , resultName, diplomaID,ID_batch from v_studentApplyList" + where;
 	
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
-		result += "%%" + rs("enterID").value + "|" + rs("certName").value + "|" + rs("examDate").value + "|" + rs("statusName").value + "|" + rs("score").value + "|" + rs("resultName").value + "|" + rs("diplomaID").value + "|" + rs("a").value;
+		result += "%%" + rs("enterID").value + "|" + rs("certName").value + "|" + rs("examDate").value + "|" + rs("statusName").value + "|" + rs("score").value + "|" + rs("resultName").value + "|" + rs("diplomaID").value + "|" + rs("a").value + "|" + rs("ID").value;
 		rs.MoveNext();
 	}
 	rs.Close();
