@@ -241,7 +241,8 @@
 			var c = "";
 			ar = unescape(re).split("|");
 			if(ar > ""){
-				$("#ID").html("&nbsp;&nbsp;&nbsp;" + ar[0] + "&nbsp;&nbsp;&nbsp;");
+				$("#ID1").html("&nbsp;&nbsp;&nbsp;" + ar[0] + "&nbsp;&nbsp;&nbsp;");
+				$("#ID").val(ar[0]);
 				$("#certID").val(ar[1]);
 				//$("#className").val(ar[2]);
 				$("#title").val(ar[3]);
@@ -655,8 +656,8 @@
 			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
-				<td align="right">考试时间</td><input type="hidden" id="closeDate" />
-				<td></label><input class="mustFill" type="text" id="startDate" size="18" /><label id="ID" style="background:#ffff00;"></td>
+				<td align="right">考试时间</td><input type="hidden" id="closeDate" /><input type="hidden" id="ID" />
+				<td><input class="mustFill" type="text" id="startDate" size="18" /><label id="ID1" style="background:#ffff00;"></label></td>
 				<td align="right">截止时间</td>
 				<td><input type="text" id="startTime" size="25" /></td>
 			</tr>
