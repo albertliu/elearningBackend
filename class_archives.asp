@@ -216,12 +216,12 @@
 							arr2.push("<td align='center'>" + ar5[13] + "</td>");
 							arr2.push("<td>" + ar5[6] + "</td>");
 							arr2.push("<td align='center'>" + ar5[5] + "</td>");
-							h = ar5[10].replace(".00","");
+							h = (ar5[7] || ar5[10]).replace(".00","");
 							/*
 							if(certID=="C12" || certID=="C14" || certID=="C15" || certID=="C24" || certID=="C25" || certID=="C26" || c == "C25B" || c == "C26B"){
 								h = ar5[10].replace(".00","") + "/" + ar5[11].replace(".00","");
 							}*/
-							if(ar5[7]=="" || ar5[7]==0){
+							if(h=="" || h==0){
 								h = "缺考";
 							}
 							arr2.push("<td align='center'>" + h + "</td>");
