@@ -159,10 +159,10 @@
 			outputExcelBySQL('x03','file',nodeID,0,0);
 		});
 		$("#certID").change(function(){
-			var c = $("#certID").find("option:selected").text();
-			if($("#startDate").val()>"" && c > ""){
-				$("#title").val(c + $("#startDate").val());
-			}
+			pickerChange();
+		});
+		$("#startDate").blur(function(){
+			pickerChange();
 		});
 		$("#kindID").change(function(){
             //alert($("#certID").val() + ":" + $("#kindID").val());
@@ -567,6 +567,10 @@
 	function pickerChange(){
 		if($("#startDate").val()>""){
 			$("#startTime").val(new Date($("#startDate").val()).dateAdd("n",90).format("yyyy-MM-dd hh:mm"));
+			var c = $("#certID").find("option:selected").text();
+			if(c > ""){
+				$("#title").val(c + $("#startDate").val());
+			}
 		}
 	}
 
