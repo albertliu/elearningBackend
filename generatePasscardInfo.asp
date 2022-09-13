@@ -587,9 +587,11 @@
 		$("#examStatus").hide();
         $("#examClose").hide();
 		$("#startNo").prop("disabled",true);
+		$("#certID").prop("disabled",true);
 		if(op==1){
 			setEmpty();
 			$("#save").show();
+			$("#certID").prop("disabled",false);
 			//$("#save").focus();
 		}else{
 			if(checkPermission("studentAdd")){

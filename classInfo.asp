@@ -660,9 +660,12 @@
 		$("#btnSchedule").hide();
 		$("#archived").prop("disabled",true);
 		$("#className").prop("disabled",true);
+		$("#courseID").prop("disabled",true);
 		if(op ==1){
 			setEmpty();
 			$("#feedback_item").prop("disabled",true);
+			$("#courseID").prop("disabled",false);
+			$("#className").prop("disabled",false);
 		}else{
 			if(checkPermission("classAdd") && s < 2){
 				$("#close").show();
