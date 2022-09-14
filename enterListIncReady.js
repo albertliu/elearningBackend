@@ -8,13 +8,13 @@
 			getComList("searchEnterCourseID","v_courseInfo","courseID","shortName","status=0 and host='' order by courseID",1);
 			getComList("searchEnterClassAdviser","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='adviser' and host='') order by realName",1);
 			getComList("searchEnterHost","hostInfo","hostNo","title","status=0 order by hostName",1);
-			getComList("searchEnterClassID","v_classInfo","classID","classNameMemo","1=1 order by ID desc",1);
-			getComList("searchEnterProjectID","projectInfo","projectID","projectName","status>0 and status<9 order by ID desc",1);
+			getComList("searchEnterClassID","v_classInfo","classID","classIDName","1=1 order by cast(ID as int) desc",1);
+			getComList("searchEnterProjectID","projectInfo","projectID","projectName","status>0 and status<9 order by cast(ID as int) desc",1);
 		}else{
 			getComList("searchEnterHost","hostInfo","hostNo","title","status=0 and hostNo='" + currHost + "'",0);
 			getComList("searchEnterCourseID","[dbo].[getHostCourseList]('" + currHost + "')","courseID","courseName","1=1",1);
 			getComList("searchEnterClassAdviser","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='adviser' and host='" + currHost + "') order by realName",1);
-			getComList("searchEnterClassID","v_classInfo","classID","classNameMemo","host='" + currHost + "' order by ID desc",1);
+			getComList("searchEnterClassID","v_classInfo","classID","classIDName","host='" + currHost + "' order by cast(ID as int) desc",1);
 			$("#searchEnterProjectID").hide();
 		}
 		//getComList("searchEnterCourseID","v_courseInfo","courseID","shortName","status=0 and type=0 order by courseID",1);
@@ -108,18 +108,18 @@
 		
 		$("#searchEnterCourseID").change(function(){
 			if($("#searchEnterCourseID").val()>""){
-				getComList("searchEnterClassID","v_classInfo","classID","classNameMemo","certID in(select certID from courseInfo where courseID='" + $("#searchEnterCourseID").val() + "') order by dateStart desc",1);
+				getComList("searchEnterClassID","v_classInfo","classID","classIDName","certID in(select certID from courseInfo where courseID='" + $("#searchEnterCourseID").val() + "') order by cast(ID as int) desc",1);
 			}
 		});
 		
 		$("#searchEnterClassAdviser").change(function(){
 			if($("#searchEnterClassAdviser").val()>""){
-				getComList("searchEnterClassID","v_classInfo","classID","classNameMemo","adviserID ='" + $("#searchEnterClassAdviser").val() + "' order by dateStart desc",1);
+				getComList("searchEnterClassID","v_classInfo","classID","classIDName","adviserID ='" + $("#searchEnterClassAdviser").val() + "' order by cast(ID as int) desc",1);
 			}else{
 				if(currHost==""){
-					getComList("searchEnterClassID","v_classInfo","classID","classNameMemo","1=1 order by ID desc",1);
+					getComList("searchEnterClassID","v_classInfo","classID","classIDName","1=1 order by cast(ID as int) desc",1);
 				}else{
-					getComList("searchEnterClassID","v_classInfo","classID","classNameMemo","host='" + currHost + "' order by ID desc",1);
+					getComList("searchEnterClassID","v_classInfo","classID","classIDName","host='" + currHost + "' order by cast(ID as int) desc",1);
 				}
 			}
 		});

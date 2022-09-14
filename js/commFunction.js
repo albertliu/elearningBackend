@@ -160,7 +160,6 @@
 	function getComList(objCombox,tblName,id,item,where,mark){
 		//alert(tblName + "&field=" + id + "&sName=" + item + "&where=" + (where));
 		$.get("commonControl.asp?op=getComList&table=" + escape(tblName) + "&field=" + id + "&sName=" + item + "&where=" + escape(where) + "&times=" + (new Date().getTime()),function(re){
-			//alert(unescape(re));
 			var ar = new Array();
 			ar = (unescape(re)).split("%%");
 			$("#" + objCombox).empty();

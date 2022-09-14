@@ -71,7 +71,7 @@
 					ar1 = val.split("|");
 					i += 1;
 					arr.push("<tr class='grade" + c + "'>");
-					arr.push("<td class='center'>" + i + "</td>");
+					arr.push("<td class='center'>" + ar1[0] + "</td>");
 					if(currHost>""){
 						arr.push("<td class='link1'><a href='javascript:showGenerateDiplomaInfo(\"" + ar1[0] + "\",0,0,1);'>" + ar1[2] + "</a></td>");
 					}else{

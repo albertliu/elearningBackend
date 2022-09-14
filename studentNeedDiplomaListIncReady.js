@@ -46,7 +46,7 @@
 		
 		$("#searchStudentNeedDiplomaCert").change(function(){
 			if($("#searchStudentNeedDiplomaCert").val()>""){
-				getComList("searchStudentNeedDiplomaClassID","v_classInfo","classID","classNameMemo","certID='" + $("#searchStudentNeedDiplomaCert").val() + "' order by ID desc",1);
+				getComList("searchStudentNeedDiplomaClassID","v_classInfo","classID","classIDName","certID='" + $("#searchStudentNeedDiplomaCert").val() + "' order by cast(ID as int) desc",1);
 			}
 			getStudentNeedDiplomaList();
 		});
