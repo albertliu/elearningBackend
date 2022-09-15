@@ -29,6 +29,7 @@
 	var kindID = "";
 	var refID = "";
 	var keyID = 0;
+	var item = "";
 	var op = 0;
 	var updateCount = 0;
 	<!--#include file="js/commFunction.js"-->
@@ -37,6 +38,7 @@
 		kindID = "<%=kindID%>";		//certID
 		refID = "<%=refID%>";		//selList
 		keyID = "<%=keyID%>";		//selCount
+		item = "<%=item%>";		//className
 		op = "<%=op%>";
 		
 		$.ajaxSetup({ 
@@ -51,6 +53,10 @@
 		if(op==0){
 			getNodeInfo(nodeID);
 			getDiplomaListByBatch();
+		}
+
+		if(item>""){
+			$("#memo").val(item);
 		}
 
 		$("#do").click(function(){
@@ -79,7 +85,7 @@
 			jConfirm("确定要制作证书(" + keyID + "个)吗？","确认",function(r){
 				if(r){
 					//$.getJSON(uploadURL + "/outfiles/generate_diploma_byClassID?ID=0&mark=0&certID=" + kindID + "&selList=" + refID + "&startDate=" + $("#startDate").val() + "&class_startDate=" + $("#class_startDate").val() + "&class_endDate=" + $("#class_endDate").val() + "&registerID=" + currUser ,function(data){
-					$.post(uploadURL + "/outfiles/generate_diploma_byClassID?ID=0&mark=0&certID=" + kindID + "&startDate=" + $("#startDate").val() + "&class_startDate=" + $("#class_startDate").val() + "&class_endDate=" + $("#class_endDate").val() + "&registerID=" + currUser, {"selList": getSession(refID)} ,function(data){
+					$.post(uploadURL + "/outfiles/generate_diploma_byClassID?ID=0&mark=0&certID=" + kindID + "&startDate=" + $("#startDate").val() + "&class_startDate=" + $("#class_startDate").val() + "&class_endDate=" + $("#class_endDate").val() + "&memo=" + $("#memo").val() + "&registerID=" + currUser, {"selList": getSession(refID)} ,function(data){
 						if(data>0){
 							jAlert("证书制作成功。");
 							nodeID = data;

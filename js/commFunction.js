@@ -1199,10 +1199,10 @@
 	}
 	
 	//nodeID: ID; op: 0 浏览 1 新增; kindID:certID; refID: selList; mark: 0 不动作  1 有修改时刷新列表;
-	function showGenerateDiplomaInfo1(nodeID,kindID,refID,keyID,op,mark){
+	function showGenerateDiplomaInfo1(nodeID,kindID,refID,keyID,item,op,mark){
 		asyncbox.open({
 			id: "generateDiploma1",
-			url:"generateDiplomaInfo1.asp?nodeID=" + nodeID + "&kindID=" + kindID + "&keyID=" + keyID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
+			url:"generateDiplomaInfo1.asp?nodeID=" + nodeID + "&kindID=" + kindID + "&keyID=" + keyID + "&refID=" + refID + "&op=" + op + "&item=" + escape(item) + "&p=1&times=" + (new Date().getTime()),
 			title: "发放证书",
 			width: 600,
 			height: 800,
@@ -1217,7 +1217,7 @@
 			callback : function(action,iframe){
 				setReturnLog("generateDiploma1",iframe.nodeID);	
 				var re = iframe.updateCount;
-				if(re>0 && nodeID==0){
+				if(re>0 && mark==1){
 					getGenerateDiplomaList();
 				}
 				//alert(re + ":" + mark);

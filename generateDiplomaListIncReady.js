@@ -51,12 +51,12 @@
 			arr.push("<th width='3%'>No</th>");
 			arr.push("<th width='15%'>证书名称</th>");
 			arr.push("<th width='6%'>数量</th>");
-			arr.push("<th width='20%'>编号范围</th>");
-			arr.push("<th width='10%'>照片移交</th>");
-			arr.push("<th width='10%'>打印日期</th>");
-			arr.push("<th width='10%'>发放日期</th>");
-			arr.push("<th width='12%'>说明</th>");
-			arr.push("<th width='12%'>证书制作</th>");
+			arr.push("<th width='16%'>编号范围</th>");
+			arr.push("<th width='8%'>照片移交</th>");
+			arr.push("<th width='8%'>打印日期</th>");
+			arr.push("<th width='8%'>发放日期</th>");
+			arr.push("<th width='22%'>说明</th>");
+			arr.push("<th width='10%'>证书制作</th>");
 			arr.push("<th width='4%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -75,7 +75,7 @@
 					if(currHost>""){
 						arr.push("<td class='link1'><a href='javascript:showGenerateDiplomaInfo(\"" + ar1[0] + "\",0,0,1);'>" + ar1[2] + "</a></td>");
 					}else{
-						arr.push("<td class='link1'><a href='javascript:showGenerateDiplomaInfo1(\"" + ar1[0] + "\",0,0,0,0,1);'>" + ar1[2] + "</a></td>");
+						arr.push("<td class='link1'><a href='javascript:showGenerateDiplomaInfo1(\"" + ar1[0] + "\",0,0,0,\"\",0,1);'>" + ar1[2] + "</a></td>");
 					}
 					arr.push("<td class='left'>" + ar1[3] + "</td>");
 					arr.push("<td class='left'>" + ar1[8] + " ~ " + ar1[9] + "</td>");

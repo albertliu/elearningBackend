@@ -69,8 +69,8 @@ if(op == "getClassList"){
 
 	sql = " FROM v_classInfo " + where;
 	result = getBasketTip(sql,"");
-	ssql = "SELECT classID,className,statusName,certName,dateStart,dateEnd,adviserName,classroom,qty,qtyApply,qtyExam,qtyPass,qtyDiploma,archiveDate,memo,regDate,registerName" + sql + " order by dateStart";
-	sql = "SELECT top " + basket + " *" + sql + " order by dateStart desc";
+	ssql = "SELECT classID,className,statusName,certName,dateStart,dateEnd,adviserName,classroom,qty,qtyApply,qtyExam,qtyPass,qtyDiploma,archiveDate,memo,regDate,registerName" + sql + " order by ID desc";
+	sql = "SELECT top " + basket + " *" + sql + " order by ID desc";
 
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
