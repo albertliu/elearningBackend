@@ -49,7 +49,7 @@
 			arr.push("<th width='4%'>No</th>");
 			arr.push("<th width='26%'>考试项目</th>");
 			arr.push("<th width='18%'>考试日期</th>");
-			arr.push("<th width='12%'>状态</th>");
+			arr.push("<th width='12%'>类型</th>");
 			arr.push("<th width='12%'>成绩</th>");
 			arr.push("<th width='12%'>结果</th>");
 			arr.push("<th width='28%'>证书编号</th>");
@@ -69,7 +69,7 @@
 					arr.push("<td class='center'>" + i + "</td>");
 					arr.push("<td class='left'>" + ar1[8] + "&nbsp;" + ar1[1] + "</td>");
 					arr.push("<td class='left'>" + ar1[2] + "</td>");
-					arr.push("<td class='left'>" + ar1[3] + "</td>");
+					arr.push("<td class='left'>" + (ar1[7]==1?"在线":"线下") + "</td>");
 					if(ar1[7]==1){
 						arr.push("<td class='left'><a href='javascript:showStudentExamPaper(" + ar1[0] + ",\"" + refID + "\");'>" + ar1[4] + "</a></td>");
 					}else{
