@@ -70,7 +70,7 @@
 					arr.push("<td class='left'>" + ar1[8] + "&nbsp;" + ar1[1] + "</td>");
 					arr.push("<td class='left'>" + ar1[2] + "</td>");
 					arr.push("<td class='left'>" + ar1[3] + "</td>");
-					if(ar1[7]==0){
+					if(ar1[7]==1){
 						arr.push("<td class='left'><a href='javascript:showStudentExamPaper(" + ar1[0] + ",\"" + refID + "\");'>" + ar1[4] + "</a></td>");
 					}else{
 						arr.push("<td class='left'>" + ar1[4] + "</td>");
