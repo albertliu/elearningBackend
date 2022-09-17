@@ -282,9 +282,9 @@
 				arr.push("<th width='8%'>报名日期</th>");
 			}
 			//arr.push("<th width='6%'>单位</th>");
-			arr.push("<th width='7%'>电话</th>");
-			arr.push("<th width='5%'>表</th>");
-			arr.push("<th width='5%'>进度%</th>");
+			//arr.push("<th width='7%'>电话</th>");
+			arr.push("<th width='2%'>表</th>");
+			arr.push("<th width='5%'>进度</th>");
 			arr.push("<th width='5%'>练习</th>");
 			if(role){
 				arr.push("<th width='6%'>次数</th>");
@@ -293,9 +293,10 @@
 			}
 			arr.push("<th width='6%'>学号</th>");
 			arr.push("<th width='5%'>准申</th>");
+			arr.push("<th width='4%'>证书</th>");
 			if(photo == 0){
 				arr.push("<th width='5%'>成绩</th>");
-				arr.push("<th width='5%'>补考</th>");
+				arr.push("<th width='4%'>补考</th>");
 			}else{
 				arr.push("<th width='10%'>照片</th>");
 			}
@@ -370,7 +371,7 @@
 						
 					}
 					//arr.push("<td class='link1'><a href='javascript:window.open(\"entryform_" + ar1[60] + ".asp?keyID=0&nodeID=" + ar1[0] + "&refID=" + ar1[1] + ", \"_blank\");'>" + imgChk + "</a></td>");
-					arr.push("<td class='left'>" + ar1[69] + "</td>");
+					//arr.push("<td class='left'>" + ar1[69] + "</td>");
 					arr.push("<td class='link1'><a href='javascript:openEntryForm(\"" + ar1[60] + "\"," + ar1[0] + ",\"" + ar1[1] + "\");'>" + imgChk + "</a></td>");
 					c = ar1[10];
 					if(c>0){
@@ -397,13 +398,11 @@
 					}else{
 						arr.push("<td class='center'>&nbsp;</td>");
 					}
-					/*
-					
 					if(ar1[64]>""){
 						arr.push("<td class='center'>" + imgChk1 + "</td>");	//证书
 					}else{
 						arr.push("<td class='center'>&nbsp;</td>");
-					}*/
+					}
 					if(photo == 0){
 						arr.push("<td class='left'><a href='javascript:showStudentExamPaper(" + ar1[0] + ",\"" + ar1[2] + "\");'>" + nullNoDisp(ar1[66].replace(".00","")) + "</a></td>");
 						arr.push("<td class='center'>" + nullNoDisp(ar1[68]) + "</td>");

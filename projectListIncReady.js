@@ -38,7 +38,7 @@
 		});
 		
 		setHostProjectChange();
-		getProjectList();
+		//getProjectList();
 	});
 
 	function getProjectList(){
