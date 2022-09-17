@@ -48,11 +48,11 @@
 			arr.push("<tr align='center'>");
 			arr.push("<th width='4%'>No</th>");
 			arr.push("<th width='26%'>考试项目</th>");
-			arr.push("<th width='20%'>考试日期</th>");
+			arr.push("<th width='18%'>考试日期</th>");
 			arr.push("<th width='12%'>状态</th>");
 			arr.push("<th width='12%'>成绩</th>");
 			arr.push("<th width='12%'>结果</th>");
-			arr.push("<th width='25%'>证书编号</th>");
+			arr.push("<th width='28%'>证书编号</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
