@@ -515,7 +515,7 @@
 	
 	function printEntryform(k){
 		var c = $("#certID").val();
-		c = "C2";
+		//c = "C2";
 		if(c == "C21" || c == "C20A"){
 			c = "C20";
 		}
