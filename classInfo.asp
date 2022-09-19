@@ -253,6 +253,9 @@
 		$("#btnDownload").click(function(){
 			outputFloat(9101,'file');
 		});
+		$("#checkStudent").click(function(){
+			showLoadFile("check_student_list",$("#certID").val(),"studentList",'');
+		});
 
 		var timer = setInterval(getFeedbackList, 30000);
 		//var div = document.getElementById('feedback_list');
@@ -665,6 +668,7 @@
 		$("#btnClassCall").hide();
 		$("#btnMockView").hide();
 		$("#btnSchedule").hide();
+		$("#checkStudent").hide();
 		$("#archived").prop("disabled",true);
 		$("#className").prop("disabled",true);
 		$("#courseID").prop("disabled",true);
@@ -695,6 +699,7 @@
 				$("#feedback_item").prop("disabled",false);
 			}
 			$("#btnMockView").show();
+			$("#checkStudent").show();
 		}
 		if(checkPermission("classAdd") && s < 2 && currHost==""){
 			$("#save").show();
@@ -855,6 +860,7 @@
   	<input class="button" type="button" id="del" value="删除" />&nbsp;&nbsp;
 	<input class="button" type="button" id="doImportRef" value="石化预报名表" />
 	<input class="button" type="button" id="doImport" value="报名表导入" />&nbsp;&nbsp;
+	<input class="button" type="button" id="checkStudent" value="报名表核对" />&nbsp;&nbsp;
 	<a href="output/学员报名表模板.xlsm">模板下载</a>&nbsp;&nbsp;
 
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
