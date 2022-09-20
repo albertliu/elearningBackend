@@ -1203,7 +1203,7 @@
 		asyncbox.open({
 			id: "generateDiploma1",
 			url:"generateDiplomaInfo1.asp?nodeID=" + nodeID + "&kindID=" + kindID + "&keyID=" + keyID + "&refID=" + refID + "&op=" + op + "&item=" + escape(item) + "&p=1&times=" + (new Date().getTime()),
-			title: "发放证书",
+			title: "证书制作",
 			width: 600,
 			height: 800,
 			cover : {
@@ -1219,6 +1219,7 @@
 				var re = iframe.updateCount;
 				if(re>0 && mark==1){
 					getGenerateDiplomaList();
+					getStudentNeedDiplomaList();
 				}
 				//alert(re + ":" + mark);
 				if(re>0 && mark==2){
