@@ -29,15 +29,22 @@
 		nodeID = "<%=nodeID%>";
 		refID = "<%=refID%>";	//username
 		op = "<%=op%>";
-		$("#signature").jSignature();
+		$("#signature").jSignature({
+			color:'blue',
+			lineWidth:3
+		});
 		$.ajaxSetup({ 
 			async: false 
 		}); 
 	});
 //输出签名图片
 	function jSignatureTest(){
+		if ($("#signature").jSignature("getData", "native").length == 0) {
+			alert("请签名。");
+			return false;
+		}
 		var $sigdiv = $("#signature");
-		var datapair = $sigdiv.jSignature("getData", "image")
+		var datapair = $sigdiv.jSignature("getData", "image");
 //          datapair = ["image/svg+xml;base64","PD94bWwgdmVyc2lvbj0iMS4wIi
 //          BlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PCFET0NUWVBFIHN2Zy
 //          BQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My
@@ -77,9 +84,11 @@
 <body style="background:#f0f0f0;">
 
 <div id='layout' align='left' style="background:#f0f0f0;">	
-	<div id="signature" style="height: 100%; border:1px solid #000"></div>
-	<button type="button" onclick="jSignatureTest()">生成签名</button>
-	<button type="button" onclick="reset()">重置签名</button>
-	<div id="image" style="margin:20px"></div>
+	<div id="signature" style="height: 100%; border:1px solid #000; background:#FFF;"></div>
+  	<div class="comm" align="center" style="width:99%;float:top;margin:5px;background:#eeeeee;">
+		<button type="button" onclick="jSignatureTest()">生成签名</button>&nbsp;&nbsp;&nbsp;&nbsp;
+		<button type="button" onclick="reset()">重置签名</button>
+		<div id="image" style="margin:5px"></div>
+	</div>
 </div>
 </body>

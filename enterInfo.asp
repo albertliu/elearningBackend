@@ -484,7 +484,7 @@
 		if(c == "C21" || c == "C20A"){
 			c = "C20";
 		}
-		if(c == "C30" || c == "C31" || c == "C32"){
+		if(c == "C30" || c == "C31" || c == "C32" || c == "C35" || c == "C18" || c == "C19"){
 			c = "C2";
 		}
 		if(c == "C24" || c == "C25" || c == "C26" || c == "C25B" || c == "C26B" || c == "C14" || c == "C15"){
@@ -519,7 +519,7 @@
 		if(c == "C21" || c == "C20A"){
 			c = "C20";
 		}
-		if(c == "C30" || c == "C31" || c == "C32"){
+		if(c == "C30" || c == "C31" || c == "C32" || c == "C35" || c == "C18" || c == "C19"){
 			c = "C2";
 		}
 		if(c == "C24" || c == "C25" || c == "C26" || c == "C25B" || c == "C26B" || c == "C14" || c == "C15"){
@@ -571,7 +571,7 @@
 				}
 			}
             //if(checkPermission("studentDel") && ($("#className").val()=="" || dateDiff(currDate, $("#regDate").val())<180) && $("#statusPay").val()==0 && $("#invoice").val()=="" && $("#dateInvoicePick").val()=="" || $("#name").val().indexOf("测试")>-1){
-            if(checkPermission("studentDel") && ($("#className").val()=="" || dateDiff(currDate, $("#regDate").val())<180) || $("#name").val().indexOf("测试")>-1){
+            if(checkPermission("studentDel") && ($("#className").val()=="" || dateDiff(currDate, $("#regDate").val())<360) || $("#name").val().indexOf("测试")>-1){
                 //未支付未开票的可以删除。
                 $("#btnDel").show();
             }

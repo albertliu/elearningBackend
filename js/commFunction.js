@@ -1781,7 +1781,7 @@
 			url:"hand_signature.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "签字",
 			width: 480,
-			height: 580,
+			height: 380,
 			cover : {
 	          //透明度
 	          opacity : 0,
