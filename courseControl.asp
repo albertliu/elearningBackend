@@ -74,7 +74,7 @@ if(op == "getNodeInfo"){
 		//14
 		result += "|" + rs("completionPass").value + "|" + rs("deadline").value + "|" + rs("deadday").value + "|" + rs("period").value + "|" + rs("mark").value + "|" + rs("markName").value;
 		//20
-		result += "|" + rs("price").value + "|" + rs("reexamine").value + "|" + rs("reexamineName").value;
+		result += "|" + rs("price").value + "|" + rs("reexamine").value + "|" + rs("reexamineName").value + "|" + rs("shortName").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -83,7 +83,7 @@ if(op == "getNodeInfo"){
 if(op == "update"){
 	result = 0;
 	if(result == 0){
-		sql = "exec updateCourseInfo " + nodeID + ",'" + String(Request.QueryString("courseID")) + "','" + unescape(String(Request.QueryString("courseName"))) + "','" + String(Request.QueryString("hours")) + "','" + String(Request.QueryString("completionPass")) + "','" + String(Request.QueryString("deadline")) + "','" + String(Request.QueryString("deadday")) + "','" + String(Request.QueryString("period")) + "'," + kindID + "," + String(Request.QueryString("reexamine")) + "," + status + "," + String(Request.QueryString("mark")) + ",'" + refID + "','" + String(Request.QueryString("price")) + "','" + host + "','" + memo + "','" + currUser + "'";
+		sql = "exec updateCourseInfo " + nodeID + ",'" + String(Request.QueryString("courseID")) + "','" + unescape(String(Request.QueryString("courseName"))) + "','" + unescape(String(Request.QueryString("shortName"))) + "','" + String(Request.QueryString("hours")) + "','" + String(Request.QueryString("completionPass")) + "','" + String(Request.QueryString("deadline")) + "','" + String(Request.QueryString("deadday")) + "','" + String(Request.QueryString("period")) + "'," + kindID + "," + String(Request.QueryString("reexamine")) + "," + status + "," + String(Request.QueryString("mark")) + ",'" + refID + "','" + String(Request.QueryString("price")) + "','" + host + "','" + memo + "','" + currUser + "'";
 
 		execSQL(sql);
 		if(nodeID == 0){

@@ -81,6 +81,7 @@
 				$("#mark").val(ar[18]);
 				$("#price").val(ar[20]);
 				$("#reexamine").val(ar[21]);
+				$("#shortName").val(ar[23]);
 				
 				//getDownloadFile("courseID");
 				setButton();
@@ -93,7 +94,7 @@
 	
 	function saveNode(){
 		//alert("nodeID=" + $("#ID").val() + "&courseID=" + $("#courseID").val() + "&courseName=" + ($("#courseName").val()) + "&hours=" + $("#hours").val() + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&memo=" + ($("#memo").val()));
-		$.get("courseControl.asp?op=update&nodeID=" + $("#ID").val() + "&courseID=" + $("#courseID").val() + "&price=" + $("#price").val() + "&reexamine=" + $("#reexamine").val() + "&courseName=" + escape($("#courseName").val()) + "&hours=" + $("#hours").val() + "&completionPass=" + $("#completionPass").val() + "&deadline=" + $("#deadline").val() + "&period=" + $("#period").val() + "&deadday=" + $("#deadday").val() + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&refID=" + $("#certID").val() + "&status=" + $("#status").val() + "&mark=" + $("#mark").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("courseControl.asp?op=update&nodeID=" + $("#ID").val() + "&courseID=" + $("#courseID").val() + "&price=" + $("#price").val() + "&reexamine=" + $("#reexamine").val() + "&courseName=" + escape($("#courseName").val()) + "&shortName=" + escape($("#shortName").val()) + "&hours=" + $("#hours").val() + "&completionPass=" + $("#completionPass").val() + "&deadline=" + $("#deadline").val() + "&period=" + $("#period").val() + "&deadday=" + $("#deadday").val() + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&refID=" + $("#certID").val() + "&status=" + $("#status").val() + "&mark=" + $("#mark").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -168,8 +169,8 @@
 			<tr>
 				<td align="right">培训类别</td>
 				<td><select id="reexamine" style="width:180px;"></select></td>
-				<td align="right"></td>
-				<td></td>
+				<td align="right">课程简称</td>
+				<td><input type="text" id="shortName" size="25" /></td>
 			</tr>
 			<tr>
 				<td align="right">类型</td>
