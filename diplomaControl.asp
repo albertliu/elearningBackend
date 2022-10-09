@@ -392,15 +392,20 @@ if(op == "getGenerateDiplomaList"){
 	if(where > ""){ // 有条件
 		where = "((firstID <= '" + where + "' and lastID >= '" + where + "') or certName like('%" + where + "%'))";
 	}
+
 	//如果有公司
 	if(host > ""){ // 
 		s = "host='" + host + "'";
-		if(where > ""){
-			where = where + " and " + s;
-		}else{
-			where = s;
-		}
+	}else{
+		s = "host=''";
 	}
+	
+	if(where > ""){
+		where = where + " and " + s;
+	}else{
+		where = s;
+	}
+
 	//如果是教务
 	if(currHost == ""){ // 
 		s = "host=''";
@@ -410,6 +415,7 @@ if(op == "getGenerateDiplomaList"){
 			where = s;
 		}
 	}
+
 	//如果有分类(证书类型)
 	if(kindID > ""){ // 
 		s = "certID='" + kindID + "'";
@@ -419,6 +425,7 @@ if(op == "getGenerateDiplomaList"){
 			where = s;
 		}
 	}
+
 	if(fStart > ""){
 		s = "regDate>='" + fStart + "'";
 		if(where > ""){
@@ -427,6 +434,7 @@ if(op == "getGenerateDiplomaList"){
 			where = s;
 		}
 	}
+
 	if(fEnd > ""){
 		s = "regDate<='" + fEnd + "'";
 		if(where > ""){
@@ -439,6 +447,7 @@ if(op == "getGenerateDiplomaList"){
 	if(where > ""){
 		where = " where " + where;
 	}
+
 	sql = " FROM v_generateDiplomaInfo " + where;
 	result = getBasketTip(sql,"");
 	ssql = "SELECT certName,qty,firstID,lastID,hostName,memo,regDate,registerName" + sql + " order by ID";
