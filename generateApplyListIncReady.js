@@ -6,7 +6,7 @@
 		getDicList("planStatus","searchGenerateApplyStatus",1);
 		if(currHost==""){
 			getComList("searchGenerateApplyPartner","hostInfo","hostNo","title","status=0 and kindID=1 order by ID",1);
-			getComList("searchGenerateApplyCert","v_certificateInfo","certID","certName","status=0 and type=0 order by certName",1);
+			getComList("searchGenerateApplyCert","v_certificateInfo","certID","certName","status=0 and type=0 and agencyID not in(4,5) order by certName",1);
 		}else{
 			getComList("searchGenerateApplyPartner","hostInfo","hostNo","title","status=0 and kindID=1 and hostNo='" + currHost + "' order by ID",0);
 			getComList("searchGenerateApplyCert","v_hostCourseList","courseID","shortName","host='" + currHost + "' order by courseID",1);

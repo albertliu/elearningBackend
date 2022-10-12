@@ -44,7 +44,7 @@
 		getDicList("statusNo","s_resit",1);
 		if(currHost==""){
 			getComList("host","hostInfo","hostNo","title","status=0 and kindID=1 order by ID",1);
-			getComList("courseID","v_courseInfo","courseID","shortName","status=0 and type=0 and agencyID<>4 order by courseID",1);
+			getComList("courseID","v_courseInfo","courseID","shortName","status=0 and type=0 and agencyID not in(4,5) order by courseID",1);
 		}else{
 			getComList("host","hostInfo","hostNo","title","status=0 and kindID=1 and hostNo='" + currHost + "' order by ID",0);
 			getComList("courseID","v_courseInfo a, hostCourseList b","a.courseID","a.shortName","a.courseID=b.courseID and a.status=0 and b.host='" + currHost + "' order by a.courseID",1);

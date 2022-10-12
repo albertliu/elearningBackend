@@ -39,7 +39,7 @@
 		$.ajaxSetup({ 
 			async: false 
 		}); 
-		getComList("certID","certificateInfo","certID","shortName","status=0 and type=0 order by certID",1);
+		getComList("certID","certificateInfo","certID","shortName","status=0 and type=0 and agencyID=4 order by certID",1);
 		getDicList("examResult","s_status",1);
 		getDicList("statusNo","s_resit",1);
 		getDicList("online","kindID",0);

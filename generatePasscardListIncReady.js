@@ -2,7 +2,7 @@
 	var generatePasscardListChk = 0;
 
 	$(document).ready(function (){
-		getComList("searchGeneratePasscardCert","v_certificateInfo","certID","certName","status=0 and type=0 order by certName",1);
+		getComList("searchGeneratePasscardCert","v_certificateInfo","certID","certName","status=0 and type=0 and agencyID=4 order by certName",1);
 		getComList("searchGeneratePasscardRegister","v_examRegister","registerID","registerName","1=1 order by ID desc",1);
 		getDicList("planStatus","searchGeneratePasscardStatus",1);
 		$("#searchGeneratePasscardStart").click(function(){WdatePicker();});
