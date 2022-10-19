@@ -753,7 +753,7 @@ if(op == "getGeneratePasscardNodeInfo"){
 		//20
 		result += "|" + rs("sendScore").value + "|" + rs("sendScoreDate").value + "|" + rs("senderScoreName").value + "|" + rs("qtyYes").value + "|" + rs("qtyNo").value + "|" + rs("qtyNull").value;
 		//26
-		result += "|" + rs("kindID").value + "|" + rs("kindName").value + "|" + rs("closeDate").value;
+		result += "|" + rs("kindID").value + "|" + rs("kindName").value + "|" + rs("closeDate").value + "|" + rs("minutes").value + "|" + rs("scorePass").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

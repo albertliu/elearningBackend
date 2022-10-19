@@ -267,6 +267,8 @@
 				$("#statusName").val(ar[18]);
 				$("#kindID").val(ar[26]);
 				$("#closeDate").val(ar[28]);
+				$("#minutes").val(ar[29]);
+				$("#scorePass").val(ar[30]);
 				$("#sendMsgExam").hide();
 				$("#sendMsgScore").hide();
 				var c = "";
@@ -672,6 +674,12 @@
 				<td><select id="certID" style="width:100%;"></select></td>
 				<td align="right">人数</td>
 				<td><input class="readOnly" type="text" id="qty" size="5" readOnly="true" />&nbsp;&nbsp;&nbsp;类型&nbsp;<select id="kindID" style="width:60px;"></select></td>
+			</tr>
+			<tr>
+				<td align="right">标准时长</td>
+				<td><input class="readOnly" type="text" id="minutes" readOnly="true" size="5" />&nbsp;&nbsp;分钟</td>
+				<td align="right">合格分数</td>
+				<td><input class="readOnly" type="text" id="scorePass" readOnly="true" size="5" />&nbsp;&nbsp;分</td>
 			</tr>
 			<tr>
 				<td align="right">场次标识</td>
