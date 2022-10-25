@@ -79,7 +79,7 @@
 				jAlert("请选择要添加的人员。");
 				return false;
 			}
-			if($("#examID").val()==""){
+			if($("#examID").val()=="" || $("#examID").val()==null){
 				jAlert("请选择要加入的考试场次。");
 				return false;
 			}
