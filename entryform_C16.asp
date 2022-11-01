@@ -187,10 +187,10 @@
 			</tr>
 			<tr>
 				<td align="center" height='55px;' colspan="4" class='table_resume_title' width='15%' height='250px;'>
-					<img id="img_cardA" src="" value="" style='width:auto;max-width:340px;height:auto;max-height:250px;border:none;' />
+					<img id="img_cardA" src="" value="" style='disply:block;width:auto;max-width:340px;height:auto;max-height:250px;border:none;' />
 				</td>
 				<td align="center" colspan="4" class='table_resume_title' width='15%' height='250px;'>
-					<img id="img_cardB" src="" value="" style='width:auto;max-width:340px;height:auto;max-height:250px;border:none;' />
+					<img id="img_cardB" src="" value="" style='disply:block;width:auto;max-width:340px;height:auto;max-height:250px;border:none;' />
 				</td>
 			</tr>
 			<tr>
