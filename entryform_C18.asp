@@ -183,7 +183,7 @@
 			<tr>
 				<td style="text-align:left;" class='table_resume_title' height='55px;' colspan="2"><div style="float: left;padding-left:10px;padding-top:10px;font-size:1em;">单位盖章处<div></td>
 				<td align="center" class='table_resume_title' width='15%' height='300px;' colspan="6">
-					<img id="img_cardA" src="" value="" style='width:350px;max-height:250px;border:none;' />
+					<img id="img_cardA" src="" value="" style='width:350px;height:auto;max-height:250px;border:none;' />
 				</td>
 			</tr>
 			</table>

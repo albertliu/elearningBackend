@@ -158,7 +158,7 @@
 			</tr>
 			<tr>
 				<td align="center" class='table_resume_title' width='15%' height='300px;'>身份证<br>复印件</td><td colspan="3" align="center">
-					<img id="img_cardA" src="" value="" style='width:350px;max-height:250px;border:none;' />
+					<img id="img_cardA" src="" value="" style='width:350px;height:auto;max-height:250px;border:none;' />
 				</td>
 			</tr>
 			</table>
