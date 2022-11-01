@@ -229,8 +229,8 @@
 			</tr>
 			<tr>
 				<td align="center" height='48px;' colspan="5" class='table_resume_title' width='15%' height='250px;'>
-					<span style="float:left;"><img id="img_cardA" src="" value="" style='width:340px;height:auto;max-height:250px;border:none;' /></span>
-					<span style="float:right;"><img id="img_cardB" src="" value="" style='width:340px;height:auto;max-height:250px;border:none;' /></span>
+					<span style="float:left;"><img id="img_cardA" src="" value="" style='disply:block;width:340px;height:auto;max-height:250px;border:none;' /></span>
+					<span style="float:right;"><img id="img_cardB" src="" value="" style='disply:block;width:340px;height:auto;max-height:250px;border:none;' /></span>
 				</td>
 			</tr>
 			<tr>
