@@ -35,9 +35,9 @@ if (String(Request.QueryString("msg")) != "undefined" &&
 </head>
 
 <body>
-<div id="layout" style="width:86mm;">
-   <div>
-      <img id="img" src="" style="width:86mm;" />
+<div id="layout">
+   <div style="margin:0 auto;">
+      <img id="img" src="" style="display: flex; width:80%;margin:0 auto;" />
    </div>
 </div>
 
