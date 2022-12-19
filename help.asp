@@ -23,7 +23,7 @@ if (String(Request.QueryString("msg")) != "undefined" &&
       nodeID = "<%=msg%>";
       //window.innerWidth = 86mm;
       //alert(nodeID);
-      $.get("http://localhost:8081/public/getPDF2img?path=" + nodeID,function(data){
+      $.get("http://shznxfxx.cn:8081/public/getPDF2img?path=" + nodeID,function(data){
          //alert(data);
          $("#img").prop("src",data);
       });

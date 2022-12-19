@@ -119,7 +119,7 @@
 			<table>
 			<tr>
 				<td align="right">材料名称</td><input type="hidden" id="ID" />
-				<td><input class="readOnly" type="text" id="certName" size="25" readOnly="true" /></td>
+				<td><input class="readOnly" type="text" id="kindName" size="25" readOnly="true" /></td>
 				<td align="right">数量</td>
 				<td><input class="readOnly" type="text" id="qty" size="25" readOnly="true" /></td>
 			</tr>
