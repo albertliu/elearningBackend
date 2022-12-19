@@ -9,18 +9,21 @@
 							  </span>
 					          证书&nbsp;<select id="searchStudentNeedDiplomaCert" style="width:120px"></select>&nbsp;&nbsp;
 		          			<input style="border:0px;" type="checkbox" id="searchStudentNeedDiplomaPhoto" value="" />&nbsp;缺照片&nbsp;&nbsp;
-		          			<input style="border:0px;" type="checkbox" id="searchStudentNeedDiplomaShowPhoto" value="" />&nbsp;显示照片&nbsp;&nbsp;
+		          			<input style="border:0px;" type="checkbox" id="searchStudentNeedDiplomaShowPhoto" value="" checked />&nbsp;显示照片&nbsp;&nbsp;
 		          			<input style="border:0px;" type="checkbox" id="searchStudentNeedDiplomaRefuse" value="" />&nbsp;拒绝申请&nbsp;&nbsp;
 						    <span style="float:right;">
 								<input class="button" type="button" id="btnStudentNeedDiplomaSel" value="全选/取消" />&nbsp;&nbsp;
-								<input class="button" type="button" id="btnStudentNeedDiplomaIssue" value="制作证书" />
+								<input class="button" type="button" id="btnStudentNeedDiplomaIssue" value="制作证书" />&nbsp;&nbsp;
 								<input class="button" type="button" id="btnStudentNeedDiplomaIssue1" value="制作证书" />&nbsp;&nbsp;
+								<input class="button" type="button" id="btnStudentNeedDiplomaAttentionPhoto" value="照片通知" />
+								<input class="button" type="button" id="btnStudentNeedDiplomaAttentionPhotoClose" value="照片确认" />
 								<input class="button" type="button" id="btnDownLoad21" onClick="outputFloat(21,'file')" value="下载" />
 							</span>
 							<br/>
 							<hr style="margin:3px 0;" />
 							<span id="searchStudentNeedDiplomaItem1">
 								班级&nbsp;<select id="searchStudentNeedDiplomaClassID" style="width:180px"></select>&nbsp;&nbsp;
+								&nbsp;结课日期&nbsp;<input type="text" id="searchStudentNeedDiplomaCloseStartDate" size="8" />-<input type="text" id="searchStudentNeedDiplomaCloseEndDate" size="8" />
 							    &nbsp;考试日期&nbsp;<input type="text" id="searchStudentNeedDiplomaStartDate" size="8" />-<input type="text" id="searchStudentNeedDiplomaEndDate" size="8" />
 							</span>
 						    <span style="float:right;">

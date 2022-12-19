@@ -35,6 +35,7 @@
 	var selCount1 = 0;
 	var currPage = "";
 	var uploadURL = "";
+	var backendURL = "";
 	var token_user = new Array();
 	var ctree = 0;
 	
@@ -65,6 +66,7 @@
 		currHostKind = ar[7];
 		uploadURL = ar[8];
 		currDeptID = ar[9];
+		backendURL = ar[10];
 	});
 		
 	function chkUserActive(){
@@ -708,8 +710,8 @@
 		});
 	}
 	
-	//nodeID: ID; refID: unit ID; op: 0 浏览 1 新增  2 编辑  3 删除  4 审批; mark: 0 不动作  1 有修改时刷新列表  2 有修改时刷新对象 
-	function showStudentInfo(nodeID,refID,op,mark){
+	//nodeID: ID; refID: unit ID; op: 0 浏览 1 新增  2 编辑  3 删除  4 审批; mark: 0 不动作  1 有修改时刷新列表  2 有修改时刷新对象  source:启动该窗口的母窗体
+	function showStudentInfo(nodeID,refID,op,mark,source){
 		asyncbox.open({
 			id: "student",
 			url:"studentInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
@@ -727,7 +729,12 @@
 			callback : function(action,iframe){
 				var re = iframe.updateCount;
 				if(re>0 && mark==1){
-					getStudentList();
+					if(source=="student"){
+						getStudentList();
+					}
+					if(source=="class"){
+						getStudentCourseList();
+					}
 				}
 				if(re>0 && mark==2){
 					setObjValue("student",iframe.getValList(),0,0);  //根据请求，返回任意个数的项目，为相应的对象赋值。objList:传入的Object列表；valList：输出的值；mark：0 不动作 1 关闭本窗口（与objList同名）; loc: 0 同级别  1 父窗体
@@ -1790,6 +1797,35 @@
 	          },
 
 			btnsbar : false
+		});
+	}
+	
+	//nodeID: ID; op: 0 浏览 1 新增  2 编辑  3 删除  4 审批; mark: 0 不动作  1 有修改时刷新列表  2 有修改时刷新对象  k 来源标识
+	function showCropperInfo(nodeID,refID,k,op,mark){
+		asyncbox.open({
+			id: "cropper",
+			url:"imageCropper.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
+			title: "照片裁剪",
+			width: 580,
+			height: 640,
+			cover : {
+	          //透明度
+	          opacity : 0,
+	          //背景颜色
+	           background : '#000'
+	        },
+
+			btnsbar : false,
+			callback : function(action,iframe){
+				var re = iframe.updateCount;
+				if(re>0 && mark==1){
+					if(k.length>1){
+						$("#" + k).prop("src", nodeID + "?times=" + (new Date().getTime()));
+					}else{
+						$("#photo" + k + refID).prop("src", nodeID + "?times=" + (new Date().getTime()));
+					}
+				}
+　　　		}
 		});
 	}
 	

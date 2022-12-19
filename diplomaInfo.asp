@@ -46,6 +46,14 @@
 		$("#save").click(function(){
 			saveNode();
 		});
+		$("#cancel").click(function(){
+			if(confirm("确定要取消该证书吗？")){
+				$.get("diplomaControl.asp?op=cancelDiploma&nodeID=" + $("#diplomaID").val() + "&times=" + (new Date().getTime()),function(re){
+					jAlert("操作成功！","信息提示");
+					updateCount += 1;
+				});
+			}
+		});
 		$("#print").click(function(){
 			window.parent.showTab("dhtmlgoodies_tabView2",1);
 			window.parent.$("#txtSearchGenerateDiploma").val($("#diplomaID").val());
@@ -119,6 +127,9 @@
 		}
 		if(!checkPermission("messageAdd")){
 			$("#reply").hide();
+		}
+		if(!checkPermission("cancelDiploma")){
+			$("#cancel").hide();
 		}
 	}
 	
@@ -204,9 +215,10 @@
 	
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
-  	<input class="button" type="button" id="reply" name="reply" value="发通知" />&nbsp;
-  	<input class="button" type="button" id="save" name="save" value="保存备注" />&nbsp;
-  	<input class="button" type="button" id="print" name="print" value="打印证书" />&nbsp;
+  	<input class="button" type="button" id="reply" value="发通知" />&nbsp;
+  	<input class="button" type="button" id="save" value="保存备注" />&nbsp;
+  	<input class="button" type="button" id="print" value="打印证书" />&nbsp;
+  	<input class="button" type="button" id="cancel" value="取消证书" />&nbsp;
   </div>
 </div>
 </body>

@@ -59,20 +59,18 @@
 		$("#btnEnterBadPhoto").click(function(){
 			getSelCart("visitstockchkEnterPhoto");
 			if(selCount==0){
-				jAlert("请选择要通知重新上传图片的名单。");
+				jAlert("请选择要通知的名单。");
 				return false;
 			}
-			jConfirm("确定通知将这些(" + selCount + "个)图片重新上传吗？","确认",function(r){
+			jConfirm("确定通知将这" + selCount + "个学员提交电子照片吗？","确认",function(r){
 				if(r){
 					//alert($("#searchEnterProjectID").val() + "&status=1&host=" + $("#searchEnterHost").val() + "&keyID=" + selList);
 					//jAlert(selList);
 					//$.get("enterControl.asp?op=doStudentMaterial_resubmit&status=1&keyID=" + selList ,function(data){
-					$.getJSON(uploadURL + "/public/resubmit_student_materials", {status: 1, selList: selList, registerID: currUser} ,function(data){
+					$.getJSON(uploadURL + "/public/send_message_submit_photo", {kind: "", selList: selList, SMS:1, registerID: currUser} ,function(data){
 						//jAlert(data);
-						if(data["status"]==0){
-							getEnterList();
-						}
-						jAlert(data["msg"]);
+						getEnterList();
+						alert("发送成功。");
 					});
 				}
 			});
@@ -81,17 +79,15 @@
 		$("#btnEnterGoodPhoto").click(function(){
 			getSelCart("visitstockchkEnterPhoto");
 			if(selCount==0){
-				jAlert("请选择要确认图片的名单。");
+				jAlert("请选择要确认照片的名单。");
 				return false;
 			}
-			jConfirm("确定接受这些(" + selCount + "个)图片吗？","确认",function(r){
+			jConfirm("确定接受这" + selCount + "个提交电子照片通知关闭吗？","确认",function(r){
 				if(r){
-					$.getJSON(uploadURL + "/public/resubmit_student_materials", {status: 3, selList: selList, registerID: currUser} ,function(data){
+					$.getJSON(uploadURL + "/public/send_message_submit_attention_close", {batchID: "", kindID:0, kind: "", selList: selList, SMS:1, registerID: currUser} ,function(data){
 						//jAlert(data);
-						if(data["status"]==0){
-							getEnterList();
-						}
-						jAlert(data["msg"]);
+						getEnterList();
+						alert("发送成功。");
 					});
 				}
 			});
@@ -408,7 +404,7 @@
 						arr.push("<td class='center'>" + nullNoDisp(ar1[68]) + "</td>");
 					}else{
 						if(ar1[18] > ""){
-							arr.push("<td class='center'><img src='users" + ar1[18] + "' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
+							arr.push("<td class='center'><img id='photoB" + ar1[1] + "' src='users" + ar1[18] + "' onclick='showCropperInfo(\"users" + ar1[18] + "\",\"" + ar1[1] + "\",\"B\",0,1)' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
 						}else{
 							arr.push("<td class='center'>&nbsp;</td>");
 						}

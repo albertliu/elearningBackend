@@ -74,10 +74,10 @@ h5 {
 h6 {
   margin: 0;
   padding-top: 8px;
-  padding-bottom: 3px;
+  padding-bottom: 8px;
   padding-left: 3px;
-  font-size: 32px;
-  font-family: "幼圆",Arial, Helvetica, sans-serif;
+  font-size: 29px;
+  font-family: 微软雅黑,幼圆,Arial, Helvetica, sans-serif;
   color: #000;
 }
 h6A {
@@ -131,6 +131,15 @@ td.foot {
   position: relative;
   width: 350mm;
   height: 238mm;
+  margin: 0;
+  padding: 0;
+  text-align: left; 
+  border: none;
+}
+.login-form-wrap3p0 {
+  position: relative;
+  width: 230mm;
+  height: 139.5mm;
   margin: 0;
   padding: 0;
   text-align: left; 

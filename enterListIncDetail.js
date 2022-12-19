@@ -30,8 +30,6 @@
 								状态&nbsp;<select id="searchEnterPhotoStatus" style="width:50px"></select>&nbsp;&nbsp;
 								单位确认&nbsp;<select id="searchEnterChecked" style="width:50px"></select>&nbsp;&nbsp;
 								材料确认&nbsp;<select id="searchEnterMaterialChecked" style="width:50px"></select>&nbsp;&nbsp;
-								<input class="button" type="button" id="btnEnterBadPhoto" value="修正通知" />&nbsp;&nbsp;
-								<input class="button" type="button" id="btnEnterGoodPhoto" value="修正确认" />
 							</span>
 							<span id="enterListLongItem3">
 								班主任&nbsp;<select id="searchEnterClassAdviser" style="width:90px"></select>&nbsp;&nbsp;
@@ -40,6 +38,8 @@
 							    &nbsp;<label id="searchEnterDateItem">报名日期</label>&nbsp;<input type="text" id="searchEnterStartDate" size="8" />-<input type="text" id="searchEnterEndDate" size="8" />
 							</span>
 							<input style="border:0px;" type="checkbox" id="searchEnterShowPhoto" value="" />&nbsp;显示照片&nbsp;
+							<input class="button" type="button" id="btnEnterBadPhoto" value="照片通知" />&nbsp;&nbsp;
+							<input class="button" type="button" id="btnEnterGoodPhoto" value="照片确认" />
 							<span id="enterListLongItem5">
 								<input class="button" type="button" id="btnEnterSel" value="全选/取消" />&nbsp;&nbsp;
 								<input class="button" type="button" id="btnEnterCheck" value="材料确认" />&nbsp;

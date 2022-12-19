@@ -270,6 +270,8 @@ if(op == "getStudentCourseList"){
 		result += "|" + rs("reexamine").value + "|" + rs("reexamineName").value + "|" + rs("examTimes").value + "|" + rs("certID").value + "|" + rs("missingItems").value + "|" + rs("shortName").value + "|" + rs("job").value;
 		//64
 		result += "|" + rs("diplomaID").value + "|" + rs("applyID").value + "|" + rs("score").value + "|" + rs("submiterName").value + "|" + rs("reExamCount").value + "|" + rs("mobile").value + "|" + rs("score1").value + "|" + rs("score2").value;
+		//72
+		result += "|" + rs("fromID").value + "|" + rs("signature").value + "|" + rs("signatureDate").value + "|" + rs("status_photo").value + "|" + rs("status_signature").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -349,6 +351,8 @@ if(op == "getStudentListByClass"){
 		result += "|" + rs("submited").value + "|" + rs("submitDate").value + "|" + rs("submiter").value + "|" + rs("submiterName").value;
 		//19
 		result += "|" + rs("checked").value + "|" + rs("checkDate").value + "|" + rs("checker").value + "|" + rs("checkerName").value + "|" + rs("enterID").value;
+		//24
+		result += "|" + rs("fromID").value + "|" + rs("signature").value + "|" + rs("signatureDate").value + "|" + rs("status_photo").value + "|" + rs("status_signature").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -481,7 +485,7 @@ if(op == "getNodeInfo"){
 		//40
 		result += "|" + rs("reexamine").value + "|" + rs("reexamineName").value + "|" + rs("examTimes").value + "|" + rs("missingItems").value + "|" + rs("submiterName").value + "|" + rs("currDiplomaID").value + "|" + rs("currDiplomaDate").value;
 		//47
-		result += "|" + rs("fromID").value + "|" + rs("signature").value + "|" + rs("signatureDate").value;
+		result += "|" + rs("fromID").value + "|" + rs("signature").value + "|" + rs("signatureDate").value + "|" + rs("status_photo").value + "|" + rs("status_signature").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

@@ -151,7 +151,7 @@ if(op == "clearSession"){
 }
 
 if(op == "getCurrParam"){
-	result = currDate + "|" + currUser + "|" + Session("name_key") + "|" + currYear + "|" + currMonth + "|" + currWeek + "|" + currHost + "|" + currHostKind + "|" + getSysEnv("NODE_ENV_UPLOAD_URL") + "|" + currDeptID;
+	result = currDate + "|" + currUser + "|" + Session("name_key") + "|" + currYear + "|" + currMonth + "|" + currWeek + "|" + currHost + "|" + currHostKind + "|" + getSysEnv("NODE_ENV_UPLOAD_URL") + "|" + currDeptID + "|" + getSysEnv("NODE_ENV_BACKEND");
 	Response.Write(escape(result));
 }
 

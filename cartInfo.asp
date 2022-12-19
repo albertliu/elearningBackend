@@ -31,8 +31,8 @@
 	$(document).ready(function (){
 		kindID = "<%=nodeID%>";
 		
-		getComList("examID","v_generatePasscardInfo","ID","title","status=0 order by ID desc",1);
-		getComList("applyID","v_generateApplyInfo","ID","title","status=0 order by ID desc",1);
+		getComList("examID","v_generatePasscardInfo","ID","IDtitle","status=0 order by ID desc",1);
+		getComList("applyID","v_generateApplyInfo","ID","IDtitle","status=0 order by ID desc",1);
 		
 		$.ajaxSetup({ 
 			async: false 

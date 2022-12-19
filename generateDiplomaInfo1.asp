@@ -48,6 +48,7 @@
 		$("#class_startDate").click(function(){WdatePicker();});
 		$("#class_endDate").click(function(){WdatePicker();});
 		getDicList("diplomaFontSize","kindID",0);
+		getDicList("diplomaStyle","styleID",0);
 		setButton();
 		
 		if(op==0){
@@ -82,10 +83,10 @@
 			}
 			//jAlert(getSession(refID));
 			
-			jConfirm("确定要制作证书(" + keyID + "个)吗？","确认",function(r){
+			jConfirm("确定要制作" + keyID + "个[" + $("#styleID").find("option:selected").text() + "]样式的证书吗？","确认",function(r){
 				if(r){
 					//$.getJSON(uploadURL + "/outfiles/generate_diploma_byClassID?ID=0&mark=0&certID=" + kindID + "&selList=" + refID + "&startDate=" + $("#startDate").val() + "&class_startDate=" + $("#class_startDate").val() + "&class_endDate=" + $("#class_endDate").val() + "&registerID=" + currUser ,function(data){
-					$.post(uploadURL + "/outfiles/generate_diploma_byClassID?ID=0&mark=0&certID=" + kindID + "&startDate=" + $("#startDate").val() + "&class_startDate=" + $("#class_startDate").val() + "&class_endDate=" + $("#class_endDate").val() + "&memo=" + $("#memo").val() + "&registerID=" + currUser, {"selList": getSession(refID)} ,function(data){
+					$.post(uploadURL + "/outfiles/generate_diploma_byClassID?ID=0&card=" + $("#styleID").val() + "&mark=0&certID=" + kindID + "&startDate=" + $("#startDate").val() + "&class_startDate=" + $("#class_startDate").val() + "&class_endDate=" + $("#class_endDate").val() + "&memo=" + $("#memo").val() + "&registerID=" + currUser, {"selList": getSession(refID)} ,function(data){
 						if(data>0){
 							jAlert("证书制作成功。");
 							nodeID = data;
@@ -104,7 +105,7 @@
 			jConfirm("确定要重新制作证书吗？证书编号将保持不变。","确认",function(r){
 				if(r){
 					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
-					$.post(uploadURL + "/outfiles/generate_diploma_byClassID?ID=" + $("#ID").val() + "&mark=0&certID=" + $("#certID").val() + "&kindID=" + $("#kindID").val() + "&startDate=" + $("#startDate").val() + "&class_startDate=" + $("#class_startDate").val() + "&class_endDate=" + $("#class_endDate").val() + "&registerID=" + currUser, {selList:""} ,function(data){
+					$.post(uploadURL + "/outfiles/generate_diploma_byClassID?card=" + $("#styleID").val() + "&ID=" + $("#ID").val() + "&mark=0&certID=" + $("#certID").val() + "&kindID=" + $("#kindID").val() + "&startDate=" + $("#startDate").val() + "&class_startDate=" + $("#class_startDate").val() + "&class_endDate=" + $("#class_endDate").val() + "&registerID=" + currUser, {selList:""} ,function(data){
 						if(data>""){
 							jAlert("证书重新制作成功 <a href='" + data + "' target='_blank'>下载文件</a>");
 							updateCount += 1;
@@ -150,6 +151,7 @@
 				$("#class_endDate").val(ar[19]);
 				$("#photoDate").val(ar[21]);
 				$("#kindID").val(ar[22]);
+				$("#styleID").val(ar[23]);
 				if(ar[13]==1){
 					$("#printed").prop("checked",true);
 				}else{
@@ -214,7 +216,7 @@
 					arr.push("<td class='left'>" + ar1[1] + "</td>");
 					arr.push("<td class='left'>" + ar1[2] + "</td>");
 					arr.push("<td class='left'>" + ar1[3] + "</td>");
-					imgChk = "<img src='users" + ar1[5] + "' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'>";
+					imgChk = "<img id='photo" + ar1[1] + "' src='users" + ar1[5] + "' onclick='showCropperInfo(\"users" + ar1[5] + "\",\"" + ar1[1] + "\",\"\",0,1)' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'>";
 					arr.push("<td class='left'>" + ar1[7] + "</td>");
 					arr.push("<td class='center'>" + imgChk + "</td>");
 					if(ar1[4]==1){
@@ -279,7 +281,7 @@
 		var photo = 0;
 		if($("#photos").attr("checked")){photo = 1;}
 		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-		$.get("diplomaControl.asp?op=updateGenerateDiplomaMemo&nodeID=" + $("#ID").val() + "&kindID=" + $("#kindID").val() + "&printed=" + printed + "&delivery=" + delivery + "&photo=" + photo + "&printDate=" + $("#printDate").val() + "&deliveryDate=" + $("#deliveryDate").val() + "&photoDate=" + $("#photoDate").val() + "&startDate=" + $("#startDate").val() + "&class_startDate=" + $("#class_startDate").val() + "&class_endDate=" + $("#class_endDate").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("diplomaControl.asp?op=updateGenerateDiplomaMemo&nodeID=" + $("#ID").val() + "&keyID=" + $("#styleID").val() + "&kindID=" + $("#kindID").val() + "&printed=" + printed + "&delivery=" + delivery + "&photo=" + photo + "&printDate=" + $("#printDate").val() + "&deliveryDate=" + $("#deliveryDate").val() + "&photoDate=" + $("#photoDate").val() + "&startDate=" + $("#startDate").val() + "&class_startDate=" + $("#class_startDate").val() + "&class_endDate=" + $("#class_endDate").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -363,21 +365,21 @@
 				</td>
 			</tr>
 			<tr>
-				<td align="right" colspan="6">
-				照片移交<input style="border:0px;" type="checkbox" id="photos" value="" />&nbsp;&nbsp;<input class="readOnly" type="text" id="photoDate" size="8" readOnly="true" />
-				&nbsp;证书打印<input style="border:0px;" type="checkbox" id="printed" value="" />&nbsp;&nbsp;<input class="readOnly" type="text" id="printDate" size="8" readOnly="true" />
-				&nbsp;证书发放<input style="border:0px;" type="checkbox" id="delivery" value="" />&nbsp;&nbsp;<input class="readOnly" type="text" id="deliveryDate" size="8" readOnly="true" />
-				</td>
-			</tr>
-			<tr>
-				<td align="right">证书字体</td>
-				<td><select id="kindID" style="width:100px;"></select></td>
+				<td align="right">证书样式</td>
+				<td><select id="styleID" style="width:60px;"></select>&nbsp;&nbsp;&nbsp;字体<select id="kindID" style="width:60px;"></select></td>
 				<td align="right">制作</td>
 				<td><input class="readOnly" type="text" id="registerName" size="10" readOnly="true" />&nbsp;&nbsp;<input class="readOnly" type="text" id="regDate" size="10" readOnly="true" /></td>
 			</tr>
 			<tr>
 				<td align="right">备注</td>
 				<td colspan="5"><input type="text" id="memo" size="70" /></td>
+			</tr>
+			<tr>
+				<td align="right" colspan="6">
+				照片移交<input style="border:0px;" type="checkbox" id="photos" value="" />&nbsp;&nbsp;<input class="readOnly" type="text" id="photoDate" size="8" readOnly="true" />
+				&nbsp;证书打印<input style="border:0px;" type="checkbox" id="printed" value="" />&nbsp;&nbsp;<input class="readOnly" type="text" id="printDate" size="8" readOnly="true" />
+				&nbsp;证书发放<input style="border:0px;" type="checkbox" id="delivery" value="" />&nbsp;&nbsp;<input class="readOnly" type="text" id="deliveryDate" size="8" readOnly="true" />
+				</td>
 			</tr>
 			</table>
 			</form>

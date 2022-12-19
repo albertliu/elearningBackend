@@ -8,6 +8,8 @@
 		$("#btnStudentNeedDiplomaIssue1").hide();
 		$("#searchStudentNeedDiplomaStartDate").click(function(){WdatePicker();});
 		$("#searchStudentNeedDiplomaEndDate").click(function(){WdatePicker();});
+		$("#searchStudentNeedDiplomaCloseStartDate").click(function(){WdatePicker();});
+		$("#searchStudentNeedDiplomaCloseEndDate").click(function(){WdatePicker();});
 
 		if(currHost==""){	//公司用户只能看自己公司内容
 			getComList("searchStudentNeedDiplomaHost","hostInfo","hostNo","title","status=0 order by hostName",1);
@@ -27,6 +29,10 @@
 			$("#searchStudentNeedDiplomaItem2").hide();
 		}else{
 			getComList("searchStudentNeedDiplomaDept","dbo.getDept1List()","deptID","deptName","0=0 order by deptID",1);
+		}
+		if(!checkPermission("studentEdit")){
+			$("#btnStudentNeedDiplomaAttentionPhotoClose").hide();
+			$("#btnStudentNeedDiplomaAttentionPhoto").hide();
 		}
 		
 		$("#btnSearchStudentNeedDiploma").click(function(){
@@ -92,27 +98,36 @@
 				jAlert("请选择要制作证书的清单。");
 				return false;
 			}
-			/*
-			jConfirm("确定要制作证书(" + selCount + "个)吗？","确认",function(r){
-				if(r){
-					jPrompt("请输入发证日期：", currDate, "调整发证日期",function(d){
-						if(d=="" || isDate(d)){
-							$.getJSON(uploadURL + "/outfiles/generate_diploma_byClassID?ID=0&mark=0&certID=" + $("#searchStudentNeedDiplomaCert").val() + "&selList=" + selList + "&startDate=" + d + "&registerID=" + currUser ,function(data){
-								if(data>""){
-									jAlert("证书制作成功 <a href='" + data + "' target='_blank'>下载文件</a>");
-									getStudentNeedDiplomaList();
-								}else{
-									jAlert("没有可供处理的数据。");
-								}
-							});
-						}else{
-							jAlert("请输入发证日期。");
-						}
-					});
-				}
-			});*/
 			setSession("need2DiplomaList", selList);
 			showGenerateDiplomaInfo1(0,$("#searchStudentNeedDiplomaCert").val(),"need2DiplomaList",selCount,$("#searchStudentNeedDiplomaClassID").find("option:selected").text(),1,1);
+		});
+		
+		$("#btnStudentNeedDiplomaAttentionPhoto").click(function(){
+			getSelCart("visitstockchkNeed");
+			if(selCount==0){
+				jAlert("请选择要通知的学员清单。");
+				return false;
+			}
+			if(confirm("确定要通知这" + selCount + "个学员提交电子照片吗？")){
+				$.post(uploadURL + "/public/send_message_submit_photo", {kind: "cert", selList: selList, SMS:1, registerID: currUser} ,function(data){
+					jAlert("发送成功。");
+					getStudentNeedDiplomaList();
+				});
+			}
+		});
+		
+		$("#btnStudentNeedDiplomaAttentionPhotoClose").click(function(){
+			getSelCart("visitstockchkNeed");
+			if(selCount==0){
+				jAlert("请选择要关闭的名单。");
+				return false;
+			}
+			if(confirm("确定要将这" + selCount + "个提交电子照片通知关闭吗？")){
+				$.post(uploadURL + "/public/send_message_submit_attention_close", {batchID: "", kindID:0, kind: "cert", selList: selList, SMS:1, registerID: currUser} ,function(data){
+					jAlert("操作成功。");
+					getStudentNeedDiplomaList();
+				});
+			}
 		});
 		
 		$("#txtSearchStudentNeedDiploma").keypress(function(event){
@@ -139,7 +154,7 @@
 		if($("#searchStudentNeedDiplomaPhoto").attr("checked")){photo = 1;}
 		if($("#searchStudentNeedDiplomaRefuse").attr("checked")){refuse = 1;}
 		//alert((sWhere) + "&kindID=" + $("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&keyID=" + photo);
-		$.get("diplomaControl.asp?op=getStudentNeedDiplomaList&where=" + escape(sWhere) + "&mark=" + mark + "&kindID=" + $("#searchStudentNeedDiplomaCert").val() + "&classID=" + $("#searchStudentNeedDiplomaClassID").val() + "&fStart=" + $("#searchStudentNeedDiplomaStartDate").val() + "&fEnd=" + $("#searchStudentNeedDiplomaEndDate").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&dept=" + $("#searchStudentNeedDiplomaDept").val() + "&keyID=" + photo + "&refID=" + refuse + "&dk=21&times=" + (new Date().getTime()),function(data){
+		$.get("diplomaControl.asp?op=getStudentNeedDiplomaList&where=" + escape(sWhere) + "&mark=" + mark + "&kindID=" + $("#searchStudentNeedDiplomaCert").val() + "&classID=" + $("#searchStudentNeedDiplomaClassID").val() + "&fStart=" + $("#searchStudentNeedDiplomaStartDate").val() + "&fEnd=" + $("#searchStudentNeedDiplomaEndDate").val() + "&closeStart=" + $("#searchStudentNeedDiplomaCloseStartDate").val() + "&closeEnd=" + $("#searchStudentNeedDiplomaCloseEndDate").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&dept=" + $("#searchStudentNeedDiplomaDept").val() + "&keyID=" + photo + "&refID=" + refuse + "&dk=21&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
@@ -160,13 +175,13 @@
 			arr.push("<th width='5%'>年龄</th>");
 			arr.push("<th width='12%'>证书名称</th>");
 			if(currHost==""){
-				arr.push("<th width='15%'>班级</th>");
+				arr.push("<th width='12%'>班级</th>");
 				arr.push("<th width='8%'>学历</th>");
 				arr.push("<th width='5%'>学费</th>");
 			}else{
 				arr.push("<th width='10%'>结束日期</th>");
 			}
-			arr.push("<th width='10%'>部门</th>");
+			arr.push("<th width='8%'>部门</th>");
 			arr.push("<th width='6%'>照</th>");
 			arr.push("<th width='5%'>证</th>");
 			if(currHost>""){
@@ -179,16 +194,17 @@
 				var i = 0;
 				var c = 0;
 				var h = "";
-				var imgChk = "<img src='images/green_check.png'>";
+				var imgChk = "";
+				var attention_status = ["FFFFAA","AAFFAA","F3F3F3"];
 				$.each(ar,function(iNum,val){
 					var ar1 = new Array();
 					ar1 = val.split("|");
 					i += 1;
 					c = 0;
-					h = ar1[13];	//公司用户显示部门1名称
+					imgChk = "<img src='images/green_check.png'>";
+					//h = ar1[13];	//公司用户显示部门1名称
 					//if(ar1[6]>60 && ar1[14]==1 && ar1[3]=="C5"){c = 2;}	//系统外单位，施工作业上岗证大于60岁的一律取消其证件(显示红色)
 					if(ar1[6]>55 && ar1[3]=="C5" && ar1[23]==0){c = 2;}	//施工作业上岗证大于55岁且不在预批范围的一律提示(显示红色)
-					if(currHost==""){h = ar1[12];}	//系统用户显示公司名称
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
 					arr.push("<td class='left'>" + ar1[19] + "</td>");
@@ -208,13 +224,20 @@
 						arr.push("<td class='left'>" + ar1[11] + "</td>");
 					}
 					arr.push("<td class='left'>" + ar1[9] + "</td>");
-					if($("#searchStudentNeedDiplomaShowPhoto").attr("checked")){
-						imgChk = "<img src='users" + ar1[13] + "?t=" + (new Date().getTime()) + "' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'>";
-					}
-					if(ar1[13]==0){
-						arr.push("<td class='center'>&nbsp;</td>");
+					if(ar1[26]>0){	//根据照片或签字提醒状态，显示不同背景颜色
+						h = " style='background-color:#" + attention_status[ar1[26]-1] + ";'";
 					}else{
-						arr.push("<td class='center'>" + imgChk + "</td>");
+						h = "";
+					}
+					if($("#searchStudentNeedDiplomaShowPhoto").attr("checked")){
+						imgChk = "<img id='photoA" + ar1[1] + "' src='users" + ar1[13] + "?t=" + (new Date().getTime()) + "' onclick='showCropperInfo(\"users" + ar1[13] + "\",\"" + ar1[1] + "\",\"A\",0,1)' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'>";
+					}else{
+						imgChk = "&nbsp;";
+					}
+					if(ar1[13].length==0){
+						arr.push("<td class='center'" + h + ">&nbsp;</td>");
+					}else{
+						arr.push("<td class='center'" + h + ">" + imgChk + "</td>");
 					}
 					if(currHost>"" || ar1[21]==1){	//未交费的不能做证书
 						arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchkNeed'>" + "</td>");
@@ -222,7 +245,7 @@
 						arr.push("<td class='center'>&nbsp;</td>");
 					}
 					if(currHost>""){
-						arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchkStamp'>" + "</td>");
+						arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchkStamp' checked='checked'>" + "</td>");
 					}
 					arr.push("</tr>");
 				});

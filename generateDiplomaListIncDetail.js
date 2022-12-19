@@ -5,6 +5,7 @@
 				          <input class="button" type="button" id="btnSearchGenerateDiploma" value="查找" />
 					          <span id="searchGenerateDiplomaItem1">&nbsp;&nbsp;公司&nbsp;<select id="searchGenerateDiplomaHost" style="width:100px"></select></span>
 					          &nbsp;&nbsp;证书&nbsp;<select id="searchGenerateDiplomaCert" style="width:80px"></select>&nbsp;&nbsp;
+					          &nbsp;&nbsp;样式&nbsp;<select id="searchGenerateDiplomaStyle" style="width:60px"></select>&nbsp;&nbsp;
 							  &nbsp;&nbsp;<label>制作日期</label>
 				          	<input type="text" id="searchGenerateDiplomaStart" size="8" title="起始日期" style="background:#AAFFAA;" />
 				          	-

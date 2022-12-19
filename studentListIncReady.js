@@ -23,7 +23,7 @@
 		});
 		
 		$("#btnSearchStudentAdd").click(function(){
-			showStudentInfo(0,0,1,1);
+			showStudentInfo(0,0,1,1,"student");
 		});
 		
 		$("#txtSearchStudent").keypress(function(event){
@@ -117,7 +117,7 @@
 					if(currHost==""){h = ar1[12];}	//系统用户显示公司名称
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
-					arr.push("<td class='link1'><a href='javascript:showStudentInfo(" + ar1[0] + ",\"\",0,1);'>" + ar1[1] + "</a></td>");
+					arr.push("<td class='link1'><a href='javascript:showStudentInfo(" + ar1[0] + ",\"\",0,1,\"student\");'>" + ar1[1] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[2].substr(0,4) + "</td>");
 					arr.push("<td class='left'>" + ar1[8] + "</td>");
 					arr.push("<td class='left'>" + ar1[9] + "</td>");

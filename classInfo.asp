@@ -48,6 +48,7 @@
 		}
 		getDicList("planStatus","status",0);
 		getDicList("online","kindID",0);
+		getDicList("signatureType","signatureType",0);
 		$("#dateStart").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'});});
 		$("#dateEnd").click(function(){WdatePicker();});
 		
@@ -208,6 +209,62 @@
 				});
 			}
 		});
+		
+		$("#btnAttentionPhoto").click(function(){
+			getSelCart("visitstockchk");
+			if(selCount==0){
+				alert("请选择要通知的名单。");
+				return false;
+			}
+			if(confirm("确定要通知这" + selCount + "个学员提交电子照片吗？")){
+				$.post(uploadURL + "/public/send_message_submit_photo", {kind: "", selList: selList, SMS:1, registerID: currUser} ,function(data){
+					getNodeInfo(nodeID);
+					alert("发送成功。");
+				});
+			}
+		});
+		
+		$("#btnAttentionSignature").click(function(){
+			getSelCart("visitstockchk");
+			if(selCount==0){
+				alert("请选择要通知的名单。");
+				return false;
+			}
+			if(confirm("确定要通知这" + selCount + "个学员完成签名吗？")){
+				$.post(uploadURL + "/public/send_message_submit_signature", {batchID: $("#classID").val(), selList: selList, SMS:1, registerID: currUser} ,function(data){
+					getNodeInfo(nodeID);
+					alert("发送成功。");
+				});
+			}
+		});
+		
+		$("#btnAttentionPhotoClose").click(function(){
+			getSelCart("visitstockchk");
+			if(selCount==0){
+				alert("请选择要关闭的名单。");
+				return false;
+			}
+			if(confirm("确定要将这" + selCount + "个提交电子照片通知关闭吗？")){
+				$.post(uploadURL + "/public/send_message_submit_attention_close", {batchID: "", kindID:0, kind: "", selList: selList, SMS:1, registerID: currUser} ,function(data){
+					getNodeInfo(nodeID);
+					alert("操作成功。");
+				});
+			}
+		});
+		
+		$("#btnAttentionSignatureClose").click(function(){
+			getSelCart("visitstockchk");
+			if(selCount==0){
+				alert("请选择要关闭的名单。");
+				return false;
+			}
+			if(confirm("确定要将这" + selCount + "个提交签名通知关闭吗？")){
+				$.post(uploadURL + "/public/send_message_submit_attention_close", {batchID: $("#classID").val(), kindID:1, kind: "", selList: selList, SMS:1, registerID: currUser} ,function(data){
+					getNodeInfo(nodeID);
+					alert("操作成功。");
+				});
+			}
+		});
 
 		$("#btnMockView").click(function(){
 			showClassExamStat($("#classID").val(),$("#className").val(),0,0);
@@ -302,6 +359,7 @@
 				$("#teacherName").val(ar[38]);
 				$("#host").val(ar[39]);
 				$("#transaction_id").val(ar[40]);
+				$("#signatureType").val(ar[45]);
 				$("#courseID").val(ar[36]);
 				$("#adviserID").val(ar[8]);
 				setProjectList(ar[36],ar[2]);
@@ -345,8 +403,16 @@
             mark = 3;
         }
 		var photo = 0;
+		$("#btnAttentionSignature").hide();
+		$("#btnAttentionPhoto").hide();
+		$("#btnAttentionSignatureClose").hide();
+		$("#btnAttentionPhotoClose").hide();
 		if($("#showPhoto").prop("checked")){
 			photo = 1;
+			$("#btnAttentionSignature").show();
+			$("#btnAttentionPhoto").show();
+			$("#btnAttentionSignatureClose").show();
+			$("#btnAttentionPhotoClose").show();
 		}
 		$.get("studentCourseControl.asp?op=getStudentCourseList&classID=" + $("#classID").val() + "&mark=" + mark + "&completion2=" + $("#s_completion2").val() + "&score2=" + $("#s_score2").val() + "&dk=9101&times=" + (new Date().getTime()),function(data){
 			//alert(unescape(data));
@@ -368,13 +434,14 @@
 			arr.push("<th width='9%'>单位</th>");
 			arr.push("<th width='6%'>电话</th>");
 			arr.push("<th width='5%'>进度%</th>");
-			arr.push("<th width='7%'>模拟</th>");
-			arr.push("<th width='5%'>准申</th>");
 			if(photo == 0){
+				arr.push("<th width='7%'>模拟</th>");
+				arr.push("<th width='5%'>准申</th>");
 				arr.push("<th width='5%'>成绩</th>");
 				arr.push("<th width='5%'>补考</th>");
 			}else{
-				arr.push("<th width='10%'>照片</th>");
+				arr.push("<th width='8%'>照片</th>");
+				arr.push("<th width='10%'>签名</th>");
 			}
 			arr.push("<th width='5%'>证书</th>");
 			arr.push("<th width='5%'>状态</th>");
@@ -389,6 +456,7 @@
 				var k = 0;
 				var s = $("#status").val();
 				var imgChk = "<img src='images/green_check.png'>";
+				var attention_status = ["FFFFAA","AAFFAA","F3F3F3"];
 				$.each(ar,function(iNum,val){
 					var ar1 = new Array();
 					ar1 = val.split("|");
@@ -398,7 +466,7 @@
 					arr.push("<td class='center'>" + i + "</td>");
 					arr.push("<td class='left'>" + ar1[43] + "</td>");
 					arr.push("<td class='link1'><a href='javascript:showEnterInfo(" + ar1[0] + ",\"" + ar1[1] + "\",0,1);'>" + ar1[1] + "</a></td>");
-					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + ar1[1] + "\",0,1);'>" + ar1[2] + "</a></td>");
+					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + ar1[1] + "\",0,1,\"class\");'>" + ar1[2] + "</a></td>");
 					if(ar1[56]=="znxf"){	//非集团客户，显示自己的单位和部门
 						arr.push("<td class='left' title='" + ar1[54] + "'>" + ar1[54].substr(0,8) + "</td>");
 					}else{
@@ -413,25 +481,40 @@
 					}
 					arr.push("<td class='center'>" + c + "</td>");	//学习进度
 					//arr.push("<td title='最好成绩' class='link1'><a href='javascript:showStudentExamStat(" + ar1[0] + ",\"" + ar1[2] + "\",0,0);'>" + c + "</a></td>");
-					arr.push("<td title='最好成绩' class='link1' onclick='showStudentExamStat(" + ar1[0] + ",\"" + ar1[2] + "\",0,0);'>" + nullNoDisp(ar1[15]) + "</td>");
-					//申报
-					if(ar1[65]>0 || ar1[53]>0){
-						arr.push("<td class='center'>" + imgChk + "</td>");	//申报/准考证
-					}else{
-						arr.push("<td class='center'>&nbsp;</td>");
-					}
-                    h = ar1[66];
-                    if($("#certID").val()=="C12" || $("#certID").val()=="C14" || $("#certID").val()=="C15" || $("#certID").val()=="C24" || $("#certID").val()=="C25" || $("#certID").val()=="C26" || $("#certID").val()=="C25B" || $("#certID").val()=="C26B"){
-                        h = ar1[70].replace(".00","") + "/" + ar1[71].replace(".00","");
-                    }
 					if(photo == 0){
+						arr.push("<td title='最好成绩' class='link1' onclick='showStudentExamStat(" + ar1[0] + ",\"" + ar1[2] + "\",0,0);'>" + nullNoDisp(ar1[15]) + "</td>");
+						//申报
+						if(ar1[65]>0 || ar1[53]>0){
+							arr.push("<td class='center'>" + imgChk + "</td>");	//申报/准考证
+						}else{
+							arr.push("<td class='center'>&nbsp;</td>");
+						}
+						h = ar1[66];
+						if($("#certID").val()=="C12" || $("#certID").val()=="C14" || $("#certID").val()=="C15" || $("#certID").val()=="C24" || $("#certID").val()=="C25" || $("#certID").val()=="C26" || $("#certID").val()=="C25B" || $("#certID").val()=="C26B"){
+							h = ar1[70].replace(".00","") + "/" + ar1[71].replace(".00","");
+						}
 						arr.push("<td class='left'><a href='javascript:showStudentExamPaper(" + ar1[0] + ",\"" + ar1[2] + "\");'>" + nullNoDisp(h) + "</a></td>");
 						arr.push("<td class='center'>" + nullNoDisp(ar1[68]) + "</td>");
 					}else{
-						if(ar1[18] > ""){
-							arr.push("<td class='center'><img src='users" + ar1[18] + "' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
+						if(ar1[75]>0){	//根据照片或签字提醒状态，显示不同背景颜色
+							h = " style='background-color:#" + attention_status[ar1[75]-1] + ";'";
 						}else{
-							arr.push("<td class='center'>&nbsp;</td>");
+							h = "";
+						}
+						if(ar1[18] > ""){
+							arr.push("<td class='center'" + h + "><img id='photo" + ar1[1] + "' src='users" + ar1[18] + "' onclick='showCropperInfo(\"users" + ar1[18] + "\",\"" + ar1[1] + "\",\"\",0,1)' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
+						}else{
+							arr.push("<td class='center'" + h + ">&nbsp;</td>");
+						}
+						if(ar1[76]>0){
+							h = " style='background-color:#" + attention_status[ar1[76]-1] + ";'";
+						}else{
+							h = "";
+						}
+						if(ar1[73] > ""){
+							arr.push("<td class='center'" + h + "><img src='users" + ar1[73] + "' style='width:100px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
+						}else{
+							arr.push("<td class='center'" + h + ">&nbsp;</td>");
 						}
 					}
 					if(ar1[64]>""){
@@ -461,8 +544,8 @@
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
-			arr.push("<th>&nbsp;</th>");
 			if(photo == 0){
+				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
 			}
 			arr.push("</tr>");
@@ -503,7 +586,7 @@
 		}
 		var photo = 0;
 		if($("#archived").prop("checked")){photo = 1;}
-		$.post("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&className=" + escape($("#className").val()) + "&classroom=" + escape($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&courseID=" + $("#courseID").val() + "&adviserID=" + $("#adviserID").val() + "&host=" + $("#host").val() + "&teacher=" + $("#teacher").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&transaction_id=" + $("#transaction_id").val() + "&archived=" + photo, {"memo":$("#memo").val(), "summary":$("#summary").val()},function(re){
+		$.post("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&signatureType=" + $("#signatureType").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&className=" + escape($("#className").val()) + "&classroom=" + escape($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&courseID=" + $("#courseID").val() + "&adviserID=" + $("#adviserID").val() + "&host=" + $("#host").val() + "&teacher=" + $("#teacher").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&transaction_id=" + $("#transaction_id").val() + "&archived=" + photo, {"memo":$("#memo").val(), "summary":$("#summary").val()},function(re){
 			//alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -718,6 +801,7 @@
 		$("#transaction_id").val("");
 		$("#status").val(0);
 		$("#kindID").val(0);
+		$("#signatureType").val(0);
 		$("#classroom").val("黄兴路158号D103");
 		$("#dateStart").val(addDays(currDate,3) + " 8:30");
 		$("#dateEnd").val("");
@@ -775,22 +859,22 @@
 				</td>
 			</tr>
 			<tr>
-				<td align="right">班主任</td><input id="adviserName" type="hidden" />
-				<td><select id="adviserID" style="width:180px;"></select></td>
+				<td align="right">课程类型</td><input id="adviserName" type="hidden" />
+				<td><select id="kindID" style="width:50px;"></select>&nbsp;&nbsp;签字类型&nbsp;<select id="signatureType" style="width:60px;"></select></td>
 				<td align="right">上课地点</td>
 				<td><input type="text" id="classroom" size="25" /></td>
 			</tr>
 			<tr>
 				<td align="left" colspan="2"><input id="teacherName" type="hidden" />
-					任课教师&nbsp;<select id="teacher" style="width:75px;"></select>
-					&nbsp;&nbsp;类型&nbsp;<select id="kindID" style="width:60px;"></select>
+					任课教师<select id="teacher" style="width:60px;"></select>
+					&nbsp;&nbsp;班主任&nbsp;<select id="adviserID" style="width:60px;"></select>
 				</td>
 				<td align="right"><input class="button" type="button" id="btnSchedule" value="排课表" /></td>
 				<td><input type="text" id="scheduleDate" size="10" class="readOnly" readOnly="true" />&nbsp;&nbsp;<span id="schedule" style="margin-left:10px;"></span></td>
 			</tr>
 			<tr>
 				<td colspan="2">
-					资料归档<input style="border:0px;" type="checkbox" id="archived" value="" />&nbsp;&nbsp;<input class="readOnly" type="text" id="archiverName" size="8" readOnly="true" />&nbsp;&nbsp;<input class="readOnly" type="text" id="archiveDate" size="8" readOnly="true" />
+					资料归档<input style="border:0px;" type="checkbox" id="archived" value="" />&nbsp;&nbsp;<input class="readOnly" type="text" id="archiverName" size="6" readOnly="true" />&nbsp;&nbsp;<input class="readOnly" type="text" id="archiveDate" size="8" readOnly="true" />
 				</td>
 				<td colspan="2">
 					<span id="photo" style="margin-left:10px;"></span>
@@ -840,7 +924,7 @@
 			<form id="feedback" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
-				<td align="right" colspan="2" style="width:100%;"><div id="feedback_list" style="width:500px; height:458px;float:left;border:2px solid #888;padding:5px 10px;overflow:auto;"></div></td>
+				<td align="right" colspan="2" style="width:100%;"><div id="feedback_list" style="width:500px; height:453px;float:left;border:2px solid #888;padding:5px 10px;overflow:auto;"></div></td>
 			</tr>
 			<tr>
 				<td style="background:#f5f5ff;"><input class="mustFill" type="text" id="feedback_item" style="width:450px; height:30px;" /></td>
@@ -870,15 +954,19 @@
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassCall" value="开课通知" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassAlert" value="进度提醒" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassExamDeny" value="不安排考试通知" /></span>
-			<span id="btnMockView">&nbsp;&nbsp;模拟考试汇总</span>
-			<span id="btnMockDetail">&nbsp;&nbsp;模拟考试明细</span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnAttentionPhoto" value="照片通知" /></span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnAttentionSignature" value="签名通知" /></span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnAttentionPhotoClose" value="照片确认" /></span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnAttentionSignatureClose" value="签名确认" /></span>
 		</div>
 		<div>
 			学习进度&nbsp;&lt;=<input type="text" id="s_completion2" size="2" />%
 			&nbsp;&nbsp;模拟成绩&nbsp;&lt;=<input type="text" id="s_score2" size="2" />
 			&nbsp;&nbsp;<input class="button" type="button" id="btnFindStudent" value="查找" />&nbsp;&nbsp;
-			&nbsp;&nbsp;<input style="border:0px;" type="checkbox" id="showPhoto" value="" />&nbsp;显示照片&nbsp;&nbsp;
+			&nbsp;&nbsp;<input style="border:0px;" type="checkbox" id="showPhoto" value="" />&nbsp;显示照片和签名&nbsp;&nbsp;
 			&nbsp;&nbsp;<input class="button" type="button" id="btnDownload" value="名单下载" />
+			<span id="btnMockView">&nbsp;&nbsp;模拟考试汇总</span>
+			<span id="btnMockDetail">&nbsp;&nbsp;模拟考试明细</span>
 		</div>
 	</div>
 	<hr size="1" noshadow />

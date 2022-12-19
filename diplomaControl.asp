@@ -315,6 +315,22 @@ if(op == "getStudentNeedDiplomaList"){
 			where = s;
 		}
 	}
+	if(String(Request.QueryString("closeStart")) > "" && String(Request.QueryString("closeStart")) != "null" && String(Request.QueryString("closeStart")) !="undefined"){
+		s = "a.closeDate>='" + String(Request.QueryString("closeStart")) + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	if(String(Request.QueryString("closeEnd")) > "" && String(Request.QueryString("closeEnd")) != "null" && String(Request.QueryString("closeEnd")) !="undefined"){
+		s = "a.closeDate<='" + String(Request.QueryString("closeEnd")) + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 	//如果缺照片
 	if(keyID == 1){ // 
 		s = "a.photo_filename=''";
@@ -347,7 +363,7 @@ if(op == "getStudentNeedDiplomaList"){
 	sql = " FROM v_studentCertList a INNER JOIN v_studentCourseList b ON a.ID = b.refID LEFT OUTER JOIN  dbo.classInfo d ON b.classID = d.classID LEFT OUTER JOIN v_generatePasscardInfo c ON b.passcardID = c.ID where a.type=" + String(Request.QueryString("mark")) + " and a.result=1" + where;
 	result = getBasketTip(sql,"");
 	ssql = "SELECT a.username,name,sexName,age,certName,agencyName,hostName,dept1Name,dept2Name,job,mobile,closeDate,examScore,a.memo" + sql + " order by name";
-	sql = "SELECT top " + basket + " a.*,b.ID as enterID, isnull(d.className,'') as className,isnull(b.classID,'') as classID, isnull(c.startDate,'') as testDate, b.SNo, b.pay_status,b.pay_statusName" + sql + " order by a.closeDate desc";
+	sql = "SELECT top " + basket + " a.*,b.ID as enterID,b.signature,b.signatureDate,b.status_photo,b.status_signature, isnull(d.className,'') as className,isnull(b.classID,'') as classID, isnull(c.startDate,'') as testDate, b.SNo, b.pay_status,b.pay_statusName" + sql + " order by a.closeDate desc";
 	
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
@@ -360,6 +376,8 @@ if(op == "getStudentNeedDiplomaList"){
 		result += "|" + rs("className").value + "|" + rs("testDate").value + "|" + rs("classID").value + "|" + rs("educationName").value + "|" + rs("SNo").value;
 		//20
 		result += "|" + rs("pay_statusName").value + "|" + rs("pay_status").value + "|" + rs("enterID").value + "|" + rs("c555").value;
+		//24
+		result += "|" + rs("signature").value + "|" + rs("signatureDate").value + "|" + rs("status_photo").value + "|" + rs("status_signature").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -426,6 +444,16 @@ if(op == "getGenerateDiplomaList"){
 		}
 	}
 
+	//如果证书样式
+	if(keyID > ""){ // 
+		s = "styleID=" + keyID;
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+
 	if(fStart > ""){
 		s = "regDate>='" + fStart + "'";
 		if(where > ""){
@@ -462,6 +490,8 @@ if(op == "getGenerateDiplomaList"){
 		result += "|" + rs("firstID").value + "|" + rs("lastID").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerName").value;
 		//13
 		result += "|" + rs("printed").value + "|" + rs("printDate").value + "|" + rs("delivery").value + "|" + rs("deliveryDate").value + "|" + rs("startDate").value + "|" + rs("photo").value + "|" + rs("photoDate").value;
+		//20
+		result += "|" + rs("styleID").value + "|" + rs("styleName").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -485,6 +515,8 @@ if(op == "getGenerateDiplomaNodeInfo"){
 		result += "|" + rs("printed").value + "|" + rs("printDate").value + "|" + rs("delivery").value + "|" + rs("deliveryDate").value + "|" + rs("startDate").value;
 		//18
 		result += "|" + rs("class_startDate").value + "|" + rs("class_endDate").value + "|" + rs("photo").value + "|" + rs("photoDate").value + "|" + rs("kindID").value;
+		//23
+		result += "|" + rs("styleID").value + "|" + rs("styleName").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -782,7 +814,7 @@ if(op == "updateGenerateDiplomaInfo"){
 
 if(op == "updateGenerateDiplomaMemo"){
 	//@ID int,@classID varchar(50),@title nvarchar(100),@qty int,@startTime varchar(100),@address nvarchar(100),@notes nvarchar(500),@memo nvarchar(500),@registerID
-	sql = "exec updateGenerateDiplomaMemo " + nodeID + ",'" + String(Request.QueryString("startDate")) + "','" + String(Request.QueryString("class_startDate")) + "','" + String(Request.QueryString("class_endDate")) + "','" + String(Request.QueryString("photo")) + "','" + String(Request.QueryString("photoDate")) + "','" + String(Request.QueryString("printed")) + "','" + String(Request.QueryString("printDate")) + "','" + String(Request.QueryString("delivery")) + "','" + String(Request.QueryString("deliveryDate")) + "'," + kindID + ",'" + memo + "','" + currUser + "'";
+	sql = "exec updateGenerateDiplomaMemo " + nodeID + ",'" + String(Request.QueryString("startDate")) + "','" + String(Request.QueryString("class_startDate")) + "','" + String(Request.QueryString("class_endDate")) + "','" + String(Request.QueryString("photo")) + "','" + String(Request.QueryString("photoDate")) + "','" + String(Request.QueryString("printed")) + "','" + String(Request.QueryString("printDate")) + "','" + String(Request.QueryString("delivery")) + "','" + String(Request.QueryString("deliveryDate")) + "'," + kindID + "," + keyID + ",'" + memo + "','" + currUser + "'";
 	rs = conn.Execute(sql);
 	Response.Write(escape(0));
 	//Response.Write(escape(sql));
@@ -1091,6 +1123,12 @@ if(op == "getLastApplyAddress"){
 
 if(op == "closeExam"){
 	sql = "exec closeExam " + nodeID + ",'" + currUser + "'";
+	execSQL(sql);
+	Response.Write(nodeID);
+}
+
+if(op == "cancelDiploma"){
+	sql = "exec cancelDiploma '" + nodeID + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(nodeID);
 }
