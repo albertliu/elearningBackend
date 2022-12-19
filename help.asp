@@ -36,8 +36,8 @@ if (String(Request.QueryString("msg")) != "undefined" &&
 
 <body>
 <div id="layout">
-   <div style="margin:0 auto;">
-      <img id="img" src="" style="display: flex; width:80%;margin:0 auto;" />
+   <div style="height:100%;">
+      <img id="img" src="" style="display: flex; width:80%;padding:50px;margin:0 auto;-webkit-filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, .5));filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, .5));" />
    </div>
 </div>
 
