@@ -16,7 +16,7 @@
 <link href="css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="css/asyncbox/asyncbox.css" type="text/css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
-<script language="javascript" src="js/jquery-1.7.2.min.js"></script>
+<script language="javascript" src="js/jquery-2.1.1.min.js"></script>
 <script language="javascript" src="js/jquery.form.js"></script>
 <script type="text/javascript" src="js/jquery.easyui.min.js"></script>
 <script src="js/jquery.alerts.js" type="text/javascript"></script>
@@ -297,49 +297,49 @@
 				//<a href='/users" + ar[21] + "' target='_blank'></a>
 				arr = [];
 				if(ar[21] > ""){
-					$("#img_photo").attr("src","/users" + ar[21]);
+					$("#img_photo").attr("src","/users" + ar[21] + "?times=" + (new Date().getTime()));
 					$("#img_photo").attr("value","/users" + ar[21]);
 				}else{
-					$("#img_photo").attr("src","images/blank_photo.png");
+					$("#img_photo").attr("src","images/blank_photo.png" + "?times=" + (new Date().getTime()));
 					arr.push("," + "photo");
 				}
 				if(ar[22] > ""){
-					$("#img_cardA").attr("src","/users" + ar[22]);
+					$("#img_cardA").attr("src","/users" + ar[22] + "?times=" + (new Date().getTime()));
 					$("#img_cardA").attr("value","/users" + ar[22]);
 				}else{
-					$("#img_cardA").attr("src","images/blank_cardA.png");
+					$("#img_cardA").attr("src","images/blank_cardA.png" + "?times=" + (new Date().getTime()));
 					arr.push("," + "cardA");
 				}
 				if(ar[23] > ""){
-					$("#img_cardB").attr("src","/users" + ar[23]);
+					$("#img_cardB").attr("src","/users" + ar[23] + "?times=" + (new Date().getTime()));
 					$("#img_cardB").attr("value","/users" + ar[23]);
 				}else{
-					$("#img_cardB").attr("src","images/blank_cardB.png");
+					$("#img_cardB").attr("src","images/blank_cardB.png" + "?times=" + (new Date().getTime()));
 					arr.push("," + "cardB");
 				}
 				if(ar[24] > ""){
-					$("#img_education").attr("src","/users" + ar[24]);
+					$("#img_education").attr("src","/users" + ar[24] + "?times=" + (new Date().getTime()));
 					$("#img_education").attr("value","/users" + ar[24]);
 				}else{
-					$("#img_education").attr("src","images/blank_education.png");
+					$("#img_education").attr("src","images/blank_education.png" + "?times=" + (new Date().getTime()));
 				}
 				if(ar[43] > ""){
-					$("#img_CHESICC").attr("src","/users" + ar[43]);
+					$("#img_CHESICC").attr("src","/users" + ar[43] + "?times=" + (new Date().getTime()));
 					$("#img_CHESICC").attr("value","/users" + ar[43]);
 				}else{
-					$("#img_CHESICC").attr("src","images/blank_CHESICC.png");
+					$("#img_CHESICC").attr("src","images/blank_CHESICC.png" + "?times=" + (new Date().getTime()));
 				}
 				if(ar[44] > ""){
-					$("#img_employment").attr("src","/users" + ar[44]);
+					$("#img_employment").attr("src","/users" + ar[44] + "?times=" + (new Date().getTime()));
 					$("#img_employment").attr("value","/users" + ar[44]);
 				}else{
-					$("#img_employment").attr("src","images/blank_employment.png");
+					$("#img_employment").attr("src","images/blank_employment.png" + "?times=" + (new Date().getTime()));
 				}
 				if(ar[45] > ""){
-					$("#img_jobCertificate").attr("src","/users" + ar[45]);
+					$("#img_jobCertificate").attr("src","/users" + ar[45] + "?times=" + (new Date().getTime()));
 					$("#img_jobCertificate").attr("value","/users" + ar[45]);
 				}else{
-					$("#img_jobCertificate").attr("src","images/blank_jobCertificate.png");
+					$("#img_jobCertificate").attr("src","images/blank_jobCertificate.png" + "?times=" + (new Date().getTime()));
 				}
 				//$("#photo").html(c);
 				//getDownloadFile("studentID");
