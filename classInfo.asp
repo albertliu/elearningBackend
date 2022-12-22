@@ -586,6 +586,7 @@
 		}
 		var photo = 0;
 		if($("#archived").prop("checked")){photo = 1;}
+		//alert($("#ID").val() + "&signatureType=" + $("#signatureType").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&className=" + ($("#className").val()) + "&classroom=" + ($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&courseID=" + $("#courseID").val() + "&adviserID=" + $("#adviserID").val() + "&host=" + $("#host").val() + "&teacher=" + $("#teacher").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&transaction_id=" + $("#transaction_id").val() + "&archived=" + photo);
 		$.post("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&signatureType=" + $("#signatureType").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&className=" + escape($("#className").val()) + "&classroom=" + escape($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&courseID=" + $("#courseID").val() + "&adviserID=" + $("#adviserID").val() + "&host=" + $("#host").val() + "&teacher=" + $("#teacher").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&transaction_id=" + $("#transaction_id").val() + "&archived=" + photo, {"memo":$("#memo").val(), "summary":$("#summary").val()},function(re){
 			//alert(unescape(re));
 			var ar = new Array();
