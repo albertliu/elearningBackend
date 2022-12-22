@@ -20,7 +20,7 @@
 		$("#btnSearchGenerateMaterialAdd").click(function(){
 			//etc. ("student_photo","310102199209090021","student","spc"),  ("student_photo","0","mulitple","spc")
 			// --(nodeID,refID,op,mark,keyID)/(op,nodeID,refID,keyID)/(loadOp,loadID,mark,p_host)/
-			showCommLoadFile(0,"mulitple","student_diploma",1,"");
+			showCommLoadFile(0,"mulitple","student_photo",1,"");
 		});
 		
 		$("#txtSearchGenerateMaterial").keypress(function(event){
