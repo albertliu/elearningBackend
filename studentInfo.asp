@@ -17,9 +17,9 @@
 <link href="css/asyncbox/asyncbox.css" type="text/css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
 <script language="javascript" src="js/jquery-2.1.1.min.js"></script>
+<script src="js/jquery.alerts.js" type="text/javascript"></script>
 <script language="javascript" src="js/jquery.form.js"></script>
 <script type="text/javascript" src="js/jquery.easyui.min.js"></script>
-<script src="js/jquery.alerts.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/AsyncBox.v1.4.js"></script>
 <script language="javascript" type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 <script src="js/datepicker/WdatePicker.js" type="text/javascript"></script>
@@ -93,7 +93,7 @@
 			jConfirm('你确定要禁用这个学员吗?', '确认对话框', function(r) {
 				if(r){
 					$.get("studentControl.asp?op=setStatus&nodeID=" + $("#studentID").val() + "&status=1&times=" + (new Date().getTime()),function(data){
-						jAlert("成功禁用！","信息提示");
+						alert("成功禁用！","信息提示");
 						getNodeInfo(nodeID);
 						updateCount += 1;
 					});
@@ -104,7 +104,7 @@
 			jConfirm('你确定要解禁这个学员吗?', '确认对话框', function(r) {
 				if(r){
 					$.get("studentControl.asp?op=setStatus&nodeID=" + $("#studentID").val() + "&status=0&times=" + (new Date().getTime()),function(data){
-						jAlert("成功解禁！","信息提示");
+						alert("成功解禁！","信息提示");
 						getNodeInfo(nodeID,"");
 						updateCount += 1;
 					});
@@ -115,7 +115,7 @@
 			jConfirm('你确定要重置密码吗?', '确认对话框', function(r) {
 				if(r){
 					$.get("studentControl.asp?op=reset&nodeID=" + $("#studentID").val() + "&times=" + (new Date().getTime()),function(data){
-						jAlert("重置完成，当前密码为123456","信息提示");
+						alert("重置完成，当前密码为123456","信息提示");
 					});
 				}
 			});
@@ -127,7 +127,7 @@
 					if(checkIDcard($("#username").val())==1){
 						var n = studentExist($("#username").val());
 						if(n>0){
-							jAlert("该身份证已经存在。");
+							alert("该身份证已经存在。");
 							//已有该身份证记录，则调出原记录，进入编辑状态
 							op = 0;
 							getNodeInfo(0,$("#username").val());
@@ -135,7 +135,7 @@
 						replace_item = "";
 						setDeptFromRefInfo();
 					}else{
-						jAlert("身份证号码有误，请核对。");
+						alert("身份证号码有误，请核对。");
 					}
 				}
 			}
@@ -350,7 +350,7 @@
 				getStudentCourseList(ar[1]);
 				setButton();
 			}else{
-				jAlert("该信息未找到！","信息提示");
+				alert("该信息未找到！","信息提示");
 				op = 1;
 				setButton();
 			}
@@ -359,23 +359,23 @@
 	
 	function saveNode(){
 		if(!$("#Tai").prop("checked") && checkIDcard($("#username").val()) > 1){
-			jAlert("身份证号码有误，请核对。");
+			alert("身份证号码有误，请核对。");
 			return false;
 		}
 		if($("#username").val()==""){
-			jAlert("请填写证件号码。");
+			alert("请填写证件号码。");
 			return false;
 		}
 		if($("#companyID").val()==""){
-			jAlert("请选择来源。");
+			alert("请选择来源。");
 			return false;
 		}
 		if($("#mobile").val() !="" && $("#mobile").val().length != 11){
-			jAlert("请正确填写手机。");
+			alert("请正确填写手机。");
 			return false;
 		}
 		if($("#name").val()==""){
-			jAlert("请填写姓名。");
+			alert("请填写姓名。");
 			return false;
 		}
 		var k = 0;
@@ -383,7 +383,7 @@
 		//alert("nodeID=" + $("#username").val() + "&name=" + ($("#name").val()) + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + ($("#mobile").val()) + "&phone=" + ($("#phone").val()) + "&email=" + ($("#email").val()) + "&job=" + ($("#job").val()) + "&education=" + ($("#education").val()) + "&memo=" + ($("#memo").val()));
 		if(!$("#Tai").prop("checked")){		//普通身份证
 			$.get("studentControl.asp?op=update&nodeID=" + $("#username").val() + "&name=" + escape($("#name").val()) + "&linker=" + escape($("#linker").val()) + "&unit=" + escape($("#unit").val()) + "&dept=" + escape($("#dept").val()) + "&ethnicity=" + escape($("#ethnicity").val()) + "&IDaddress=" + escape($("#IDaddress").val()) + "&bureau=" + escape($("#bureau").val()) + "&IDdateStart=" + $("#IDdateStart").val() + "&IDdateEnd=" + $("#IDdateEnd").val() + "&experience=" + escape($("#experience").val()) + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&job_status=" + $("#job_status").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + escape($("#mobile").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&address=" + escape($("#address").val()) + "&job=" + escape($("#job").val()) + "&education=" + $("#education").val() + "&fromID=" + $("#fromID").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
-				//jAlert(unescape(re));
+				//alert(unescape(re));
 				var ar = new Array();
 				ar = unescape(re).split("|");
 				if(ar[0] == 0){
@@ -396,7 +396,7 @@
 						showEnterInfo(0,$("#username").val(),1,1,$("#companyID").val(),0);
 					}else{
 						if(fromCard==0){
-							jAlert("保存成功！","信息提示");
+							alert("保存成功！","信息提示");
 						}
 						fromCard = 0;
 						$("#enter").focus();
@@ -433,11 +433,11 @@
 			}
 		}else{	//港澳台证
 			if($("#birthday").val()==""){
-				jAlert("请填写出生日期。");
+				alert("请填写出生日期。");
 				return false;
 			}
 			$.get("studentControl.asp?op=updateTai&nodeID=" + $("#username").val() + "&name=" + escape($("#name").val()) + "&sex=" + $("#sex").val() + "&birthday=" + $("#birthday").val() + "&linker=" + escape($("#linker").val()) + "&unit=" + escape($("#unit").val()) + "&dept=" + escape($("#dept").val()) + "&ethnicity=" + escape($("#ethnicity").val()) + "&IDaddress=" + escape($("#IDaddress").val()) + "&bureau=" + escape($("#bureau").val()) + "&IDdateStart=" + $("#IDdateStart").val() + "&IDdateEnd=" + $("#IDdateEnd").val() + "&experience=" + escape($("#experience").val()) + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&job_status=" + $("#job_status").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + escape($("#mobile").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&address=" + escape($("#address").val()) + "&job=" + escape($("#job").val()) + "&education=" + $("#education").val() + "&fromID=" + $("#fromID").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
-				//jAlert(unescape(re));
+				//alert(unescape(re));
 				var ar = new Array();
 				ar = unescape(re).split("|");
 				if(ar[0] == 0){
@@ -450,7 +450,7 @@
 						showEnterInfo(0,$("#username").val(),1,1,$("#companyID").val(),0);
 					}else{
 						if(fromCard==0){
-							jAlert("保存成功！","信息提示");
+							alert("保存成功！","信息提示");
 						}
 						fromCard = 0;
 						$("#enter").focus();
