@@ -6,11 +6,11 @@
 		var w2 = "status=0 and (kindID=0 or host='" + currHost + "')";
 		if(currHost==""){	//公司用户只能看自己公司内容
 			getComList("searchGenerateMaterialHost","hostInfo","hostNo","title","status=0 order by hostName",1);
-			getComList("searchGenerateMaterialCert","certificateInfo","certID","certName","status=0 order by certID",1);
 		}else{
 			getComList("searchGenerateMaterialHost","hostInfo","hostNo","title",w1,0);
-			getComList("searchGenerateMaterialCert","certificateInfo","certID","certName",w2,1);
 		}
+		//getDicList("material","searchGenerateMaterialKind",1);
+		getComList("searchGenerateMaterialKind","dictionaryDoc","memo","item","kind='material'",1);
 		$("#searchGenerateMaterialStart").click(function(){WdatePicker();});
 		$("#searchGenerateMaterialEnd").click(function(){WdatePicker();});
 		
@@ -40,8 +40,8 @@
 
 	function getGenerateMaterialList(){
 		sWhere = $("#txtSearchGenerateMaterial").val();
-		//alert((sWhere) + "&kindID=" + $("#searchGenerateMaterialCert").val() + "&host=" + $("#searchGenerateMaterialHost").val() + "&keyID=" + photo);
-		$.get("diplomaControl.asp?op=getGenerateMaterialList&where=" + escape(sWhere) + "&kindID=" + $("#searchGenerateMaterialCert").val() + "&host=" + $("#searchGenerateMaterialHost").val() + "&fStart=" + $("#searchGenerateMaterialStart").val() + "&fEnd=" + $("#searchGenerateMaterialEnd").val() + "&dk=33&times=" + (new Date().getTime()),function(data){
+		//alert("&kindID=" + $("#searchGenerateMaterialKind").val() + "&host=" + $("#searchGenerateMaterialHost").val());
+		$.get("diplomaControl.asp?op=getGenerateMaterialList&where=" + escape(sWhere) + "&kindID=" + $("#searchGenerateMaterialKind").val() + "&host=" + $("#searchGenerateMaterialHost").val() + "&fStart=" + $("#searchGenerateMaterialStart").val() + "&fEnd=" + $("#searchGenerateMaterialEnd").val() + "&dk=33&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");

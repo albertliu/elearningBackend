@@ -528,7 +528,7 @@ if(op == "getGenerateMaterialList"){
 	var s = "";
 	//如果有条件，按照条件查询
 	if(where > ""){ // 有条件
-		where = "(item like('%" + where + "%'))";
+		where = "(kindName like('%" + where + "%'))";
 	}
 	//如果有公司
 	if(host > ""){ // 
