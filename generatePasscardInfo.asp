@@ -354,6 +354,7 @@
 		}
 		
 		if($("#certID").val()==""){
+			alert(1);
 			jAlert("请选择考试科目。");
 			return false;
 		}

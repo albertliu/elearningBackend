@@ -946,7 +946,8 @@
 	<input class="button" type="button" id="doImportRef" value="石化预报名表" />
 	<input class="button" type="button" id="doImport" value="报名表导入" />&nbsp;&nbsp;
 	<input class="button" type="button" id="checkStudent" value="报名表核对" />&nbsp;&nbsp;
-	<a href="output/学员报名表模板.xlsm">模板下载</a>&nbsp;&nbsp;
+	<a href="output/学员报名表模板.xlsm">报名表模板</a>&nbsp;&nbsp;
+	<a href="output/学员信息核对模板.xlsx">报名表核对模板</a>&nbsp;&nbsp;
 
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
 	<div style="width:100%;float:left;margin:0;">
