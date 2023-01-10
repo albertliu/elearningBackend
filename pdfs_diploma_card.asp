@@ -89,7 +89,9 @@
 					/**/
 					arr.push('</div>');
 					arr.push('</section>');
-					//arr.push('<hr style="page-break-after:always; border:none;" />');	//分页
+					if(data.length > k){
+						arr.push('<hr style="page-break-after:always; border:none;" />');	//分页, 最后一页不分，否则会留有空白页
+					}
 				});
 				$("#cover").html(arr.join(""));
 			}
