@@ -218,6 +218,18 @@
 			});
 		});
 
+		$("#btnReviveStudentCourse").click(function(){
+			jConfirm('确定要重启这个学员的课程吗?', '确认对话框', function(r) {
+				if(r){
+					$.get("studentCourseControl.asp?op=reviveStudentCourse&nodeID=" + $("#studentCourseID").val() + "&times=" + (new Date().getTime()),function(re){
+						jAlert("重启成功。");
+						updateCount += 1;
+						getNodeInfo($("#studentCourseID").val());
+					});
+				}
+			});
+		});
+
 		$("#btnRebuildStudentLesson").click(function(){
 			jConfirm('确定要刷新这个学员的课表和模拟练习吗?', '确认对话框', function(r) {
 				if(r){
@@ -249,6 +261,7 @@
 				$("#studentCourseID").val(ar[0]);
 				$("#username").val(ar[1]);
 				$("#name").val(ar[2]);
+				$("#status").val(ar[3]);
 				$("#statusName").val(ar[4]);
 				$("#courseName").val(ar[6]);
 				$("#regDate").val(ar[11]);
@@ -562,11 +575,19 @@
 				//编辑状态：显示保存按钮；一定条件下可以退学、退款
 				$("#save").show();
 				if(!checkRole("partner")){
-					$("#btnReturn").show();
-					$("#btnRefund").show();
-					$("#btnCloseStudentCourse").show();
-					if(!$("#materialCheck").attr("checked")){
-						$("#btnMaterialCheck").show();
+					if($("#status").val() < 2){
+						$("#btnReturn").show();
+						$("#btnRefund").show();
+						$("#btnCloseStudentCourse").show();
+						$("#btnReviveStudentCourse").hide();
+						if(!$("#materialCheck").attr("checked")){
+							$("#btnMaterialCheck").show();
+						}
+					}else{
+						$("#btnReviveStudentCourse").show();
+						$("#btnReturn").hide();
+						$("#btnRefund").hide();
+						$("#btnCloseStudentCourse").hide();
 					}
 				}
 			}
@@ -754,6 +775,7 @@
 		<input class="button" type="button" id="btnRefund" value="退款" />&nbsp;
 		<input class="button" type="button" id="btnDel" value="删除" />&nbsp;
 		<input class="button" type="button" id="btnCloseStudentCourse" value="关闭课程学习" />&nbsp;
+		<input class="button" type="button" id="btnReviveStudentCourse" value="重启课程学习" />&nbsp;
 		<input class="button" type="button" id="btnRebuildStudentLesson" value="刷新课表" />&nbsp;
 		<input class="button" type="button" id="smsList" value="查看通知" />&nbsp;
 		<input class="button" type="button" id="examList" value="查看考试信息" />

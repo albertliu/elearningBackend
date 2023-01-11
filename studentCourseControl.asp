@@ -1018,6 +1018,13 @@ if(op == "closeStudentCourse"){
 	Response.Write(0);
 }
 
+if(op == "reviveStudentCourse"){
+	result = "";
+	sql = "exec reviveStudentCourse '" + nodeID + "','" + currUser + "'";
+	execSQL(sql);
+	Response.Write(0);
+}
+
 if(op == "rebuildStudentLesson"){
 	result = "";
 	sql = "exec rebuildStudentLesson '" + nodeID + "'";
