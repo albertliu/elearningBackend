@@ -55,7 +55,7 @@
 				refID = ar[1];
 				$("#home_classID").html(ar[17]);
 				$("#home_adviser").html(ar[9]);
-				$("#home_certName").html(ar[37]);
+				$("#home_certName").html(ar[4]);
 				$("#home_startDate").html(ar[10].substring(0,10) + "&nbsp;至&nbsp;" + ar[11]);
 				$("#dateEnd").html(ar[11]);
 				$("#classID").html(ar[17] + "&nbsp;&nbsp;[" + ar[1] + "]");
