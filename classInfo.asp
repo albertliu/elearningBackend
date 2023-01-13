@@ -153,8 +153,8 @@
 
 		$("#archive").click(function(){
 			if($("#summary").val()==""){
-				alert("请填写工作小结。");
-				return false;
+				//alert("请填写工作小结。");
+				//return false;
 			}
 			if($("#dateEnd").val()==""){
 				alert("请填写班级结束日期。");
