@@ -31,7 +31,9 @@
 		op = "<%=op%>";
 		$("#signature").jSignature({
 			color:'blue',
-			lineWidth:3
+			lineWidth:3,
+			height:250,
+			width:400
 		});
 		$.ajaxSetup({ 
 			async: false 
@@ -57,7 +59,7 @@
 //          4zNyA1LjE2IDkgOCBjIDEuNTggMS43IDQgNiA0IDYiLz48L3N2Zz4="]
 		var img = new Image();
 		img.src = "data:" + datapair[0] + "," + datapair[1];
-		$(img).appendTo($("#image"));
+		//$(img).appendTo($("#image"));
 
 		jConfirm('确定要提交签名吗?', '确认对话框', function(r) {
 			if(r){
@@ -83,12 +85,12 @@
 
 <body style="background:#f0f0f0;">
 
-<div id='layout' align='left' style="background:#f0f0f0;">	
-	<div id="signature" style="height: 100%; border:1px solid #000; background:#FFF;"></div>
-  	<div class="comm" align="center" style="width:99%;float:top;margin:5px;background:#eeeeee;">
+<div id='layout' align='left' style="background:#f0f0f0;height: 100%;">	
+	<div id="signature" style="height:100%; width:100%; border:1px solid #blue; background:#FFF;"></div>
+  	<div class="comm" align="center" style="width:96%;float:top;margin:5px;background:#eeeeee;">
+		<div style="height:3px;"></div>
 		<button type="button" onclick="jSignatureTest()">生成签名</button>&nbsp;&nbsp;&nbsp;&nbsp;
 		<button type="button" onclick="reset()">重置签名</button>
-		<div id="image" style="margin:5px"></div>
 	</div>
 </div>
 </body>

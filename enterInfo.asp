@@ -45,6 +45,7 @@
 		getDicList("payKind","kindID",0);
 		getDicList("payType","type",0);
 		getDicList("statusPay","statusPay",0);
+		getDicList("signatureType","signatureType",0);
         getComList("fromID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='saler') order by realName",1);
 		$("#datePay").click(function(){WdatePicker();});
 		$("#dateRefund").click(function(){WdatePicker();});
@@ -115,6 +116,10 @@
 
 		$("#btnMaterials").click(function(){
 			showMaterialsInfo(0,$("#username").val(),0,0);
+		});
+
+		$("#btnShowSignature").click(function(){
+			showImage($("#signature").val(),0,0,0);
 		});
 
 		$("#btnEntryform").click(function(){
@@ -304,6 +309,19 @@
 				$("#currDiplomaID").val(ar[45]);
 				$("#currDiplomaDate").val(ar[46]);
 				$("#fromID").val(ar[47]);
+				$("#signature").val(ar[48]);
+				$("#signatureDate").val(ar[49]);
+				$("#signatureType").val(ar[52]);
+				if(ar[51]==1){
+					$("#signatureStatus").prop("checked",true);
+				}else{
+					$("#signatureStatus").prop("checked",false);
+				}
+				if(ar[48]>""){
+					$("#btnShowSignature").prop("disabled",false);
+				}else{
+					$("#btnShowSignature").prop("disabled",true);
+				}
 
 				getPayDetailInfoByEnterID(ar[0]);
 			//getDownloadFile("studentCourseID");
@@ -680,7 +698,16 @@
 				<td align="right">手机</td>
 				<td><input class="readOnly" type="text" id="mobile" size="25" readOnly="true" /></td>
 				<td align="right">资料确认</td>
-				<td><input style="border:0px;" type="checkbox" id="materialCheck" value="" />&nbsp;&nbsp;<input class="readOnly" type="text" id="materialCheckerName" size="5" readOnly="true" />&nbsp;&nbsp;<input class="button" type="button" id="btnMaterials" value="查看" /></td>
+				<td><input style="border:0px;" type="checkbox" id="materialCheck" value="" />&nbsp;&nbsp;<input class="readOnly" type="text" id="materialCheckerName" size="5" readOnly="true" />&nbsp;&nbsp;<input class="button" type="button" id="btnMaterials" value="查看材料" /></td>
+			</tr>
+			<tr>
+				<td align="right">签名类型</td>
+				<td colspan="3"><input type="hidden" id="signature" />
+					<select id="signatureType" style="width:60px;"></select>&nbsp;&nbsp;
+					已签名<input style="border:0px;" type="checkbox" id="signatureStatus" value="" />&nbsp;&nbsp;
+					签名日期<input class="readOnly" type="text" id="signatureDate" size="15" readOnly="true" />&nbsp;&nbsp;
+					<input class="button" type="button" id="btnShowSignature" value="查看签名" />
+				</td>
 			</tr>
 			<tr>
 				<td align="right">报名状态</td>

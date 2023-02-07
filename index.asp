@@ -192,15 +192,15 @@
 		
 		$("#compress").click(function(){
 			//showCropperInfo('users/upload/students/photos/120107196604032113.png','120107196604032113',"",0,1);
+			/*
 			$.get(uploadURL + "/public/getPDF2img2?path=users/upload/students/diplomas/C1-22-01352.pdf",function(data){
 				//alert(data[0]["error"]["code"]);
 				jAlert(uploadURL);
 			});
-			//showSignatureInfo(33612);
-			/*
 			$.getJSON(uploadURL + "/outfiles/compressImages?path=users/upload/students/photos",function(data){
 				jAlert(data);
 			});*/
+			showSignatureInfo(33612);
 		});
 		
 		window.setInterval(function () {
