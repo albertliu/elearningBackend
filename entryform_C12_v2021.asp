@@ -154,7 +154,7 @@
 		<input class="button" type="button" id="print" value="打印" />&nbsp;
 		</div>
 		<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
-			<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>上海市特种作业人员安全技术考核申请表（2023版）[初审]</h3></div>
+			<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>上海市特种作业人员安全技术考核申请表（2021版）</h3></div>
 			<div style='margin: 12px;text-align:left; width:95%;'><span style='font-size:1.2em;'>学员编号：</span><span style='font-size:1.2em;' id="SNo"></span></div>
 			<table class='table_resume' style='width:99%;'>
 			<tr>
@@ -175,7 +175,7 @@
 				<td align="center" class='table_resume_title' width='13%'>有效期限</td><td class='table_resume_title' width='14%'><p style='font-size:1em;' id="IDdate"></p></td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='55px;'>工作单位</td><td align="center" colspan="3"><p style='font-size:1em;' id="company"></p></td>
+				<td align="center" class='table_resume_title' width='15%' height='55px;'>单位名称</td><td align="center" colspan="3"><p style='font-size:1em;' id="company"></p></td>
 				<td align="center" class='table_resume_title' width='13%'>从事岗位</td><td align="center"><p style='font-size:1em;' id="job"></p></td>
 			</tr>
 			<tr>
@@ -194,22 +194,26 @@
 				</td>
 			</tr>
 			<tr>
+				<td align="center" class='table_resume_title' width='15%' height='55px;'>考核类型</td><td align="center" width='13%' colspan="2"><p id="reexamine" style='font-size:1em;'></p></td>
+				<td align="center" class='table_resume_title' width='13%' colspan="2">是否参加相应培训</td><td align="center" width='13%' colspan="3"><p style='font-size:1em;'><input type="checkbox" />&nbsp;&nbsp;是&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" />&nbsp;&nbsp;否</p></td>
+			</tr>
+			<tr>
+				<td align="center" class='table_resume_title' width='15%' height='55px;'>从事特种作业操作情况</td>
+				<td align="left" colspan="7" style="padding-left:5px;">
+					<p style='font-size:1em;'><input type="checkbox" />&nbsp;&nbsp;本人是初次参加特种作业人员安全技术考核。</p>
+					<p style='font-size:1em;'><input type="checkbox" />&nbsp;&nbsp;本人此次参加特种作业人员安全技术复审考核，在持原特种作业操作证书从事相应特种作业工种内容期间，未发生过事故。</p>
+					<p style='font-size:1em;'><input type="checkbox" />&nbsp;&nbsp;本人因未按时参加复审导致原操作证书过期，重新申请参加特种作业人员安全技术考核。</p>
+					<p style='font-size:1em;'><input type="checkbox" />&nbsp;&nbsp;其他：</p>
+				</td>
+			</tr>
+			<tr>
 				<td align="center" class='table_resume_title' width='15%' height='55px;'>个人承诺</td>
 				<td align="left" colspan="7" style="padding-left:5px;">
 				<p style='font-size:1em;text-indent:30px;'>
-				经社区或者县级以上医疗机构体检健康合格，无妨碍从事相应特种作业的器质性心脏病、癫痫病、美尼尔氏症、眩晕症、癔病、震颤麻痹症、精神病、痴呆症以及其他疾病和生理缺陷。
+				本人年满18周岁，且不超过国家法定退休年龄；具有初中及以上文化程度；经社区或者县级以上医疗机构体检健康合格，无妨碍从事相应特种作业的器质性心脏病、癫痫病、美尼尔氏症、眩晕症、癔病、震颤麻痹症、精神病、痴呆症以及其他疾病和生理缺陷，本人对以上信息的真实性负责，如有隐瞒，相关责任全部有本人承担。
 				</p>
-				<p style='font-size:1em;text-indent:30px;'>
-				本人承诺不超过国家法定退休年龄。
-				</p>
-				<p style='font-size:1em;text-indent:30px;'>
-				本人承诺户籍所在地或从业所在地为上海。
-				</p>
-				<p style='font-size:1em;text-indent:30px;'>
-				本人对填写所有信息以及提交材料的真实性、有效性和完整性负责，如有隐瞒，相关责任全部由本人承担。
-				</p>
-				<p style='font-size:1em;text-align:center;padding-top:30px;'>
-				承诺人签名：
+				<p style='font-size:1em;text-align:center;'>
+				承诺人（签名）：
 				</p>
 				</td>
 			</tr>
@@ -219,8 +223,8 @@
 					<br><br>
 					<p id="date" style='font-size:1em;float:right;padding-right:5px;'>年&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;日</p>
 				</td>
-				<td align="left" class='table_resume_title' width='15%' height='120px;' colspan="4">
-					<p style='font-size:1em;float:left;'>考试点意见：</p>
+				<td align="left" class='table_resume_title' width='15%' height='55px;' colspan="4">
+					<p style='font-size:1em;float:left;'>审核意见：</p>
 					<br><br>
 					<span style='font-size:1em;float:center;padding-right:50px;'>经办人签名：</span>
 					<span style='font-size:1em;float:right;'>年&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;日</span>
