@@ -598,7 +598,7 @@
 
 	function setZNXF(){
 		$("#kindID").hide();
-		if($("#companyID").val()==46){
+		if($("#companyID").val()!=8){
 			$("#kindID").val(0);
 			$("#spc_dept").hide();
 			$("#dept3").hide();
