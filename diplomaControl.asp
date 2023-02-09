@@ -331,7 +331,16 @@ if(op == "getStudentNeedDiplomaList"){
 			where = s;
 		}
 	}
-	//如果缺照片
+	//如果有照片
+	if(keyID == 0){ // 
+		s = "a.photo_filename>''";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//如果无照片
 	if(keyID == 1){ // 
 		s = "a.photo_filename=''";
 		if(where > ""){

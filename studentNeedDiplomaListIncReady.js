@@ -6,6 +6,7 @@
 		var w2 = "status=0 and host='" + currHost + "'";
 		$("#btnStudentNeedDiplomaIssue").hide();
 		$("#btnStudentNeedDiplomaIssue1").hide();
+		getDicList("statusNo","searchStudentNeedDiplomaHavePhoto",1);
 		$("#searchStudentNeedDiplomaStartDate").click(function(){WdatePicker();});
 		$("#searchStudentNeedDiplomaEndDate").click(function(){WdatePicker();});
 		$("#searchStudentNeedDiplomaCloseStartDate").click(function(){WdatePicker();});
@@ -147,11 +148,11 @@
 
 	function getStudentNeedDiplomaList(){
 		sWhere = $("#txtSearchStudentNeedDiploma").val();
-		var photo = 0;
+		var photo = $("#searchStudentNeedDiplomaHavePhoto").val();
 		var refuse = 0;
 		var mark = 1;
 		if(currHost==""){mark=0;}
-		if($("#searchStudentNeedDiplomaPhoto").attr("checked")){photo = 1;}
+		//if($("#searchStudentNeedDiplomaPhoto").attr("checked")){photo = 1;}
 		if($("#searchStudentNeedDiplomaRefuse").attr("checked")){refuse = 1;}
 		//alert((sWhere) + "&kindID=" + $("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&keyID=" + photo);
 		$.get("diplomaControl.asp?op=getStudentNeedDiplomaList&where=" + escape(sWhere) + "&mark=" + mark + "&kindID=" + $("#searchStudentNeedDiplomaCert").val() + "&classID=" + $("#searchStudentNeedDiplomaClassID").val() + "&fStart=" + $("#searchStudentNeedDiplomaStartDate").val() + "&fEnd=" + $("#searchStudentNeedDiplomaEndDate").val() + "&closeStart=" + $("#searchStudentNeedDiplomaCloseStartDate").val() + "&closeEnd=" + $("#searchStudentNeedDiplomaCloseEndDate").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&dept=" + $("#searchStudentNeedDiplomaDept").val() + "&keyID=" + photo + "&refID=" + refuse + "&dk=21&times=" + (new Date().getTime()),function(data){

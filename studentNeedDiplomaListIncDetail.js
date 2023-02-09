@@ -8,9 +8,9 @@
 							  	&nbsp;&nbsp;单位&nbsp;<select id="searchStudentNeedDiplomaDept" style="width:150px"></select>&nbsp;&nbsp;
 							  </span>
 					          证书&nbsp;<select id="searchStudentNeedDiplomaCert" style="width:120px"></select>&nbsp;&nbsp;
-		          			<input style="border:0px;" type="checkbox" id="searchStudentNeedDiplomaPhoto" value="" />&nbsp;缺照片&nbsp;&nbsp;
 		          			<input style="border:0px;" type="checkbox" id="searchStudentNeedDiplomaShowPhoto" value="" checked />&nbsp;显示照片&nbsp;&nbsp;
 		          			<input style="border:0px;" type="checkbox" id="searchStudentNeedDiplomaRefuse" value="" />&nbsp;拒绝申请&nbsp;&nbsp;
+							有照片&nbsp;<select id="searchStudentNeedDiplomaHavePhoto" style="width:50px"></select>&nbsp;
 						    <span style="float:right;">
 								<input class="button" type="button" id="btnStudentNeedDiplomaSel" value="全选/取消" />&nbsp;&nbsp;
 								<input class="button" type="button" id="btnStudentNeedDiplomaIssue" value="制作证书" />&nbsp;&nbsp;
