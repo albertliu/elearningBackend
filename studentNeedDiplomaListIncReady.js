@@ -6,7 +6,7 @@
 		var w2 = "status=0 and host='" + currHost + "'";
 		$("#btnStudentNeedDiplomaIssue").hide();
 		$("#btnStudentNeedDiplomaIssue1").hide();
-		getDicList("statusNo","searchStudentNeedDiplomaHavePhoto",1);
+		getDicList("statusYes","searchStudentNeedDiplomaHavePhoto",1);
 		$("#searchStudentNeedDiplomaStartDate").click(function(){WdatePicker();});
 		$("#searchStudentNeedDiplomaEndDate").click(function(){WdatePicker();});
 		$("#searchStudentNeedDiplomaCloseStartDate").click(function(){WdatePicker();});
@@ -149,6 +149,7 @@
 	function getStudentNeedDiplomaList(){
 		sWhere = $("#txtSearchStudentNeedDiploma").val();
 		var photo = $("#searchStudentNeedDiplomaHavePhoto").val();
+		if(photo == ""){photo=3;}
 		var refuse = 0;
 		var mark = 1;
 		if(currHost==""){mark=0;}
