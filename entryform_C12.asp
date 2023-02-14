@@ -71,9 +71,9 @@
 				sDate = ar[49];
 				price = ar[53];
 				if(sign>""){
-					$("#f_sign1").attr("src","/users" + sign);
-					$("#f_sign2").attr("src","/users" + sign);
-					$("#f_sign3").attr("src","/users" + sign);
+					$("#f_sign1").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
+					$("#f_sign2").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
+					$("#f_sign3").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
 					$("#date").html(sDate);
 				}
 			}else{
@@ -182,15 +182,15 @@
 			<div style="position: relative;width:100%;height:100%;">
 			<div style="position: absolute; z-index:30;">
 			<div style="float:left;">
-				<span><img id="f_sign1" src="" style="width:170px;margin:0px 0px 8px 100px;padding-left:80px;padding-top:550px;"></span>
+				<span><img id="f_sign1" src="" style="width:170px;margin:0px 0px 8px 100px;padding-left:80px;padding-top:580px;"></span>
 			</div>
 			<div style="float:left;">
-				<span><img id="f_sign2" src="" style="width:170px;margin:0px 0px 8px 130px;padding-left:80px;padding-top:790px;"></span>
+				<span><img id="f_sign2" src="" style="width:170px;margin:0px 0px 8px 130px;padding-left:80px;padding-top:815px;"></span>
 			</div>
 			</div>
 			<div style="position: absolute; z-index:30;">
 			<div style="float:left;">
-				<span><img id="f_sign3" src="" style="width:170px;margin:0px 0px 8px 40px;padding-left:80px;padding-top:860px;"></span>
+				<span><img id="f_sign3" src="" style="width:170px;margin:0px 0px 8px 40px;padding-left:80px;padding-top:875px;"></span>
 			</div>
 			</div>
 			<div style="position: absolute; z-index:10;">

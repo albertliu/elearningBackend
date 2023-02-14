@@ -40,7 +40,7 @@
 			arr.push('<div style="position: relative;width:100%;">');
 			arr.push('<div style="position: absolute; z-index:10;">');
 			arr.push('<div style="float:left;">');
-			arr.push('	<span><img src="/users' + path + '" style="width:170px;margin:0px 0px 8px 180px;padding-left:80px;padding-top:270px;"></span>');
+			arr.push('	<span><img src="/users' + path + '?times=' + (new Date().getTime()) + '" style="width:170px;margin:0px 0px 8px 180px;padding-left:80px;padding-top:285px;"></span>');
 			arr.push('</div>');
 			arr.push('</div>');
 			arr.push('</div>');
