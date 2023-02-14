@@ -195,7 +195,7 @@
 			</tr>
 			</table>
 			<div style='margin: 12px;text-align:left; width:95%;'><p style='font-size:1.2em;'>&bull; 提交1张2寸免冠彩色照片。</p></div>
-			<div style='margin: 12px;text-align:right; width:95%; padding-right:0;'><span style='font-size:1.3em;'>学员签名：</span><span><img id="img_signature" src="" value="" style='width:100px;border:none;float:right;' /></span></div>
+			<div style='margin: 12px;text-align:right; width:95%; padding-right:0;'><span style='font-size:1.3em;padding-top:20px;'>学员签名：</span><span><img id="img_signature" src="" value="" style='width:100px;border:none;float:right;' /></span></div>
 			<div style='margin: 12px;text-align:right; width:95%;'><p id="signatureDate" style='font-size:1em;color:#A0A0A0;'></p></div>
 			<div id="needCover"></div>
 		</div>

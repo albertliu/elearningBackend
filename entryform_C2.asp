@@ -54,6 +54,12 @@
 			ar = unescape(re).split("|");
 			if(ar > "0"){
 				$("#SNo").html(ar[25] + "&nbsp;&nbsp;班级：" + ar[34]);
+				if(ar[48] > ""){
+					$("#img_signature").attr("src","/users" + ar[48]);
+					$("#signatureDate").html(ar[49]);
+				}else{
+					$("#img_signature").attr("src","images/blank_signature.png");
+				}
 			}else{
 				//alert("没有找到要打印的内容。");
 				return false;
@@ -165,8 +171,8 @@
 			<div style='margin: 12px;text-align:left; width:95%;'><p style='font-size:1.2em;'>&bull; 本表作为学员参加消防培训的重要材料入档，请学员务必准备、完整填写，不得有空项，填写完成后在下方签名，并于规定时间上交。</p></div>
 			<div style='margin: 12px;text-align:left; width:95%;'><p style='font-size:1.2em;'>&bull; 表格有空项、无学员签名、表格未在规定时间内上交的，均不予办理《消防培训合格证》、不进行网上注册。</p></div>
 			<div style='margin: 12px;text-align:left; width:95%;'><p style='font-size:1.2em;'>&bull; 提交1张2寸免冠彩色照片。</p></div>
-			<div style='margin: 12px;text-align:right; width:95%; padding-right:100px;'><p style='font-size:1.3em;'>学员签名：</p></div>
-			<div style='margin: 12px;text-align:right; width:95%;'><p id="date" style='font-size:1.3em;'></p></div>
+			<div style='margin: 12px;text-align:right; width:95%; padding-right:100px;'><span style='font-size:1.3em;padding-top:20px;'>学员签名：</span><span><img id="img_signature" src="" value="" style='width:100px;border:none;float:right;' /></span></div>
+			<div style='margin: 12px;text-align:right; width:95%;'><p id="signatureDate" style='font-size:1em;color:#A0A0A0;'></p></div>
 		</div>
 	</div>
   </div>

@@ -15,7 +15,7 @@
 <link href="css/asyncbox/asyncbox.css" type="text/css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
 <script language="javascript" src="js/jquery-1.12.4.min.js"></script>
-<script language="javascript" src="js/jquery.form.js"></script>
+<script language="javascript" src="js/jquery.form.js?v=1.0"></script>
 <script type="text/javascript" src="js/jquery.easyui.min.js?v=1.8.6"></script>
 <script src="js/jquery-confirm.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/asyncbox.v1.5.min.js"></script>
@@ -30,8 +30,17 @@
 	var op = 0;
 	var refID = 0;
 	var updateCount = 1;
+	var k = 0;
+	var sign_status = 0;
+	var sign = "";
+	var reex = 0;
+	var course = "";
+	var sDate = "";
+	var price = 0;
 	<!--#include file="js/commFunction.js"-->
 	<!--#include file="need2know.js"-->
+	<!--#include file="commitment.js"-->
+	<!--#include file="agreement.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";		//enterID
 		refID = "<%=refID%>";		//username
@@ -46,23 +55,35 @@
 		});
 		getNeed2know(nodeID);
 		getNodeInfo(nodeID, refID);
-});
+	});
 
 	function getNodeInfo(id,ref){
-		$.get("studentCourseControl.asp?op=getNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
+		$.get("studentCourseControl.asp?op=getNodeInfo&nodeID=" + id + "&public=1&times=" + (new Date().getTime()),function(re){
 			//alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar > "0"){
 				$("#SNo").html(ar[25] + "&nbsp;&nbsp;班级：" + ar[34]);
-				$("#reexamine").html(ar[41]);
+				$("#reexamine").html("上海市特种作业人员安全技术考核申请表（2023版）[" + ar[41] + "]");
 				$("#courseName").html(ar[6]);
+				sign_status = ar[51];
+				sign = (ar[51]==1?ar[48]:"");
+				reex = ar[40];
+				course = ar[6];
+				sDate = ar[49];
+				price = ar[53];
+				if(sign>""){
+					$("#f_sign1").attr("src","/users" + sign);
+					$("#f_sign2").attr("src","/users" + sign);
+					$("#f_sign3").attr("src","/users" + sign);
+					$("#date").html(sDate);
+				}
 			}else{
 				//alert("没有找到要打印的内容。");
 				return false;
 			}
 		});
-		$.get("studentControl.asp?op=getNodeInfo&nodeID=0&refID=" + ref + "&times=" + (new Date().getTime()),function(re){
+		$.get("studentControl.asp?op=getNodeInfo&nodeID=0&refID=" + ref + "&public=1&times=" + (new Date().getTime()),function(re){
 			//alert(ref + ":" + unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -75,11 +96,13 @@
 				$("#job").html(ar[18]);
 				//$("#phone").html(ar[17]);
 				$("#job").html(ar[18]);
-				if(ar[29]=="znxf"){
-					$("#company").html(ar[35] + "." + ar[36]);
+				if(ar[29]!="spc" && ar[29]!="shm"){
+					$("#company").html(ar[35]);
+					k = (ar[35]=="个人" || ar[35]=="个体"? 1: 0);
 					//$("#dept2").html(ar[36]);
 				}else{
 					$("#company").html(ar[12] + "." + ar[13] + "." + ar[14]);
+					k = 0;
 					//$("#dept2").html(ar[14]);
 				}
 				$("#educationName").html(ar[31]);
@@ -102,6 +125,10 @@
 				}else{
 					$("#img_cardB").attr("src","images/blank_cardB.png");
 				}
+				if(reex==1){
+					getCommitment(ar[1],ar[2],course,sign,sDate,k);
+				}
+				getAgreement(ar[1],ar[2],course,sign,sDate,price);
 				//$("#date").html(currDate);
 				if(keyID==1){
 					resumePrint();
@@ -154,7 +181,22 @@
 		<input class="button" type="button" id="print" value="打印" />&nbsp;
 		</div>
 		<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
-			<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>上海市特种作业人员安全技术考核申请表（2023版）[初审]</h3></div>
+			<div style="position: relative;width:100%;height:100%;">
+			<div style="position: absolute; z-index:30;">
+			<div style="float:left;">
+				<span><img id="f_sign1" src="" style="width:170px;margin:0px 0px 8px 100px;padding-left:80px;padding-top:550px;"></span>
+			</div>
+			<div style="float:left;">
+				<span><img id="f_sign2" src="" style="width:170px;margin:0px 0px 8px 130px;padding-left:80px;padding-top:790px;"></span>
+			</div>
+			</div>
+			<div style="position: absolute; z-index:30;">
+			<div style="float:left;">
+				<span><img id="f_sign3" src="" style="width:170px;margin:0px 0px 8px 40px;padding-left:80px;padding-top:860px;"></span>
+			</div>
+			</div>
+			<div style="position: absolute; z-index:10;">
+			<div style='text-align:center; margin:10px 0 20px 0;'><h3 id="reexamine" style='font-size:1.45em;'></h3></div>
 			<div style='margin: 12px;text-align:left; width:95%;'><span style='font-size:1.2em;'>学员编号：</span><span style='font-size:1.2em;' id="SNo"></span></div>
 			<table class='table_resume' style='width:99%;'>
 			<tr>
@@ -227,8 +269,12 @@
 				</td>
 			</tr>
 			</table>
-			<div style="page-break-after:always"></div>
+			</div>
+			</div>
+
 			<div id="needCover"></div>
+			<div id="commitmentCover"></div>
+			<div id="agreementCover"></div>
 		</div>
 	</div>
   </div>
