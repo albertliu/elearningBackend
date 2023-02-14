@@ -31,7 +31,6 @@
 	var refID = 0;
 	var updateCount = 1;
 	var k = 0;
-	var sign_status = 0;
 	var sign = "";
 	var reex = 0;
 	var course = "";
@@ -66,8 +65,7 @@
 				$("#SNo").html(ar[25] + "&nbsp;&nbsp;班级：" + ar[34]);
 				$("#reexamine").html("上海市特种作业人员安全技术考核申请表（2023版）[" + ar[41] + "]");
 				$("#courseName").html(ar[6]);
-				sign_status = ar[51];
-				sign = (ar[51]==1?ar[48]:"");
+				sign = (ar[52]==1?ar[48]:"");
 				reex = ar[40];
 				course = ar[6];
 				sDate = ar[49];
