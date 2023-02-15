@@ -72,9 +72,15 @@
 				price = ar[53];
 				if(sign>""){
 					$("#f_sign1").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
-					$("#f_sign2").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
-					$("#f_sign3").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
+					$("#f_sign20").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
+					$("#f_sign30").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
+					//$("#f_sign40").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
 					$("#date").html(sDate);
+					$("#f_sign40").hide();
+					//$("#date2").html(sDate);
+				}
+				if(reex == 1){
+					$("#onShanghai").hide();
 				}
 			}else{
 				//alert("没有找到要打印的内容。");
@@ -242,28 +248,34 @@
 				<p style='font-size:1em;text-indent:30px;'>
 				本人承诺不超过国家法定退休年龄。
 				</p>
-				<p style='font-size:1em;text-indent:30px;'>
+				<p id="onShanghai" style='font-size:1em;text-indent:30px;'>
 				本人承诺户籍所在地或从业所在地为上海。
 				</p>
 				<p style='font-size:1em;text-indent:30px;'>
 				本人对填写所有信息以及提交材料的真实性、有效性和完整性负责，如有隐瞒，相关责任全部由本人承担。
 				</p>
-				<p style='font-size:1em;text-align:center;padding-top:30px;'>
-				承诺人签名：
-				</p>
+				<div style="display:table-cell;height:50px;vertical-align:middle;text-align:center">
+					<span style='font-size:1.2em;padding-left:280px;'>承诺人签名：</span>
+					<span><img id="f_sign20" src="" style="width:170px;padding-left:80px;"></span>
+				<div>
 				</td>
 			</tr>
 			<tr>
 				<td align="left" class='table_resume_title' width='15%' height='55px;' colspan="4">
-					<p style='font-size:1em;float:left;'>申请人签名：</p>
-					<br><br>
-					<p id="date" style='font-size:1em;float:right;padding-right:5px;'>年&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;日</p>
+					<div style="display:table-cell;height:50px;vertical-align:middle;text-align:center">
+						<span style='font-size:1.2em;'>申请人签名：</span>
+						<span><img id="f_sign30" src="" style="width:170px;padding-left:80px;"></span>
+					<div>
+					<p id="date" style='font-size:1.2em;float:right;padding-top:10px;padding-right:5px;'>年&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;日</p>
 				</td>
 				<td align="left" class='table_resume_title' width='15%' height='120px;' colspan="4">
 					<p style='font-size:1em;float:left;'>考试点意见：</p>
 					<br><br>
-					<span style='font-size:1em;float:center;padding-right:50px;'>经办人签名：</span>
-					<span style='font-size:1em;float:right;'>年&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;日</span>
+					<div style="display:table-cell;height:30px;vertical-align:middle;text-align:center">
+						<span style='font-size:1.2em;padding-left:80px;'>经办人签名：</span>
+						<span><img id="f_sign40" src="" style="width:120px;padding-left:30px;"></span>
+					<div>
+					<p id="date2" style='font-size:1.2em;float:left;padding-left:150px;padding-top:10px;'>年&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;日</p>
 				</td>
 			</tr>
 			</table>
