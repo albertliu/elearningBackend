@@ -78,6 +78,11 @@
 					$("#date").html(sDate);
 					$("#f_sign40").hide();
 					//$("#date2").html(sDate);
+				}else{
+					$("#f_sign1").hide();
+					$("#f_sign20").hide();
+					$("#f_sign30").hide();
+					$("#f_sign40").hide();
 				}
 				if(reex == 1){
 					$("#onShanghai").hide();
@@ -189,9 +194,11 @@
 			<div style="position: absolute; z-index:30;">
 			<div style="float:left;">
 				<span><img id="f_sign1" src="" style="width:170px;margin:0px 0px 8px 100px;padding-left:80px;padding-top:580px;"></span>
+				<p style='font-size:1.3em;text-indent:30px;font-family:方正舒体,幼圆;padding-top:10px;'>与原件一致</p>
 			</div>
 			<div style="float:left;">
 				<span><img id="f_sign2" src="" style="width:170px;margin:0px 0px 8px 130px;padding-left:80px;padding-top:815px;"></span>
+				<p style='font-size:1.3em;text-indent:30px;font-family:方正舒体,幼圆'>&nbsp;</p>
 			</div>
 			</div>
 			<div style="position: absolute; z-index:30;">
