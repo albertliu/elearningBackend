@@ -40,10 +40,11 @@
 	<!--#include file="need2know.js"-->
 	<!--#include file="commitment.js"-->
 	<!--#include file="agreement.js"-->
+	<!--#include file="materials_emergency.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";		//enterID
 		refID = "<%=refID%>";		//username
-		keyID = "<%=keyID%>";		//0 预览  1 打印
+		keyID = "<%=keyID%>";		//0 预览  1 打印  2 文件
 		op = "<%=op%>";
 		
 		$.ajaxSetup({ 
@@ -52,7 +53,16 @@
 		$("#print").click(function(){
 			resumePrint();
 		});
-		getNeed2know(nodeID);
+
+		$("#btnGenerateMaterials").click(function(){
+			generateMaterials();
+		});
+		$("#btnGenerateZip").click(function(){
+			generateZip();
+		});
+		if(keyID==2){
+			$("#pageTitle").hide();
+		}
 		getNodeInfo(nodeID, refID);
 	});
 
@@ -70,20 +80,28 @@
 				course = ar[6];
 				sDate = ar[49];
 				price = ar[53];
+				
 				if(sign>""){
 					$("#f_sign1").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
 					$("#f_sign20").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
 					$("#f_sign30").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
-					//$("#f_sign40").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
+					$("#f_sign40").attr("src","/users/upload/companies/stamp/sign_znxf.png?times=" + (new Date().getTime()));
 					$("#date").html(sDate);
-					$("#f_sign40").hide();
-					//$("#date2").html(sDate);
+					//$("#f_sign40").hide();
+					$("#date2").html(sDate);
 				}else{
 					$("#f_sign1").hide();
 					$("#f_sign20").hide();
 					$("#f_sign30").hide();
 					$("#f_sign40").hide();
 				}
+				
+				var c = "";
+				if(ar[54] > ""){
+					c += "<a href='/users" + ar[54] + "?times=" + (new Date().getTime()) + "' target='_blank'>申报材料</a>";
+				}
+				if(c == ""){c = "&nbsp;&nbsp;申报材料还未生成";}
+				$("#f_materials").html(c);
 				if(reex == 1){
 					$("#onShanghai").hide();
 				}
@@ -92,6 +110,7 @@
 				return false;
 			}
 		});
+		
 		$.get("studentControl.asp?op=getNodeInfo&nodeID=0&refID=" + ref + "&public=1&times=" + (new Date().getTime()),function(re){
 			//alert(ref + ":" + unescape(re));
 			var ar = new Array();
@@ -128,16 +147,38 @@
 					$("#img_cardA").attr("src","/users" + ar[22]);
 				}else{
 					$("#img_cardA").attr("src","images/blank_cardA.png");
+					$("#same1").hide();
+					$("#f_sign1").hide();
 				}
 				if(ar[23] > ""){
 					$("#img_cardB").attr("src","/users" + ar[23]);
 				}else{
 					$("#img_cardB").attr("src","images/blank_cardB.png");
 				}
-				if(reex==1){
-					getCommitment(ar[1],ar[2],course,sign,sDate,k);
+				var c = "";
+				if(ar[21] > ""){
+					c += "<a href='/users" + ar[21] + "?times=" + (new Date().getTime()) + "' target='_blank'>照片</a>";
 				}
-				getAgreement(ar[1],ar[2],course,sign,sDate,price);
+				if(c == ""){c = "&nbsp;&nbsp;照片还未上传";}
+				$("#f_photo").html(c);
+				var p = 0;
+				if(keyID == 2){
+					//打印学历证明
+					p = 1;
+				}else{
+					getNeed2know(nodeID);
+					getAgreement(ar[1],ar[2],course,sign,sDate,price);
+				}
+				if(reex==1){
+					if(ar[44]==""){
+						//情况说明模板
+						getCommitment(ar[1],ar[2],course,sign,sDate,k);
+					}else{
+						//已上传的情况说明图片
+						k = 1;
+					}
+				}
+				getMaterials(ar[1],sign,p,k);
 				//$("#date").html(currDate);
 				if(keyID==1){
 					resumePrint();
@@ -145,6 +186,28 @@
 			}else{
 				alert("没有找到要打印的内容。");
 				return false;
+			}
+		});
+	}
+
+	function generateMaterials(){
+		$.getJSON(uploadURL + "/outfiles/generate_emergency_materials?refID=" + refID + "&nodeID=" + nodeID + "&keyID=2" ,function(data){
+			if(data>""){
+				alert("已生成文件");
+				getNodeInfo(nodeID, refID);
+			}else{
+				alert("没有可供处理的数据。");
+			}
+		});
+	}
+	
+	function generateZip(){
+		$.getJSON(uploadURL + "/outfiles/generate_fireman_zip?username=" + refID + "&enterID=" + nodeID + "&registerID=" + currUser ,function(data){
+			if(data>""){
+				alert("已生成压缩包");
+				getNodeInfo(nodeID, refID);
+			}else{
+				alert("没有可供处理的数据。");
 			}
 		});
 	}
@@ -186,15 +249,20 @@
 <div id='layout' align='left' style="background:#f0f0f0;">	
 	
 	<div style="width:100%;float:left;margin:0;">
-		<div style="text-align:center;">
-		<input class="button" type="button" id="print" value="打印" />&nbsp;
+		<div id="pageTitle" style="text-align:center;">
+			<input class="button" type="button" id="print" value="打印" />&nbsp;
+			申报文件
+			<span id="f_materials" style="margin-left:20px;"></span>
+			<span id="f_photo" style="margin-left:20px;"></span>
+			<input class="button" style="margin-left:20px;" type="button" id="btnGenerateMaterials" value="生成文件" />
+			<input class="button" style="margin-left:20px;" type="button" id="btnGenerateZip" value="生成压缩包" />
 		</div>
 		<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
 			<div style="position: relative;width:100%;height:100%;">
 			<div style="position: absolute; z-index:30;">
 			<div style="float:left;">
-				<span><img id="f_sign1" src="" style="width:170px;margin:0px 0px 8px 100px;padding-left:80px;padding-top:580px;"></span>
-				<p style='font-size:1.3em;text-indent:30px;font-family:方正舒体,幼圆;padding-top:10px;'>与原件一致</p>
+				<span><img id="f_sign1" src="" style="width:170px;margin:0px 0px 8px 60px;padding-left:80px;padding-top:570px;"></span>
+				<p id="same1" style='font-size:1.3em;text-indent:30px;font-family:方正舒体,幼圆;padding-top:20px;'>与原件内容一致</p>
 			</div>
 			<div style="float:left;">
 				<span><img id="f_sign2" src="" style="width:170px;margin:0px 0px 8px 130px;padding-left:80px;padding-top:815px;"></span>
@@ -280,7 +348,7 @@
 					<br><br>
 					<div style="display:table-cell;height:30px;vertical-align:middle;text-align:center">
 						<span style='font-size:1.2em;padding-left:80px;'>经办人签名：</span>
-						<span><img id="f_sign40" src="" style="width:120px;padding-left:30px;"></span>
+						<span><img id="f_sign40" src="" style="width:120px;padding-left:10px;"></span>
 					<div>
 					<p id="date2" style='font-size:1.2em;float:left;padding-left:150px;padding-top:10px;'>年&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;日</p>
 				</td>
@@ -292,6 +360,7 @@
 			<div id="needCover"></div>
 			<div id="commitmentCover"></div>
 			<div id="agreementCover"></div>
+			<div id="materialsCover"></div>
 		</div>
 	</div>
   </div>

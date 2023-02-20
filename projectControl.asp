@@ -78,7 +78,7 @@ if(op == "getProjectList"){
 	}
 
 	if(where>""){
-		where = " where " + where;
+		where = " where " + where + " and hide=0";
 	}
 
 	sql = " FROM v_projectInfo " + where;

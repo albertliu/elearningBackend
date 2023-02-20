@@ -313,6 +313,17 @@
 		$("#checkStudent").click(function(){
 			showLoadFile("check_student_list",$("#certID").val(),"studentList",'');
 		});
+	
+		$("#generateZip").click(function(){
+			$.getJSON(uploadURL + "/outfiles/generate_material_zip?refID=" + $("#classID").val() + "&kind=class", function(data){
+				if(data>""){
+					alert("已生成压缩包");
+					getNodeInfo(nodeID);
+				}else{
+					alert("没有可供处理的数据。");
+				}
+			});
+		});
 
 		var timer = setInterval(getFeedbackList, 30000);
 		//var div = document.getElementById('feedback_list');
@@ -384,6 +395,9 @@
 				}
 				$("#sign").html("<a>签到表</a>");
 				$("#sign1").html("<a>考勤记录</a>");
+				if(ar[47] > ""){
+					$("#zip").html("<a href='/users" + ar[47] + "' target='_blank'>申报材料</a>");
+				}
 				getStudentCourseList();
 				$("#teacher").val(ar[34]);
 				//getDownloadFile("classID");
@@ -878,15 +892,18 @@
 				<td><input type="text" id="scheduleDate" size="10" class="readOnly" readOnly="true" />&nbsp;&nbsp;<span id="schedule" style="margin-left:10px;"></span></td>
 			</tr>
 			<tr>
-				<td colspan="2">
+				<td colspan="4">
 					资料归档<input style="border:0px;" type="checkbox" id="archived" value="" />&nbsp;&nbsp;<input class="readOnly" type="text" id="archiverName" size="6" readOnly="true" />&nbsp;&nbsp;<input class="readOnly" type="text" id="archiveDate" size="8" readOnly="true" />
 				</td>
-				<td colspan="2">
+			</tr>
+			<tr>
+				<td colspan="4">
 					<span id="photo" style="margin-left:10px;"></span>
 					<span id="refundList" style="margin-left:10px;"></span>
 					<span id="archive" style="margin-left:10px;"></span>
 					<span id="sign" style="margin-left:10px;"></span>
 					<span id="sign1" style="margin-left:10px;"></span>
+					<span id="zip" style="margin-left:10px;"></span>
 				</td>
 			</tr>
 			<tr>
@@ -950,6 +967,7 @@
 	<input class="button" type="button" id="doImportRef" value="石化预报名表" />
 	<input class="button" type="button" id="doImport" value="报名表导入" />&nbsp;&nbsp;
 	<input class="button" type="button" id="checkStudent" value="报名表核对" />&nbsp;&nbsp;
+	<input class="button" type="button" id="generateZip" value="生成申报材料" />&nbsp;
 	<a href="output/学员报名表模板.xlsm">报名表模板</a>&nbsp;&nbsp;
 	<a href="output/学员信息核对模板.xlsx">报名表核对模板</a>&nbsp;&nbsp;
 

@@ -111,7 +111,7 @@ if(op == "getNodeInfo"){
 		//38
 		result += "|" + rs("teacherName").value + "|" + rs("host").value + "|" + rs("transaction_id").value + "|" + rs("re").value + "|" + rs("reexamineName").value + "|" + rs("kindName").value + "|" + rs("qtyDiploma").value;
 		//45
-		result += "|" + rs("signatureType").value + "|" + rs("signatureTypeName").value;
+		result += "|" + rs("signatureType").value + "|" + rs("signatureTypeName").value + "|" + rs("zip").value;
 		//execSQL(sql);
 	}
 	rs.Close();

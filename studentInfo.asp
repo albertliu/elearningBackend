@@ -598,7 +598,7 @@
 
 	function setZNXF(){
 		$("#kindID").hide();
-		if($("#companyID").val()!=8){
+		if($("#companyID").val()!=8 && $("#companyID").val()!=1813){
 			$("#kindID").val(0);
 			$("#spc_dept").hide();
 			$("#dept3").hide();

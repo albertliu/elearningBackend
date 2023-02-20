@@ -486,6 +486,8 @@ if(op == "getNodeInfo"){
 		result += "|" + rs("reexamine").value + "|" + rs("reexamineName").value + "|" + rs("examTimes").value + "|" + rs("missingItems").value + "|" + rs("submiterName").value + "|" + rs("currDiplomaID").value + "|" + rs("currDiplomaDate").value;
 		//47
 		result += "|" + rs("fromID").value + "|" + rs("signature").value + "|" + rs("signatureDate").value + "|" + rs("status_photo").value + "|" + rs("status_signature").value + "|" + rs("signatureType").value + "|" + rs("price").value;
+		//54
+		result += "|" + rs("file1").value + "|" + rs("file2").value + "|" + rs("file3").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

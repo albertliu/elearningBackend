@@ -236,6 +236,18 @@
 				}
 			});
 		});
+	
+		$("#generateZip").click(function(){
+			$.getJSON(uploadURL + "/outfiles/generate_material_zip?refID=" + nodeID + "&kind=apply", function(data){
+				if(data>""){
+					alert("已生成压缩包");
+					getNodeInfo(nodeID);
+				}else{
+					alert("没有可供处理的数据。");
+				}
+			});
+		});
+
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -281,6 +293,9 @@
 				}else{
                     $("#diplomaSign").hide();
                 }
+				if(ar[33] > ""){
+					$("#zip").html("<a href='/users" + ar[33] + "' target='_blank'>申报材料</a>");
+				}
 				//getDownloadFile("generateDiplomaID");
 				nodeID = ar[0];
 				setButton();
@@ -367,7 +382,7 @@
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
 					arr.push("<td class='left'>" + ar1[22] + "</td>");
-					arr.push("<td class='link1'><a href='javascript:showEnterInfo(\"" + ar1[2] + "\",0,0,1);'>" + ar1[4] + "</a></td>");
+					arr.push("<td class='link1'><a href='javascript:showEnterInfo(\"" + ar1[2] + "\",\"" + ar1[4] + "\",0,1);'>" + ar1[4] + "</a></td>");
 					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + ar1[4] + "\",0,1);'>" + ar1[5] + "</a></td>");
 					arr.push("<td class='left' title='" + ar1[13] + "." + ar1[14] + "'>" + ar1[13].substring(0,12) + "</td>");
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
@@ -525,6 +540,7 @@
 					<span id="sign" style="margin-left:10px;"></span>
 					<span id="scoreResult" style="margin-left:10px;"></span>
 					<span id="diplomaSign" style="margin-left:10px;"></span>
+					<span id="zip" style="margin-left:10px;"></span>
 				</td>
 			</tr>
 			<tr>
@@ -582,11 +598,12 @@
 		<input class="button" type="button" id="sendMsgExam" value="考试通知" />&nbsp;
 		<input class="button" type="button" id="doImportScore" value="成绩证书导入" />&nbsp;
 		<input class="button" type="button" id="sendMsgScore" value="成绩通知" />&nbsp;
+		<input class="button" type="button" id="generateZip" value="生成申报材料" />&nbsp;
 		<input class="button" type="button" id="lock" value="锁定" />&nbsp;
 		<input class="button" type="button" id="close" value="结束" />&nbsp;
 		<input class="button" type="button" id="open" value="开启" />&nbsp;
 		<a href="output/申报结果模板.xlsx">考试安排模板</a>&nbsp;&nbsp;
-		<a href="output/成绩证书模板.xlsx">成绩证书模板</a>&nbsp;&nbsp;
+		<a href="output/成绩证书模板.xlsx">成绩证书模板</a>
   	</div>
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
 	<div style="width:100%;float:left;margin:0;">
