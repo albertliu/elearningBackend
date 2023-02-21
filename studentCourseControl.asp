@@ -489,7 +489,7 @@ if(op == "getNodeInfo"){
 		//47
 		result += "|" + rs("fromID").value + "|" + rs("signature").value + "|" + rs("signatureDate").value + "|" + rs("status_photo").value + "|" + rs("status_signature").value + "|" + rs("signatureType").value + "|" + rs("price").value;
 		//54
-		result += "|" + rs("file1").value + "|" + rs("file2").value + "|" + rs("file3").value;
+		result += "|" + rs("file1").value + "|" + rs("file2").value + "|" + rs("shortName").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

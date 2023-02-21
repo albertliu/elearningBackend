@@ -77,7 +77,7 @@
 				$("#courseName").html(ar[6]);
 				sign = (ar[52]==1?ar[48]:"");
 				reex = ar[40];
-				course = ar[6];
+				course = ar[56];
 				sDate = ar[49];
 				price = ar[53];
 				
