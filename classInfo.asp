@@ -445,19 +445,22 @@
 			arr.push("<th width='6%'>学号</th>");
 			arr.push("<th width='9%'>身份证</th>");
 			arr.push("<th width='6%'>姓名</th>");
-			arr.push("<th width='9%'>单位</th>");
 			arr.push("<th width='6%'>电话</th>");
-			arr.push("<th width='5%'>进度%</th>");
 			if(photo == 0){
+				arr.push("<th width='9%'>单位</th>");
+				arr.push("<th width='5%'>进度%</th>");
 				arr.push("<th width='7%'>模拟</th>");
 				arr.push("<th width='5%'>准申</th>");
 				arr.push("<th width='5%'>成绩</th>");
 				arr.push("<th width='5%'>补考</th>");
+				arr.push("<th width='5%'>证书</th>");
 			}else{
-				arr.push("<th width='8%'>照片</th>");
-				arr.push("<th width='10%'>签名</th>");
+				arr.push("<th width='7%'>照片</th>");
+				arr.push("<th width='7%'>身份证</th>");
+				arr.push("<th width='7%'>签名</th>");
+				arr.push("<th width='7%'>学历</th>");
+				arr.push("<th width='7%'>在职</th>");
 			}
-			arr.push("<th width='5%'>证书</th>");
 			arr.push("<th width='5%'>状态</th>");
 			arr.push("<th width='5%'>材料</th>");
 			arr.push("<th width='4%'></th>");
@@ -482,21 +485,21 @@
 					arr.push("<td class='left'>" + ar1[43] + "</td>");
 					arr.push("<td class='link1'><a href='javascript:showEnterInfo(" + ar1[0] + ",\"" + ar1[1] + "\",0,1);'>" + ar1[1] + "</a></td>");
 					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + ar1[1] + "\",0,1,\"class\");'>" + ar1[2] + "</a></td>");
-					if(ar1[56]=="znxf"){	//非集团客户，显示自己的单位和部门
-						arr.push("<td class='left' title='" + ar1[54] + "'>" + ar1[54].substr(0,8) + "</td>");
-					}else{
-						arr.push("<td class='left' title='" + ar1[12] + "'>" + ar1[12].substr(0,8) + "</td>");
-					}
 					arr.push("<td class='left'>" + ar1[69] + "</td>");
-					c = ar1[10];
-					if(c>0){
-						c = c;
-					}else{
-						c = "";
-					}
-					arr.push("<td class='center'>" + c + "</td>");	//学习进度
 					//arr.push("<td title='最好成绩' class='link1'><a href='javascript:showStudentExamStat(" + ar1[0] + ",\"" + ar1[2] + "\",0,0);'>" + c + "</a></td>");
 					if(photo == 0){
+						if(ar1[56]=="znxf"){	//非集团客户，显示自己的单位和部门
+							arr.push("<td class='left' title='" + ar1[54] + "'>" + ar1[54].substr(0,8) + "</td>");
+						}else{
+							arr.push("<td class='left' title='" + ar1[12] + "'>" + ar1[12].substr(0,8) + "</td>");
+						}
+						c = ar1[10];
+						if(c>0){
+							c = c;
+						}else{
+							c = "";
+						}
+						arr.push("<td class='center'>" + c + "</td>");	//学习进度
 						arr.push("<td title='最好成绩' class='link1' onclick='showStudentExamStat(" + ar1[0] + ",\"" + ar1[2] + "\",0,0);'>" + nullNoDisp(ar1[15]) + "</td>");
 						//申报
 						if(ar1[65]>0 || ar1[53]>0){
@@ -510,6 +513,11 @@
 						}
 						arr.push("<td class='left'><a href='javascript:showStudentExamPaper(" + ar1[0] + ",\"" + ar1[2] + "\");'>" + nullNoDisp(h) + "</a></td>");
 						arr.push("<td class='center'>" + nullNoDisp(ar1[68]) + "</td>");
+						if(ar1[64]>""){
+							arr.push("<td class='center'>" + imgChk + "</td>");	//证书
+						}else{
+							arr.push("<td class='center'>&nbsp;</td>");
+						}
 					}else{
 						if(ar1[75]>0){	//根据照片或签字提醒状态，显示不同背景颜色
 							h = " style='background-color:#" + attention_status[ar1[75]-1] + ";'";
@@ -521,21 +529,31 @@
 						}else{
 							arr.push("<td class='center'" + h + ">&nbsp;</td>");
 						}
+						if(ar1[19] > ""){
+							arr.push("<td class='center'><img src='users" + ar1[19] + "?times=" + (new Date().getTime()) + "' style='width:60px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
+						}else{
+							arr.push("<td class='center'>&nbsp;</td>");
+						}
 						if(ar1[76]>0){
 							h = " style='background-color:#" + attention_status[ar1[76]-1] + ";'";
 						}else{
 							h = "";
 						}
 						if(ar1[73] > ""){
-							arr.push("<td class='center'" + h + "><img src='users" + ar1[73] + "?times=" + (new Date().getTime()) + "' style='width:100px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
+							arr.push("<td class='center'" + h + "><img src='users" + ar1[73] + "?times=" + (new Date().getTime()) + "' style='width:60px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
 						}else{
 							arr.push("<td class='center'" + h + ">&nbsp;</td>");
 						}
-					}
-					if(ar1[64]>""){
-						arr.push("<td class='center'>" + imgChk + "</td>");	//证书
-					}else{
-						arr.push("<td class='center'>&nbsp;</td>");
+						if(ar1[21] > ""){
+							arr.push("<td class='center'><img src='users" + ar1[21] + "?times=" + (new Date().getTime()) + "' style='width:60px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
+						}else{
+							arr.push("<td class='center'>&nbsp;</td>");
+						}
+						if(ar1[80] > ""){
+							arr.push("<td class='center'><img src='users" + ar1[80] + "?times=" + (new Date().getTime()) + "' style='width:60px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
+						}else{
+							arr.push("<td class='center'>&nbsp;</td>");
+						}
 					}
 					arr.push("<td class='left'>" + ar1[4] + "</td>");
 					if(ar1[78]==''){
