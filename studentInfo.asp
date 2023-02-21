@@ -180,7 +180,7 @@
 		$("#img_photo").click(function(){
 			if($("#img_photo").attr("value")>""){
 				//window.open($("#img_photo").attr("value"));
-				showCropperInfo($("#img_photo").attr("value"),$("#username").val(),"img_photo",0,1);
+				showCropperInfo($("#img_photo").attr("value"),$("#username").val(),"photo","img_photo",0,1);
 			}
 		});
 		$("#img_cardA").click(function(){

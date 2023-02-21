@@ -1817,11 +1817,11 @@
 		});
 	}
 	
-	//nodeID: ID; op: 0 浏览 1 新增  2 编辑  3 删除  4 审批; mark: 0 不动作  1 有修改时刷新列表  2 有修改时刷新对象  k 来源标识
-	function showCropperInfo(nodeID,refID,k,op,mark){
+	//nodeID: ID; op: 0 浏览 1 新增  2 编辑  3 删除  4 审批; mark: 0 不动作  1 有修改时刷新列表  2 有修改时刷新对象  k 来源标识  kindID:photo,education...
+	function showCropperInfo(nodeID,refID,kindID,k,op,mark){
 		asyncbox.open({
 			id: "cropper",
-			url:"imageCropper.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
+			url:"imageCropper.asp?nodeID=" + nodeID + "&refID=" + refID + "&kindID=" + kindID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "照片裁剪",
 			width: 580,
 			height: 640,
@@ -1839,7 +1839,7 @@
 					if(k.length>1){
 						$("#" + k).prop("src", nodeID + "?times=" + (new Date().getTime()));
 					}else{
-						$("#photo" + k + refID).prop("src", nodeID + "?times=" + (new Date().getTime()));
+						$("#" + kindID + k + refID).prop("src", nodeID + "?times=" + (new Date().getTime()));
 					}
 				}
 　　　		}

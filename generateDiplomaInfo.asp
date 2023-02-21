@@ -165,7 +165,7 @@
 					arr.push("<td class='left'>" + ar1[1] + "</td>");
 					arr.push("<td class='left'>" + ar1[2] + "</td>");
 					arr.push("<td class='left'>" + ar1[3] + "</td>");
-					imgChk = "<img id='photo" + ar1[1] + "' src='users" + ar1[5] + "' onclick='showCropperInfo(\"users" + ar1[5] + "\",\"" + ar1[1] + "\",\"\",0,1)' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'>";
+					imgChk = "<img id='photo" + ar1[1] + "' src='users" + ar1[5] + "' onclick='showCropperInfo(\"users" + ar1[5] + "\",\"" + ar1[1] + "\",\"photo\",\"\",0,1)' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'>";
 					arr.push("<td class='center'>" + imgChk + "</td>");
 					if(ar1[4]==1){
 						h = "checked"

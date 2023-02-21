@@ -232,7 +232,7 @@
 						h = "";
 					}
 					if($("#searchStudentNeedDiplomaShowPhoto").attr("checked")){
-						imgChk = "<img id='photoA" + ar1[1] + "' src='users" + ar1[13] + "?t=" + (new Date().getTime()) + "' onclick='showCropperInfo(\"users" + ar1[13] + "\",\"" + ar1[1] + "\",\"A\",0,1)' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'>";
+						imgChk = "<img id='photoA" + ar1[1] + "' src='users" + ar1[13] + "?t=" + (new Date().getTime()) + "' onclick='showCropperInfo(\"users" + ar1[13] + "\",\"" + ar1[1] + "\",\"photo\",\"A\",0,1)' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'>";
 					}else{
 						imgChk = "&nbsp;";
 					}

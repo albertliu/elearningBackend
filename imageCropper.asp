@@ -21,6 +21,7 @@
 <script language="javascript">
 	var nodeID = "";
 	var refID = "";
+	var kindID = "";
 	var op = 0;
 	var updateCount = 0;
 
@@ -29,6 +30,7 @@
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";	//users/upload/students/photos/120107196604032113.png
 		refID = "<%=refID%>";	//username
+		kindID = "student_" + "<%=kindID%>";	//photo
 		op = "<%=op%>";
 		
 		$("#image").prop("src", nodeID + "?times=" + (new Date().getTime()));
@@ -95,7 +97,7 @@
 
 		jConfirm('确定要保存照片的修改吗?', '确认对话框', function(r) {
 			if(r){
-				$.post(uploadURL + "/outfiles/uploadBase64img",{upID:"student_photo",username:refID,currUser:currUser,imgData:base64url.replace("data:image/jpeg;base64,","")},function(re){
+				$.post(uploadURL + "/outfiles/uploadBase64img",{upID:kindID,username:refID,currUser:currUser,imgData:base64url.replace("data:image/jpeg;base64,","")},function(re){
 					alert("保存成功。");
 					updateCount += 1;
 					//window.parent.$.close("cropper");

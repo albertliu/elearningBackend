@@ -525,12 +525,12 @@
 							h = "";
 						}
 						if(ar1[18] > ""){
-							arr.push("<td class='center'" + h + "><img id='photo" + ar1[1] + "' src='users" + ar1[18] + "?times=" + (new Date().getTime()) + "' onclick='showCropperInfo(\"users" + ar1[18] + "\",\"" + ar1[1] + "\",\"\",0,1)' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
+							arr.push("<td class='center'" + h + "><img id='photo" + ar1[1] + "' src='users" + ar1[18] + "?times=" + (new Date().getTime()) + "' onclick='showCropperInfo(\"users" + ar1[18] + "\",\"" + ar1[1] + "\",\"photo\",\"\",0,1)' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
 						}else{
 							arr.push("<td class='center'" + h + ">&nbsp;</td>");
 						}
 						if(ar1[19] > ""){
-							arr.push("<td class='center'><img src='users" + ar1[19] + "?times=" + (new Date().getTime()) + "' style='width:60px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
+							arr.push("<td class='center'><img id='IDcardA" + ar1[1] + "' src='users" + ar1[19] + "?times=" + (new Date().getTime()) + "' onclick='showCropperInfo(\"users" + ar1[19] + "\",\"" + ar1[1] + "\",\"IDcardA\",\"\",0,1)' style='width:60px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
 						}else{
 							arr.push("<td class='center'>&nbsp;</td>");
 						}
@@ -545,12 +545,12 @@
 							arr.push("<td class='center'" + h + ">&nbsp;</td>");
 						}
 						if(ar1[21] > ""){
-							arr.push("<td class='center'><img src='users" + ar1[21] + "?times=" + (new Date().getTime()) + "' style='width:60px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
+							arr.push("<td class='center'><img id='education" + ar1[1] + "' src='users" + ar1[21] + "?times=" + (new Date().getTime()) + "' onclick='showCropperInfo(\"users" + ar1[21] + "\",\"" + ar1[1] + "\",\"education\",\"\",0,1)' style='width:60px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
 						}else{
 							arr.push("<td class='center'>&nbsp;</td>");
 						}
 						if(ar1[80] > ""){
-							arr.push("<td class='center'><img src='users" + ar1[80] + "?times=" + (new Date().getTime()) + "' style='width:60px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
+							arr.push("<td class='center'><img id='employment" + ar1[1] + "' src='users" + ar1[80] + "?times=" + (new Date().getTime()) + "' onclick='showCropperInfo(\"users" + ar1[80] + "\",\"" + ar1[1] + "\",\"employment\",\"\",0,1)' style='width:60px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
 						}else{
 							arr.push("<td class='center'>&nbsp;</td>");
 						}
