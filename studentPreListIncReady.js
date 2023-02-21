@@ -407,7 +407,8 @@
 			$.get("projectControl.asp?op=getStatus&refID=" + $("#searchStudentPreProjectID").val() ,function(data){
 				studentPreProjectStatus = data;
 			});
-			if(checkPermission("studentCourseCheck") && studentPreProjectStatus<2){
+			//if(checkPermission("studentCourseCheck") && studentPreProjectStatus<2){
+			if(checkPermission("studentCourseCheck")){
 				$("#studentPreListLongItem5").show();
 			}else{
 				$("#studentPreListLongItem5").hide();

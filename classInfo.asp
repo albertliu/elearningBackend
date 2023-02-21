@@ -459,7 +459,7 @@
 			}
 			arr.push("<th width='5%'>证书</th>");
 			arr.push("<th width='5%'>状态</th>");
-			arr.push("<th width='5%'>学费</th>");
+			arr.push("<th width='5%'>材料</th>");
 			arr.push("<th width='4%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -470,6 +470,7 @@
 				var k = 0;
 				var s = $("#status").val();
 				var imgChk = "<img src='images/green_check.png'>";
+				var imgFile = "<img src='images/attachment.png' style='width:15px;'>";
 				var attention_status = ["FFFFAA","AAFFAA","F3F3F3"];
 				$.each(ar,function(iNum,val){
 					var ar1 = new Array();
@@ -537,7 +538,11 @@
 						arr.push("<td class='center'>&nbsp;</td>");
 					}
 					arr.push("<td class='left'>" + ar1[4] + "</td>");
-					arr.push("<td class='left'>" + ar1[50] + "</td>");
+					if(ar1[78]==''){
+						arr.push("<td class='center'>&nbsp;</td>");
+					}else{
+						arr.push("<td class='center'><a href='/users" + ar1[78] + "?t=" + (new Date().getTime()) + "' target='_blank' title='申报材料'>" + imgFile + "</a></td>");
+					}
 					arr.push("<td class='left'><input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[1] + "' name='visitstockchk'></td>");
 					arr.push("</tr>");
 				});

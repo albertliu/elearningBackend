@@ -272,6 +272,8 @@ if(op == "getStudentCourseList"){
 		result += "|" + rs("diplomaID").value + "|" + rs("applyID").value + "|" + rs("score").value + "|" + rs("submiterName").value + "|" + rs("reExamCount").value + "|" + rs("mobile").value + "|" + rs("score1").value + "|" + rs("score2").value;
 		//72
 		result += "|" + rs("fromID").value + "|" + rs("signature").value + "|" + rs("signatureDate").value + "|" + rs("status_photo").value + "|" + rs("status_signature").value + "|" + rs("signatureType").value;
+		//78
+		result += "|" + rs("file1").value + "|" + rs("file2").value;
 		rs.MoveNext();
 	}
 	rs.Close();
