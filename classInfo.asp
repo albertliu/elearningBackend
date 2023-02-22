@@ -843,7 +843,7 @@
 		$("#transaction_id").val("");
 		$("#status").val(0);
 		$("#kindID").val(0);
-		$("#signatureType").val(0);
+		$("#signatureType").val(1);
 		$("#classroom").val("黄兴路158号D103");
 		$("#dateStart").val(addDays(currDate,3) + " 8:30");
 		$("#dateEnd").val("");

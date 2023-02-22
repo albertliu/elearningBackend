@@ -208,6 +208,7 @@
 							//alert(data);
 							if(data>0){
 								jAlert("成功将" + data + "个学员编入班级。");
+								getStudentPreList();
 							}else{
 								jAlert("操作失败，没有符合要求的学员。");
 							}
