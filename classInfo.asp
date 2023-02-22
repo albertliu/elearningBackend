@@ -31,6 +31,7 @@
 	var updateCount = 0;
 	var at_name = "";	//@name
 	var at_username = "";
+	var imgFile = "<img src='images/attachment.png' style='width:15px;'>";
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";
@@ -473,7 +474,6 @@
 				var k = 0;
 				var s = $("#status").val();
 				var imgChk = "<img src='images/green_check.png'>";
-				var imgFile = "<img src='images/attachment.png' style='width:15px;'>";
 				var attention_status = ["FFFFAA","AAFFAA","F3F3F3"];
 				$.each(ar,function(iNum,val){
 					var ar1 = new Array();
@@ -557,7 +557,7 @@
 					}
 					arr.push("<td class='left'>" + ar1[4] + "</td>");
 					if(ar1[78]==''){
-						arr.push("<td class='center'>&nbsp;</td>");
+						arr.push("<td class='center'><div id='material" + ar1[0] + "'><span onclick='generateMaterials(" + ar1[0] + ",\"" + ar1[1] + "\")' title='申报材料'><img src='images/addDoc.png' style='width:15px;'><span><div></td>");
 					}else{
 						arr.push("<td class='center'><a href='/users" + ar1[78] + "?t=" + (new Date().getTime()) + "' target='_blank' title='申报材料'>" + imgFile + "</a></td>");
 					}
@@ -679,8 +679,9 @@
 			}
 		});
 		if($("#scheduleDate").val()>""){
-			if($("#host").val()>""){
-				getComList("teacher","v_courseTeacherList a, courseInfo b","teacherID","teacherName","a.courseID=b.certID and a.status=0 and b.courseID='" + $("#courseID").val() + "' and a.host='" + $("#host").val() + "' order by teacherID",1);
+		var h = $("#host").val();
+		if(h>"" && h !="ding"){	//ding使用智能消防学校的资源
+				getComList("teacher","v_courseTeacherList a, courseInfo b","teacherID","teacherName","a.courseID=b.certID and a.status=0 and b.courseID='" + $("#courseID").val() + "' and a.host='" + h + "' order by teacherID",1);
 			}else{
 				getComList("teacher","v_courseTeacherList a, courseInfo b","teacherID","teacherName","a.courseID=b.certID and a.status=0 and b.courseID='" + $("#courseID").val() + "' order by teacherID",1);
 			}
@@ -691,9 +692,10 @@
 	}
 	
 	function setHostChange(){
-		if($("#host").val()>""){
+		var h = $("#host").val();
+		if(h>"" && h !="ding"){	//ding使用智能消防学校的资源
 			getComList("courseID","[dbo].[getHostCourseList]('" + $("#host").val() + "')","courseID","courseName","1=1",1);
-			getComList("adviserID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='adviser' and host='" + $("#host").val() + "') order by realName",1);
+			getComList("adviserID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='adviser' and host='" + h + "') order by realName",1);
 		}else{
 			getComList("courseID","v_courseInfo","courseID","shortName","status=0 and host='' order by courseID",1);
 			getComList("adviserID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='adviser' and host='') order by realName",1);
@@ -780,6 +782,19 @@
 		at_name = att;
 		$("#feedback_item").val("@" + att + " ");
 		$("#feedback_item").focus();
+	}
+
+	function generateMaterials(enterID,username){
+		if(confirm("确定要生成报名材料吗？")){
+			$.getJSON(uploadURL + "/outfiles/generate_emergency_materials?refID=" + username + "&nodeID=" + enterID + "&keyID=2" ,function(data){
+				if(data>""){
+					alert("已生成文件");
+					$("#material" + enterID).html("<a href='/users" + data + "?t=" + (new Date().getTime()) + "' target='_blank' title='申报材料'>" + imgFile + "</a>");
+				}else{
+					alert("没有可供处理的数据。");
+				}
+			});
+		}
 	}
 	
 	function setButton(){
