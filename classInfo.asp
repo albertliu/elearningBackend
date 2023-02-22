@@ -32,6 +32,7 @@
 	var at_name = "";	//@name
 	var at_username = "";
 	var imgFile = "<img src='images/attachment.png' style='width:15px;'>";
+	var timer1 = null;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";
@@ -326,7 +327,7 @@
 			});
 		});
 
-		var timer = setInterval(getFeedbackList, 30000);
+		var timer = setInterval(getFeedbackList, 300000);
 		//var div = document.getElementById('feedback_list');
 		//div.scrollTop = div.scrollHeight; 
 
@@ -559,7 +560,7 @@
 					if(ar1[78]==''){
 						arr.push("<td class='center'><div id='material" + ar1[0] + "'><span onclick='generateMaterials(" + ar1[0] + ",\"" + ar1[1] + "\")' title='申报材料'><img src='images/addDoc.png' style='width:15px;'><span><div></td>");
 					}else{
-						arr.push("<td class='center'><a href='/users" + ar1[78] + "?t=" + (new Date().getTime()) + "' target='_blank' title='申报材料'>" + imgFile + "</a></td>");
+						arr.push("<td class='center'><a href='javascript:void(0);' onclick='openMaterial(\"/users" + ar1[78] + "?t=" + (new Date().getTime()) + "\");' ondblclick='generateMaterials(" + ar1[0] + ",\"" + ar1[1] + "\")' title='申报材料'>" + imgFile + "</a></td>");
 					}
 					arr.push("<td class='left'><input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[1] + "' name='visitstockchk'></td>");
 					arr.push("</tr>");
@@ -785,6 +786,7 @@
 	}
 
 	function generateMaterials(enterID,username){
+		clearTimeout(timer1);
 		if(confirm("确定要生成报名材料吗？")){
 			$.getJSON(uploadURL + "/outfiles/generate_emergency_materials?refID=" + username + "&nodeID=" + enterID + "&keyID=2" ,function(data){
 				if(data>""){
@@ -795,6 +797,13 @@
 				}
 			});
 		}
+	}
+
+	function openMaterial(path){
+		clearTimeout(timer1);
+		timer1=setTimeout(function(){
+			window.open(path);
+		},300);
 	}
 	
 	function setButton(){
