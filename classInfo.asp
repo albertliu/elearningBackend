@@ -697,6 +697,7 @@
 		if(h>"" && h !="ding"){	//ding使用智能消防学校的资源
 			getComList("courseID","[dbo].[getHostCourseList]('" + $("#host").val() + "')","courseID","courseName","1=1",1);
 			getComList("adviserID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='adviser' and host='" + h + "') order by realName",1);
+			$("#memo").val($("#host").find("option:selected").text());
 		}else{
 			getComList("courseID","v_courseInfo","courseID","shortName","status=0 and host='' order by courseID",1);
 			getComList("adviserID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='adviser' and host='') order by realName",1);
@@ -850,7 +851,7 @@
 			$("#btnMockView").show();
 			$("#checkStudent").show();
 		}
-		if(checkPermission("classAdd") && s < 2 && currHost==""){
+		if((checkPermission("classAdd") || currHost>"") && s < 2){
 			$("#save").show();
 			$("#doImport").show();
 			$("#btnClassCall").show();

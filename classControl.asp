@@ -52,6 +52,13 @@ if(op == "getClassList"){
 		}else{
 			where = s;
 		}
+	}else{	//不能查看合作单位的预备班
+		s = "pre=0";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
 	}
 	//mark=3: 当前用户为销售
 	if(String(Request.QueryString("mark")) == 3){
