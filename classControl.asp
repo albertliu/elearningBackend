@@ -52,7 +52,8 @@ if(op == "getClassList"){
 		}else{
 			where = s;
 		}
-	}else{	//不能查看合作单位的预备班
+	}
+	if(currHost==""){	//不能查看合作单位的预备班
 		s = "pre=0";
 		if(where > ""){
 			where = where + " and " + s;
