@@ -317,14 +317,11 @@
 		});
 	
 		$("#generateZip").click(function(){
-			$.getJSON(uploadURL + "/outfiles/generate_material_zip?refID=" + $("#classID").val() + "&kind=class", function(data){
-				if(data>""){
-					alert("已生成压缩包");
-					getNodeInfo(nodeID);
-				}else{
-					alert("没有可供处理的数据。");
-				}
-			});
+			generateZip("m");
+		});
+	
+		$("#generatePhotoZip").click(function(){
+			generateZip("p");
 		});
 
 		var timer = setInterval(getFeedbackList, 300000);
@@ -398,7 +395,10 @@
 				$("#sign").html("<a>签到表</a>");
 				$("#sign1").html("<a>考勤记录</a>");
 				if(ar[47] > ""){
-					$("#zip").html("<a href='/users" + ar[47] + "' target='_blank'>申报材料</a>");
+					$("#zip").html("<a href='/users" + ar[47] + "' target='_blank'>申报压缩包</a>");
+				}
+				if(ar[48] > ""){
+					$("#pzip").html("<a href='/users" + ar[48] + "' target='_blank'>照片压缩包</a>");
 				}
 				getStudentCourseList();
 				$("#teacher").val(ar[34]);
@@ -809,7 +809,18 @@
 			window.open(path);
 		},300);
 	}
-	
+
+	function generateZip(t){
+		$.getJSON(uploadURL + "/outfiles/generate_material_zip?refID=" + $("#classID").val() + "&kind=class&type=" + t, function(data){
+			if(data>""){
+				alert("已生成压缩包");
+				getNodeInfo(nodeID);
+			}else{
+				alert("没有可供处理的数据。");
+			}
+		});
+	}
+
 	function setButton(){
 		var s = $("#status").val();
 		$("#save").hide();
@@ -955,6 +966,7 @@
 					<span id="sign" style="margin-left:10px;"></span>
 					<span id="sign1" style="margin-left:10px;"></span>
 					<span id="zip" style="margin-left:10px;"></span>
+					<span id="pzip" style="margin-left:10px;"></span>
 				</td>
 			</tr>
 			<tr>
@@ -1018,9 +1030,10 @@
 	<input class="button" type="button" id="doImportRef" value="石化预报名表" />
 	<input class="button" type="button" id="doImport" value="报名表导入" />&nbsp;&nbsp;
 	<input class="button" type="button" id="checkStudent" value="报名表核对" />&nbsp;&nbsp;
-	<input class="button" type="button" id="generateZip" value="生成申报材料" />&nbsp;
+	<input class="button" type="button" id="generateZip" value="生成申报压缩包" />&nbsp;&nbsp;
+	<input class="button" type="button" id="generatePhotoZip" value="生成照片压缩包" />&nbsp;&nbsp;
 	<a href="output/学员报名表模板.xlsm">报名表模板</a>&nbsp;&nbsp;
-	<a href="output/学员信息核对模板.xlsx">报名表核对模板</a>&nbsp;&nbsp;
+	<a href="output/学员信息核对模板.xlsx">报名表核对模板</a>
 
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
 	<div style="width:100%;float:left;margin:0;">

@@ -1077,7 +1077,7 @@ if(op == "getGenerateApplyNodeInfo"){
 		//24
 		result += "|" + rs("reexamineName").value + "|" + rs("importApplyDate").value + "|" + rs("importScoreDate").value + "|" + rs("diplomaStartDate").value + "|" + rs("diplomaEndDate").value;
         //29
-		result += "|" + rs("diplomaTerm").value + "|" + rs("qtyCheck").value + "|" + rs("certID").value + "|" + rs("host").value + "|" + rs("zip").value;
+		result += "|" + rs("diplomaTerm").value + "|" + rs("qtyCheck").value + "|" + rs("certID").value + "|" + rs("host").value + "|" + rs("zip").value + "|" + rs("pzip").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

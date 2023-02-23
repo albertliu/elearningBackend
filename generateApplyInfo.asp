@@ -238,14 +238,11 @@
 		});
 	
 		$("#generateZip").click(function(){
-			$.getJSON(uploadURL + "/outfiles/generate_material_zip?refID=" + nodeID + "&kind=apply", function(data){
-				if(data>""){
-					alert("已生成压缩包");
-					getNodeInfo(nodeID);
-				}else{
-					alert("没有可供处理的数据。");
-				}
-			});
+			generateZip("m");
+		});
+	
+		$("#generatePhotoZip").click(function(){
+			generateZip("p");
 		});
 
 	  	<!--#include file="commLoadFileReady.asp"-->
@@ -294,7 +291,10 @@
                     $("#diplomaSign").hide();
                 }
 				if(ar[33] > ""){
-					$("#zip").html("<a href='/users" + ar[33] + "' target='_blank'>申报材料</a>");
+					$("#zip").html("<a href='/users" + ar[33] + "' target='_blank'>申报压缩包</a>");
+				}
+				if(ar[34] > ""){
+					$("#zip").html("<a href='/users" + ar[34] + "' target='_blank'>照片压缩包</a>");
 				}
 				//getDownloadFile("generateDiplomaID");
 				nodeID = ar[0];
@@ -440,6 +440,17 @@
 			});
 		});
 	}
+
+	function generateZip(t){
+		$.getJSON(uploadURL + "/outfiles/generate_material_zip?refID=" + nodeID + "&kind=apply&type=" + t, function(data){
+			if(data>""){
+				alert("已生成压缩包");
+				getNodeInfo(nodeID);
+			}else{
+				alert("没有可供处理的数据。");
+			}
+		});
+	}
 	
 	function setButton(){
 		var s = $("#status").val();
@@ -541,6 +552,7 @@
 					<span id="scoreResult" style="margin-left:10px;"></span>
 					<span id="diplomaSign" style="margin-left:10px;"></span>
 					<span id="zip" style="margin-left:10px;"></span>
+					<span id="pzip" style="margin-left:10px;"></span>
 				</td>
 			</tr>
 			<tr>
@@ -598,7 +610,8 @@
 		<input class="button" type="button" id="sendMsgExam" value="考试通知" />&nbsp;
 		<input class="button" type="button" id="doImportScore" value="成绩证书导入" />&nbsp;
 		<input class="button" type="button" id="sendMsgScore" value="成绩通知" />&nbsp;
-		<input class="button" type="button" id="generateZip" value="生成申报材料" />&nbsp;
+		<input class="button" type="button" id="generateZip" value="生成申报压缩包" />&nbsp;
+		<input class="button" type="button" id="generatePhotoZip" value="生成照片压缩包" />&nbsp;
 		<input class="button" type="button" id="lock" value="锁定" />&nbsp;
 		<input class="button" type="button" id="close" value="结束" />&nbsp;
 		<input class="button" type="button" id="open" value="开启" />&nbsp;
