@@ -702,6 +702,9 @@
 			getComList("courseID","v_courseInfo","courseID","shortName","status=0 and host='' order by courseID",1);
 			getComList("adviserID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='adviser' and host='') order by realName",1);
 		}
+		if(h =="ding"){	//ding使用智能消防学校的资源
+			getComList("courseID","[dbo].[getHostCourseList]('" + $("#host").val() + "')","courseID","courseName","1=1",1);
+		}
 	}
 	
 	function getMarkList(tag,mark, dt, ad, r, t){
