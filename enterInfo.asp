@@ -469,9 +469,13 @@
 					refAlert = id;
 					return false;
 				}else{
+					var over = 0;
+					if($("#overdue").prop("checked")){
+						over = 1;
+					}
 					
 					//@username,@classID,@price,@invoice,@projectID,@kindID,@type,@status,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo,@registerID
-					$.get("studentCourseControl.asp?op=doEnter&nodeID=" + $("#username").val() + "&classID=" + $("#classID").val() + "&fromID=" + $("#fromID").val() + "&price=" + $("#price").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#statusPay").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+					$.get("studentCourseControl.asp?op=doEnter&nodeID=" + $("#username").val() + "&classID=" + $("#classID").val() + "&overdue=" + over + "&fromID=" + $("#fromID").val() + "&price=" + $("#price").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#statusPay").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 						//jAlert(unescape(re));
 						var ar = new Array();
 						ar = unescape(re).split("|");
