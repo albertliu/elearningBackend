@@ -489,7 +489,7 @@
 					arr.push("<td class='left'>" + ar1[69] + "</td>");
 					//arr.push("<td title='最好成绩' class='link1'><a href='javascript:showStudentExamStat(" + ar1[0] + ",\"" + ar1[2] + "\",0,0);'>" + c + "</a></td>");
 					if(photo == 0){
-						if(ar1[56]=="znxf"){	//非集团客户，显示自己的单位和部门
+						if(ar1[56]!="spc" && ar1[56]!="shm"){	//非集团客户，显示自己的单位和部门
 							arr.push("<td class='left' title='" + ar1[54] + "'>" + ar1[54].substr(0,8) + "</td>");
 						}else{
 							arr.push("<td class='left' title='" + ar1[12] + "'>" + ar1[12].substr(0,8) + "</td>");
