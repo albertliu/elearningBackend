@@ -11,7 +11,7 @@
 		arr.push('			<td colspan="2" style="height:30px;"><p style="font-size:1.3em;text-indent:50px;">明确甲乙双方的义务，经平等、自愿、协商签订本“培训协议书”。具体约定如下：</p></td>');
 		arr.push('		</tr>');
 		arr.push('		<tr>');
-		arr.push('			<td colspan="2" style="height:30px;"><p style="font-size:1.3em;text-indent:30px;line-height:50px;">1、乙方[' + name + ']身份证号[' + username + ']，自主选择[' + course + ']培训项目，该项目培训费为' + price + '元（包括培训费和申报鉴定代办费），乙方缴纳' + price + '元（由单位支付培训费无需缴纳）。</p></td>');
+		arr.push('			<td colspan="2" style="height:30px;"><p style="font-size:1.3em;text-indent:30px;line-height:50px;">1、乙方[' + name + ']身份证号[' + username + ']，自主选择[' + course + ']培训项目，培训费为' + price + '元（包括培训费和申报鉴定代办费），乙方缴纳' + price + '元（由单位支付培训费无需缴纳）。</p></td>');
 		arr.push('		</tr>');
 		arr.push('		<tr>');
 		arr.push('			<td colspan="2" style="height:30px;"><p style="font-size:1.3em;text-indent:50px;">2、乙方已详细阅读学校报名处公告栏上各项公示内容（属于单位集体报名的学员，开班当天必须自己到报名处去阅读各项公示内容），如有不解之处直接向报名处工作人员咨询详解，并自动向班主任加入培训微信群，建立信息联系方式。</p></td>');

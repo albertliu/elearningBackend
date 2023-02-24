@@ -264,15 +264,6 @@
 				<span><img id="f_sign1" src="" style="width:170px;margin:0px 0px 8px 60px;padding-left:80px;padding-top:570px;"></span>
 				<p id="same1" style='font-size:1.3em;text-indent:30px;font-family:方正舒体,幼圆;padding-top:20px;'>与原件内容一致</p>
 			</div>
-			<div style="float:left;">
-				<span><img id="f_sign2" src="" style="width:170px;margin:0px 0px 8px 130px;padding-left:80px;padding-top:815px;"></span>
-				<p style='font-size:1.3em;text-indent:30px;font-family:方正舒体,幼圆'>&nbsp;</p>
-			</div>
-			</div>
-			<div style="position: absolute; z-index:30;">
-			<div style="float:left;">
-				<span><img id="f_sign3" src="" style="width:170px;margin:0px 0px 8px 40px;padding-left:80px;padding-top:875px;"></span>
-			</div>
 			</div>
 			<div style="position: absolute; z-index:10;">
 			<div style='text-align:center; margin:10px 0 20px 0;'><h3 id="reexamine" style='font-size:1.45em;'></h3></div>

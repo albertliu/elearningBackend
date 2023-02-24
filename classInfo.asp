@@ -558,9 +558,9 @@
 					}
 					arr.push("<td class='left'>" + ar1[4] + "</td>");
 					if(ar1[78]==''){
-						arr.push("<td class='center'><div id='material" + ar1[0] + "'><span onclick='generateMaterials(" + ar1[0] + ",\"" + ar1[1] + "\")' title='申报材料'><img src='images/addDoc.png' style='width:15px;'><span><div></td>");
+						arr.push("<td class='center'><div id='material" + ar1[0] + "'><span onclick='generateMaterials(" + ar1[0] + ",\"" + ar1[1] + "\",\"" + ar1[60] + "\")' title='申报材料'><img src='images/addDoc.png' style='width:15px;'><span><div></td>");
 					}else{
-						arr.push("<td class='center'><a href='javascript:void(0);' onclick='openMaterial(\"/users" + ar1[78] + "?t=" + (new Date().getTime()) + "\");' ondblclick='generateMaterials(" + ar1[0] + ",\"" + ar1[1] + "\")' title='申报材料'>" + imgFile + "</a></td>");
+						arr.push("<td class='center'><a href='javascript:void(0);' onclick='openMaterial(\"/users" + ar1[78] + "?t=" + (new Date().getTime()) + "\");' ondblclick='generateMaterials(" + ar1[0] + ",\"" + ar1[1] + "\",\"" + ar1[60] + "\")' title='申报材料'>" + imgFile + "</a></td>");
 					}
 					arr.push("<td class='left'><input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[1] + "' name='visitstockchk'></td>");
 					arr.push("</tr>");
@@ -789,10 +789,10 @@
 		$("#feedback_item").focus();
 	}
 
-	function generateMaterials(enterID,username){
+	function generateMaterials(enterID,username,cert){
 		clearTimeout(timer1);
 		if(confirm("确定要生成报名材料吗？")){
-			$.getJSON(uploadURL + "/outfiles/generate_emergency_materials?refID=" + username + "&nodeID=" + enterID + "&keyID=2" ,function(data){
+			$.getJSON(uploadURL + "/outfiles/generate_emergency_materials?refID=" + username + "&nodeID=" + enterID + "&certID=" + cert + "&keyID=2" ,function(data){
 				if(data>""){
 					alert("已生成文件");
 					$("#material" + enterID).html("<a href='/users" + data + "?t=" + (new Date().getTime()) + "' target='_blank' title='申报材料'>" + imgFile + "</a>");

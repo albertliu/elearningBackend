@@ -489,7 +489,7 @@ if(op == "getNodeInfo"){
 		//47
 		result += "|" + rs("fromID").value + "|" + rs("signature").value + "|" + rs("signatureDate").value + "|" + rs("status_photo").value + "|" + rs("status_signature").value + "|" + rs("signatureType").value + "|" + rs("price").value;
 		//54
-		result += "|" + rs("file1").value + "|" + rs("file2").value + "|" + rs("shortName").value;
+		result += "|" + rs("file1").value + "|" + rs("file2").value + "|" + rs("shortName").value + "|" + rs("overdue").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -997,7 +997,7 @@ if(op == "updatePayPrice"){
 }	
 
 if(op == "updateEnterClass"){
-	sql = "exec updateEnterClass " + nodeID + ",'" + refID + "','" + keyID + "','" + String(Request.QueryString("currDiplomaID")) + "','" + String(Request.QueryString("currDiplomaDate")) + "','" + String(Request.QueryString("fromID")) + "','" + currUser + "'";
+	sql = "exec updateEnterClass " + nodeID + ",'" + refID + "','" + keyID + "','" + String(Request.QueryString("currDiplomaID")) + "','" + String(Request.QueryString("currDiplomaDate")) + "'," + String(Request.QueryString("overdue")) + ",'" + String(Request.QueryString("fromID")) + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(0);
 }	

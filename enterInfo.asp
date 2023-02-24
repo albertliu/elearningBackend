@@ -322,6 +322,11 @@
 				}else{
 					$("#btnShowSignature").prop("disabled",true);
 				}
+				if(ar[57]==1){
+					$("#overdue").prop("checked",true);
+				}else{
+					$("#overdue").prop("checked",false);
+				}
 
 				getPayDetailInfoByEnterID(ar[0]);
 			//getDownloadFile("studentCourseID");
@@ -420,7 +425,11 @@
 				$.get("studentCourseControl.asp?op=updatePayPrice&nodeID=" + $("#payDetailID").val() + "&refID=" + $("#price").val() + "&times=" + (new Date().getTime()),function(re){
 					//jAlert(unescape(re));
 				});
-				$.get("studentCourseControl.asp?op=updateEnterClass&nodeID=" + nodeID + "&refID=" + $("#classID").val() + "&keyID=" + $("#SNo").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&fromID=" + $("#fromID").val() + "&times=" + (new Date().getTime()),function(re){
+				var over = 0;
+				if($("#overdue").prop("checked")){
+					over = 1;
+				}
+				$.get("studentCourseControl.asp?op=updateEnterClass&nodeID=" + nodeID + "&refID=" + $("#classID").val() + "&overdue=" + over + "&keyID=" + $("#SNo").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&fromID=" + $("#fromID").val() + "&times=" + (new Date().getTime()),function(re){
 					//jAlert(unescape(re));
 					getNodeInfo(nodeID);
 					printEntryform(1);
@@ -553,8 +562,11 @@
 		if(c == "C30" || c == "C31" || c == "C32" || c == "C35" || c == "C18" || c == "C19" || c == "C36" || c == "C37"){
 			c = "C2";
 		}
-		if(c == "C24" || c == "C25" || c == "C26" || c == "C25B" || c == "C26B" || c == "C14" || c == "C15"){
+		if(c == "C24" || c == "C25" || c == "C26" || c == "C15"){
 			c = "C12";
+		}
+		if(c == "C17"){
+			c = "C16";
 		}
 		window.open("entryform_" + c + ".asp?keyID=" + k + "&nodeID=" + nodeID + "&refID=" + refID + "&kindID=" + $("#certID").val(), "_self");
 	}
@@ -723,7 +735,7 @@
 				<div>
 				<span id="project1">招生批次&nbsp;<select id="projectID" style="width:250px"></select>&nbsp;&nbsp;</span>
 				<span id="project0">招生批次&nbsp;<input class="readOnly" type="text" id="projectName" style="width:250px" readOnly="true" />&nbsp;&nbsp;</span>
-				类别&nbsp;<input class="readOnly" type="text" id="reexamineName" style="width:50px" readOnly="true" />
+				类别&nbsp;<input class="readOnly" type="text" id="reexamineName" style="width:50px" readOnly="true" />&nbsp;&nbsp;<input type="checkbox" id="overdue" />复审过期
 				<br>
 				<span id="class1">所属班级&nbsp;<select id="classID" style="width:250px"></select>&nbsp;&nbsp;</span>
 				<span id="class0">所属班级&nbsp;<input class="readOnly" type="text" id="className" style="width:250px" readOnly="true" />&nbsp;&nbsp;经办人&nbsp;<input class="readOnly" type="text" id="submiterName" style="width:50px" readOnly="true" />&nbsp;&nbsp;</span>
