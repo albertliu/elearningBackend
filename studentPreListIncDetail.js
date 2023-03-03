@@ -13,7 +13,7 @@
 								课程&nbsp;<select id="searchStudentPreCertID" style="width:150px"></select>&nbsp;&nbsp;
 							</span>
 							批次&nbsp;<select id="searchStudentPreProjectID" style="width:200px"></select>&nbsp;&nbsp;
-							<input style="border:0px;" type="checkbox" id="searchStudentPreActive" value="" checked />&nbsp;当前批次&nbsp;&nbsp;
+							<input style="border:0px;" type="checkbox" id="searchStudentPreActive" value="" />&nbsp;当前批次&nbsp;&nbsp;
 							<span id="studentPreListLongItem4">
 								<input style="border:0px;" type="checkbox" id="searchStudentPreShowPhoto" value="" />&nbsp;图片&nbsp;&nbsp;
 								状态&nbsp;<select id="searchStudentPreStatus" style="width:50px"></select>&nbsp;&nbsp;
@@ -36,6 +36,7 @@
 								<input class="button" type="button" id="btnStudentPreCheck" value="名单确认" />&nbsp;&nbsp;
 								<input class="button" type="button" id="btnStudentPreRefuse" value="剔除" />&nbsp;&nbsp;
 							</span>
+							<input class="button" type="button" id="btnStudentPreExpress" value="加急" />&nbsp;&nbsp;
 							<input class="button" type="button" id="btnStudentPreError" value="名单检查" />&nbsp;&nbsp;
 							<input class="button" type="button" id="btnStudentPreClass" value="编入班级" />
 							<input class="button" type="button" id="btnStudentPreCall" value="上课通知" />&nbsp;&nbsp;

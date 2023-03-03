@@ -137,8 +137,10 @@
 					$("#img_cardA").attr("src","/users" + ar[22]);
 				}else{
 					$("#img_cardA").attr("src","images/blank_cardA.png");
-					$("#same1").hide();
 					$("#f_sign1").hide();
+				}
+				if(sign=="" || ar[22] == ""){
+					$("#same1").hide();
 				}
 				if(ar[23] > ""){
 					$("#img_cardB").attr("src","/users" + ar[23]);

@@ -32,6 +32,13 @@
 		$("#searchStudentPreEndDate").click(function(){WdatePicker();});
 		$("#searchStudentPreStartDate").val(addDays(currDate,-30));
 
+		if(currHost==""){
+			$("#searchStudentPreChecked").val(1);	//学校默认看已确认的，未编班的人
+			$("#btnStudentPreExpress").hide();	//加急是石化公司的权限
+		}else{
+			$("#searchStudentPreChecked").val(0);	//石化公司默认看未确认的人
+		}
+
 		$("#btnSearchStudentPre").click(function(){
 			getStudentPreList();
 		});
@@ -189,7 +196,32 @@
 			});
 		});
 		
+		$("#btnStudentPreExpress").click(function(){
+			getSelCart("visitstockchkPre");
+			if(selCount==0){
+				jAlert("请选择要标记的学员名单。");
+				return false;
+			}
+			jConfirm("确定要将这些(" + selCount + "个)人标记为加急吗？","确认",function(r){
+				if(r){
+					$.post("studentCourseControl.asp?op=set_students_express", {selList: selList} ,function(data){
+						//alert(data);
+						if(data>0){
+							jAlert("标记完成。");
+							getStudentPreList();
+						}else{
+							jAlert("操作失败，没有符合要求的学员。");
+						}
+					});
+				}
+			});
+		});
+		
 		$("#btnStudentPreClass").click(function(){
+			if($("#searchStudentPreProjectID").val() == ""){
+				jAlert("请选择一个批次。");
+				return false;
+			}
 			getSelCart("visitstockchkPre");
 			if(selCount==0){
 				jAlert("请选择要编班的学员名单。");
@@ -248,14 +280,17 @@
 		if(!checkPermission("classAdd")){
 			$("#btnStudentPreClass").hide();
 		}
+		if(currHost=="spc"){
+			getStudentPreList();
+		}
 	});
 
 	function getStudentPreList(){
 		sWhere = $("#txtSearchStudentPre").val();
-		if($("#searchStudentPreProjectID").val() == ""){
-			jAlert("请选择一个批次。");
-			return false;
-		}
+		//if($("#searchStudentPreProjectID").val() == ""){
+		//	jAlert("请选择一个批次。");
+		//	return false;
+		//}
 		//if($("#searchStudentPreOld").attr("checked")){Old = 1;}
 		//alert($("#searchStudentPreDept").val() + "&refID=" + $("#searchStudentPreProjectID").val() + "&status=" + $("#searchStudentPreStatus").val() + "&courseID=" + $("#searchStudentPreID").val() + "&host=" + $("#searchStudentPreHost").val());
 		$.get("studentCourseControl.asp?op=getStudentListByProject&where=" + escape(sWhere) + "&refID=" + $("#searchStudentPreProjectID").val() + "&keyID=" + $("#searchStudentPreDept").val() + "&host=" + $("#searchStudentPreHost").val() + "&kindID=" + $("#searchStudentPreMark").val() + "&checked=" + $("#searchStudentPreChecked").val() + "&submited=" + $("#searchStudentPreSubmited").val() + "&class=" + $("#searchStudentPreClass").val() + "&fStart=" + $("#searchStudentPreStartDate").val() + "&fEnd=" + $("#searchStudentPreEndDate").val() + "&dk=130&times=" + (new Date().getTime()),function(data){
@@ -317,7 +352,7 @@
 					}
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
-					arr.push("<td class='link1'><a href='javascript:showEnterInfo(" + ar1[0] + ",\"" + ar1[1] + "\",0,1);'>" + ar1[1] + "</a></td>");
+					arr.push("<td class='link1'" + (ar1[31]==1? " style='background:yellow;'":"") + "><a href='javascript:showEnterInfo(" + ar1[0] + ",\"" + ar1[1] + "\",0,1);'>" + ar1[1] + "</a></td>");
 					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + ar1[1] + "\",0,1);'>" + ar1[2] + "</a></td>");
 					//arr.push("<td class='left'>" + ar1[3] + "</td>");
 					arr.push("<td class='center' title='" + ar1[10] + "'>" + ar1[10].substring(0,2) + "</td>");

@@ -1,0 +1,16 @@
+<!DOCTYPE HTML> <html> 
+    <head>
+        <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.15.2/skins/default/aliplayer-min.css" />  
+        <script charset="utf-8" type="text/javascript" src="https://g.alicdn.com/de/prismplayer/2.15.2/aliplayer-h5-min.js"></script> 
+    </head>
+    <body>
+    <div id="J_prismPlayer"></div>
+    </body>
+    <script>
+        var player = new Aliplayer({
+            id: 'J_prismPlayer',
+            source: 'http://vod.shznxfxx.cn/89eec410b8d371edbfce0675a0ec0102/c7d503b713d64cfdbcd89be786872489-ac3780d473e59a734bd3113f5da44714-ld-nbv1.mp4',//播放地址，可以是第三方点播地址，或阿里云点播服务中的播放地址。
+        },function(player){
+            console.log('The player is created.')
+        });    
+     </script>

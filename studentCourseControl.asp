@@ -273,7 +273,7 @@ if(op == "getStudentCourseList"){
 		//72
 		result += "|" + rs("fromID").value + "|" + rs("signature").value + "|" + rs("signatureDate").value + "|" + rs("status_photo").value + "|" + rs("status_signature").value + "|" + rs("signatureType").value;
 		//78
-		result += "|" + rs("file1").value + "|" + rs("file2").value + "|" + rs("employe_filename").value;
+		result += "|" + rs("file1").value + "|" + rs("file2").value + "|" + rs("employe_filename").value + "|" + rs("express").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -460,7 +460,7 @@ if(op == "getStudentListByProject"){
 		//23
 		result += "|" + rs("diplomaID").value + "|" + rs("diploma_startDate").value + "|" + rs("diploma_endDate").value + "|" + rs("reExamCount").value + "|" + rs("examTimes").value + "|" + rs("passcardID").value;
 		//29
-		result += "|" + rs("completion").value + "|" + rs("unit").value;
+		result += "|" + rs("completion").value + "|" + rs("unit").value + "|" + rs("express").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -489,7 +489,7 @@ if(op == "getNodeInfo"){
 		//47
 		result += "|" + rs("fromID").value + "|" + rs("signature").value + "|" + rs("signatureDate").value + "|" + rs("status_photo").value + "|" + rs("status_signature").value + "|" + rs("signatureType").value + "|" + rs("price").value;
 		//54
-		result += "|" + rs("file1").value + "|" + rs("file2").value + "|" + rs("shortName").value + "|" + rs("overdue").value;
+		result += "|" + rs("file1").value + "|" + rs("file2").value + "|" + rs("shortName").value + "|" + rs("overdue").value + "|" + rs("express").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -957,6 +957,18 @@ if(op == "doStudentPre_check"){
 if(op == "pick_students4class"){
 	result = "";
 	sql = "exec pickStudents4Class '" + String(Request.Form("batchID")) + "','" + String(Request.Form("selList")) + "','" + currUser + "'";
+	rs = conn.Execute(sql);
+	if (!rs.EOF){
+		result = rs("re").value;
+		execSQL(sql);
+	}
+	rs.Close();
+	Response.Write(result);
+}
+
+if(op == "set_students_express"){
+	result = "";
+	sql = "exec set_students_express '" + String(Request.Form("selList")) + "','" + currUser + "'";
 	rs = conn.Execute(sql);
 	if (!rs.EOF){
 		result = rs("re").value;
