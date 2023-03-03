@@ -281,16 +281,16 @@
 			$("#btnStudentPreClass").hide();
 		}
 		if(currHost=="spc"){
-			getStudentPreList();
+			//getStudentPreList();
 		}
 	});
 
 	function getStudentPreList(){
 		sWhere = $("#txtSearchStudentPre").val();
-		//if($("#searchStudentPreProjectID").val() == ""){
-		//	jAlert("请选择一个批次。");
-		//	return false;
-		//}
+		if($("#searchStudentPreProjectID").val() == ""){
+			jAlert("请选择一个批次。");
+			return false;
+		}
 		//if($("#searchStudentPreOld").attr("checked")){Old = 1;}
 		//alert($("#searchStudentPreDept").val() + "&refID=" + $("#searchStudentPreProjectID").val() + "&status=" + $("#searchStudentPreStatus").val() + "&courseID=" + $("#searchStudentPreID").val() + "&host=" + $("#searchStudentPreHost").val());
 		$.get("studentCourseControl.asp?op=getStudentListByProject&where=" + escape(sWhere) + "&refID=" + $("#searchStudentPreProjectID").val() + "&keyID=" + $("#searchStudentPreDept").val() + "&host=" + $("#searchStudentPreHost").val() + "&kindID=" + $("#searchStudentPreMark").val() + "&checked=" + $("#searchStudentPreChecked").val() + "&submited=" + $("#searchStudentPreSubmited").val() + "&class=" + $("#searchStudentPreClass").val() + "&fStart=" + $("#searchStudentPreStartDate").val() + "&fEnd=" + $("#searchStudentPreEndDate").val() + "&dk=130&times=" + (new Date().getTime()),function(data){
