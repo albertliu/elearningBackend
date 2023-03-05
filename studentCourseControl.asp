@@ -970,12 +970,12 @@ if(op == "set_students_express"){
 	result = "";
 	sql = "exec set_students_express '" + String(Request.Form("selList")) + "','" + currUser + "'";
 	rs = conn.Execute(sql);
-	if (!rs.EOF){
-		result = rs("re").value;
-		execSQL(sql);
-	}
+	//if (!rs.EOF){
+		//result = rs("re").value;
+		//execSQL(sql);
+	//}
 	rs.Close();
-	Response.Write(result);
+	Response.Write(1);
 }
 
 if(op == "doStudentCourse_submit"){
