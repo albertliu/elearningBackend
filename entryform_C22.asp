@@ -56,6 +56,12 @@
 			ar = unescape(re).split("|");
 			if(ar > "0"){
 				$("#SNo").html(ar[25] + "&nbsp;&nbsp;班级：" + ar[34]);
+				if(ar[48] > ""){
+					$("#img_signature").attr("src","/users" + ar[48]);
+					$("#signatureDate").html(ar[49]);
+				}else{
+					$("#img_signature").attr("src","images/blank_signature.png");
+				}
 			}else{
 				//alert("没有找到要打印的内容。");
 				return false;
@@ -148,7 +154,7 @@
 			<div style='margin: 20px;text-align:center;'><h2 style='font-size:1.3em;'>上海智能消防学校</h2></div>
 			<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>上海市安全生产管理人员培训报名表</h3></div>
 			<div style='margin: 12px;text-align:left; width:95%;'><span style='font-size:1.2em;'>学员编号：</span><span style='font-size:1.2em;' id="SNo"></span></div>
-			<table class='table_resume' style='width:100%;'>
+			<table class='table_resume' style='width:99%;'>
 			<tr>
 				<td align="center" class='table_resume_title' width='15%' height='55px;'>姓名</td><td align="center" width='15%'><p style='font-size:1em;' id="name"></p></td>
 				<td align="center" class='table_resume_title' width='13%'>性别</td><td align="center" width='13%'><p style='font-size:1em;' id="sexName"></p></td>
@@ -188,8 +194,8 @@
 			</tr>
 			</table>
 			<div style='margin: 12px;text-align:left; width:95%;'><p style='font-size:1.2em;'>&bull; 提交1张2寸免冠彩色照片。</p></div>
-			<div style='margin: 12px;text-align:right; width:95%; padding-right:100px;'><p style='font-size:1.3em;'>学员签名：</p></div>
-			<div style='margin: 12px;text-align:right; width:95%;'><p id="date" style='font-size:1.3em;'></p></div>
+			<div style='margin: 12px;text-align:right; width:95%; padding-right:100;'><span style='font-size:1.3em;padding-top:20px;'>学员签名：</span><span><img id="img_signature" src="" value="" style='width:100px;border:none;float:right;' /></span></div>
+			<div style='margin: 12px;text-align:right; width:95%;'><p id="signatureDate" style='font-size:1em;color:#A0A0A0;'></p></div>
 			<div style="page-break-after:always"></div>
 			<div id="needCover"></div>
 		</div>
