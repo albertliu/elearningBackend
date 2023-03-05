@@ -26,7 +26,7 @@
 			}
 		});
 		
-		if(!checkPermission("studentAdd")){
+		if(!checkPermission("examOpen")){
 			$("#btnSearchGeneratePasscardAdd").hide();
 		}
 		
