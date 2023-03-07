@@ -332,6 +332,8 @@
 		if(op==0 && checkPermission("diplomaAdd")){
 			$("#upload1").show();
 			$("#redo").show();
+		}
+		if(op==0 && checkPermission("diplomaDel")){
 			$("#cancelDiploma").show();
 		}
 		if(op==0 && (checkPermission("diplomaPrint") || checkPermission("diplomaAdd"))){
