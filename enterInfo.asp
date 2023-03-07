@@ -626,7 +626,7 @@
 				}
 			}
             //if(checkPermission("studentDel") && ($("#className").val()=="" || dateDiff(currDate, $("#regDate").val())<180) && $("#statusPay").val()==0 && $("#invoice").val()=="" && $("#dateInvoicePick").val()=="" || $("#name").val().indexOf("测试")>-1){
-            if(checkPermission("studentDel") && ($("#className").val()=="" || dateDiff(currDate, $("#regDate").val())<360) || $("#name").val().indexOf("测试")>-1){
+            if(checkPermission("studentDel") && ($("#className").val()=="" || dateDiff(currDate, $("#regDate").val())<720) || $("#name").val().indexOf("测试")>-1){
                 //未支付未开票的可以删除。
                 $("#btnDel").show();
             }
