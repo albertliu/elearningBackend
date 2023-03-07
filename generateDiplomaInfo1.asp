@@ -333,7 +333,7 @@
 			$("#upload1").show();
 			$("#redo").show();
 		}
-		if(op==0 && checkPermission("diplomaDel")){
+		if(op==0 && checkPermission("cancelDiploma")){
 			$("#cancelDiploma").show();
 		}
 		if(op==0 && (checkPermission("diplomaPrint") || checkPermission("diplomaAdd"))){
