@@ -210,7 +210,7 @@ if(op == "getDiplomaListByBatch"){
 	//sql = "SELECT * FROM v_diplomaInfo where batchID=" + refID;
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
-		result += "%%" + rs("ID").value + "|" + rs("username").value + "|" + rs("name").value + "|" + rs("dept1Name").value + "|" + rs("stamp").value + "|" + rs("photo_filename").value + "|" + rs("age").value + "|" + rs("SNo").value;
+		result += "%%" + rs("ID").value + "|" + rs("username").value + "|" + rs("name").value + "|" + rs("dept1Name").value + "|" + rs("stamp").value + "|" + rs("photo_filename").value + "|" + rs("age").value + "|" + rs("SNo").value + "|" + rs("diplomaID").value;
 		rs.MoveNext();
 	}
 	rs.Close();

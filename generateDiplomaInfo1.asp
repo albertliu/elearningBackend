@@ -116,6 +116,29 @@
 				}
 			});
 		});
+
+		$("#cancelDiploma").click(function(){
+			getSelCart("");
+			if(selCount==0){
+				jAlert("请选择要撤销证书的人员。");
+				return false;
+			}
+			jConfirm("确定要撤销这" + selCount + "个人的证书吗？将重新回到待发证状态。","确认",function(r){
+				if(r){
+					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
+					$.post(uploadURL + "/outfiles/cancel_diplomas?registerID=" + currUser, {"selList":selList} ,function(data){
+						if(data>""){
+							jAlert("证书已撤销");
+							updateCount += 1;
+							getDiplomaListByBatch();
+						}else{
+							jAlert("没有可供处理的数据。");
+						}
+					});
+				}
+			});
+		});
+
 		$("#save").click(function(){
 			saveNode();
 		});
@@ -199,6 +222,7 @@
 			arr.push("<th width='30%'>部门</th>");
 			arr.push("<th width='15%'>学号</th>");
 			arr.push("<th width='12%'>照</th>");
+			arr.push("<th width='1%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
@@ -223,17 +247,14 @@
 					}
 					arr.push("<td class='left'>" + ar1[7] + "</td>");
 					arr.push("<td class='center'>" + imgChk + "</td>");
-					if(ar1[4]==1){
-						h = "checked"
-					}else{
-						h = "";
-					}
+					arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[8] + "' name='visitstockchk'></td>");
 					arr.push("</tr>");
 				});
 			}
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
@@ -303,6 +324,7 @@
 		$("#redo").hide();
 		$("#do").hide();
 		$("#save").hide();
+		$("#cancelDiploma").hide();
 		if(op == 1){
 			$("#do").show();
 			setEmpty();
@@ -310,7 +332,7 @@
 		if(op==0 && checkPermission("diplomaAdd")){
 			$("#upload1").show();
 			$("#redo").show();
-			//$("#save").show();
+			$("#cancelDiploma").show();
 		}
 		if(op==0 && (checkPermission("diplomaPrint") || checkPermission("diplomaAdd"))){
 			$("#save").show();
@@ -321,6 +343,7 @@
 		$("#startDate").val(currDate);
 		$("#class_startDate").val(currDate);
 		$("#class_endDate").val(currDate);
+		$("#styleID").val(1);
 	}
 	
 	function getUpdateCount(){
@@ -394,8 +417,9 @@
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
 		<input class="button" type="button" id="save" value="保存" />&nbsp;
-		<input class="button" type="button" id="redo" value="重新生成" />
-		<input class="button" type="button" id="do" value="生成证书" />&nbsp;
+		<input class="button" type="button" id="redo" value="重新生成" />&nbsp;
+		<input class="button" type="button" id="do" value="生成证书" />
+		<input class="button" type="button" id="cancelDiploma" value="撤销证书" />
 	</div>
 	<hr size="1" noshadow />
 	<div id="dimplomaListByBatch">
