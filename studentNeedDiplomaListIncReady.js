@@ -96,8 +96,9 @@
 				return false;
 			}
 			if(selCount==0){
-				jAlert("请选择要制作证书的清单。");
-				return false;
+				if(!confirm("还没有选择名单，要生成空的项目吗？")){
+					return false;
+				}
 			}
 			setSession("need2DiplomaList", selList);
 			showGenerateDiplomaInfo1(0,$("#searchStudentNeedDiplomaCert").val(),"need2DiplomaList",selCount,$("#searchStudentNeedDiplomaClassID").find("option:selected").text(),1,1);

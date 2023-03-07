@@ -94,7 +94,7 @@
 							updateCount += 1;
 							getNodeInfo(nodeID);
 						}else{
-							jAlert("操作失败。");
+							jAlert("已保存。");
 						}
 					});
 				}
