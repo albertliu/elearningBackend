@@ -205,7 +205,7 @@
 			jConfirm("确定要将这些(" + selCount + "个)人标记为加急吗？","确认",function(r){
 				if(r){
 					$.post("studentCourseControl.asp?op=set_students_express", {selList: selList} ,function(data){
-						//alert(data);
+						alert(data);
 						if(data>0){
 							jAlert("标记完成。");
 							getStudentPreList();
@@ -352,7 +352,7 @@
 					}
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
-					arr.push("<td class='link1'" + (ar1[31]==1? " style='background:yellow;'":"") + "><a href='javascript:showEnterInfo(" + ar1[0] + ",\"" + ar1[1] + "\",0,1);'>" + ar1[1] + "</a></td>");
+					arr.push("<td class='link1'" + (ar1[31]==1? " style='background-color:yellow;'":"") + "><a href='javascript:showEnterInfo(" + ar1[0] + ",\"" + ar1[1] + "\",0,1);'>" + ar1[1] + "</a></td>");
 					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + ar1[1] + "\",0,1);'>" + ar1[2] + "</a></td>");
 					//arr.push("<td class='left'>" + ar1[3] + "</td>");
 					arr.push("<td class='center' title='" + ar1[10] + "'>" + ar1[10].substring(0,2) + "</td>");
