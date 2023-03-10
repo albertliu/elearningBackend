@@ -132,6 +132,34 @@
 			}
 		});
 		
+		$("#btnStudentNeedDiplomaCancel").click(function(){
+			getSelCart("visitstockchkNeed");
+			if(selCount==0){
+				jAlert("请选择要拒绝的名单。");
+				return false;
+			}
+			if(confirm("确定要拒绝这" + selCount + "个人的证书申请吗？以后根据需要还可以恢复。")){
+				$.post(uploadURL + "/public/refuse_diploma_order", {kind:0, selList: selList, registerID: currUser} ,function(data){
+					jAlert("操作成功。");
+					getStudentNeedDiplomaList();
+				});
+			}
+		});
+		
+		$("#btnStudentNeedDiplomaOk").click(function(){
+			getSelCart("visitstockchkNeed");
+			if(selCount==0){
+				jAlert("请选择要恢复的名单。");
+				return false;
+			}
+			if(confirm("确定要恢复这" + selCount + "个人的证书申请吗？")){
+				$.post(uploadURL + "/public/refuse_diploma_order", {kind:1, selList: selList, registerID: currUser} ,function(data){
+					jAlert("操作成功。");
+					getStudentNeedDiplomaList();
+				});
+			}
+		});
+		
 		$("#txtSearchStudentNeedDiploma").keypress(function(event){
 			if(event.keyCode==13){
 				if($("#txtSearchStudentNeedDiploma").val()>""){
@@ -142,8 +170,9 @@
 			}
 		});
 
-		if(currHost>"" && currDeptID ==0){
-			//getStudentNeedDiplomaList();
+		if(!checkPermission("diplomaAdd")){
+			$("#btnStudentNeedDiplomaCancel").hide();
+			$("#btnStudentNeedDiplomaOk").hide();
 		}
 	});
 

@@ -14,7 +14,9 @@
 						    <span style="float:right;">
 								<input class="button" type="button" id="btnStudentNeedDiplomaSel" value="全选/取消" />&nbsp;&nbsp;
 								<input class="button" type="button" id="btnStudentNeedDiplomaIssue" value="制作证书" />&nbsp;&nbsp;
-								<input class="button" type="button" id="btnStudentNeedDiplomaIssue1" value="制作证书" />&nbsp;&nbsp;
+								<input class="button" type="button" id="btnStudentNeedDiplomaIssue1" value="制作证书" />
+								<input class="button" type="button" id="btnStudentNeedDiplomaCancel" value="拒绝申请" />&nbsp;&nbsp;
+								<input class="button" type="button" id="btnStudentNeedDiplomaOk" value="恢复申请" />
 								<input class="button" type="button" id="btnStudentNeedDiplomaAttentionPhoto" value="照片通知" />
 								<input class="button" type="button" id="btnStudentNeedDiplomaAttentionPhotoClose" value="照片确认" />
 								<input class="button" type="button" id="btnDownLoad21" onClick="outputFloat(21,'file')" value="下载" />
