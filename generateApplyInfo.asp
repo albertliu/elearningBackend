@@ -227,8 +227,8 @@
 			updateCount += 1;
 		});
 		$("#doImportScore").click(function(){
-			jPrompt('发证日期:', currDate, '附加信息', function (r) {
-				if (r>"" && isDate(r)) {
+			jPrompt('发证日期:\n(不填写将使用本次考试日期)', currDate, '附加信息', function (r) {
+				if ((r>"" && isDate(r)) || r=="") {
 					showLoadFile("apply_score_list",$("#ID").val(),"studentList",'',r);
 					updateCount += 1;
 				}else{
