@@ -126,7 +126,7 @@
 			jConfirm("确定要撤销这" + selCount + "个人的证书吗？将重新回到待发证状态。","确认",function(r){
 				if(r){
 					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
-					$.post(uploadURL + "/outfiles/cancel_diplomas?registerID=" + currUser, {"selList":selList} ,function(data){
+					$.post(uploadURL + "/outfiles/cancel_diplomas?kind=0&registerID=" + currUser, {"selList":selList} ,function(data){
 						if(data>""){
 							jAlert("证书已撤销");
 							updateCount += 1;
@@ -420,7 +420,7 @@
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
 		<input class="button" type="button" id="save" value="保存" />&nbsp;
 		<input class="button" type="button" id="redo" value="重新生成" />&nbsp;
-		<input class="button" type="button" id="do" value="生成证书" />
+		<input class="button" type="button" id="do" value="生成证书" />&nbsp;
 		<input class="button" type="button" id="cancelDiploma" value="撤销证书" />
 	</div>
 	<hr size="1" noshadow />

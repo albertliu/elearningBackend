@@ -60,6 +60,29 @@
 				}
 			});
 		});
+
+		$("#cancelDiploma").click(function(){
+			getSelCart("chkStamp");
+			if(selCount==0){
+				jAlert("请选择要撤销证书的人员。");
+				return false;
+			}
+			
+			jConfirm("确定要撤销这" + selCount + "个人的证书吗？将无法恢复。","确认",function(r){
+				if(r){
+					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
+					$.post(uploadURL + "/outfiles/cancel_diplomas?kind=1&registerID=" + currUser, {"selList":selList} ,function(data){
+						if(data>""){
+							jAlert("证书已撤销");
+							updateCount += 1;
+							getDiplomaListByBatch();
+						}else{
+							jAlert("没有可供处理的数据。");
+						}
+					});
+				}
+			});
+		});
 /*
 		$("#redo1").click(function(){
 			jConfirm("确定要重新制作证书吗？证书编号将保持不变。","确认",function(r){
@@ -233,9 +256,13 @@
 		$("#upload1").hide();
 		$("#redo").hide();
 		$("#save").hide();
+		$("#cancelDiploma").hide();
 		if(currHost>"" && checkPermission("diplomaAdd")){
 			$("#upload1").show();
 			$("#redo").show();
+		}
+		if(op==0 && checkPermission("cancelDiploma")){
+			$("#cancelDiploma").show();
 		}
 	}
 	
@@ -307,6 +334,7 @@
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
   	<input class="button" type="button" id="save" value="保存" />&nbsp;
   	<input class="button" type="button" id="redo" value="重新生成" />&nbsp;
+		<input class="button" type="button" id="cancelDiploma" value="撤销证书" />
 	<hr size="1" noshadow />
 	<div id="dimplomaListByBatch">
 	</div>
