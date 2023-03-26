@@ -318,7 +318,7 @@
 		$("#lock").hide();
 		$("#btnPhoto").hide();
 		$("#btnEntryForm").hide();
-		if(checkPermission("projectAdd")){
+		if(checkPermission("projectEdit")){
 			$("#save").show();
 			$("#btnEntryForm").show();
 			if(op == 0){
