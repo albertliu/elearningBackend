@@ -82,13 +82,13 @@
 					arr.push('			<td><h3>姓&nbsp;名：</h3></td>');
 					arr.push('			<td class="foot"><h3>' + val["name"] + '</h3></td>');
 					arr.push('		</tr>');
-					if(val["certID"]=='C5'){	//施工作业上岗证
+					//if(val["certID"]=='C5'){	//施工作业上岗证
 					certID = 'C5';
 					arr.push('		<tr>');
 					arr.push('			<td><h3>工&nbsp;种：</h3></td>');
 					arr.push('			<td class="foot"><h3>' + val["job"] + '</h3></td>');
 					arr.push('		</tr>');
-					}
+					//}
 					arr.push('		<tr>');
 					arr.push('			<td><h3>证&nbsp;号：</h3></td>');
 					arr.push('			<td class="foot"><h3>' + val["diplomaID"] + '</h3></td>');

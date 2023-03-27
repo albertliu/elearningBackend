@@ -40,14 +40,14 @@
 				}else{
 					$("#dept1Name").html(ar[3]);
 				}
-				if(ar[10]=='C5'){	//施工作业上岗证
+				//if(ar[10]=='C5'){	//施工作业上岗证
 					//显示工种
 					$("#item_job").show();
 					//减小行距和字体
 					$("h3").css({'padding-top': '5px', 'font-size': '22px'});
-				}else{
-					$("#item_job").hide();
-				}
+				//}else{
+					//$("#item_job").hide();
+				//}
 				$("#job").html(ar[4]);
 				$("#startDate").html(ar[5] + "&nbsp;有效期：" + ar[6] + '年');
 				//$("#term").html(ar[6] + '年');
