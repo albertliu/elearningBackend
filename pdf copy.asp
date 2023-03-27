@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width">
 
 <!--必要样式-->
-<link href="css/style.css?ver=1.3"  rel="stylesheet" type="text/css" id="css" />
+<link href="css/style.css?ver=1.0"  rel="stylesheet" type="text/css" id="css" />
 <script language="javascript" src="js/jquery-1.7.2.min.js"></script>
 
 
@@ -44,13 +44,13 @@
 					//显示工种
 					$("#item_job").show();
 					//减小行距和字体
-					$("h3").css({'padding-top': '5px', 'font-size': '22px'});
+					$("h3").css({'padding-top': '7px', 'font-size': '22px'});
 				}else{
 					$("#item_job").hide();
 				}
 				$("#job").html(ar[4]);
-				$("#startDate").html(ar[5] + "&nbsp;有效期：" + ar[6] + '年');
-				//$("#term").html(ar[6] + '年');
+				$("#startDate").html(ar[5]);
+				$("#term").html(ar[6] + '年');
 				$("#title").html(ar[7]);
 				if(ar[8]==''){
 					$("#photo_filename").attr("src","/images/blankphoto.png");
@@ -61,8 +61,6 @@
 				if(ar[12]=='1'){
 					$("#stamp").attr("src","/users" + "/upload/companies/stamp/" + ar[11] + ".png");
 				}
-				$("#trainingDate").html(ar[13] + '至' + ar[5]);
-				$("#score").html(ar[14] + '分(合格)');
 			}/**/
 		//});
 	}
@@ -85,7 +83,7 @@
 		<div style="clear: both;"></div>
 		<hr size=2 color="red">
 		<div style="float:left;width:30%;">
-			<img id="photo_filename" src="" style="width:50mm;max-height:75mm;padding-top:10mm;padding-left:5mm;object-fit:cover;">
+			<img id="photo_filename" src="" style="width:50mm;max-height:75mm;padding-top:10mm;padding-left:7mm;object-fit:cover;">
 		</div>
 		<div style="float:right;width:69%;">
 			<table style="width:100%;">
@@ -106,16 +104,12 @@
 					<td class="foot"><h3 id="diplomaID"></h3></td>
 				</tr>
 				<tr>
-					<td><h3>培训日期</h3></td>
-					<td class="foot"><h3 id="trainingDate"></h3></td>
-				</tr>
-				<tr>
-					<td><h3>考核成绩</h3></td>
-					<td class="foot"><h3 id="score"></h3></td>
-				</tr>
-				<tr>
 					<td><h3>发证日期</h3></td>
 					<td class="foot"><h3 id="startDate"></h3></td>
+				</tr>
+				<tr>
+					<td><h3>有效期：</h3></td>
+					<td class="foot"><h3 id="term"></h3></td>
 				</tr>
 			</table>
 		</div>
