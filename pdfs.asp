@@ -93,16 +93,18 @@
 					arr.push('			<td><h3>证&nbsp;号：</h3></td>');
 					arr.push('			<td class="foot"><h3>' + val["diplomaID"] + '</h3></td>');
 					arr.push('		</tr>');
+					/*
 					arr.push('		<tr>');
 					arr.push('			<td><h3>培训日期</h3></td>');
 					arr.push('			<td class="foot"><h3>' + val["trainingDate"] + '至' + val["startDate"] + '</h3></td>');
 					arr.push('		</tr>');
+					*/
 					arr.push('		<tr>');
 					arr.push('			<td><h3>考核成绩</h3></td>');
 					arr.push('			<td class="foot"><h3>' + val["score"] + '分(合格)</h3></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
-					arr.push('			<td><h3>发证日期</h3></td>');
+					arr.push('			<td><h3>培训发证</h3></td>');
 					arr.push('			<td class="foot"><h3>' + val["startDate"] + '&nbsp;有效期：' + val["term"] + '年</h3></td>');
 					arr.push('		</tr>');
 					arr.push('	</table>');
@@ -130,7 +132,7 @@
 				$("#cover").html(arr.join(""));
 				if(certID=='C5'){	//施工作业上岗证
 					//减小行距和字体
-					$("h3").css({'padding-top': '5px', 'font-size': '22px'});
+					$("h3").css({'padding-top': '7px', 'font-size': '24px'});
 				}
 			}
 		});

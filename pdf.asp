@@ -44,7 +44,7 @@
 					//显示工种
 					$("#item_job").show();
 					//减小行距和字体
-					$("h3").css({'padding-top': '5px', 'font-size': '22px'});
+					$("h3").css({'padding-top': '7px', 'font-size': '24px'});
 				//}else{
 					//$("#item_job").hide();
 				//}
@@ -61,7 +61,7 @@
 				if(ar[12]=='1'){
 					$("#stamp").attr("src","/users" + "/upload/companies/stamp/" + ar[11] + ".png");
 				}
-				$("#trainingDate").html(ar[13] + '至' + ar[5]);
+				//$("#trainingDate").html(ar[13] + '至' + ar[5]);
 				$("#score").html(ar[14] + '分(合格)');
 			}/**/
 		//});
@@ -106,15 +106,11 @@
 					<td class="foot"><h3 id="diplomaID"></h3></td>
 				</tr>
 				<tr>
-					<td><h3>培训日期</h3></td>
-					<td class="foot"><h3 id="trainingDate"></h3></td>
-				</tr>
-				<tr>
 					<td><h3>考核成绩</h3></td>
 					<td class="foot"><h3 id="score"></h3></td>
 				</tr>
 				<tr>
-					<td><h3>发证日期</h3></td>
+					<td><h3>培训发证</h3></td>
 					<td class="foot"><h3 id="startDate"></h3></td>
 				</tr>
 			</table>
