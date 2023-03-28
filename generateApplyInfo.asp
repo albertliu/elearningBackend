@@ -14,7 +14,7 @@
 <link href="css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="css/asyncbox/asyncbox.css" type="text/css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
-<script language="javascript" src="js/jquery-1.7.2.min.js"></script>
+<script language="javascript" src="js/jquery-1.12.4.min.js"></script>
 <script language="javascript" src="js/jquery.form.js"></script>
 <script type="text/javascript" src="js/jquery.easyui.min.js"></script>
 <script src="js/jquery.alerts.js" type="text/javascript"></script>
@@ -31,6 +31,8 @@
 	var updateCount = 0;
 	var address = "";
     var certID = "";
+	var imgFile = "<img src='images/attachment.png' style='width:15px;'>";
+	var timer1 = null;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";		//
@@ -298,7 +300,10 @@
 					$("#zip").html("<a href='/users" + ar[33] + "' target='_blank'>申报压缩包</a>");
 				}
 				if(ar[34] > ""){
-					$("#zip").html("<a href='/users" + ar[34] + "' target='_blank'>照片压缩包</a>");
+					$("#pzip").html("<a href='/users" + ar[34] + "' target='_blank'>照片压缩包</a>");
+				}
+				if(ar[35] > ""){
+					$("#ezip").html("<a href='/users" + ar[35] + "' target='_blank'>报名表缩包</a>");
 				}
 				//getDownloadFile("generateDiplomaID");
 				nodeID = ar[0];
@@ -360,13 +365,14 @@
 			arr.push("<th width='9%'>学号</th>");
 			arr.push("<th width='10%'>身份证</th>");
 			arr.push("<th width='8%'>姓名</th>");
-			arr.push("<th width='16%'>单位</th>");
+			arr.push("<th width='15%'>单位</th>");
 			arr.push("<th width='10%'>电话</th>");
-			arr.push("<th width='8%'>申报</th>");
+			arr.push("<th width='7%'>申报</th>");
 			arr.push("<th width='12%'>考试时间</th>");
-			arr.push("<th width='8%'>成绩</th>");
-			arr.push("<th width='8%'>结果</th>");
-			arr.push("<th width='8%'>补考</th>");
+			arr.push("<th width='7%'>成绩</th>");
+			arr.push("<th width='7%'>结果</th>");
+			arr.push("<th width='7%'>补考</th>");
+			arr.push("<th width='5%'>材</th>");
 			arr.push("<th width='2%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -408,6 +414,11 @@
 					}else{
 						k = ar1[2];
 					}
+					if(ar1[24]==''){
+						arr.push("<td class='center'><div id='material" + ar1[2] + "'><span onclick='generateMaterials(" + ar1[2] + ",\"" + ar1[4] + "\",\"" + ar1[23] + "\")' title='申报材料'><img src='images/addDoc.png' style='width:15px;'><span><div></td>");
+					}else{
+						arr.push("<td class='center'><a href='javascript:void(0);' onclick='openMaterial(\"/users" + ar1[24] + "?t=" + (new Date().getTime()) + "\");' ondblclick='generateMaterials(" + ar1[2] + ",\"" + ar1[4] + "\",\"" + ar1[23] + "\")' title='申报材料'>" + imgFile + "</a></td>");
+					}
 					arr.push("<td class='left'><input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + k + "' name='visitstockchk'></td>");
 					arr.push("</tr>");
 				});
@@ -415,6 +426,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
@@ -443,6 +455,27 @@
 				"aoColumnDefs": []
 			});
 		});
+	}
+
+	function generateMaterials(enterID,username,cert){
+		clearTimeout(timer1);
+		if(confirm("确定要生成报名材料吗？")){
+			$.getJSON(uploadURL + "/outfiles/generate_emergency_materials?refID=" + username + "&nodeID=" + enterID + "&certID=" + cert + "&keyID=2" ,function(data){
+				if(data>""){
+					alert("已生成文件");
+					$("#material" + enterID).html("<a href='/users" + data + "?t=" + (new Date().getTime()) + "' target='_blank' title='申报材料'>" + imgFile + "</a>");
+				}else{
+					alert("没有可供处理的数据。");
+				}
+			});
+		}
+	}
+
+	function openMaterial(path){
+		clearTimeout(timer1);
+		timer1=setTimeout(function(){
+			window.open(path);
+		},300);
 	}
 
 	function generateZip(t){
@@ -563,6 +596,7 @@
 					<span id="diplomaSign" style="margin-left:10px;"></span>
 					<span id="zip" style="margin-left:10px;"></span>
 					<span id="pzip" style="margin-left:10px;"></span>
+					<span id="ezip" style="margin-left:10px;"></span>
 				</td>
 			</tr>
 			<tr>

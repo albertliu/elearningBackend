@@ -1054,6 +1054,8 @@ if(op == "getApplyListByBatch"){
 		result += "|" + rs("unit").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value + "|" + rs("statusApply").value + "|" + rs("statusApplyName").value + "|" + rs("examDate").value;
 		//19
 		result += "|" + rs("score").value + "|" + rs("score1").value + "|" + rs("score2").value + "|" + rs("SNo").value;
+		//23
+		result += "|" + rs("certID").value + "|" + rs("file1").value + "|" + rs("file2").value + "|" + rs("file3").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -1077,7 +1079,7 @@ if(op == "getGenerateApplyNodeInfo"){
 		//24
 		result += "|" + rs("reexamineName").value + "|" + rs("importApplyDate").value + "|" + rs("importScoreDate").value + "|" + rs("diplomaStartDate").value + "|" + rs("diplomaEndDate").value;
         //29
-		result += "|" + rs("diplomaTerm").value + "|" + rs("qtyCheck").value + "|" + rs("certID").value + "|" + rs("host").value + "|" + rs("zip").value + "|" + rs("pzip").value;
+		result += "|" + rs("diplomaTerm").value + "|" + rs("qtyCheck").value + "|" + rs("certID").value + "|" + rs("host").value + "|" + rs("zip").value + "|" + rs("pzip").value + "|" + rs("ezip").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

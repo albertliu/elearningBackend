@@ -404,6 +404,9 @@
 				if(ar[48] > ""){
 					$("#pzip").html("<a href='/users" + ar[48] + "' target='_blank'>照片压缩包</a>");
 				}
+				if(ar[49] > ""){
+					$("#ezip").html("<a href='/users" + ar[49] + "' target='_blank'>报名表压缩包</a>");
+				}
 				getStudentCourseList();
 				$("#teacher").val(ar[34]);
 				//getDownloadFile("classID");
@@ -979,6 +982,7 @@
 					<span id="sign1" style="margin-left:10px;"></span>
 					<span id="zip" style="margin-left:10px;"></span>
 					<span id="pzip" style="margin-left:10px;"></span>
+					<span id="ezip" style="margin-left:10px;"></span>
 				</td>
 			</tr>
 			<tr>
