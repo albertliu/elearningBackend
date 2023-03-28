@@ -85,7 +85,7 @@
 		<div style="clear: both;"></div>
 		<hr size=2 color="red">
 		<div style="float:left;width:30%;">
-			<img id="photo_filename" src="" style="width:50mm;max-height:75mm;padding-top:10mm;padding-left:5mm;object-fit:cover;">
+			<img id="photo_filename" src="" style="width:50mm;max-height:75mm;padding-top:8mm;padding-left:5mm;object-fit:cover;">
 		</div>
 		<div style="float:right;width:69%;">
 			<table style="width:100%;">

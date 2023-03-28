@@ -43,6 +43,7 @@
 		getDicList("examResult","s_status",1);
 		getDicList("statusNo","s_resit",1);
 		getDicList("online","kindID",0);
+		getDicList("statusNo","sync",0);
 		$("#startDate").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd HH:mm', onpicked:pickerChange});});
 		$("#startTime").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'});});
 		setButton();
@@ -269,6 +270,7 @@
 				$("#closeDate").val(ar[28]);
 				$("#minutes").val(ar[29]);
 				$("#scorePass").val(ar[30]);
+				$("#sync").val(ar[31]);
 				$("#sendMsgExam").hide();
 				$("#sendMsgScore").hide();
 				var c = "";
@@ -363,7 +365,7 @@
 			return false;
 		}*/
 		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-		$.get("diplomaControl.asp?op=updateGeneratePasscardInfo&nodeID=" + nodeID + "&refID=" + $("#certID").val() + "&kindID=" + $("#kindID").val() + "&keyID=" + $("#startNo").val() + "&startDate=" + $("#startDate").val() + "&startTime=" + $("#startTime").val() + "&item=" + escape($("#title").val()) + "&address=" + escape($("#address").val()) + "&notes=" + escape($("#notes").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("diplomaControl.asp?op=updateGeneratePasscardInfo&nodeID=" + nodeID + "&refID=" + $("#certID").val() + "&sync=" + $("#sync").val() + "&kindID=" + $("#kindID").val() + "&keyID=" + $("#startNo").val() + "&startDate=" + $("#startDate").val() + "&startTime=" + $("#startTime").val() + "&item=" + escape($("#title").val()) + "&address=" + escape($("#address").val()) + "&notes=" + escape($("#notes").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//alert(unescape(re));
 			if(re>0){
 				jAlert("保存成功");
@@ -674,13 +676,13 @@
 				<td align="right">考试科目</td><input type="hidden" id="status" /><input type="hidden" id="startNo" />
 				<td><select id="certID" style="width:100%;"></select></td>
 				<td align="right">人数</td>
-				<td><input class="readOnly" type="text" id="qty" size="5" readOnly="true" />&nbsp;&nbsp;&nbsp;类型&nbsp;<select id="kindID" style="width:60px;"></select></td>
+				<td><input class="readOnly" type="text" id="qty" size="5" readOnly="true" />&nbsp;&nbsp;类型&nbsp;<select id="kindID" style="width:60px;"></select></td>
 			</tr>
 			<tr>
 				<td align="right">标准时长</td>
 				<td><input class="readOnly" type="text" id="minutes" readOnly="true" size="5" />&nbsp;&nbsp;分钟</td>
 				<td align="right">合格分数</td>
-				<td><input class="readOnly" type="text" id="scorePass" readOnly="true" size="5" />&nbsp;&nbsp;分</td>
+				<td><input class="readOnly" type="text" id="scorePass" readOnly="true" size="5" />&nbsp;&nbsp;优化&nbsp;<select id="sync" style="width:60px;"></select></td>
 			</tr>
 			<tr>
 				<td align="right">场次标识</td>

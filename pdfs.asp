@@ -65,7 +65,7 @@
 					}else{
 						c = "/users" + val["photo_filename"];
 					}
-					arr.push('	<img src="' + c + '" style="width:50mm;max-height:75mm;padding-top:10mm;padding-left:7mm;object-fit:cover;">');
+					arr.push('	<img src="' + c + '" style="width:50mm;max-height:75mm;padding-top:8mm;padding-left:7mm;object-fit:cover;">');
 					arr.push('</div>');
 					arr.push('<div style="float:right;width:69%;">');
 					arr.push('	<table style="width:100%;">');
