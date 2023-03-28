@@ -44,7 +44,7 @@
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";		//enterID
 		refID = "<%=refID%>";		//username
-		keyID = "<%=keyID%>";		//0 预览  1 打印  2 文件
+		keyID = "<%=keyID%>";		//0 预览  1 打印  2 文件  3 仅报名表文件
 		op = "<%=op%>";
 		
 		$.ajaxSetup({ 
@@ -60,7 +60,7 @@
 		$("#btnGenerateZip").click(function(){
 			generateZip();
 		});
-		if(keyID==2){
+		if(keyID>1){
 			$("#pageTitle").hide();
 		}
 		getNodeInfo(nodeID, refID);
@@ -173,11 +173,12 @@
 				if(keyID == 2){
 					//打印学历证明
 					p = 1;
-				}else{
+				}
+				if(keyID < 2){
 					getNeed2know(nodeID);
 					getAgreement(ar[1],ar[2],course,sign,sDate,price);
 				}
-				if(reex==1){
+				if(reex==1 && keyID <= 2){
 					if(ar[44]==""){
 						//情况说明模板
 						getCommitment(ar[1],ar[2],course,sign,sDate,k);
@@ -186,7 +187,9 @@
 						k = 1;
 					}
 				}
-				getMaterials(ar[1],sign,p,k);
+				if(keyID <= 2){
+					getMaterials(ar[1],sign,p,k);
+				}
 				//$("#date").html(currDate);
 				if(keyID==1){
 					resumePrint();
@@ -267,18 +270,12 @@
 		</div>
 		<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
 			<div style="position: relative;width:100%;height:100%;">
-			<div style="position: absolute; z-index:30;">
-			<div style="float:left;">
-				<span><img id="f_sign1" src="" style="width:170px;margin:0px 0px 8px 60px;padding-left:80px;padding-top:635px;"></span>
-				<p id="same1" style='font-size:1.3em;text-indent:30px;font-family:方正舒体,幼圆;padding-top:20px;'>与原件内容一致</p>
-			</div>
-			</div>
 			<div style="position: absolute; z-index:10;">
 			<div style='text-align:center; margin:10px 0 20px 0;'><h3 id="reexamine" style='font-size:1.45em;'></h3></div>
 			<div style='margin: 12px;text-align:left; width:95%;'><span style='font-size:1.2em;'>学员编号：</span><span style='font-size:1.2em;' id="SNo"></span></div>
 			<table class='table_resume' style='width:99%;'>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='45px'>姓名</td><td align="center" width='13%'><p style='font-size:1em;' id="name"></p></td>
+				<td align="center" class='table_resume_title' width='15%' height='55px'>姓名</td><td align="center" width='13%'><p style='font-size:1em;' id="name"></p></td>
 				<td align="center" class='table_resume_title' width='10%'>性别</td><td align="center" width='10%'><p style='font-size:1em;' id="sexName"></p></td>
 				<td align="center" class='table_resume_title' width='13%'>出生年月</td><td class='table_resume_title' width='14%'><p style='font-size:1em;' id="birthday"></p></td>
 				<td rowspan="4" colspan="2" align="center" class='table_resume_title' width='20%'>
@@ -286,27 +283,27 @@
 				</td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='45px'>国籍</td><td align="center" width='13%'><p style='font-size:1em;'>中国</p></td>
+				<td align="center" class='table_resume_title' width='15%' height='55px'>国籍</td><td align="center" width='13%'><p style='font-size:1em;'>中国</p></td>
 				<td align="center" class='table_resume_title' width='10%'>民族</td><td align="center" width='10%'><p style='font-size:1em;' id="ethnicity"></p></td>
 				<td align="center" class='table_resume_title' width='13%'>文化程度</td><td class='table_resume_title' width='14%'><p style='font-size:1em;' id="educationName"></p></td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='50px'>证件类型</td><td align="center" colspan="3"><input type="checkbox" id="IDK0" />&nbsp;身份证 <input type="checkbox" />&nbsp;军官证 <input type="checkbox" />&nbsp;护照 <input type="checkbox" id="IDK1" />&nbsp;其他</td>
+				<td align="center" class='table_resume_title' width='15%' height='55px'>证件类型</td><td align="center" colspan="3"><input type="checkbox" id="IDK0" />&nbsp;身份证 <input type="checkbox" />&nbsp;军官证 <input type="checkbox" />&nbsp;护照 <input type="checkbox" id="IDK1" />&nbsp;其他</td>
 				<td align="center" class='table_resume_title' width='13%'>有效期限</td><td class='table_resume_title' width='14%'><p style='font-size:1em;' id="IDdate"></p></td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='45px'>证件号码</td><td align="center" colspan="5"><p style='font-size:1em;' id="username"></p></td>
+				<td align="center" class='table_resume_title' width='15%' height='55px'>证件号码</td><td align="center" colspan="5"><p style='font-size:1em;' id="username"></p></td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='45px'>工作单位</td><td align="center" colspan="3"><p style='font-size:1em;' id="company"></p></td>
+				<td align="center" class='table_resume_title' width='15%' height='55px'>工作单位</td><td align="center" colspan="3"><p style='font-size:1em;' id="company"></p></td>
 				<td align="center" class='table_resume_title' width='13%'>从事岗位</td><td align="center" colspan="3"><p style='font-size:1em;' id="job"></p></td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='13%' height='45px'>联系地址</td><td align="center" colspan="3"><p style='font-size:1em;' id="address"></p></td>
+				<td align="center" class='table_resume_title' width='13%' height='55px'>联系地址</td><td align="center" colspan="3"><p style='font-size:1em;' id="address"></p></td>
 				<td align="center" class='table_resume_title' width='13%'>联系方式</td><td align="center" colspan="3"><p style='font-size:1em;' id="mobile"></p></td>
 			</tr>
 			<tr>
-				<td align="center" rowspan="4" class='table_resume_title' width='15%' height='45px'>申请考核工种</td>
+				<td align="center" rowspan="6" class='table_resume_title' width='15%' height='55px'>申请考核工种</td>
 				<td align="left" colspan="2">电工作业</td>
 				<td align="left" colspan="5">
 					<input type="checkbox" id="CC12" />&nbsp;低压电工作业 <input type="checkbox" />&nbsp;高压电工作业 <input type="checkbox" />&nbsp;电力电缆作业</br>
@@ -332,15 +329,24 @@
 				</td>
 			</tr>
 			<tr>
-				<td align="center" height='45px' colspan="4" class='table_resume_title' width='15%' height='250px;'>
-					<img id="img_cardA" src="" value="" style='disply:block;width:340px;height:auto;max-height:250px;border:none;' />
-				</td>
-				<td align="center" colspan="4" class='table_resume_title' width='15%' height='250px;'>
-					<img id="img_cardB" src="" value="" style='disply:block;width:340px;height:auto;max-height:250px;border:none;' />
+				<td align="left" colspan="2">冶金(有色)生产安全作业</td>
+				<td align="left" colspan="5">
+					<input type="checkbox" />&nbsp;煤气作业
 				</td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='45px'>个人承诺</td>
+				<td align="left" colspan="2">危险化学品安全作业</td>
+				<td align="left" colspan="5">
+					<input type="checkbox" />&nbsp;光气及光气化工艺作业 <input type="checkbox" />&nbsp;氧碱电解工艺作业 <input type="checkbox" />&nbsp;氯化工艺作业</br>
+					<input type="checkbox" />&nbsp;硝化工艺作业 <input type="checkbox" />&nbsp;合成氧工艺作业 <input type="checkbox" />&nbsp;裂解(裂化)工艺作业</br>
+					<input type="checkbox" />&nbsp;氟化工艺作业 <input type="checkbox" />&nbsp;加氢工艺作业 <input type="checkbox" />&nbsp;重氮化工艺作业</br>
+					<input type="checkbox" />&nbsp;氧化工艺作业 <input type="checkbox" />&nbsp;过氧化工艺作业 <input type="checkbox" />&nbsp;胺基化工艺作业</br>
+					<input type="checkbox" />&nbsp;磺化工艺作业 <input type="checkbox" />&nbsp;聚合工艺作业 <input type="checkbox" />&nbsp;烷基化工艺作业</br>
+					<input type="checkbox" />&nbsp;化工自动化控制仪表作业
+				</td>
+			</tr>
+			<tr>
+				<td align="center" class='table_resume_title' width='15%' height='55px'>个人承诺</td>
 				<td align="left" colspan="7" style="padding-left:5px;">
 				<p style='font-size:1em;text-indent:30px;'>
 				经社区或者县级以上医疗机构体检健康合格，无妨碍从事相应特种作业的器质性心脏病、癫痫病、美尼尔氏症、眩晕症、癔病、震颤麻痹症、精神病、痴呆症以及其他疾病和生理缺陷。
@@ -361,7 +367,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td align="left" class='table_resume_title' width='15%' height='45px' colspan="4">
+				<td align="left" class='table_resume_title' width='15%' height='55px' colspan="4">
 					<div style="display:table-cell;height:50px;vertical-align:middle;text-align:center">
 						<span style='font-size:1.2em;'>申请人签名：</span>
 						<span><img id="f_sign30" src="" style="width:170px;padding-left:80px;"></span>

@@ -244,6 +244,10 @@
 		$("#generatePhotoZip").click(function(){
 			generateZip("p");
 		});
+	
+		$("#generateEntryZip").click(function(){
+			generateZip("e");
+		});
 
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
@@ -467,6 +471,9 @@
 		$("#btnRemove").hide();
 		$("#btnResit").hide();
 		$("#s_needResit").hide();
+		$("#generateZip").hide();
+		$("#generatePhotoZip").hide();
+		$("#generateEntryZip").hide();
 		if(op==1){
 			setEmpty();
 			$("#save").show();
@@ -496,6 +503,9 @@
 				}
 				if(s<2){
 					$("#close").show();
+					$("#generateZip").show();
+					$("#generatePhotoZip").show();
+					$("#generateEntryZip").show();
 				}
 			}
 			if(checkPermission("scoreUpload") && s == 1){
@@ -612,6 +622,7 @@
 		<input class="button" type="button" id="sendMsgScore" value="成绩通知" />&nbsp;
 		<input class="button" type="button" id="generateZip" value="生成申报压缩包" />&nbsp;
 		<input class="button" type="button" id="generatePhotoZip" value="生成照片压缩包" />&nbsp;
+	<input class="button" type="button" id="generateEntryZip" value="生成报名表压缩包" />&nbsp;
 		<input class="button" type="button" id="lock" value="锁定" />&nbsp;
 		<input class="button" type="button" id="close" value="结束" />&nbsp;
 		<input class="button" type="button" id="open" value="开启" />&nbsp;

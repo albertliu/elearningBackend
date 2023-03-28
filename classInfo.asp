@@ -323,6 +323,10 @@
 		$("#generatePhotoZip").click(function(){
 			generateZip("p");
 		});
+	
+		$("#generateEntryZip").click(function(){
+			generateZip("e");
+		});
 
 		var timer = setInterval(getFeedbackList, 300000);
 		//var div = document.getElementById('feedback_list');
@@ -833,6 +837,9 @@
 		$("#btnMockView").hide();
 		$("#btnSchedule").hide();
 		$("#checkStudent").hide();
+		$("#generateZip").hide();
+		$("#generatePhotoZip").hide();
+		$("#generateEntryZip").hide();
 		$("#archived").prop("disabled",true);
 		$("#className").prop("disabled",true);
 		$("#courseID").prop("disabled",true);
@@ -845,6 +852,11 @@
 			if(checkPermission("classAdd") && s < 2){
 				$("#close").show();
 				$("#btnSchedule").show();
+			}
+			if(checkPermission("studentAdd") && s < 2){
+				$("#generateZip").show();
+				$("#generatePhotoZip").show();
+				$("#generateEntryZip").show();
 			}
 			if(checkPermission("teacherAdd") && s < 2){
 				$("#save").show();
@@ -1032,6 +1044,7 @@
 	<input class="button" type="button" id="checkStudent" value="报名表核对" />&nbsp;&nbsp;
 	<input class="button" type="button" id="generateZip" value="生成申报压缩包" />&nbsp;&nbsp;
 	<input class="button" type="button" id="generatePhotoZip" value="生成照片压缩包" />&nbsp;&nbsp;
+	<input class="button" type="button" id="generateEntryZip" value="生成报名表压缩包" />&nbsp;&nbsp;
 	<a href="output/学员报名表模板.xlsm">报名表模板</a>&nbsp;&nbsp;
 	<a href="output/学员信息核对模板.xlsx">报名表核对模板</a>
 

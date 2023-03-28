@@ -267,6 +267,12 @@
 		</div>
 		<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
 			<div style="position: relative;width:100%;height:100%;">
+			<div style="position: absolute; z-index:30;">
+			<div style="float:left;">
+				<span><img id="f_sign1" src="" style="width:170px;margin:0px 0px 8px 60px;padding-left:80px;padding-top:635px;"></span>
+				<p id="same1" style='font-size:1.3em;text-indent:30px;font-family:方正舒体,幼圆;padding-top:20px;'>与原件内容一致</p>
+			</div>
+			</div>
 			<div style="position: absolute; z-index:10;">
 			<div style='text-align:center; margin:10px 0 20px 0;'><h3 id="reexamine" style='font-size:1.45em;'></h3></div>
 			<div style='margin: 12px;text-align:left; width:95%;'><span style='font-size:1.2em;'>学员编号：</span><span style='font-size:1.2em;' id="SNo"></span></div>
@@ -300,7 +306,7 @@
 				<td align="center" class='table_resume_title' width='13%'>联系方式</td><td align="center" colspan="3"><p style='font-size:1em;' id="mobile"></p></td>
 			</tr>
 			<tr>
-				<td align="center" rowspan="6" class='table_resume_title' width='15%' height='45px'>申请考核工种</td>
+				<td align="center" rowspan="4" class='table_resume_title' width='15%' height='45px'>申请考核工种</td>
 				<td align="left" colspan="2">电工作业</td>
 				<td align="left" colspan="5">
 					<input type="checkbox" id="CC12" />&nbsp;低压电工作业 <input type="checkbox" />&nbsp;高压电工作业 <input type="checkbox" />&nbsp;电力电缆作业</br>
@@ -326,20 +332,11 @@
 				</td>
 			</tr>
 			<tr>
-				<td align="left" colspan="2">冶金(有色)生产安全作业</td>
-				<td align="left" colspan="5">
-					<input type="checkbox" />&nbsp;煤气作业
+				<td align="center" height='45px' colspan="4" class='table_resume_title' width='15%' height='250px;'>
+					<img id="img_cardA" src="" value="" style='disply:block;width:340px;height:auto;max-height:250px;border:none;' />
 				</td>
-			</tr>
-			<tr>
-				<td align="left" colspan="2">危险化学品安全作业</td>
-				<td align="left" colspan="5">
-					<input type="checkbox" />&nbsp;光气及光气化工艺作业 <input type="checkbox" />&nbsp;氧碱电解工艺作业 <input type="checkbox" />&nbsp;氯化工艺作业</br>
-					<input type="checkbox" />&nbsp;硝化工艺作业 <input type="checkbox" />&nbsp;合成氧工艺作业 <input type="checkbox" />&nbsp;裂解(裂化)工艺作业</br>
-					<input type="checkbox" />&nbsp;氟化工艺作业 <input type="checkbox" />&nbsp;加氢工艺作业 <input type="checkbox" />&nbsp;重氮化工艺作业</br>
-					<input type="checkbox" />&nbsp;氧化工艺作业 <input type="checkbox" />&nbsp;过氧化工艺作业 <input type="checkbox" />&nbsp;胺基化工艺作业</br>
-					<input type="checkbox" />&nbsp;磺化工艺作业 <input type="checkbox" />&nbsp;聚合工艺作业 <input type="checkbox" />&nbsp;烷基化工艺作业</br>
-					<input type="checkbox" />&nbsp;化工自动化控制仪表作业
+				<td align="center" colspan="4" class='table_resume_title' width='15%' height='250px;'>
+					<img id="img_cardB" src="" value="" style='disply:block;width:340px;height:auto;max-height:250px;border:none;' />
 				</td>
 			</tr>
 			<tr>
