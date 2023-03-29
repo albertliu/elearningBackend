@@ -259,7 +259,7 @@
 					</tr>
 					<tr>
 						<td align="center" class='table_resume_title' height='40px;'>考核类型</td><td align="center" width='13%' colspan="3"><input type="checkbox" id="reexamine0" />&nbsp;初审 <input type="checkbox" id="reexamine1" />&nbsp;复审</td>
-						<td align="center" class='table_resume_title'>是否参加相应培训</td><td align="center" width='13%' colspan="3"><p style='font-size:1em;'><input type="checkbox" checked />&nbsp;&nbsp;是&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" />&nbsp;&nbsp;否</p></td>
+						<td align="center" class='table_resume_title'><p style='font-size:1em;'>是否参加</p><p style='font-size:1em;'>相应培训</p></td><td align="center" width='13%' colspan="3"><p style='font-size:1em;'><input type="checkbox" checked />&nbsp;&nbsp;是&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" />&nbsp;&nbsp;否</p></td>
 					</tr>
 					<tr>
 						<td align="center" class='table_resume_title' height='40px;'>承担高危行业相关岗位情况</td>
