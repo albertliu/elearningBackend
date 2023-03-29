@@ -297,13 +297,13 @@
                     $("#diplomaSign").hide();
                 }
 				if(ar[33] > ""){
-					$("#zip").html("<a href='/users" + ar[33] + "' target='_blank'>申报压缩包</a>");
+					$("#zip").html("<a href='/users" + ar[33] + "' target='_blank'>归档压缩包</a>");
 				}
 				if(ar[34] > ""){
 					$("#pzip").html("<a href='/users" + ar[34] + "' target='_blank'>照片压缩包</a>");
 				}
 				if(ar[35] > ""){
-					$("#ezip").html("<a href='/users" + ar[35] + "' target='_blank'>报名表缩包</a>");
+					$("#ezip").html("<a href='/users" + ar[35] + "' target='_blank'>报名表压缩包</a>");
 				}
 				//getDownloadFile("generateDiplomaID");
 				nodeID = ar[0];
@@ -594,6 +594,11 @@
 					<span id="sign" style="margin-left:10px;"></span>
 					<span id="scoreResult" style="margin-left:10px;"></span>
 					<span id="diplomaSign" style="margin-left:10px;"></span>
+				</td>
+			</tr>
+			<tr>
+				<td align="right">打包文件</td>
+				<td colspan="3">
 					<span id="zip" style="margin-left:10px;"></span>
 					<span id="pzip" style="margin-left:10px;"></span>
 					<span id="ezip" style="margin-left:10px;"></span>

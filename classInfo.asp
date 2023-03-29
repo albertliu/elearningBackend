@@ -399,7 +399,7 @@
 				$("#sign").html("<a>签到表</a>");
 				$("#sign1").html("<a>考勤记录</a>");
 				if(ar[47] > ""){
-					$("#zip").html("<a href='/users" + ar[47] + "' target='_blank'>申报压缩包</a>");
+					$("#zip").html("<a href='/users" + ar[47] + "' target='_blank'>归档压缩包</a>");
 				}
 				if(ar[48] > ""){
 					$("#pzip").html("<a href='/users" + ar[48] + "' target='_blank'>照片压缩包</a>");
