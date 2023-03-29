@@ -156,7 +156,7 @@
 					p = 1;
 				}
 				if(keyID < 2){
-					//getNeed2know(nodeID);
+					getNeed2know(nodeID);
 					getAgreement(ar[1],ar[2],course,sign,sDate,price);
 				}
 				if(keyID <= 2){
