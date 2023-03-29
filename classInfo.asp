@@ -1046,7 +1046,7 @@
 	<input class="button" type="button" id="doImportRef" value="石化预报名表" />
 	<input class="button" type="button" id="doImport" value="报名表导入" />&nbsp;&nbsp;
 	<input class="button" type="button" id="checkStudent" value="报名表核对" />&nbsp;&nbsp;
-	<input class="button" type="button" id="generateZip" value="生成申报压缩包" />&nbsp;&nbsp;
+	<input class="button" type="button" id="generateZip" value="生成归档压缩包" />&nbsp;&nbsp;
 	<input class="button" type="button" id="generatePhotoZip" value="生成照片压缩包" />&nbsp;&nbsp;
 	<input class="button" type="button" id="generateEntryZip" value="生成报名表压缩包" />&nbsp;&nbsp;
 	<a href="output/学员报名表模板.xlsm">报名表模板</a>&nbsp;&nbsp;

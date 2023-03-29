@@ -659,7 +659,7 @@
 		<input class="button" type="button" id="sendMsgExam" value="考试通知" />&nbsp;
 		<input class="button" type="button" id="doImportScore" value="成绩证书导入" />&nbsp;
 		<input class="button" type="button" id="sendMsgScore" value="成绩通知" />&nbsp;
-		<input class="button" type="button" id="generateZip" value="生成申报压缩包" />&nbsp;
+		<input class="button" type="button" id="generateZip" value="生成归档压缩包" />&nbsp;
 		<input class="button" type="button" id="generatePhotoZip" value="生成照片压缩包" />&nbsp;
 	<input class="button" type="button" id="generateEntryZip" value="生成报名表压缩包" />&nbsp;
 		<input class="button" type="button" id="lock" value="锁定" />&nbsp;
