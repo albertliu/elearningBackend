@@ -72,7 +72,7 @@
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar > "0"){
-				$("#SNo").html(ar[25] + "&nbsp;&nbsp;班级：" + ar[34]);
+				//$("#SNo").html(ar[25] + "&nbsp;&nbsp;班级：" + ar[34]);
 				$("#reexamine").html("上海市特种作业人员安全技术考核申请表（2023版）[" + ar[41] + "]");
 				//$("#courseName").html(ar[6]);
 				$("#C" + ar[36]).prop("checked",true);
@@ -175,7 +175,7 @@
 					p = 1;
 				}
 				if(keyID < 2){
-					getNeed2know(nodeID);
+					//getNeed2know(nodeID);
 					getAgreement(ar[1],ar[2],course,sign,sDate,price);
 				}
 				if(reex==1 && keyID <= 2){
@@ -272,7 +272,6 @@
 			<div style="position: relative;width:100%;height:100%;">
 			<div style="position: absolute; z-index:10;">
 			<div style='text-align:center; margin:10px 0 20px 0;'><h3 id="reexamine" style='font-size:1.45em;'></h3></div>
-			<div style='margin: 12px;text-align:left; width:95%;'><span style='font-size:1.2em;'>学员编号：</span><span style='font-size:1.2em;' id="SNo"></span></div>
 			<table class='table_resume' style='width:99%;'>
 			<tr>
 				<td align="center" class='table_resume_title' width='15%' height='55px'>姓名</td><td align="center" width='13%'><p style='font-size:1em;' id="name"></p></td>
