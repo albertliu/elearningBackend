@@ -130,6 +130,11 @@
 				$("#address").html(ar[34]);
 				$("#ethnicity").html(ar[37]);
 				$("#IDdate").html(ar[40] + " " + ar[41]);
+				if(ar[1].length==18){
+					$("#IDK0").prop("checked",true);
+				}else{
+					$("#IDK1").prop("checked",true);
+				}
 				if(ar[21] > ""){
 					$("#img_photo").attr("src","/users" + ar[21]);
 				}else{
