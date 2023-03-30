@@ -1,15 +1,5 @@
 ﻿
 	var need_username = "";
-	$(document).ready(function (){
-		var ar = new Array();
-		//ar.push("<div id='need_btn' style='padding-left:30px; margin:3px;'><input class='button' type='button' id='btnPrintNeed' style='border:1px solid #FF8888;' value='  打印  ' /></div>");
-		//ar.push("<div id='need_print'>");
-		//ar.push("</div");
-		//$("#needCover").html("<div id='need_btn'></div><div id='need_print'><div id='needTitle' style='margin: 10px;'></div><div id='needSkill' style='margin: 10px;'></div><div id='needEducation' style='margin: 10px;'></div><div id='needJob' style='margin: 10px;'></div></div>");
-		//$("#needCover").html(ar.join(""));
-		
-		//$("body").attr('style',{'margin':0});	//打印时去掉页眉页脚
-	});
 
 	function getNeed2know(id){
 		$.getJSON(uploadURL + "/public/getNeed2knowByEnterID?refID=" + id,function(data){
@@ -17,7 +7,7 @@
 			var arr = new Array();
 			if(data.length>0){
 				var val = data[0];
-	
+				arr.push('<div style="page-break-after:always"></div>');
 				arr.push('<div style="position: relative;">');
 				arr.push('<div style="position: absolute; z-index:10; width:100%;">');
 				arr.push('<div style="float:left;width:32%;">');

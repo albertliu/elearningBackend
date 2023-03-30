@@ -7,7 +7,7 @@
 
 <title></title>
 
-<link href="css/style_inner1.css?v=1.2"  rel="stylesheet" type="text/css" />
+<link href="css/style_inner1.css?v=1.3"  rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/easyui/easyui.css?v=1.8.6">
 <link rel="stylesheet" type="text/css" href="css/easyui/icon.css">
 <link href="css/data_table_mini.css?v=20150411" rel="stylesheet" type="text/css" />
@@ -24,7 +24,14 @@
 <script src="js/jQuery.print.js" type="text/javascript"></script>
 <script type='text/javascript' src='js/jquery.autocomplete.js'></script>
 <!--#include file="js/clickMenu.js"-->
-
+<style>
+@font-face {
+	font-family: 'qyt';
+	src: url('fonts/QYSXT-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+</style>
 <script language="javascript">
 	var nodeID = 0;
 	var op = 0;
@@ -372,7 +379,7 @@
 						<span style='font-size:1.2em;'>申请人签名：</span>
 						<span><img id="f_sign30" src="" style="width:170px;padding-left:80px;"></span>
 					</div>
-					<p id="date" style='font-size:1em;float:right;padding-right:100px;padding-top:3px;color:#555;font-family:"Aa青叶体","Ink Free";'></p>
+					<p id="date" style='font-size:1.5em;float:right;padding-right:100px;padding-top:3px;color:#555;font-family:"qyt","Ink Free";'></p>
 					<p style='font-size:1em;padding-left:190px;padding-top:60px;'>&nbsp;&nbsp;&nbsp;&nbsp;年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日</p>
 				</td>
 				<td align="left" class='table_resume_title' width='15%' height='80px;' colspan="4">
