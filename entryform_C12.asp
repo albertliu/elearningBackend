@@ -87,9 +87,10 @@
 					$("#f_sign20").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
 					$("#f_sign30").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
 					$("#f_sign40").attr("src","/users/upload/companies/stamp/sign_znxf.png?times=" + (new Date().getTime()));
-					$("#date").html(sDate);
+					$("#date").html(new Date(sDate).format("yyyy.M.d"));
 					//$("#f_sign40").hide();
-					$("#date2").html(sDate);
+					//$("#date2").html(sDate);
+					$("#date2").html(new Date(addDays(sDate,3)).format("yyyy.M.d"));
 				}else{
 					$("#f_sign1").hide();
 					$("#f_sign20").hide();
@@ -347,22 +348,22 @@
 			<tr>
 				<td align="center" class='table_resume_title' width='15%' height='55px'>个人承诺</td>
 				<td align="left" colspan="7" style="padding-left:5px;">
-				<p style='font-size:1em;text-indent:30px;'>
-				经社区或者县级以上医疗机构体检健康合格，无妨碍从事相应特种作业的器质性心脏病、癫痫病、美尼尔氏症、眩晕症、癔病、震颤麻痹症、精神病、痴呆症以及其他疾病和生理缺陷。
-				</p>
-				<p style='font-size:1em;text-indent:30px;'>
-				本人承诺不超过国家法定退休年龄。
-				</p>
-				<p id="onShanghai" style='font-size:1em;text-indent:30px;'>
-				本人承诺户籍所在地或从业所在地为上海。
-				</p>
-				<p style='font-size:1em;text-indent:30px;'>
-				本人对填写所有信息以及提交材料的真实性、有效性和完整性负责，如有隐瞒，相关责任全部由本人承担。
-				</p>
-				<div style="display:table-cell;height:50px;vertical-align:middle;text-align:center">
-					<span style='font-size:1.2em;padding-left:280px;'>承诺人签名：</span>
-					<span><img id="f_sign20" src="" style="width:170px;padding-left:80px;"></span>
-				<div>
+					<p style='font-size:1em;text-indent:30px;'>
+					经社区或者县级以上医疗机构体检健康合格，无妨碍从事相应特种作业的器质性心脏病、癫痫病、美尼尔氏症、眩晕症、癔病、震颤麻痹症、精神病、痴呆症以及其他疾病和生理缺陷。
+					</p>
+					<p style='font-size:1em;text-indent:30px;'>
+					本人承诺不超过国家法定退休年龄。
+					</p>
+					<p id="onShanghai" style='font-size:1em;text-indent:30px;'>
+					本人承诺户籍所在地或从业所在地为上海。
+					</p>
+					<p style='font-size:1em;text-indent:30px;'>
+					本人对填写所有信息以及提交材料的真实性、有效性和完整性负责，如有隐瞒，相关责任全部由本人承担。
+					</p>
+					<div style="display:table-cell;height:50px;vertical-align:middle;text-align:center">
+						<span style='font-size:1.2em;padding-left:280px;'>承诺人签名：</span>
+						<span><img id="f_sign20" src="" style="width:170px;padding-left:80px;"></span>
+					</div>
 				</td>
 			</tr>
 			<tr>
@@ -370,17 +371,19 @@
 					<div style="display:table-cell;height:50px;vertical-align:middle;text-align:center">
 						<span style='font-size:1.2em;'>申请人签名：</span>
 						<span><img id="f_sign30" src="" style="width:170px;padding-left:80px;"></span>
-					<div>
-					<p id="date" style='font-size:1.2em;float:right;padding-top:10px;padding-right:5px;'>年&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;日</p>
+					</div>
+					<p id="date" style='font-size:1em;float:right;padding-right:100px;padding-top:3px;color:#555;font-family:"青叶手写体","Ink Free";'></p>
+					<p style='font-size:1em;padding-left:190px;padding-top:60px;'>&nbsp;&nbsp;&nbsp;&nbsp;年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日</p>
 				</td>
-				<td align="left" class='table_resume_title' width='15%' height='120px;' colspan="4">
+				<td align="left" class='table_resume_title' width='15%' height='80px;' colspan="4">
 					<p style='font-size:1em;float:left;'>考试点意见：</p>
 					<br><br>
 					<div style="display:table-cell;height:30px;vertical-align:middle;text-align:center">
 						<span style='font-size:1.2em;padding-left:80px;'>经办人签名：</span>
 						<span><img id="f_sign40" src="" style="width:120px;padding-left:10px;"></span>
-					<div>
-					<p id="date2" style='font-size:1.2em;float:left;padding-left:150px;padding-top:10px;'>年&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;日</p>
+					</div>
+					<p id="date2" style='font-size:1.4em;float:left;padding-left:190px;padding-top:3px;color:#555;font-family:"Aa跃然体","时光沙漏";'></p>
+					<p style='font-size:1em;padding-left:190px;'>&nbsp;&nbsp;&nbsp;&nbsp;年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日</p>
 				</td>
 			</tr>
 			</table>
