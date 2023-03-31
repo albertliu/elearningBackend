@@ -11,8 +11,11 @@
 			$("#diplomaListLongItem1").hide();
 			setDiplomaDeptList();
 		}
-		
-		getComList("searchDiplomaKind","v_certificateInfo","certID","certName","status=0 and (host='" + currHost + "') order by certName",1);
+		if(currHost=="spc"){
+			getComList("searchDiplomaKind","v_certificateInfo","certID","certName","status=0 and (host='" + currHost + "' or certID in('C1','C2','C16','C17')) order by host desc, certID",1);
+		}else{
+			getComList("searchDiplomaKind","v_certificateInfo","certID","certName","status=0 and (host='" + currHost + "') order by certName",1);
+		}
 		getDicList("statusExpire","searchDiplomaStatus",1);
 		$("#searchDiplomaStartDate").click(function(){WdatePicker();});
 		$("#searchDiplomaEndDate").click(function(){WdatePicker();});
