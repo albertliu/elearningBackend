@@ -47,7 +47,7 @@
 			saveNode();
 		});
 		$("#cancel").click(function(){
-			if(confirm("确定要取消该证书吗？")){
+			if(confirm("确定要将该证书作废吗？作废后不可恢复。")){
 				$.get("diplomaControl.asp?op=cancelDiploma&nodeID=" + $("#diplomaID").val() + "&times=" + (new Date().getTime()),function(re){
 					jAlert("操作成功！","信息提示");
 					updateCount += 1;
@@ -218,7 +218,7 @@
   	<input class="button" type="button" id="reply" value="发通知" />&nbsp;
   	<input class="button" type="button" id="save" value="保存备注" />&nbsp;
   	<input class="button" type="button" id="print" value="打印证书" />&nbsp;
-  	<input class="button" type="button" id="cancel" value="取消证书" />&nbsp;
+  	<input class="button" type="button" id="cancel" value="证书作废" />&nbsp;
   </div>
 </div>
 </body>

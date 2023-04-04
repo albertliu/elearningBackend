@@ -68,10 +68,10 @@
 				return false;
 			}
 			
-			jConfirm("确定要撤销这" + selCount + "个人的证书吗？将无法恢复。","确认",function(r){
+			jConfirm("确定要撤销这" + selCount + "个人的证书吗？将重新回到待发证状态。","确认",function(r){
 				if(r){
 					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
-					$.post(uploadURL + "/outfiles/cancel_diplomas?kind=1&registerID=" + currUser, {"selList":selList} ,function(data){
+					$.post(uploadURL + "/outfiles/cancel_diplomas?kind=0&registerID=" + currUser, {"selList":selList} ,function(data){
 						if(data>""){
 							jAlert("证书已撤销");
 							updateCount += 1;
