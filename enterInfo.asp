@@ -270,7 +270,7 @@
 				$("#statusName").val(ar[4]);
 				$("#courseName").val(ar[6]);
 				$("#regDate").val(ar[11]);
-				if(ar[39]=="znxf"){	//非集团客户，显示自己的单位和部门
+				if(ar[39]!="spc" && ar[39]!="shm"){	//非集团客户，显示自己的单位和部门
 					$("#hostName").val(ar[37]);
 					$("#dept1Name").val(ar[38]);
 					$("#dept2Name").val("");
