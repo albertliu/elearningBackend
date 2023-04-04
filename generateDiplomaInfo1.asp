@@ -247,7 +247,7 @@
 					}
 					arr.push("<td class='left'>" + ar1[7] + "</td>");
 					arr.push("<td class='center'>" + imgChk + "</td>");
-					arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[8] + "' name='visitstockchk'></td>");
+					arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchk'></td>");
 					arr.push("</tr>");
 				});
 			}
