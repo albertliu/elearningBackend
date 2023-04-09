@@ -880,7 +880,7 @@
 			$("#btnMockView").show();
 			$("#checkStudent").show();
 		}
-		if((checkPermission("classAdd") || currHost>"") && s < 2){
+		if((checkPermission("studentAdd") || currHost>"") && s < 2){
 			$("#save").show();
 			$("#doImport").show();
 			$("#btnClassCall").show();
