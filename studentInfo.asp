@@ -413,19 +413,19 @@
 				$.each(ar,function(iNum,val){
 					if(val=="photo"){
 						//替换照片
-						$.post(uploadURL + "/outfiles/uploadBase64img",{upID:"student_photo",username:$("#username").val(),currUser:currUser,imgData:cardJson.base64Data},function(re){
+						$.post(uploadURL + "/outfiles/uploadBase64img",{upID:"student_photo",username:$("#username").val(),name:$("#name").val(),currUser:currUser,imgData:cardJson.base64Data},function(re){
 							//alert(re.status);
 						});
 					}
 					if(val=="cardA"){
 						//替换身份证正面
-						$.post(uploadURL + "/outfiles/uploadBase64img",{upID:"student_IDcardA",username:$("#username").val(),currUser:currUser,imgData:cardJson.imageFront},function(re){
+						$.post(uploadURL + "/outfiles/uploadBase64img",{upID:"student_IDcardA",username:$("#username").val(),name:$("#name").val(),currUser:currUser,imgData:cardJson.imageFront},function(re){
 							//alert(re.status);
 						});
 					}
 					if(val=="cardB"){
 						//替换身份证反面
-						$.post(uploadURL + "/outfiles/uploadBase64img",{upID:"student_IDcardB",username:$("#username").val(),currUser:currUser,imgData:cardJson.imageBack},function(re){
+						$.post(uploadURL + "/outfiles/uploadBase64img",{upID:"student_IDcardB",username:$("#username").val(),name:$("#name").val(),currUser:currUser,imgData:cardJson.imageBack},function(re){
 							//alert(re.status);
 						});
 					}
