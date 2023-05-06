@@ -344,11 +344,11 @@
 			<tr>
 				<td align="left" colspan="2">危险化学品安全作业</td>
 				<td align="left" colspan="5">
-					<input type="checkbox" />&nbsp;光气及光气化工艺作业 <input type="checkbox" />&nbsp;氧碱电解工艺作业 <input type="checkbox" />&nbsp;氯化工艺作业</br>
-					<input type="checkbox" />&nbsp;硝化工艺作业 <input type="checkbox" />&nbsp;合成氧工艺作业 <input type="checkbox" />&nbsp;裂解(裂化)工艺作业</br>
-					<input type="checkbox" />&nbsp;氟化工艺作业 <input type="checkbox" />&nbsp;加氢工艺作业 <input type="checkbox" />&nbsp;重氮化工艺作业</br>
-					<input type="checkbox" />&nbsp;氧化工艺作业 <input type="checkbox" />&nbsp;过氧化工艺作业 <input type="checkbox" />&nbsp;胺基化工艺作业</br>
-					<input type="checkbox" />&nbsp;磺化工艺作业 <input type="checkbox" />&nbsp;聚合工艺作业 <input type="checkbox" />&nbsp;烷基化工艺作业</br>
+					<input type="checkbox" />&nbsp;光气及光气化工艺作业 <input type="checkbox" />&nbsp;氧碱电解工艺作业 <input type="checkbox" />&nbsp;氯化工艺作业<br>
+					<input type="checkbox" />&nbsp;硝化工艺作业 <input type="checkbox" />&nbsp;合成氧工艺作业 <input type="checkbox" />&nbsp;裂解(裂化)工艺作业<br>
+					<input type="checkbox" />&nbsp;氟化工艺作业 <input type="checkbox" />&nbsp;加氢工艺作业 <input type="checkbox" />&nbsp;重氮化工艺作业<br>
+					<input type="checkbox" />&nbsp;氧化工艺作业 <input type="checkbox" />&nbsp;过氧化工艺作业 <input type="checkbox" />&nbsp;胺基化工艺作业<br>
+					<input type="checkbox" />&nbsp;磺化工艺作业 <input type="checkbox" />&nbsp;聚合工艺作业 <input type="checkbox" />&nbsp;烷基化工艺作业<br>
 					<input type="checkbox" />&nbsp;化工自动化控制仪表作业
 				</td>
 			</tr>
@@ -379,7 +379,7 @@
 						<span style='font-size:1.2em;'>申请人签名：</span>
 						<span><img id="f_sign30" src="" style="width:170px;padding-left:80px;"></span>
 					</div>
-					<p id="date" style='font-size:1.5em;float:right;padding-right:100px;padding-top:3px;color:#555;font-family:"qyt","Ink Free";'></p>
+					<p id="date" style='font-size:1.2em;float:right;padding-right:100px;padding-top:3px;color:#555;font-family:"qyt","Ink Free";'></p>
 					<p style='font-size:1em;padding-left:190px;padding-top:60px;'>&nbsp;&nbsp;&nbsp;&nbsp;年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日</p>
 				</td>
 				<td align="left" class='table_resume_title' width='15%' height='80px;' colspan="4">

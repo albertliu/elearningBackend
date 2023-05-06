@@ -83,7 +83,7 @@
 					arr.push('<div style="position: absolute; z-index:30;padding-top:80mm;padding-left:10mm;">');
 					arr.push('<img id="photo" src="users/upload/companies/stamp/znxf.png" style="opacity:0.7; width:45mm;max-height:45mm;">');
 					arr.push('</div>');	
-					arr.push('<div style="position: absolute; z-index:30;padding-top:92mm;padding-left:180mm;">');
+					arr.push('<div style="position: absolute; z-index:30;padding-top:92mm;padding-left:184mm;">');
 					arr.push('<img id="qr" src="' + uploadURL + '/public/get_qr_img?size=10&text=' + backendURL + '/help.asp?msg=users/upload/students/diplomas/' + val["diplomaID"] + '.pdf' + '" style="opacity:1; width:40mm;max-height:40mm;">');
 					arr.push('</div>');	
 					/**/
