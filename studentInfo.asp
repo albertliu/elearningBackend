@@ -90,10 +90,10 @@
 			saveNode();
 		});
 		$("#close").click(function(){
-			jConfirm('你确定要禁用这个学员吗?', '确认对话框', function(r) {
+			$.messager.confirm('确认对话框', '你确定要禁用这个学员吗?', function(r) {
 				if(r){
 					$.get("studentControl.asp?op=setStatus&nodeID=" + $("#studentID").val() + "&status=1&times=" + (new Date().getTime()),function(data){
-						alert("成功禁用！","信息提示");
+						$.messager.alert("信息提示","成功禁用！");
 						getNodeInfo(nodeID);
 						updateCount += 1;
 					});
@@ -101,10 +101,10 @@
 			});
 		});
 		$("#open").click(function(){
-			jConfirm('你确定要解禁这个学员吗?', '确认对话框', function(r) {
+			$.messager.confirm('确认对话框', '你确定要解禁这个学员吗?', function(r) {
 				if(r){
 					$.get("studentControl.asp?op=setStatus&nodeID=" + $("#studentID").val() + "&status=0&times=" + (new Date().getTime()),function(data){
-						alert("成功解禁！","信息提示");
+						$.messager.alert("信息提示","成功解禁！");
 						getNodeInfo(nodeID,"");
 						updateCount += 1;
 					});
@@ -112,10 +112,10 @@
 			});
 		});
 		$("#reset").click(function(){
-			jConfirm('你确定要重置密码吗?', '确认对话框', function(r) {
+			$.messager.confirm('确认对话框', '你确定要重置密码吗?', function(r) {
 				if(r){
 					$.get("studentControl.asp?op=reset&nodeID=" + $("#studentID").val() + "&times=" + (new Date().getTime()),function(data){
-						alert("重置完成，当前密码为123456","信息提示");
+						$.messager.alert("信息提示","重置完成，当前密码为123456");
 					});
 				}
 			});
