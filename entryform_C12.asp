@@ -178,7 +178,7 @@
 				if(c == ""){c = "&nbsp;&nbsp;照片还未上传";}
 				$("#f_photo").html(c);
 				var p = 0;
-				if(keyID == 2){
+				if(keyID == 2 || keyID == 1){
 					//打印学历证明
 					p = 1;
 				}
