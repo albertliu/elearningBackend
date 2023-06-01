@@ -58,7 +58,7 @@
 		sWhere = $("#txtSearchStudent").val();
 		var Old = $("#searchStudentOld").val();
         var mark = 1;
-        if(checkRole("saler")){
+        if(checkRole("saler") && !checkRole("adviser")){
             mark = 3;
         }
 		//var photo = 0;
