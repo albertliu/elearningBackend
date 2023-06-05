@@ -164,7 +164,7 @@ if(op == "getNodeInfo"){
 		//35
 		result += "|" + rs("unit").value + "|" + rs("dept").value + "|" + rs("ethnicity").value + "|" + rs("IDaddress").value + "|" + rs("bureau").value + "|" + rs("IDdateStart").value + "|" + rs("IDdateEnd").value + "|" + rs("experience").value;
 		//43
-		result += "|" + rs("CHESICC_filename").value + "|" + rs("employe_filename").value + "|" + rs("job_filename").value + "|" + rs("linker").value + "|" + rs("fromID").value + "|" + rs("sex").value + "|" + rs("IDab_filename").value;
+		result += "|" + rs("CHESICC_filename").value + "|" + rs("employe_filename").value + "|" + rs("job_filename").value + "|" + rs("linker").value + "|" + rs("fromID").value + "|" + rs("sex").value + "|" + rs("IDab_filename").value + "|" + rs("promise_filename").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

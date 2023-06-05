@@ -213,6 +213,11 @@
 				window.open($("#img_jobCertificate").attr("value"));
 			}
 		});
+		$("#img_promise").click(function(){
+			if($("#img_promise").attr("value")>""){
+				window.open($("#img_promise").attr("value"));
+			}
+		});
 		$("#kindID").change(function(){
 			setDeptList($("#companyID").val(),1,$("#kindID").val());
 			$("#dept2").empty();
@@ -340,6 +345,12 @@
 					$("#img_jobCertificate").attr("value","/users" + ar[45]);
 				}else{
 					$("#img_jobCertificate").attr("src","images/blank_jobCertificate.png" + "?times=" + (new Date().getTime()));
+				}
+				if(ar[50] > ""){
+					$("#img_promise").attr("src","/users" + ar[50] + "?times=" + (new Date().getTime()));
+					$("#img_promise").attr("value","/users" + ar[50]);
+				}else{
+					$("#img_promise").attr("src","images/blank_promise.png" + "?times=" + (new Date().getTime()));
 				}
 				//$("#photo").html(c);
 				//getDownloadFile("studentID");
@@ -594,6 +605,7 @@
 		$("#img_cardA").attr("src","");
 		$("#img_cardB").attr("src","");
 		$("#img_education").attr("src","");
+		$("#img_promise").attr("src","");
 	}
 
 	function setZNXF(){
@@ -926,6 +938,12 @@
 		<td align="right" style="width:15%;"><img id="add_img_jobCertificate" src="images/plus.png" tag="plus" /></td>
 		<td style="width:85%;">
 			<img id="img_jobCertificate" src="" value="" style='width:150px;border:none;' />
+		</td>
+	</tr>
+	<tr>
+		<td align="right" style="width:15%;"><img id="add_img_promise" src="images/plus.png" tag="plus" /></td>
+		<td style="width:85%;">
+			<img id="img_promise" src="" value="" style='width:150px;border:none;' />
 		</td>
 	</tr>
 	<tr>
