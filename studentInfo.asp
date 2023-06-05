@@ -177,6 +177,10 @@
 			showLoadFile("student_jobCertificate",$("#username").val(),"student",$("#host").val());
 			getNodeInfo(nodeID,refID);
 		});
+		$("#add_img_promise").click(function(){
+			showLoadFile("student_promise",$("#username").val(),"student",$("#host").val());
+			getNodeInfo(nodeID,refID);
+		});
 		$("#img_photo").click(function(){
 			if($("#img_photo").attr("value")>""){
 				//window.open($("#img_photo").attr("value"));
