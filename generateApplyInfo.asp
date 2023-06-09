@@ -238,6 +238,10 @@
 				}
 			});
 		});
+		$("#doImportApplyResit").click(function(){
+			showLoadFile("apply_resit_list",$("#ID").val(),"studentList",'');
+			updateCount += 1;
+		});
 	
 		$("#generateZip").click(function(){
 			generateZip("m");
@@ -497,6 +501,7 @@
 		$("#close").hide();
 		$("#open").hide();
 		$("#doImportApply").hide();
+		$("#doImportApplyResit").hide();
 		$("#doImportScore").hide();
 		$("#sendMsgExam").hide();
 		$("#sendMsgScore").hide();
@@ -518,6 +523,9 @@
 					$("#del").show();
 					$("#lock").show();
 					$("#btnRemove").show();
+					if($("#title").val().indexOf("补考") > -1){		// 标题中含有补考字样的，可以导入补考名单。
+						$("#doImportApplyResit").show();
+					}
 				}
 				if(s==1){		//锁定后可以导入申报结果，发考试通知，上传成绩，发成绩通知，安排补考
 					$("#save").show();
@@ -587,7 +595,7 @@
 				<td colspan="3"><input class="mustFill" type="text" id="title" style="width:70%;" />&nbsp;&nbsp;状态<input class="readOnly" type="text" id="statusName" size="5" readOnly="true" /></td>
 			</tr>
 			<tr>
-				<td align="right">申报批号</td>
+				<td align="right">开班编号</td>
 				<td><input type="text" id="applyID" size="25" /></td>
 				<td colspan="2">
 					<span id="list" style="margin-left:10px;"></span>
@@ -658,6 +666,7 @@
 		<input class="button" type="button" id="doImportApply" value="考试安排导入" />&nbsp;
 		<input class="button" type="button" id="sendMsgExam" value="考试通知" />&nbsp;
 		<input class="button" type="button" id="doImportScore" value="成绩证书导入" />&nbsp;
+		<input class="button" type="button" id="doImportApplyResit" value="补考名单导入" />&nbsp;
 		<input class="button" type="button" id="sendMsgScore" value="成绩通知" />&nbsp;
 		<input class="button" type="button" id="generateZip" value="生成归档压缩包" />&nbsp;
 		<input class="button" type="button" id="generatePhotoZip" value="生成照片压缩包" />&nbsp;

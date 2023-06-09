@@ -59,6 +59,7 @@
 			arr.push('<input style="border:0px;" type="radio" id="uploadKind3" name="uploadKind" value="apply_score_list" />申报成绩和证书&nbsp;');
 			arr.push('<input style="border:0px;" type="radio" id="uploadKind4" name="uploadKind" value="ref_student_list" />预报名表&nbsp;');
 			arr.push('<input style="border:0px;" type="radio" id="uploadKind5" name="uploadKind" value="check_student_list" />学员信息核对&nbsp;');
+			arr.push('<input style="border:0px;" type="radio" id="uploadKind6" name="uploadKind" value="apply_resit_list" />补考名单&nbsp;');
 		}
 		if(mark=='mulitple'){
 			//student material
