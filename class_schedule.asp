@@ -41,7 +41,7 @@
 		$("#btnDownload").click(function(){
 			$.getJSON(uploadURL + "/outfiles/generate_excel?tag=class_schedule&mark=班级授课计划&classID=" + nodeID + "&pobj=" + refID ,function(data){
 				if(data>""){
-					asyncbox.alert("<a href='" + data + "' target='_blank'>下载文件</a>",'课表',function(action){
+					asyncbox.alert("请点击此处<a href='" + data + "' target='_blank'>下载文件</a>",'课表',function(action){
 					　　//alert 返回action 值，分别是 'ok'、'close'。
 					　　if(action == 'ok'){
 					　　}
