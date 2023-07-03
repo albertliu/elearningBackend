@@ -163,7 +163,7 @@ if(op == "getStudentListByClassID"){
 	}
 
 	sql = " FROM v_studentCourseList " + where;
-	sql = "SELECT *, (case when host='znxf' then unit else hostName end) as unit1" + sql + " order by SNo";
+	sql = "SELECT *, (case when host='znxf' then unit else hostName end) as unit1,cast(isnull(completion,0) as decimal(18,2)) as completion1,cast(isnull(completion*hours/100,0) as decimal(18,2)) as hoursSpend1" + sql + " order by SNo";
 
 	result = "";
 	rs = conn.Execute(sql);
@@ -173,6 +173,8 @@ if(op == "getStudentListByClassID"){
 		result += "|" + rs("mobile").value + "|" + rs("unit1").value + "|" + rs("score").value + "|" + rs("diploma_startDate").value + "|" + rs("diplomaID").value;
 		//10
 		result += "|" + rs("score1").value + "|" + rs("score2").value + "|" + rs("statusName").value + "|" + rs("educationName").value;
+		//14
+		result += "|" + rs("hours").value + "|" + rs("completion1").value + "|" + rs("hoursSpend1").value + "|" + rs("startDate").value;
 		rs.MoveNext();
 	}
 	result = result.substr(2);

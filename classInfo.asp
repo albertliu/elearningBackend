@@ -397,7 +397,7 @@
 					$("#schedule").html("<a>课程表</a>");
 				}
 				$("#sign").html("<a>签到表</a>");
-				$("#sign1").html("<a>考勤记录</a>");
+				$("#sign1").html("<a>考勤表</a>");
 				if(ar[47] > ""){
 					$("#zip").html("<a href='/users" + ar[47] + "' target='_blank'>归档压缩包</a>");
 				}

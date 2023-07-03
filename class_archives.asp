@@ -231,6 +231,41 @@
 					}
 					arr2.push("</table>");
 					$("#scoreCover").html(arr2.join(""));
+					arr2 = [];
+
+					$("#title_onlineList").html(ar[17] + "在线学习课时统计");
+					arr2.push("<table cellpadding='0' cellspacing='0' border='1' width='100%'>");
+					arr2.push("<tr align='center'>");
+					arr2.push("<td align='center' width='10%' height='35px'>学号</td>");
+					arr2.push("<td align='center' width='8%'>姓名</td>");
+					arr2.push("<td align='center' width='6%'>性别</td>");
+					arr2.push("<td align='center' width='18%'>证件号码</td>");
+					arr2.push("<td align='center' width='10%'>总课时</td>");
+					arr2.push("<td align='center' width='24%'>完成率%</td>");
+					arr2.push("<td align='center' width='14%'>完成课时</td>");
+					arr2.push("<td align='center' width='14%'>开始日期</td>");
+					arr2.push("</tr>");
+					var i = 0;
+					
+					if(ar4>""){
+						$.each(ar4,function(iNum,val){
+							var ar6 = new Array();
+							ar6 = val.split("|");
+							i += 1;
+							arr2.push("<tr>");
+							arr2.push("<td align='center' height='35px'>" + ar6[4] + "</td>");
+							arr2.push("<td align='center'>" + ar6[1] + "</td>");
+							arr2.push("<td align='center'>" + ar6[2] + "</td>");
+							arr2.push("<td align='center'>" + ar6[0] + "</td>");
+							arr2.push("<td align='center'>" + ar6[14] + "</td>");
+							arr2.push("<td align='center'>" + nullNoDisp(ar6[15]) + "</td>");
+							arr2.push("<td align='center'>" + nullNoDisp(ar6[16]) + "</td>");
+							arr2.push("<td align='center'>" + ar6[17] + "</td>");
+							arr2.push("</tr>");
+						});
+					}
+					arr2.push("</table>");
+					$("#onlineCover").html(arr2.join(""));
 
 					if(keyID==1){
 						resumePrint();
@@ -317,6 +352,11 @@
 			<div style='text-align:center; margin:10px 0 0 0;'><h3 style='font-size:1.8em;' id='title_studentList'>学员花名册</h3></div>
 			<div style='margin: 12px;text-align:left; width:95%;'><span style='font-size:1.2em; padding-left:10px;'>培训日期：</span><span style='font-size:1.2em;' id='date_studentList'></span><span style='font-size:1.2em; padding-left:100px;'>考试日期：</span></div>
 			<div id="studentCover" style="float:center; margin:15px; font-size:1.2em;"></div>
+
+			<div style="page-break-after:always"></div>
+
+			<div style='text-align:center; margin:10px 0 0 0;'><h3 style='font-size:1.8em;' id='title_onlineList'>在线学习课时统计</h3></div>
+			<div id="onlineCover" style="float:center; margin:15px; font-size:1.2em;"></div>
 
 			<div style="page-break-after:always"></div>
 
