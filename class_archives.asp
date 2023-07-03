@@ -222,7 +222,7 @@
 								h = ar5[10].replace(".00","") + "/" + ar5[11].replace(".00","");
 							}*/
 							if(h=="" || h==0){
-								h = "缺考";
+								h = "";
 							}
 							arr2.push("<td align='center'>" + h + "</td>");
 							arr2.push("<td align='center'>" + ar5[11].replace(".00","") + "</td>");
