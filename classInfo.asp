@@ -865,6 +865,9 @@
 				$("#save").show();
 				$("#btnSchedule").show();
 			}
+			if(checkRole("adviser") && s < 2){
+				$("#btnSchedule").show();
+			}
 			if(checkPermission("classAdd") && $("#qtyExam").val()>0 && currHost==""){
 				$("#archived").prop("disabled",false);
 			}
