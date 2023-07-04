@@ -111,7 +111,7 @@
 	
 	function setButton(){
 		$("#btnSave").hide();
-		if(checkRole("operator") || checkRole("partner")){
+		if(checkRole("operator") || checkRole("partner") || checkRole("adviser")){
 			$("#btnSave").show();
 		}
 	}
