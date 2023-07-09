@@ -9,7 +9,8 @@
 					          &nbsp;课程&nbsp;<select id="searchClassCert" style="width:120px"></select>&nbsp;
 					          &nbsp;批次&nbsp;<select id="searchClassProject" style="width:120px"></select>&nbsp;
 							  状态&nbsp;<select id="searchClassStatus" style="width:50px"></select>&nbsp;
-							  属性&nbsp;<select id="searchClassPartner" style="width:90px"></select>&nbsp;
+							  属性&nbsp;<select id="searchClassPartner" style="width:70px"></select>&nbsp;
+							  <input style="border:0px;" type="checkbox" id="searchClassPre" checked value="" />&nbsp;预备班
 						      	<span style="float:right;">
 								  	<input class="button" type="button" id="btnCheckStudent" value="核对学员信息" />&nbsp;&nbsp;
 									<a href="output/学员信息核对模板.xlsx">模板下载</a>&nbsp;&nbsp;

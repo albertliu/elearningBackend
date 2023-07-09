@@ -54,7 +54,10 @@ if(op == "getClassList"){
 		}
 	}
 	if(currHost==""){	//不能查看合作单位的预备班
-		s = "pre=0";
+		s = "(pre=0 or host='')";
+		if(String(Request.QueryString("pre"))==0){
+			s += " and pre=0";
+		}
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
@@ -78,7 +81,7 @@ if(op == "getClassList"){
 	sql = " FROM v_classInfo " + where;
 	result = getBasketTip(sql,"");
 	ssql = "SELECT classID,className,statusName,certName,dateStart,dateEnd,adviserName,classroom,qty,qtyApply,qtyExam,qtyPass,qtyDiploma,archiveDate,memo,regDate,registerName" + sql + " order by ID desc";
-	sql = "SELECT top " + basket + " *" + sql + " order by ID desc";
+	sql = "SELECT top " + basket + " *" + sql + " order by pre desc, ID desc";
 
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
@@ -92,7 +95,7 @@ if(op == "getClassList"){
 		//28
 		result += "|" + rs("send").value + "|" + rs("sendDate").value + "|" + rs("senderName").value + "|" + rs("qtyReturn").value + "|" + rs("teacher").value + "|" + rs("scheduleDate").value + "|" + rs("courseID").value + "|" + rs("courseName").value;
 		//36
-		result += "|" + rs("teacherName").value + "|" + rs("host").value + "|" + rs("transaction_id").value + "|" + rs("re").value + "|" + rs("reexamineName").value + "|" + rs("kindName").value + "|" + rs("qtyDiploma").value;
+		result += "|" + rs("teacherName").value + "|" + rs("host").value + "|" + rs("transaction_id").value + "|" + rs("re").value + "|" + rs("reexamineName").value + "|" + rs("kindName").value + "|" + rs("qtyDiploma").value + "|" + rs("pre").value;
 		rs.MoveNext();
 	}
 /**/
@@ -119,7 +122,7 @@ if(op == "getNodeInfo"){
 		//38
 		result += "|" + rs("teacherName").value + "|" + rs("host").value + "|" + rs("transaction_id").value + "|" + rs("re").value + "|" + rs("reexamineName").value + "|" + rs("kindName").value + "|" + rs("qtyDiploma").value;
 		//45
-		result += "|" + rs("signatureType").value + "|" + rs("signatureTypeName").value + "|" + rs("zip").value + "|" + rs("pzip").value + "|" + rs("ezip").value;
+		result += "|" + rs("signatureType").value + "|" + rs("signatureTypeName").value + "|" + rs("zip").value + "|" + rs("pzip").value + "|" + rs("ezip").value + "|" + rs("pre").value;
 		//execSQL(sql);
 	}
 	rs.Close();
@@ -129,19 +132,14 @@ if(op == "getNodeInfo"){
 if(op == "update"){
 	result = 0;
 	if(result == 0){
-		sql = "exec updateClassInfo " + nodeID + ",'" + unescape(String(Request.QueryString("className"))) + "','" + String(Request.QueryString("certID")) + "','" + String(Request.QueryString("courseID")) + "','" + String(Request.QueryString("projectID")) + "','" + String(Request.QueryString("adviserID")) + "','" + host + "','" + String(Request.QueryString("teacher")) + "'," + kindID + "," + status + ",'" + String(Request.QueryString("dateStart")) + "','" + String(Request.QueryString("dateEnd")) + "','" + unescape(String(Request.QueryString("classroom"))) + "','" + unescape(String(Request.QueryString("timetable"))) + "','" + String(Request.QueryString("archived")) + "','" + String(Request.Form("summary")) + "','" + String(Request.QueryString("transaction_id")) + "'," + String(Request.QueryString("signatureType")) + ",'" + String(Request.Form("memo")) + "','" + currUser + "'";
+		sql = "exec updateClassInfo " + nodeID + ",'" + unescape(String(Request.QueryString("className"))) + "','" + String(Request.QueryString("certID")) + "','" + String(Request.QueryString("courseID")) + "','" + String(Request.QueryString("projectID")) + "','" + String(Request.QueryString("adviserID")) + "','" + host + "','" + String(Request.QueryString("teacher")) + "'," + kindID + "," + status + "," + String(Request.QueryString("pre")) + ",'" + String(Request.QueryString("dateStart")) + "','" + String(Request.QueryString("dateEnd")) + "','" + unescape(String(Request.QueryString("classroom"))) + "','" + unescape(String(Request.QueryString("timetable"))) + "','" + String(Request.QueryString("archived")) + "','" + String(Request.Form("summary")) + "','" + String(Request.QueryString("transaction_id")) + "'," + String(Request.QueryString("signatureType")) + ",'" + String(Request.Form("memo")) + "','" + currUser + "'";
 
-		execSQL(sql);
-		if(nodeID == 0){
-			//这是一个新增的记录
-			sql = "SELECT max(ID) as maxID FROM classInfo where registerID='" + currUser + "'";
-			rs = conn.Execute(sql);
-			nodeID = rs("maxID");
+		rs = conn.Execute(sql);
+		if(!rs.EOF){
+			result = rs("re");
 		}
 	}
-
-	result += "|" + nodeID;
-	Response.Write(escape(result));
+	Response.Write((result));
 	//Response.Write(escape(sql));
 }
 
@@ -185,6 +183,20 @@ if(op == "getStudentListByClassID"){
 
 if(op == "getClassListByProject"){
 	sql = "SELECT classID,className FROM [dbo].[getClassListByProject]('" + refID + "') order by classID desc";;
+
+	result = "";
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += ',"' + rs("classID").value + '":"' + rs("className").value + '"';
+		rs.MoveNext();
+	}
+	result = "{" + result.substr(1) + "}";
+	Response.Write(escape(result));/**/
+	//Response.Write(escape(sql));
+}	
+
+if(op == "getClassListByClassID"){
+	sql = "SELECT a.classID, a.className FROM v_classInfo a, classInfo b where b.classID='" + refID + "' and a.courseID=b.courseID and a.status=0 and a.classID<>'" + refID + "' order by a.classID desc";;
 
 	result = "";
 	rs = conn.Execute(sql);

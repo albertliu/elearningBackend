@@ -10,14 +10,16 @@
 <link href="css/style_inner1.css"  rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/easyui/easyui.css?v=1.8.6">
 <link rel="stylesheet" type="text/css" href="css/easyui/icon.css">
+<link href="css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="css/data_table_mini.css?v=20150411" rel="stylesheet" type="text/css" />
 <link href="css/jquery-confirm.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="css/asyncbox/asyncbox.css" type="text/css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
-<script language="javascript" src="js/jquery-1.12.4.min.js"></script>
+<script language="javascript" src="js/jquery-1.7.2.min.js"></script>
 <script language="javascript" src="js/jquery.form.js"></script>
 <script type="text/javascript" src="js/jquery.easyui.min.js?v=1.8.6"></script>
 <script src="js/jquery-confirm.js" type="text/javascript"></script>
+<script src="js/jquery.alerts.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/AsyncBox.v1.4.js"></script>
 <script language="javascript" type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 <script src="js/datepicker/WdatePicker.js" type="text/javascript"></script>
@@ -50,6 +52,7 @@
 		}
 		getDicList("planStatus","status",0);
 		getDicList("online","kindID",0);
+		getDicList("pre","pre",0);
 		getDicList("signatureType","signatureType",0);
 		$("#dateStart").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'});});
 		$("#dateEnd").click(function(){WdatePicker();});
@@ -267,6 +270,39 @@
 				});
 			}
 		});
+		
+		$("#btnClassChange").click(function(){
+			getSelCart("visitstockchk");
+			if(selCount==0){
+				alert("请选择要更换班级的名单。");
+				return false;
+			}
+			if(confirm("确定要将这" + selCount + "个学员移动到其他班级吗？")){
+				$.get("classControl.asp?op=getClassListByClassID&refID=" + $("#classID").val(),function(data){
+					//alert(unescape(data));
+					var ar = $.parseJSON(unescape(data));
+					jSelect("请输入班级编号：", ar, "目标班级",function(d){
+						d = d.replace(/\s*/g,"");
+						if(d > ""){
+							//alert($("#searchStudentPreProjectID").val() + "&status=1&host=" + $("#searchStudentPreHost").val() + "&keyID=" + selList);
+							// alert(d + ":" + selList);
+							$.post("studentCourseControl.asp?op=pick_students2class", {batchID: d, selList: selList, fromClass: $("#classID").val()} ,function(data1){
+								// alert(data);
+								if(data1>0){
+									jAlert("成功将" + data1 + "个学员转入新班级。");
+									getNodeInfo(nodeID);
+									updateCount += 1;
+								}else{
+									jAlert("操作失败，没有符合要求的学员。");
+								}
+							});
+						}else{
+							jAlert("班级编号不能为空。");
+						}
+					});
+				});
+			}
+		});
 
 		$("#btnMockView").click(function(){
 			showClassExamStat($("#classID").val(),$("#className").val(),0,0);
@@ -374,6 +410,7 @@
 				$("#host").val(ar[39]);
 				$("#transaction_id").val(ar[40]);
 				$("#signatureType").val(ar[45]);
+				$("#pre").val(ar[50]);
 				$("#courseID").val(ar[36]);
 				$("#adviserID").val(ar[8]);
 				setProjectList(ar[36],ar[2]);
@@ -636,20 +673,18 @@
 		var photo = 0;
 		if($("#archived").prop("checked")){photo = 1;}
 		//alert($("#ID").val() + "&signatureType=" + $("#signatureType").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&className=" + ($("#className").val()) + "&classroom=" + ($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&courseID=" + $("#courseID").val() + "&adviserID=" + $("#adviserID").val() + "&host=" + $("#host").val() + "&teacher=" + $("#teacher").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&transaction_id=" + $("#transaction_id").val() + "&archived=" + photo);
-		$.post("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&signatureType=" + $("#signatureType").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&className=" + escape($("#className").val()) + "&classroom=" + escape($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&courseID=" + $("#courseID").val() + "&adviserID=" + $("#adviserID").val() + "&host=" + $("#host").val() + "&teacher=" + $("#teacher").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&transaction_id=" + $("#transaction_id").val() + "&archived=" + photo, {"memo":$("#memo").val(), "summary":$("#summary").val()},function(re){
-			//alert(unescape(re));
-			var ar = new Array();
-			ar = unescape(re).split("|");
-			if(ar[0] == 0){
+		$.post("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&signatureType=" + $("#signatureType").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&className=" + escape($("#className").val()) + "&classroom=" + escape($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&courseID=" + $("#courseID").val() + "&adviserID=" + $("#adviserID").val() + "&pre=" + $("#pre").val() + "&host=" + $("#host").val() + "&teacher=" + $("#teacher").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&transaction_id=" + $("#transaction_id").val() + "&archived=" + photo, {"memo":$("#memo").val(), "summary":$("#summary").val()},function(re){
+			// $.messager.alert("提示",unescape(re));
+			if(re > 0){
+				nodeID = re;
 				if(op == 1){
 					op = 0;
-					nodeID = ar[1];
 				}
 				alert("保存成功！","信息提示");
-				getNodeInfo(ar[1]);
+				getNodeInfo(nodeID);
 				updateCount += 1;
 			}else{
-				alert("未能成功提交，请退出后重试。","信息提示");
+				alert("未能成功提交。","信息提示");
 			}
 		});
 		//return false;
@@ -659,7 +694,11 @@
 		$("#projectID").empty();
 		//alert(id + "&op=" + op + "&host=" + $("#host").val());
 		//getComList("projectID","projectInfo","projectID","projectName"," status>0 and certID='" + id + "' order by projectID desc",1);
-		$.getJSON(uploadURL + "/public/getProjectListBycertID?certID=" + id + "&op=" + op + "&host=" + $("#host").val() ,function(data){
+		var x = op;
+		if($("#pre").val()==1){
+			x = 1;	//预备班相当于新班
+		}
+		$.getJSON(uploadURL + "/public/getProjectListBycertID?certID=" + id + "&op=" + x + "&host=" + $("#host").val() ,function(data){
 			if(data>""){
 				//alert(data[0]["deptName"]);
 				//data = [{"id":1,"text":"text1"},{"id":2,"text":"text2"},{"id":3,"text":"text3"},{"id":4,"text":"text4"},{"id":5,"text":"text5"}];
@@ -843,6 +882,7 @@
 		$("#generateZip").hide();
 		$("#generatePhotoZip").hide();
 		$("#generateEntryZip").hide();
+		$("#btnClassChange").hide();
 		$("#archived").prop("disabled",true);
 		// $("#className").prop("disabled",true);
 		$("#courseID").prop("disabled",true);
@@ -852,6 +892,7 @@
 			$("#courseID").prop("disabled",false);
 			// $("#className").prop("disabled",false);
 		}else{
+			$("#pre").prop("disabled",true);
 			if(checkPermission("classAdd") && s < 2){
 				$("#close").show();
 				$("#btnSchedule").show();
@@ -860,6 +901,7 @@
 				$("#generateZip").show();
 				$("#generatePhotoZip").show();
 				$("#generateEntryZip").show();
+				$("#btnClassChange").show();
 			}
 			if(checkPermission("teacherAdd") && s < 2){
 				$("#save").show();
@@ -867,6 +909,7 @@
 			}
 			if(checkRole("adviser") && s < 2){
 				$("#btnSchedule").show();
+				$("#btnClassChange").show();
 			}
 			if(checkPermission("classAdd") && $("#qtyExam").val()>0 && currHost==""){
 				$("#archived").prop("disabled",false);
@@ -900,6 +943,7 @@
 		$("#transaction_id").val("");
 		$("#status").val(0);
 		$("#kindID").val(0);
+		$("#pre").val(0);
 		$("#signatureType").val(1);
 		$("#classroom").val("黄兴路158号D103");
 		$("#dateStart").val(addDays(currDate,3) + " 8:30");
@@ -937,7 +981,7 @@
 			<tr>
 				<input id="ID" type="hidden" /><input id="status" type="hidden" /><input id="classID" type="hidden" />
 				<td align="right">属性</td>
-				<td><select id="host" style="width:180px;"></select></td>
+				<td><select id="host" style="width:70px;"></select>&nbsp;&nbsp;&nbsp;类别&nbsp;<select id="pre" style="width:70px;"></select></td>
 				<td align="right">课程名称</td><input id="certID" type="hidden" /><input id="courseName" type="hidden" />
 				<td><select id="courseID" style="width:180px;"></select></td>
 			</tr>
@@ -1059,6 +1103,7 @@
 	<div style="width:100%;float:left;margin:0;">
 		<div style="border:solid 1px #e0e0e0;width:99%;margin:5px;background:#ffffff;line-height:18px;padding-left:20px;">
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnSel" value="全选/取消" /></span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassChange" value="更换班级" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassCall" value="开课通知" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassAlert" value="进度提醒" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassExamDeny" value="不安排考试通知" /></span>

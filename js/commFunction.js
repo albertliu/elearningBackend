@@ -1441,7 +1441,7 @@
 
 			btnsbar : false,
 			callback : function(action,iframe){
-				setReturnLog("class",iframe.nodeID);	
+				// setReturnLog("class",iframe.nodeID);	
 				var re = iframe.updateCount;
 				if(re>0 && mark==1){
 					getClassList();

@@ -53,12 +53,20 @@
         }
 		var k = $("#searchClassAdviser").val();
 		if(k=="null" || k==null){k="";}
+		if($("#searchClassCert").val()>""){
+			$("#searchClassPre").prop("checked",true);
+		}
+		var pre = 0;
+		if($("#searchClassPre").prop("checked")){
+			pre = 1
+		}
 		//alert((sWhere) + "&refID=" + $("#searchClassCert").val() + "&status=" + $("#searchClassStatus").val() + "&project=" + $("#searchClassProject").val());
-		$.get("classControl.asp?op=getClassList&where=" + escape(sWhere) + "&mark=" + mark + "&refID=" + $("#searchClassCert").val() + "&host=" + $("#searchClassPartner").val() + "&status=" + $("#searchClassStatus").val() + "&kindID=" + k + "&project=" + $("#searchClassProject").val() + "&dk=91&times=" + (new Date().getTime()),function(data){
+		$.get("classControl.asp?op=getClassList&where=" + escape(sWhere) + "&mark=" + mark + "&refID=" + $("#searchClassCert").val() + "&pre=" + pre + "&host=" + $("#searchClassPartner").val() + "&status=" + $("#searchClassStatus").val() + "&kindID=" + k + "&project=" + $("#searchClassProject").val() + "&dk=91&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
 			$("#classCover").empty();
+			var st = "";
 			var ar0 = new Array();
 			ar0 = ar.shift().split("|");
 			floatCount = ar0[0];
@@ -96,10 +104,11 @@
 					var ar1 = new Array();
 					ar1 = val.split("|");
 					i += 1;
+					st = (ar1[43]==1 && ar1[37]=="" ? " style='color:red;'" : "");
 					arr.push("<tr class='grade0'>");
 					arr.push("<td class='center'>" + ar1[0] + "</td>");
-					arr.push("<td class='link1' title='序号：" + ar1[0] + "'><a href='javascript:showClassInfo(" + ar1[0] + ",0,0,1);'>" + (ar1[37]>"" ? "*" : "") + ar1[1] + "</a></td>");  //*合作单位
-					arr.push("<td class='left'>" + ar1[17] + (ar1[13]>""?"&nbsp;" + ar1[13]:"") + (ar1[39]==1?"&nbsp;" + ar1[40]:"") + "</td>");
+					arr.push("<td class='link1' title='序号：" + ar1[0] + "'><a href='javascript:showClassInfo(" + ar1[0] + ",0,0,1);'" + st + ">" + (ar1[37]>"" ? "*" : "") + ar1[1] + "</a></td>");  //*合作单位
+					arr.push("<td class='left'" + st + ">" + ar1[17] + (ar1[13]>""?"&nbsp;" + ar1[13]:"") + (ar1[39]==1?"&nbsp;" + ar1[40]:"") + "</td>");
 					arr.push("<td class='left'>" + ar1[10].substring(0,10) + "</td>");
 					arr.push("<td class='left'>" + ar1[11] + "</td>");
 					arr.push("<td class='left'>" + ar1[9] + "</td>");

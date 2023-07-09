@@ -966,6 +966,18 @@ if(op == "pick_students4class"){
 	Response.Write(result);
 }
 
+if(op == "pick_students2class"){
+	result = "";
+	sql = "exec pickStudents2Class '" + String(Request.Form("batchID")) + "','" + String(Request.Form("selList")) + "','" + String(Request.Form("fromClass")) + "','" + currUser + "'";
+	rs = conn.Execute(sql);
+	if (!rs.EOF){
+		result = rs("re").value;
+		execSQL(sql);
+	}
+	rs.Close();
+	Response.Write(result);
+}
+
 if(op == "set_students_express"){
 	result = "";
 	sql = "exec set_students_express '" + String(Request.Form("selList")) + "','" + currUser + "'";
