@@ -187,7 +187,7 @@ if(op == "getDiplomaLastList"){
 	sql = " FROM v_diplomaLastInfo " + where;
 	result = getBasketTip(sql,"");
 	ssql = "SELECT diplomaID,certName,statusName,term,startDate,endDate,agencyName,username,name,sexName,age,hostName,dept1Name,dept2Name,job,mobile,email,memo,regDate,registerName" + sql + " order by diplomaID";
-	sql = "SELECT top " + basket + " *" + sql + " order by diplomaID";
+	sql = "SELECT top " + basket + " *" + sql + " order by ID desc";
 	
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
