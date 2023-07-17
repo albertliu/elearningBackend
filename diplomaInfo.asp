@@ -47,8 +47,16 @@
 			saveNode();
 		});
 		$("#cancel").click(function(){
-			if(confirm("确定要将该证书作废吗？作废后不可恢复。")){
+			if(confirm("确定要将该证书暂停失效吗？失效后可恢复。")){
 				$.get("diplomaControl.asp?op=cancelDiploma&nodeID=" + $("#diplomaID").val() + "&times=" + (new Date().getTime()),function(re){
+					jAlert("操作成功！","信息提示");
+					updateCount += 1;
+				});
+			}
+		});
+		$("#restart").click(function(){
+			if(confirm("确定要恢复该证书的有效性吗？")){
+				$.get("diplomaControl.asp?op=restartDiploma&nodeID=" + $("#diplomaID").val() + "&times=" + (new Date().getTime()),function(re){
 					jAlert("操作成功！","信息提示");
 					updateCount += 1;
 				});
@@ -130,6 +138,7 @@
 		}
 		if(!checkPermission("cancelDiploma")){
 			$("#cancel").hide();
+			$("#restart").hide();
 		}
 	}
 	
@@ -218,7 +227,8 @@
   	<input class="button" type="button" id="reply" value="发通知" />&nbsp;
   	<input class="button" type="button" id="save" value="保存备注" />&nbsp;
   	<input class="button" type="button" id="print" value="打印证书" />&nbsp;
-  	<input class="button" type="button" id="cancel" value="证书作废" />&nbsp;
+  	<input class="button" type="button" id="cancel" value="证书失效" />&nbsp;
+  	<input class="button" type="button" id="restart" value="证书恢复" />&nbsp;
   </div>
 </div>
 </body>

@@ -1144,4 +1144,10 @@ if(op == "cancelDiploma"){
 	Response.Write(nodeID);
 }
 
+if(op == "restartDiploma"){
+	sql = "exec restartDiploma '" + nodeID + "','" + currUser + "'";
+	execSQL(sql);
+	Response.Write(nodeID);
+}
+
 %>
