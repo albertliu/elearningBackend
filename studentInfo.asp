@@ -800,7 +800,7 @@
 			<div class="comm" style="background:#f5faf8; float:left;width:100%;">
 			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table style="width:100%;">
-			<input type="hidden" id="ethnicity" /><input type="hidden" id="IDaddress" /><input type="hidden" id="bureau" />
+			<input type="hidden" id="ethnicity" /><input type="hidden" id="bureau" />
 			<input type="hidden" id="experience" />
 			<tr>
 				<td align="right">身份证</td><input type="hidden" id="status" /><input type="hidden" id="host" />
@@ -817,6 +817,10 @@
 			<tr>
 				<td align="left" colspan="2">身份证起始日期<input type="text" id="IDdateStart" size="15" /></td>
 				<td align="left" colspan="2">身份证截止日期<input type="text" id="IDdateEnd" size="15" /></td>
+			</tr>
+			<tr>
+				<td align="right">身份证地址</td>
+				<td colspan="3"><input type="text" id="IDaddress" style="width:95%;" /></td>
 			</tr>
 			<tr>
 				<td align="right">状态</td>

@@ -179,7 +179,7 @@
 				alert("请选择要通知的名单。");
 				return false;
 			}
-			if(confirm("确定要通知这" + selCount + "个学员参加培训吗？")){
+			if(confirm("确定要通知这" + selCount + "个学员参加培训吗？\n时间：" + $("#dateStart").val() + "\n地点：" + $("#classroom").val())){
 				$.post(uploadURL + "/public/send_message_class", {batchID: $("#classID").val(), selList: selList, SMS:1, registerID: currUser} ,function(data){
 					getNodeInfo(nodeID);
 					alert("发送成功。");
