@@ -1,4 +1,4 @@
-﻿<!--#include file="js/doc.js" -->
+﻿<!--#include file="js/doc1.js" -->
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/nav.dwt" codeOutsideHTMLIsLocked="false" -->
@@ -41,7 +41,6 @@
 	var keyID = 0;
 	kindID = "";
 	var updateCount = 1;
-	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";		//enterID
 		refID = "<%=refID%>";		//username
