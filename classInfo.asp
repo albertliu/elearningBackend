@@ -893,43 +893,45 @@
 			// $("#className").prop("disabled",false);
 		}else{
 			$("#pre").prop("disabled",true);
-			if(checkPermission("classAdd") && s < 2){
-				$("#close").show();
-				$("#btnSchedule").show();
+			if($("#pre").val()==0){
+				if(checkPermission("classAdd") && s < 2){
+					$("#close").show();
+					$("#btnSchedule").show();
+				}
+				if(checkPermission("studentAdd") && s < 2){
+					$("#generateZip").show();
+					$("#generatePhotoZip").show();
+					$("#generateEntryZip").show();
+					$("#btnClassChange").show();
+					$("#btnClassCall").show();
+				}
+				if(checkPermission("teacherAdd") && s < 2){
+					$("#save").show();
+					$("#btnSchedule").show();
+				}
+				if(checkRole("adviser") && s < 2){
+					$("#btnSchedule").show();
+					$("#btnClassChange").show();
+				}
+				if(checkPermission("classAdd") && $("#qtyExam").val()>0 && currHost==""){
+					$("#archived").prop("disabled",false);
+				}
+				if(checkPermission("classOpen") && s > 0){
+					$("#open").show();
+				}
+				if(checkPermission("classAdd")){
+					$("#del").show();
+				}
+				if(checkPermission("feedbackAdd")){
+					$("#feedback_item").prop("disabled",false);
+				}
+				$("#btnMockView").show();
+				$("#checkStudent").show();
 			}
-			if(checkPermission("studentAdd") && s < 2){
-				$("#generateZip").show();
-				$("#generatePhotoZip").show();
-				$("#generateEntryZip").show();
-				$("#btnClassChange").show();
-			}
-			if(checkPermission("teacherAdd") && s < 2){
-				$("#save").show();
-				$("#btnSchedule").show();
-			}
-			if(checkRole("adviser") && s < 2){
-				$("#btnSchedule").show();
-				$("#btnClassChange").show();
-			}
-			if(checkPermission("classAdd") && $("#qtyExam").val()>0 && currHost==""){
-				$("#archived").prop("disabled",false);
-			}
-			if(checkPermission("classOpen") && s > 0){
-				$("#open").show();
-			}
-			if(checkPermission("classAdd")){
-				$("#del").show();
-			}
-			if(checkPermission("feedbackAdd")){
-				$("#feedback_item").prop("disabled",false);
-			}
-			$("#btnMockView").show();
-			$("#checkStudent").show();
 		}
 		if((checkPermission("studentAdd") || currHost>"") && s < 2){
 			$("#save").show();
 			$("#doImport").show();
-			$("#btnClassCall").show();
 		}
 	}
 	
