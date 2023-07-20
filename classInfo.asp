@@ -127,6 +127,13 @@
 		$("#host").change(function(){
 			setHostChange();
 		});
+		$("#pre").change(function(){
+			if($("#pre").val() == 1){
+				$("#memo").val("预备班");
+			}else{
+				$("#memo").val("");
+			}
+		});
 
 		$("#doImportRef").click(function(){
 			if($("#projectID").val()==""){
