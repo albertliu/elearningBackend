@@ -911,7 +911,6 @@
 				}
 				if(checkRole("adviser") && s < 2){
 					$("#btnSchedule").show();
-					$("#btnClassChange").show();
 				}
 				if(checkPermission("classAdd") && $("#qtyExam").val()>0 && currHost==""){
 					$("#archived").prop("disabled",false);
@@ -928,10 +927,13 @@
 				$("#btnMockView").show();
 				$("#checkStudent").show();
 			}
+			if((checkPermission("studentAdd") || checkRole("adviser")) && s < 2){
+				$("#btnClassChange").show();
+				$("#doImport").show();
+			}
 		}
 		if((checkPermission("studentAdd") || currHost>"") && s < 2){
 			$("#save").show();
-			$("#doImport").show();
 		}
 	}
 	
