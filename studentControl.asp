@@ -486,4 +486,15 @@ if(op == "getDeptRefrenceNo"){
 	Response.Write(result);
 }
 
+if(op == "exchangeMaterial"){
+	result = 0;
+	sql = "exec exchangeMaterial '" + nodeID + "','" + kindID + "','" + refID + "','" + currUser + "'";
+	rs = conn.Execute(sql);
+	if(!rs.EOF){
+		result = rs("re").value;
+	}
+	rs.Close();
+	Response.Write(result);
+}
+
 %>

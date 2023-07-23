@@ -244,6 +244,8 @@
 				setDeptList($("#dept1").val(),2,$("#kindID").val());
 			}
 		}
+		
+		setDraggable();
 		/*
 		var imgArr = $("#xx").find("img");
 		//alert(imgArr.length);
@@ -782,6 +784,79 @@
 		//nothing, just callback enterInfo return's event
 	}
 
+	function setDraggable(){
+		//setting draggable
+		$("img[id^='img_']").draggable({
+			proxy:'clone',
+			revert:true,
+			cursor:'pointer',
+			onStartDrag:function(){
+				// $(this).draggable('options').cursor='not-allowed';//设置鼠标样式为不可拖动
+				$(this).draggable('proxy').addClass('dp');//设置样式
+			},
+			onStopDrag:function(){
+				$(this).draggable('options').cursor='auto';//设置鼠标
+			}
+		});
+
+		$("img[id^='img_']").droppable({
+			accept:"img[id^='img_']",
+			onDragEnter:function(e,source){//拖入
+				$(source).draggable('options').cursor='auto';
+				$(source).draggable('proxy').css('border','1px solid red');
+				$(this).addClass('over');
+			},
+			onDragLeave:function(e,source){//脱离
+				$(source).draggable('options').cursor='not-allowed';
+				$(source).draggable('proxy').css('border','1px solid #ccc');
+				$(this).removeClass('over');
+			},
+			onDrop:function(e,source){//放下
+				$(this).append(source)
+				$(this).removeClass('over');
+				exchangeImg(source, this);
+			} ,
+			//onDropOver当元素被拖出(成功放入到某个容器)的时候触发
+			onDragOver:function(e,source){
+				// alert("我被拖出去了");//先于alert("我被放下了");执行,表明其触发在onDrop之前。
+            }
+		});
+	}
+
+	function exchangeImg(source, target){
+		// 通过拖动图片，交换两个图片的所属标识
+		var msg = "确定要互换这两个图片吗？";
+		if($(source).attr("value") == ""){
+			$.messager.alert("信息提示","没有可操作的图片。");
+			resetDraggable(source);
+		}else{
+			if($(target).attr("value") == ""){
+				msg = "确定要将图片调换到这里吗？";
+			}
+			$.messager.confirm('确认对话框', msg, function(r) {
+				if(r){
+					// alert($("#username").val() + "&kindID=" + $(source).attr("tag") + "&refID=" + $(target).attr("tag"))
+					$.get("studentControl.asp?op=exchangeMaterial&nodeID=" + $("#username").val() + "&kindID=" + $(source).attr("tag") + "&refID=" + $(target).attr("tag") + "&times=" + (new Date().getTime()),function(data){
+						if(data == 0){
+							$.messager.alert("信息提示","操作成功。");
+						}else{
+							$.messager.alert("信息提示","操作失败。");
+						}
+						resetDraggable(source);
+					});
+				}
+			});
+		}
+	}
+
+	function resetDraggable(source){
+		//nothing, just callback enterInfo return's event
+		var s = $(source).clone().appendTo("#td_" + $(source).attr("id"));
+		$(source).remove();
+		getNodeInfo(0,$("#username").val());
+		setDraggable();
+	}
+
 	function getUpdateCount(){
 		return updateCount;
 	}
@@ -792,6 +867,24 @@
 <body style="background:#f0f0f0;">
  <!--#include file='commFloatDetail.asp' -->
  <!--#include file='commLoadFileDetail.asp' -->
+
+    <style type="text/css">
+        .drag{
+            width:100px;
+            height:50px;
+            padding:10px;
+            margin:5px;
+            border:1px solid #ccc;
+            background:#AACCFF;
+        }
+        .dp{
+            opacity:0.5;
+            filter:alpha(opacity=50);
+        }
+        .over{
+            background:#FBEC88;
+        }
+    </style>
 
 <div id='layout' align='left' style="background:#f0f0f0;">	
 	<div style="float:left;width:70%;">
@@ -908,50 +1001,50 @@
 	<table style="width:99%;">
 	<tr>
 		<td align="right" style="width:15%;"><img id="add_img_photo" src="images/plus.png" tag="plus" /></td>
-		<td align="center" style="width:85%;">
-			<img id="img_photo" src="" value="" style='width:100px;border:none;' />
+		<td id="td_img_photo" align="center" style="width:85%;">
+			<img id="img_photo" tag="student_photo" src="" value="" style='width:100px;border:none;' />
 		</td>
 	</tr>
 	<tr>
 		<td align="right" style="width:15%;"><img id="add_img_cardA" src="images/plus.png" tag="plus" /></td>
-		<td style="width:85%;">
-			<img id="img_cardA" src="" value="" style='width:150px;border:none;' />
+		<td id="td_img_cardA" style="width:85%;">
+			<img id="img_cardA" tag="student_IDcardA" src="" value="" style='width:150px;border:none;' />
 		</td>
 	</tr>
 	<tr>
 		<td align="right" style="width:15%;"><img id="add_img_cardB" src="images/plus.png" tag="plus" /></td>
-		<td style="width:85%;">
-			<img id="img_cardB" src="" value="" style='width:150px;border:none;' />
+		<td id="td_img_cardB" style="width:85%;">
+			<img id="img_cardB" tag="student_IDcardB" src="" value="" style='width:150px;border:none;' />
 		</td>
 	</tr>
 	<tr>
 		<td align="right" style="width:15%;"><img id="add_img_education" src="images/plus.png" tag="plus" /></td>
-		<td style="width:85%;">
-			<img id="img_education" src="" value="" style='width:150px;border:none;' />
+		<td id="td_img_education" style="width:85%;">
+			<img id="img_education" tag="student_education" src="" value="" style='width:150px;border:none;' />
 		</td>
 	</tr>
 	<tr>
 		<td align="right" style="width:15%;"><img id="add_img_CHESICC" src="images/plus.png" tag="plus" /></td>
-		<td style="width:85%;">
-			<img id="img_CHESICC" src="" value="" style='width:150px;border:none;' />
+		<td id="td_img_CHESICC" style="width:85%;">
+			<img id="img_CHESICC" tag="student_CHESICC" src="" value="" style='width:150px;border:none;' />
 		</td>
 	</tr>
 	<tr>
 		<td align="right" style="width:15%;"><img id="add_img_employment" src="images/plus.png" tag="plus" /></td>
-		<td style="width:85%;">
-			<img id="img_employment" src="" value="" style='width:150px;border:none;' />
+		<td id="td_img_employment" style="width:85%;">
+			<img id="img_employment" tag="student_employment" src="" value="" style='width:150px;border:none;' />
 		</td>
 	</tr>
 	<tr>
 		<td align="right" style="width:15%;"><img id="add_img_jobCertificate" src="images/plus.png" tag="plus" /></td>
-		<td style="width:85%;">
-			<img id="img_jobCertificate" src="" value="" style='width:150px;border:none;' />
+		<td id="td_img_jobCertificate" style="width:85%;">
+			<img id="img_jobCertificate" tag="student_jobCertificate" src="" value="" style='width:150px;border:none;' />
 		</td>
 	</tr>
 	<tr>
 		<td align="right" style="width:15%;"><img id="add_img_promise" src="images/plus.png" tag="plus" /></td>
-		<td style="width:85%;">
-			<img id="img_promise" src="" value="" style='width:150px;border:none;' />
+		<td id="td_img_promise" style="width:85%;">
+			<img id="img_promise" tag="student_promise" src="" value="" style='width:150px;border:none;' />
 		</td>
 	</tr>
 	<tr>
