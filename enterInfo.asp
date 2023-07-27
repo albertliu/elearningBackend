@@ -756,6 +756,10 @@
                     <td align="right">有效期</td>
                     <td><input type="text" id="currDiplomaDate" style="width:80px;" />&nbsp;销售<select id="fromID" style="width:80px;"></select></td>
                 </tr>
+				<tr>
+					<td align="right">备注</td>
+					<td colspan="5"><input type="text" id="memo" style="width:100%;" /></td>
+				</tr>
                 </table>
                 </form>
 				</div>
@@ -801,10 +805,6 @@
 				<td><input type="text" id="title" size="25" /></td>
 				<td align="right">退款日期</td>
 				<td><input type="text" id="dateRefund" style="width:80px;" />&nbsp;&nbsp;经办<input class="readOnly" type="text" id="refunderName" style="width:60px;" readOnly="true" /></td>
-			</tr>
-			<tr>
-				<td align="right">备注</td>
-				<td colspan="5"><input type="text" id="memo" style="width:100%;" /></td>
 			</tr>
 			</table>
 			</form>
