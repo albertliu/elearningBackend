@@ -260,15 +260,15 @@
 			deleteTab("发票管理");
 			deleteTab("考试管理");
 		}
-		if(checkRole("saler")){
-			$("#menu2").hide();
-			$("#menu3").hide();
-			$("#menu4").hide();
-			$("#menu5").hide();
-			$("#menu11").hide();
-			$("#menu12").hide();
-			deleteTab("发票管理");
-		}
+		// if(checkRole("saler")){
+		// 	$("#menu2").hide();
+		// 	$("#menu3").hide();
+		// 	$("#menu4").hide();
+		// 	$("#menu5").hide();
+		// 	$("#menu11").hide();
+		// 	$("#menu12").hide();
+		// 	deleteTab("发票管理");
+		// }
 		if(!checkRole("leader") && !checkRole("saler") && currUser != "desk."){
 			deleteTab("收费概况");
 		}
