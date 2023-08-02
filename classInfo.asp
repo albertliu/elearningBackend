@@ -918,6 +918,7 @@
 				}
 				if(checkRole("adviser") && s < 2){
 					$("#btnSchedule").show();
+					$("#save").show();
 				}
 				if((checkPermission("classAdd") || checkRole("adviser")) && currHost==""){
 					$("#archived").prop("disabled",false);
