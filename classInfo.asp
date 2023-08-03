@@ -514,9 +514,9 @@
 				arr.push("<th width='7%'>学历</th>");
 				arr.push("<th width='7%'>在职</th>");
 			}
-			arr.push("<th width='8%'>备注</th>");
+			arr.push("<th width='10%'>备注</th>");
 			arr.push("<th width='2%'>材</th>");
-			arr.push("<th width='4%'></th>");
+			arr.push("<th width='2%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
