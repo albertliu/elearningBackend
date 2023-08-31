@@ -182,7 +182,7 @@ if(op == "getStudentListByClassID"){
 }	
 
 if(op == "getClassListByProject"){
-	sql = "SELECT classID,className FROM [dbo].[getClassListByProject]('" + refID + "') order by classID desc";;
+	sql = "SELECT classID,className FROM [dbo].[getClassListByProject]('" + refID + "') where status=0 order by classID desc";;
 
 	result = "";
 	rs = conn.Execute(sql);

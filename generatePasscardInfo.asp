@@ -625,7 +625,7 @@
 					$("#close").show();
 				}
 			}
-			if(checkPermission("scoreUpload") && s == 1){
+			if(checkPermission("scoreUpload") && s == 1 && $("#startDate").val().substring(0,10) <= (new Date().format("yyyy-MM-dd"))){
 				$("#doImportScore").show();
 			}
 			if(checkPermission("examOpen") && s > 0){

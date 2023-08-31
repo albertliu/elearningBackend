@@ -91,6 +91,7 @@
 	<!--#include file="rptDiplomaIncReady.js"-->
 	<!--#include file="rptDiplomaLastIncReady.js"-->
 	<!--#include file="rptOtherIncReady.js"-->
+	<!--#include file="rptDailyListIncReady.js"-->
 	<!--#include file="studentPreListIncReady.js"-->
 	<!--#include file="chartsIncReady.js"-->
 	<!--#include file="chartsClassIncReady.js"-->
@@ -411,6 +412,7 @@
 						</div>
 						<div id="minialDiv" style="width:85%;float:right;">
 							<ul id="tabs">
+							    <li id="rptDaily_Tab"><a href="#" name="#tab00">日报表</a></li> 
 							    <li id="project_Tab"><a href="#" name="#tab0">招生计划</a></li> 
 							    <li id="mTab1"><a href="#" name="#tab1">学员反馈</a></li>
 							    <li><a href="#" name="#tab2">回复信息</a></li>
@@ -420,6 +422,7 @@
 							</ul>
 							
 							<div id="content"> 
+							    <div id="tab00"><!--#include file="rptDailyListIncDetail.js"--></div>
 							    <div id="tab0"><!--#include file="projectListIncDetail.js"--></div>
 							    <div id="tab1"><!--#include file="feedbackListIncDetail.js"--></div>
 							    <div id="tab2"><!--#include file="messageListIncDetail.js"--></div>

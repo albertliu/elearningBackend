@@ -445,7 +445,7 @@
 	
 	function nullNoDisp(m){
 		var s = "";
-		if(m != null && m > "" && m != "null" && m != "0"){
+		if(m != null && m != '' && m != "null" && m != "0"){
 			s = m;
 		}
 		return s;
@@ -1572,6 +1572,31 @@
 				if(re>0 && mark==2){
 					//alert(iframe.getValList());
 					setObjValue("enter",iframe.getValList(),0,0);  //根据请求，返回任意个数的项目，为相应的对象赋值。objList:传入的Object列表；valList：输出的值；mark：0 不动作 1 关闭本窗口（与objList同名）; loc: 0 同级别  1 父窗体
+				}
+　　　		}
+		});
+	}
+	
+	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
+	function showInvoiceInfo(nodeID,refID,op,mark){
+		asyncbox.open({
+			id: "invoiceInfo",
+			url:"invoiceInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
+			title: "发票信息",
+			width: 600,
+			height: 400,
+			cover : {
+	          //透明度
+	          opacity : 0,
+	          //背景颜色
+	           background : '#000'
+	          },
+
+			btnsbar : false,
+			callback : function(action,iframe){
+				var re = iframe.updateCount;
+				if(re>0 && mark==1){
+					//getStudentCourseList(refID);
 				}
 　　　		}
 		});

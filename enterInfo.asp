@@ -777,7 +777,7 @@
 			<form id="payCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#f8f8ee;">
 			<table>
 			<tr>
-				<td align="right">缴费类型</td><input type="hidden" id="payID" /><input type="hidden" id="payDetailID" />
+				<td align="right">票据类型</td><input type="hidden" id="payID" /><input type="hidden" id="payDetailID" />
 				<td><select id="kindID" style="width:180px;"></select></td>
 				<td align="right">缴费金额</td>
 				<td><input type="text" id="price" style="width:50px;" />&nbsp;&nbsp;<input class="button" type="button" id="btnPay" value="付款" /></td>

@@ -1098,6 +1098,119 @@ if(op == "updateGenerateApplyInfo"){
 	//Response.Write(escape(sql));
 }
 
+if(op == "getRptDailyInvoiceList"){
+	result = "";
+	var s = "";
+	//如果有条件，按照条件查询
+	if(where > ""){ // 有条件
+		where = "(taxUnit like('%" + where + "%') or memo like('%" + where + "%') or invID='" + where + "')";
+	}
+	//如果有应收
+	if(kindID == 1){ // 
+		s = "payStatus=1";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	if(fStart > "" && kindID != 1){
+		s = "invDate>='" + fStart + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	if(fEnd > "" && kindID != 1){
+		s = "invDate<='" + fEnd + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+
+	if(where > ""){
+		where = " where " + where;
+	}
+	sql = " FROM v_invoiceInfo " + where;
+	sql = "SELECT *" + sql + " order by ID desc";
+	
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		// @kind,@invCode,@invID,@taxNo,@taxUnit,@invDate,@item,@amount,@cancel,@cancelDate,@operator,@memo,@registerID
+		result += "%%" + rs("ID").value + "|" + rs("kind").value + "|" + rs("invCode").value + "|" + rs("invID").value + "|" + rs("taxNo").value + "|" + rs("taxUnit").value + "|" + rs("invDate").value + "|" + rs("item").value;
+		//8
+		result += "|" + rs("amount").value + "|" + rs("cancel").value + "|" + rs("cancelDate").value + "|" + rs("payType").value + "|" + rs("payStatus").value + "|" + rs("operator").value;
+		//14
+		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("checkDate").value + "|" + rs("checker").value + "|" + rs("checkerName").value;
+		rs.MoveNext();
+	}
+	rs.Close();
+	result = result.substr(2);
+	Response.Write(escape(result));
+}	
+
+if(op == "getRptDailyReceiptList"){
+	result = "";
+	var s = "";
+	//如果有条件，按照条件查询
+	if(where > ""){ // 有条件
+		where = "(title like('%" + where + "%') or memo like('%" + where + "%') or invoice='" + where + "')";
+	}
+	if(fStart > ""){
+		s = "datePay>='" + fStart + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	if(fEnd > ""){
+		s = "datePay<='" + fEnd + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+
+	if(where > ""){
+		where = " where " + where;
+	}
+	sql = " FROM v_payReceiptInfo " + where;
+	sql = "SELECT *" + sql + " order by ID desc";
+	
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		// @kind,@invCode,@invID,@taxNo,@taxUnit,@invDate,@item,@amount,@cancel,@cancelDate,@operator,@memo,@registerID
+		result += "%%" + rs("ID").value + "|" + rs("invoice").value + "|" + rs("datePay").value + "|" + rs("typeName").value + "|" + rs("title").value;
+		//5
+		result += "|" + rs("amount").value + "|" + rs("memo").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("courseName").value;
+		rs.MoveNext();
+	}
+	rs.Close();
+	result = result.substr(2);
+	Response.Write(escape(result));
+}	
+
+if(op == "getInvoiceNodeInfo"){
+	result = "";
+	sql = "SELECT * FROM v_invoiceInfo where ID=" + nodeID;
+	rs = conn.Execute(sql);
+	if(!rs.EOF){
+		result = rs("ID").value + "|" + rs("kind").value + "|" + rs("invCode").value + "|" + rs("invID").value + "|" + rs("taxNo").value + "|" + rs("taxUnit").value + "|" + rs("invDate").value + "|" + rs("item").value;
+		//8
+		result += "|" + rs("amount").value + "|" + rs("cancel").value + "|" + rs("cancelDate").value + "|" + rs("payType").value + "|" + rs("payStatus").value + "|" + rs("operator").value;
+		//14
+		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("checkDate").value + "|" + rs("checker").value + "|" + rs("checkerName").value;
+	}
+	rs.Close();
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}	
+
 if(op == "delGenerateApply"){
 	sql = "exec delGenerateApplyInfo '" + nodeID + "','" + currUser + "'";
 	execSQL(sql);

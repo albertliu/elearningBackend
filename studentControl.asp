@@ -425,7 +425,7 @@ if(op == "setStatus"){
 }
 
 if(op == "delNode"){
-	sql = "exec delStudentInfo '" + nodeID + "','" + where + "','" + currUser + "'";
+	sql = "exec delStudentInfo '" + nodeID + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(nodeID);
 }

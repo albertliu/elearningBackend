@@ -51,6 +51,9 @@
 			//project material
 			arr.push('<input style="border:0px;" type="radio" id="uploadKind0" name="uploadKind" value="project_brochure" />招生简章&nbsp;');
 		}
+		if(mark=='invoiceList'){
+			arr.push('<input style="border:0px;" type="radio" id="uploadKind0" name="uploadKind" value="invoice_list" />发票清单&nbsp;');
+		}
 		if(mark=='studentList'){
 			//student material
 			arr.push('<input style="border:0px;" type="radio" id="uploadKind0" name="uploadKind" value="student_list" />学员报名表&nbsp;');

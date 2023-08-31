@@ -535,6 +535,7 @@
 		$("#open").hide();
 		$("#close").hide();
 		$("#reset").hide();
+		$("#btnDel").hide();
 		//$("#upload1").hide();
 		$("#enter").hide();
 		$("#username").prop("disabled",true);
