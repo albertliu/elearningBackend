@@ -149,20 +149,20 @@
 				}else{
 					$("#img_photo").attr("src","images/blank_photo.png");
 				}
-				// if(ar[22] > ""){
-				// 	$("#img_cardA").attr("src","/users" + ar[22]);
-				// }else{
-				// 	$("#img_cardA").attr("src","images/blank_cardA.png");
-				// 	$("#f_sign1").hide();
-				// }
-				// if(sign=="" || ar[22] == ""){
-				// 	$("#same1").hide();
-				// }
-				// if(ar[23] > ""){
-				// 	$("#img_cardB").attr("src","/users" + ar[23]);
-				// }else{
-				// 	$("#img_cardB").attr("src","images/blank_cardB.png");
-				// }
+				if(ar[22] > ""){
+					$("#img_cardA").attr("src","/users" + ar[22]);
+				}else{
+					$("#img_cardA").attr("src","images/blank_cardA.png");
+					$("#f_sign1").hide();
+				}
+				if(sign=="" || ar[22] == ""){
+					$("#same1").hide();
+				}
+				if(ar[23] > ""){
+					$("#img_cardB").attr("src","/users" + ar[23]);
+				}else{
+					$("#img_cardB").attr("src","images/blank_cardB.png");
+				}
 				var c = "";
 				if(ar[21] > ""){
 					c += "<a href='/users" + ar[21] + "?times=" + (new Date().getTime()) + "' target='_blank'>照片</a>";
@@ -332,20 +332,11 @@
 				</td>
 			</tr>
 			<tr>
-				<td align="left" colspan="2" style="padding-left:10px;" height='50px'>冶金(有色)生产<br>安全作业</td>
-				<td align="left" colspan="5">
-					<input type="checkbox" />&nbsp;煤气作业
+				<td align="center" height='45px' colspan="4" class='table_resume_title' width='15%' height='250px;'>
+					<img id="img_cardA" src="" value="" style='disply:block;width:340px;height:auto;max-height:250px;border:none;' />
 				</td>
-			</tr>
-			<tr>
-				<td align="left" colspan="2" style="padding-left:10px;">危险化学品安全作业</td>
-				<td align="left" colspan="5">
-					<input type="checkbox" />&nbsp;光气及光气化工艺作业 <input type="checkbox" />&nbsp;氧碱电解工艺作业 <input type="checkbox" />&nbsp;氯化工艺作业<br>
-					<input type="checkbox" />&nbsp;硝化工艺作业 <input type="checkbox" />&nbsp;合成氧工艺作业 <input type="checkbox" />&nbsp;裂解(裂化)工艺作业<br>
-					<input type="checkbox" />&nbsp;氟化工艺作业 <input type="checkbox" />&nbsp;加氢工艺作业 <input type="checkbox" />&nbsp;重氮化工艺作业<br>
-					<input type="checkbox" />&nbsp;氧化工艺作业 <input type="checkbox" />&nbsp;过氧化工艺作业 <input type="checkbox" />&nbsp;胺基化工艺作业<br>
-					<input type="checkbox" />&nbsp;磺化工艺作业 <input type="checkbox" />&nbsp;聚合工艺作业 <input type="checkbox" />&nbsp;烷基化工艺作业<br>
-					<input type="checkbox" />&nbsp;化工自动化控制仪表作业
+				<td align="center" colspan="4" class='table_resume_title' width='15%' height='250px;'>
+					<img id="img_cardB" src="" value="" style='disply:block;width:340px;height:auto;max-height:250px;border:none;' />
 				</td>
 			</tr>
 			<tr>
