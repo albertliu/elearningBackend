@@ -48,7 +48,7 @@
 					arr.push('<div style="position: relative;width:100%;height:80%;">');
 					arr.push('<div style="position: absolute; z-index:10;">');
 					arr.push('<div style="float:left;">');
-					arr.push('	<span><img src="/users' + path + '?times=' + (new Date().getTime()) + '" style="width:170px;margin:0px 0px 8px 250px;padding-left:80px;padding-top:' + (p==1? 144 : 180) + 'px;"></span>');
+					arr.push('	<span><img src="/users' + path + '?times=' + (new Date().getTime()) + '" style="width:170px;margin:0px 0px 8px 250px;padding-left:80px;padding-top:' + (p==1? 180 : 180) + 'px;"></span>');
 					arr.push('</div>');
 					arr.push('</div>');
 					arr.push('</div>');
