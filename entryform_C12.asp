@@ -267,12 +267,6 @@
 		</div>
 		<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
 			<div style="position: relative;width:100%;height:100%;">
-			<div style="position: absolute; z-index:30;">
-			<div style="float:left;">
-				<span><img id="f_sign1" src="" style="width:170px;margin:0px 0px 8px 60px;padding-left:80px;padding-top:635px;"></span>
-				<p id="same1" style='font-size:1.3em;text-indent:30px;font-family:方正舒体,幼圆;padding-top:20px;'>与原件内容一致</p>
-			</div>
-			</div>
 			<div style="position: absolute; z-index:10;">
 			<div style='text-align:center; margin:10px 0 20px 0;'><h3 id="reexamine" style='font-size:1.45em;'></h3></div>
 			<div style='margin: 12px;text-align:left; width:95%;'><span style='font-size:1.2em;'>学员编号：</span><span style='font-size:1.2em;' id="SNo"></span></div>
