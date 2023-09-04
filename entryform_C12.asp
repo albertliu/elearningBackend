@@ -89,7 +89,7 @@
 					$("#f_sign40").attr("src","/users/upload/companies/stamp/sign_znxf.png?times=" + (new Date().getTime()));
 					$("#date").html(sDate);
 					//$("#f_sign40").hide();
-					$("#date2").html(sDate);
+					// $("#date2").html(sDate);
 				}else{
 					$("#f_sign1").hide();
 					$("#f_sign20").hide();

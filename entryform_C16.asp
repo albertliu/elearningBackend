@@ -101,7 +101,7 @@
 					$("#date").html(new Date(sDate).format("yyyy.M.d"));
 					//$("#f_sign40").hide();
 					//$("#date2").html(sDate);
-					$("#date2").html(new Date(addDays(sDate,3)).format("yyyy.M.d"));
+					// $("#date2").html(new Date(addDays(sDate,3)).format("yyyy.M.d"));
 				}else{
 					//$("#f_sign1").hide();
 					$("#f_sign20").hide();
