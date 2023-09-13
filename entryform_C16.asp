@@ -229,7 +229,10 @@
 				<div style="position: absolute; z-index:10;">
 					<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>上海市高危行业负责人及安全生产管理人员安全知识和管理能力</h3></div>
 					<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>考核申请表</h3></div>
-					<div style='text-align:left; margin:10px 0 15px 30px;'><p style='font-size:1.5em; font-family: 幼圆;'>申请考试类别：<input type="checkbox" id="R0" />&nbsp;初证 <input type="checkbox" id="R1" />&nbsp;复审</p></div>
+					<div style='text-align:left; margin:10px 0 15px 30px;'>
+						<span style='font-size:1.5em; font-family: 幼圆;'>申请考试类别：<input type="checkbox" id="R0" />&nbsp;初证 <input type="checkbox" id="R1" />&nbsp;复审</span>
+						<span style='font-size:1.2em; padding-left:50px;'>学员编号：</span><span style='font-size:1.2em;' id="SNo"></span>
+					</div>
 					<table class='table_resume' style='width:99%;'>
 					<tr>
 						<td align="center" class='table_resume_title' width='15%' height='65px'>姓名</td><td align="center" width='13%'><p style='font-size:1em;' id="name"></p></td>
