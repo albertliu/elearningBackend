@@ -62,9 +62,9 @@
 		if(keyID>1){
 			$("#pageTitle").hide();
 		}
-		//getNeed2know(nodeID);
+		// getNeed2know(nodeID);
 		getNodeInfo(nodeID, refID);
-});
+	});
 
 	function getNodeInfo(id,ref){
 		$.get("studentCourseControl.asp?op=getNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
@@ -74,7 +74,7 @@
 			if(ar > "0"){
 				//$("#SNo").html(ar[25] + "&nbsp;&nbsp;班级：" + ar[34]);
 				$("#C" + ar[36]).prop("checked",true);
-				$("#reexamine" + ar[40]).prop("checked",true);
+				$("#R" + ar[40]).prop("checked",true);
 				//$("#reexamine").html(ar[41]);
 				//$("#courseName").html(ar[6]);
 				
@@ -83,29 +83,26 @@
 				course = ar[56];
 				sDate = ar[49];
 				price = ar[53];
-				if(reex==1){
-					$("#check2").prop("checked",true);	//复训
-				}else{
-					if(ar[57]==1){
-						$("#check3").prop("checked",true);	//复训过期，参加初训
-					}else{
-						$("#check1").prop("checked",true);	//第一次初训
-					}
-				}
 				
 				if(sign>""){
 					//$("#f_sign1").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
 					$("#f_sign20").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
-					$("#f_sign30").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
 					$("#f_sign40").attr("src","/users/upload/companies/stamp/sign_znxf.png?times=" + (new Date().getTime()));
 					$("#date").html(new Date(sDate).format("yyyy.M.d"));
-					//$("#f_sign40").hide();
+					var arr = new Array();
+					arr.push('<div style="position: relative;width:100%;height:80%;">');
+					arr.push('<div style="position: absolute; z-index:10;">');
+					arr.push('<div style="float:left;">');
+					arr.push('	<span style="padding-left:150px;"><img src="/users/upload/companies/stamp/station_znxf.png" style="width:150px;padding-top:840px;opacity:0.7;"></span>');
+					arr.push('</div>');
+					arr.push('</div>');
+					arr.push('</div>');
+					$("#stampCover").html(arr.join(""));
 					//$("#date2").html(sDate);
 					// $("#date2").html(new Date(addDays(sDate,3)).format("yyyy.M.d"));
 				}else{
 					//$("#f_sign1").hide();
 					$("#f_sign20").hide();
-					$("#f_sign30").hide();
 					$("#f_sign40").hide();
 				}
 			}else{
@@ -231,10 +228,11 @@
 				</div>
 				<div style="position: absolute; z-index:10;">
 					<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>上海市高危行业负责人及安全生产管理人员安全知识和管理能力</h3></div>
-					<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>考核申请表（2023版）</h3></div>
+					<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>考核申请表</h3></div>
+					<div style='text-align:left; margin:10px 0 15px 30px;'><p style='font-size:1.5em; font-family: 幼圆;'>申请考试类别：<input type="checkbox" id="R0" />&nbsp;初证 <input type="checkbox" id="R1" />&nbsp;复审</p></div>
 					<table class='table_resume' style='width:99%;'>
 					<tr>
-						<td align="center" class='table_resume_title' width='15%' height='60px'>姓名</td><td align="center" width='13%'><p style='font-size:1em;' id="name"></p></td>
+						<td align="center" class='table_resume_title' width='15%' height='65px'>姓名</td><td align="center" width='13%'><p style='font-size:1em;' id="name"></p></td>
 						<td align="center" class='table_resume_title' width='10%'>性别</td><td align="center" width='10%'><p style='font-size:1em;' id="sexName"></p></td>
 						<td align="center" class='table_resume_title' width='13%'>出生年月</td><td class='table_resume_title' width='14%'><p style='font-size:1em;' id="birthday"></p></td>
 						<td rowspan="4" colspan="2" align="center" class='table_resume_title' width='20%'>
@@ -242,73 +240,62 @@
 						</td>
 					</tr>
 					<tr>
-						<td align="center" class='table_resume_title' width='15%' height='60px'>国籍</td><td align="center" width='13%'><p style='font-size:1em;'>中国</p></td>
+						<td align="center" class='table_resume_title' width='15%' height='65px'>国籍</td><td align="center" width='13%'><p style='font-size:1em;'>中国</p></td>
 						<td align="center" class='table_resume_title' width='10%'>民族</td><td align="center" width='10%'><p style='font-size:1em;' id="ethnicity"></p></td>
 						<td align="center" class='table_resume_title' width='13%'>文化程度</td><td class='table_resume_title' width='14%'><p style='font-size:1em;' id="educationName"></p></td>
 					</tr>
 					<tr>
-						<td align="center" class='table_resume_title' height='60px'>证件类型</td><td align="center" colspan="3"><input type="checkbox" id="IDK0" />&nbsp;身份证 <input type="checkbox" />&nbsp;军官证 <input type="checkbox" />&nbsp;护照 <input type="checkbox" id="IDK1" />&nbsp;其他</td>
+						<td align="center" class='table_resume_title' height='65px'>证件类型</td><td align="center" colspan="3"><input type="checkbox" id="IDK0" />&nbsp;身份证 <input type="checkbox" />&nbsp;军官证 <input type="checkbox" />&nbsp;护照 <input type="checkbox" id="IDK1" />&nbsp;其他</td>
 						<td align="center" class='table_resume_title'>有效期限</td><td class='table_resume_title' width='14%'><p style='font-size:1em;' id="IDdate"></p></td>
 					</tr>
 					<tr>
-						<td align="center" class='table_resume_title' height='60px'>证件号码</td><td align="center" colspan="5"><p style='font-size:1em;' id="username"></p></td>
+						<td align="center" class='table_resume_title' height='65px'>证件号码</td><td align="center" colspan="5"><p style='font-size:1em;' id="username"></p></td>
 					</tr>
 					<tr>
-						<td align="center" class='table_resume_title' height='60px'>工作单位</td><td align="center" colspan="3"><p style='font-size:1em;' id="company"></p></td>
+						<td align="center" class='table_resume_title' height='65px'>工作单位</td><td align="center" colspan="3"><p style='font-size:1em;' id="company"></p></td>
 						<td align="center" class='table_resume_title'>从事岗位</td><td align="center" colspan="3"><p style='font-size:1em;' id="job"></p></td>
 					</tr>
 					<tr>
-						<td align="center" class='table_resume_title' height='60px'>联系地址</td><td align="center" colspan="3"><p style='font-size:1em;' id="address"></p></td>
+						<td align="center" class='table_resume_title' height='65px'>联系地址</td><td align="center" colspan="3"><p style='font-size:1em;' id="address"></p></td>
 						<td align="center" class='table_resume_title'>联系方式</td><td align="center" colspan="3"><p style='font-size:1em;' id="mobile"></p></td>
 					</tr>
 					<tr>
-						<td align="center" class='table_resume_title' height='60px'>申请考核工种</td>
+						<td align="center" class='table_resume_title' height='200px'>申请考试<br>项目</td>
 						<td align="left" colspan="7" style="line-height:30px;">
-							<input type="checkbox" />&nbsp;危险化学品生产单位主要负责人 <input type="checkbox" />&nbsp;&nbsp;&nbsp;危险化学品生产单位安全生产管理人员</br>
-							<input type="checkbox" id="CC16" />&nbsp;危险化学品经营单位主要负责人 <input type="checkbox" id="CC17" />&nbsp;&nbsp;&nbsp;危险化学品经营单位安全生产管理人员</br>
-							<input type="checkbox" />&nbsp;金属冶炼（炼钢）单位主要负责人 <input type="checkbox" />&nbsp;金属冶炼（炼钢）单位安全生产管理人员</br>
-							<input type="checkbox" />&nbsp;金属冶炼（炼铁）单位主要负责人 <input type="checkbox" />&nbsp;金属冶炼（炼铁）单位安全生产管理人员</br>
+							<input type="checkbox" />&nbsp;危险化学品生产单位主要负责人 <input type="checkbox" />&nbsp;&nbsp;&nbsp;危险化学品生产单位安全生产管理人员<br/>
+							<input type="checkbox" id="CC16" />&nbsp;危险化学品经营单位主要负责人 <input type="checkbox" id="CC17" />&nbsp;&nbsp;&nbsp;危险化学品经营单位安全生产管理人员<br/>
+							<input type="checkbox" />&nbsp;金属冶炼（炼钢）单位主要负责人 <input type="checkbox" />&nbsp;金属冶炼（炼钢）单位安全生产管理人员<br/>
+							<input type="checkbox" />&nbsp;金属冶炼（炼铁）单位主要负责人 <input type="checkbox" />&nbsp;金属冶炼（炼铁）单位安全生产管理人员<br/>
 						</td>
 					</tr>
 					<tr>
-						<td align="center" class='table_resume_title' height='40px;'>考核类型</td><td align="center" width='13%' colspan="3"><input type="checkbox" id="reexamine0" />&nbsp;初审 <input type="checkbox" id="reexamine1" />&nbsp;复审</td>
-						<td align="center" class='table_resume_title'><p style='font-size:1em;'>是否参加</p><p style='font-size:1em;'>相应培训</p></td><td align="center" width='13%' colspan="3"><p style='font-size:1em;'><input type="checkbox" checked />&nbsp;&nbsp;是&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" />&nbsp;&nbsp;否</p></td>
-					</tr>
-					<tr>
-						<td align="center" class='table_resume_title' height='40px;'>承担高危行业相关岗位情况</td>
+						<td align="center" class='table_resume_title' height='140px;'>注意事项</td>
 						<td align="left" colspan="7" style="padding-left:5px;line-height:30px;">
-							<p style='font-size:1em;'><input id="check1" type="checkbox" />&nbsp;&nbsp;本人是初次参加高危行业人员安全知识和管理能力考核。</p>
-							<p style='font-size:1em;'><input id="check2" type="checkbox" />&nbsp;&nbsp;本人此次参加高危行业人员安全知识和管理能力复审考核，在持原特种作业操作证书从事相应岗位期间，未发生过事故。</p>
-							<p style='font-size:1em;'><input style="border:0px;" type="checkbox" id="check3" value="" />&nbsp;&nbsp;本人因未按时参加复审导致原操作证书过期，重新申请参加高危行业人员安全知识和管理能力考核。</p>
-							<p style='font-size:1em;'>&nbsp;&nbsp;&nbsp;&nbsp;本人对填写所有信息以及提交材料的真实性、有效性和完整性负责，如有隐瞒，相关责任全部由本人承担。</p>
+							<p style='font-size:1em;'>&nbsp;&nbsp;&nbsp;&nbsp;本人承诺所提供资料真实完整有效，如因提供资料虚假而产生相关影响，由本人承担全部责任。</p>
 							<div style="display:table-cell;height:50px;vertical-align:middle;text-align:center">
-								<span style='font-size:1.2em;padding-left:280px;'>承诺人签名：</span>
-								<span><img id="f_sign20" src="" style="width:170px;padding-left:80px;"></span>
+								<span style='font-size:1.2em;padding-left:280px;'>申请人（签名）：</span>
+								<span><img id="f_sign20" src="" style="max-width:170px;max-height:40px;padding-left:80px;"></span>
+								<span id="date" style='font-size:1.5em;float:right;padding-right:100px;padding-top:3px;color:#555;font-family:"qyt","Ink Free";'></span>
+								<span style='font-size:1em;padding-left:190px;padding-top:60px;'>&nbsp;&nbsp;&nbsp;&nbsp;年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日</span>
 							</div>
 						</td>
 					</tr>
 					<tr>
-						<td align="left" class='table_resume_title' width='15%' height='55px' colspan="4">
-							<div style="display:table-cell;height:50px;vertical-align:middle;text-align:center">
-								<span style='font-size:1.2em;'>申请人签名：</span>
-								<span><img id="f_sign30" src="" style="width:170px;padding-left:80px;"></span>
+						<td align="left" class='table_resume_title' height='140px' colspan="8">
+							<div style="display:table-cell;height:100px;vertical-align:middle;text-align:left;">
+								<div><p style='font-size:1.2em;'>考试点审查意见：</p></div>
+								<div style="display:table-cell;vertical-align:middle;text-align:left;">
+									<span style='font-size:1.2em;padding-left:150px;'>考试点（盖章）：</span>
+									<span style='font-size:1.2em;padding-left:100px;'>经办人（签名）：</span>
+									<span style='font-size:1.2em;'><img id="f_sign40" src="" style="width:80px;padding-left:10px;"></span>
+									<span id="date2" style='font-size:1.4em;color:#555;font-family:"Aa跃然体","时光沙漏";'></span>
+								</div>
 							</div>
-							<p id="date" style='font-size:1.5em;float:right;padding-right:100px;padding-top:3px;color:#555;font-family:"qyt","Ink Free";'></p>
-							<p style='font-size:1em;padding-left:190px;padding-top:60px;'>&nbsp;&nbsp;&nbsp;&nbsp;年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日</p>
-						</td>
-						<td align="left" class='table_resume_title' width='15%' height='80px;' colspan="4">
-							<p style='font-size:1em;float:left;'>考试点意见：</p>
-							<br><br>
-							<div style="display:table-cell;height:30px;vertical-align:middle;text-align:center">
-								<span style='font-size:1.2em;padding-left:80px;'>经办人签名：</span>
-								<span><img id="f_sign40" src="" style="width:120px;padding-left:10px;"></span>
-							</div>
-							<p id="date2" style='font-size:1.4em;float:left;padding-left:190px;padding-top:3px;color:#555;font-family:"Aa跃然体","时光沙漏";'></p>
-							<p style='font-size:1em;padding-left:190px;'>&nbsp;&nbsp;&nbsp;&nbsp;年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日</p>
 						</td>
 					</tr>
 					</table>
 				</div>
+				<div id="stampCover"></div>
 			</div>
 			<div id="needCover"></div>
 			<div id="agreementCover"></div>

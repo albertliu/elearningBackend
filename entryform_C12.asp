@@ -73,27 +73,37 @@
 			ar = unescape(re).split("|");
 			if(ar > "0"){
 				$("#SNo").html(ar[25] + "&nbsp;&nbsp;班级：" + ar[34]);
-				$("#reexamine").html("上海市特种作业人员安全技术考核申请表（2023版）[" + ar[41] + "]");
+				$("#reexamine").html("上海市特种作业人员安全技术考核申请表");
 				//$("#courseName").html(ar[6]);
 				$("#C" + ar[36]).prop("checked",true);
+				$("#R" + ar[40]).prop("checked",true);
 				sign = (ar[52]==1?ar[48]:"");
 				reex = ar[40];
 				course = ar[56];
 				sDate = ar[49];
 				price = ar[53];
+				$("#f_sign30").hide();
 				
 				if(sign>""){
 					$("#f_sign1").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
 					$("#f_sign20").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
-					$("#f_sign30").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
+					// $("#f_sign30").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
 					$("#f_sign40").attr("src","/users/upload/companies/stamp/sign_znxf.png?times=" + (new Date().getTime()));
 					$("#date").html(sDate);
+					var arr = new Array();
+					arr.push('<div style="position: relative;width:100%;height:80%;">');
+					arr.push('<div style="position: absolute; z-index:10;">');
+					arr.push('<div style="float:left;">');
+					arr.push('	<span style="padding-left:150px;"><img src="/users/upload/companies/stamp/station_znxf.png" style="width:150px;padding-top:880px;opacity:0.7;"></span>');
+					arr.push('</div>');
+					arr.push('</div>');
+					arr.push('</div>');
+					$("#stampCover").html(arr.join(""));
 					//$("#f_sign40").hide();
 					// $("#date2").html(sDate);
 				}else{
 					$("#f_sign1").hide();
 					$("#f_sign20").hide();
-					$("#f_sign30").hide();
 					$("#f_sign40").hide();
 				}
 				
@@ -266,122 +276,124 @@
 			<input class="button" style="margin-left:20px;" type="button" id="btnGenerateZip" value="生成压缩包" />
 		</div>
 		<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
-			<div style="position: relative;width:100%;height:100%;">
-			<div style="position: absolute; z-index:10;">
-			<div style='text-align:center; margin:10px 0 20px 0;'><h3 id="reexamine" style='font-size:1.45em;'></h3></div>
-			<div style='margin: 12px;text-align:left; width:95%;'><span style='font-size:1.2em;'>学员编号：</span><span style='font-size:1.2em;' id="SNo"></span></div>
-			<table class='table_resume' style='width:99%;'>
-			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='45px'>姓名</td><td align="center" width='13%'><p style='font-size:1em;' id="name"></p></td>
-				<td align="center" class='table_resume_title' width='10%'>性别</td><td align="center" width='10%'><p style='font-size:1em;' id="sexName"></p></td>
-				<td align="center" class='table_resume_title' width='13%'>出生年月</td><td class='table_resume_title' width='14%'><p style='font-size:1em;' id="birthday"></p></td>
-				<td rowspan="4" colspan="2" align="center" class='table_resume_title' width='20%'>
-					<img id="img_photo" src="" value="" style='width:100px;border:none;' />
-				</td>
-			</tr>
-			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='45px'>国籍</td><td align="center" width='13%'><p style='font-size:1em;'>中国</p></td>
-				<td align="center" class='table_resume_title' width='10%'>民族</td><td align="center" width='10%'><p style='font-size:1em;' id="ethnicity"></p></td>
-				<td align="center" class='table_resume_title' width='13%'>文化程度</td><td class='table_resume_title' width='14%'><p style='font-size:1em;' id="educationName"></p></td>
-			</tr>
-			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='50px'>证件类型</td><td align="center" colspan="3"><input type="checkbox" id="IDK0" />&nbsp;身份证 <input type="checkbox" />&nbsp;军官证 <input type="checkbox" />&nbsp;护照 <input type="checkbox" id="IDK1" />&nbsp;其他</td>
-				<td align="center" class='table_resume_title' width='13%'>有效期限</td><td class='table_resume_title' width='14%'><p style='font-size:1em;' id="IDdate"></p></td>
-			</tr>
-			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='45px'>证件号码</td><td align="center" colspan="5"><p style='font-size:1em;' id="username"></p></td>
-			</tr>
-			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='45px'>工作单位</td><td align="center" colspan="3"><p style='font-size:1em;' id="company"></p></td>
-				<td align="center" class='table_resume_title' width='13%'>从事岗位</td><td align="center" colspan="3"><p style='font-size:1em;' id="job"></p></td>
-			</tr>
-			<tr>
-				<td align="center" class='table_resume_title' width='13%' height='45px'>联系地址</td><td align="center" colspan="3"><p style='font-size:1em;' id="address"></p></td>
-				<td align="center" class='table_resume_title' width='13%'>联系方式</td><td align="center" colspan="3"><p style='font-size:1em;' id="mobile"></p></td>
-			</tr>
-			<tr>
-				<td align="center" rowspan="4" class='table_resume_title' width='15%' height='45px'>申请考核工种</td>
-				<td align="left" colspan="2">电工作业</td>
-				<td align="left" colspan="5">
-					<input type="checkbox" id="CC12" />&nbsp;低压电工作业 <input type="checkbox" />&nbsp;高压电工作业 <input type="checkbox" />&nbsp;电力电缆作业</br>
-					<input type="checkbox" />&nbsp;继电保护作业 <input type="checkbox" />&nbsp;电气试验作业 <input type="checkbox" />&nbsp;防爆电气作业
-				</td>
-			</tr>
-			<tr>
-				<td align="left" colspan="2">焊接与热切割作业</td>
-				<td align="left" colspan="5">
-					<input type="checkbox" id="CC24" />&nbsp;熔化焊接与热切割作业
-				</td>
-			</tr>
-			<tr>
-				<td align="left" colspan="2">高处作业</td>
-				<td align="left" colspan="5">
-					<input type="checkbox" />&nbsp;登高架设作业 <input type="checkbox" id="CC15" />&nbsp;高处安装、维护、拆除作业
-				</td>
-			</tr>
-			<tr>
-				<td align="left" colspan="2">制冷与空调作业</td>
-				<td align="left" colspan="5">
-					<input type="checkbox" id="CC25" />&nbsp;制冷与空调设备运行操作作业 <input type="checkbox" id="CC26" />&nbsp;制冷与空调设备安装修理作业
-				</td>
-			</tr>
-			<tr>
-				<td align="left" colspan="2" style="padding-left:10px;" height='50px'>冶金(有色)生产<br>安全作业</td>
-				<td align="left" colspan="5">
-					<input type="checkbox" />&nbsp;煤气作业
-				</td>
-			</tr>
-			<tr>
-				<td align="left" colspan="2" style="padding-left:10px;">危险化学品安全作业</td>
-				<td align="left" colspan="5">
-					<input type="checkbox" />&nbsp;光气及光气化工艺作业 <input type="checkbox" />&nbsp;氧碱电解工艺作业 <input type="checkbox" />&nbsp;氯化工艺作业<br>
-					<input type="checkbox" />&nbsp;硝化工艺作业 <input type="checkbox" />&nbsp;合成氧工艺作业 <input type="checkbox" />&nbsp;裂解(裂化)工艺作业<br>
-					<input type="checkbox" />&nbsp;氟化工艺作业 <input type="checkbox" />&nbsp;加氢工艺作业 <input type="checkbox" />&nbsp;重氮化工艺作业<br>
-					<input type="checkbox" />&nbsp;氧化工艺作业 <input type="checkbox" />&nbsp;过氧化工艺作业 <input type="checkbox" />&nbsp;胺基化工艺作业<br>
-					<input type="checkbox" />&nbsp;磺化工艺作业 <input type="checkbox" />&nbsp;聚合工艺作业 <input type="checkbox" />&nbsp;烷基化工艺作业<br>
-					<input type="checkbox" />&nbsp;化工自动化控制仪表作业
-				</td>
-			</tr>
-			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='45px'>个人承诺</td>
-				<td align="left" colspan="7" style="padding-left:5px;">
-				<p style='font-size:1em;text-indent:30px;'>
-				经社区或者县级以上医疗机构体检健康合格，无妨碍从事相应特种作业的器质性心脏病、癫痫病、美尼尔氏症、眩晕症、癔病、震颤麻痹症、精神病、痴呆症以及其他疾病和生理缺陷。
-				</p>
-				<p style='font-size:1em;text-indent:30px;'>
-				本人承诺不超过国家法定退休年龄。
-				</p>
-				<p id="onShanghai" style='font-size:1em;text-indent:30px;'>
-				本人承诺户籍所在地或从业所在地为上海。
-				</p>
-				<p style='font-size:1em;text-indent:30px;'>
-				本人对填写所有信息以及提交材料的真实性、有效性和完整性负责，如有隐瞒，相关责任全部由本人承担。
-				</p>
-				<div style="display:table-cell;height:50px;vertical-align:middle;text-align:center">
-					<span style='font-size:1.2em;padding-left:280px;'>承诺人签名：</span>
-					<span><img id="f_sign20" src="" style="width:170px;padding-left:80px;"></span>
-				<div>
-				</td>
-			</tr>
-			<tr>
-				<td align="left" class='table_resume_title' width='15%' height='45px' colspan="4">
-					<div style="display:table-cell;height:50px;vertical-align:middle;text-align:center">
-						<span style='font-size:1.2em;'>申请人签名：</span>
-						<span><img id="f_sign30" src="" style="width:170px;padding-left:80px;"></span>
-					<div>
-					<p id="date" style='font-size:1.2em;float:right;padding-top:10px;padding-right:5px;'>年&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;日</p>
-				</td>
-				<td align="left" class='table_resume_title' width='15%' height='120px;' colspan="4">
-					<p style='font-size:1em;float:left;'>考试点意见：</p>
-					<br><br>
-					<div style="display:table-cell;height:30px;vertical-align:middle;text-align:center">
-						<span style='font-size:1.2em;padding-left:80px;'>经办人签名：</span>
-						<span><img id="f_sign40" src="" style="width:120px;padding-left:10px;"></span>
-					<div>
-					<p id="date2" style='font-size:1.2em;float:left;padding-left:150px;padding-top:10px;'>年&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;日</p>
-				</td>
-			</tr>
-			</table>
+			<div style="position: relative;width:100%;height:99%;">
+				<div style="position: absolute; z-index:10;">
+					<div style='text-align:center; margin:10px 0 15px 0;'><h3 id="reexamine" style='font-size:1.75em; font-family: 幼圆;'></h3></div>
+					<div style='text-align:left; margin:10px 0 15px 30px;'><p style='font-size:1.5em; font-family: 幼圆;'>申请考试类别：<input type="checkbox" id="R0" />&nbsp;初证 <input type="checkbox" id="R1" />&nbsp;复审</p></div>
+					<table class='table_resume' style='width:99%;border:2px solid black;'>
+					<tr>
+						<td align="center" class='table_resume_title' width='10%' height='45px'>姓名</td><td align="center" width='13%'><p style='font-size:1em;' id="name"></p></td>
+						<td align="center" class='table_resume_title' width='10%'>性别</td><td align="center" width='14%'><p style='font-size:1em;' id="sexName"></p></td>
+						<td align="center" class='table_resume_title' width='13%'>出生年月</td><td class='table_resume_title' width='14%'><p style='font-size:1em;' id="birthday"></p></td>
+						<td rowspan="4" colspan="2" align="center" class='table_resume_title' width='18%'>
+							<img id="img_photo" src="" value="" style='width:100px;border:none;' />
+						</td>
+					</tr>
+					<tr>
+						<td align="center" class='table_resume_title' height='45px'>国籍</td><td align="center" width='13%'><p style='font-size:1em;'>中国</p></td>
+						<td align="center" class='table_resume_title'>民族</td><td align="center" width='10%'><p style='font-size:1em;' id="ethnicity"></p></td>
+						<td align="center" class='table_resume_title'>文化程度</td><td class='table_resume_title' width='14%'><p style='font-size:1em;' id="educationName"></p></td>
+					</tr>
+					<tr>
+						<td align="center" class='table_resume_title' height='45px'>证件类型</td><td align="center" colspan="3" class="ef1p1"><input type="checkbox" id="IDK0" />&nbsp;身份证 <input type="checkbox" />&nbsp;护照 <input type="checkbox" id="IDK1" />&nbsp;其他</td>
+						<td align="center" class='table_resume_title'>有效期限</td><td class='table_resume_title'><p style='font-size:1em;' id="IDdate"></p></td>
+					</tr>
+					<tr>
+						<td align="center" class='table_resume_title' height='45px'>证件号码</td><td align="center" colspan="5"><p style='font-size:1em;' id="username"></p></td>
+					</tr>
+					<tr>
+						<td align="center" class='table_resume_title' height='45px'>工作单位</td><td align="center" colspan="3"><p style='font-size:1em;' id="unit"></p></td>
+						<td align="center" class='table_resume_title'>从事岗位</td><td align="center" colspan="3"><p style='font-size:1em;' id="job"></p></td>
+					</tr>
+					<tr>
+						<td align="center" class='table_resume_title' height='45px'>联系地址</td><td align="center" colspan="3"><p style='font-size:1em;' id="address"></p></td>
+						<td align="center" class='table_resume_title'>联系方式</td><td align="center" colspan="3"><p style='font-size:1em;' id="mobile"></p></td>
+					</tr>
+					<tr>
+						<td align="center" rowspan="6" class='table_resume_title' height='45px'>申<br>请<br>考<br>试<br>项<br>目</td>
+						<td align="left" colspan="2" class="ef1p1" style="padding-left:10px;" height='60px'>电工作业</td>
+						<td align="left" colspan="5" class="ef1p1">
+							<input type="checkbox" id="CC12" />&nbsp;低压电工作业 <input type="checkbox" id="CC27" />&nbsp;高压电工作业 <input type="checkbox" />&nbsp;电力电缆作业</br>
+							<input type="checkbox" />&nbsp;继电保护作业 <input type="checkbox" />&nbsp;电气试验作业 <input type="checkbox" />&nbsp;防爆电气作业
+						</td>
+					</tr>
+					<tr>
+						<td align="left" colspan="2" class="ef1p1" style="padding-left:10px;" height='40px'>焊接与热切割作业</td>
+						<td align="left" colspan="5" class="ef1p1">
+							<input type="checkbox" id="CC24" />&nbsp;熔化焊接与热切割作业
+						</td>
+					</tr>
+					<tr>
+						<td align="left" colspan="2" class="ef1p1" style="padding-left:10px;" height='40px'>高处作业</td>
+						<td align="left" colspan="5" class="ef1p1">
+							<input type="checkbox" />&nbsp;登高架设作业 <input type="checkbox" id="CC15" />&nbsp;高处安装、维护、拆除作业
+						</td>
+					</tr>
+					<tr>
+						<td align="left" colspan="2" class="ef1p1" style="padding-left:10px;" height='40px'>制冷与空调作业</td>
+						<td align="left" colspan="5" class="ef1p1">
+							<input type="checkbox" id="CC25" />&nbsp;制冷与空调设备运行操作作业 <input type="checkbox" id="CC26" />&nbsp;制冷与空调设备安装修理作业
+						</td>
+					</tr>
+					<tr>
+						<td align="left" colspan="2" class="ef1p1" style="padding-left:10px;" height='45px'>冶金(有色)生产<br>安全作业</td>
+						<td align="left" colspan="5" class="ef1p1">
+							<input type="checkbox" />&nbsp;煤气作业
+						</td>
+					</tr>
+					<tr>
+						<td align="left" colspan="2" class="ef1p1" style="padding-left:10px;">危险化学品安全作业</td>
+						<td align="left" colspan="5" class="ef1p1">
+							<input type="checkbox" />&nbsp;光气及光气化工艺作业 <input type="checkbox" />&nbsp;氧碱电解工艺作业 <br>
+							<input type="checkbox" />&nbsp;氯化工艺作业 <input type="checkbox" />&nbsp;硝化工艺作业 <input type="checkbox" />&nbsp;合成氧工艺作业 <br>
+							<input type="checkbox" />&nbsp;裂解(裂化)工艺作业 <input type="checkbox" />&nbsp;氟化工艺作业 <input type="checkbox" />&nbsp;加氢工艺作业 <br>
+							<input type="checkbox" />&nbsp;重氮化工艺作业 <input type="checkbox" />&nbsp;氧化工艺作业 <input type="checkbox" />&nbsp;过氧化工艺作业 <br>
+							<input type="checkbox" />&nbsp;胺基化工艺作业 <input type="checkbox" />&nbsp;磺化工艺作业 <input type="checkbox" />&nbsp;聚合工艺作业 <br>
+							<input type="checkbox" />&nbsp;烷基化工艺作业 <input type="checkbox" />&nbsp;化工自动化控制仪表作业
+						</td>
+					</tr>
+					<tr>
+						<td align="left" colspan="8" style="padding-left:5px;">
+							<p class="ef1p1" style='font-weight:bold;'>注意事项：</p>
+							<p class="ef1p1" style='text-indent:30px;'>
+							1.申请人须年满18周岁，且不超过国家法定退休年龄。
+							</p>
+							<p class="ef1p1" style='text-indent:30px;'>
+							2.申请人须经社区或者县级以上医疗机构体检健康合格，并无妨碍从事相应特种作业的器质性心脏病、癫痫病、美尼尔氏症、眩晕症、癔病、震颤麻痹症、精神病、痴呆症以及其他疾病和生理缺陷。
+							</p>
+							<p class="ef1p1" style='text-indent:30px;'>
+							3.申请人须具有初中及以上文化程度（申请危险化学品安全作业考试的，须具备高中或者相当于高中及以上文化程度）。
+							</p>
+							<p class="ef1p1" id="onShanghai" style='text-indent:30px;'>
+							4.初证申请人的户籍所在地、居住地或从业所在地须为上海市。
+							</p><br />
+							<p class="ef1p1" style='text-indent:30px;'>
+							本人已阅读并充分了解上述注意事项，承诺所提供资料真实完整有效，如因提供资料虚假而产生相关影响，由本人承担全部责任。
+							</p>
+							<div style="display:table-cell;height:50px;vertical-align:middle;text-align:center">
+								<span style='font-size:1.2em;padding-left:300px;'>申请人（签名）：</span>
+								<span><img id="f_sign20" src="" style="max-width:150px;max-height:40px;padding-left:10px;"></span>
+								<span id="date" style='font-size:1.5em;float:right;padding-left:10px;padding-top:20px;color:#555;font-family:"qyt","Ink Free";'></span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td align="left" class='table_resume_title' height='100px' colspan="8">
+							<div style="display:table-cell;height:100px;vertical-align:middle;text-align:left;">
+								<div><p style='font-size:1.2em;'>考试点审查意见：</p></div>
+								<div style="display:table-cell;vertical-align:middle;text-align:left;">
+									<span style='font-size:1.2em;padding-left:150px;'>考试点（盖章）：</span>
+									<span style='font-size:1.2em;padding-left:100px;'>经办人（签名）：</span>
+									<span style='font-size:1.2em;'><img id="f_sign40" src="" style="width:80px;padding-left:10px;"></span>
+									<span id="date2" style='font-size:1.4em;color:#555;font-family:"Aa跃然体","时光沙漏";'></span>
+								</div>
+							</div>
+						</td>
+					</tr>
+					
+					</table>
+				</div>
+				<div id="stampCover"></div>
 			</div>
 			</div>
 
