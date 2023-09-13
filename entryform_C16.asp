@@ -72,7 +72,7 @@
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar > "0"){
-				//$("#SNo").html(ar[25] + "&nbsp;&nbsp;班级：" + ar[34]);
+				$("#SNo").html(ar[25] + "&nbsp;&nbsp;班级：" + ar[34]);
 				$("#C" + ar[36]).prop("checked",true);
 				$("#R" + ar[40]).prop("checked",true);
 				//$("#reexamine").html(ar[41]);
