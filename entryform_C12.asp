@@ -7,7 +7,7 @@
 
 <title></title>
 
-<link href="css/style_inner1.css?v=1.2"  rel="stylesheet" type="text/css" />
+<link href="css/style_inner1.css?v=1.33"  rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/easyui/easyui.css?v=1.8.6">
 <link rel="stylesheet" type="text/css" href="css/easyui/icon.css">
 <link href="css/data_table_mini.css?v=20150411" rel="stylesheet" type="text/css" />
@@ -82,12 +82,9 @@
 				course = ar[56];
 				sDate = ar[49];
 				price = ar[53];
-				$("#f_sign30").hide();
 				
 				if(sign>""){
-					$("#f_sign1").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
 					$("#f_sign20").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
-					// $("#f_sign30").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
 					$("#f_sign40").attr("src","/users/upload/companies/stamp/sign_znxf.png?times=" + (new Date().getTime()));
 					$("#date").html(sDate);
 					var arr = new Array();
@@ -99,10 +96,8 @@
 					arr.push('</div>');
 					arr.push('</div>');
 					$("#stampCover").html(arr.join(""));
-					//$("#f_sign40").hide();
 					// $("#date2").html(sDate);
 				}else{
-					$("#f_sign1").hide();
 					$("#f_sign20").hide();
 					$("#f_sign40").hide();
 				}
@@ -159,20 +154,6 @@
 				}else{
 					$("#img_photo").attr("src","images/blank_photo.png");
 				}
-				// if(ar[22] > ""){
-				// 	$("#img_cardA").attr("src","/users" + ar[22]);
-				// }else{
-				// 	$("#img_cardA").attr("src","images/blank_cardA.png");
-				// 	$("#f_sign1").hide();
-				// }
-				// if(sign=="" || ar[22] == ""){
-				// 	$("#same1").hide();
-				// }
-				// if(ar[23] > ""){
-				// 	$("#img_cardB").attr("src","/users" + ar[23]);
-				// }else{
-				// 	$("#img_cardB").attr("src","images/blank_cardB.png");
-				// }
 				var c = "";
 				if(ar[21] > ""){
 					c += "<a href='/users" + ar[21] + "?times=" + (new Date().getTime()) + "' target='_blank'>照片</a>";
@@ -279,7 +260,10 @@
 			<div style="position: relative;width:100%;height:99%;">
 				<div style="position: absolute; z-index:10;">
 					<div style='text-align:center; margin:10px 0 15px 0;'><h3 id="reexamine" style='font-size:1.75em; font-family: 幼圆;'></h3></div>
-					<div style='text-align:left; margin:10px 0 15px 30px;'><p style='font-size:1.5em; font-family: 幼圆;'>申请考试类别：<input type="checkbox" id="R0" />&nbsp;初证 <input type="checkbox" id="R1" />&nbsp;复审</p></div>
+					<div style='text-align:left; margin:10px 0 15px 30px;'>
+						<span style='font-size:1.5em; font-family: 幼圆;'>申请考试类别：<input type="checkbox" id="R0" />&nbsp;初证 <input type="checkbox" id="R1" />&nbsp;复审</span>
+						<span style='font-size:1.2em; padding-left:50px;'>学员编号：</span><span style='font-size:1.2em;' id="SNo"></span>
+					</div>
 					<table class='table_resume' style='width:99%;border:2px solid black;'>
 					<tr>
 						<td align="center" class='table_resume_title' width='10%' height='45px'>姓名</td><td align="center" width='13%'><p style='font-size:1em;' id="name"></p></td>
@@ -373,13 +357,13 @@
 							<div style="display:table-cell;height:50px;vertical-align:middle;text-align:center">
 								<span style='font-size:1.2em;padding-left:300px;'>申请人（签名）：</span>
 								<span><img id="f_sign20" src="" style="max-width:150px;max-height:40px;padding-left:10px;"></span>
-								<span id="date" style='font-size:1.5em;float:right;padding-left:10px;padding-top:20px;color:#555;font-family:"qyt","Ink Free";'></span>
+								<span id="date" style='font-size:1.5em;padding-left:10px;padding-top:20px;color:#555;font-family:"qyt","Ink Free";'></span>
 							</div>
 						</td>
 					</tr>
 					<tr>
-						<td align="left" class='table_resume_title' height='100px' colspan="8">
-							<div style="display:table-cell;height:100px;vertical-align:middle;text-align:left;">
+						<td align="left" class='table_resume_title' height='80px' colspan="8">
+							<div style="display:table-cell;height:80px;vertical-align:middle;text-align:left;">
 								<div><p style='font-size:1.2em;'>考试点审查意见：</p></div>
 								<div style="display:table-cell;vertical-align:middle;text-align:left;">
 									<span style='font-size:1.2em;padding-left:150px;'>考试点（盖章）：</span>
@@ -395,7 +379,6 @@
 				</div>
 				<div id="stampCover"></div>
 			</div>
-			</div>
 
 			<div id="needCover"></div>
 			<div id="commitmentCover"></div>
@@ -403,6 +386,5 @@
 			<div id="materialsCover"></div>
 		</div>
 	</div>
-  </div>
 </div>
 </body>
