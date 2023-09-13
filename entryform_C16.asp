@@ -274,9 +274,8 @@
 							<p style='font-size:1em;'>&nbsp;&nbsp;&nbsp;&nbsp;本人承诺所提供资料真实完整有效，如因提供资料虚假而产生相关影响，由本人承担全部责任。</p>
 							<div style="display:table-cell;height:50px;vertical-align:middle;text-align:center">
 								<span style='font-size:1.2em;padding-left:280px;'>申请人（签名）：</span>
-								<span><img id="f_sign20" src="" style="max-width:170px;max-height:40px;padding-left:80px;"></span>
-								<span id="date" style='font-size:1.5em;float:right;padding-right:100px;padding-top:3px;color:#555;font-family:"qyt","Ink Free";'></span>
-								<span style='font-size:1em;padding-left:190px;padding-top:60px;'>&nbsp;&nbsp;&nbsp;&nbsp;年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日</span>
+								<span><img id="f_sign20" src="" style="max-width:170px;max-height:40px;padding-left:10px;"></span>
+								<span id="date" style='font-size:1.5em;padding-top:3px;color:#555;font-family:"qyt","Ink Free";'></span>
 							</div>
 						</td>
 					</tr>
@@ -287,7 +286,7 @@
 								<div style="display:table-cell;vertical-align:middle;text-align:left;">
 									<span style='font-size:1.2em;padding-left:150px;'>考试点（盖章）：</span>
 									<span style='font-size:1.2em;padding-left:100px;'>经办人（签名）：</span>
-									<span style='font-size:1.2em;'><img id="f_sign40" src="" style="width:80px;padding-left:10px;"></span>
+									<span style='font-size:1.2em;'><img id="f_sign40" src="" style="width:100px;padding-left:10px;"></span>
 									<span id="date2" style='font-size:1.4em;color:#555;font-family:"Aa跃然体","时光沙漏";'></span>
 								</div>
 							</div>

@@ -94,7 +94,7 @@
 					arr.push('<div style="position: relative;width:100%;height:80%;">');
 					arr.push('<div style="position: absolute; z-index:10;">');
 					arr.push('<div style="float:left;">');
-					arr.push('	<span style="padding-left:150px;"><img src="/users/upload/companies/stamp/station_znxf.png" style="width:150px;padding-top:880px;opacity:0.7;"></span>');
+					arr.push('	<span style="padding-left:150px;"><img src="/users/upload/companies/stamp/station_znxf.png" style="width:150px;padding-top:860px;opacity:0.7;"></span>');
 					arr.push('</div>');
 					arr.push('</div>');
 					arr.push('</div>');
@@ -384,7 +384,7 @@
 								<div style="display:table-cell;vertical-align:middle;text-align:left;">
 									<span style='font-size:1.2em;padding-left:150px;'>考试点（盖章）：</span>
 									<span style='font-size:1.2em;padding-left:100px;'>经办人（签名）：</span>
-									<span style='font-size:1.2em;'><img id="f_sign40" src="" style="width:80px;padding-left:10px;"></span>
+									<span style='font-size:1.2em;'><img id="f_sign40" src="" style="width:100px;padding-left:10px;"></span>
 									<span id="date2" style='font-size:1.4em;color:#555;font-family:"Aa跃然体","时光沙漏";'></span>
 								</div>
 							</div>
