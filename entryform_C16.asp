@@ -163,7 +163,7 @@
 					$("#img_cardB").attr("src","images/blank_cardB.png");
 				}
 				//$("#date").html(currDate);
-				var p = 0;
+				var p = 1;
 				if(keyID == 2){
 					//打印学历证明
 					p = 1;
