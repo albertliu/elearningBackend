@@ -30,8 +30,14 @@
 	var op = 0;
 	var refID = 0;
 	var updateCount = 1;
+	var sign = "";
+	var reex = 0;
+	var course = "";
+	var sDate = "";
+	var price = 0;
 	<!--#include file="js/commFunction.js"-->
 	<!--#include file="need2know.js"-->
+	<!--#include file="agreement.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";		//enterID
 		refID = "<%=refID%>";		//username
@@ -61,6 +67,17 @@
 				$("#SNo").html(ar[25] + "&nbsp;&nbsp;班级：" + ar[34]);
 				//$("#reexamine").html(ar[41]);
 				$("#courseName").html(ar[6]);
+				sign = (ar[52]==1?ar[48]:"");
+				reex = ar[40];
+				course = ar[56];
+				sDate = ar[49];
+				price = ar[53];
+				if(sign>""){
+					$("#f_sign20").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
+					$("#date").html(sDate);
+				}else{
+					$("#f_sign20").hide();
+				}
 			}else{
 				//alert("没有找到要打印的内容。");
 				return false;
@@ -119,6 +136,7 @@
 				if(c == ""){c = "&nbsp;&nbsp;身份证正反面还未生成";}
 				$("#fire_materials").html(c);
 				//$("#date").html(currDate);
+				getAgreement(ar[1],ar[2],course,sign,sDate,price);
 				if(keyID==1){
 					resumePrint();
 				}
@@ -250,13 +268,15 @@
 					<p style='font-size:1em;float:left;'>本人声明，以上填写信息及所提交的资料均合法、真实、有效，并承诺对填写内容负责。</p>
 					<br><br>
 					<span style='font-size:1em;float:center;padding-right:50px;'>申请人（签字）：</span>
-					<span style='font-size:1em;float:right;'>年&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;日</span>
+					<span><img id="f_sign20" src="" style="width:170px;padding-left:80px;"></span>
+					<span id="date" style='font-size:1em;font-family:"qyt","Ink Free";'>年&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;日</span>
 				</td>
 			</tr>
 			</table>
 			<p style='font-size:1.2em;'>注：申请人在网上申请的，填报申请表后打印盖章签字并扫描上传。同时提供身份证明、学历证明复印件各一份。相应考试大纲有要求的，还需提供一份体检报告。</p>
 			<div style="page-break-after:always"></div>
 			<div id="needCover"></div>
+			<div id="agreementCover"></div>
 		</div>
 	</div>
   </div>
