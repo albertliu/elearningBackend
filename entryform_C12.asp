@@ -131,11 +131,11 @@
 				//$("#phone").html(ar[17]);
 				$("#job").html(ar[18]);
 				if(ar[29]!="spc" && ar[29]!="shm"){
-					$("#company").html(ar[35]);
+					$("#unit").html(ar[35]);
 					k = (ar[35]=="个人" || ar[35]=="个体"? 1: 0);
 					//$("#dept2").html(ar[36]);
 				}else{
-					$("#company").html(ar[12] + "." + ar[13] + "." + ar[14]);
+					$("#unit").html(ar[12] + "." + ar[13] + "." + ar[14]);
 					k = 0;
 					//$("#dept2").html(ar[14]);
 				}
@@ -280,7 +280,7 @@
 					</tr>
 					<tr>
 						<td align="center" class='table_resume_title' height='45px'>证件类型</td><td align="center" colspan="3" class="ef1p1"><input type="checkbox" id="IDK0" />&nbsp;身份证 <input type="checkbox" />&nbsp;护照 <input type="checkbox" id="IDK1" />&nbsp;其他</td>
-						<td align="center" class='table_resume_title'>有效期限</td><td class='table_resume_title'><p style='font-size:1em;' id="IDdate"></p></td>
+						<td align="center" class='table_resume_title'>证件有效期</td><td class='table_resume_title'><p style='font-size:1em;' id="IDdate"></p></td>
 					</tr>
 					<tr>
 						<td align="center" class='table_resume_title' height='45px'>证件号码</td><td align="center" colspan="5"><p style='font-size:1em;' id="username"></p></td>

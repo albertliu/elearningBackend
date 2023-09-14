@@ -124,10 +124,10 @@
 				//$("#phone").html(ar[17]);
 				$("#job").html(ar[18]);
 				if(ar[29]=="znxf"){
-					$("#company").html(ar[35] + "." + ar[36]);
+					$("#unit").html(ar[35] + "." + ar[36]);
 					//$("#dept2").html(ar[36]);
 				}else{
-					$("#company").html(ar[12] + "." + ar[13] + "." + ar[14]);
+					$("#unit").html(ar[12] + "." + ar[13] + "." + ar[14]);
 					//$("#dept2").html(ar[14]);
 				}
 				$("#educationName").html(ar[31]);
@@ -224,8 +224,6 @@
 		</div>
 		<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
 			<div style="position: relative;width:100%;height:100%;">
-				<div style="position: absolute; z-index:30;">
-				</div>
 				<div style="position: absolute; z-index:10;">
 					<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>上海市高危行业负责人及安全生产管理人员安全知识和管理能力</h3></div>
 					<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>考核申请表</h3></div>
@@ -249,13 +247,13 @@
 					</tr>
 					<tr>
 						<td align="center" class='table_resume_title' height='65px'>证件类型</td><td align="center" colspan="3"><input type="checkbox" id="IDK0" />&nbsp;身份证 <input type="checkbox" />&nbsp;军官证 <input type="checkbox" />&nbsp;护照 <input type="checkbox" id="IDK1" />&nbsp;其他</td>
-						<td align="center" class='table_resume_title'>有效期限</td><td class='table_resume_title' width='14%'><p style='font-size:1em;' id="IDdate"></p></td>
+						<td align="center" class='table_resume_title'>证件有效期</td><td class='table_resume_title' width='14%'><p style='font-size:1em;' id="IDdate"></p></td>
 					</tr>
 					<tr>
 						<td align="center" class='table_resume_title' height='65px'>证件号码</td><td align="center" colspan="5"><p style='font-size:1em;' id="username"></p></td>
 					</tr>
 					<tr>
-						<td align="center" class='table_resume_title' height='65px'>工作单位</td><td align="center" colspan="3"><p style='font-size:1em;' id="company"></p></td>
+						<td align="center" class='table_resume_title' height='65px'>工作单位</td><td align="center" colspan="3"><p style='font-size:1em;' id="unit"></p></td>
 						<td align="center" class='table_resume_title'>从事岗位</td><td align="center" colspan="3"><p style='font-size:1em;' id="job"></p></td>
 					</tr>
 					<tr>

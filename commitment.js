@@ -1,7 +1,7 @@
 ﻿	//kind: 0 单位  1 个人
 	function getCommitment(username,name,course,path,signDate,kind){
 		var arr = new Array();
-		arr.push('<div style="page-break-after:always"></div>');
+		arr.push('<div style="page-break-after:always">&nbsp;</div>');
 		arr.push('<div style="">');
 		arr.push('	<div style="text-align:left;margin:8px 0 0 0;"><h3 style="font-size:1.3em;">附件：复审提交材料</h2></div>');
 		arr.push('	<div style="text-align:center; margin:25px 0 20px 0;"><h2 style="font-size:1.7em;">从事特种作业情况说明（' + (kind==0? '单位':'个人') + '）</h2></div>');
