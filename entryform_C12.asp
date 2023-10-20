@@ -118,9 +118,9 @@
 				}
 				if(c == ""){c = "&nbsp;&nbsp;申报材料还未生成";}
 				$("#f_materials").html(c);
-				if(reex == 1){
-					$("#onShanghai").hide();
-				}
+				// if(reex == 1){
+					// $("#onShanghai").hide();
+				// }
 			}else{
 				//alert("没有找到要打印的内容。");
 				return false;
