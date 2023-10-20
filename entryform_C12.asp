@@ -82,11 +82,18 @@
 				course = ar[56];
 				sDate = ar[49];
 				price = ar[53];
+				$("#date2").html("&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp");
+				$("#date2M").html("&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp");
+				$("#date2D").html("&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp");
 				
 				if(sign>""){
 					$("#f_sign20").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
 					$("#f_sign40").attr("src","/users/upload/companies/stamp/sign_znxf.png?times=" + (new Date().getTime()));
-					$("#date").html(sDate);
+					let date1 = new Date(sDate).format("yyyy.MM.dd");
+					$("#date").html(date1.substr(0,4));
+					$("#dateM").html(date1.substr(5,2));
+					$("#dateD").html(date1.substr(8,2));
+					// $("#date").html(sDate);
 					var arr = new Array();
 					arr.push('<div style="position: relative;width:100%;height:80%;">');
 					arr.push('<div style="position: absolute; z-index:10;">');
@@ -100,6 +107,9 @@
 				}else{
 					$("#f_sign20").hide();
 					$("#f_sign40").hide();
+					$("#date").html("&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp");
+					$("#dateM").html("&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp");
+					$("#dateD").html("&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp");
 				}
 				
 				var c = "";
@@ -132,7 +142,7 @@
 				$("#job").html(ar[18]);
 				if(ar[29]!="spc" && ar[29]!="shm"){
 					$("#unit").html(ar[35]);
-					k = (ar[35]=="个人" || ar[35]=="个体"? 1: 0);
+					// k = (ar[35]=="个人" || ar[35]=="个体"? 1: 0);
 					//$("#dept2").html(ar[36]);
 				}else{
 					$("#unit").html(ar[12] + "." + ar[13] + "." + ar[14]);
@@ -168,15 +178,16 @@
 					getNeed2know(nodeID);
 					getAgreement(ar[1],ar[2],course,sign,sDate,price);
 				}
-				if(reex==1){
-					if(ar[44]==""){
-						//情况说明模板
-						getCommitment(ar[1],ar[2],course,sign,sDate,k);
-					}else{
-						//已上传的情况说明图片
-						k = 1;
-					}
-				}
+				// if(reex==1){
+				// 	if(ar[44]==""){
+				// 		//情况说明模板
+				// 		getCommitment(ar[1],ar[2],course,sign,sDate,k);
+				// 	}else{
+				// 		//已上传的情况说明图片
+				// 		k = 1;
+				// 	}
+				// }
+				k = 0;
 				getMaterials(ar[1],sign,p,k);
 				//$("#date").html(currDate);
 				if(keyID==1){
@@ -358,6 +369,11 @@
 								<span style='font-size:1.2em;padding-left:300px;'>申请人（签名）：</span>
 								<span><img id="f_sign20" src="" style="max-width:150px;max-height:40px;padding-left:10px;"></span>
 								<span id="date" style='font-size:1.5em;padding-left:10px;padding-top:20px;color:#555;font-family:"qyt","Ink Free";'></span>
+								<span style='font-size:1.2em;'>年</span>
+								<span id="dateM" style='font-size:1.5em;padding-top:20px;color:#555;font-family:"qyt","Ink Free";'></span>
+								<span style='font-size:1.2em;'>月</span>
+								<span id="dateD" style='font-size:1.5em;padding-top:20px;color:#555;font-family:"qyt","Ink Free";'></span>
+								<span style='font-size:1.2em;'>日</span>
 							</div>
 						</td>
 					</tr>
@@ -370,6 +386,11 @@
 									<span style='font-size:1.2em;padding-left:100px;'>经办人（签名）：</span>
 									<span style='font-size:1.2em;'><img id="f_sign40" src="" style="width:100px;padding-left:10px;"></span>
 									<span id="date2" style='font-size:1.4em;color:#555;font-family:"Aa跃然体","时光沙漏";'></span>
+									<span style='font-size:1.2em;'>年</span>
+									<span id="date2M" style='font-size:1.4em;color:#555;font-family:"Aa跃然体","时光沙漏";'></span>
+									<span style='font-size:1.2em;'>月</span>
+									<span id="date2D" style='font-size:1.4em;color:#555;font-family:"Aa跃然体","时光沙漏";'></span>
+									<span style='font-size:1.2em;'>日</span>
 								</div>
 							</div>
 						</td>
