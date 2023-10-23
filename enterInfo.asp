@@ -537,7 +537,7 @@
 		if(c == "C17"){
 			c = "C16";
 		}
-		window.open("entryform_" + c + ".asp?nodeID=" + nodeID + "&refID=" + refID + "&keyID=1", "_self");
+		window.open("entryform_" + c + ".asp?nodeID=" + nodeID + "&refID=" + refID + "&keyID=1" + "&times=" + (new Date().getTime()), "_self");
 	}
 	
 	function generateFiremanMaterials(){
@@ -575,7 +575,7 @@
 		if(c == "C17"){
 			c = "C16";
 		}
-		window.open("entryform_" + c + ".asp?keyID=" + k + "&nodeID=" + nodeID + "&refID=" + refID + "&kindID=" + $("#certID").val(), "_self");
+		window.open("entryform_" + c + ".asp?keyID=" + k + "&nodeID=" + nodeID + "&refID=" + refID + "&kindID=" + $("#certID").val() + "&times=" + (new Date().getTime()), "_self");
 	}
 	
 	function setButton(){
