@@ -38,7 +38,6 @@
 	var price = 0;
 	<!--#include file="js/commFunction.js"-->
 	<!--#include file="need2know.js"-->
-	<!--#include file="commitment.js"-->
 	<!--#include file="agreement.js"-->
 	<!--#include file="materials_emergency.js"-->
 	$(document).ready(function (){
@@ -367,7 +366,7 @@
 							</p>
 							<div style="display:table-cell;height:50px;vertical-align:middle;text-align:center">
 								<span style='font-size:1.2em;padding-left:300px;'>申请人（签名）：</span>
-								<span><img id="f_sign20" src="" style="max-width:150px;max-height:40px;padding-left:10px;"></span>
+								<span><img id="f_sign20" src="" style="max-width:150px;max-height:40px;padding-left:0px;"></span>
 								<span id="date" style='font-size:1.5em;padding-left:10px;padding-top:20px;color:#555;font-family:"qyt","Ink Free";'></span>
 								<span style='font-size:1.2em;'>年</span>
 								<span id="dateM" style='font-size:1.5em;padding-top:20px;color:#555;font-family:"qyt","Ink Free";'></span>
@@ -383,8 +382,8 @@
 								<div><p style='font-size:1.2em;'>考试点审查意见：</p></div>
 								<div style="display:table-cell;vertical-align:middle;text-align:left;">
 									<span style='font-size:1.2em;padding-left:150px;'>考试点（盖章）：</span>
-									<span style='font-size:1.2em;padding-left:100px;'>经办人（签名）：</span>
-									<span style='font-size:1.2em;'><img id="f_sign40" src="" style="width:100px;padding-left:10px;"></span>
+									<span style='font-size:1.2em;padding-left:70px;'>经办人（签名）：</span>
+									<span style='font-size:1.2em;'><img id="f_sign40" src="" style="width:100px;padding-left:0px;"></span>
 									<span id="date2" style='font-size:1.4em;color:#555;font-family:"Aa跃然体","时光沙漏";'></span>
 									<span style='font-size:1.2em;'>年</span>
 									<span id="date2M" style='font-size:1.4em;color:#555;font-family:"Aa跃然体","时光沙漏";'></span>
@@ -402,7 +401,6 @@
 			</div>
 
 			<div id="needCover"></div>
-			<div id="commitmentCover"></div>
 			<div id="agreementCover"></div>
 			<div id="materialsCover"></div>
 		</div>
