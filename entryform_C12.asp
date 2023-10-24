@@ -87,6 +87,7 @@
 				
 				if(sign>""){
 					$("#f_sign20").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
+					$("#f_sign40").hide();
 					// $("#f_sign40").attr("src","/users/upload/companies/stamp/sign_znxf.png?times=" + (new Date().getTime())); 	//考点签名
 					let date1 = new Date(sDate).format("yyyy.MM.dd");
 					$("#date").html(date1.substr(0,4));
