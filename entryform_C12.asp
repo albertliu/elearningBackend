@@ -385,7 +385,7 @@
 									<span style='font-size:1.2em;padding-left:130px;'>考试点（盖章）：</span>
 									<span style='font-size:1.2em;padding-left:70px;'>经办人（签名）：</span>
 									<span style='font-size:1.2em;'><img id="f_sign40" src="" style="width:100px;padding-left:0px;"></span>
-									<span id="date2" style='padding-left:70px;font-size:1.4em;color:#555;font-family:"Aa跃然体","时光沙漏";'></span>
+									<span id="date2" style='padding-left:100px;font-size:1.4em;color:#555;font-family:"Aa跃然体","时光沙漏";'></span>
 									<span style='font-size:1.2em;'>年</span>
 									<span id="date2M" style='font-size:1.4em;color:#555;font-family:"Aa跃然体","时光沙漏";'></span>
 									<span style='font-size:1.2em;'>月</span>
