@@ -83,12 +83,18 @@
 				course = ar[56];
 				sDate = ar[49];
 				price = ar[53];
+				$("#date2").html("&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp");
+				$("#date2M").html("&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp");
+				$("#date2D").html("&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp");
 				
 				if(sign>""){
 					//$("#f_sign1").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
 					$("#f_sign20").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
-					$("#f_sign40").attr("src","/users/upload/companies/stamp/sign_znxf.png?times=" + (new Date().getTime()));
-					$("#date").html(new Date(sDate).format("yyyy.M.d"));
+					// $("#f_sign40").attr("src","/users/upload/companies/stamp/sign_znxf.png?times=" + (new Date().getTime()));
+					let date1 = new Date(sDate).format("yyyy.MM.dd");
+					$("#date").html(date1.substr(0,4));
+					$("#dateM").html(date1.substr(5,2));
+					$("#dateD").html(date1.substr(8,2));
 					var arr = new Array();
 					arr.push('<div style="position: relative;width:100%;height:80%;">');
 					arr.push('<div style="position: absolute; z-index:10;">');
@@ -97,13 +103,16 @@
 					arr.push('</div>');
 					arr.push('</div>');
 					arr.push('</div>');
-					$("#stampCover").html(arr.join(""));
+					// $("#stampCover").html(arr.join(""));
 					//$("#date2").html(sDate);
 					// $("#date2").html(new Date(addDays(sDate,3)).format("yyyy.M.d"));
 				}else{
 					//$("#f_sign1").hide();
 					$("#f_sign20").hide();
 					$("#f_sign40").hide();
+					$("#date").html("&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp");
+					$("#dateM").html("&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp");
+					$("#dateD").html("&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp");
 				}
 			}else{
 				//alert("没有找到要打印的内容。");
@@ -276,7 +285,12 @@
 							<div style="display:table-cell;height:50px;vertical-align:middle;text-align:center">
 								<span style='font-size:1.2em;padding-left:280px;'>申请人（签名）：</span>
 								<span><img id="f_sign20" src="" style="max-width:170px;max-height:40px;padding-left:10px;"></span>
-								<span id="date" style='font-size:1.5em;padding-top:3px;color:#555;font-family:"qyt","Ink Free";'></span>
+								<span id="date" style='font-size:1.5em;padding-left:10px;padding-top:20px;color:#555;font-family:"qyt","Ink Free";'></span>
+								<span style='font-size:1.2em;'>年</span>
+								<span id="dateM" style='font-size:1.5em;padding-top:20px;color:#555;font-family:"qyt","Ink Free";'></span>
+								<span style='font-size:1.2em;'>月</span>
+								<span id="dateD" style='font-size:1.5em;padding-top:20px;color:#555;font-family:"qyt","Ink Free";'></span>
+								<span style='font-size:1.2em;'>日</span>
 							</div>
 						</td>
 					</tr>
@@ -288,7 +302,12 @@
 									<span style='font-size:1.2em;padding-left:150px;'>考试点（盖章）：</span>
 									<span style='font-size:1.2em;padding-left:100px;'>经办人（签名）：</span>
 									<span style='font-size:1.2em;'><img id="f_sign40" src="" style="width:100px;padding-left:10px;"></span>
-									<span id="date2" style='font-size:1.4em;color:#555;font-family:"Aa跃然体","时光沙漏";'></span>
+									<span id="date2" style='padding-left:100px;font-size:1.4em;color:#555;font-family:"Aa跃然体","时光沙漏";'></span>
+									<span style='font-size:1.2em;'>年</span>
+									<span id="date2M" style='font-size:1.4em;color:#555;font-family:"Aa跃然体","时光沙漏";'></span>
+									<span style='font-size:1.2em;'>月</span>
+									<span id="date2D" style='font-size:1.4em;color:#555;font-family:"Aa跃然体","时光沙漏";'></span>
+									<span style='font-size:1.2em;'>日</span>
 								</div>
 							</div>
 						</td>
