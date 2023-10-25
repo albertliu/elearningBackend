@@ -86,6 +86,7 @@
 				$("#date2").html("&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp");
 				$("#date2M").html("&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp");
 				$("#date2D").html("&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp");
+				$("#f_sign40").hide();
 				
 				if(sign>""){
 					//$("#f_sign1").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
@@ -283,9 +284,14 @@
 						<td align="left" colspan="7" style="padding-left:5px;line-height:30px;">
 							<p style='font-size:1em;'>&nbsp;&nbsp;&nbsp;&nbsp;本人承诺所提供资料真实完整有效，如因提供资料虚假而产生相关影响，由本人承担全部责任。</p>
 							<div style="display:table-cell;height:50px;vertical-align:middle;text-align:center">
-								<span style='font-size:1.2em;padding-left:280px;'>申请人（签名）：</span>
-								<span><img id="f_sign20" src="" style="max-width:170px;max-height:40px;padding-left:10px;"></span>
-								<span id="date" style='font-size:1.5em;padding-top:3px;color:#555;font-family:"qyt","Ink Free";'></span>
+								<span style='font-size:1.2em;padding-left:180px;'>申请人（签名）：</span>
+								<span><img id="f_sign20" src="" style="max-width:150px;max-height:40px;padding-left:0px;"></span>
+								<span id="date" style='font-size:1.5em;padding-left:10px;padding-top:20px;color:#555;font-family:"qyt","Ink Free";'></span>
+								<span style='font-size:1.2em;'>年</span>
+								<span id="dateM" style='font-size:1.5em;padding-top:20px;color:#555;font-family:"qyt","Ink Free";'></span>
+								<span style='font-size:1.2em;'>月</span>
+								<span id="dateD" style='font-size:1.5em;padding-top:20px;color:#555;font-family:"qyt","Ink Free";'></span>
+								<span style='font-size:1.2em;'>日</span>
 							</div>
 						</td>
 					</tr>
