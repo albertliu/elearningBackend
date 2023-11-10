@@ -309,52 +309,52 @@
 				arr = [];
 				if(ar[21] > ""){
 					$("#img_photo").attr("src","/users" + ar[21] + "?times=" + (new Date().getTime()));
-					$("#img_photo").attr("value","/users" + ar[21]);
+					$("#img_photo").attr("value","/users" + ar[21] + "?times=" + (new Date().getTime()));
 				}else{
 					$("#img_photo").attr("src","images/blank_photo.png" + "?times=" + (new Date().getTime()));
 					arr.push("," + "photo");
 				}
 				if(ar[22] > ""){
 					$("#img_cardA").attr("src","/users" + ar[22] + "?times=" + (new Date().getTime()));
-					$("#img_cardA").attr("value","/users" + ar[22]);
+					$("#img_cardA").attr("value","/users" + ar[22] + "?times=" + (new Date().getTime()));
 				}else{
 					$("#img_cardA").attr("src","images/blank_cardA.png" + "?times=" + (new Date().getTime()));
 					arr.push("," + "cardA");
 				}
 				if(ar[23] > ""){
 					$("#img_cardB").attr("src","/users" + ar[23] + "?times=" + (new Date().getTime()));
-					$("#img_cardB").attr("value","/users" + ar[23]);
+					$("#img_cardB").attr("value","/users" + ar[23] + "?times=" + (new Date().getTime()));
 				}else{
 					$("#img_cardB").attr("src","images/blank_cardB.png" + "?times=" + (new Date().getTime()));
 					arr.push("," + "cardB");
 				}
 				if(ar[24] > ""){
 					$("#img_education").attr("src","/users" + ar[24] + "?times=" + (new Date().getTime()));
-					$("#img_education").attr("value","/users" + ar[24]);
+					$("#img_education").attr("value","/users" + ar[24] + "?times=" + (new Date().getTime()));
 				}else{
 					$("#img_education").attr("src","images/blank_education.png" + "?times=" + (new Date().getTime()));
 				}
 				if(ar[43] > ""){
 					$("#img_CHESICC").attr("src","/users" + ar[43] + "?times=" + (new Date().getTime()));
-					$("#img_CHESICC").attr("value","/users" + ar[43]);
+					$("#img_CHESICC").attr("value","/users" + ar[43] + "?times=" + (new Date().getTime()));
 				}else{
 					$("#img_CHESICC").attr("src","images/blank_CHESICC.png" + "?times=" + (new Date().getTime()));
 				}
 				if(ar[44] > ""){
 					$("#img_employment").attr("src","/users" + ar[44] + "?times=" + (new Date().getTime()));
-					$("#img_employment").attr("value","/users" + ar[44]);
+					$("#img_employment").attr("value","/users" + ar[44] + "?times=" + (new Date().getTime()));
 				}else{
 					$("#img_employment").attr("src","images/blank_employment.png" + "?times=" + (new Date().getTime()));
 				}
 				if(ar[45] > ""){
 					$("#img_jobCertificate").attr("src","/users" + ar[45] + "?times=" + (new Date().getTime()));
-					$("#img_jobCertificate").attr("value","/users" + ar[45]);
+					$("#img_jobCertificate").attr("value","/users" + ar[45] + "?times=" + (new Date().getTime()));
 				}else{
 					$("#img_jobCertificate").attr("src","images/blank_jobCertificate.png" + "?times=" + (new Date().getTime()));
 				}
 				if(ar[50] > ""){
 					$("#img_promise").attr("src","/users" + ar[50] + "?times=" + (new Date().getTime()));
-					$("#img_promise").attr("value","/users" + ar[50]);
+					$("#img_promise").attr("value","/users" + ar[50] + "?times=" + (new Date().getTime()));
 				}else{
 					$("#img_promise").attr("src","images/blank_promise.png" + "?times=" + (new Date().getTime()));
 				}
