@@ -43,7 +43,7 @@
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";		//enterID
 		refID = "<%=refID%>";		//username
-		keyID = "<%=keyID%>";		//0 预览  1 打印  2 文件
+		keyID = "<%=keyID%>";		//0 预览  1 打印  2 申报材料  3 报名表
 		op = "<%=op%>";
 		
 		$.ajaxSetup({ 
@@ -59,9 +59,9 @@
 		$("#btnGenerateZip").click(function(){
 			generateZip();
 		});
-		if(keyID==2){
+		//if(keyID==2){
 			$("#pageTitle").hide();
-		}
+		//}
 		getNodeInfo(nodeID, refID);
 	});
 
