@@ -1,5 +1,6 @@
 ﻿
 	function getAgreement(username,name,course,path,signDate,price){
+		price = (price==0 ? price="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;":price)
 		var arr = new Array();
 		arr.push('<div style="page-break-after:always">&nbsp;</div>');
 		arr.push('<div style="">');

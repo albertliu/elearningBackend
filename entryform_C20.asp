@@ -41,6 +41,12 @@
 	var keyID = 0;
 	kindID = "";
 	var updateCount = 1;
+	var sign = "";
+	var reex = 0;
+	var course = "";
+	var sDate = "";
+	var price = 0;
+	<!--#include file="agreement.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";		//enterID
 		refID = "<%=refID%>";		//username
@@ -95,6 +101,11 @@
 				$("#courseName").html(ar[6]);
 				$("#missingItems").html("缺项：" + ar[43]);
 				kindID = ar[36];
+				sign = (ar[52]==1?ar[48]:"");
+				reex = ar[40];
+				course = ar[56];
+				sDate = ar[49];
+				// price = ar[53];
 				if(kindID=="C20A"){
 					$("#fire_kind4_0").prop("disabled",true);
 				}else{
@@ -178,6 +189,10 @@
 				}
 				if(c == ""){c = "&nbsp;&nbsp;身份证正面还未上传";}
 				$("#img_cardA").html(c);
+				if(keyID==1){
+					resumePrint();
+				}
+				getAgreement(ar[1],ar[2],course,sign,sDate,price);
 				if(keyID==1){
 					resumePrint();
 				}
@@ -463,6 +478,7 @@
 			</tr>
 			</table>
 			<div style='margin: 12px;text-align:left; width:95%;'><p style='font-size:1.2em;'>&bull; 注：凡在“申报资格”中选择带有“相关职业”选项的，需要勾选“相关职业”内容。</p></div>
+			<div id="agreementCover"></div>
 		</div>
 	</div>
   </div>

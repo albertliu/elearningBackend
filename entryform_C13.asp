@@ -56,7 +56,7 @@
 		});
 		getNeed2know(nodeID);
 		getNodeInfo(nodeID, refID);
-});
+	});
 
 	function getNodeInfo(id,ref){
 		$.get("studentCourseControl.asp?op=getNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
@@ -71,7 +71,7 @@
 				reex = ar[40];
 				course = ar[56];
 				sDate = ar[49];
-				price = ar[53];
+				// price = ar[53];
 				if(sign>""){
 					$("#f_sign20").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
 					$("#date").html(sDate);
@@ -243,12 +243,12 @@
 				<td align="center" class='table_resume_title'>申请项目代号</td><td align="center" colspan="2"><p style='font-size:1em;'>A</p></td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='120px;'>工作简历</td><td align="left" colspan="4"><p style='font-size:1em;padding-top:60px;padding-left:5px;'>从事特种作业相关工作两年以上</p></td>
+				<td align="center" class='table_resume_title' width='15%' height='90px;'>工作简历</td><td align="left" colspan="4"><p style='font-size:1em;padding-top:30px;padding-left:5px;'>从事特种作业相关工作两年以上</p></td>
 			</tr>
 			<tr>
 				<td align="center" height='48px;' colspan="5" class='table_resume_title' width='15%' height='250px;'>
-					<span style="float:left;"><img id="img_cardA" src="" value="" style='disply:block;width:340px;height:auto;max-height:250px;border:none;' /></span>
-					<span style="float:right;"><img id="img_cardB" src="" value="" style='disply:block;width:340px;height:auto;max-height:250px;border:none;' /></span>
+					<span style="float:left;"><img id="img_cardA" src="" value="" style='disply:block;width:340px;height:auto;max-height:230px;border:none;' /></span>
+					<span style="float:right;"><img id="img_cardB" src="" value="" style='disply:block;width:340px;height:auto;max-height:230px;border:none;' /></span>
 				</td>
 			</tr>
 			<tr>
@@ -274,7 +274,7 @@
 			</tr>
 			</table>
 			<p style='font-size:1.2em;'>注：申请人在网上申请的，填报申请表后打印盖章签字并扫描上传。同时提供身份证明、学历证明复印件各一份。相应考试大纲有要求的，还需提供一份体检报告。</p>
-			<div style="page-break-after:always"></div>
+			<div style="page-break-after:always">&nbsp;</div>
 			<div id="needCover"></div>
 			<div id="agreementCover"></div>
 		</div>
