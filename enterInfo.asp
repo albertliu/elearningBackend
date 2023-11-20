@@ -52,6 +52,7 @@
 		$("#dateInvoice").click(function(){WdatePicker();});
 		$("#dateInvoicePick").click(function(){WdatePicker();});
 		$("#currDiplomaDate").click(function(){WdatePicker();});
+		$("#signatureDate").click(function(){WdatePicker();});
 		$.ajaxSetup({ 
 			async: false 
 		}); 
@@ -429,7 +430,7 @@
 				if($("#overdue").prop("checked")){
 					over = 1;
 				}
-				$.get("studentCourseControl.asp?op=updateEnterClass&nodeID=" + nodeID + "&refID=" + $("#classID").val() + "&overdue=" + over + "&keyID=" + $("#SNo").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&fromID=" + $("#fromID").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+				$.get("studentCourseControl.asp?op=updateEnterClass&nodeID=" + nodeID + "&refID=" + $("#classID").val() + "&overdue=" + over + "&keyID=" + $("#SNo").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&signatureDate=" + $("#signatureDate").val() + "&fromID=" + $("#fromID").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 					//jAlert(unescape(re));
 					getNodeInfo(nodeID);
 					printEntryform(1);
@@ -617,6 +618,7 @@
 						$("#btnRefund").show();
 						$("#btnCloseStudentCourse").show();
 						$("#btnReviveStudentCourse").hide();
+						$("#signatureDate").prop("readonly",false);
 						if(!$("#materialCheck").attr("checked")){
 							$("#btnMaterialCheck").show();
 						}

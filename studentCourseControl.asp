@@ -1021,7 +1021,7 @@ if(op == "updatePayPrice"){
 }	
 
 if(op == "updateEnterClass"){
-	sql = "exec updateEnterClass " + nodeID + ",'" + refID + "','" + keyID + "','" + String(Request.QueryString("currDiplomaID")) + "','" + String(Request.QueryString("currDiplomaDate")) + "'," + String(Request.QueryString("overdue")) + ",'" + String(Request.QueryString("fromID")) + "','" + memo + "','" + currUser + "'";
+	sql = "exec updateEnterClass " + nodeID + ",'" + refID + "','" + keyID + "','" + String(Request.QueryString("currDiplomaID")) + "','" + String(Request.QueryString("currDiplomaDate")) + "','" + String(Request.QueryString("signatureDate")) + "'," + String(Request.QueryString("overdue")) + ",'" + String(Request.QueryString("fromID")) + "','" + memo + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(0);
 }	
