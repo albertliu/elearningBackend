@@ -429,7 +429,7 @@
 				if($("#overdue").prop("checked")){
 					over = 1;
 				}
-				$.get("studentCourseControl.asp?op=updateEnterClass&nodeID=" + nodeID + "&refID=" + $("#classID").val() + "&overdue=" + over + "&keyID=" + $("#SNo").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&fromID=" + $("#fromID").val() + "&times=" + (new Date().getTime()),function(re){
+				$.get("studentCourseControl.asp?op=updateEnterClass&nodeID=" + nodeID + "&refID=" + $("#classID").val() + "&overdue=" + over + "&keyID=" + $("#SNo").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&fromID=" + $("#fromID").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 					//jAlert(unescape(re));
 					getNodeInfo(nodeID);
 					printEntryform(1);
