@@ -245,7 +245,7 @@
 			}
 		}
 		
-		setDraggable();
+		// setDraggable();
 		/*
 		var imgArr = $("#xx").find("img");
 		//alert(imgArr.length);
