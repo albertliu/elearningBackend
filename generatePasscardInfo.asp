@@ -644,7 +644,7 @@
 		$("#qty").val(0);
 		$("#startTime").val(currDate + " 16:30");
 		$("#startNo").val(1);
-		$("#address").val("黄兴路158号D103");
+		$("#address").val("黄兴路158号D103三楼");
 		$("#notes").val("请务必携带身份证原件和准考证；迟到15分钟不得入场。");
 	}
 	

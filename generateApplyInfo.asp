@@ -563,7 +563,7 @@
 		$("#title").val("");
 		$("#startDate").val(currDate);
 		$("#qty").val(0);
-		$("#address").val("黄兴路158号D103");
+		$("#address").val("黄兴路158号D103三楼");
 	}
 	
 	function getUpdateCount(){
