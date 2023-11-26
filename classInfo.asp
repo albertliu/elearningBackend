@@ -957,7 +957,7 @@
 		$("#kindID").val(0);
 		$("#pre").val(0);
 		$("#signatureType").val(1);
-		$("#classroom").val("黄兴路158号D103");
+		$("#classroom").val("黄兴路158号D103三楼");
 		$("#dateStart").val(addDays(currDate,3) + " 8:30");
 		$("#dateEnd").val("");
 		$("#regDate").val(currDate);
