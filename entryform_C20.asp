@@ -1,4 +1,4 @@
-﻿<!--#include file="js/doc1.js" -->
+﻿<!--#include file="js/doc.js" -->
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/nav.dwt" codeOutsideHTMLIsLocked="false" -->
@@ -46,13 +46,17 @@
 	var course = "";
 	var sDate = "";
 	var price = 0;
+	var k = 0;
+	<!--#include file="js/commFunction.js"-->
 	<!--#include file="agreement.js"-->
+	<!--#include file="materials_emergency.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";		//enterID
 		refID = "<%=refID%>";		//username
 		keyID = "<%=keyID%>";		//0 预览  1 打印
 		kindID = "<%=kindID%>";		//certID
 		op = "<%=op%>";
+		
 		$("#fire_employDate").click(function(){WdatePicker();});
 		$("#fire_gradeDate").click(function(){WdatePicker();});
 		
@@ -193,6 +197,9 @@
 					resumePrint();
 				}
 				getAgreement(ar[1],ar[2],course,sign,sDate,price);
+				k = 0;
+				var p = 1;
+				getMaterials(ar[1],sign,p,k);
 				if(keyID==1){
 					resumePrint();
 				}
@@ -478,8 +485,9 @@
 			</tr>
 			</table>
 			<div style='margin: 12px;text-align:left; width:95%;'><p style='font-size:1.2em;'>&bull; 注：凡在“申报资格”中选择带有“相关职业”选项的，需要勾选“相关职业”内容。</p></div>
-			<div id="agreementCover"></div>
 		</div>
+		<div id="agreementCover"></div>
+		<div id="materialsCover"></div>
 	</div>
   </div>
 </div>

@@ -1,14 +1,14 @@
 ﻿	//path: 签名文件 p: 1 打印学历证明 0 不打印  k: 1 打印从事特种作业情况说明（在职证明） 0 不打印
 	function getMaterials(username,path,p,k){
 		$.getJSON(uploadURL + "/public/getStudentMaterials?username=" + username + "&IDcard=0",function(data){
-			//jAlert(unescape(data));
+			// jAlert(unescape(data));
 			var c = 0;
 			var i = 0;
 			var idc = 0;
 			$("#materialsCover").empty();
 			var arr = new Array();
 			if(data.length>0){
-				arr.push('<div style="page-break-after:always"></div>');
+				arr.push('<div style="page-break-after:always">&nbsp;</div>');
 				arr.push('<div style="float:left;width:100%;">');
 				arr.push('<table style="margin-top:10mm;width:100%;">');
 				$.each(data,function(iNum,val){
@@ -80,6 +80,7 @@
 					arr.push('</div>');
 				}
 				arr.push('</div>');
+				// alert(arr.join(""))
 				if(i>0){
 					$("#materialsCover").html(arr.join(""));
 				}
