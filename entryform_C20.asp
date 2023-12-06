@@ -193,9 +193,6 @@
 				}
 				if(c == ""){c = "&nbsp;&nbsp;身份证正面还未上传";}
 				$("#img_cardA").html(c);
-				if(keyID==1){
-					resumePrint();
-				}
 				getAgreement(ar[1],ar[2],course,sign,sDate,price);
 				k = 0;
 				var p = 1;
@@ -485,9 +482,9 @@
 			</tr>
 			</table>
 			<div style='margin: 12px;text-align:left; width:95%;'><p style='font-size:1.2em;'>&bull; 注：凡在“申报资格”中选择带有“相关职业”选项的，需要勾选“相关职业”内容。</p></div>
+			<div id="agreementCover"></div>
+			<div id="materialsCover"></div>
 		</div>
-		<div id="agreementCover"></div>
-		<div id="materialsCover"></div>
 	</div>
   </div>
 </div>
