@@ -30,15 +30,15 @@
 						arr.push('</td>');
 						arr.push('</tr>');
 					}
-					// if(k==1 && val["kindID"]==5){	//在职证明
-					// 	i += 1;
-					// 	//arr.push('<div style="page-break-after:always"></div>');
-					// 	arr.push('<tr>');
-					// 	arr.push('<td align="center" style="width:100%;">');
-					// 	arr.push('	<img src="users' + val["filename"] + '" style="max-width:600px;max-height:600px;padding-top:20px;">');
-					// 	arr.push('</td>');
-					// 	arr.push('</tr>');
-					// }
+					if(k==1 && val["kindID"]==5){	//在职证明
+						i += 1;
+						// arr.push('<div style="page-break-after:always"></div>');
+						arr.push('<tr>');
+						arr.push('<td align="center" style="width:100%;">');
+						arr.push('	<img src="users' + val["filename"] + '" style="max-width:600px;max-height:600px;padding-top:20px;">');
+						arr.push('</td>');
+						arr.push('</tr>');
+					}
 				});
 				arr.push('</table>');
 				arr.push('</div>');

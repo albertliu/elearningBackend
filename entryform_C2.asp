@@ -30,7 +30,13 @@
 	var op = 0;
 	var refID = 0;
 	var updateCount = 1;
+	var courseID = "";
+	var sign = "";
+	var sDate = "";
+	var k = 0;
 	<!--#include file="js/commFunction.js"-->
+	<!--#include file="agreement.js"-->
+	<!--#include file="materials_emergency.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";		//enterID
 		refID = "<%=refID%>";		//username
@@ -60,6 +66,9 @@
 				}else{
 					$("#img_signature").attr("src","images/blank_signature.png");
 				}
+				courseID = ar[5];
+				sign = (ar[52]==1?ar[48]:"");
+				sDate = ar[49];
 			}else{
 				//alert("没有找到要打印的内容。");
 				return false;
@@ -89,6 +98,12 @@
 					$("#img_cardA").attr("src","images/blank_cardA.png");
 				}
 				//$("#date").html(currDate);
+				if(courseID=="L37" || courseID=="L36"){
+					k = 1;
+					var p = 1;
+					getMaterials(ar[1],sign,p,k);
+				}
+
 				if(keyID==1){
 					resumePrint();
 				}
@@ -173,6 +188,8 @@
 			<div style='margin: 12px;text-align:left; width:95%;'><p style='font-size:1.2em;'>&bull; 提交1张2寸免冠彩色照片。</p></div>
 			<div style='margin: 12px;text-align:right; width:95%; padding-right:100px;'><span style='font-size:1.3em;padding-top:20px;'>学员签名：</span><span><img id="img_signature" src="" value="" style='width:100px;border:none;float:right;' /></span></div>
 			<div style='margin: 12px;text-align:right; width:95%;'><p id="signatureDate" style='font-size:1em;color:#A0A0A0;'></p></div>
+			<div id="agreementCover"></div>
+			<div id="materialsCover"></div>
 		</div>
 	</div>
   </div>
