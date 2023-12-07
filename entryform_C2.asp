@@ -32,7 +32,9 @@
 	var updateCount = 1;
 	var courseID = "";
 	var sign = "";
+	var course = "";
 	var sDate = "";
+	var price = 0;
 	var k = 0;
 	<!--#include file="js/commFunction.js"-->
 	<!--#include file="agreement.js"-->
@@ -68,7 +70,9 @@
 				}
 				courseID = ar[5];
 				sign = (ar[52]==1?ar[48]:"");
+				course = ar[56];
 				sDate = ar[49];
+				price = ar[53];
 			}else{
 				//alert("没有找到要打印的内容。");
 				return false;
@@ -101,6 +105,7 @@
 				if(courseID=="L37" || courseID=="L36"){
 					k = 1;
 					var p = 1;
+					getAgreement(ar[1],ar[2],course,sign,sDate,price);
 					getMaterials(ar[1],sign,p,k);
 				}
 
