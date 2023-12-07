@@ -367,7 +367,6 @@
 				}else{
 					$("#img_promise").attr("src","images/blank_promise.png" + "?times=" + (new Date().getTime()));
 				}
-				alert(ar[51])
 				if(ar[51] > ""){
 					$("#img_social").attr("src","/users" + ar[51] + "?times=" + (new Date().getTime()));
 					$("#img_social").attr("value","/users" + ar[51] + "?times=" + (new Date().getTime()));
