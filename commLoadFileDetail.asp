@@ -32,6 +32,7 @@
 			arr.push('<input style="border:0px;" type="radio" id="uploadKind5" name="uploadKind" value="student_employment" />在职证明&nbsp;');
 			arr.push('<input style="border:0px;" type="radio" id="uploadKind6" name="uploadKind" value="student_jobCertificate" />职业资格证书&nbsp;');
 			arr.push('<input style="border:0px;" type="radio" id="uploadKind7" name="uploadKind" value="student_promise" />承诺书&nbsp;');
+			arr.push('<input style="border:0px;" type="radio" id="uploadKind8" name="uploadKind" value="student_social" />社保证明&nbsp;');
 		}
 		if(mark=='host'){
 			//host material

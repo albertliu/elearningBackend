@@ -181,6 +181,10 @@
 			showLoadFile("student_promise",$("#username").val(),"student",$("#host").val());
 			getNodeInfo(nodeID,refID);
 		});
+		$("#add_img_social").click(function(){
+			showLoadFile("student_social",$("#username").val(),"student",$("#host").val());
+			getNodeInfo(nodeID,refID);
+		});
 		$("#img_photo").click(function(){
 			if($("#img_photo").attr("value")>""){
 				//window.open($("#img_photo").attr("value"));
@@ -220,6 +224,11 @@
 		$("#img_promise").click(function(){
 			if($("#img_promise").attr("value")>""){
 				window.open($("#img_promise").attr("value"));
+			}
+		});
+		$("#img_social").click(function(){
+			if($("#img_social").attr("value")>""){
+				window.open($("#img_social").attr("value"));
 			}
 		});
 		$("#kindID").change(function(){
@@ -357,6 +366,13 @@
 					$("#img_promise").attr("value","/users" + ar[50] + "?times=" + (new Date().getTime()));
 				}else{
 					$("#img_promise").attr("src","images/blank_promise.png" + "?times=" + (new Date().getTime()));
+				}
+				alert(ar[51])
+				if(ar[51] > ""){
+					$("#img_social").attr("src","/users" + ar[51] + "?times=" + (new Date().getTime()));
+					$("#img_social").attr("value","/users" + ar[51] + "?times=" + (new Date().getTime()));
+				}else{
+					$("#img_social").attr("src","images/blank_social.png" + "?times=" + (new Date().getTime()));
 				}
 				//$("#photo").html(c);
 				//getDownloadFile("studentID");
@@ -613,6 +629,7 @@
 		$("#img_cardB").attr("src","");
 		$("#img_education").attr("src","");
 		$("#img_promise").attr("src","");
+		$("#img_social").attr("src","");
 	}
 
 	function setZNXF(){
@@ -1046,6 +1063,12 @@
 		<td align="right" style="width:15%;"><img id="add_img_promise" src="images/plus.png" tag="plus" /></td>
 		<td id="td_img_promise" style="width:85%;">
 			<img id="img_promise" tag="student_promise" src="" value="" style='width:150px;border:none;' />
+		</td>
+	</tr>
+	<tr>
+		<td align="right" style="width:15%;"><img id="add_img_social" src="images/plus.png" tag="plus" /></td>
+		<td id="td_img_social" style="width:85%;">
+			<img id="img_social" tag="student_social" src="" value="" style='width:150px;border:none;' />
 		</td>
 	</tr>
 	<tr>
