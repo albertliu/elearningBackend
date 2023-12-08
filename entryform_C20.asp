@@ -196,7 +196,8 @@
 				getAgreement(ar[1],ar[2],course,sign,sDate,price);
 				k = 0;
 				var p = 1;
-				getMaterials(ar[1],sign,p,k);
+				var s = 1;
+				getMaterials(ar[1],sign,p,k,s);
 				if(keyID==1){
 					resumePrint();
 				}

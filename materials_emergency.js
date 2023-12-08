@@ -1,5 +1,5 @@
-﻿	//path: 签名文件 p: 1 打印学历证明 0 不打印  k: 1 打印从事特种作业情况说明（在职证明） 0 不打印
-	function getMaterials(username,path,p,k){
+﻿	//path: 签名文件 p: 1 打印学历证明 0 不打印  k: 1 打印从事特种作业情况说明（在职证明） 0 不打印  s: 1 打印社保证明
+	function getMaterials(username,path,p,k,s){
 		$.getJSON(uploadURL + "/public/getStudentMaterials?username=" + username + "&IDcard=0",function(data){
 			// jAlert(unescape(data));
 			var c = 0;
@@ -36,6 +36,15 @@
 						arr.push('<tr>');
 						arr.push('<td align="center" style="width:100%;">');
 						arr.push('	<img src="users' + val["filename"] + '" style="max-width:600px;max-height:600px;padding-top:20px;">');
+						arr.push('</td>');
+						arr.push('</tr>');
+					}
+					if(s==1 && val["kindID"]==8){	//社保证明
+						i += 1;
+						// arr.push('<div style="page-break-after:always"></div>');
+						arr.push('<tr>');
+						arr.push('<td align="center" style="width:100%;">');
+						arr.push('	<img src="users' + val["filename"] + '" style="max-width:600px;max-height:900px;padding-top:20px;">');
 						arr.push('</td>');
 						arr.push('</tr>');
 					}

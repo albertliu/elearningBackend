@@ -105,8 +105,9 @@
 				if(courseID=="L37" || courseID=="L36"){
 					k = 1;
 					var p = 1;
+					var s = 1;	//社保证明
 					getAgreement(ar[1],ar[2],course,sign,sDate,price);
-					getMaterials(ar[1],sign,p,k);
+					getMaterials(ar[1],sign,p,k,s);
 				}
 
 				if(keyID==1){
