@@ -171,12 +171,13 @@
 				if(c == ""){c = "&nbsp;&nbsp;照片还未上传";}
 				$("#f_photo").html(c);
 				var p = 1;
-				if(keyID == 2){
-					//打印学历证明
-					p = 1;
+				k = 0;
+				if(keyID == 3){
+					//上传的报名表不打印附件
 				}else{
 					getNeed2know(nodeID);
 					getAgreement(ar[1],ar[2],course,sign,sDate,price);
+					getMaterials(ar[1],sign,p,k);
 				}
 				// if(reex==1){
 				// 	if(ar[44]==""){
@@ -187,8 +188,6 @@
 				// 		k = 1;
 				// 	}
 				// }
-				k = 0;
-				getMaterials(ar[1],sign,p,k);
 				//$("#date").html(currDate);
 				if(keyID==1){
 					resumePrint();
@@ -268,7 +267,7 @@
 			<input class="button" style="margin-left:20px;" type="button" id="btnGenerateZip" value="生成压缩包" />
 		</div>
 		<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
-			<div style="position: relative;width:100%;height:99%;">
+			<div style="position: relative;width:100%;height:98%;">
 				<div style="position: absolute; z-index:10;">
 					<div style='text-align:center; margin:10px 0 15px 0;'><h3 id="reexamine" style='font-size:1.75em; font-family: 幼圆;'></h3></div>
 					<div style='text-align:left; margin:10px 0 15px 30px;'>
