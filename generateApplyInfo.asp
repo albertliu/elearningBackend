@@ -32,6 +32,7 @@
 	var address = "";
     var certID = "";
 	var imgFile = "<img src='images/attachment.png' style='width:15px;'>";
+	var imgFileRed = "<img src='images/attachmentRed.png' style='width:15px;'>";
 	var timer1 = null;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
@@ -423,7 +424,7 @@
 					if(ar1[24]==''){
 						arr.push("<td class='center'><div id='material" + ar1[2] + "'><span onclick='generateMaterials(" + ar1[2] + ",\"" + ar1[4] + "\",\"" + ar1[23] + "\")' title='申报材料'><img src='images/addDoc.png' style='width:15px;'><span><div></td>");
 					}else{
-						arr.push("<td class='center'><a href='javascript:void(0);' onclick='openMaterial(\"/users" + ar1[24] + "?t=" + (new Date().getTime()) + "\");' ondblclick='generateMaterials(" + ar1[2] + ",\"" + ar1[4] + "\",\"" + ar1[23] + "\")' title='申报材料'>" + imgFile + "</a></td>");
+						arr.push("<td class='center'><div id='material" + ar1[2] + "'><a href='javascript:void(0);' onclick='openMaterial(\"/users" + ar1[24] + "?t=" + (new Date().getTime()) + "\");' ondblclick='generateMaterials(" + ar1[2] + ",\"" + ar1[4] + "\",\"" + ar1[23] + "\")' title='申报材料'>" + imgFile + "</a></div></td>");
 					}
 					arr.push("<td class='left'><input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + k + "' name='visitstockchk'></td>");
 					arr.push("</tr>");
@@ -469,8 +470,8 @@
 		if(confirm("确定要生成报名材料吗？")){
 			$.getJSON(uploadURL + "/outfiles/generate_emergency_materials?refID=" + username + "&nodeID=" + enterID + "&certID=" + cert + "&keyID=2" ,function(data){
 				if(data>""){
+					$("#material" + enterID).html("<a href='/users" + data + "?t=" + (new Date().getTime()) + "' target='_blank' title='申报材料'>" + imgFileRed + "</a>");
 					alert("已生成文件");
-					$("#material" + enterID).html("<a href='/users" + data + "?t=" + (new Date().getTime()) + "' target='_blank' title='申报材料'>" + imgFile + "</a>");
 				}else{
 					alert("没有可供处理的数据。");
 				}
