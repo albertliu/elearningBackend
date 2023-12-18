@@ -287,7 +287,7 @@
 			}else{
 				arr.push("<th width='5%'>缺</th>");
 			}
-			arr.push("<th width='6%'>学号</th>");
+			arr.push("<th width='8%'>复训日期</th>");
 			arr.push("<th width='5%'>准申</th>");
 			arr.push("<th width='4%'>证书</th>");
 			if(photo == 0){
@@ -387,7 +387,7 @@
 							arr.push("<td class='left'>&nbsp;</td>");
 						}
 					}
-					arr.push("<td class='left'>" + ar1[43] + "</td>");
+					arr.push("<td class='left'>" + ar1[83] + "</td>");
 					/*申报*/
 					if(ar1[65]>0 || ar1[53]>0){
 						arr.push("<td class='center'>" + imgChk1 + "</td>");	//申报/准考证

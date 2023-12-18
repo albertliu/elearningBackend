@@ -513,6 +513,7 @@
 				arr.push("<th width='7%'>签名</th>");
 				arr.push("<th width='7%'>学历</th>");
 				arr.push("<th width='7%'>在职</th>");
+				arr.push("<th width='8%'>复训日期</th>");
 			}
 			arr.push("<th width='10%'>备注</th>");
 			arr.push("<th width='2%'>材</th>");
@@ -606,6 +607,7 @@
 						}else{
 							arr.push("<td class='center'>&nbsp;</td>");
 						}
+						arr.push("<td class='center'>" + ar1[83] + "</td>");	//复训日期
 					}
 					arr.push("<td class='left'>" + ar1[82] + "</td>");
 					if(ar1[78]==''){
@@ -633,8 +635,8 @@
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
 			if(photo == 0){
-				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
 			}
 			arr.push("</tr>");

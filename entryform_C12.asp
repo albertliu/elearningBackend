@@ -255,7 +255,7 @@
 
 <body style="background:#f0f0f0;">
 
-<div id='layout' align='left' style="background:#f0f0f0;">	
+<div id='layout' align='left'>	
 	
 	<div style="width:100%;float:left;margin:0;">
 		<div id="pageTitle" style="text-align:center;">

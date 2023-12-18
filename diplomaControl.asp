@@ -1055,7 +1055,7 @@ if(op == "getApplyListByBatch"){
 		//19
 		result += "|" + rs("score").value + "|" + rs("score1").value + "|" + rs("score2").value + "|" + rs("SNo").value;
 		//23
-		result += "|" + rs("certID").value + "|" + rs("file1").value + "|" + rs("file2").value + "|" + rs("file3").value;
+		result += "|" + rs("certID").value + "|" + rs("file1").value + "|" + rs("file2").value + "|" + rs("file3").value + "|" + rs("currDiplomaDate").value;
 		rs.MoveNext();
 	}
 	rs.Close();
