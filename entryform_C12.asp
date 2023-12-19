@@ -59,6 +59,11 @@
 		$("#btnGenerateZip").click(function(){
 			generateZip();
 		});
+		if(keyID==3){
+			$("#keyItem1").hide();
+		}else{
+			$("#keyItem5").hide();
+		}
 		//if(keyID==2){
 			$("#pageTitle").hide();
 		//}
@@ -163,6 +168,13 @@
 					$("#img_photo").attr("src","/users" + ar[21]);
 				}else{
 					$("#img_photo").attr("src","images/blank_photo.png");
+				}
+				if(keyID ==3){
+					$("#img_A").attr("src","/users" + ar[22]);
+					$("#img_B").attr("src","/users" + ar[23]);
+					if(reex == 0){	//初训报名表显示学历
+						$("#img_E").attr("src","/users" + ar[24]);
+					}
 				}
 				var c = "";
 				if(ar[21] > ""){
@@ -376,7 +388,7 @@
 							</div>
 						</td>
 					</tr>
-					<tr>
+					<tr id="keyItem1">
 						<td align="left" class='table_resume_title' height='80px' colspan="8">
 							<div style="display:table-cell;height:80px;vertical-align:middle;text-align:left;">
 								<div><p style='font-size:1.2em;'>考试点审查意见：</p></div>
@@ -392,6 +404,15 @@
 									<span style='font-size:1.2em;'>日</span>
 								</div>
 							</div>
+						</td>
+					</tr>
+					<tr id="keyItem5">
+						<td align="left" class='table_resume_title' height='100px' colspan="4">
+							<div><img id="img_A" src="" value="" style="max-width:450px;max-height:400px;padding-top:20px;" /></div>
+							<div><img id="img_B" src="" value="" style="max-width:450px;max-height:400px;padding-top:20px;" /></div>
+						</td>
+						<td align="left" class='table_resume_title' height='100px' colspan="4">
+							<div><img id="img_E" src="" value="" style="max-width:450px;max-height:400px;padding-top:20px;" /></div>
 						</td>
 					</tr>
 					
