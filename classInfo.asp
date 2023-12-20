@@ -35,6 +35,7 @@
 	var at_username = "";
 	var imgFile = "<img src='images/attachment.png' style='width:15px;'>";
 	var imgFileRed = "<img src='images/attachmentRed.png' style='width:15px;'>";
+	var imgFileBlue = "<img src='images/imgFileBlue.png' style='width:15px;'>";
 	var timer1 = null;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
