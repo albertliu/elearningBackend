@@ -518,6 +518,7 @@
 			}
 			arr.push("<th width='10%'>备注</th>");
 			arr.push("<th width='2%'>材</th>");
+			arr.push("<th width='2%'>报</th>");
 			arr.push("<th width='2%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -614,7 +615,12 @@
 					if(ar1[78]==''){
 						arr.push("<td class='center'><div id='material" + ar1[0] + "'><span onclick='generateMaterials(" + ar1[0] + ",\"" + ar1[1] + "\",\"" + ar1[60] + "\")' title='申报材料'><img src='images/addDoc.png' style='width:15px;'><span><div></td>");
 					}else{
-						arr.push("<td class='center'><div id='material" + ar1[0] + "'><a href='javascript:void(0);' onclick='openMaterial(\"/users" + ar1[78] + "?t=" + (new Date().getTime()) + "\");' ondblclick='generateMaterials(" + ar1[0] + ",\"" + ar1[1] + "\",\"" + ar1[60] + "\")' title='申报材料'>" + imgFile + "</a></div></td>");
+						arr.push("<td class='center'><div id='material" + ar1[0] + "'><a href='javascript:void(0);' onclick='openMaterial(\"/users" + ar1[78] + "?t=" + (new Date().getTime()) + "\");' ondblclick='generateMaterials(" + ar1[0] + ",\"" + ar1[1] + "\",\"" + ar1[60] + "\")' title='存档材料'>" + imgFile + "</a></div></td>");
+					}
+					if(ar1[79]==''){
+						arr.push("<td class='center'>&nbsp;</td>");
+					}else{
+						arr.push("<td class='center'><div id='material1" + ar1[0] + "'><a href='javascript:void(0);' onclick='openMaterial(\"/users" + ar1[79] + "?t=" + (new Date().getTime()) + "\");' title='报名材料'>" + imgFileBlue + "</a></div></td>");
 					}
 					arr.push("<td class='left'><input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[1] + "' name='visitstockchk'></td>");
 					arr.push("</tr>");
@@ -623,6 +629,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
