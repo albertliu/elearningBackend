@@ -302,13 +302,13 @@
                     $("#diplomaSign").hide();
                 }
 				if(ar[33] > ""){
-					$("#zip").html("<a href='/users" + ar[33] + "' target='_blank'>归档压缩包</a>");
+					$("#zip").html("<a href='/users" + ar[33] + "?times=" + (new Date().getTime()) + "' target='_blank'>归档压缩包</a>");
 				}
 				if(ar[34] > ""){
-					$("#pzip").html("<a href='/users" + ar[34] + "' target='_blank'>照片压缩包</a>");
+					$("#pzip").html("<a href='/users" + ar[34] + "?times=" + (new Date().getTime()) + "' target='_blank'>照片压缩包</a>");
 				}
 				if(ar[35] > ""){
-					$("#ezip").html("<a href='/users" + ar[35] + "' target='_blank'>报名表压缩包</a>");
+					$("#ezip").html("<a href='/users" + ar[35] + "?times=" + (new Date().getTime()) + "' target='_blank'>报名表压缩包</a>");
 				}
 				//getDownloadFile("generateDiplomaID");
 				nodeID = ar[0];

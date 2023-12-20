@@ -445,13 +445,13 @@
 				$("#sign").html("<a>签到表</a>");
 				$("#sign1").html("<a>考勤表</a>");
 				if(ar[47] > ""){
-					$("#zip").html("<a href='/users" + ar[47] + "' target='_blank'>归档压缩包</a>");
+					$("#zip").html("<a href='/users" + ar[47] + "?times=" + (new Date().getTime()) + "' target='_blank'>归档压缩包</a>");
 				}
 				if(ar[48] > ""){
-					$("#pzip").html("<a href='/users" + ar[48] + "' target='_blank'>照片压缩包</a>");
+					$("#pzip").html("<a href='/users" + ar[48] + "?times=" + (new Date().getTime()) + "' target='_blank'>照片压缩包</a>");
 				}
 				if(ar[49] > ""){
-					$("#ezip").html("<a href='/users" + ar[49] + "' target='_blank'>报名表压缩包</a>");
+					$("#ezip").html("<a href='/users" + ar[49] + "?times=" + (new Date().getTime()) + "' target='_blank'>报名表压缩包</a>");
 				}
 				getStudentCourseList();
 				$("#teacher").val(ar[34]);
