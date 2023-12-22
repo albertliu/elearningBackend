@@ -502,7 +502,7 @@
 			arr.push("<th width='6%'>姓名</th>");
 			arr.push("<th width='6%'>电话</th>");
 			if(photo == 0){
-				arr.push("<th width='8%'>单位</th>");
+				arr.push("<th width='7%'>单位</th>");
 				arr.push("<th width='5%'>进度%</th>");
 				arr.push("<th width='7%'>模拟</th>");
 				arr.push("<th width='5%'>准申</th>");
@@ -545,7 +545,7 @@
 					//arr.push("<td title='最好成绩' class='link1'><a href='javascript:showStudentExamStat(" + ar1[0] + ",\"" + ar1[2] + "\",0,0);'>" + c + "</a></td>");
 					if(photo == 0){
 						if(ar1[56]!="spc" && ar1[56]!="shm"){	//非集团客户，显示自己的单位和部门
-							arr.push("<td class='left' title='" + ar1[54] + "'>" + ar1[54].substr(0,6) + "</td>");
+							arr.push("<td class='left' title='" + ar1[54] + "'>" + ar1[54].substr(0,4) + "</td>");
 						}else{
 							arr.push("<td class='left' title='" + ar1[12] + "'>" + ar1[12].substr(0,6) + "</td>");
 						}

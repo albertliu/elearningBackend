@@ -1430,7 +1430,7 @@
 			id: "classInfo",
 			url:"classInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "班级信息",
-			width: 1200,
+			width: 1280,
 			height: 880,
 			cover : {
 	          //透明度
