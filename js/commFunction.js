@@ -38,6 +38,7 @@
 	var backendURL = "";
 	var token_user = new Array();
 	var ctree = 0;
+	// var today = new Date().format("yyyy-MM-dd");
 	
 	var pickupID = 0;			//选择项目编号
 	var pickupName = "";	//选择项目名称

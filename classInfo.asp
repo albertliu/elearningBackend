@@ -531,6 +531,8 @@
 				var s = $("#status").val();
 				var imgChk = "<img src='images/green_check.png'>";
 				var attention_status = ["FFFFAA","AAFFAA","F3F3F3"];
+				var backcolor = ["#F0F0F0","#FFFF00","#00FF00","#FF8888"];
+				var bc = "";
 				$.each(ar,function(iNum,val){
 					var ar1 = new Array();
 					ar1 = val.split("|");
@@ -610,7 +612,16 @@
 						}else{
 							arr.push("<td class='center'>&nbsp;</td>");
 						}
-						arr.push("<td class='center'>" + ar1[83] + "</td>");	//复训日期
+						bc = "";
+						if(ar1[57]==1 && ar1[3]<2){	//有复训日期且没有结束课程的
+							if(ar1[83]>""){
+								let x = dateDiff(ar1[83],(new Date().format("yyyy-MM-dd")));
+								if(x<=30 && x>0){bc = backcolor[1]}
+								if(x>30 && x <= 60){bc = backcolor[2]}
+								if(x>60){bc = backcolor[3]}
+							}
+						}
+						arr.push("<td class='left' " + (ar1[57]==1 && bc>"" ? "style='background:" + bc + ";'" : "") + ">" + ar1[83] + "</td>");	// 复训日期
 					}
 					arr.push("<td class='left'>" + ar1[82] + "</td>");
 					if(ar1[78]==''){

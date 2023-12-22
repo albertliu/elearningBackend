@@ -308,6 +308,8 @@
 				var imgChk = "<img src='images/attachment.png' style='width:14px;'>";
 				var imgChk1 = "<img src='images/green_check.png'>";
 				var imgChk2 = "<img src='images/cancel.png'>";
+				var backcolor = ["#F0F0F0","#FFFF00","#00FF00","#FF8888"];
+				var bc = "";
 				$.each(ar,function(iNum,val){
 					var ar1 = new Array();
 					ar1 = val.split("|");
@@ -387,7 +389,17 @@
 							arr.push("<td class='left'>&nbsp;</td>");
 						}
 					}
-					arr.push("<td class='left'>" + ar1[83] + "</td>");
+
+					bc = "";
+					if(ar1[57]==1){
+						if(ar1[83]>"" && ar1[3]<2){	//有复训日期且没有结束课程的
+							let x = dateDiff(ar1[83],(new Date().format("yyyy-MM-dd")));
+							if(x<=30 && x>0){bc = backcolor[1]}
+							if(x>30 && x <= 60){bc = backcolor[2]}
+							if(x>60){bc = backcolor[3]}
+						}
+					}
+					arr.push("<td class='left' " + (ar1[57]==1 && bc>"" ? "style='background:" + bc + ";'" : "") + ">" + ar1[83] + "</td>");	// 复训日期
 					/*申报*/
 					if(ar1[65]>0 || ar1[53]>0){
 						arr.push("<td class='center'>" + imgChk1 + "</td>");	//申报/准考证
