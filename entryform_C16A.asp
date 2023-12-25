@@ -59,14 +59,9 @@
 		$("#print").click(function(){
 			resumePrint();
 		});
-		if(keyID==3){
-			$("#keyItem1").hide();
-		}else{
-			$("#keyItem5").hide();
-		}
-		// if(keyID>1){
+		if(keyID>1){
 			$("#pageTitle").hide();
-		// }
+		}
 		// getNeed2know(nodeID);
 		getNodeInfo(nodeID, refID);
 	});
@@ -174,21 +169,17 @@
 				}else{
 					$("#img_cardB").attr("src","images/blank_cardB.png");
 				}
-				if(keyID ==3){
-					$("#img_A").attr("src","/users" + ar[22]);
-					$("#img_B").attr("src","/users" + ar[23]);
-					if(reex == 0){	//初训报名表显示学历
-						$("#img_E").attr("src","/users" + ar[24]);
-					}
-				}
 				//$("#date").html(currDate);
 				var p = 1;
-				k = 0;
-				if(keyID == 3){
-					//上传的报名表不打印附件
-				}else{
+				if(keyID == 2){
+					//打印学历证明
+					p = 1;
+				}
+				if(keyID < 2){
 					getNeed2know(nodeID);
 					getAgreement(ar[1],ar[2],course,sign,sDate,price);
+				}
+				if(keyID <= 2){
 					getMaterials(ar[1],sign,p,k);
 				}
 				if(keyID==1){
@@ -304,14 +295,14 @@
 							</div>
 						</td>
 					</tr>
-					<tr id="keyItem1">
-						<td align="left" class='table_resume_title' height='80px' colspan="8">
-							<div style="display:table-cell;height:80px;vertical-align:middle;text-align:left;">
+					<tr>
+						<td align="left" class='table_resume_title' height='140px' colspan="8">
+							<div style="display:table-cell;height:100px;vertical-align:middle;text-align:left;">
 								<div><p style='font-size:1.2em;'>考试点审查意见：</p></div>
 								<div style="display:table-cell;vertical-align:middle;text-align:left;">
-									<span style='font-size:1.2em;padding-left:130px;'>考试点（盖章）：</span>
+									<span style='font-size:1.2em;padding-left:150px;'>考试点（盖章）：</span>
 									<span style='font-size:1.2em;padding-left:70px;'>经办人（签名）：</span>
-									<span style='font-size:1.2em;'><img id="f_sign40" src="" style="width:100px;padding-left:0px;"></span>
+									<span style='font-size:1.2em;'><img id="f_sign40" src="" style="width:100px;padding-left:10px;"></span>
 									<span id="date2" style='padding-left:100px;font-size:1.4em;color:#555;font-family:"Aa跃然体","时光沙漏";'></span>
 									<span style='font-size:1.2em;'>年</span>
 									<span id="date2M" style='font-size:1.4em;color:#555;font-family:"Aa跃然体","时光沙漏";'></span>
@@ -320,15 +311,6 @@
 									<span style='font-size:1.2em;'>日</span>
 								</div>
 							</div>
-						</td>
-					</tr>
-					<tr id="keyItem5">
-						<td align="left" class='table_resume_title' height='100px' colspan="4">
-							<div><img id="img_A" src="" value="" style="max-width:450px;max-height:400px;padding-top:20px;" /></div>
-							<div><img id="img_B" src="" value="" style="max-width:450px;max-height:400px;padding-top:20px;" /></div>
-						</td>
-						<td align="left" class='table_resume_title' height='100px' colspan="4">
-							<div><img id="img_E" src="" value="" style="max-width:450px;max-height:400px;padding-top:20px;" /></div>
 						</td>
 					</tr>
 					</table>
