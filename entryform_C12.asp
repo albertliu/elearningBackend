@@ -140,7 +140,7 @@
 				$("#username").html(ar[1]);
 				$("#name").html(ar[2]);
 				$("#sexName").html(ar[8]);
-				$("#mobile").html(ar[7] + "&nbsp;&nbsp;" + ar[17]);
+				$("#mobile").html(ar[7]);
 				$("#age").html(ar[9]);
 				$("#job").html(ar[18]);
 				//$("#phone").html(ar[17]);
