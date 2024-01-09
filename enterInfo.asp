@@ -254,6 +254,9 @@
 		$("#examList").click(function(){
 			showStudentExamList($("#username").val(),$("#name").val(),0,1);
 		});
+		$("#opList").click(function(){
+			showStudentOpList($("#studentCourseID").val(),"",0,1);
+		});
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -313,7 +316,7 @@
 				$("#signature").val(ar[48]);
 				$("#signatureDate").val(ar[49]);
 				$("#signatureType").val(ar[52]);
-				if(ar[51]==1){
+				if(ar[48]>""){
 					$("#signatureStatus").prop("checked",true);
 				}else{
 					$("#signatureStatus").prop("checked",false);
@@ -826,6 +829,7 @@
 		<input class="button" type="button" id="btnReviveStudentCourse" value="重启课程学习" />&nbsp;
 		<input class="button" type="button" id="btnRebuildStudentLesson" value="刷新课表" />&nbsp;
 		<input class="button" type="button" id="smsList" value="查看通知" />&nbsp;
+		<input class="button" type="button" id="opList" value="查看操作" />&nbsp;
 		<input class="button" type="button" id="examList" value="查看考试信息" />
   	</div>
 </div>

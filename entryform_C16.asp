@@ -133,7 +133,7 @@
 				$("#username").html(ar[1]);
 				$("#name").html(ar[2]);
 				$("#sexName").html(ar[8]);
-				$("#mobile").html(ar[7] + "&nbsp;&nbsp;" + ar[17]);
+				$("#mobile").html(ar[7]);
 				$("#age").html(ar[9]);
 				$("#job").html(ar[18]);
 				//$("#phone").html(ar[17]);
@@ -177,9 +177,9 @@
 				if(keyID ==3){
 					$("#img_A").attr("src","/users" + ar[22]);
 					$("#img_B").attr("src","/users" + ar[23]);
-					if(reex == 0){	//初训报名表显示学历
-						$("#img_E").attr("src","/users" + ar[24]);
-					}
+					$("#img_E").attr("src","/users" + ar[24]);
+					// if(reex == 0){	//初训报名表显示学历
+					// }
 				}
 				//$("#date").html(currDate);
 				var p = 1;

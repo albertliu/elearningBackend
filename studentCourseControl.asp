@@ -892,6 +892,22 @@ if(op == "getStudentExamList"){
 	//Response.Write(escape(sql));
 }	
 
+if(op == "getStudentOpList"){
+	result = "";
+	s = "";
+	sql = "select opLogID,event,convert(varchar(20),opDate,120) as opDate,operator from userOpLog where refID='" + nodeID + "'";
+	
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("opLogID").value + "|" + rs("event").value + "|" + rs("opDate").value + "|" + rs("operator").value;
+		rs.MoveNext();
+	}
+	rs.Close();
+	result = result.substr(2);/**/
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}	
+
 if(op == "updatePayInfo"){
 	//@ID int,@invoice varchar(50),@projectID varchar(50),@kindID varchar(50),@type int,@status int,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo
 	sql = "exec updatePayInfo " + nodeID + ",'" + String(Request.QueryString("invoice")) + "','" + String(Request.QueryString("projectID")) + "','" + item + "','" + kindID + "','" + String(Request.QueryString("type")) + "','" + status + "','" + String(Request.QueryString("datePay")) + "','" + String(Request.QueryString("dateInvoice")) + "','" + String(Request.QueryString("dateInvoicePick")) + "','" + refID + "','" + memo + "','" + currUser + "',''";
