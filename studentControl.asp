@@ -499,4 +499,15 @@ if(op == "exchangeMaterial"){
 	Response.Write(result);
 }
 
+if(op == "getDeptPayTitle"){
+	result = 0;
+	sql = "SELECT * FROM dbo.getDeptPayTitle(" + refID + ")";
+	rs = conn.Execute(sql);
+	if(!rs.EOF){
+		result = rs("payNow").value + "|" + rs("title").value;
+	}
+	rs.Close();
+	Response.Write(escape(result));
+}
+
 %>

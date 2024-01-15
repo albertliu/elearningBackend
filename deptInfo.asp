@@ -34,6 +34,9 @@
 		getDicList("student","kindID",0);
 		getDicList("statusEffect","status",0);
 		getDicList("statusNo","c555",0);
+		getDicList("accountKind","accountKind",0);
+		getDicList("payNow","payNow",0);
+		$("#hideItem1").hide();
 		
 		$.ajaxSetup({ 
 			async: false 
@@ -117,8 +120,8 @@
 			jAlert("上级部门缺失，请重新添加。");
 			return false;
 		}
-		$.get("deptControl.asp?op=update&nodeID=" + $("#deptID").val() + "&refID=" + $("#pID").val() + "&deptName=" + escape($("#deptName").val()) + "&linker=" +  escape($("#linker").val()) + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&host=" + $("#host").val() + "&phone=" +  escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&address=" + escape($("#address").val()) + "&No=" + $("#No").val() + "&area=" + escape($("#area").val()) + "&c555=" + $("#c555").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
-			//alert(unescape(re));
+		$.get("deptControl.asp?op=update&nodeID=" + $("#deptID").val() + "&refID=" + $("#pID").val() + "&accountKind=" + $("#accountKind").val() + "&payNow=" + $("#payNow").val() + "&title=" + escape($("#title").val()) + "&deptName=" + escape($("#deptName").val()) + "&linker=" +  escape($("#linker").val()) + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&host=" + $("#host").val() + "&phone=" +  escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&address=" + escape($("#address").val()) + "&No=" + $("#No").val() + "&area=" + escape($("#area").val()) + "&c555=" + $("#c555").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+			// alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar[0] == 0){
@@ -160,6 +163,8 @@
 		$("#deptID").val(0);
 		$("#deptName").val("");
 		$("#status").val(0);
+		$("#accountKind").val(2);
+		$("#payNow").val(1);
 		$("#linker").val("");
 		$("#phone").val("");
 		$("#email").val("");
@@ -218,9 +223,19 @@
 				<td align="right">所属区</td>
 				<td><input type="text" id="area" size="25" /></td>
 			</tr>
-			<tr>
+			<tr id="hideItem1">
 				<td align="right">超龄取证</td>
 				<td colspan="3"><select id="c555" style="width:100px;"></select>&nbsp;*55岁-60岁可取得施工作业上岗证</td>
+			</tr>
+			<tr>
+				<td align="right">账户类型</td>
+				<td><select id="accountKind" style="width:100px;"></select></td>
+				<td align="right">付款类型</td>
+				<td><select id="payNow" style="width:100px;"></select></td>
+			</tr>
+			<tr>
+				<td align="right">开票信息</td>
+				<td colspan="3"><input type="text" id="title" style="width:100%;" /></td>
 			</tr>
 			<tr>
 				<td align="right">说明</td>

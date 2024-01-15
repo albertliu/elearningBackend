@@ -46,6 +46,7 @@
 		getDicList("payType","type",0);
 		getDicList("statusPay","statusPay",0);
 		getDicList("signatureType","signatureType",0);
+		getDicList("payNow","payNow",0);
         getComList("fromID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='saler') order by realName",1);
 		$("#datePay").click(function(){WdatePicker();});
 		$("#dateRefund").click(function(){WdatePicker();});
@@ -83,6 +84,18 @@
 				ar = unescape(re).split("|");
 				if(ar > ""){
 					$("#name").val(ar[2]);
+					if(ar[29] == "spc"){
+						// 石化公司员工自动填充开票信息
+						$.get("studentControl.asp?op=getDeptPayTitle&refID=" + ar[27] + "&times=" + (new Date().getTime()),function(re1){
+							//alert(unescape(re));
+							var ar1 = new Array();
+							ar1 = unescape(re1).split("|");
+							if(ar1 > ""){
+								$("#payNow").val(ar1[0]);
+								$("#title").val(ar1[1]);
+							}
+						});
+					}
 				}
 			});
 		}else{
@@ -152,9 +165,6 @@
 			var s = getDicItem(0,"invoiceNo");
 			s = fillFormat(parseInt(s) + 1, s.length, "0", 0);
 			$("#invoice").val(s);
-			if($("#kindID").val()==0){
-				$("#title").val($("#name").val());
-			}
 		});
 
 		$("#btnMaterialCheck").click(function(){
@@ -316,6 +326,8 @@
 				$("#signature").val(ar[48]);
 				$("#signatureDate").val(ar[49]);
 				$("#signatureType").val(ar[52]);
+				$("#payNow").val(ar[59]);
+				$("#title").val(ar[60]);
 				if(ar[48]>""){
 					$("#signatureStatus").prop("checked",true);
 				}else{
@@ -390,7 +402,7 @@
 				$("#dateRefund").val(ar[12]);
 				$("#refunderName").val(ar[14]);
 				$("#memo").val(ar[18]);
-				$("#title").val(ar[22]);
+				// $("#title").val(ar[22]);
 			}else{
 				//jAlert("缴费信息未找到！","信息提示");
 			}
@@ -479,7 +491,7 @@
 					}
 					
 					//@username,@classID,@price,@invoice,@projectID,@kindID,@type,@status,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo,@registerID
-					$.get("studentCourseControl.asp?op=doEnter&nodeID=" + $("#username").val() + "&classID=" + $("#classID").val() + "&overdue=" + over + "&fromID=" + $("#fromID").val() + "&price=" + $("#price").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#statusPay").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+					$.get("studentCourseControl.asp?op=doEnter&nodeID=" + $("#username").val() + "&classID=" + $("#classID").val() + "&overdue=" + over + "&fromID=" + $("#fromID").val() + "&price=" + $("#price").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&payNow=" + $("#payNow").val() + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#statusPay").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 						//jAlert(unescape(re));
 						var ar = new Array();
 						ar = unescape(re).split("|");
@@ -758,7 +770,7 @@
                 <tr>
                     <td align="right">初训证书编号</td>
                     <td><input type="text" id="currDiplomaID" style="width:140px;" /></td>
-                    <td align="right">有效期</td>
+                    <td align="right">应复训日期</td>
                     <td><input type="text" id="currDiplomaDate" style="width:80px;" />&nbsp;销售<select id="fromID" style="width:80px;"></select></td>
                 </tr>
 				<tr>
@@ -806,8 +818,12 @@
 				<td><input type="text" id="dateInvoicePick" size="25" /></td>
 			</tr>
 			<tr>
-				<td align="right">发票抬头</td>
-				<td><input type="text" id="title" size="25" /></td>
+				<td align="right">开票信息</td>
+				<td colspan="3"><input type="text" id="title" style="width:100%;" /></td>
+			</tr>
+			<tr>
+				<td align="right">付款类型</td>
+				<td><select id="payNow" style="width:100px;"></select></td>
 				<td align="right">退款日期</td>
 				<td><input type="text" id="dateRefund" style="width:80px;" />&nbsp;&nbsp;经办<input class="readOnly" type="text" id="refunderName" style="width:60px;" readOnly="true" /></td>
 			</tr>
