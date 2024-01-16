@@ -460,7 +460,7 @@ if(op == "getStudentListByProject"){
 		//23
 		result += "|" + rs("diplomaID").value + "|" + rs("diploma_startDate").value + "|" + rs("diploma_endDate").value + "|" + rs("reExamCount").value + "|" + rs("examTimes").value + "|" + rs("passcardID").value;
 		//29
-		result += "|" + rs("completion").value + "|" + rs("unit").value + "|" + rs("express").value;
+		result += "|" + rs("completion").value + "|" + rs("unit").value + "|" + rs("express").value + "|" + rs("accountKindName").value + "|" + rs("payNowName").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -1037,7 +1037,7 @@ if(op == "updatePayPrice"){
 }	
 
 if(op == "updateEnterClass"){
-	sql = "exec updateEnterClass " + nodeID + ",'" + refID + "','" + keyID + "','" + String(Request.QueryString("currDiplomaID")) + "','" + String(Request.QueryString("currDiplomaDate")) + "','" + String(Request.QueryString("signatureDate")) + "'," + String(Request.QueryString("overdue")) + ",'" + String(Request.QueryString("fromID")) + "','" + memo + "','" + currUser + "'";
+	sql = "exec updateEnterClass " + nodeID + ",'" + refID + "','" + keyID + "','" + String(Request.QueryString("currDiplomaID")) + "','" + String(Request.QueryString("currDiplomaDate")) + "','" + String(Request.QueryString("signatureDate")) + "','" + item + "'," + String(Request.QueryString("payNow")) + "," + String(Request.QueryString("overdue")) + ",'" + String(Request.QueryString("fromID")) + "','" + memo + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(0);
 }	

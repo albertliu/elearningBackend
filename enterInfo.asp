@@ -78,26 +78,7 @@
 				}
 				$("#" + ar[0]).val(ar[1]);
 			});
-			$.get("studentControl.asp?op=getNodeInfo&nodeID=0&refID=" + refID + "&times=" + (new Date().getTime()),function(re){
-				//alert(unescape(re));
-				var ar = new Array();
-				ar = unescape(re).split("|");
-				if(ar > ""){
-					$("#name").val(ar[2]);
-					if(ar[29] == "spc"){
-						// 石化公司员工自动填充开票信息
-						$.get("studentControl.asp?op=getDeptPayTitle&refID=" + ar[27] + "&times=" + (new Date().getTime()),function(re1){
-							//alert(unescape(re));
-							var ar1 = new Array();
-							ar1 = unescape(re1).split("|");
-							if(ar1 > ""){
-								$("#payNow").val(ar1[0]);
-								$("#title").val(ar1[1]);
-							}
-						});
-					}
-				}
-			});
+			getStudentInfo();
 		}else{
 			getComList("projectID","projectInfo","projectID","projectName","status>0 order by projectID desc",1);
 			getNodeInfo(nodeID);
@@ -267,6 +248,9 @@
 		$("#opList").click(function(){
 			showStudentOpList($("#studentCourseID").val(),"",0,1);
 		});
+		$("#btnReGetStudent").click(function(){
+			getStudentInfo();
+		});
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -414,10 +398,10 @@
 			jAlert("没有要操作的数据。");
 			return false;
 		}
-		if($("#classID").val() == "" || $("#classID").val() == null){
-			jAlert("请选择班级。");
-			return false;
-		}
+		// if($("#classID").val() == "" || $("#classID").val() == null){
+		// 	jAlert("请选择班级。");
+		// 	return false;
+		// }
 		var id=$("#classID").val();
 		//alert(id);
 		
@@ -445,7 +429,7 @@
 				if($("#overdue").prop("checked")){
 					over = 1;
 				}
-				$.get("studentCourseControl.asp?op=updateEnterClass&nodeID=" + nodeID + "&refID=" + $("#classID").val() + "&overdue=" + over + "&keyID=" + $("#SNo").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&signatureDate=" + $("#signatureDate").val() + "&fromID=" + $("#fromID").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+				$.get("studentCourseControl.asp?op=updateEnterClass&nodeID=" + nodeID + "&item=" + escape($("#title").val()) + "&payNow=" + $("#payNow").val() + "&refID=" + $("#classID").val() + "&overdue=" + over + "&keyID=" + $("#SNo").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&signatureDate=" + $("#signatureDate").val() + "&fromID=" + $("#fromID").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 					//jAlert(unescape(re));
 					getNodeInfo(nodeID);
 					printEntryform(1);
@@ -518,6 +502,29 @@
 		}else{
 			getComList("classID","[dbo].[getClassListByProject]('" + id + "')","classID","classIDName"," 1=1 order by pre desc, batchID desc",1);
 		}
+	}
+	
+	function getStudentInfo(){
+		$.get("studentControl.asp?op=getNodeInfo&nodeID=0&refID=" + refID + "&times=" + (new Date().getTime()),function(re){
+			//alert(unescape(re));
+			var ar = new Array();
+			ar = unescape(re).split("|");
+			if(ar > ""){
+				$("#name").val(ar[2]);
+				if(ar[29] == "spc"){
+					// 石化公司员工自动填充开票信息
+					$.get("studentControl.asp?op=getDeptPayTitle&refID=" + ar[27] + "&times=" + (new Date().getTime()),function(re1){
+						//alert(unescape(re));
+						var ar1 = new Array();
+						ar1 = unescape(re1).split("|");
+						if(ar1 > ""){
+							$("#payNow").val(ar1[0]);
+							$("#title").val(ar1[1]);
+						}
+					});
+				}
+			}
+		});
 	}
 	
 	function generateEntryForm(i){
@@ -823,7 +830,7 @@
 			</tr>
 			<tr>
 				<td align="right">付款类型</td>
-				<td><select id="payNow" style="width:100px;"></select></td>
+				<td><select id="payNow" style="width:100px;"></select>&nbsp;<input class="button" type="button" id="btnReGetStudent" value="刷新" /></td>
 				<td align="right">退款日期</td>
 				<td><input type="text" id="dateRefund" style="width:80px;" />&nbsp;&nbsp;经办<input class="readOnly" type="text" id="refunderName" style="width:60px;" readOnly="true" /></td>
 			</tr>

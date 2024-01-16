@@ -313,13 +313,13 @@
 			arr.push("<th width='7%'>姓名</th>");
 			//arr.push("<th width='6%'>别</th>");
 			arr.push("<th width='4%'>单位</th>");
-			arr.push("<th width='9%'>部门</th>");
+			arr.push("<th width='8%'>部门</th>");
 			arr.push("<th width='6%'>电话</th>");
-			arr.push("<th width='7%'>岗位</th>");
+			arr.push("<th width='6%'>岗位</th>");
 			//arr.push("<th width='7%'>备注</th>");
 			arr.push("<th width='11%'>确认</th>");
-			arr.push("<th width='7%'>班级</th>");
-			arr.push("<th width='7%'>练习</th>");
+			arr.push("<th width='7%'>性质</th>");
+			arr.push("<th width='7%'>付费</th>");
 			arr.push("<th width='6%'>进度%</th>");
 			arr.push("<th width='6%'>成绩</th>");
 			arr.push("<th width='6%'>准考</th>");
@@ -356,17 +356,18 @@
 					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + ar1[1] + "\",0,1);'>" + ar1[2] + "</a></td>");
 					//arr.push("<td class='left'>" + ar1[3] + "</td>");
 					arr.push("<td class='center' title='" + ar1[10] + "'>" + ar1[10].substring(0,2) + "</td>");
-					arr.push("<td class='left' title='" + (ar1[8] || ar1[10] || ar1[30]) + "'>" + (ar1[8] || ar1[10] || ar1[30]).substring(0,6) + "</td>");
+					arr.push("<td class='left' title='" + (ar1[8] || ar1[10] || ar1[30]) + "'>" + (ar1[8] || ar1[10] || ar1[30]).substring(0,5) + "</td>");
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
 					arr.push("<td class='left'>" + ar1[5] + "</td>");
 					//arr.push("<td class='left'>" + ar1[14] + "</td>");
 					arr.push("<td class='left' title='" + ar1[22] + "'>" + ar1[20] + ar1[22].substring(0,2) + "</td>");
-					arr.push("<td class='center'>" + ar1[13] + "</td>");
-					s = "";
-					if(ar1[27]>0){
-						s = nullNoDisp(ar1[7]) + " * " + nullNoDisp(ar1[27]);
-					}
-					arr.push("<td class='right'>" + s + "</td>");
+					arr.push("<td class='center'>" + ar1[32] + "</td>");
+					arr.push("<td class='center'>" + ar1[33] + "</td>");
+					// s = "";
+					// if(ar1[27]>0){
+					// 	s = nullNoDisp(ar1[7]) + " * " + nullNoDisp(ar1[27]);
+					// }
+					// arr.push("<td class='right'>" + s + "</td>");
 					var j = ar1[29];
 					if(j>0){
 						j = j;
