@@ -520,6 +520,8 @@
 						if(ar1 > ""){
 							$("#payNow").val(ar1[0]);
 							$("#title").val(ar1[1]);
+						}else{
+							alert("加油站信息缺失，请检查。")
 						}
 					});
 				}
