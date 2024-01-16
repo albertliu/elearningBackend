@@ -97,6 +97,9 @@
 				$("#No").val(ar[16]);
 				$("#area").val(ar[17]);
 				$("#c555").val(ar[18]);
+				$("#title").val(ar[19]);
+				$("#accountKind").val(ar[20]);
+				$("#payNow").val(ar[21]);
 				
 				if(ar[11] !== "spc"){
 					$("#kindID").hide();
