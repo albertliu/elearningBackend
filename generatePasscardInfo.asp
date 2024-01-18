@@ -612,6 +612,7 @@
 				}
 				if(s==1){		//锁定后可以做准考证，发考试通知，上传成绩，发成绩通知
 					$("#doPasscard").show();
+					$("#save").show();
 					//$("#sendMsgExam").show();
 					//$("#sendMsgScore").show();
 				}
