@@ -63,6 +63,7 @@
 			$("#keyItem1").hide();
 		}else{
 			$("#keyItem5").hide();
+			$("#keyItem6").hide();
 		}
 		//if(keyID==2){
 			$("#pageTitle").hide();
@@ -408,11 +409,13 @@
 					</tr>
 					<tr id="keyItem5">
 						<td align="left" class='table_resume_title' height='100px' colspan="4">
-							<div><img id="img_A" src="" value="" style="max-width:450px;max-height:400px;padding-top:20px;" /></div>
-							<div><img id="img_B" src="" value="" style="max-width:450px;max-height:400px;padding-top:20px;" /></div>
+							<div><img id="img_A" src="" value="" style="max-width:600px;max-height:500px;padding-top:20px;" /></div>
+							<div><img id="img_B" src="" value="" style="max-width:600px;max-height:500px;padding-top:20px;" /></div>
 						</td>
+					</tr>
+					<tr id="keyItem6">
 						<td align="left" class='table_resume_title' height='100px' colspan="4">
-							<div><img id="img_E" src="" value="" style="max-width:450px;max-height:400px;padding-top:20px;" /></div>
+							<div><img id="img_E" src="" value="" style="max-width:600px;max-height:980px;padding-top:20px;" /></div>
 						</td>
 					</tr>
 					
