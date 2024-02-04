@@ -43,6 +43,7 @@
 	var course = "";
 	var sDate = "";
 	var price = 0;
+	var courseID = "";
 	<!--#include file="js/commFunction.js"-->
 	<!--#include file="need2know.js"-->
 	<!--#include file="agreement.js"-->
@@ -64,7 +65,7 @@
 			$("#resume_print").css("display", "flex");
 		}else{
 			$("#keyItem5").hide();
-			$("#keyItem6").hide();
+			// $("#keyItem6").hide();
 			$("#keyItem7").hide();
 		}
 		// if(keyID>1){
@@ -91,6 +92,7 @@
 				course = ar[56];
 				sDate = ar[49];
 				price = ar[53];
+				// courseID = ar[5];
 				$("#date2").html("&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp");
 				$("#date2M").html("&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp");
 				$("#date2D").html("&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp");
@@ -180,14 +182,14 @@
 				if(keyID ==3){
 					$("#img_A").attr("src","/users" + ar[22]);
 					$("#img_B").attr("src","/users" + ar[23]);
-					$("#img_E").attr("src","/users" + ar[24]);
+					// $("#img_E").attr("src","/users" + ar[24]);
 					$("#img_F").attr("src","/users" + ar[44]);
 					// if(reex == 0){	//初训报名表显示学历
 					// }
 				}
 				//$("#date").html(currDate);
-				var p = 1;
-				k = 0;
+				var p = 0;
+				k = 1;
 				if(keyID == 3){
 					//上传的报名表不打印附件
 				}else{
@@ -246,7 +248,7 @@
 			<input class="button" type="button" id="print" value="打印" />&nbsp;
 		</div>
 		<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
-			<div style="position: relative;width:700px;height:99%;">
+			<div style="position: relative;width:800px;height:99%;">
 				<div style="position: absolute; z-index:10;">
 					<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>上海市高危行业负责人及安全生产管理人员安全知识和管理能力</h3></div>
 					<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>考核申请表</h3></div>
@@ -335,15 +337,12 @@
 				<div id="agreementCover"></div>
 				<div id="materialsCover"></div>
 			</div>
-			<div id="keyItem5" style="flex:1; text-align:center; width:550px;padding-left:20px;">
-				<div><img id="img_A" src="" value="" style="max-width:500px;max-height:500px;padding-top:20px;" /></div>
-				<div><img id="img_B" src="" value="" style="max-width:500px;max-height:500px;padding-top:20px;" /></div>
+			<div id="keyItem5" style="flex:1; text-align:center; width:800px;padding-left:20px;">
+				<div><img id="img_A" src="" value="" style="max-width:800px;max-height:500px;padding-top:20px;" /></div>
+				<div><img id="img_B" src="" value="" style="max-width:800px;max-height:500px;padding-top:20px;" /></div>
 			</div>
-			<div id="keyItem6" style="flex:1; text-align:center; width:550px;padding-left:20px;">
-				<div><img id="img_E" src="" value="" style="max-width:500px;max-height:880px;padding-top:20px;" /></div>
-			</div>
-			<div id="keyItem7" style="text-align:center; width:550px;padding-left:20px;">
-				<div><img id="img_F" src="" value="" style="max-width:500px;max-height:880px;padding-top:20px;" /></div>
+			<div id="keyItem7" style="text-align:center; width:800px;padding-left:20px;">
+				<div><img id="img_F" src="" value="" style="max-width:800px;max-height:980px;padding-top:20px;" /></div>
 			</div>
 		</div>
 	</div>

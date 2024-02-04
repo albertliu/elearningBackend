@@ -1,5 +1,5 @@
 ﻿	//path: 签名文件 p: 1 打印学历证明 0 不打印  k: 1 打印从事特种作业情况说明（在职证明） 0 不打印  s: 1 打印社保证明
-	function getMaterials(username,path,p,k,s){
+	function getMaterials(username,path,p,k,s,courseID){
 		$.getJSON(uploadURL + "/public/getStudentMaterials?username=" + username + "&IDcard=0",function(data){
 			// jAlert(unescape(data));
 			var c = 0;
