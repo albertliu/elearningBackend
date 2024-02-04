@@ -60,8 +60,7 @@
 			resumePrint();
 		});
 		if(keyID==3){
-			$("#keyItem4").hide();
-			$("#resume_print").css("display", "flex");
+			$("#keyItem1").hide();
 		}else{
 			$("#keyItem5").hide();
 			$("#keyItem6").hide();
@@ -246,7 +245,7 @@
 			<input class="button" type="button" id="print" value="打印" />&nbsp;
 		</div>
 		<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
-			<div style="position: relative;width:700px;height:99%;">
+			<div style="position: relative;width:100%;height:100%;">
 				<div style="position: absolute; z-index:10;">
 					<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>上海市高危行业负责人及安全生产管理人员安全知识和管理能力</h3></div>
 					<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>考核申请表</h3></div>
@@ -326,25 +325,29 @@
 							</div>
 						</td>
 					</tr>
+					<tr id="keyItem5">
+						<td align="left" class='table_resume_title' height='100px' colspan="4">
+							<div><img id="img_A" src="" value="" style="max-width:450px;max-height:400px;padding-top:20px;" /></div>
+							<div><img id="img_B" src="" value="" style="max-width:450px;max-height:400px;padding-top:20px;" /></div>
+						</td>
+					</tr>
+					<tr id="keyItem6">
+						<td align="left" class='table_resume_title' height='100px' colspan="4">
+							<div><img id="img_E" src="" value="" style="max-width:700px;max-height:700px;padding-top:20px;" /></div>
+						</td>
+					</tr>
+					<tr id="keyItem7">
+						<td align="left" class='table_resume_title' height='100px' colspan="4">
+							<div><img id="img_F" src="" value="" style="max-width:700px;max-height:700px;padding-top:20px;" /></div>
+						</td>
+					</tr>
 					</table>
 				</div>
 				<div id="stampCover"></div>
 			</div>
-			<div id="keyItem4">
-				<div id="needCover"></div>
-				<div id="agreementCover"></div>
-				<div id="materialsCover"></div>
-			</div>
-			<div id="keyItem5" style="flex:1; text-align:center; width:550px;padding-left:20px;">
-				<div><img id="img_A" src="" value="" style="max-width:500px;max-height:500px;padding-top:20px;" /></div>
-				<div><img id="img_B" src="" value="" style="max-width:500px;max-height:500px;padding-top:20px;" /></div>
-			</div>
-			<div id="keyItem6" style="flex:1; text-align:center; width:550px;padding-left:20px;">
-				<div><img id="img_E" src="" value="" style="max-width:500px;max-height:880px;padding-top:20px;" /></div>
-			</div>
-			<div id="keyItem7" style="text-align:center; width:550px;padding-left:20px;">
-				<div><img id="img_F" src="" value="" style="max-width:500px;max-height:880px;padding-top:20px;" /></div>
-			</div>
+			<div id="needCover"></div>
+			<div id="agreementCover"></div>
+			<div id="materialsCover"></div>
 		</div>
 	</div>
 </div>

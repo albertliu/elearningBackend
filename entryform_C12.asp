@@ -419,11 +419,11 @@
 				<div id="materialsCover"></div>
 			</div>
 			<div id="keyItem5" style="flex:1; text-align:center; width:800px;padding-left:20px;">
-				<div><img id="img_A" src="" value="" style="max-width:600px;max-height:500px;padding-top:20px;" /></div>
-				<div><img id="img_B" src="" value="" style="max-width:600px;max-height:500px;padding-top:20px;" /></div>
+				<div><img id="img_A" src="" value="" style="max-width:800px;max-height:500px;padding-top:20px;" /></div>
+				<div><img id="img_B" src="" value="" style="max-width:800px;max-height:500px;padding-top:20px;" /></div>
 			</div>
 			<div id="keyItem6" style="text-align:center; width:800px;padding-left:20px;">
-				<div><img id="img_E" src="" value="" style="max-width:600px;max-height:980px;padding-top:20px;" /></div>
+				<div><img id="img_E" src="" value="" style="max-width:800px;max-height:980px;padding-top:20px;" /></div>
 			</div>
 		</div>
 	</div>

@@ -7,7 +7,7 @@
 			var arr = new Array();
 			if(data.length>0){
 				var val = data[0];
-				arr.push('<div style="page-break-after:always">&nbsp;</div>');
+				// arr.push('<div style="page-break-after:always">&nbsp;</div>');
 				arr.push('<div style="position: relative;">');
 				arr.push('<div style="position: absolute; z-index:10; width:100%;">');
 				arr.push('<div style="float:left;width:32%;">');
