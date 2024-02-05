@@ -2,12 +2,15 @@
 	var need_username = "";
 
 	function getNeed2know(id){
-		$.getJSON(uploadURL + "/public/getNeed2knowByEnterID?refID=" + id,function(data){
+		// p: 0 不换页  1 换页
+		$.getJSON(uploadURL + "/public/getNeed2knowByEnterID?refID=" + id,function(data,p){
 			var c = "";
 			var arr = new Array();
 			if(data.length>0){
 				var val = data[0];
-				// arr.push('<div style="page-break-after:always">&nbsp;</div>');
+				// if(p==1){
+					// arr.push('<div style="page-break-after:always">&nbsp;</div>');
+				// }
 				arr.push('<div style="position: relative;">');
 				arr.push('<div style="position: absolute; z-index:10; width:100%;">');
 				arr.push('<div style="float:left;width:32%;">');

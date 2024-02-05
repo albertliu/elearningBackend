@@ -189,7 +189,9 @@
 				if(keyID == 3){
 					//上传的报名表不打印附件
 				}else{
-					getNeed2know(nodeID);
+					if(keyID<2){
+						getNeed2know(nodeID);
+					}
 					getAgreement(ar[1],ar[2],course,sign,sDate,price);
 					getMaterials(ar[1],sign,p,k);
 				}
