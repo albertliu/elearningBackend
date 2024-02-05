@@ -191,8 +191,8 @@
 				}else{
 					if(keyID<2){
 						getNeed2know(nodeID);
+						getAgreement(ar[1],ar[2],course,sign,sDate,price);
 					}
-					getAgreement(ar[1],ar[2],course,sign,sDate,price);
 					getMaterials(ar[1],sign,p,k);
 				}
 				// if(reex==1){
