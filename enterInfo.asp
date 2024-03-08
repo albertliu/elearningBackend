@@ -617,6 +617,7 @@
 		$("#btnFiremanMaterials").hide();
 		$("#btnCloseStudentCourse").hide();
 		$("#btnPrint").hide();
+		$("#btnRebuildStudentLesson").hide();
 		if($("#statusPay").val()==0 && $("#kindID").val()==0){
 			//未支付的个人付款可以支付，团体付款应到发票管理中操作。
 			$("#btnPay").show();
@@ -641,6 +642,7 @@
 						$("#btnReturn").show();
 						$("#btnRefund").show();
 						$("#btnCloseStudentCourse").show();
+						$("#btnRebuildStudentLesson").show();
 						$("#btnReviveStudentCourse").hide();
 						$("#signatureDate").prop("readonly",false);
 						if(!$("#materialCheck").attr("checked")){

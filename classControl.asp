@@ -45,7 +45,7 @@ if(op == "getClassList"){
 		}
 	}
 	//host
-	if(host > ""){ // 
+	if(host > ""){ // partner
 		s = "host='" + host + "'";
 		if(where > ""){
 			where = where + " and " + s;

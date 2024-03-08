@@ -351,6 +351,19 @@
 				});
 			}
 		});
+
+		$("#btnRebuildStudentLesson").click(function(){
+			jConfirm('确定要刷新这个班级所有学员的课表和模拟练习吗?', '确认对话框', function(r) {
+				if(r){
+					$.get("studentCourseControl.asp?op=rebuildLessonByClass&nodeID=" + $("#ID").val() + "&times=" + (new Date().getTime()),function(re){
+						jAlert("刷新成功。");
+						//updateCount += 1;
+						//getNodeInfo($("#studentCourseID").val());
+					});
+				}
+			});
+		});
+
 		$("#btn_feedback_submit").click(function(){
 			submit_feedback();
 		});
@@ -912,6 +925,7 @@
 		$("#generatePhotoZip").hide();
 		$("#generateEntryZip").hide();
 		$("#btnClassChange").hide();
+		$("#btnRebuildStudentLesson").hide();
 		$("#archived").prop("disabled",true);
 		// $("#className").prop("disabled",true);
 		$("#courseID").prop("disabled",true);
@@ -942,7 +956,8 @@
 					$("#btnSchedule").show();
 					$("#save").show();
 				}
-				if((checkPermission("classAdd") || checkRole("adviser")) && currHost==""){
+				if((checkPermission("classAdd") || (checkRole("adviser") && $("#adviserID").val()==currUser)) && currHost==""){
+					$("#btnRebuildStudentLesson").show();
 					$("#archived").prop("disabled",false);
 				}
 				if(checkPermission("classOpen") && s > 0){
@@ -1145,6 +1160,7 @@
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnAttentionSignature" value="签名通知" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnAttentionPhotoClose" value="照片确认" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnAttentionSignatureClose" value="签名确认" /></span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnRebuildStudentLesson" value="刷新课表" /></span>
 		</div>
 		<div>
 			学习进度&nbsp;&lt;=<input type="text" id="s_completion2" size="2" />%
