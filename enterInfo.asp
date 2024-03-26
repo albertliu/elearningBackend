@@ -251,6 +251,9 @@
 		$("#btnReGetStudent").click(function(){
 			getStudentInfo();
 		});
+		$("#btnUploadInvoice").click(function(){
+			showLoadFile("invoice_pdf",nodeID,"invoice_pdf",$("#host").val());
+		});
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -326,6 +329,11 @@
 					$("#overdue").prop("checked",true);
 				}else{
 					$("#overdue").prop("checked",false);
+				}
+				if(ar[61]==1){
+					$("#needInvoice").prop("checked",true);
+				}else{
+					$("#needInvoice").prop("checked",false);
 				}
 
 				getPayDetailInfoByEnterID(ar[0]);
@@ -429,7 +437,11 @@
 				if($("#overdue").prop("checked")){
 					over = 1;
 				}
-				$.get("studentCourseControl.asp?op=updateEnterClass&nodeID=" + nodeID + "&item=" + escape($("#title").val()) + "&payNow=" + $("#payNow").val() + "&refID=" + $("#classID").val() + "&overdue=" + over + "&keyID=" + $("#SNo").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&signatureDate=" + $("#signatureDate").val() + "&fromID=" + $("#fromID").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+				var needInvoice = 0;
+				if($("#needInvoice").prop("checked")){
+					needInvoice = 1;
+				}
+				$.get("studentCourseControl.asp?op=updateEnterClass&nodeID=" + nodeID + "&item=" + escape($("#title").val()) + "&payNow=" + $("#payNow").val() + "&refID=" + $("#classID").val() + "&overdue=" + over + "&needInvoice=" + needInvoice + "&keyID=" + $("#SNo").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&signatureDate=" + $("#signatureDate").val() + "&fromID=" + $("#fromID").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 					//jAlert(unescape(re));
 					getNodeInfo(nodeID);
 					printEntryform(1);
@@ -830,7 +842,11 @@
 			</tr>
 			<tr>
 				<td align="right">开票信息</td>
-				<td colspan="3"><input type="text" id="title" style="width:100%;" /></td>
+				<td colspan="3">
+					<input type="text" id="title" style="width:100%;" />
+					<input type="checkbox" id="needInvoice" />&nbsp;需开票
+					&nbsp;<input class="button" type="button" id="btnUploadInvoice" value="上传发票" />
+				</td>
 			</tr>
 			<tr>
 				<td align="right">付款类型</td>

@@ -152,7 +152,11 @@
 					// k = (ar[35]=="个人" || ar[35]=="个体"? 1: 0);
 					//$("#dept2").html(ar[36]);
 				}else{
-					$("#unit").html(ar[12] + "." + ar[13] + "." + ar[14]);
+					if(keyID ==3){
+						$("#unit").html(ar[12]);
+					}else{
+						$("#unit").html(ar[12] + "." + ar[13] + "." + ar[14]);
+					}
 					k = 0;
 					//$("#dept2").html(ar[14]);
 				}

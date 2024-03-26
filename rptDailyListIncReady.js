@@ -25,9 +25,9 @@
 		$("#btnRptDailySel").click(function(){
 			setSel("visitstockchkRptDailyNopay");
 		});
-		if(!checkPermission("invoiceUpload")){
+		// if(!checkPermission("invoiceUpload")){
 			$("#btnsearchRptDailyUpload").hide();
-		}
+		// }
 		
 		$("#btnRptDailyCheck").click(function(){
 			getSelCart("visitstockchkRptDailyNopay");

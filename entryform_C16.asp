@@ -145,10 +145,12 @@
 				$("#job").html(ar[18]);
 				if(ar[29]=="znxf"){
 					$("#unit").html(ar[35] + "." + ar[36]);
-					//$("#dept2").html(ar[36]);
 				}else{
-					$("#unit").html(ar[12] + "." + ar[13] + "." + ar[14]);
-					//$("#dept2").html(ar[14]);
+					if(keyID ==3){
+						$("#unit").html(ar[12]);
+					}else{
+						$("#unit").html(ar[12] + "." + ar[13] + "." + ar[14]);
+					}
 				}
 				$("#educationName").html(ar[31]);
 				$("#birthday").html(ar[33].substr(0,7));

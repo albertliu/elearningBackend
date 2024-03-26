@@ -238,6 +238,16 @@ if(op == "getStudentCourseList"){
 			}
 		}
 	}
+	//如果需开票
+	if(String(Request.QueryString("needInvoice")) == "1"){ // 
+		s = "needInvoice=1";	//1 需开票
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+		d += 1;
+	}
 
 	if(where > ""){
 		where = " where " + where;
@@ -273,7 +283,7 @@ if(op == "getStudentCourseList"){
 		//72
 		result += "|" + rs("fromID").value + "|" + rs("signature").value + "|" + rs("signatureDate").value + "|" + rs("status_photo").value + "|" + rs("status_signature").value + "|" + rs("signatureType").value;
 		//78
-		result += "|" + rs("file1").value + "|" + rs("file2").value + "|" + rs("employe_filename").value + "|" + rs("express").value + "|" + rs("memo").value + "|" + rs("currDiplomaDate").value;
+		result += "|" + rs("file1").value + "|" + rs("file2").value + "|" + rs("employe_filename").value + "|" + rs("express").value + "|" + rs("memo").value + "|" + rs("currDiplomaDate").value + "|" + rs("needInvoice").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -489,7 +499,7 @@ if(op == "getNodeInfo"){
 		//47
 		result += "|" + rs("fromID").value + "|" + rs("signature").value + "|" + rs("signatureDate").value + "|" + rs("status_photo").value + "|" + rs("status_signature").value + "|" + rs("signatureType").value + "|" + rs("price").value;
 		//54
-		result += "|" + rs("file1").value + "|" + rs("file2").value + "|" + rs("shortName").value + "|" + rs("overdue").value + "|" + rs("express").value + "|" + rs("payNow").value + "|" + rs("title").value;
+		result += "|" + rs("file1").value + "|" + rs("file2").value + "|" + rs("shortName").value + "|" + rs("overdue").value + "|" + rs("express").value + "|" + rs("payNow").value + "|" + rs("title").value + "|" + rs("needInvoice").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
