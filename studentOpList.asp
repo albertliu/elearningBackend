@@ -37,7 +37,7 @@
 
 	function getStudentOpList(){
 		//alert(refID + ":" + nodeID);
-		$.get("studentCourseControl.asp?op=getStudentOpList&nodeID=" + nodeID + "&times=" + (new Date().getTime()),function(data){
+		$.get("studentCourseControl.asp?op=getStudentOpList&nodeID=" + nodeID + "&refID=" + refID + "&times=" + (new Date().getTime()),function(data){
 			//alert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
