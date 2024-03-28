@@ -85,6 +85,9 @@
 		$("#examList").click(function(){
 			showStudentExamList($("#username").val(),$("#name").val(),0,1);
 		});
+		$("#opList").click(function(){
+			showStudentOpList($("#username").val(),1,0,1);
+		});
 		$("#save").click(function(){
 			fromCard = 0;
 			saveNode();
@@ -1004,6 +1007,7 @@
 		<input class="button" type="button" id="reply" value="发通知" />&nbsp;
 		<input class="button" type="button" id="reset" value="重置密码" />&nbsp;
 		<input class="button" type="button" id="smsList" value="查看通知" />&nbsp;
+		<input class="button" type="button" id="opList" value="查看操作" />&nbsp;
 		<input class="button" type="button" id="examList" value="查看考试信息" />
   	</div>
 

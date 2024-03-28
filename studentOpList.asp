@@ -24,8 +24,8 @@
 <script language="javascript">
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
-		nodeID = "<%=nodeID%>";	//username
-		refID = "<%=refID%>";	//name
+		nodeID = "<%=nodeID%>";	//enterID username
+		refID = "<%=refID%>";	//0 nodeID=enterID 1 nodeID=username
 		op = "<%=op%>";
 		
 		$.ajaxSetup({ 
@@ -47,9 +47,10 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='4%'>No</th>");
-			arr.push("<th width='26%'>操作内容</th>");
-			arr.push("<th width='35%'>操作日期</th>");
-			arr.push("<th width='35%'>操作人</th>");
+			arr.push("<th width='30%'>操作项目</th>");
+			arr.push("<th width='30%'>备注</th>");
+			arr.push("<th width='20%'>操作日期</th>");
+			arr.push("<th width='15%'>操作人</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");

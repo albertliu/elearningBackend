@@ -246,7 +246,7 @@
 			showStudentExamList($("#username").val(),$("#name").val(),0,1);
 		});
 		$("#opList").click(function(){
-			showStudentOpList($("#studentCourseID").val(),"",0,1);
+			showStudentOpList($("#studentCourseID").val(),0,0,1);
 		});
 		$("#btnReGetStudent").click(function(){
 			getStudentInfo();
