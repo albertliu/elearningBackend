@@ -47,9 +47,9 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='4%'>No</th>");
-			arr.push("<th width='30%'>操作项目</th>");
+			arr.push("<th width='25%'>操作项目</th>");
 			arr.push("<th width='30%'>备注</th>");
-			arr.push("<th width='20%'>操作日期</th>");
+			arr.push("<th width='25%'>操作日期</th>");
 			arr.push("<th width='15%'>操作人</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
