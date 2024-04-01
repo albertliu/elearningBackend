@@ -393,7 +393,7 @@
 				$("#dateInvoicePick").val(ar[11]);
 				$("#dateRefund").val(ar[12]);
 				$("#refunderName").val(ar[14]);
-				$("#memo").val(ar[18]);
+				// $("#memo").val(ar[18]);
 				// $("#title").val(ar[22]);
 			}else{
 				//jAlert("缴费信息未找到！","信息提示");
@@ -425,7 +425,7 @@
 				//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
 				//@ID int,@invoice varchar(50),@projectID varchar(50),@kindID varchar(50),@type int,@status int,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo
 				//alert($("#payID").val() + "&refID=" + $("#username").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + ($("#title").val()) + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#status").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&memo=" + ($("#memo").val()));
-				$.get("studentCourseControl.asp?op=updatePayInfo&nodeID=" + $("#payID").val() + "&refID=" + $("#username").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#statusPay").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+				$.get("studentCourseControl.asp?op=updatePayInfo&nodeID=" + $("#payID").val() + "&refID=" + $("#username").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#statusPay").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&memo=&times=" + (new Date().getTime()),function(re){
 					//alert(unescape(re));
 					updateCount += 1;
 					jAlert("保存成功.","信息提示");
