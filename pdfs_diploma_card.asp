@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width">
 
 <!--必要样式-->
-<link href="css/style.css?ver=1.2"  rel="stylesheet" type="text/css" id="css" />
+<link href="css/style.css?ver=1.3"  rel="stylesheet" type="text/css" id="css" />
 <script language="javascript" src="js/jquery-1.7.2.min.js"></script>
 
 
