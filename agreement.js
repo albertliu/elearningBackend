@@ -18,13 +18,13 @@
 		arr.push('			<td colspan="2" style="height:30px;"><p style="font-size:1.3em;text-indent:2em;">2、乙方已详细阅读甲方报名处公示的各项内容（属于单位集体报名的学员，开班当天须本人到报名处阅读各项公示内容，如有不解之处可向报名处工作人员咨询）。</p></td>');
 		arr.push('		</tr>');
 		arr.push('		<tr>');
-		arr.push('			<td colspan="2" style="height:30px;"><p style="font-size:1.3em;text-indent:2em;">3、该培训项目实行考培分离制度，学校负责培训。申请考试分两种情况：① 上海市应急管理局和社会评价机构（人社局）发证项目，由甲方统一申请考试； ② 其他考试项目由乙方自行向相关鉴定机构申报考试，若乙方考试申报遇到困难，可向甲方提出协助申报（甲方发证培训考核项目，此条款不适用）。</p></td>');
+		arr.push('			<td colspan="2" style="height:30px;"><p style="font-size:1.3em;text-indent:2em;">3、该培训项目实行考培分离制度，学校负责培训。申请考试分两种情况：① 上海市应急管理局和社会评价机构（人社局）发证项目，由甲方统一申请考试； ② 其他考试项目由乙方自行向相关鉴定机构申报考试，若乙方申报遇到困难，可向甲方提出协助（甲方发证培训考核项目，此条款不适用）。</p></td>');
 		arr.push('		</tr>');
 		arr.push('		<tr>');
 		arr.push('			<td colspan="2" style="height:30px;"><p style="font-size:1.3em;text-indent:2em;">4、乙方在办理报名手续后，扫甲方二维码登陆后即进入了甲方线上教学平台开始学习，如要退学退款按以下规则处理：</p></td>');
 		arr.push('		</tr>');
 		arr.push('		<tr>');
-		arr.push('			<td colspan="2" style="height:30px;"><p style="font-size:1.3em;text-indent:3.5em;">1）报名后三天之内申请退学，甲方收取20元培训报名手续费和书本费（书本不予退还）后退款；</p></td>');
+		arr.push('			<td colspan="2" style="height:30px;"><p style="font-size:1.3em;text-indent:3.5em;">1）报名后三天内申请退学，甲方收取20元报名手续费和书本费（书本不予退还）后退款；</p></td>');
 		arr.push('		</tr>');
 		arr.push('		<tr>');
 		arr.push('			<td colspan="2" style="height:30px;"><p style="font-size:1.3em;text-indent:3.5em;">2）报名后超过三天申请退学，甲方收取培训费的20%，退款金额为原支付金额的80%；</p></td>');
@@ -39,7 +39,7 @@
 		arr.push('			<td colspan="2" style="height:30px;"><p style="font-size:1.3em;text-indent:3.5em;">5) 开始线下培训的第三天申请退学，培训费不予退还。</p></td>');
 		arr.push('		</tr>');
 		arr.push('		<tr>');
-		arr.push('			<td colspan="2" style="height:30px;"><p style="font-size:1.3em;text-indent:3.5em;">6) 乙方申请退学须携带缴费票据原件和身份证，填写退款申请单（未能提供票据原件的不予退费）。</p></td>');
+		arr.push('			<td colspan="2" style="height:30px;"><p style="font-size:1.3em;text-indent:3.5em;">6) 乙方申请退学须携带缴费票据原件和身份证，填写退款申请，未提供票据原件的不予退费。</p></td>');
 		arr.push('		</tr>');
 		arr.push('		<tr>');
 		arr.push('			<td colspan="2" style="height:30px;"><p style="font-size:1.3em;text-indent:2em;">5、乙方上课期间必须自觉履行签到考勤制度，如本人没有签到，不来上课，作缺课处理。</p></td>');
@@ -54,7 +54,7 @@
 		arr.push('			<td colspan="2" style="height:30px;"><p style="font-size:1.3em;text-indent:2em;">8、乙方报名后须关注该培训项目班级群内由学校发布的相关培训考试信息，如因未关注班级群信息或手机号填写不正确而没有收到相关信息，乙方应承担由此而引起的一切责任。</p></td>');
 		arr.push('		</tr>');
 		arr.push('		<tr>');
-		arr.push('			<td colspan="2" style="height:30px;"><p style="font-size:1.3em;text-indent:2em;">9、乙方没有完成甲方线上理论教学80%的课时学习或线下80%的课时学习，甲方有权不予申报考试。</p></td>');
+		arr.push('			<td colspan="2" style="height:30px;"><p style="font-size:1.3em;text-indent:2em;">9、乙方未完成线上理论教学80%的课时学习或线下80%的课时学习，甲方有权不予申报考试。</p></td>');
 		arr.push('		</tr>');
 		arr.push('		<tr>');
 		arr.push('			<td colspan="2" style="height:30px;"><p style="font-size:1.3em;text-indent:2em;">10、若乙方考试不及格，需自行到甲方报名处重新申请培训考试，并重新缴纳培训考试费。</p></td>');
