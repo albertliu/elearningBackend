@@ -1037,6 +1037,33 @@ if(op == "getApplyListByBatch"){
 			where = s;
 		}
 	}
+	//如果未报名
+	if(String(Request.QueryString("wait"))==1){ // 
+		s = "step <> '已报名'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//如果未上传材料
+	if(String(Request.QueryString("upload"))==1){ // 
+		s = "upload=0";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//如果未上传照片
+	if(String(Request.QueryString("uploadPhoto"))==1){ // 
+		s = "uploadPhoto=0";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 
 	if(where > ""){
 		where = " where " + where;
@@ -1056,6 +1083,8 @@ if(op == "getApplyListByBatch"){
 		result += "|" + rs("score").value + "|" + rs("score1").value + "|" + rs("score2").value + "|" + rs("SNo").value;
 		//23
 		result += "|" + rs("certID").value + "|" + rs("file1").value + "|" + rs("file2").value + "|" + rs("file3").value + "|" + rs("currDiplomaDate").value + "|" + rs("reexamine").value + "|" + rs("enterStatus").value;
+		//30
+		result += "|" + rs("upload").value + "|" + rs("uploadPhoto").value + "|" + rs("step").value + "|" + rs("memo1").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -1080,6 +1109,8 @@ if(op == "getGenerateApplyNodeInfo"){
 		result += "|" + rs("reexamineName").value + "|" + rs("importApplyDate").value + "|" + rs("importScoreDate").value + "|" + rs("diplomaStartDate").value + "|" + rs("diplomaEndDate").value;
         //29
 		result += "|" + rs("diplomaTerm").value + "|" + rs("qtyCheck").value + "|" + rs("certID").value + "|" + rs("host").value + "|" + rs("zip").value + "|" + rs("pzip").value + "|" + rs("ezip").value;
+        //36
+		result += "|" + rs("reexamine").value + "|" + rs("agencyID").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

@@ -43,7 +43,7 @@
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";		//enterID
 		refID = "<%=refID%>";		//username
-		keyID = "<%=keyID%>";		//0 预览  1 打印  2 申报材料  3 报名表
+		keyID = "<%=keyID%>";		//0 预览  1 打印  2 归档材料  3 报名表
 		op = "<%=op%>";
 		
 		$.ajaxSetup({ 
@@ -51,13 +51,6 @@
 		}); 
 		$("#print").click(function(){
 			resumePrint();
-		});
-
-		$("#btnGenerateMaterials").click(function(){
-			generateMaterials();
-		});
-		$("#btnGenerateZip").click(function(){
-			generateZip();
 		});
 		if(keyID==3){
 			$("#keyItem4").hide();
@@ -219,28 +212,6 @@
 		});
 	}
 
-	function generateMaterials(){
-		$.getJSON(uploadURL + "/outfiles/generate_emergency_materials?refID=" + refID + "&nodeID=" + nodeID + "&keyID=2" ,function(data){
-			if(data>""){
-				alert("已生成文件");
-				getNodeInfo(nodeID, refID);
-			}else{
-				alert("没有可供处理的数据。");
-			}
-		});
-	}
-	
-	function generateZip(){
-		$.getJSON(uploadURL + "/outfiles/generate_fireman_zip?username=" + refID + "&enterID=" + nodeID + "&registerID=" + currUser ,function(data){
-			if(data>""){
-				alert("已生成压缩包");
-				getNodeInfo(nodeID, refID);
-			}else{
-				alert("没有可供处理的数据。");
-			}
-		});
-	}
-
 	function resumePrint(){
 		$("#resume_print").print({
 			//Use Global styles
@@ -280,11 +251,6 @@
 	<div style="width:100%;float:left;margin:0;">
 		<div id="pageTitle" style="text-align:center;">
 			<input class="button" type="button" id="print" value="打印" />&nbsp;
-			申报文件
-			<span id="f_materials" style="margin-left:20px;"></span>
-			<span id="f_photo" style="margin-left:20px;"></span>
-			<input class="button" style="margin-left:20px;" type="button" id="btnGenerateMaterials" value="生成文件" />
-			<input class="button" style="margin-left:20px;" type="button" id="btnGenerateZip" value="生成压缩包" />
 		</div>
 		<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
 			<div style="position: relative;width:800px;height:99%;">

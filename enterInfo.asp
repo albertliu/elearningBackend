@@ -337,14 +337,6 @@
 				}
 
 				getPayDetailInfoByEnterID(ar[0]);
-			//getDownloadFile("studentCourseID");
-				var c1 = "";
-				if(ar[35] > ""){
-					c1 += "<a href='/users" + ar[35] + "' target='_blank'>下载</a>";
-					entryform = "/users" + ar[35];
-				}
-				if(c1 == ""){c1 = "&nbsp;&nbsp;还未生成";}
-				//$("#entryform").html(c1);
 				if(ar[27]=="" && ar[26]>""){
 					getComList("classID","[dbo].[getClassListByProject]('" + ar[26] + "')","classID","classIDName"," status=0 order by batchID desc",1);
 				}
@@ -804,7 +796,6 @@
                 </form>
 				</div>
 				<br>
-					<span id="entryform" style="margin-left:20px;"></span>
 					<input class="button" type="button" id="btnEntryform" value="生成" />
 					<input class="button" type="button" id="save" value="保存" />
 					<input class="button" type="button" id="btnPreview" value="预览" />
