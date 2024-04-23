@@ -634,7 +634,7 @@
 				arr.push("<th width='7%'>成绩</th>");
 				arr.push("<th width='7%'>结果</th>");
 			}else{
-				arr.push("<th width='10%'>电话</th>");
+				arr.push("<th width='8%'>电话</th>");
 				arr.push("<th width='8%'>照片</th>");
 				arr.push("<th width='7%'>签名</th>");
 			}
