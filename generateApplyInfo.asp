@@ -126,6 +126,24 @@
 			}
 		});
 
+		$("#showWait").checkbox({
+			onChange: function(val){
+				getApplyList();
+			}
+		});
+
+		$("#showWaitUpload").checkbox({
+			onChange: function(val){
+				getApplyList();
+			}
+		});
+
+		$("#showWaitUploadPhoto").checkbox({
+			onChange: function(val){
+				getApplyList();
+			}
+		});
+
 		$("#save").click(function(){
 			saveNode();
 		});
@@ -619,7 +637,7 @@
 			arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='cardTab' width='100%'>");
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
-			arr.push("<th width='4%'>No</th>");
+			arr.push("<th width='3%'>No</th>");
 			arr.push("<th width='8%'>学号</th>");
 			arr.push("<th width='10%'>身份证</th>");
 			arr.push("<th width='7%'>姓名</th>");
@@ -641,8 +659,8 @@
 			arr.push("<th width='15%'>备注</th>");
 			// arr.push("<th width='7%'>补考</th>");
 			arr.push("<th width='8%'>复训日期</th>");
-			arr.push("<th width='3%'>材</th>");
-			arr.push("<th width='2%'></th>");
+			arr.push("<th width='1%'>材</th>");
+			arr.push("<th width='1%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
