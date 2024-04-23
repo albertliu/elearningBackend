@@ -1670,8 +1670,8 @@
 			id: "generateApply",
 			url:"generateApplyInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "申报批次信息",
-			width: 1280,
-			height: 880,
+			width: 1300,
+			height: 900,
 			cover : {
 	          //透明度
 	          opacity : 0,

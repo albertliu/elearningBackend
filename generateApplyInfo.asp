@@ -622,9 +622,9 @@
 			arr.push("<th width='4%'>No</th>");
 			arr.push("<th width='8%'>学号</th>");
 			arr.push("<th width='10%'>身份证</th>");
-			arr.push("<th width='6%'>姓名</th>");
+			arr.push("<th width='7%'>姓名</th>");
 			arr.push("<th width='8%'>单位</th>");
-			arr.push("<th width='6%'>申报</th>");
+			arr.push("<th width='7%'>申报</th>");
 			arr.push("<th width='6%'>上传</th>");
 			if(reexamine == 1){
 				arr.push("<th width='5%'>照片</th>");
@@ -635,8 +635,8 @@
 				arr.push("<th width='7%'>结果</th>");
 			}else{
 				arr.push("<th width='8%'>电话</th>");
-				arr.push("<th width='8%'>照片</th>");
-				arr.push("<th width='7%'>签名</th>");
+				arr.push("<th width='6%'>照片</th>");
+				arr.push("<th width='6%'>签名</th>");
 			}
 			arr.push("<th width='15%'>备注</th>");
 			// arr.push("<th width='7%'>补考</th>");
