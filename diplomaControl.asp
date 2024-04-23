@@ -1085,6 +1085,8 @@ if(op == "getApplyListByBatch"){
 		result += "|" + rs("certID").value + "|" + rs("file1").value + "|" + rs("file2").value + "|" + rs("file3").value + "|" + rs("currDiplomaDate").value + "|" + rs("reexamine").value + "|" + rs("enterStatus").value;
 		//30
 		result += "|" + rs("upload").value + "|" + rs("uploadPhoto").value + "|" + rs("step").value + "|" + rs("memo1").value;
+		//34
+		result += "|" + rs("photo_filename").value + "|" + rs("signature").value + "|" + rs("photo_size").value + "|" + rs("signatureDate").value;
 		rs.MoveNext();
 	}
 	rs.Close();

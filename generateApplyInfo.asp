@@ -120,6 +120,12 @@
 			});
 		});
 
+		$("#showPhoto").checkbox({
+			onChange: function(val){
+				getApplyList();
+			}
+		});
+
 		$("#save").click(function(){
 			saveNode();
 		});
@@ -497,6 +503,11 @@
 				$("#title").val(ar[3]);
 				$("#qty").val(ar[4]);
 				$("#applyID").val(ar[5]);
+				if(ar[5] > ""){
+					$("#showPhoto").checkbox({checked:false});	//有班级编号的默认不显示照片
+				}else{
+					$("#showPhoto").checkbox({checked:true});
+				}
 				$("#startDate").val(ar[6]);
 				$("#address").val(ar[11]);
 				address = ar[11];
@@ -585,6 +596,10 @@
 		var wait = 0;
 		var upload = 0;
 		var uploadPhoto = 0;
+		var photo = 0;
+		if($("#showPhoto").checkbox("options").checked){
+			photo = 1;
+		}
 		if($("#showWait").checkbox("options").checked){
 			wait = 1;
 		}
@@ -605,22 +620,28 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='4%'>No</th>");
-			arr.push("<th width='9%'>学号</th>");
+			arr.push("<th width='8%'>学号</th>");
 			arr.push("<th width='10%'>身份证</th>");
-			arr.push("<th width='8%'>姓名</th>");
+			arr.push("<th width='6%'>姓名</th>");
 			arr.push("<th width='8%'>单位</th>");
-			arr.push("<th width='10%'>电话</th>");
-			arr.push("<th width='7%'>申报</th>");
-			arr.push("<th width='5%'>上传</th>");
+			arr.push("<th width='6%'>申报</th>");
+			arr.push("<th width='6%'>上传</th>");
 			if(reexamine == 1){
 				arr.push("<th width='5%'>照片</th>");
 			}
-			arr.push("<th width='12%'>考试时间</th>");
-			arr.push("<th width='7%'>成绩</th>");
-			arr.push("<th width='7%'>结果</th>");
+			if(photo == 0){
+				arr.push("<th width='12%'>考试时间</th>");
+				arr.push("<th width='7%'>成绩</th>");
+				arr.push("<th width='7%'>结果</th>");
+			}else{
+				arr.push("<th width='10%'>电话</th>");
+				arr.push("<th width='8%'>照片</th>");
+				arr.push("<th width='7%'>签名</th>");
+			}
+			arr.push("<th width='15%'>备注</th>");
 			// arr.push("<th width='7%'>补考</th>");
 			arr.push("<th width='8%'>复训日期</th>");
-			arr.push("<th width='5%'>材</th>");
+			arr.push("<th width='3%'>材</th>");
 			arr.push("<th width='2%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -634,6 +655,8 @@
 				var imgChk = "<img src='images/green_check.png'>";
 				var backcolor = ["#F0F0F0","#FFFF00","#00FF00","#FF8888"];
 				var bc = "";
+				let photo_size = 0;
+				let photo_type = "jpg";
 				$.each(ar,function(iNum,val){
 					var ar1 = new Array();
 					ar1 = val.split("|");
@@ -645,20 +668,41 @@
 					arr.push("<td class='link1'><a href='javascript:showEnterInfo(\"" + ar1[2] + "\",\"" + ar1[4] + "\",0,1);'>" + ar1[4] + "</a></td>");
 					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + ar1[4] + "\",0,1);'>" + ar1[5] + "</a></td>");
 					arr.push("<td class='left' title='" + ar1[13] + "." + ar1[14] + "'>" + ar1[13].substr(0,4) + "</td>");
-					arr.push("<td class='left'>" + ar1[6] + "</td>");
 					// arr.push("<td class='left'>" + ar1[17] + "</td>");
 					arr.push("<td class='left'>" + ar1[32] + "</td>");
 					arr.push("<td class='left'>" + (ar1[30]==1?imgChk:'&nbsp;') + "</td>");	// 上传报名表
 					if(reexamine == 1){
 						arr.push("<td class='left'>" + (ar1[31]==1?imgChk:'&nbsp;') + "</td>");	// 上传照片
 					}
-					arr.push("<td class='left'>" + ar1[18] + "</td>");
-                    h = ar1[19];
-                    if(certID=="C12" || certID=="C14" || certID=="C15" || certID=="C24" || certID=="C25" || certID=="C26" || c == "C25B" || c == "C26B"){
-                        h = ar1[20].replace(".00","") + "/" + ar1[21].replace(".00","");
-                    }
-					arr.push("<td class='left'>" + h + "</td>");
-					arr.push("<td class='left'>" + ar1[9] + "</td>");
+					if(photo == 0){
+						arr.push("<td class='left'>" + ar1[18] + "</td>");
+						h = ar1[19];
+						if(certID=="C12" || certID=="C14" || certID=="C15" || certID=="C24" || certID=="C25" || certID=="C26" || c == "C25B" || c == "C26B"){
+							h = ar1[20].replace(".00","") + "/" + ar1[21].replace(".00","");
+						}
+						arr.push("<td class='left'>" + h + "</td>");
+						arr.push("<td class='left'>" + ar1[9] + "</td>");
+					}else{
+						arr.push("<td class='left'>" + ar1[6] + "</td>");
+						photo_type = ar1[34].substr(ar1[34].indexOf("."));
+						photo_size = ar1[36];
+						if(photo_size > 100 || photo_type !== ".jpg"){	//根据照片类型或文件大小，显示不同背景颜色
+							h = " style='background-color:#FFFFAA;'";
+						}else{
+							h = "";
+						}
+						if(ar1[34] > ""){	//照片
+							arr.push("<td class='center'" + h + "><img id='photo" + ar1[1] + "' title='大小：" + photo_size + "k, 类型：" + photo_type + "' src='users" + ar1[34] + "?times=" + (new Date().getTime()) + "' onclick='showCropperInfo(\"users" + ar1[34] + "\",\"" + ar1[4] + "\",\"photo\",\"\",0,1)' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
+						}else{
+							arr.push("<td class='center'" + h + ">&nbsp;</td>");
+						}
+						if(ar1[35] > ""){	//签字
+							arr.push("<td class='center'><img src='users" + ar1[35] + "?times=" + (new Date().getTime()) + "' style='width:60px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
+						}else{
+							arr.push("<td class='center'>&nbsp;</td>");
+						}
+					}
+					arr.push("<td class='link1'><a href='javascript:showMsg(\"" + ar1[33] + "\",\"历史数据\");'>" + ar1[10] + "</a></td>");	// 备注
 					// if(ar1[7]>0){
 					// 	arr.push("<td class='center'>" + imgChk + "</td>");	//补考
 					// }else{
@@ -970,6 +1014,7 @@
 			<a class="easyui-linkbutton" id="doApplyUpload" href="javascript:void(0)"></a>
 			<a class="easyui-linkbutton" id="doApplyUploadPhoto" href="javascript:void(0)"></a>
 			<a class="easyui-linkbutton" id="doApplyDownload" href="javascript:void(0)"></a>
+			&nbsp;&nbsp;<input class="easyui-checkbox" id="showPhoto" name="showPhoto" checked value="1"/>&nbsp;显示照片&nbsp;
 			&nbsp;&nbsp;<input class="easyui-checkbox" id="showWait" name="showWait" value="1"/>&nbsp;未报名&nbsp;
 			&nbsp;&nbsp;<input class="easyui-checkbox" id="showWaitUpload" name="showWaitUpload" value="1"/>&nbsp;未传材料&nbsp;
 			&nbsp;&nbsp;<input class="easyui-checkbox" id="showWaitUploadPhoto" name="showWaitUploadPhoto" value="1"/>&nbsp;未传照片&nbsp;
