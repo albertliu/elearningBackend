@@ -1825,14 +1825,16 @@
 		});
 	}
 	
-	//nodeID: ID; op: 0 浏览 1 新增  2 编辑  3 删除  4 审批; mark: 0 不动作  1 有修改时刷新列表  2 有修改时刷新对象
+	//nodeID: ID; refID:width; op:height; mark:image width scale
 	function showImage(nodeID,refID,op,mark){
+		let w = (refID+1) * 400;
+		let h = (op+1) * 250;
 		asyncbox.open({
 			id: "imgShow",
-			url:"imgShow.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
-			title: "签字",
-			width: 400,
-			height: 300,
+			url:"imgShow.asp?nodeID=" + nodeID + "&p=1&times=" + (new Date().getTime()),
+			title: "图片",
+			width: w,
+			height: h,
 			cover : {
 	          //透明度
 	          opacity : 0,
