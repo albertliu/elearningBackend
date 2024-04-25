@@ -259,7 +259,7 @@
 			<span id="select1">申报项目：<select id="applyID" style="width:200px"></select></span>
 		</div>
 	</div>
-	<input style="border:0px;" type="checkbox" id="showAll" value="" />&nbsp;显示全部记录&nbsp;
+	<div style="padding-left:10px;"><input style="border:0px;" type="checkbox" id="showAll" value="" />&nbsp;显示全部记录&nbsp;</div>
 
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">

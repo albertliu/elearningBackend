@@ -4,7 +4,7 @@
 
 if(op == "getCartList"){
 	var s = "";
-	where = "registerID='" + currUser + "'";
+	//where = "registerID='" + currUser + "'";
 	//如果显示全部
 	if(refID == 0){ // 
 		s = "registerID='" + currUser + "'";

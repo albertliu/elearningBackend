@@ -174,6 +174,8 @@
 		$("#cart_examer_img").click(function(){
 			if(checkPermission("studentAdd")){
 				showCartInfo("examer",0,0,1);
+			}else{
+				jAlert("没有使用购物车的权限");
 			}
 		});
 
@@ -183,6 +185,10 @@
 		});
 		
 		$("#btnEnterCartAdd").click(function(){
+			if(!checkPermission("studentAdd")){
+				jAlert("没有使用购物车的权限");
+				return false;
+			}
 			getSelCart("visitstockchkEnter");
 			if(selCount==0){
 				jAlert("请选择要加入购物车的人员。");
