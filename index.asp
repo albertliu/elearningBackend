@@ -201,7 +201,8 @@
 			$.getJSON(uploadURL + "/outfiles/compressImages?path=users/upload/students/photos",function(data){
 				jAlert(data);
 			});*/
-			showSignatureInfo(33612);
+			// showSignatureInfo(33612);
+			window.open("test_pay.asp", "_blank");
 		});
 		
 		window.setInterval(function () {

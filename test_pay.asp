@@ -1,0 +1,76 @@
+﻿<!--#include file="js/doc.js" -->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/nav.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title></title>
+
+<link href="css/style_inner1.css"  rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/easyui/easyui.css">
+<link rel="stylesheet" type="text/css" href="css/easyui/icon.css">
+<link href="css/data_table_mini.css?v=20150411" rel="stylesheet" type="text/css" />
+<link href="css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="css/asyncbox/asyncbox.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
+<script language="javascript" src="js/jquery-1.7.2.min.js"></script>
+<script language="javascript" src="js/jquery.form.js"></script>
+<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+<script src="js/jquery.alerts.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/AsyncBox.v1.4.js"></script>
+<script language="javascript" type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+<script src="js/datepicker/WdatePicker.js" type="text/javascript"></script>
+<script type='text/javascript' src='js/jquery.autocomplete.js'></script>
+<!--#include file="js/clickMenu.js"-->
+
+<script language="javascript">
+	var nodeID = 1;
+	var kindID = 0;
+	var item = "";
+	var memo = "";
+	var refID = "";
+	var updateCount = 0;
+	<!--#include file="js/commFunction.js"-->
+	$(document).ready(function (){
+		
+						$.ajax({
+							url: uploadURL + "/public/enterPay",
+							type: "post",
+							data: {"enterID":123, "amount":0.01, "item":"从业人员初训报名费","name":"310108199320320021张三丰","sales":"大佬"},
+							beforeSend: function() {   
+								$.messager.progress();	// 显示进度条
+							},
+							success: function(data){
+								//jAlert(data);
+								$("#result").val(data);
+								if(data.code=="JH200"){
+									$("#url").val(data.result.payUtl);
+									window.open(data.result.payUtl, "_blank");
+								}
+								$.messager.progress('close');	// 如果提交成功则隐藏进度条 
+							},
+							error: function () {
+								$.messager.progress('close');
+							}
+						});
+	});
+
+</script>
+
+</head>
+
+<body style="background:#f0f0f0;">
+ <!--#include file='commFloatDetail.asp' -->
+ <!--#include file='commLoadFileDetail.asp' -->
+
+<div id='layout' align='left' style="background:#f0f0f0;">	
+
+	<div style="width:100%;float:left;margin:10;height:4px;"></div>
+  	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
+  		<input type="text" id="result" style="width:100%;" />
+  		<input type="text" id="url" style="width:100%;" />
+  		&nbsp;<input class="button" type="button" id="btnRemove" value="移除" />&nbsp;
+  	</div>
+</div>
+</body>
