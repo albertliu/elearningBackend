@@ -44,6 +44,10 @@
 			setSel("");
 		});
 		
+		$("#showAll").change(function(){
+			getCartList();
+		});
+
 		$("#btnEmpty").click(function(){
 			$.messager.confirm("确认","确定要清空购物车吗？",function(r){
 				if(r){
@@ -140,7 +144,11 @@
 	});
 
 	function getCartList(){
-		$.get("cartControl.asp?op=getCartList&kindID=" + kindID + "&times=" + (new Date().getTime()),function(data){
+		var show = 0
+		if($("#showAll").prop("checked")){
+			show = 1;
+		}
+		$.get("cartControl.asp?op=getCartList&kindID=" + kindID + "&refID=" + show + "&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
@@ -251,7 +259,8 @@
 			<span id="select1">申报项目：<select id="applyID" style="width:200px"></select></span>
 		</div>
 	</div>
-	
+	<input style="border:0px;" type="checkbox" id="showAll" value="" />&nbsp;显示全部记录&nbsp;
+
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
   		<input class="button" type="button" id="btnCartSel" value="全选/取消" />&nbsp;
