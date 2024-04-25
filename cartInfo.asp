@@ -162,9 +162,9 @@
 			arr.push("<th width='20%'>身份证</th>");
 			arr.push("<th width='12%'>姓名</th>");
 			arr.push("<th width='15%'>备注</th>");
-			arr.push("<th width='15%'>课程</th>");
-			arr.push("<th width='18%'>添加人</th>");
-			arr.push("<th width='10%'></th>");
+			arr.push("<th width='20%'>课程</th>");
+			arr.push("<th width='16%'>添加人</th>");
+			arr.push("<th width='3%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
