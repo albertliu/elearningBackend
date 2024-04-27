@@ -508,9 +508,9 @@
 	});
 
 	function getNodeInfo(id){
-		//alert(id);
+		// alert(id);
 		$.get("diplomaControl.asp?op=getGenerateApplyNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
-			//jAlert(unescape(re));
+			// alert(unescape(re));
 			var ar = new Array();
 			var c = "";
 			ar = unescape(re).split("|");
@@ -542,6 +542,11 @@
 				$("#senderScoreName").val(ar[20]);
 				$("#reexamineName").val(ar[24]);
 				$("#host").val(ar[32]);
+				if(ar[38]==1){
+					$("#diplomaReady").prop("checked",true);
+				}else{
+					$("#diplomaReady").prop("checked",false);
+				}
 				reexamine = ar[36];
 				agencyID = ar[37];
 				certID = ar[31];
@@ -592,9 +597,14 @@
 		if($("#courseID").val()==""){
 			jAlert("请选择申报科目。");
 			return false;
+		}				
+		var diplomaReady = 0;
+		if($("#diplomaReady").prop("checked")){
+			diplomaReady = 1;
 		}
+
 		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-		$.get("diplomaControl.asp?op=updateGenerateApplyInfo&nodeID=" + nodeID + "&refID=" + $("#courseID").val() + "&host=" + $("#host").val() + "&keyID=" + $("#applyID").val() + "&startDate=" + $("#startDate").val() + "&item=" + escape($("#title").val()) + "&address=" + escape($("#address").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("diplomaControl.asp?op=updateGenerateApplyInfo&nodeID=" + nodeID + "&diplomaReady=" + diplomaReady + "&refID=" + $("#courseID").val() + "&host=" + $("#host").val() + "&keyID=" + $("#applyID").val() + "&startDate=" + $("#startDate").val() + "&item=" + escape($("#title").val()) + "&address=" + escape($("#address").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//alert(unescape(re));
 			if(re>0){
 				jAlert("保存成功");
@@ -967,12 +977,13 @@
 			</tr>
 			<tr>
 				<td align="right">申报结果</td>
-				<td colspan="3">
+				<td colspan="2">
 					人数：<span id="qty" style="margin-left:10px;"></span>
 					待定：<span id="qtyNull" style="margin-left:10px;"></span>
 					通过：<span id="qtyYes" style="margin-left:10px;"></span>
 					未通过<span id="qtyNo" style="margin-left:10px;"></span>
 				</td>
+				<td><input style="border:0px;" type="checkbox" id="diplomaReady" value="" />&nbsp;证书已到</td>
 			</tr>
 			<tr>
 				<td align="right">考试通知</td>

@@ -916,7 +916,7 @@ if(op == "getGenerateApplyList"){
 	var s = "";
 	//如果有条件，按照条件查询
 	if(where > ""){ // 有条件
-		where = "(title like('%" + where + "%') or courseName like('%" + where + "%') or applyID like('%" + where + "%'))";
+		where = "(title like('%" + where + "%') or courseName like('%" + where + "%') or applyID like('%" + where + "%') or [dbo].[getApplyCount](ID,'" + where + "')>0)";
 	}
 	//如果有状态
 	if(status > ""){ // 
@@ -989,7 +989,9 @@ if(op == "getGenerateApplyList"){
 		//18
 		result += "|" + rs("sendScore").value + "|" + rs("sendScoreDate").value + "|" + rs("senderScoreName").value + "|" + rs("qtyYes").value + "|" + rs("qtyNo").value + "|" + rs("qtyNull").value;
 		//24
-		result += "|" + rs("reexamineName").value + "|" + rs("importApplyDate").value + "|" + rs("importScoreDate").value + "|" + rs("diplomaStartDate").value + "|" + rs("diplomaEndDate").value + "|" + rs("diplomaTerm").value + "|" + rs("qtyCheck").value;
+		result += "|" + rs("reexamineName").value + "|" + rs("importApplyDate").value + "|" + rs("importScoreDate").value + "|" + rs("diplomaStartDate").value + "|" + rs("diplomaEndDate").value;
+		//29
+		result += "|" + rs("diplomaTerm").value + "|" + rs("qtyCheck").value + "|" + rs("diplomaReady").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -1112,7 +1114,7 @@ if(op == "getGenerateApplyNodeInfo"){
         //29
 		result += "|" + rs("diplomaTerm").value + "|" + rs("qtyCheck").value + "|" + rs("certID").value + "|" + rs("host").value + "|" + rs("zip").value + "|" + rs("pzip").value + "|" + rs("ezip").value;
         //36
-		result += "|" + rs("reexamine").value + "|" + rs("agencyID").value;
+		result += "|" + rs("reexamine").value + "|" + rs("agencyID").value + "|" + rs("diplomaReady").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -1121,7 +1123,7 @@ if(op == "getGenerateApplyNodeInfo"){
 
 if(op == "updateGenerateApplyInfo"){
 	//@ID int,@courseID varchar(50),@applyID varchar(50),@title nvarchar(100),@startDate varchar(100),@memo nvarchar(500),@registerID
-	sql = "exec updateGenerateApplyInfo " + nodeID + ",'" + refID + "','" + keyID + "','" + item + "','" + String(Request.QueryString("startDate")) + "','" + unescape(String(Request.QueryString("address"))) + "','" + host + "','" + memo + "','" + currUser + "'";
+	sql = "exec updateGenerateApplyInfo " + nodeID + ",'" + refID + "','" + keyID + "','" + item + "','" + String(Request.QueryString("startDate")) + "','" + unescape(String(Request.QueryString("address"))) + "','" + String(Request.QueryString("diplomaReady")) + "','" + host + "','" + memo + "','" + currUser + "'";
 	rs = conn.Execute(sql);
 	if(!rs.EOF){
 		result = rs("re").value;

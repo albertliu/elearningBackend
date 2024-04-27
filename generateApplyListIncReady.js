@@ -66,13 +66,13 @@
 			arr.push("<th width='7%'>申报日期</th>");
 			arr.push("<th width='6%'>状态</th>");
 			arr.push("<th width='7%'>申报导入</th>");
-			arr.push("<th width='7%'>成绩导入</th>");
-			arr.push("<th width='8%'>申报批号</th>");
-			arr.push("<th width='6%'>申报</th>");
-			arr.push("<th width='6%'>考试</th>");
+			arr.push("<th width='7%'>申报批号</th>");
+			arr.push("<th width='5%'>申报</th>");
+			arr.push("<th width='5%'>考试</th>");
 			arr.push("<th width='7%'>考试通知</th>");
 			arr.push("<th width='7%'>成绩通知</th>");
-			arr.push("<th width='7%'>备注</th>");
+			arr.push("<th width='4%'>领证</th>");
+			arr.push("<th width='12%'>备注</th>");
 			arr.push("<th width='6%'>制作</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -94,12 +94,16 @@
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
 					arr.push("<td class='center'>" + ar1[16] + "</td>");
 					arr.push("<td class='left'>" + ar1[25] + "</td>");
-					arr.push("<td class='center'>" + ar1[26] + "</td>");
 					arr.push("<td class='left'>" + ar1[5] + "</td>");
 					arr.push("<td class='left' title='成功/失败'>" + ar1[30] + "/" + ar1[23] + "</td>");
 					arr.push("<td class='left' title='合格/不合格'>" + ar1[21] + "/" + ar1[22] + "</td>");
 					arr.push("<td class='left'>" + ar1[13] + "</td>");
 					arr.push("<td class='left'>" + ar1[19] + "</td>");
+					if(ar1[31]==1){
+						arr.push("<td class='center'>" + imgChk1 + "</td>");	//证书领取
+					}else{
+						arr.push("<td class='center'>&nbsp;</td>");
+					}
 					arr.push("<td class='left'>" + ar1[8] + "</td>");
 					arr.push("<td class='left'>" + ar1[10] + "</td>");
 					arr.push("</tr>");
