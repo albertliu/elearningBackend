@@ -259,7 +259,7 @@
 
 	function getNodeInfo(id){
 		$.get("studentCourseControl.asp?op=getNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
-			//jAlert(unescape(re));
+			jAlert(unescape(re));
 			var ar = new Array();
 			var c = "";
 			ar = unescape(re).split("|");
@@ -315,6 +315,16 @@
 				$("#signatureType").val(ar[52]);
 				$("#payNow").val(ar[59]);
 				$("#title").val(ar[60]);
+				$("#price").val(ar[62]);
+				$("#kindID").val(ar[64]);
+				$("#type").val(ar[65]);
+				$("#datePay").val(ar[66]);
+				$("#invoice").val(ar[67]);
+				$("#dateInvoice").val(ar[68]);
+				$("#dateInvoicePick").val(ar[69]);
+				$("#dateRefund").val(ar[70]);
+				$("#statusPay").val(ar[75]);
+				$("#refunderName").val(ar[79]);
 				if(ar[48]>""){
 					$("#signatureStatus").prop("checked",true);
 				}else{
@@ -336,7 +346,7 @@
 					$("#needInvoice").prop("checked",false);
 				}
 
-				getPayDetailInfoByEnterID(ar[0]);
+				// getPayDetailInfoByEnterID(ar[0]);
 				if(ar[27]=="" && ar[26]>""){
 					getComList("classID","[dbo].[getClassListByProject]('" + ar[26] + "')","classID","classIDName"," status=0 order by batchID desc",1);
 				}
@@ -348,7 +358,7 @@
 			}
 		});
 	}
-
+/*
 	function getPayDetailInfoByEnterID(id){
 		$.get("studentCourseControl.asp?op=getPayDetailInfoByEnterID&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
@@ -392,8 +402,10 @@
 			}
 		});
 	}
-	
+	*/
 	function saveNode(){
+		doEnter();
+		/*
 		if($("#payID").val()==0){
 			jAlert("没有要操作的数据。");
 			return false;
@@ -442,6 +454,7 @@
 		});
 		
 		return false;
+		*/
 	}
 	
 	function doEnter(){
@@ -462,38 +475,29 @@
 		setSession("lastone_item", lastone_item.join(","));
 
 		if($("#classID").val()>""){
-			var id=$("#classID").val();
-			//alert(id);
-			$.get("studentControl.asp?op=getClassRefrence&nodeID=" + $("#username").val() + "&refID=" + id, function(data){
-				data = unescape(data);
-				//alert(data);
-				if(refAlert != id && data > ""){
-					//参照预报名表进行校验，如果有出入则给出提示。同样的班级第二次则不给提示。
-					jAlert("根据预报名情况，此人可能要报<a style='color:red;'>" + data + "</a>课程，请核实。");
-					refAlert = id;
-					return false;
-				}else{
-					var over = 0;
-					if($("#overdue").prop("checked")){
-						over = 1;
-					}
-					
-					//@username,@classID,@price,@invoice,@projectID,@kindID,@type,@status,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo,@registerID
-					$.get("studentCourseControl.asp?op=doEnter&nodeID=" + $("#username").val() + "&classID=" + $("#classID").val() + "&overdue=" + over + "&fromID=" + $("#fromID").val() + "&price=" + $("#price").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&payNow=" + $("#payNow").val() + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#statusPay").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
-						//jAlert(unescape(re));
-						var ar = new Array();
-						ar = unescape(re).split("|");
-						if(ar[0] == 0){
-							op = 0;
-							updateCount += 1;
-							nodeID = ar[3];
-							getPayInfo(ar[2]);
-							getNodeInfo(ar[3]);
-							generateEntryForm(1);
-						}
-						jAlert(ar[1],"信息提示");
-					});
+			var over = 0;
+			if($("#overdue").prop("checked")){
+				over = 1;
+			}
+			var needInvoice = 0;
+			if($("#needInvoice").prop("checked")){
+				needInvoice = 1;
+			}
+			
+			//@username,@classID,@price,@invoice,@projectID,@kindID,@type,@status,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo,@registerID
+			$.get("studentCourseControl.asp?op=doEnter&nodeID=" + nodeID + "&username=" + $("#username").val() + "&classID=" + $("#classID").val() + "&overdue=" + over + "&needInvoice=" + needInvoice + "&fromID=" + $("#fromID").val() + "&price=" + $("#price").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&payNow=" + $("#payNow").val() + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#statusPay").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+				//jAlert(unescape(re));
+				var ar = new Array();
+				ar = unescape(re).split("|");
+				if(ar[0] == 0){
+					op = 0;
+					updateCount += 1;
+					// getPayInfo(ar[2]);
+					nodeID = ar[3];
+					getNodeInfo(nodeID);
+					generateEntryForm(1);
 				}
+				jAlert(ar[1],"信息提示");
 			});
 		}
 		return false;
@@ -678,6 +682,8 @@
 	}
 	function setEmpty(){
 		$("#SNo").val("");
+		$("#signatureType").val(1);
+		nodeID = 0;
 		if($("#kindID").val()==0){
 			//个人缴费
 			$("#statusPay").val(1);

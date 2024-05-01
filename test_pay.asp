@@ -31,30 +31,48 @@
 	var memo = "";
 	var refID = "";
 	var updateCount = 0;
+	var payUrl = "";
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
+		// test();
 		
-						$.ajax({
-							url: uploadURL + "/public/enterPay",
-							type: "post",
-							data: {"enterID":123, "amount":0.01, "item":"从业人员初训报名费","name":"310108199320320021张三丰","sales":"大佬"},
-							beforeSend: function() {   
-								$.messager.progress();	// 显示进度条
-							},
-							success: function(data){
-								//jAlert(data);
-								$("#result").val(data);
-								if(data.code=="JH200"){
-									$("#url").val(data.result.payUtl);
-									window.open(data.result.payUtl, "_blank");
-								}
-								$.messager.progress('close');	// 如果提交成功则隐藏进度条 
-							},
-							error: function () {
-								$.messager.progress('close');
-							}
-						});
+		$("#btnPay").click(function(){
+			pay();
+		});
 	});
+
+	function test(){
+		$.post(uploadURL + "/nuonuo/oderPaymentReturn" ,function(data){
+			alert(data)
+		});
+	}
+
+	function pay(){
+		$.ajax({
+			url: uploadURL + "/public/enterPay",
+			type: "post",
+			data: {"enterID":$("#orderNo").val(), "amount":0.01, "item":"从业人员初训报名费","name":"310108199320320021张三丰","sales":"大佬"},
+			beforeSend: function() {   
+				$.messager.progress();	// 显示进度条
+			},
+			success: function(data){
+				//jAlert(data);
+				$("#result").val(data);
+				if(data.code=="JH200"){
+					$("#url").val(data.result.payUtl);
+					// window.open(data.result.payUtl, "_blank");
+					payUrl = data.result.payUtl;
+					var text = uploadURL + "/public/get_qr_img?size=10&text=" + encodeURIComponent(payUrl);
+					// alert(text)
+					$("#imgPay").prop("src", text);
+				}
+				$.messager.progress('close');	// 如果提交成功则隐藏进度条 
+			},
+			error: function () {
+				$.messager.progress('close');
+			}
+		});
+	}
 
 </script>
 
@@ -70,7 +88,9 @@
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
   		<input type="text" id="result" style="width:100%;" />
   		<input type="text" id="url" style="width:100%;" />
-  		&nbsp;<input class="button" type="button" id="btnRemove" value="移除" />&nbsp;
+  		订单号：<input type="text" id="orderNo" style="width:100%;" />
+		<img id="imgPay" src="" />
+  		&nbsp;<input class="button" type="button" id="btnPay" value="付款" />&nbsp;
   	</div>
 </div>
 </body>
