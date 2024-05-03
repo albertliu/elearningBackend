@@ -741,22 +741,23 @@
 		$("#refund_amount").val(0);
 		$("#amount").val(0);
 		$("#price").val(0);
+		$("#statusPay").val(0);
+		$("#invoice").val("");
 		nodeID = 0;
 		if($("#kindID").val()==0){
 			//个人缴费
-			$("#statusPay").val(1);
-			$("#datePay").val(currDate);
-			$("#dateInvoice").val(currDate);
-			$("#dateInvoicePick").val(currDate);
+			// $("#statusPay").val(1);
+			$("#datePay").val("");
+			$("#dateInvoice").val("");
+			$("#dateInvoicePick").val("");
 			//$("#invoice").val(parseInt(getDicItem(0,"invoiceNo")) + 1);
 		}
 		if($("#kindID").val()==1){
 			//团体缴费
-			$("#statusPay").val(1);
+			// $("#statusPay").val(1);
 			$("#datePay").val("");
 			$("#dateInvoice").val("");
 			$("#dateInvoicePick").val("");
-			$("#invoice").val("");
 		}
 	}
 	
