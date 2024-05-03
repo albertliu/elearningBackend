@@ -82,7 +82,7 @@
 		$.ajax({
 			url: uploadURL + "/public/enterPay",
 			type: "post",
-			data: {"host":"znxf", "kind":1, "enterID":$("#orderNo").val(), "amount":0.01, "item":"不想学了","name":"desk","sales":""},
+			data: {"host":"znxf", "kind":1, "enterID":$("#orderNo").val(), "amount":0.01, "item":"不想学了","name":"desk","sales":"system"},
 			beforeSend: function() {   
 				$.messager.progress();	// 显示进度条
 			},
