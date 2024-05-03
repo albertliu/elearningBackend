@@ -138,14 +138,47 @@
 			setButton();
 		});
 
+		$("#amount").change(function(){
+			if(op==1){
+				if($("#amount").val()>0 && $("#statusPay").val()==0){
+					$("#statusPay").val(1);
+				}
+			}
+		});
+
+		$("#btnViewInvoice").click(function(){
+			showPDF($("#file5").val(),0,0,0);
+		});
+
 		$("#btnPay").click(function(){
-			$("#statusPay").val(1);
-			$("#datePay").val(currDate);
-			$("#dateInvoice").val(currDate);
-			$("#dateInvoicePick").val(currDate);
-			var s = getDicItem(0,"invoiceNo");
-			s = fillFormat(parseInt(s) + 1, s.length, "0", 0);
-			$("#invoice").val(s);
+			if($("#amount").val() > $("#price").val()){
+				$.messager.alert("提示","付款金额大于应付金额。","warning");
+				// return false;
+			}
+
+			jConfirm('确定要付款' + $("#amount").val() + '元吗?', '确认对话框', function(r) {
+				if(r){
+					$.get("studentCourseControl.asp?op=enterPay&nodeID=" + nodeID + "&amount=" + $("#amount").val() + "&kindID=" + $("#kindID").val() + "&refID=" + $("#type").val() + "&memo=" + escape($("#pay_memo").val()) + "&times=" + (new Date().getTime()),function(re){
+						// alert(unescape(re))
+						$.messager.alert("提示","操作成功。","info");
+						updateCount += 1;
+						getNodeInfo(nodeID);
+					});
+				}
+			});
+		});
+
+		$("#btnRefund").click(function(){
+			jConfirm('确定要退款' + $("#refund_amount").val() + '元吗?', '确认对话框', function(r) {
+				if(r){
+					$.get("studentCourseControl.asp?op=enterRefund&nodeID=" + nodeID + "&amount=" + $("#refund_amount").val() + "&memo=" + escape($("#refund_memo").val()) + "&times=" + (new Date().getTime()),function(re){
+						// alert(unescape(re))
+						jAlert("操作成功。");
+						updateCount += 1;
+						getNodeInfo(nodeID);
+					});
+				}
+			});
 		});
 
 		$("#btnMaterialCheck").click(function(){
@@ -259,7 +292,7 @@
 
 	function getNodeInfo(id){
 		$.get("studentCourseControl.asp?op=getNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
-			jAlert(unescape(re));
+			// jAlert(unescape(re));
 			var ar = new Array();
 			var c = "";
 			ar = unescape(re).split("|");
@@ -316,6 +349,7 @@
 				$("#payNow").val(ar[59]);
 				$("#title").val(ar[60]);
 				$("#price").val(ar[62]);
+				$("#amount").val(ar[63]);
 				$("#kindID").val(ar[64]);
 				$("#type").val(ar[65]);
 				$("#datePay").val(ar[66]);
@@ -323,8 +357,13 @@
 				$("#dateInvoice").val(ar[68]);
 				$("#dateInvoicePick").val(ar[69]);
 				$("#dateRefund").val(ar[70]);
+				$("#pay_memo").val(ar[74]);
 				$("#statusPay").val(ar[75]);
 				$("#refunderName").val(ar[79]);
+				$("#refund_amount").val(ar[80]);
+				$("#refund_memo").val(ar[81]);
+				$("#file5").val(ar[84]);
+				$("#pay_checkerName").val(ar[85]);
 				if(ar[48]>""){
 					$("#signatureStatus").prop("checked",true);
 				}else{
@@ -485,7 +524,7 @@
 			}
 			
 			//@username,@classID,@price,@invoice,@projectID,@kindID,@type,@status,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo,@registerID
-			$.get("studentCourseControl.asp?op=doEnter&nodeID=" + nodeID + "&username=" + $("#username").val() + "&classID=" + $("#classID").val() + "&overdue=" + over + "&needInvoice=" + needInvoice + "&fromID=" + $("#fromID").val() + "&price=" + $("#price").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&payNow=" + $("#payNow").val() + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#statusPay").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+			$.get("studentCourseControl.asp?op=doEnter&nodeID=" + nodeID + "&username=" + $("#username").val() + "&classID=" + $("#classID").val() + "&overdue=" + over + "&needInvoice=" + needInvoice + "&fromID=" + $("#fromID").val() + "&price=" + $("#price").val() + "&amount=" + $("#amount").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&payNow=" + $("#payNow").val() + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#statusPay").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&pay_memo=" + escape($("#pay_memo").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 				//jAlert(unescape(re));
 				var ar = new Array();
 				ar = unescape(re).split("|");
@@ -626,6 +665,8 @@
 		$("#btnCloseStudentCourse").hide();
 		$("#btnPrint").hide();
 		$("#btnRebuildStudentLesson").hide();
+		$("#amount").prop("readonly",false);
+		$("#btnViewInvoice").prop("disabled",true);
 		if($("#statusPay").val()==0 && $("#kindID").val()==0){
 			//未支付的个人付款可以支付，团体付款应到发票管理中操作。
 			$("#btnPay").show();
@@ -642,6 +683,20 @@
 			$("#btnEnter").focus();
 			//$("#fromID").prop("disabled",true);
 		}else{
+			if($("#statusPay").val()==1){
+				//未支付的个人付款可以支付，团体付款应到发票管理中操作。
+				$("#amount").prop("readonly",true);
+				$("#btnRefund").show();
+				if(!checkPermission("editPayDate")){
+					$("#datePay").prop("readonly",true);
+				}
+
+			}
+
+			if($("#file5").val()>""){
+				$("#btnViewInvoice").prop("disabled",false);
+			}
+
 			if(checkPermission("studentAdd")){
 				//编辑状态：显示保存按钮；一定条件下可以退学、退款
 				$("#save").show();
@@ -683,6 +738,9 @@
 	function setEmpty(){
 		$("#SNo").val("");
 		$("#signatureType").val(1);
+		$("#refund_amount").val(0);
+		$("#amount").val(0);
+		$("#price").val(0);
 		nodeID = 0;
 		if($("#kindID").val()==0){
 			//个人缴费
@@ -814,40 +872,61 @@
 			<form id="payCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#f8f8ee;">
 			<table>
 			<tr>
-				<td align="right">票据类型</td><input type="hidden" id="payID" /><input type="hidden" id="payDetailID" />
-				<td><select id="kindID" style="width:180px;"></select></td>
-				<td align="right">缴费金额</td>
-				<td><input type="text" id="price" style="width:50px;" />&nbsp;&nbsp;<input class="button" type="button" id="btnPay" value="付款" /></td>
+				<td align="right">票据类型</td>
+				<td colspan="3"><select id="kindID" style="width:100px;"></select>
+				&nbsp;&nbsp;应付金额
+				<input type="text" id="price" style="width:50px;" />
+				&nbsp;&nbsp;实付金额
+				<input type="text" id="amount" style="width:50px;" />
+				&nbsp;&nbsp;<input class="button" type="button" id="btnPay" value="付款" /></td>
 			</tr>
 			<tr>
 				<td align="right">支付方式</td>
-				<td><select id="type" style="width:180px;"></select></td>
-				<td align="right">支付状态</td>
-				<td><select id="statusPay" style="width:180px;"></select></td>
+				<td>
+				<select id="type" style="width:80px;"></select>
+				&nbsp;&nbsp;状态&nbsp;
+				<select id="statusPay" style="width:80px;"></select>
+				</td>
+				<td align="right">付款类型</td>
+				<td><select id="payNow" style="width:100px;"></select>&nbsp;<input class="button" type="button" id="btnReGetStudent" value="刷新" /></td>
 			</tr>
 			<tr>
+				<td align="right">付款说明</td>
+				<td><input type="text" id="pay_memo" style="width:95%;" /></td>
 				<td align="right">付款日期</td>
-				<td><input type="text" id="datePay" size="25" /></td>
-				<td align="right">发票号码</td>
-				<td><input type="text" id="invoice" size="25" /></td>
+				<td><input type="text" id="datePay" style="width:80px;" />&nbsp;&nbsp;经办<input class="readOnly" type="text" id="pay_checkerName" style="width:60px;" readOnly="true" /></td>
 			</tr>
 			<tr>
-				<td align="right">开票日期</td>
-				<td><input type="text" id="dateInvoice" size="25" /></td>
-				<td align="right">取票日期</td>
-				<td><input type="text" id="dateInvoicePick" size="25" /></td>
+				<td colspan="2">
+					<input type="checkbox" id="needInvoice" />&nbsp;需开票
+					&nbsp;<input class="button" type="button" id="btnUploadInvoice" value="上传发票" />
+					&nbsp;<input class="button" type="button" id="btnViewInvoice" value="查看" />
+				</td>
+				<td align="right">发票号码</td><input type="hidden" id="file5" name="file5" />
+				<td><input type="text" id="invoice" size="25" /></td>
 			</tr>
 			<tr>
 				<td align="right">开票信息</td>
 				<td colspan="3">
-					<input type="text" id="title" style="width:100%;" />
-					<input type="checkbox" id="needInvoice" />&nbsp;需开票
-					&nbsp;<input class="button" type="button" id="btnUploadInvoice" value="上传发票" />
+					<input type="text" id="title" style="width:95%;" />
 				</td>
 			</tr>
 			<tr>
-				<td align="right">付款类型</td>
-				<td><select id="payNow" style="width:100px;"></select>&nbsp;<input class="button" type="button" id="btnReGetStudent" value="刷新" /></td>
+			</tr>
+			<tr>
+				<td align="right">开票日期</td>
+				<td><input type="text" id="dateInvoice" size="10" />
+				&nbsp;&nbsp;取票&nbsp;
+				<input type="text" id="dateInvoicePick" size="10" /></td>
+				<td align="right">退款金额</td>
+				<td>
+				<input type="text" id="refund_amount" style="width:50px;" />
+				&nbsp;&nbsp;<input class="button" type="button" id="btnRefund" value="退款" />
+			</tr>
+			<tr>
+				<td align="right">退款说明</td>
+				<td><input type="text" id="refund_memo" style="width:95%;" /></td>
+				</td>
 				<td align="right">退款日期</td>
 				<td><input type="text" id="dateRefund" style="width:80px;" />&nbsp;&nbsp;经办<input class="readOnly" type="text" id="refunderName" style="width:60px;" readOnly="true" /></td>
 			</tr>

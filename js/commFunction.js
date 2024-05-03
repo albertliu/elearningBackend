@@ -2015,6 +2015,24 @@
 		});
 	}
 	
+	//nodeID: ID; op: 0 浏览 1 新增  2 编辑  3 删除  4 审批; mark: 0 不动作  1 有修改时刷新列表  2 有修改时刷新对象
+	function showPDF(nodeID,refID,op,mark){
+		asyncbox.open({
+			id: "pdfShow",
+			url:"pdfShow.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
+			title: "PDF文档",
+			width: 600,
+			height: 600,
+			cover : {
+	          //透明度
+	          opacity : 0,
+	          //背景颜色
+	           background : '#000'
+	        },
+			btnsbar : false
+		});
+	}
+	
 	//txt: 要显示的内容
 	function showMsg(txt, title){
 		$.messager.show({

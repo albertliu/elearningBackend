@@ -51,7 +51,7 @@
 		$.ajax({
 			url: uploadURL + "/public/enterPay",
 			type: "post",
-			data: {"enterID":$("#orderNo").val(), "amount":0.01, "item":"从业人员初训报名费","name":"310108199320320021张三丰","sales":"大佬"},
+			data: {"host":currHost, "kind":0, "enterID":$("#orderNo").val(), "amount":0.01, "item":"从业人员初训报名费","name":"310108199320320021张三丰","sales":"大佬"},
 			beforeSend: function() {   
 				$.messager.progress();	// 显示进度条
 			},
