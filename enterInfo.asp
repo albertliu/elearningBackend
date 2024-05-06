@@ -144,6 +144,11 @@
 					$("#statusPay").val(1);
 				}
 			}
+			checkNum("amount");
+		});
+
+		$("#refund_amount").change(function(){
+			checkNum("refund_amount");
 		});
 
 		$("#btnViewInvoice").click(function(){
