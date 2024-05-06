@@ -227,7 +227,7 @@
 						$.ajax({
 							url: uploadURL + "/public/applyEnter?SMS=1&reexamine=" + reexamine + "&register=" + currUserName + "&host=znxf&classID=&courseName=&reex=",
 							type: "post",
-							data: {"selList":selList},
+							data: {"selList":selList, courseName: $("#courseName").val()},
 							beforeSend: function() {   
 								$.messager.progress();	// 显示进度条
 							},
