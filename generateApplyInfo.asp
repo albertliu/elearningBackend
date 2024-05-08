@@ -225,9 +225,9 @@
 					if(r){
 						var start = performance.now(); 
 						$.ajax({
-							url: uploadURL + "/public/applyEnter?SMS=1&reexamine=" + reexamine + "&register=" + currUserName + "&host=znxf&classID=&courseName=&reex=",
+							url: uploadURL + "/public/applyEnter?SMS=1&reexamine=" + reexamine + "&register=" + currUserName + "&host=znxf&classID=" + $("#applyID").val() + "&courseName=" + $("#courseName").val() + "&reex=" + (reexamine==0?"初证":"复审"),
 							type: "post",
-							data: {"selList":selList, courseName: $("#courseName").val()},
+							data: {"selList":selList},
 							beforeSend: function() {   
 								$.messager.progress();	// 显示进度条
 							},
