@@ -98,7 +98,7 @@
 		jConfirm('确定要保存照片的修改吗?', '确认对话框', function(r) {
 			if(r){
 				$.post(uploadURL + "/outfiles/uploadBase64img",{upID:kindID,username:refID,currUser:currUser,compress:c,imgData:base64url.replace("data:image/jpeg;base64,","")},function(re){
-					alert("保存成功。");
+					jAlert("保存成功。文件大小：" + re.size + "k");
 					updateCount += 1;
 					//window.parent.$.close("cropper");
 				});
