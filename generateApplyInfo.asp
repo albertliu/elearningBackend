@@ -225,7 +225,7 @@
 					if(r){
 						var start = performance.now(); 
 						$.ajax({
-							url: uploadURL + "/public/applyEnter?SMS=1&reexamine=" + reexamine + "&register=" + currUserName + "&host=znxf&classID=" + $("#applyID").val() + "&courseName=" + $("#courseName").val() + "&reex=" + (reexamine==0?"初证":"复审"),
+							url: uploadURL + "/public/applyEnter?SMS=1&reexamine=" + reexamine + "&register=" + currUserName + "&host=znxf&classID=1&courseName=" + $("#courseName").val() + "&reex=" + (reexamine==0?"初证":"复审"),
 							type: "post",
 							data: {"selList":selList},
 							beforeSend: function() {   
