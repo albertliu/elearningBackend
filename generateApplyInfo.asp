@@ -720,7 +720,7 @@
 							h = "";
 						}
 						if(ar1[34] > ""){	//照片
-							arr.push("<td class='center'" + h + "><img id='photo" + ar1[1] + "' title='大小：" + photo_size + "k, 类型：" + photo_type + "' src='users" + ar1[34] + "?times=" + (new Date().getTime()) + "' onclick='showCropperInfo(\"users" + ar1[34] + "\",\"" + ar1[4] + "\",\"photo\",\"\",0,1)' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
+							arr.push("<td class='center'" + h + "><img id='photo" + ar1[4] + "' title='大小：" + photo_size + "k, 类型：" + photo_type + "' src='users" + ar1[34] + "?times=" + (new Date().getTime()) + "' onclick='showCropperInfo(\"users" + ar1[34] + "\",\"" + ar1[4] + "\",\"photo\",\"\",0,1)' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
 						}else{
 							arr.push("<td class='center'" + h + ">&nbsp;</td>");
 						}
