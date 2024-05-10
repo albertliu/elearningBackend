@@ -283,7 +283,7 @@ if(op == "getStudentCourseList"){
 		//72
 		result += "|" + rs("fromID").value + "|" + rs("signature").value + "|" + rs("signatureDate").value + "|" + rs("status_photo").value + "|" + rs("status_signature").value + "|" + rs("signatureType").value;
 		//78
-		result += "|" + rs("file1").value + "|" + rs("file2").value + "|" + rs("employe_filename").value + "|" + rs("express").value + "|" + rs("memo").value + "|" + rs("currDiplomaDate").value + "|" + rs("needInvoice").value;
+		result += "|" + rs("file1").value + "|" + rs("file2").value + "|" + rs("employe_filename").value + "|" + rs("express").value + "|" + rs("memo").value + "|" + rs("currDiplomaDate").value + "|" + rs("needInvoice").value + "|" + rs("photo_size").value;
 		rs.MoveNext();
 	}
 	rs.Close();

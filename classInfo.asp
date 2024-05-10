@@ -546,6 +546,8 @@
 				var attention_status = ["FFFFAA","AAFFAA","F3F3F3"];
 				var backcolor = ["#F0F0F0","#FFFF00","#00FF00","#FF8888"];
 				var bc = "";
+				let photo_size = 0;
+				let photo_type = "jpg";
 				$.each(ar,function(iNum,val){
 					var ar1 = new Array();
 					ar1 = val.split("|");
@@ -590,13 +592,17 @@
 							arr.push("<td class='center'>&nbsp;</td>");
 						}
 					}else{
+						h = "";
 						if(ar1[75]>0){	//根据照片或签字提醒状态，显示不同背景颜色
 							h = " style='background-color:#" + attention_status[ar1[75]-1] + ";'";
-						}else{
-							h = "";
+						}
+						photo_type = ar1[18].substr(ar1[18].indexOf("."));
+						photo_size = ar1[85];
+						if(photo_size > 100 || (photo_type !== ".jpg" && photo_type !== ".jpeg")){	//根据照片类型或文件大小，显示不同背景颜色
+							h = " style='background-color:#FFFFAA;'";
 						}
 						if(ar1[18] > ""){
-							arr.push("<td class='center'" + h + "><img id='photo" + ar1[1] + "' src='users" + ar1[18] + "?times=" + (new Date().getTime()) + "' onclick='showCropperInfo(\"users" + ar1[18] + "\",\"" + ar1[1] + "\",\"photo\",\"\",0,1)' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
+							arr.push("<td class='center'" + h + "><img id='photo" + ar1[1] + "' title='大小：" + photo_size + "k, 类型：" + photo_type + "' src='users" + ar1[18] + "?times=" + (new Date().getTime()) + "' onclick='showCropperInfo(\"users" + ar1[18] + "\",\"" + ar1[1] + "\",\"photo\",\"\",0,1)' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
 						}else{
 							arr.push("<td class='center'" + h + ">&nbsp;</td>");
 						}
