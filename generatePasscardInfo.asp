@@ -205,6 +205,19 @@
 				}
 			});
 		});
+		$("#doConfirmScore").click(function(){
+			jConfirm('确认当前考试结果吗? ', "确认对话框",function(r){
+				if(r){
+					$.get("diplomaControl.asp?op=confirmExam&nodeID=" + nodeID,function(data){
+						// jAlert(data);
+						jAlert("已确认","信息提示");
+						getNodeInfo(nodeID);
+						updateCount += 1;
+                        getPasscardExamList();
+					});
+				}
+			});
+		});
 
 		$("#btnSel").click(function(){
 			setSel("");
@@ -588,6 +601,7 @@
 		$("#open").hide();
 		$("#doPasscard").hide();
 		$("#doImportScore").hide();
+		$("#doConfirmScore").hide();
 		//$("#sendMsgExam").hide();
 		//$("#sendMsgScore").hide();
 		$("#btnRemove").hide();
@@ -628,6 +642,7 @@
 			}
 			if(checkPermission("scoreUpload") && s == 1 && $("#startDate").val().substring(0,10) <= (new Date().format("yyyy-MM-dd"))){
 				$("#doImportScore").show();
+				$("#doConfirmScore").show();
 			}
 			if(checkPermission("examOpen") && s > 0){
 				$("#open").show();
@@ -743,6 +758,7 @@
 		<input class="button" type="button" id="doPasscard" value="做准考证" />&nbsp;
 		<input class="button" type="button" id="sendMsgExam" value="考试通知" />&nbsp;
 		<input class="button" type="button" id="doImportScore" value="成绩导入" />&nbsp;
+		<input class="button" type="button" id="doConfirmScore" value="确认" />&nbsp;
 		<input class="button" type="button" id="sendMsgScore" value="成绩通知" />&nbsp;
 		<input class="button" type="button" id="lock" value="锁定" />&nbsp;
 		<input class="button" type="button" id="close" value="结束" />&nbsp;

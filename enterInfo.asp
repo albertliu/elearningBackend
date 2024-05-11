@@ -702,7 +702,7 @@
 				$("#btnViewInvoice").prop("disabled",false);
 			}
 
-			if(checkPermission("studentAdd")){
+			if(checkPermission("studentAdd") || checkPermission("editPayDate")){
 				//编辑状态：显示保存按钮；一定条件下可以退学、退款
 				$("#save").show();
 				if(!checkRole("partner")){

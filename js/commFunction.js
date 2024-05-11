@@ -1665,13 +1665,20 @@
 	}
 	
 	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
-	function showGenerateApplyInfo(nodeID,refID,op,mark){
+	function showGenerateApplyInfo(nodeID,refID,op,mark,x){
+		let w = 1300;
+		let h = 900;
+		if(x==1){
+			w = $(window).width();
+			h = $(window).height();
+		}
 		asyncbox.open({
 			id: "generateApply",
 			url:"generateApplyInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "申报批次信息",
-			width: 1300,
-			height: 900,
+			width: w,
+			height: h,
+			drag: false,
 			cover : {
 	          //透明度
 	          opacity : 0,
@@ -1796,6 +1803,7 @@
 			title: "学员模拟练习情况",
 			width: 1080,
 			height: 780,
+			drag: false,
 			cover : {
 	          //透明度
 	          opacity : 0,
@@ -1815,26 +1823,7 @@
 			title: "签字",
 			width: 440,
 			height: 350,
-			cover : {
-	          //透明度
-	          opacity : 0,
-	          //背景颜色
-	           background : '#000'
-	        },
-			btnsbar : false
-		});
-	}
-	
-	//nodeID: ID; refID:width; op:height; mark:image width scale
-	function showImage(nodeID,refID,op,mark){
-		let w = (refID+1) * 400;
-		let h = (op+1) * 250;
-		asyncbox.open({
-			id: "imgShow",
-			url:"imgShow.asp?nodeID=" + nodeID + "&p=1&times=" + (new Date().getTime()),
-			title: "图片",
-			width: w,
-			height: h,
+			drag: false,
 			cover : {
 	          //透明度
 	          opacity : 0,
@@ -1853,6 +1842,7 @@
 			title: "照片裁剪",
 			width: 580,
 			height: 640,
+			drag: false,
 			cover : {
 	          //透明度
 	          opacity : 0,
@@ -1908,6 +1898,7 @@
 			title: "班级模拟练习情况",
 			width: 1080,
 			height: 780,
+			drag: false,
 			cover : {
 	          //透明度
 	          opacity : 0,
@@ -1927,6 +1918,7 @@
 			title: "向学员发送的短信通知",
 			width: 700,
 			height: 600,
+			drag: false,
 			cover : {
 	          //透明度
 	          opacity : 0,
@@ -1946,6 +1938,7 @@
 			title: "学员参加的考试情况",
 			width: 700,
 			height: 600,
+			drag: false,
 			cover : {
 	          //透明度
 	          opacity : 0,
@@ -1965,6 +1958,7 @@
 			title: "报名操作情况",
 			width: 700,
 			height: 600,
+			drag: false,
 			cover : {
 	          //透明度
 	          opacity : 0,
@@ -1984,6 +1978,7 @@
 			title: "在线试卷信息",
 			width: 740,
 			height: 600,
+			drag: false,
 			cover : {
 	          //透明度
 	          opacity : 0,
@@ -1996,15 +1991,20 @@
 	}
 	
 	//nodeID: ID; op: 0 浏览 1 新增  2 编辑  3 删除  4 审批; mark: 0 不动作  1 有修改时刷新列表  2 有修改时刷新对象
-	function showImage(nodeID,refID,op,mark){
+	function showImage(nodeID,refID,op,mark,x){
 		let w = (refID+1) * 400;
 		let h = (op+1) * 250;
+		if(x==1){
+			w = $(window).width();
+			h = $(window).height();
+		}
 		asyncbox.open({
 			id: "imgShow",
 			url:"imgShow.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "图片",
 			width: w,
 			height: h,
+			drag: false,
 			cover : {
 	          //透明度
 	          opacity : 0,
@@ -2023,6 +2023,7 @@
 			title: "PDF文档",
 			width: 600,
 			height: 600,
+			drag: false,
 			cover : {
 	          //透明度
 	          opacity : 0,

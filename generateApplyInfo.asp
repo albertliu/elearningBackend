@@ -837,7 +837,7 @@
 	}
 
 	function showPic(path){
-		showImage(path,2.2,2.2,0);
+		showImage(path,2.2,2.2,0,1);
 	}
 	
 	function setButton(){

@@ -1286,6 +1286,13 @@ if(op == "closeExam"){
 	Response.Write(nodeID);
 }
 
+if(op == "confirmExam"){
+	sql = "exec confirmExam " + nodeID + ",'" + currUser + "'";
+	execSQL(sql);
+	Response.Write(nodeID);
+	//Response.Write((sql));
+}
+
 if(op == "cancelDiploma"){
 	sql = "exec cancelDiploma '" + nodeID + "','" + currUser + "'";
 	execSQL(sql);
