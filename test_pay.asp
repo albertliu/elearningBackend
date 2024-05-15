@@ -42,6 +42,12 @@
 		$("#btnRefund").click(function(){
 			refund();
 		});
+		const date = new Date('1714688100000' * 1);
+    const Y = date.getFullYear() + '-';
+    const M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+    const D = (date.getDate()<10 ? '0'+date.getDate() : date.getDate());
+		const dt = Y + M + D;
+		alert(dt)
 	});
 
 	function test(){
@@ -114,7 +120,7 @@
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
   		<input type="text" id="result" style="width:100%;" />
   		<input type="text" id="url" style="width:100%;" />
-  		订单号：<input type="text" id="orderNo" style="width:100%;" value="97842" />
+  		订单号：<input type="text" id="orderNo" style="width:100%;" value="202" />
 		<img id="imgPay" src="" />
   		&nbsp;<input class="button" type="button" id="btnPay" value="付款" />&nbsp;
   		&nbsp;<input class="button" type="button" id="btnRefund" value="退款" />&nbsp;

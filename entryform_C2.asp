@@ -63,7 +63,7 @@
 			if(ar > "0"){
 				$("#SNo").html(ar[25] + "&nbsp;&nbsp;班级：" + ar[34]);
 				if(ar[48] > ""){
-					$("#img_signature").attr("src","/users" + ar[48]);
+					$("#img_signature").attr("src","/users" + ar[48] + "?times=" + (new Date().getTime()));
 					$("#signatureDate").html(ar[49]);
 				}else{
 					$("#img_signature").attr("src","images/blank_signature.png");
@@ -97,7 +97,7 @@
 				$("#educationName").html(ar[31]);
 				$("#address").html(ar[34]);
 				if(ar[22] > ""){
-					$("#img_cardA").attr("src","/users" + ar[22]);
+					$("#img_cardA").attr("src","/users" + ar[22] + "?times=" + (new Date().getTime()));
 				}else{
 					$("#img_cardA").attr("src","images/blank_cardA.png");
 				}
