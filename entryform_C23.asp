@@ -57,7 +57,7 @@
 			if(ar > "0"){
 				$("#SNo").html(ar[25] + "&nbsp;&nbsp;班级：" + ar[34]);
 				if(ar[48] > ""){
-					$("#img_signature").attr("src","/users" + ar[48]);
+					$("#img_signature").attr("src","/users" + ar[48] + "?times=" + (new Date().getTime()));
 					$("#signatureDate").html(ar[49]);
 				}else{
 					$("#img_signature").attr("src","images/blank_signature.png");
@@ -90,12 +90,12 @@
 				$("#birthday").html(ar[33]);
 				$("#address").html(ar[34]);
 				if(ar[21] > ""){
-					$("#img_photo").attr("src","/users" + ar[21]);
+					$("#img_photo").attr("src","/users" + ar[21] + "?times=" + (new Date().getTime()));
 				}else{
 					$("#img_photo").attr("src","images/blank_photo.png");
 				}
 				if(ar[22] > ""){
-					$("#img_cardA").attr("src","/users" + ar[22]);
+					$("#img_cardA").attr("src","/users" + ar[22] + "?times=" + (new Date().getTime()));
 				}else{
 					$("#img_cardA").attr("src","images/blank_cardA.png");
 				}
