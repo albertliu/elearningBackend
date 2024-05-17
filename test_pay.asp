@@ -42,12 +42,6 @@
 		$("#btnRefund").click(function(){
 			refund();
 		});
-		const date = new Date('1714688100000' * 1);
-    const Y = date.getFullYear() + '-';
-    const M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
-    const D = (date.getDate()<10 ? '0'+date.getDate() : date.getDate());
-		const dt = Y + M + D;
-		alert(dt)
 	});
 
 	function test(){
