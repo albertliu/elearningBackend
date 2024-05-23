@@ -76,10 +76,10 @@
 			arr.push("<th width='6%'>时段</th>");
 			arr.push("<th width='12%'>上课时间</th>");
 			arr.push("<th width='6%'>课时</th>");
-			arr.push("<th width='10%'>上课类型</th>");
+			arr.push("<th width='6%'>类型</th>");
 			arr.push("<th width='10%'>授课教师</th>");
 			arr.push("<th width='18%'>授课内容</th>");
-			arr.push("<th width='6%'>类型</th>");
+			arr.push("<th width='6%'>形式</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
