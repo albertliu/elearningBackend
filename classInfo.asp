@@ -434,9 +434,9 @@
 				$("#signatureType").val(ar[45]);
 				$("#pre").val(ar[50]);
 				$("#courseID").val(ar[36]);
-				$("#adviserID").val(ar[8]);
 				setProjectList(ar[36],ar[2]);
 				setHostChange();
+				$("#adviserID").val(ar[8]);
 				$("#courseID").val(ar[36]);
 				if(ar[24]>""){
 					$("#archived").prop("checked",true);

@@ -137,6 +137,8 @@
 				"bPaginate": true,
 				"bLengthChange": true,
 				"bInfo": true,
+				"aLengthMenu":[15,30,50,100],
+				"iDisplayLength": 100,
 				"aoColumnDefs": []
 			});
 			floatCount = i;
