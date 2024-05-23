@@ -780,8 +780,8 @@
 				getComList("teacher","v_courseTeacherList a, courseInfo b","teacherID","teacherName","a.courseID=b.certID and a.status=0 and b.courseID='" + $("#courseID").val() + "' order by teacherID",1);
 			}
 		}else{
-			getComList("teacher","dbo.getFreeTeacherList('','" + $("#classID").val() + "')","teacherID","teacherName","1=1 order by freePoint desc",1);
-		//alert($("#classID").val());
+			getComList("teacher","dbo.getFreeTeacherList('','" + $("#ID").val() + "','B')","teacherID","teacherName","1=1 order by freePoint desc",1);
+		// alert($("#ID").val());
 		}
 	}
 	
