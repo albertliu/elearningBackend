@@ -503,6 +503,31 @@
 		$("#generateEntryZip").click(function(){
 			generateZip("e");
 		});
+		
+		$("#btnSchedule").click(function(){
+			if($("#startDate").val()==""){
+				alert("请确定开课日期。");
+				return false;
+			}
+			if($("#teacher").val()==""){
+				alert("请确定任课教师。");
+				return false;
+			}
+			if($("#classroom").val()==""){
+				alert("请确定上课地点。");
+				return false;
+			}
+			if(confirm("确定要编排课表吗？")){
+				$.get("classControl.asp?op=generateClassSchedule&refID=" + $("#ID").val() + "&kindID=A&times=" + (new Date().getTime()),function(re){
+					getNodeInfo(nodeID);
+					alert("课表编排完毕。");
+				});
+			}
+		});
+		$("#schedule").click(function(){
+			//setSession("page_params",{className:$("#className").val(), courseName:$("#courseName").val(), startDate:$("#dateStart").val(), endDate:$("#dateEnd").val(), adviser:$("#adviserName").val(), qty:$("#qty").val()});
+			showClassSchedule($("#ID").val(),"A","{className:'" + $("#ID").val() + "', courseName:'" + $("#courseName").val()+"', transaction_id:'" + $("#applyID").val()+"', startDate:'"+$("#startDate").val().substr(0,10)+"', endDate:'', adviser:'" + $("#adviserID").find("option:selected").text() + "', qty:"+$("#qty").val()+"}",0,1);
+		});
 
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
@@ -515,6 +540,8 @@
 			var c = "";
 			ar = unescape(re).split("|");
 			if(ar > ""){
+				getComList("teacher","dbo.getFreeTeacherList('','" + ar[0] + "','A')","teacherID","teacherName","1=1 order by freePoint desc",1);
+				getComList("adviserID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='adviser' and host='') order by realName",1);
 				$("#ID").val(ar[0]);
 				$("#courseID").val(ar[1]);
 				$("#courseName").val(ar[2]);
@@ -546,6 +573,13 @@
 					$("#diplomaReady").prop("checked",true);
 				}else{
 					$("#diplomaReady").prop("checked",false);
+				}
+				$("#teacher").val(ar[39]);
+				$("#classroom").val(ar[40]);
+				$("#scheduleDate").val(ar[41]);
+				$("#adviserID").val(ar[42]);
+				if(ar[41]>""){
+					$("#schedule").html("<a>课程表</a>");
 				}
 				reexamine = ar[36];
 				agencyID = ar[37];
@@ -604,7 +638,7 @@
 		}
 
 		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-		$.get("diplomaControl.asp?op=updateGenerateApplyInfo&nodeID=" + nodeID + "&diplomaReady=" + diplomaReady + "&refID=" + $("#courseID").val() + "&host=" + $("#host").val() + "&keyID=" + $("#applyID").val() + "&startDate=" + $("#startDate").val() + "&item=" + escape($("#title").val()) + "&address=" + escape($("#address").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("diplomaControl.asp?op=updateGenerateApplyInfo&nodeID=" + nodeID + "&teacher=" + $("#teacher").val() + "&classroom=" + escape($("#classroom").val()) + "&adviserID=" + $("#adviserID").val() + "&diplomaReady=" + diplomaReady + "&refID=" + $("#courseID").val() + "&host=" + $("#host").val() + "&keyID=" + $("#applyID").val() + "&startDate=" + $("#startDate").val() + "&item=" + escape($("#title").val()) + "&address=" + escape($("#address").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//alert(unescape(re));
 			if(re>0){
 				jAlert("保存成功");
@@ -855,6 +889,7 @@
 		$("#sendMsgDiploma").hide();
 		$("#btnRemove").hide();
 		$("#btnResit").hide();
+		$("#btnSchedule").hide();
 		$("#s_needResit").hide();
 		$("#generateZip").hide();
 		$("#generatePhotoZip").hide();
@@ -911,6 +946,7 @@
 						$("#doApplyUploadPhoto").show();	// 复训的可上传照片
 					}
 				}
+				$("#btnSchedule").show();	// 
 			}
 		}
 	}
@@ -942,7 +978,7 @@
 			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
-				<td align="right">申报日期</td>
+				<td align="right">开课日期</td>
 				<td><input class="mustFill" type="text" id="startDate" size="25" /></td>
 				<td align="right">申报科目</td><input type="hidden" id="ID" /><input type="hidden" id="status" />
 				<td><select id="courseID" style="width:100%;"></select></td><input type="hidden" id="courseName" /><input type="hidden" id="reexamineName" />
@@ -963,11 +999,13 @@
 			</tr>
 			<tr>
 				<td align="right">打包文件</td>
-				<td colspan="3">
+				<td>
 					<span id="zip" style="margin-left:10px;"></span>
 					<span id="pzip" style="margin-left:10px;"></span>
 					<span id="ezip" style="margin-left:10px;"></span>
 				</td>
+				<td align="right"><input class="button" type="button" id="btnSchedule" value="排课表" /></td>
+				<td><input type="text" id="scheduleDate" size="10" class="readOnly" readOnly="true" />&nbsp;&nbsp;<span id="schedule" style="margin-left:10px;"></span></td>
 			</tr>
 			<tr>
 				<td align="right">属性</td>
@@ -987,7 +1025,7 @@
 			</tr>
 			<tr>
 				<td align="right">考试通知</td>
-				<td colspan="5">
+				<td colspan="3">
 					次数&nbsp;<input class="readOnly" type="text" id="send" size="2" readOnly="true" />&nbsp;&nbsp;
 					日期&nbsp;<input class="readOnly" type="text" id="sendDate" size="6" readOnly="true" />&nbsp;&nbsp;
 					发送人&nbsp;<input class="readOnly" type="text" id="senderName" size="5" readOnly="true" />&nbsp;&nbsp;
@@ -995,21 +1033,27 @@
 			</tr>
 			<tr>
 				<td align="right">成绩通知</td>
-				<td colspan="5">
+				<td colspan="3">
 					次数&nbsp;<input class="readOnly" type="text" id="sendScore" size="2" readOnly="true" />&nbsp;&nbsp;
 					日期&nbsp;<input class="readOnly" type="text" id="sendScoreDate" size="6" readOnly="true" />&nbsp;&nbsp;
 					发送人&nbsp;<input class="readOnly" type="text" id="senderScoreName" size="5" readOnly="true" />&nbsp;&nbsp;
 				</td>
 			</tr>
 			<tr>
-				<td align="right">备注</td>
-				<td colspan="5"><input type="text" id="memo" style="width:100%;" /></td>
+				<td align="right">任课教师</td>
+				<td colspan="3">
+					<select id="teacher" style="width:100px;"></select>
+					&nbsp;&nbsp;教室&nbsp;<input type="text" id="classroom" style="width:160px;" />
+					&nbsp;&nbsp;班主任&nbsp;<select id="adviserID" style="width:70px;"></select>
+				</td>
 			</tr>
 			<tr>
-				<td align="right">制作日期</td>
-				<td><input class="readOnly" type="text" id="regDate" size="25" readOnly="true" /></td>
-				<td align="right">制作人</td>
-				<td><input class="readOnly" type="text" id="registerName" size="25" readOnly="true" /></td>
+				<td align="right">备注</td>
+				<td><input type="text" id="memo" style="width:95%;" /></td>
+				<td align="right" colspan="2">
+					制作日期&nbsp;<input class="readOnly" type="text" id="regDate" size="10" readOnly="true" />
+					&nbsp;&nbsp;制作人&nbsp;<input class="readOnly" type="text" id="registerName" size="10" readOnly="true" />
+				</td>
 			</tr>
 			</table>
 			</form>

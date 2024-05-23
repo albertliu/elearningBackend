@@ -221,6 +221,24 @@ if(op == "getClassSchedule"){
 			where = s;
 		}
 	}
+	//如果有类别
+	if(kindID > ""){ // 
+		s = "mark='" + kindID + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//如果有类别
+	if(keyID > ""){ // 
+		s = "online='" + keyID + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 
 	if(where>""){
 		where = " where " + where;
@@ -237,9 +255,9 @@ if(op == "getClassSchedule"){
 		//7
 		result += "|" + rs("hours").value + "|" + rs("period").value + "|" + rs("theDate").value + "|" + rs("theWeek").value + "|" + rs("item").value + "|" + rs("address").value + "|" + rs("teacher").value;
 		//14
-		result += "|" + rs("kindName").value + "|" + rs("typeName").value + "|" + rs("teacherName").value;
-		//17
-		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value;
+		result += "|" + rs("kindName").value + "|" + rs("typeName").value + "|" + rs("teacherName").value + "|" + rs("memo").value + "|" + rs("regDate").value;
+		//19
+		result += "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("online").value + "|" + rs("onlineName").value + "|" + rs("mark").value;
 		rs.MoveNext();
 	}
 	result = result.substr(2);
@@ -258,9 +276,9 @@ if(op == "getClassScheduleInfo"){
 		//7
 		result += "|" + rs("hours").value + "|" + rs("period").value + "|" + rs("theDate").value + "|" + rs("theWeek").value + "|" + rs("item").value + "|" + rs("address").value + "|" + rs("teacher").value;
 		//14
-		result += "|" + rs("kindName").value + "|" + rs("typeName").value + "|" + rs("teacherName").value;
-		//17
-		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value;
+		result += "|" + rs("kindName").value + "|" + rs("typeName").value + "|" + rs("teacherName").value + "|" + rs("memo").value + "|" + rs("regDate").value;
+		//19
+		result += "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("online").value + "|" + rs("onlineName").value + "|" + rs("mark").value;
 	}
 	Session(op) = ssql;
 	Response.Write(escape(result));/**/
@@ -270,7 +288,7 @@ if(op == "getClassScheduleInfo"){
 if(op == "updateClassSchedule"){
 	result = 0;
 	//@ID int,@seq int,@kindID int,@typeID int,@hours int,@period varchar(50),@theDate varchar(50),@teacher varchar(50),@memo varchar(500),@registerID
-	sql = "exec updateClassSchedule " + nodeID + "," + String(Request.QueryString("seq")) + "," + kindID + "," + refID + "," + String(Request.QueryString("hours")) + ",'" + String(Request.QueryString("period")) + "','" + String(Request.QueryString("theDate")) + "','" + String(Request.QueryString("teacher")) + "','" + memo + "','" + currUser + "'";
+	sql = "exec updateClassSchedule " + nodeID + "," + String(Request.QueryString("seq")) + "," + kindID + "," + refID + "," + String(Request.QueryString("online")) + "," + String(Request.QueryString("hours")) + ",'" + String(Request.QueryString("period")) + "','" + String(Request.QueryString("theDate")) + "','" + String(Request.QueryString("teacher")) + "','" + memo + "','" + currUser + "'";
 	rs = conn.Execute(sql);
 	if (!rs.EOF){
 		result = rs("status").value + "|" + rs("msg").value;
@@ -320,7 +338,7 @@ if(op == "getRandSummary"){
 }
 
 if(op == "generateClassSchedule"){
-	sql = "exec autoSetClassSchedule '" + refID + "',0,'','" + currUser + "'";
+	sql = "exec autoSetClassSchedule '" + refID + "','" + kindID + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(0);
 }

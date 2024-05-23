@@ -322,7 +322,7 @@
 		});
 		$("#schedule").click(function(){
 			//setSession("page_params",{className:$("#className").val(), courseName:$("#courseName").val(), startDate:$("#dateStart").val(), endDate:$("#dateEnd").val(), adviser:$("#adviserName").val(), qty:$("#qty").val()});
-			showClassSchedule($("#classID").val(),"{className:'" + $("#className").val()+"', courseName:'" + $("#courseName").val()+"', transaction_id:'" + $("#transaction_id").val()+"', startDate:'"+$("#dateStart").val().substr(0,10)+"', endDate:'"+$("#dateEnd").val()+"', adviser:'"+$("#adviserName").val()+"', qty:"+$("#qty").val()+"}",0,1);
+			showClassSchedule($("#ID").val(),"B","{className:'" + $("#ID").val() + "', courseName:'" + $("#courseName").val()+"', transaction_id:'" + $("#transaction_id").val()+"', startDate:'"+$("#dateStart").val().substr(0,10)+"', endDate:'"+$("#dateEnd").val()+"', adviser:'"+$("#adviserName").val()+"', qty:"+$("#qty").val()+"}",0,1);
 		});
 		$("#showPhoto").change(function(){
 			getStudentCourseList();
@@ -345,7 +345,7 @@
 				return false;
 			}
 			if(confirm("确定要编排课表吗？")){
-				$.get("classControl.asp?op=generateClassSchedule&refID=" + $("#classID").val() + "&kindID=0&times=" + (new Date().getTime()),function(re){
+				$.get("classControl.asp?op=generateClassSchedule&refID=" + $("#ID").val() + "&kindID=B&times=" + (new Date().getTime()),function(re){
 					getNodeInfo(nodeID);
 					alert("课表编排完毕。");
 				});
@@ -438,7 +438,6 @@
 				setProjectList(ar[36],ar[2]);
 				setHostChange();
 				$("#courseID").val(ar[36]);
-				$("#adviserID").val(ar[8]);
 				if(ar[24]>""){
 					$("#archived").prop("checked",true);
 				}else{
@@ -452,7 +451,7 @@
 				$("#photo").html(c);
 				$("#refundList").html("<a>退费单</a>");
 				$("#archive").html("<a>班级档案</a>");
-				if(ar[34]>""){
+				if(ar[35]>""){
 					$("#schedule").html("<a>课程表</a>");
 				}
 				$("#sign").html("<a>签到表</a>");
@@ -774,8 +773,8 @@
 			}
 		});
 		if($("#scheduleDate").val()>""){
-		var h = $("#host").val();
-		if(h>"" && h !="ding"){	//ding使用智能消防学校的资源
+			var h = $("#host").val();
+			if(h>"" && h !="ding"){	//ding使用智能消防学校的资源
 				getComList("teacher","v_courseTeacherList a, courseInfo b","teacherID","teacherName","a.courseID=b.certID and a.status=0 and b.courseID='" + $("#courseID").val() + "' and a.host='" + h + "' order by teacherID",1);
 			}else{
 				getComList("teacher","v_courseTeacherList a, courseInfo b","teacherID","teacherName","a.courseID=b.certID and a.status=0 and b.courseID='" + $("#courseID").val() + "' order by teacherID",1);

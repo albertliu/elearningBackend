@@ -28,18 +28,20 @@
 	var nodeID = 0;
 	var op = 0;
 	var refID = 0;
+	var keyID = "A";
 	var updateCount = 0;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";	//classID
 		refID = "<%=refID%>";
+		keyID = "<%=keyID%>";	// mark: A apply, B class
 		op = "<%=op%>";
 		
 		$.ajaxSetup({ 
 			async: false 
 		}); 
 		$("#btnDownload").click(function(){
-			$.getJSON(uploadURL + "/outfiles/generate_excel?tag=class_schedule&mark=班级授课计划&classID=" + nodeID + "&pobj=" + refID ,function(data){
+			$.getJSON(uploadURL + "/outfiles/generate_excel?tag=class_schedule&mark=班级授课计划&classID=" + nodeID + "&pobj=" + refID + "&keyID=" + keyID ,function(data){
 				if(data>""){
 					asyncbox.alert("请点击此处<a href='" + data + "' target='_blank'>下载文件</a>",'课表',function(action){
 					　　//alert 返回action 值，分别是 'ok'、'close'。
@@ -76,7 +78,8 @@
 			arr.push("<th width='6%'>课时</th>");
 			arr.push("<th width='10%'>上课类型</th>");
 			arr.push("<th width='10%'>授课教师</th>");
-			arr.push("<th width='24%'>授课内容</th>");
+			arr.push("<th width='18%'>授课内容</th>");
+			arr.push("<th width='6%'>类型</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
@@ -98,12 +101,14 @@
 					arr.push("<td class='left'>" + ar1[14] + "</td>");
 					arr.push("<td class='left'>" + ar1[16] + "</td>");
 					arr.push("<td class='left'>" + ar1[11] + "</td>");
+					arr.push("<td class='left'>" + ar1[22] + "</td>");
 					arr.push("</tr>");
 				});
 			}
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
