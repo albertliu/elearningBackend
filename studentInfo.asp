@@ -912,8 +912,7 @@
 		<div style="border:solid 1px #e0e0e0;width:99%;margin:1px;background:#ffffff;line-height:18px;">
 			<div class="comm" style="background:#f5faf8; float:left;width:100%;">
 			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
-			<table style="width:100%;">
-			<input type="hidden" id="ethnicity" /><input type="hidden" id="bureau" />
+			<table style="width:100%;">><input type="hidden" id="bureau" />
 			<input type="hidden" id="experience" />
 			<tr>
 				<td align="right">身份证</td><input type="hidden" id="status" /><input type="hidden" id="host" />
@@ -928,8 +927,11 @@
 				<td><input class="readOnly" readOnly="true" type="text" id="age" size="2" />&nbsp;出生日期<input type="text" id="birthday" size="8" /></td>
 			</tr>
 			<tr>
-				<td align="left" colspan="2">身份证起始日期<input type="text" id="IDdateStart" size="15" /></td>
-				<td align="left" colspan="2">身份证截止日期<input type="text" id="IDdateEnd" size="15" /></td>
+				<td align="left">证件期限</td>
+				<td align="left" colspan="2">
+					<input type="text" id="IDdateStart" size="15" />&nbsp;至&nbsp;<input type="text" id="IDdateEnd" size="15" />
+				</td>
+				<td align="left">民族&nbsp;<input id="ethnicity" name="ethnicity" type="text" size="10" /></td>
 			</tr>
 			<tr>
 				<td align="right">身份证地址</td>
