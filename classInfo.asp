@@ -175,7 +175,7 @@
 				return false;
 			}
 			//showLoadFile("ref_student_list",$("#ID").val(),"studentList",'');
-			window.open("class_archives.asp?nodeID=" + nodeID + "&keyID=1", "_self");
+			window.open("class_archives.asp?nodeID=" + nodeID + "&keyID=1&kindID=B", "_self");
 		});
 
 		$("#btnSel").click(function(){

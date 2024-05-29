@@ -28,12 +28,14 @@
 <script language="javascript">
 	var nodeID = 0;
 	var refID = "";
+	var kindID = "";
 	var updateCount = 1;
     var certID = "";
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";		//ID
 		keyID = "<%=keyID%>";		//0 预览  1 打印
+		kindID = "<%=kindID%>";		//A 申报班  B 培训班
 		
 		$.ajaxSetup({ 
 			async: false 
@@ -81,7 +83,7 @@
 				}
 				$("#pass_rate_training").html(x);
 
-				$.get("classControl.asp?op=getClassSchedule&refID=" + refID + "&times=" + (new Date().getTime()),function(data1){
+				$.get("classControl.asp?op=getClassSchedule&refID=" + nodeID + "&kindID=" + kindID + "&times=" + (new Date().getTime()),function(data1){
 					//alert(unescape(data1));
 					var ar2 = new Array();
 					ar2 = (unescape(data1)).split("%%");
