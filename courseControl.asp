@@ -31,10 +31,10 @@ if(op == "getCourseList"){
 		where = " where " + where;
 	}
 
-	sql = " FROM v_courseInfo " + where;
+	sql = " FROM v_courseInfo a left outer join v_courseScheduleQty b on a.courseID=b.courseID " + where;
 	result = getBasketTip(sql,"");
-	ssql = "SELECT courseID,courseName,hours,statusName,markName,memo,regDate,registerName" + sql + " order by courseID";
-	sql = "SELECT top " + basket + " *" + sql + " order by courseID";
+	ssql = "SELECT a.courseID,courseName,hours,statusName,markName,memo,regDate,registerName" + sql + " order by a.courseID";
+	sql = "SELECT top " + basket + " a.*, b.qty" + sql + " order by a.courseID";
 
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
@@ -42,7 +42,7 @@ if(op == "getCourseList"){
 		//7
 		result += "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("host").value + "|" + rs("hostName").value + "|" + rs("certID").value + "|" + rs("mark").value + "|" + rs("markName").value;
 		//16
-		result += "|" + rs("price").value + "|" + rs("reexamine").value + "|" + rs("reexamineName").value;
+		result += "|" + rs("price").value + "|" + rs("reexamine").value + "|" + rs("reexamineName").value + "|" + rs("qty").value;
 		rs.MoveNext();
 	}
 /**/

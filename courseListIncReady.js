@@ -23,7 +23,7 @@
 		sWhere = $("#txtSearchCourse").val();
 		//alert((sWhere) + "&kindID=" + $("#searchCourseKind").val() + "&status=" + $("#searchCourseStatus").val() + "&agency=" + $("#searchCourseAgency").val());
 		$.get("courseControl.asp?op=getCourseList&where=" + escape(sWhere) + "&kindID=&status=" + $("#searchCourseStatus").val() + "&dk=15&times=" + (new Date().getTime()),function(data){
-			//jAlert(unescape(data));
+			// jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
 			$("#courseCover").empty();
@@ -43,6 +43,7 @@
 			arr.push("<th width='13%'>课时</th>");
 			arr.push("<th width='12%'>状态</th>");
 			arr.push("<th width='12%'>课表</th>");
+			arr.push("<th width='12%'>计划</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
@@ -63,12 +64,18 @@
 					arr.push("<td class='left'>" + ar1[3] + "</td>");
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
 					arr.push("<td class='left'><a href='javascript:getLessonList(\"" + ar1[1] + "\");'>>></a></td>");
+					if(ar1[19]>0){
+						arr.push("<td class='left'><a href='javascript:showStandardSchedule(\"" + ar1[1] + "\",\"" + ar1[2] + "\");'>" + ar1[19] + "</a></td>");
+					}else{
+						arr.push("<td>&nbsp;</td>");
+					}
 					arr.push("</tr>");
 				});
 			}
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
