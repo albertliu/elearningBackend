@@ -890,6 +890,7 @@
 		$("#btnRemove").hide();
 		$("#btnResit").hide();
 		$("#btnSchedule").hide();
+		$("#btnUploadSchedule").hide();
 		$("#s_needResit").hide();
 		$("#generateZip").hide();
 		$("#generatePhotoZip").hide();
@@ -942,6 +943,7 @@
 					$("#doApplyEnter").show();	// 应急局项目可以自动报名
 					$("#doApplyUpload").show();	// 
 					$("#doApplyDownload").show();	// 
+					$("#btnUploadSchedule").show();	// 
 					if(reexamine==1){
 						$("#doApplyUploadPhoto").show();	// 复训的可上传照片
 					}
@@ -999,13 +1001,11 @@
 			</tr>
 			<tr>
 				<td align="right">打包文件</td>
-				<td>
+				<td colspan="3">
 					<span id="zip" style="margin-left:10px;"></span>
 					<span id="pzip" style="margin-left:10px;"></span>
 					<span id="ezip" style="margin-left:10px;"></span>
 				</td>
-				<td align="right"><input class="button" type="button" id="btnSchedule" value="排课表" /></td>
-				<td><input type="text" id="scheduleDate" size="10" class="readOnly" readOnly="true" />&nbsp;&nbsp;<span id="schedule" style="margin-left:10px;"></span></td>
 			</tr>
 			<tr>
 				<td align="right">属性</td>
@@ -1025,19 +1025,21 @@
 			</tr>
 			<tr>
 				<td align="right">考试通知</td>
-				<td colspan="3">
-					次数&nbsp;<input class="readOnly" type="text" id="send" size="2" readOnly="true" />&nbsp;&nbsp;
+				<td>
 					日期&nbsp;<input class="readOnly" type="text" id="sendDate" size="6" readOnly="true" />&nbsp;&nbsp;
-					发送人&nbsp;<input class="readOnly" type="text" id="senderName" size="5" readOnly="true" />&nbsp;&nbsp;
+					<input class="readOnly" type="text" id="senderName" size="5" readOnly="true" />
+				</td>
+				<td align="right">成绩通知</td>
+				<td>
+					日期&nbsp;<input class="readOnly" type="text" id="sendScoreDate" size="6" readOnly="true" />&nbsp;&nbsp;
+					&nbsp;<input class="readOnly" type="text" id="senderScoreName" size="5" readOnly="true" />
 				</td>
 			</tr>
 			<tr>
-				<td align="right">成绩通知</td>
-				<td colspan="3">
-					次数&nbsp;<input class="readOnly" type="text" id="sendScore" size="2" readOnly="true" />&nbsp;&nbsp;
-					日期&nbsp;<input class="readOnly" type="text" id="sendScoreDate" size="6" readOnly="true" />&nbsp;&nbsp;
-					发送人&nbsp;<input class="readOnly" type="text" id="senderScoreName" size="5" readOnly="true" />&nbsp;&nbsp;
-				</td>
+				<td align="right"><input class="button" type="button" id="btnSchedule" value="排课表" /></td>
+				<td><input type="text" id="scheduleDate" size="15" class="readOnly" readOnly="true" />&nbsp;&nbsp;<span id="schedule" style="margin-left:10px;"></span></td>
+				<td align="right"><input class="button" type="button" id="btnUploadSchedule" value="上传课表" /></td>
+				<td><input type="text" id="uploadScheduleDate" size="15" class="readOnly" readOnly="true" />&nbsp;&nbsp;<span id="checkin" style="margin-left:10px;">考勤</span></td>
 			</tr>
 			<tr>
 				<td align="right">任课教师</td>

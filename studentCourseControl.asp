@@ -1115,7 +1115,7 @@ if(op == "rebuildStudentLesson"){
 
 if(op == "rebuildLessonByClass"){
 	result = "";
-	sql = "exec rebuildLessonByClass '" + nodeID + "'";
+	sql = "exec rebuildLessonByClass '" + nodeID + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(0);
 }

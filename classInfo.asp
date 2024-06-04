@@ -288,7 +288,7 @@
 			}
 			if(confirm("确定要将这" + selCount + "个学员移动到其他班级吗？")){
 				$.get("classControl.asp?op=getClassListByClassID&refID=" + $("#classID").val(),function(data){
-					//alert(unescape(data));
+					// alert(unescape(data));
 					var ar = $.parseJSON(unescape(data));
 					jSelect("请输入班级编号：", ar, "目标班级",function(d){
 						d = d.replace(/\s*/g,"");
@@ -353,7 +353,7 @@
 		});
 
 		$("#btnRebuildStudentLesson").click(function(){
-			jConfirm('确定要刷新这个班级所有学员的课表和模拟练习吗?', '确认对话框', function(r) {
+			jConfirm('确定要刷新本班所有学员的课表吗?\n<p style="color:red; font-size:1.3em;">课程进度和练习记录将被删除且不可恢复!</p>', '确认对话框', function(r) {
 				if(r){
 					$.get("studentCourseControl.asp?op=rebuildLessonByClass&nodeID=" + $("#ID").val() + "&times=" + (new Date().getTime()),function(re){
 						jAlert("刷新成功。");
@@ -961,9 +961,11 @@
 					$("#btnSchedule").show();
 					$("#save").show();
 				}
-				if((checkPermission("classAdd") || (checkRole("adviser") && $("#adviserID").val()==currUser)) && currHost==""){
-					$("#btnRebuildStudentLesson").show();
+				if((checkPermission("classAdd")) && currHost==""){
 					$("#archived").prop("disabled",false);
+				}
+				if((checkPermission("rebuildStudentLesson") && s < 2)){
+					$("#btnRebuildStudentLesson").show();
 				}
 				if(checkPermission("classOpen") && s > 0){
 					$("#open").show();
