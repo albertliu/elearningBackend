@@ -274,6 +274,30 @@
 		if(!checkRole("leader") && !checkRole("saler") && currUser != "desk."){
 			deleteTab("收费概况");
 		}
+		if(currUser == "amra."){
+			deleteTab("班级概况");
+			deleteTab("学员注册");
+			deleteTab("学员培训");
+			deleteTab("证书获取");
+			deleteTab("证书到期");
+			deleteTab("其他报表");
+			deleteTab("收费记录");
+			deleteTab("发票管理");
+			$("#menu1").hide();
+			$("#menu3").hide();
+			$("#menu4").hide();
+			$("#menu7").hide();
+			$("#menu12").hide();
+			$("#generatePhoto_Tab").hide();
+			$("#generateScore_Tab").hide();
+			$("#generateStudent_Tab").hide();
+			$("#rptDaily_Tab").hide();
+			$("#feedback_Tab").hide();
+			$("#mTab1").hide();
+			$("#project_Tab").hide();
+			$("#project_Tab").hide();
+			$("#content").hide();
+		}
         deleteTab("日结报表");
         deleteTab("花名册");
 		<!--#include file="commLoadFileReady.asp"-->
@@ -368,7 +392,7 @@
 				<div id="container-1" align="left">
 					<ul class="tabs-nav">
 						<li><a href="#fragment-0"><span>我的事务</span></a></li>
-						<li><a href="#fragment-1"><span>学员管理</span></a></li>
+						<li id="menu1"><a href="#fragment-1"><span>学员管理</span></a></li>
 						<li id="menu11"><a href="#fragment-11"><span>预报名管理</span></a></li>
 						<li id="menu10"><a href="#fragment-10"><span>报名管理</span></a></li>
 						<li id="menu9"><a href="#fragment-9"><span>班级管理</span></a></li>
@@ -378,7 +402,7 @@
 						<li id="menu4"><a href="#fragment-4"><span>课程管理</span></a></li>
 						<li id="menu5"><a href="#fragment-5"><span>题库管理</span></a></li>
 						<li id="menu6"><a href="#fragment-6"><span>统计报表</span></a></li>
-						<li><a href="#fragment-7"><span>用户管理</span></a></li>
+						<li id="menu7"><a href="#fragment-7"><span>用户管理</span></a></li>
 					</ul>
 					<div id="fragment-0">
 						<div align="center" style="width:480px; text-align: center;"><h4></h4></div>
@@ -416,7 +440,7 @@
 							    <li id="rptDaily_Tab"><a href="#" name="#tab00">日报表</a></li> 
 							    <li id="project_Tab"><a href="#" name="#tab0">招生计划</a></li> 
 							    <li id="mTab1"><a href="#" name="#tab1">学员反馈</a></li>
-							    <li><a href="#" name="#tab2">回复信息</a></li>
+							    <li id="feedback_Tab"><a href="#" name="#tab2">回复信息</a></li>
 							    <li id="generateStudent_Tab"><a href="#" name="#tab3">学员报名</a></li> 
 							    <li id="generateScore_Tab"><a href="#" name="#tab4">成绩导入</a></li> 
 							    <li id="generatePhoto_Tab"><a href="#" name="#tab5">图片上传</a></li> 
@@ -634,7 +658,7 @@
 							</div>
 						</div>
 						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView6',Array("招生概况","收费概况","班级概况","学员注册","学员培训","证书发放","证书到期","其他报表"),0,1260,400);
+							initTabs('dhtmlgoodies_tabView6',Array("招生概况","收费概况","班级概况","学员注册","学员培训","证书获取","证书到期","其他报表"),0,1260,400);
 						</script>
 					</div>
 					

@@ -114,7 +114,7 @@
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
   		<input type="text" id="result" style="width:100%;" />
   		<input type="text" id="url" style="width:100%;" />
-  		订单号：<input type="text" id="orderNo" style="width:100%;" value="202" />
+  		订单号：<input type="text" id="orderNo" style="width:100%;" value="206" />
 		<img id="imgPay" src="" />
   		&nbsp;<input class="button" type="button" id="btnPay" value="付款" />&nbsp;
   		&nbsp;<input class="button" type="button" id="btnRefund" value="退款" />&nbsp;
