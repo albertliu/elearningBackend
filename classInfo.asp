@@ -385,6 +385,16 @@
 		$("#generateEntryZip").click(function(){
 			generateZip("e");
 		});
+		
+		$("#btnDiplomaIssue").click(function(){
+			getSelCart("visitstockchk");
+			if(selCount==0){
+				jAlert("还没有选择名单");
+				return false;
+			}
+			setSession("need2DiplomaList", selList);
+			showGenerateDiplomaInfo1(0,$("#certID").val(),"need2DiplomaList",selCount,'',1,0);
+		});
 
 		var timer = setInterval(getFeedbackList, 300000);
 		//var div = document.getElementById('feedback_list');
@@ -978,6 +988,9 @@
 				}
 				$("#btnMockView").show();
 				$("#checkStudent").show();
+				if(!checkPermission("diplomaAdd")){
+					$("#btnDiplomaIssue").hide();
+				}
 			}
 			if((checkPermission("studentAdd") || checkRole("adviser")) && s < 2){
 				$("#btnClassChange").show();
@@ -1168,6 +1181,7 @@
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnAttentionPhotoClose" value="照片确认" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnAttentionSignatureClose" value="签名确认" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnRebuildStudentLesson" value="刷新课表" /></span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnDiplomaIssue" value="培训证书" /></span>
 		</div>
 		<div>
 			学习进度&nbsp;&lt;=<input type="text" id="s_completion2" size="2" />%
