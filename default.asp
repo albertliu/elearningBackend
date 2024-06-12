@@ -75,7 +75,12 @@ if (String(Request.QueryString("msg")) != "undefined" &&
 					if($("#passwd").val()=="123456"){
 						alert("您用的是默认密码，登录以后请在首页上修改密码。");
 					}
-					self.location = "index.asp?times=" + (new Date().getTime());
+					if($("#username").val()=="room."){
+						self.location = "face_camera.asp?times=" + (new Date().getTime());
+					}else{
+						self.location = "index.asp?times=" + (new Date().getTime());
+					}
+					// self.location = "index.asp?times=" + (new Date().getTime());
 				}
 				if(ar[0]==1){  //name is wrong
 					$("#imgAllow1").html("<img src='images/cancel.png' width='13' height='13'>");
