@@ -183,7 +183,7 @@
                         // alert(uploadURLS + "/alis/searchFace")
                         $.post(uploadURLS + "/alis/searchFace", {base64Data: base64Data, refID: scheduleID} ,function(data){
                           // alert(data)
-                          if(data.status<9){
+                          if(data.status==0){
                             showResultMsg(data.status, data.msg);
                           }
                           $("#res").html(data.msg);
