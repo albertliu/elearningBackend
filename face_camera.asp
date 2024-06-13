@@ -272,10 +272,10 @@
 
 		function getCheckinList(){
       if(scheduleID > 0){
-        $.getJSON(uploadURL + "/public/getScheduleCheckInList?refID=" + scheduleID + "&times=" + (new Date().getTime()),function(re){
+        $.getJSON(uploadURLS + "/public/getScheduleCheckInList?refID=" + scheduleID + "&times=" + (new Date().getTime()),function(re){
           $("#dg1").datagrid("loadData",re);
         });
-        $.getJSON(uploadURL + "/public/getScheduleNoCheckInList?refID=" + scheduleID + "&times=" + (new Date().getTime()),function(re){
+        $.getJSON(uploadURLS + "/public/getScheduleNoCheckInList?refID=" + scheduleID + "&times=" + (new Date().getTime()),function(re){
           $("#dg2").datagrid("loadData",re);
         });
       }
@@ -290,30 +290,32 @@
         <td colspan="3">
           <div class="tip">
             课程表&nbsp;<select id="scheduleID" name="scheduleID" class="easyui-combobox" data-options="height:22,editable:false,panelHeight:'auto',width:300"></select>
+            <span id="res" class="tip-box1"></span>
           </div>
         </td>
     </tr>
     <tr>
-      <td style="width:30%;"><span class="tip">签到人数：</span><span id="qty0" class="tip1"></span></td>
-      <td style="width:40%;"><span class="tip">本班：</span><span id="qty1" class="tip1"></span></td>
-      <td style="width:30%;"><span class="tip">其他：</span><span id="qty2" class="tip1"></span></td>
+      <td colspan="3" style="width:30%;">
+        <span class="tip">签到人数：</span><span id="qty0" class="tip1"></span>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tip">本班：</span><span id="qty1" class="tip1"></span>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tip">其他：</span><span id="qty2" class="tip1"></span>
+      </td>
     </tr>
     <tr>
         <td style="width:30%;" valign="top">
-          <div>已签到人员：</div>
-          <div><table id="dg1"></table></div>
+          <div class="tip">已签到人员：</div>
+          <div><table id="dg1" style="font-size:1.3em;"></table></div>
         </td>
         <td style="width:40%;" valign="top">
           <div>
             <div id="tip" class="tip-box"></div>
-            <div id="res" class="tip-box1"></div>
             <video id="video" width="480" height="360" preload autoplay loop muted></video>
             <canvas id="canvas" width="480" height="360"></canvas>
           </div>
         </td>
         <td style="width:30%;" valign="top">
-          <div>本班未签到人员：</div>
-          <div><table id="dg2"></table></div>
+          <div class="tip">本班未签到人员：</div>
+          <div><table id="dg2" style="font-size:1.3em;"></table></div>
         </td>
     </tr>
     </table>
