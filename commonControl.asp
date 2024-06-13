@@ -62,6 +62,37 @@ if(op == "getComList"){
 	Response.Write(escape(result));
 }
 
+if(op == "getComboBoxList"){
+	sql = "SELECT ID,item FROM dictionaryDoc WHERE kind='" + keyID + "' order by ID";
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += ",{'ID':'" + rs("ID").value + "','item':'" + rs("item").value + "'}";
+		rs.MoveNext();
+	}
+	if(result > ""){
+		result = result.substr(1);
+	}
+	rs.Close();
+	Response.Write(escape("[" + result + "]"));
+}
+
+if(op == "getComboList"){
+	sql = "select " + field + " as ID,REPLACE(REPLACE(" + sName + ",char(13),''),char(10),'') as item from " + table;
+	if(where > ""){
+		sql += " where " + where;
+	}
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += ",{'ID':'" + rs("ID").value + "','item':'" + rs("item").value + "'}";
+		rs.MoveNext();
+	}
+	rs.Close();
+	if(result > ""){
+		result = result.substr(1);
+	}
+	Response.Write(escape("[" + result + "]"));
+}
+
 if(op == "getComUserList"){
 	sql = "select distinct ID,item from dbo.getComUserList('" + currUser + "'," + keyID + "," + refID + "," + kindID + ") order by item";
 	rs = conn.Execute(sql);
