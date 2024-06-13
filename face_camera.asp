@@ -25,8 +25,8 @@
 
   <style>
     video {
-      margin-left: 30px;
-      margin-top: 30px;
+      margin-left: 10px;
+      margin-top: 10px;
       /* top: 0;
       bottom: 0;
       left: 0;
@@ -38,8 +38,8 @@
       -moz-transform: rotateY(180deg);
     }
     canvas {
-      margin-left: 30px;
-      margin-top: 30px;
+      margin-left: 10px;
+      margin-top: 10px;
       /* top: 0;
       bottom: 0;
       left: 0;
@@ -48,16 +48,18 @@
       position: absolute;
     }
     .tip-box {
-        font-size: 1.5em;
+        font-size: 2em;
         color: blue;
         font-weight: bold;
         margin: 10px;
+        text-align: center;
     }
     .tip-box1 {
         font-size: 1.5em;
         color: red;
         font-weight: bold;
         margin: 10px;
+        text-align: center;
     }
     .tip {
         font-size: 1.5em;
@@ -120,7 +122,14 @@
         			}
           ]]
       });
-
+      //更改的是datagrid中的数据
+      $('.datagrid-cell').css('font-size','18px');
+      //datagrid中的列名称
+      $('.datagrid-header .datagrid-cell span ').css('font-size','18px');
+      //标题
+      $('.panel-title ').css('font-size','36px'); 
+      //分页工具栏
+      // $('.datagrid-pager').css('display','none');
       var video = document.getElementById('video');
       var canvas = document.getElementById('canvas');
       var context = canvas.getContext('2d');
@@ -289,8 +298,8 @@
     <tr>
         <td colspan="3">
           <div class="tip">
-            课程表&nbsp;<select id="scheduleID" name="scheduleID" class="easyui-combobox" data-options="height:22,editable:false,panelHeight:'auto',width:300"></select>
-            <span id="res" class="tip-box1"></span>
+            <span style="font-size:1.1em;">课程表&nbsp;<select id="scheduleID" name="scheduleID" class="easyui-combobox" data-options="height:22,editable:false,panelHeight:'auto',width:300"></select></span>
+            <span id="res" class="tip-box1" style="padding-top: 20px; padding-left: 20px;"></span>
           </div>
         </td>
     </tr>
