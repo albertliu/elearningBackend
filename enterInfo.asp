@@ -292,6 +292,11 @@
 		$("#btnUploadInvoice").click(function(){
 			showLoadFile("invoice_pdf",nodeID,"invoice_pdf",$("#host").val());
 		});
+
+		$("#btnShowCompletion").click(function(){
+			showCompletionList(nodeID,0,0,0);
+		});
+
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -369,6 +374,8 @@
 				$("#refund_memo").val(ar[81]);
 				$("#file5").val(ar[84]);
 				$("#pay_checkerName").val(ar[85]);
+				$("#completionPass").val(ar[86]);
+				$("#completion").val(ar[10]);
 				if(ar[48]>""){
 					$("#signatureStatus").prop("checked",true);
 				}else{
@@ -852,6 +859,15 @@
 				<div>
                 <form style="width:99%;float:right;margin:1px;padding-left:2px;background:#f8f8ee;">
                 <table>
+				<tr>
+					<td align="right">考试条件</td>
+					<td><input id="completionPass" name="completionPass" class="readOnly" size="5" readOnly="true" />&nbsp;课时%</td>
+					<td align="right">实际完成</td>
+					<td>
+						<input id="completion" name="completion" class="readOnly" size="5" readOnly="true" />&nbsp;%
+						&nbsp;<input class="button" type="button" id="btnShowCompletion" value="查看详情" />
+					</td>
+				</tr>
                 <tr>
                     <td align="right">初训证书编号</td>
                     <td><input type="text" id="currDiplomaID" style="width:140px;" /></td>

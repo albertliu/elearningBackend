@@ -507,7 +507,7 @@ if(op == "getNodeInfo"){
 		//74
 		result += "|" + rs("pay_memo").value + "|" + rs("pay_status").value + "|" + rs("pay_kindName").value + "|" + rs("pay_typeName").value + "|" + rs("pay_statusName");
 		//79
-		result += "|" + rs("refunderName").value + "|" + rs("refund_amount").value + "|" + rs("refund_memo").value + "|" + rs("file3").value + "|" + rs("file4").value + "|" + rs("file5").value + "|" + rs("pay_checkerName").value;
+		result += "|" + rs("refunderName").value + "|" + rs("refund_amount").value + "|" + rs("refund_memo").value + "|" + rs("file3").value + "|" + rs("file4").value + "|" + rs("file5").value + "|" + rs("pay_checkerName").value + "|" + rs("completionPass").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -1119,5 +1119,38 @@ if(op == "rebuildLessonByClass"){
 	execSQL(sql);
 	Response.Write(0);
 }
+
+if(op == "getStudentLessonList"){
+	result = "";
+	sql = "select *, dbo.getVideoShots(ID) as shots from v_studentLessonList where refID=" + refID + " order by seq";
+	
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("ID").value + "|" + rs("lessonName").value + "|" + rs("hours").value + "|" + rs("completion").value + "|" + rs("shots").value;
+		rs.MoveNext();
+	}
+	rs.Close();
+	result = result.substr(2);/**/
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}
+
+if(op == "getFaceList"){
+	result = "";
+	sql = "select * from v_faceDetectInfo where refID in(select ID from studentVideoList where refID=" + refID + " and kindID=0) order by regDate";
+	
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += ",{'ID':'" + rs("ID").value + "','file1':'" + rs("file1").value + "','file2':'" + rs("file2").value + "','status':'" + rs("status").value + "','statusName':'" + rs("statusName").value + "','regDate':'" + rs("regDate").value + "'}";
+		rs.MoveNext();
+	}
+	rs.Close();
+	if(result>""){
+		result = result.substr(1);
+	}
+	Response.Write(escape("{'list':[" + result + "]}"));
+	//Response.Write(escape(sql));
+}
+
 
 %>

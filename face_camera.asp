@@ -181,7 +181,6 @@
                       if(base64Data){
                         //upload photo for compare
                         // alert(uploadURLS + "/alis/searchFace")
-          alert(uploadURLS)
                         $.post(uploadURLS + "/alis/searchFace", {base64Data: base64Data, refID: scheduleID} ,function(data){
                           // alert(data)
                           if(data.status<9){

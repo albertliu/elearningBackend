@@ -54,7 +54,7 @@
 		$.ajax({
 			url: uploadURL + "/public/enterPay",
 			type: "post",
-			data: {"host":"znxf", "kind":0, "enterID":$("#orderNo").val(), "amount":0.01, "item":"从业人员初训报名费","name":"310108199320320021张三丰","sales":"大佬"},
+			data: {"host":"znxf", "kind":0, "enterID":$("#orderNo").val(), "amount":$("#amount").val(), "item":"从业人员初训报名费","name":"310108199320320021张三丰","sales":"大佬"},
 			beforeSend: function() {   
 				$.messager.progress();	// 显示进度条
 			},
@@ -82,7 +82,7 @@
 		$.ajax({
 			url: uploadURL + "/public/enterPay",
 			type: "post",
-			data: {"host":"znxf", "kind":1, "enterID":$("#orderNo").val(), "amount":0.01, "item":"不想学了","name":"desk","sales":"system"},
+			data: {"host":"znxf", "kind":1, "enterID":$("#orderNo").val(), "amount":0.01, "item":"测试","name":"desk","sales":"system"},
 			beforeSend: function() {   
 				$.messager.progress();	// 显示进度条
 			},
@@ -114,7 +114,8 @@
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
   		<input type="text" id="result" style="width:100%;" />
   		<input type="text" id="url" style="width:100%;" />
-  		订单号：<input type="text" id="orderNo" style="width:100%;" value="206" />
+  		订单号：<input type="text" id="orderNo" style="width:20%;" value="206" />
+  		&nbsp;&nbsp;金额：<input type="text" id="amount" style="width:20%;" value="0" />
 		<img id="imgPay" src="" />
   		&nbsp;<input class="button" type="button" id="btnPay" value="付款" />&nbsp;
   		&nbsp;<input class="button" type="button" id="btnRefund" value="退款" />&nbsp;
