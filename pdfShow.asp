@@ -28,7 +28,7 @@
 		$.ajaxSetup({ 
 			async: false 
 		}); 
-		$("#img").prop("src","users/" + nodeID + "?times=" + (new Date().getTime()) + "#view=fit");
+		$("#img").prop("src",(nodeID.indexOf("https://")==-1?"users/":"") + nodeID + "?times=" + (new Date().getTime()) + "#view=fit");
 	});
 	
 	function getUpdateCount(){
