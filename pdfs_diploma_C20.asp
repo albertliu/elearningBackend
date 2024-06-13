@@ -43,7 +43,7 @@
 					k += 1;
 					arr.push('<section class="login-form-wrap3s">');
 					arr.push('<div>');
-					arr.push('<div style="width:100%; padding-left:240mm; padding-top:110mm;">');
+					arr.push('<div style="width:100%; padding-left:260mm; padding-top:150mm;">');
 					arr.push('	<table style="width:100%;">');
 					arr.push('		<tr>');
 					arr.push('			<td style="height:63px;"><h5>' + val["name"] + '</h5></td>');
@@ -63,10 +63,10 @@
 					arr.push('	</table>');	
 					arr.push('</div>');
 					arr.push('</section><hr style="page-break-after:always; border:none;">');	//分页
-					arr.push('<div style="width:100%; padding-left:185mm;padding-top:35mm;">');
+					arr.push('<div style="width:100%; padding-left:200mm;padding-top:55mm;">');
 					arr.push('<div class="lineC1s"><span style="padding-left:20mm;">' + (val["name"].length>2?val["name"]:val["name"]+'&nbsp;&nbsp;') + '</span><span style="padding-left:35mm;">' + val["class_startDate"].substring(0,4) + '</span><span style="padding-left:12mm;">' + val["class_startDate"].substring(5,7) + '</span><span style="padding-left:12mm;">' + val["class_startDate"].substring(8,10) + '</span></div>');
 					arr.push('<div class="lineC1s"><span style="padding-left:15mm; padding-top:8mm;">' + val["class_endDate"].substring(0,4) + '</span><span style="padding-left:12mm;">' + val["class_endDate"].substring(5,7) + '</span><span style="padding-left:12mm;">' + val["class_endDate"].substring(8,10) + '</span></div>');
-					arr.push('<div class="lineC1s" style="padding-top:112mm;padding-left:70mm;"><span style="padding-left:10mm;">' + val["startDate"].substring(0,4) + '</span><span style="padding-left:12mm;">' + val["startDate"].substring(5,7) + '</span><span style="padding-left:12mm;">' + val["startDate"].substring(8,10) + '</span></div>');
+					arr.push('<div class="lineC1s" style="padding-top:112mm;padding-left:100mm;"><span style="padding-left:10mm;">' + val["startDate"].substring(0,4) + '</span><span style="padding-left:12mm;">' + val["startDate"].substring(5,7) + '</span><span style="padding-left:12mm;">' + val["startDate"].substring(8,10) + '</span></div>');
 					arr.push('</div>');
 					arr.push('</div>');
 					arr.push('<hr style="page-break-after:always; border:none;">');	//分页
