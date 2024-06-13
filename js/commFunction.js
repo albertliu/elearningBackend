@@ -179,6 +179,45 @@
 		});
 	}
 	
+	//向指定的下拉框填充列表
+	//obj：填充目标, 如果为空则取kind相同名称  mark: 0 照实填充  1 第一行增加一个空行
+	function getComboBoxList(kind,obj,mark){
+		$.get("commonControl.asp?op=getComboBoxList&keyID=" + kind + "&times=" + (new Date().getTime()),function(re){
+			var ar = eval("(" + unescape(re) + ")");
+			if(obj==""){
+				obj = kind;	
+			}
+			$("#" + obj).empty();
+			if(mark == 1){
+				ar.unshift({'ID':'','item':''});
+			}
+			$("#" + obj).combobox({
+				valueField: "ID",
+				textField: "item"
+			}).combobox("loadData",ar);
+		});
+	}
+
+	//向指定的下拉框填充列表
+	//obj: 填充目标  tblName：表名  id/item：字段名   where: 过滤条件   mark: 0 照实填充  1 第一行增加一个空行
+	function getComboList(obj,tblName,id,item,where,mark){
+		//alert(tblName + "&field=" + id + "&sName=" + item + "&where=" + (where));
+		$.get("commonControl.asp?op=getComboList&table=" + tblName + "&field=" + id + "&sName=" + item + "&where=" + escape(where) + "&times=" + (new Date().getTime()),function(re){
+			var ar = eval("(" + unescape(re) + ")");
+			$("#" + obj).empty();
+			if(mark == 1){
+				ar.unshift({'ID':'','item':''});
+			}
+			$("#" + obj).combobox({
+				valueField: "ID",
+				textField: "item"
+			}).combobox("loadData",ar);
+			if(mark == 0){
+				$("#" + obj).combobox("select", ar[0].ID);	//自动选择第一项
+			}
+		});
+	}
+	
 	//向指定的下拉框填充有权限查看的用户列表
 	//objCombox: 填充目标  eID：工程编号   pID: 项目编号   mark: 0 包括自己（第一行） 1 不包括自己  blank: 0 没有空行  1 第一行为空
 	function setComUserList(objCombox,eID,pID,mark,blank){
