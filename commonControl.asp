@@ -182,7 +182,7 @@ if(op == "clearSession"){
 }
 
 if(op == "getCurrParam"){
-	result = currDate + "|" + currUser + "|" + Session("name_key") + "|" + currYear + "|" + currMonth + "|" + currWeek + "|" + currHost + "|" + currHostKind + "|" + getSysEnv("NODE_ENV_UPLOAD_URL") + "|" + currDeptID + "|" + getSysEnv("NODE_ENV_BACKEND");
+	result = currDate + "|" + currUser + "|" + Session("name_key") + "|" + currYear + "|" + currMonth + "|" + currWeek + "|" + currHost + "|" + currHostKind + "|" + getSysEnv("NODE_ENV_UPLOAD_URL") + "|" + currDeptID + "|" + getSysEnv("NODE_ENV_BACKEND") + "|" + getSysEnv("NODE_ENV_UPLOAD_URLS");
 	Response.Write(escape(result));
 }
 
