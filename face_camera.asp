@@ -25,8 +25,8 @@
 
   <style>
     video {
-      margin-left: 10px;
-      margin-top: 10px;
+      margin-left: 1px;
+      margin-top: 1px;
       /* top: 0;
       bottom: 0;
       left: 0;
@@ -38,8 +38,8 @@
       -moz-transform: rotateY(180deg);
     }
     canvas {
-      margin-left: 10px;
-      margin-top: 10px;
+      margin-left: 1px;
+      margin-top: 1px;
       /* top: 0;
       bottom: 0;
       left: 0;
@@ -192,11 +192,12 @@
                         // alert(uploadURLS + "/alis/searchFace")
                         $.post(uploadURLS + "/alis/searchFace", {base64Data: base64Data, refID: scheduleID} ,function(data){
                           // alert(data)
-                          if(data.status==0){
+                          if(data.status < 9){
                             showResultMsg(data.status, data.msg);
                           }
                           $("#res").html(data.msg);
                           getScheduleCheckIn();
+                          getCheckinList();
                         });
                       }
                       faceflag = false;
@@ -249,8 +250,8 @@
       //根据不同标识，显示不同风格（字体颜色）。1秒后自动关闭
       let jc = $.dialog({
           title: false,
-          content: '<strong style="font-size: 20em; color:' + c[kind] + ';">' + msg + '</strong>',
-          autoClose: '|1000',
+          content: '<strong style="font-size: 15em; color:' + c[kind] + ';">' + msg + '</strong>',
+          autoClose: '|500',
           animation: 'scale',
           closeAnimation: 'zoom'
       });
@@ -311,7 +312,7 @@
       </td>
     </tr>
     <tr>
-        <td style="width:30%;" valign="top">
+        <td style="width:25%;" valign="top">
           <div class="tip">已签到人员：</div>
           <div><table id="dg1" style="font-size:1.3em;"></table></div>
         </td>
