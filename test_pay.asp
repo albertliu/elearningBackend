@@ -69,6 +69,8 @@
 					// alert(text)
 					$("#imgPay").prop("src", text);
 				}
+				$("#code").html(data.code);
+				$("#memo").html(data.describe);
 				$.messager.progress('close');	// 如果提交成功则隐藏进度条 
 			},
 			error: function () {
@@ -120,5 +122,6 @@
   		&nbsp;<input class="button" type="button" id="btnPay" value="付款" />&nbsp;
   		&nbsp;<input class="button" type="button" id="btnRefund" value="退款" />&nbsp;
   	</div>
+	<div>返回代码：<span id="code"></span>&nbsp;&nbsp;错误信息：<span id="memo"></span></div>
 </div>
 </body>
