@@ -108,8 +108,8 @@
 									if(val[key]==""){
 										arr.push("<td>&nbsp;</td>");
 									}else{
-										$.get(uploadURL + "/alis/get_OSS_file_base64?filename=" + val.[key].split(",")[0],function(re1){
-											arr.push("<td" + '<img src="/users' + val.[key].split(",")[1] + '" style="max-width:50px;" />' + (re1>'' ? '<img src="data:image/png;base64,' + re1 + '" style="max-width:50px;" />' : '') + "</td>");
+										$.get(uploadURL + "/alis/get_OSS_file_base64?filename=" + val[key].split(",")[0],function(re1){
+											arr.push("<td" + '<img src="/users' + val[key].split(",")[1] + '" style="max-width:50px;" />' + (re1>'' ? '<img src="data:image/png;base64,' + re1 + '" style="max-width:50px;" />' : '') + "</td>");
 										});
 									}
 								}
