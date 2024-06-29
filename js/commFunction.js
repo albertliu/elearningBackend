@@ -1523,6 +1523,31 @@
 	}
 	
 	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
+	function showClassCheckin(nodeID,keyID,refID,op,mark){
+		asyncbox.open({
+			id: "class_checkin",
+			url:"class_checkin.asp?nodeID=" + nodeID + "&refID=" + refID + "&keyID=" + keyID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
+			title: "班级考勤表",
+			width: 880,
+			height: 780,
+			cover : {
+	          //透明度
+	          opacity : 0,
+	          //背景颜色
+	           background : '#000'
+	          },
+
+			btnsbar : false,
+			callback : function(action,iframe){	
+				var re = iframe.updateCount;
+				if(re>0 && mark==1){
+					//getClassScheduleList();
+				}
+			}
+		});
+	}
+	
+	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
 	function showStandardSchedule(nodeID,refID,op,mark){
 		asyncbox.open({
 			id: "standard_schedule",

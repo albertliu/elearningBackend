@@ -297,6 +297,19 @@
 			showCompletionList(nodeID,0,0,0);
 		});
 
+		$("#btnCheckPass").click(function(){
+			jConfirm('确定要设置/取消免签吗?', '确认对话框', function(r) {
+				if(r){
+					$.get("studentCourseControl.asp?op=setCheckPass&nodeID=" + nodeID + "&times=" + (new Date().getTime()),function(re){
+						// alert(unescape(re))
+						$.messager.alert("提示","操作成功。","info");
+						updateCount += 1;
+						getNodeInfo(nodeID);
+					});
+				}
+			});
+		});
+
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -395,6 +408,11 @@
 					$("#needInvoice").prop("checked",true);
 				}else{
 					$("#needInvoice").prop("checked",false);
+				}
+				if(ar[87]==1){
+					$("#check_pass").checkbox({checked:true});
+				}else{
+					$("#check_pass").checkbox({checked:false});
 				}
 
 				// getPayDetailInfoByEnterID(ar[0]);
@@ -679,6 +697,7 @@
 		$("#btnRebuildStudentLesson").hide();
 		$("#amount").prop("readonly",false);
 		$("#btnViewInvoice").prop("disabled",true);
+		$("#check_pass").checkbox({readonly:true});
 		if($("#statusPay").val()==0 && $("#kindID").val()==0){
 			//未支付的个人付款可以支付，团体付款应到发票管理中操作。
 			$("#btnPay").show();
@@ -864,8 +883,10 @@
 					<td><input id="completionPass" name="completionPass" class="readOnly" size="5" readOnly="true" />&nbsp;课时%</td>
 					<td align="right">实际完成</td>
 					<td>
-						<input id="completion" name="completion" class="readOnly" size="5" readOnly="true" />&nbsp;%
+						<input id="completion" name="completion" class="readOnly" size="4" readOnly="true" />&nbsp;%
 						&nbsp;<input class="button" type="button" id="btnShowCompletion" value="查看详情" />
+						&nbsp;&nbsp;<input class="easyui-checkbox" id="check_pass" name="check_pass" value="1" />
+						&nbsp;<input class="button" type="button" id="btnCheckPass" value="免签" />
 					</td>
 				</tr>
                 <tr>

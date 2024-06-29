@@ -525,8 +525,10 @@
 			}
 		});
 		$("#schedule").click(function(){
-			//setSession("page_params",{className:$("#className").val(), courseName:$("#courseName").val(), startDate:$("#dateStart").val(), endDate:$("#dateEnd").val(), adviser:$("#adviserName").val(), qty:$("#qty").val()});
 			showClassSchedule($("#ID").val(),"A","{className:'" + $("#ID").val() + "', courseName:'" + $("#courseName").val()+"', transaction_id:'" + $("#applyID").val()+"', startDate:'"+$("#startDate").val().substr(0,10)+"', endDate:'', adviser:'" + $("#adviserID").find("option:selected").text() + "', qty:"+$("#qty").val()+"}",0,1);
+		});
+		$("#checkin").click(function(){
+			showClassCheckin($("#ID").val(),"A","",0,1);
 		});
 
 	  	<!--#include file="commLoadFileReady.asp"-->

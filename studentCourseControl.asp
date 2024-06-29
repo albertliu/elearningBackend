@@ -508,6 +508,8 @@ if(op == "getNodeInfo"){
 		result += "|" + rs("pay_memo").value + "|" + rs("pay_status").value + "|" + rs("pay_kindName").value + "|" + rs("pay_typeName").value + "|" + rs("pay_statusName");
 		//79
 		result += "|" + rs("refunderName").value + "|" + rs("refund_amount").value + "|" + rs("refund_memo").value + "|" + rs("file3").value + "|" + rs("file4").value + "|" + rs("file5").value + "|" + rs("pay_checkerName").value + "|" + rs("completionPass").value;
+		//87
+		result += "|" + rs("check_pass").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -1152,5 +1154,9 @@ if(op == "getFaceList"){
 	//Response.Write(escape(sql));
 }
 
-
+if(op == "setCheckPass"){
+	sql = "exec setCheckPass " + nodeID + ",'" + currUser + "'";
+	execSQL(sql);
+	Response.Write(0);
+}
 %>
