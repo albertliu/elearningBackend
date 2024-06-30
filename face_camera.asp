@@ -391,22 +391,20 @@
   <div>
     <table style="width:100%;">
     <tr>
-      <td colspan="3" style="width:30%;">
+      <td colspan="3">
         <div>
           <span class="tip">签到人数：</span><span id="qty0" class="tip1"></span>
           &nbsp;&nbsp;&nbsp;&nbsp;<span class="tip">本班：</span><span id="qty1" class="tip1"></span>
           &nbsp;&nbsp;&nbsp;&nbsp;<span class="tip">其他：</span><span id="qty2" class="tip1"></span>
           <span id="res" class="tip-box1" style="padding-left: 50px;"></span>
+          <span class="tip">识别参数：<input id="confidence" name="confidence" class="easyui-numberbox" data-options="min:0,height:22,width:50" />&nbsp;45-75&nbsp;&nbsp;</span>
+          <span><a class="easyui-linkbutton" id="btnStart" href="javascript:void(0)"></a></span>
+          <span><a class="easyui-linkbutton" id="btnStop" href="javascript:void(0)"></a></span>
         </div>
      </td>
     </tr>
     <tr>
         <td style="width:25%;" valign="top">
-          <div class="tip">
-            <span>识别参数：<input id="confidence" name="confidence" class="easyui-numberbox" data-options="min:0,height:22,width:50" />&nbsp;45-75&nbsp;&nbsp;</span>
-            <span><a class="easyui-linkbutton" id="btnStart" href="javascript:void(0)"></a></span>
-            <span><a class="easyui-linkbutton" id="btnStop" href="javascript:void(0)"></a></span>
-          </div>
           <div id="cover" style="float:top;margin:0px;background:#f8fff8;">
           </div>
           <div class="tip">已签到人员：</div>
