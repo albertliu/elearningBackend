@@ -443,7 +443,7 @@ if(op == "delStandardSchedule"){
 }
 
 if(op == "getCurrScheduleList"){
-	sql = "select * from [dbo].[getCurrScheduleList]('znxf')";
+	sql = "select * from [dbo].[getCurrScheduleList]('znxf') where typeID=0";
 	result = "";
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
