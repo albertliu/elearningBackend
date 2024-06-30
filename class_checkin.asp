@@ -80,9 +80,9 @@
 			arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='cardTab' width='100%'>");
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
-			arr.push("<th>No</th>");
-			arr.push("<th>身份证</th>");
-			arr.push("<th>姓名</th>");
+			arr.push("<th width='10'>No</th>");
+			arr.push("<th width='150'>身份证</th>");
+			arr.push("<th width='90'>姓名</th>");
 			if(data>""){
 				for(let key in data[0]){
 					// 遍历数组，对每个元素进行操作
