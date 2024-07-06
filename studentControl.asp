@@ -166,7 +166,7 @@ if(op == "getNodeInfo"){
 		//43
 		result += "|" + rs("CHESICC_filename").value + "|" + rs("employe_filename").value + "|" + rs("job_filename").value + "|" + rs("linker").value + "|" + rs("fromID").value + "|" + rs("sex").value + "|" + rs("IDab_filename").value + "|" + rs("promise_filename").value;
 		//51
-		result += "|" + rs("social_filename").value;
+		result += "|" + rs("social_filename").value + "|" + rs("scanID").value + "|" + rs("scanPhoto").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

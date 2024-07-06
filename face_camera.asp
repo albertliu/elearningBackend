@@ -104,13 +104,13 @@
     var start = 0;
 
     $(document).ready(function (){
-      $("#confidence").numberbox("setValue", 60);
+      $("#confidence").numberbox("setValue", 63);
 		
       $("#confidence").numberbox({
         onChange:function(val) {
           if(val > 75 || val < 45){
             $.messager.alert("提示","识别参数应该在45-75范围内。","warning");
-            $("#confidence").numberbox("setValue", 60);
+            $("#confidence").numberbox("setValue", 63);
             return false;
           }
         }
@@ -149,16 +149,30 @@
       $('#dg1').datagrid({
           url:'',
           columns:[[
-              {field:'username',title:'身份证号',width:'70%'},
-              {field:'name',title:'姓名',width:'30%',align:'left'}
-          ]]
+              {field:'username',title:'身份证号',width:'50%'},
+              {field:'name',title:'姓名',width:'30%',align:'left'},
+              {field:'classID',title:'班级',width:'30%'}
+          ]],
+          onDblClickRow: function(index, row){
+            //取消签到
+            $.messager.prompt('取消签到', '请输入验证码：', function(r){
+                if (r=="1357"){
+                    //取消此人的签到
+                    $.get("classControl.asp?op=cancelFaceCheckin&nodeID=" + row.ID + "&times=" + (new Date().getTime()),function(re){
+                      jAlert("已取消。");
+                      getCheckinList();
+                    });
+                }
+            });
+          }
       });
       $('#dg2').datagrid({
           url:'',
           columns:[[
-              {field:'username',title:'身份证号',width:'50%'},
+              {field:'username',title:'身份证号',width:'40%'},
               {field:'name',title:'姓名',width:'20%',align:'left'},
-	            {field:'photo_filename',title:'照片',width:'30%',align:'center',formatter: function(value,row,index){
+              {field:'classID',title:'班级',width:'15%'},
+	            {field:'photo_filename',title:'照片',width:'25%',align:'center',formatter: function(value,row,index){
 									var s = "";
 									if(row.photo_filename > ""){
 										s = '<img style="width:40px;" src="users' + row.photo_filename + '?times=' + (new Date().getTime()) + '"></a>';

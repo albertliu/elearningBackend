@@ -36,6 +36,8 @@
 	var original_item = "";
 	var cardJson = "";
 	var fromCard = 0;
+	let scanPhoto = 0;
+	let hasPhoto = 0;
 	<!--#include file="js/commFunction.js"-->
 	<!--#include file="js/EST_reader.js"-->
 	$(document).ready(function (){
@@ -316,15 +318,24 @@
 				$("#experience").val(ar[42]);
 				$("#linker").val(ar[46]);
 				$("#fromID").val(ar[47]);
+				if(ar[53]==1){
+					$("#scanPhoto").checkbox({checked:true});
+					scanPhoto = 1;
+				}else{
+					$("#scanPhoto").checkbox({checked:false});
+					scanPhoto = 0;
+				}
 				//$("#upload1").html("<a href='javascript:showLoadFile(\"student_education\",\"" + ar[1] + "\",\"student\",\"\");' style='padding:3px;'>上传</a>");
 				//<a href='/users" + ar[21] + "' target='_blank'></a>
 				arr = [];
 				if(ar[21] > ""){
 					$("#img_photo").attr("src","/users" + ar[21] + "?times=" + (new Date().getTime()));
 					$("#img_photo").attr("value","/users" + ar[21] + "?times=" + (new Date().getTime()));
+					hasPhoto = 1;
 				}else{
 					$("#img_photo").attr("src","images/blank_photo.png" + "?times=" + (new Date().getTime()));
 					arr.push("," + "photo");
+					hasPhoto = 0;
 				}
 				if(ar[22] > ""){
 					$("#img_cardA").attr("src","/users" + ar[22] + "?times=" + (new Date().getTime()));
@@ -446,11 +457,20 @@
 				var ar = new Array();
 				ar = replace_item.split(",");
 				$.each(ar,function(iNum,val){
-					if(val=="photo"){
-						//替换照片
-						$.post(uploadURL + "/outfiles/uploadBase64img",{upID:"student_photo",username:$("#username").val(),name:$("#name").val(),currUser:currUser,imgData:cardJson.base64Data},function(re){
-							//alert(re.status);
-						});
+					if(val=="photo" && scanPhoto == 0){
+						if(hasPhoto == 1){
+							$.messager.confirm('确认对话框', '要覆盖原来的照片吗?', function(r) {
+								if(r){
+									scanPhoto = 1;
+								}
+							});
+						}
+						if(scanPhoto == 0){		//当前没有照片，或有照片但未识别过且同意替换的
+							//替换照片
+							$.post(uploadURL + "/outfiles/uploadBase64img",{upID:"student_photo",username:$("#username").val(),name:$("#name").val(),currUser:currUser,imgData:cardJson.base64Data},function(re){
+								//alert(re.status);
+							});
+						}
 					}
 					if(val=="cardA"){
 						//替换身份证正面
@@ -560,6 +580,7 @@
 		$("*[tag='plus'").hide();
 		$("#sex").prop("disabled",true);
 		$("#birthday").prop("disabled",true);
+		$("#scanPhoto").checkbox({readonly:true});
 		if(op==1){
 			$("#save").show();
 			$("#add_img_education").hide();
@@ -1023,7 +1044,10 @@
 <div style="padding: 5px;text-align:center;overflow:hidden;margin:0 auto;flot:right;background: #eeeeff;" id="xx">
 	<table style="width:99%;">
 	<tr>
-		<td align="right" style="width:15%;"><img id="add_img_photo" src="images/plus.png" tag="plus" /></td>
+		<td align="right" style="width:15%;">
+			<img id="add_img_photo" src="images/plus.png" tag="plus" />
+			<div style="padding-top:5px;"><input class="easyui-checkbox" id="scanPhoto" name="scanPhoto" />识</div>
+		</td>
 		<td id="td_img_photo" align="center" style="width:85%;">
 			<img id="img_photo" tag="student_photo" src="" value="" style='width:100px;border:none;' />
 		</td>

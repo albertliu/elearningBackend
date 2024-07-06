@@ -42,6 +42,11 @@
 		$("#btnRefund").click(function(){
 			refund();
 		});
+		$("#btnQuestion").click(function(){
+			$.post(uploadURL + "/outfiles/readQustionOther?mark=" + $("#mark").val(), function(re){
+				alert(re);
+			});
+		});
 	});
 
 	function test(){
@@ -54,7 +59,7 @@
 		$.ajax({
 			url: uploadURL + "/public/enterPay",
 			type: "post",
-			data: {"host":"znxf", "kind":0, "enterID":$("#orderNo").val(), "amount":$("#amount").val(), "item":"从业人员初训报名费","name":"310108199320320021张三丰","sales":"大佬"},
+			data: {"host":"znxf", "kindID":0, "enterID":$("#orderNo").val(), "amount":$("#amount").val(), "item":"从业人员初训报名费","name":"310108199320320021张三丰","sales":"大佬"},
 			beforeSend: function() {   
 				$.messager.progress();	// 显示进度条
 			},
@@ -84,7 +89,7 @@
 		$.ajax({
 			url: uploadURL + "/public/enterPay",
 			type: "post",
-			data: {"host":"znxf", "kind":1, "enterID":$("#orderNo").val(), "amount":0.01, "item":"测试","name":"desk","sales":"system"},
+			data: {"host":"znxf", "kindID":1, "enterID":$("#orderNo").val(), "amount":0.01, "item":"测试","name":"desk","sales":"system"},
 			beforeSend: function() {   
 				$.messager.progress();	// 显示进度条
 			},
@@ -123,5 +128,9 @@
   		&nbsp;<input class="button" type="button" id="btnRefund" value="退款" />&nbsp;
   	</div>
 	<div>返回代码：<span id="code"></span>&nbsp;&nbsp;错误信息：<span id="memo"></span></div>
+  	<div>
+		<input type="text" id="mark" style="width:20%;" />
+		<input class="button" type="button" id="btnQuestion" value="录入题库" />
+	</div>
 </div>
 </body>

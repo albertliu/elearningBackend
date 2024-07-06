@@ -130,6 +130,10 @@
 			//window.open("entryform_C13.asp?keyID=0&nodeID=" + nodeID + "&refID=" + refID, "_self");
 		});
 
+		$("#btnProof").click(function(){
+			window.open("trainingProof.asp?nodeID=" + nodeID + "&keyID=1&times=" + (new Date().getTime()), "_self");
+		});
+
 		$("#btnPreview").click(function(){
 			printEntryform(0);
 		});
@@ -293,6 +297,10 @@
 			showLoadFile("invoice_pdf",nodeID,"invoice_pdf",$("#host").val());
 		});
 
+		$("#btnShowEnterCheckin").click(function(){
+			showEnterCheckin(nodeID,0,0,0);
+		});
+
 		$("#btnShowCompletion").click(function(){
 			showCompletionList(nodeID,0,0,0);
 		});
@@ -408,11 +416,6 @@
 					$("#needInvoice").prop("checked",true);
 				}else{
 					$("#needInvoice").prop("checked",false);
-				}
-				if(ar[87]==1){
-					$("#check_pass").checkbox({checked:true});
-				}else{
-					$("#check_pass").checkbox({checked:false});
 				}
 
 				// getPayDetailInfoByEnterID(ar[0]);
@@ -874,17 +877,17 @@
 				<br>
 				<span id="class1">所属班级&nbsp;<select id="classID" style="width:250px"></select>&nbsp;&nbsp;</span>
 				<span id="class0">所属班级&nbsp;<input class="readOnly" type="text" id="className" style="width:250px" readOnly="true" />&nbsp;&nbsp;经办人&nbsp;<input class="readOnly" type="text" id="submiterName" style="width:50px" readOnly="true" />&nbsp;&nbsp;</span>
-				编号&nbsp;<input type="text" id="SNo" style="width:50px" />
+				编号&nbsp;<input type="text" id="SNo" style="width:80px" />
 				<div>
                 <form style="width:99%;float:right;margin:1px;padding-left:2px;background:#f8f8ee;">
                 <table>
 				<tr>
-					<td align="right">考试条件</td>
-					<td><input id="completionPass" name="completionPass" class="readOnly" size="5" readOnly="true" />&nbsp;课时%</td>
-					<td align="right">实际完成</td>
-					<td>
+					<td align="right">在线进度</td>
+					<td colspan="3">
 						<input id="completion" name="completion" class="readOnly" size="4" readOnly="true" />&nbsp;%
-						&nbsp;<input class="button" type="button" id="btnShowCompletion" value="查看详情" />
+						&nbsp;<input class="button" type="button" id="btnShowCompletion" value="在线考勤" />
+						&nbsp;<input class="button" type="button" id="btnShowEnterCheckin" value="线下考勤" />
+						&nbsp;<input class="button" type="button" id="btnProof" value="培训证明" />
 						&nbsp;&nbsp;<input class="easyui-checkbox" id="check_pass" name="check_pass" value="1" />
 						&nbsp;<input class="button" type="button" id="btnCheckPass" value="免签" />
 					</td>
@@ -897,7 +900,7 @@
                 </tr>
 				<tr>
 					<td align="right">备注</td>
-					<td colspan="5"><input type="text" id="memo" style="width:100%;" /></td>
+					<td colspan="3"><input type="text" id="memo" style="width:100%;" /></td>
 				</tr>
                 </table>
                 </form>
