@@ -86,12 +86,15 @@
 			if(data>""){
 				for(let key in data[0]){
 					// 遍历数组，对每个元素进行操作
-					if(j>2){
+					if(j>3){
 						arr.push("<th>" + key + "</th>");
 					}
 					j = j + 1;
 				};
 			}
+			arr.push("<th>本班签到</th>");
+			arr.push("<th>其他签到</th>");
+			arr.push("<th>合计</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
@@ -100,13 +103,16 @@
 					i += 1;
 					c = 0;
 					j = 0;
+					let n = val.length;
+					let ok = 0;
 					arr.push("<tr class='grade0'>");
 					arr.push("<td>" + i + "</td>");
 					for(let key in val){
-						if(j>0){	//第一列enterID不显示
-							if(j<3){
+						if(j>1){	//第一列enterID,第二列qty不显示
+							if(j<4){
 								arr.push("<td>" + val[key] + "</td>");
 							}else{
+								ok += (val[key] ? 1 : 0);	//签到次数累计
 								if(showImg==0){
 									arr.push("<td>" + (val[key] ? imgChk : "&nbsp;") + "</td>");
 								}else{
@@ -117,6 +123,14 @@
 									}else{
 										arr.push("<td>&nbsp;</td>");
 									}
+								}
+								if(j==n-1){	//最后添加三列考勤次数：本班、其他、合计
+									//本班考勤次数统计
+									arr.push("<td>" + ok + "</td>");
+									//其他班考勤次数统计
+									arr.push("<td>" + val["qty"] + "</td>");
+									//合计考勤次数统计
+									arr.push("<td><a href='javascript:showEnterCheckin(" + val["enterID"] + ",0,0,0);" + (val["qty"] + ok) + "</a></td>");
 								}
 							}
 						}
@@ -135,12 +149,15 @@
 			if(data>""){
 				for(let key in data[0]){
 					// 遍历数组，对每个元素进行操作
-					if(j>2){
+					if(j>3){
 						arr.push("<th>&nbsp;</th>");
 					}
 					j = j + 1;
 				};
 			}
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("</tr>");
 			arr.push("</tfoot>");
 			arr.push("</table>");

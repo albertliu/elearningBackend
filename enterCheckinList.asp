@@ -276,7 +276,11 @@
 <body>
 
 <div id='layout' align='left' style="background:#f0f0f0;">	
+	<div style="float:left;width:100%;">本班线下课程考勤情况：</div>
 	<div id="cover" style="float:left;width:100%;">
+	</div>
+	<div style="float:left;width:100%;">参加其他班级课程考勤情况：</div>
+	<div id="cover1" style="float:left;width:100%;">
 	</div>
 </div>
 </body>
