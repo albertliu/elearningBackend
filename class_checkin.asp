@@ -103,7 +103,7 @@
 					i += 1;
 					c = 0;
 					j = 0;
-					let n = val.length;
+					// let n = val.length;
 					let ok = 0;
 					arr.push("<tr class='grade0'>");
 					arr.push("<td>" + i + "</td>");
@@ -124,18 +124,16 @@
 										arr.push("<td>&nbsp;</td>");
 									}
 								}
-								if(j==n-1){	//最后添加三列考勤次数：本班、其他、合计
-									//本班考勤次数统计
-									arr.push("<td>" + ok + "</td>");
-									//其他班考勤次数统计
-									arr.push("<td>" + val["qty"] + "</td>");
-									//合计考勤次数统计
-									arr.push("<td><a href='javascript:showEnterCheckin(" + val["enterID"] + ",0,0,0);" + (val["qty"] + ok) + "</a></td>");
-								}
 							}
 						}
 						j += 1
 					}
+					//本班考勤次数统计
+					arr.push("<td align='center'>" + ok + "</td>");
+					//其他班考勤次数统计
+					arr.push("<td align='center'>" + val["qty"] + "</td>");
+					//合计考勤次数统计
+					arr.push("<td align='center'><a href='javascript:showEnterCheckin(" + val["enterID"] + ",0,0,0);'>" + (val["qty"] + ok) + "</a></td>");
 					arr.push("</tr>");
 				});
 			}

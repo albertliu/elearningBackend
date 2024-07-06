@@ -116,7 +116,7 @@
 				"lengthChange": false,      //禁掉表格自带的选择每页条数的下拉框
 				"searching": false,
 				"columnDefs": [
-					{ "visible": false, "targets": [5] }
+					{ "visible": false, "targets": [5,6] }
 				]
 			});
 
@@ -207,26 +207,6 @@
 			$("#cover1").html(arr.join(""));
 			arr = [];
 			table1 = $('#cardTab1').DataTable({
-				//配置相应部分的中文显示(废话，不然就显示英文了)
-				"language": {
-					"lengthMenu": "每页 _MENU_ 条记录",
-					"zeroRecords": "没有找到记录",
-					"info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-					"infoEmpty": "无记录",
-					"paginate": {
-						"first": "第一页",
-						"last": "最后一页",
-						"next": "后一页",
-						"previous": "上一页"
-					},
-				},
-			
-				"pageLength": 20,           //默认每页条数
-				"lengthChange": false,      //禁掉表格自带的选择每页条数的下拉框
-				"searching": false,
-				"columnDefs": [
-					{ "visible": false, "targets": [5] }
-				]
 			});
 
 			$('#cardTab1 tbody').on('click', 'td.details-control', function () {
