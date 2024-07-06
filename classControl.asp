@@ -454,4 +454,11 @@ if(op == "getCurrScheduleList"){
 	Response.Write(escape(result));/**/
 	//Response.Write(escape(sql));
 }
+
+if(op == "cancelFaceCheckin"){
+	sql = "exec cancelFaceCheckin " + nodeID;
+	execSQL(sql);
+	Response.Write(nodeID);
+	//Response.Write(escape(sql));
+}
 %>

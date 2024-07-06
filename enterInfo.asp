@@ -297,12 +297,12 @@
 			showLoadFile("invoice_pdf",nodeID,"invoice_pdf",$("#host").val());
 		});
 
-		$("#btnShowEnterCheckin").click(function(){
-			showEnterCheckin(nodeID,0,0,0);
-		});
-
 		$("#btnShowCompletion").click(function(){
 			showCompletionList(nodeID,0,0,0);
+		});
+
+		$("#btnShowEnterCheckin").click(function(){
+			showEnterCheckin(nodeID,0,0,0);
 		});
 
 		$("#btnCheckPass").click(function(){
