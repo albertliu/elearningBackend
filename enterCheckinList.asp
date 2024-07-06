@@ -27,7 +27,8 @@
 
 <script language="javascript">
 	<!--#include file="js/commFunction.js"-->
-	var table = "";
+	let table = "";
+	let table1 = "";
 	$(document).ready(function (){
 		refID = "<%=refID%>";	//enterID
 		op = "<%=op%>";
@@ -37,7 +38,7 @@
 		}); 
 
 		getCheckinListOnClass();
-		getCheckinListOutClass();
+		// getCheckinListOutClass();
 	});
 
 	async function getCheckinListOnClass(){
@@ -205,7 +206,7 @@
 			arr.push("</table>");
 			$("#cover1").html(arr.join(""));
 			arr = [];
-			table = $('#cardTab1').DataTable({
+			table1 = $('#cardTab1').DataTable({
 				//配置相应部分的中文显示(废话，不然就显示英文了)
 				"language": {
 					"lengthMenu": "每页 _MENU_ 条记录",
@@ -230,7 +231,7 @@
 
 			$('#cardTab1 tbody').on('click', 'td.details-control', function () {
 				var tr =$(this).closest('tr');
-				var row = table.row(tr);
+				var row = table1.row(tr);
 
 				if (row.child.isShown()) {
 
@@ -256,20 +257,13 @@
 	}
 
 	function getChildRow(f1,f2, callback) {
+		// alert(f1)
+		let x = "";
 		$.get(uploadURL + "/alis/get_OSS_file_base64?filename=" + f1,function(re1){
-			//alert(re.status);
+			// alert(re1);
 			x += '<tr>' +
-			'<td>' + val.regDate + '</td>' +
 			'<td><img src="/users' + f2 + '" style="max-width:50px;" /></td>' +
 			'<td>' + (re1>'' ? '<img src="data:image/png;base64,' + re1 + '" style="max-width:50px;" />' : '') + '</td>';
-			bg = "";
-			if(val.status==1){
-				bg = ' style="color: green;"';
-			}
-			if(val.status==2){
-				bg = ' style="color: red;"';
-			}
-			x += '<td' + bg + '>' + val.statusName + '</td>' +
 			'</tr>'
 		});
 		callback(x);
