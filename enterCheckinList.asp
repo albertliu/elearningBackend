@@ -76,7 +76,7 @@
 					arr.push("<td class='left'>" + ar1[0] + "</td>");
 					arr.push("<td class='left'>" + ar1[1] + "</td>");
 					arr.push("<td class='left'>" + ar1[2] + "</td>");
-					arr.push("<td class='details-control' style='color:blue;text-align:center;'>" + (ar1[5] ? imgChk : "&nbsp;") + "</td>");
+					arr.push("<td class='details-control' style='color:blue;text-align:center;'>" + (ar1[5] && ar1[5] != "null" ? imgChk : "&nbsp;") + "</td>");
 					arr.push("<td class='left'>" + ar1[5] + "</td>");
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
 					arr.push("</tr>");
@@ -183,7 +183,7 @@
 					arr.push("<td class='left'>" + ar1[0] + "</td>");
 					arr.push("<td class='left'>" + ar1[1] + "</td>");
 					arr.push("<td class='left'>" + ar1[2] + "</td>");
-					arr.push("<td class='details-control' style='color:blue;text-align:center;'>" + (ar1[5] ? imgChk : "&nbsp;") + "</td>");
+					arr.push("<td class='details-control' style='color:blue;text-align:center;'>" + (ar1[5] && ar1[5] != "null" ? imgChk : "&nbsp;") + "</td>");
 					arr.push("<td class='left'>" + ar1[5] + "</td>");
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
 					arr.push("<td class='left'>" + ar1[4] + "</td>");
