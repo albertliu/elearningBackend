@@ -285,7 +285,6 @@
 		if(currUser == "amra."){
 			deleteTab("班级概况");
 			deleteTab("学员注册");
-			deleteTab("学员培训");
 			deleteTab("证书获取");
 			deleteTab("证书到期");
 			deleteTab("其他报表");
@@ -640,6 +639,9 @@
 					
 					<div id="fragment-6">
 						<div id="dhtmlgoodies_tabView6">
+							<div id="dtab61" class="dhtmlgoodies_aTab">
+								<!--#include file="rptTrainningIncDetail.js"-->
+							</div>
 							<div id="dtab69" class="dhtmlgoodies_aTab">
 								<!--#include file="rptSalesIncDetail.js"-->
 							</div>
@@ -652,9 +654,6 @@
 							<div id="dtab60" class="dhtmlgoodies_aTab">
 								<!--#include file="rptStudentIncDetail.js"-->
 							</div>
-							<div id="dtab61" class="dhtmlgoodies_aTab">
-								<!--#include file="rptTrainningIncDetail.js"-->
-							</div>
 							<div id="dtab62" class="dhtmlgoodies_aTab">
 								<!--#include file="rptDiplomaIncDetail.js"-->
 							</div>
@@ -666,7 +665,7 @@
 							</div>
 						</div>
 						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView6',Array("销售日报","收费概况","班级概况","学员注册","学员培训","证书获取","证书到期","其他报表"),0,1260,400);
+							initTabs('dhtmlgoodies_tabView6',Array("收费日报","销售日报","收费概况","班级概况","学员注册","证书获取","证书到期","其他报表"),0,1260,400);
 						</script>
 					</div>
 					
