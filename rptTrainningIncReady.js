@@ -1,56 +1,44 @@
-﻿	var trainningListLong = 0;		//0: 标准栏目  1：短栏目
-	var trainningListChk = 0;
+﻿	$(document).ready(function (){
+        getComboList("rptTrainningSales","userInfo","username","realName","status=0 and host='" + currHost + "' and username in(select username from roleUserList where roleID='saler') order by realName",1);
+		getComboList("rptTrainningCourseID","v_courseInfo","courseID","courseName2","status=0 and mark=1 order by seq",1);
+		$("#rptTrainningStartDate").datebox("setValue", new Date().format("yyyy-MM") + '-01');		
 
-	$(document).ready(function (){
-		var w611 = "status=0 and hostNo='" + currHost + "'";
-		var w612 = "status=0 and (kindID=0 or host='" + currHost + "')";
-		if(currHost==""){	//公司用户只能看自己公司内容
-			getComList("rptTrainningHost","hostInfo","hostNo","title","status=0 order by hostName",1);
-			getComList("rptTrainningCourse","courseInfo","courseID","courseName","status=0 order by courseID",1);
-			$("#rptTrainningGroupHost").attr("checked","checked");
-		}else{
-			getComList("rptTrainningHost","hostInfo","hostNo","title",w611,0);
-			getComList("rptTrainningCourse","courseInfo","courseID","courseName",w612,1);
-			$("#rptTrainningGroupDept").attr("checked","checked");
-		}
-		getDicList("student","rptTrainningKind",1);
-		getDicList("planStatus","rptTrainningStatus",1);
-		$("#rptTrainningStartDate").click(function(){WdatePicker();});
-		$("#rptTrainningEndDate").click(function(){WdatePicker();});
-		
-		$("#btnRptTrainning").click(function(){
-			getRptTrainningList("data");
+		$("#rptTrainningMoth").checkbox({
+			onChange: function(val){
+				if($("#rptTrainningMoth").checkbox("options").checked){
+					$("#rptTrainningStartDate").datebox("setValue",new Date().format("yyyy") + '-01-01');
+				}else{
+					$("#rptTrainningStartDate").datebox("setValue", new Date().format("yyyy-MM") + '-01');
+				}
+			}
 		});
-		
-		$("#btnRptTrainningDownLoad").click(function(){
-			getRptTrainningList("file");
+
+		$("#btnRptTrainning").linkbutton({
+			iconCls:'icon-search',
+			width:70,
+			height:25,
+			text:'预览',
+			onClick:function() {
+				getRptTrainningList("data");
+			}
+		});
+		$("#btnRptTrainningDownLoad").linkbutton({
+			iconCls:'icon-download',
+			width:70,
+			height:25,
+			text:'下载',
+			onClick:function() {
+				getRptTrainningList("file");
+			}
 		});
 	});
 
 	function getRptTrainningList(mark){
-		var g1 = 0;
-		var g2 = 0;
-		var g3 = 0;
-		var g4 = 0;
-		var g5 = 0;
-		var g11 = "";
-		if($("#rptTrainningGroupHost").attr("checked")){g1 = 1;}
-		if($("#rptTrainningGroupDept").attr("checked")){g2 = 1;}
-		if($("#rptTrainningGroupKind").attr("checked")){g3 = 1;}
-		if($("#rptTrainningGroupCourse").attr("checked")){g4 = 1;}
-		if($("#rptTrainningGroupStatus").attr("checked")){g5 = 1;}
-		g11 = $("input[name='rptTrainningGroupDate']:checked").val();
-		if(g1+g2+g3+g4+g5==0 && g11==""){
-			jAlert("请至少指定一个汇总项目。")
-			return false;
+		let mark1 = 'D';
+		if($("#rptTrainningMoth").checkbox("options").checked){
+			mark1 = 'M';
 		}
-        var fromID = "";
-        if(checkRole("saler")){
-            fromID = currUser;
-        }
-		//alert("op=trainning&mark=" + mark + "&host=" + $("#rptTrainningHost").val() + "&kindID=" + $("#rptTrainningKind").val() + "&startDate=" + $("#rptTrainningStartDate").val() + "&endDate=" + $("#rptTrainningEndDate").val() + "&groupHost=" + g1 + "&groupDept1=" + g2 + "&groupKindID=" + g3 + "&groupDate=" + g4);
-		//@host varchar(50),@startDate varchar(50),@endDate varchar(50),@kindID varchar(20),@groupHost int,@groupDept1 int,@groupKindID int,@groupDate
-		$.getJSON(uploadURL + "/public/getRptList?op=trainning&mark=" + mark + "&fromID=" + fromID + "&host=" + $("#rptTrainningHost").val() + "&kindID=" + $("#rptTrainningKind").val() + "&courseID=" + $("#rptTrainningCourse").val() + "&status=" + $("#rptTrainningStatus").val() + "&startDate=" + $("#rptTrainningStartDate").val() + "&endDate=" + $("#rptTrainningEndDate").val() + "&groupHost=" + g1 + "&groupDept1=" + g2 + "&groupKindID=" + g3 + "&groupCourseID=" + g4 + "&groupStatus=" + g5 + "&groupDate=" + g11,function(data){
+		$.getJSON(uploadURL + "/public/getRptList?op=trainning&mark=" + mark + "&sales=" + $("#rptTrainningSales").combobox("getValue") + "&host=znxf&courseID=" + $("#rptTrainningCourseID").combobox("getValue") + "&startDate=" + $("#rptTrainningStartDate").val() + "&endDate=" + $("#rptTrainningEndDate").val() + "&mark1=" + mark1,function(data){
 			//jAlert(data);
 			if(data==""){
 				jAlert("没有符合要求的数据。","提示")
@@ -60,59 +48,62 @@
 			}
 
 			if(mark=="data" && data.length>0){
-				let ar = new Array();
-				arr = [];
-				arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='rptTrainningTab' width='99%'>");
+				$("#rptTrainningCover").empty();
+				arr = [];		
+				arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='rptTrainningCoverTab' width='100%'>");
 				arr.push("<thead>");
 				arr.push("<tr align='center'>");
-				arr.push("<th width='3%'>No</th>");
-				let line = data[0];
-				let colspan = 0;
-				for(let key in line){
-					arr.push("<th class='center'>" + key + "</th>");
-					colspan += 1;
-				}
+				arr.push("<th width='10%'>日期</th>");
+				arr.push("<th width='10%'>财付通G</th>");
+				arr.push("<th width='10%'>财付通S</th>");
+				arr.push("<th width='10%'>微信收款</th>");
+				arr.push("<th width='10%'>支付宝收款</th>");
+				arr.push("<th width='10%'>现金收款</th>");
+				arr.push("<th width='10%'>对公汇款</th>");
+				arr.push("<th width='10%'>小计</th>");
+				arr.push("<th width='10%'>退款</th>");
+				arr.push("<th width='10%'>合计</th>");
 				arr.push("</tr>");
 				arr.push("</thead>");
 				arr.push("<tbody id='tbody'>");
-				var i = 0;
-				var c = 0;
-				var h = "";
-				var qty = 0;
 				$.each(data,function(iNum,val){
 					i += 1;
 					c = 0;
-					arr.push("<tr class='grade" + c + "'>");
-					arr.push("<td class='center'>" + i + "</td>");
+					arr.push("<tr class='grade0'>");
 					for(let key in val){
-						arr.push("<td class='left'>" + val[key] + "</td>");
+						arr.push("<td class='left'>" + nullNoDisp(val[key]) + "</td>");
 					}
 					arr.push("</tr>");
-					qty += val['数量'];
 				});
-				arr.push("<tr class='grade" + c + "' style='color:red;'>");
-				arr.push("<td class='center' colspan=" + colspan + ">合计</td>");
-				arr.push("<td class='left'>" + qty + "</td>");
-				arr.push("</tr>");
 				arr.push("</tbody>");
 				arr.push("<tfoot>");
 				arr.push("<tr>");
-				for(let j=0; j<data[0].length+1; j++){
-					arr.push("<th>&nbsp;</th>");
-				}
+				arr.push("<th>&nbsp;</th>");
+				arr.push("<th>&nbsp;</th>");
+				arr.push("<th>&nbsp;</th>");
+				arr.push("<th>&nbsp;</th>");
+				arr.push("<th>&nbsp;</th>");
+				arr.push("<th>&nbsp;</th>");
+				arr.push("<th>&nbsp;</th>");
+				arr.push("<th>&nbsp;</th>");
+				arr.push("<th>&nbsp;</th>");
+				arr.push("<th>&nbsp;</th>");
 				arr.push("</tr>");
 				arr.push("</tfoot>");
 				arr.push("</table>");
 				$("#rptTrainningCover").html(arr.join(""));
 				arr = [];
-				$('#rptTrainningTab').dataTable({
+				$('#rptTrainningCoverTab').dataTable({
 					"aaSorting": [],
 					"bFilter": true,
 					"bPaginate": true,
 					"bLengthChange": true,
+					"aLengthMenu":[15,30,50,100,500],
+					"iDisplayLength": 50,
 					"bInfo": true,
 					"aoColumnDefs": []
 				});
+	
 			}
 		});
 	}
