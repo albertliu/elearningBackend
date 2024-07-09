@@ -279,7 +279,7 @@
 		    rs(5)	= floatTitle
     	end if
 	   	if floatItem > "" then
-		    rs(8)	= floatItem
+		    rs(1)	= floatItem
     	end if
 	    rs.movenext			'第1行标题
 	    rs.movenext			'第2行表头

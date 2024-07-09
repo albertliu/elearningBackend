@@ -394,7 +394,7 @@
 			outputExcelBySQL('x05','file',nodeID,$("#courseName").val(),$("#reexamineName").val());
 		});
 		$("#diplomaSign").click(function(){
-			outputExcelBySQL('x06','file',nodeID,$("#courseName").val(),$("#reexamineName").val());
+			outputExcelBySQL('x06','file',nodeID,$("#courseName").val(),$("#ID").val() + "-" + $("#applyID").val());
 		});
 		$("#courseID").change(function(){
 			var c = $("#courseID").find("option:selected").text();
