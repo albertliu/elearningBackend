@@ -138,7 +138,7 @@
 					//其他班考勤次数统计
 					arr.push("<td align='center'>" + val["qty"] + "</td>");
 					//合计考勤次数统计
-					arr.push("<td align='center'><a href='javascript:showEnterCheckin(" + val["enterID"] + ",0,0,0);'>" + (val["qty"] + ok) + "</a></td>");
+					arr.push("<td align='center'><a href='javascript:showEnterCheckin(" + val["enterID"] + "," + nodeID + ",0,0);'>" + (val["qty"] + ok) + "</a></td>");
 					arr.push("</tr>");
 				});
 			}

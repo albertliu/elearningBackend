@@ -1162,7 +1162,7 @@ if(op == "setCheckPass"){
 
 if(op == "getEnterCheckinListOnClass"){
 	result = "";
-	sql = "exec getEnterCheckinListOnClass '" + refID + "'";
+	sql = "exec getEnterCheckinListOnClass " + nodeID + "," + refID;
 	
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
@@ -1177,7 +1177,7 @@ if(op == "getEnterCheckinListOnClass"){
 
 if(op == "getEnterCheckinListOutClass"){
 	result = "";
-	sql = "exec getEnterCheckinListOutClass '" + refID + "'";
+	sql = "exec getEnterCheckinListOutClass " + nodeID + "," + refID;
 	
 	rs = conn.Execute(sql);
 	while (!rs.EOF){

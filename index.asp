@@ -28,7 +28,11 @@
 		<link href="css/tabStyle.css" rel="stylesheet" type="text/css">
 	<link href="css/bootstrap-3.3.4.css" rel="stylesheet">
 <link href="css/jquery.alerts.css?v=1.1" rel="stylesheet" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="js/easyui/themes/default/easyui.css?v=1.11">
+	<link rel="stylesheet" type="text/css" href="js/easyui/themes/icon.css?v=1.21">
 		<script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/easyui/jquery.easyui.min.js?v=1.23"></script>
+	<script type="text/javascript" src="js/easyui/locale/easyui-lang-zh_CN.js?v=1.0"></script>
 	<script type="text/javascript" src="js/echarts.min.js"></script>
         <script src="js/jquery.tabs.pack.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/AsyncBox.v1.4.js"></script>
@@ -50,6 +54,7 @@
 	var sWhere = "";
 	var sTitle = "";
 	var dKind = "";
+	let currSales = "";
 	var iEditMemo = 0;	//检测是否有备忘录更新
 	var iSelProject = [0,0,0,0,0,0,0,0,0];	//指定项目展开属性(共计8个属性)
 	
@@ -93,7 +98,7 @@
 	<!--#include file="rptOtherIncReady.js"-->
 	<!--#include file="rptDailyListIncReady.js"-->
 	<!--#include file="studentPreListIncReady.js"-->
-	<!--#include file="chartsIncReady.js"-->
+	<!--#include file="rptSalesIncReady.js"-->
 	<!--#include file="chartsClassIncReady.js"-->
 	<!--#include file="chartsIncomeIncReady.js"-->
 	<!--#include file="teacherListIncReady.js"-->
@@ -273,6 +278,9 @@
 		// }
 		if(!checkRole("leader") && !checkRole("saler") && currUser != "desk."){
 			deleteTab("收费概况");
+		}
+		if(checkRole("saler")){
+			currSales = currUser;
 		}
 		if(currUser == "amra."){
 			deleteTab("班级概况");
@@ -633,7 +641,7 @@
 					<div id="fragment-6">
 						<div id="dhtmlgoodies_tabView6">
 							<div id="dtab69" class="dhtmlgoodies_aTab">
-								<!--#include file="chartsIncDetail.js"-->
+								<!--#include file="rptSalesIncDetail.js"-->
 							</div>
 							<div id="dtab67" class="dhtmlgoodies_aTab">
 								<!--#include file="chartsIncomeIncDetail.js"-->
@@ -658,7 +666,7 @@
 							</div>
 						</div>
 						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView6',Array("招生概况","收费概况","班级概况","学员注册","学员培训","证书获取","证书到期","其他报表"),0,1260,400);
+							initTabs('dhtmlgoodies_tabView6',Array("销售日报","收费概况","班级概况","学员注册","学员培训","证书获取","证书到期","其他报表"),0,1260,400);
 						</script>
 					</div>
 					

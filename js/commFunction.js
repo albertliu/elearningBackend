@@ -2188,10 +2188,10 @@
 	}
 	
 	//nodeID: ;
-	function showEnterCheckin(refID){
+	function showEnterCheckin(nodeID,refID){
 		asyncbox.open({
 			id: "enterCheckinList",
-			url:"enterCheckinList.asp?refID=" + refID + "&times=" + (new Date().getTime()),
+			url:"enterCheckinList.asp?nodeID=" + nodeID + "&refID=" + refID + "&times=" + (new Date().getTime()),
 			title: "线下课程考勤",
 			width: 730,
 			height: 700,

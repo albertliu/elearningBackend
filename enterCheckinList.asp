@@ -27,10 +27,14 @@
 
 <script language="javascript">
 	<!--#include file="js/commFunction.js"-->
+	var nodeID = 0;
+	var op = 0;
+	var refID = 0;
 	let table = "";
 	let table1 = "";
 	$(document).ready(function (){
-		refID = "<%=refID%>";	//enterID
+		nodeID = "<%=nodeID%>";	//enterID
+		refID = "<%=refID%>";	//classID
 		op = "<%=op%>";
 		
 		$.ajaxSetup({ 
@@ -43,7 +47,7 @@
 
 	async function getCheckinListOnClass(){
 		//alert(refID + ":" + nodeID);
-		$.get("studentCourseControl.asp?op=getEnterCheckinListOnClass&refID=" + refID + "&times=" + (new Date().getTime()),function(data){
+		$.get("studentCourseControl.asp?op=getEnterCheckinListOnClass&nodeID=" + nodeID + "&refID=" + refID + "&times=" + (new Date().getTime()),function(data){
 			//alert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
