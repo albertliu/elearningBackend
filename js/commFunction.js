@@ -320,7 +320,7 @@
 			floatModel = 5;
 			floatTitle = p2;
 			floatItem = p3;
-			sql = "select (case when a.host='znxf' then a.unit else a.dept1Name end) as dept1Name,a.name,left(c.examDate,10),(case when b.certID='C12' or b.certID='C14' or b.certID='C15' or b.certID='C24' or b.certID='C25' or b.certID='C26' or b.certID='C25B' or b.certID='C26B' then cast(c.score1 as varchar) + '/' + cast(c.score2 as varchar) else cast(c.score as varchar) end),a.diplomaID,a.mobile from v_diplomaInfo a, v_generateApplyInfo b, v_applyInfo c where a.batchID=b.ID and a.certID=b.certID and b.ID=c.refID and a.username=c.username and a.batchID=" + p1 + " order by a.dept1Name,a.diplomaID";
+			sql = "select (case when a.host='znxf' then a.unit else a.dept1Name end) as dept1Name,a.name,left(c.examDate,10).replace(',',''),(case when b.certID='C12' or b.certID='C14' or b.certID='C15' or b.certID='C24' or b.certID='C25' or b.certID='C26' or b.certID='C25B' or b.certID='C26B' then cast(c.score1 as varchar) + '/' + cast(c.score2 as varchar) else cast(c.score as varchar) end),a.diplomaID,a.mobile from v_diplomaInfo a, v_generateApplyInfo b, v_applyInfo c where a.batchID=b.ID and a.certID=b.certID and b.ID=c.refID and a.username=c.username and a.batchID=" + p1 + " order by a.dept1Name,a.diplomaID";
 		}
 		if(id=='x07'){
 			p = "getStudentExamStatByClass";
