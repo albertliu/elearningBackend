@@ -591,12 +591,12 @@
 				if(ar[7] > ""){
 					$("#sign").html("<a href='/users" + ar[7] + "' target='_blank'>申报结果</a>");
 				}
-				if(ar[17] > ""){
+				//if(ar[17] > ""){
 					$("#scoreResult").html("<a href='/users" + ar[17] + "' target='_blank'>成绩单</a>");
                     $("#diplomaSign").show();
-				}else{
-                    $("#diplomaSign").hide();
-                }
+				//}else{
+                //    $("#diplomaSign").hide();
+                //}
 				if(ar[33] > ""){
 					$("#zip").html("<a href='/users" + ar[33] + "?times=" + (new Date().getTime()) + "' target='_blank'>归档压缩包</a>");
 				}

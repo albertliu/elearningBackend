@@ -314,7 +314,10 @@
           autoClose: '|500',
           animation: 'scale',
           closeAnimation: 'zoom'
-      });
+      });		
+      var utterThis = new window.SpeechSynthesisUtterance(msg);
+      window.speechSynthesis.cancel();
+		  window.speechSynthesis.speak(utterThis);
       setTimeout(() => {
             jc.close();
       }, 500);    

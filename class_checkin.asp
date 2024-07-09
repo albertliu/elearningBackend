@@ -20,7 +20,7 @@
 <script src="js/jquery-confirm.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/AsyncBox.v1.4.js"></script>
 <script language="javascript" type="text/javascript" src="js/jquery.dataTables.min.js"></script>
-<script src="js/datepicker/WdatePicker.js" type="text/javascript"></script>
+<script src="js/jQuery.print.js" type="text/javascript"></script>
 <script type='text/javascript' src='js/jquery.autocomplete.js'></script>
 <!--#include file="js/clickMenu.js"-->
 
@@ -40,6 +40,11 @@
 		$.ajaxSetup({ 
 			async: false 
 		}); 
+
+		$("#print").click(function(){
+			resumePrint();
+		});
+
 		$("#btnDownload").click(function(){
 			$.getJSON(uploadURL + "/outfiles/generate_excel?tag=class_checkin&mark=班级考勤&classID=" + nodeID + "&pobj=" + refID + "&keyID=" + keyID ,function(data){
 				if(data>""){
@@ -82,7 +87,7 @@
 			arr.push("<tr align='center'>");
 			arr.push("<th width='10'>No</th>");
 			arr.push("<th width='150'>身份证</th>");
-			arr.push("<th width='90'>姓名</th>");
+			arr.push("<th width='120'>姓名</th>");
 			if(data>""){
 				for(let key in data[0]){
 					// 遍历数组，对每个元素进行操作
@@ -173,6 +178,29 @@
 			});
 		});
 	}
+
+	function resumePrint(){
+		$("#resume_print").print({
+			//Use Global styles
+			globalStyles : true,
+			//Add link with attrbute media=print
+			mediaPrint : false,
+			//Custom stylesheet
+			stylesheet : "",
+			//Print in a hidden iframe
+			iframe : true,
+			//Don't print this
+			noPrintSelector : ".no-print",
+			//Add this at top
+			prepend : "",
+			//Add this on bottom
+			append : "<br/>"
+		});
+		window.setTimeout(function () {
+			window.parent.$.close("class_checkin");
+		}, 1000);
+	}
+
 </script>
 
 </head>
@@ -180,10 +208,14 @@
 <body style="background:#f0f0f0;">
 
 <div id='layout' align='left' style="background:#f0f0f0;">	
-	<div style='text-align:center; margin:10px 0 10px 0;'><h3 style='font-size:1.8em;'>班级线下课程考勤表</h3></div>
-	<div style='float:right; padding-right:50px;'><input class="button" type="button" id="btnDownload" value="下载" /></div>
-	<div style="padding-left:30px;"><input style="border:0px;" type="checkbox" id="showPhoto" value="" />&nbsp;显示照片&nbsp;</div>
-	<div id="cover" style="float:top;background:#f8fff8;">
+	<div id="pageTitle" style="text-align:center;">
+		<input class="button" type="button" id="print" value="打印" />&nbsp;
+	</div>
+	<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
+		<div style='text-align:center; margin:10px 0 10px 0;'><h3 style='font-size:1.8em;'>班级线下课程考勤表</h3></div>
+		<div style="padding-left:30px;"><input style="border:0px;" type="checkbox" id="showPhoto" value="" />&nbsp;显示照片&nbsp;</div>
+		<div id="cover" style="float:top;background:#f8fff8;">
+		</div>
 	</div>
 </div>
 </body>

@@ -34,7 +34,7 @@
 	var payUrl = "";
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
-		// test();
+		test();
 		
 		$("#btnPay").click(function(){
 			pay();
@@ -50,9 +50,19 @@
 	});
 
 	function test(){
-		$.post(uploadURL + "/nuonuo/oderPaymentReturn" ,function(data){
-			alert(data)
-		});
+		// let synth = window.speechSynthesis;
+		// let utterThis = new SpeechSynthesisUtterance('');
+		// synth.speak(utterThis);
+
+		// var url = "http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=4&text=你好啊，听起来好憨啊";
+        // var n = new Audio(url);
+        // n.src = url;
+        // n.play();
+	setTimeout(() => {
+        var utterThis = new window.SpeechSynthesisUtterance('你好，世界！');
+		window.speechSynthesis.cancel();
+		window.speechSynthesis.speak(utterThis);
+      }, 0);    
 	}
 
 	function pay(){
