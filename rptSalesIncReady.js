@@ -21,7 +21,7 @@
 	});
 
 	function getRptSalesList(mark){
-		$.getJSON(uploadURL + "/public/getRptList?op=sales&mark=" + mark + "&host=" + currHost + "&startDate=" + $("#rptSalesStartDate").val() + "&endDate=" + $("#rptSalesEndDate").val() + "&sales=" + currSales,function(data){
+		$.getJSON(uploadURL + "/public/getRptList?op=sales&mark=" + mark + "&host=znxf&startDate=" + $("#rptSalesStartDate").val() + "&endDate=" + $("#rptSalesEndDate").val() + "&sales=" + currSales,function(data){
 			//jAlert(data);
 			if(data==""){
 				jAlert("没有符合要求的数据。","提示")
@@ -49,7 +49,7 @@
 					arr.push("<tr class='grade0'>");
 					for(let key in val){
 						if(key != "sales"){
-							arr.push("<td" + (j>0 ? " class='link1'>" : " class='left'>") + (j>0 ? "<a href='javascript:getRptSalesDetailList(\"" + val["sales"] + "\"," + (j - 1) + ");'>" : "") + (val[key]) + (j>0 ? "</a>" : "") + "</td>");
+							arr.push("<td" + (j>0 ? " class='link1'>" : " class='left'>") + (j>0 && val["sales"] != "*" ? "<a href='javascript:getRptSalesDetailList(\"" + val["sales"] + "\"," + (j - 1) + ");'>" : "") + (val[key]) + (j>0 ? "</a>" : "") + "</td>");
 						}
 						j += 1
 					}
@@ -82,8 +82,8 @@
 	}
 
 	function getRptSalesDetailList(sales, k){
-		$.getJSON(uploadURL + "/public/getRptDetailList?op=sales&sales=" + sales + "&host=" + currHost + "&kind=" + k + "&startDate=" + $("#rptSalesStartDate").val() + "&endDate=" + $("#rptSalesEndDate").val(),function(data){
-			//jAlert(data);
+		$.getJSON(uploadURL + "/public/getRptDetailList?op=sales&sales=" + sales + "&host=znxf&kind=" + k + "&startDate=" + $("#rptSalesStartDate").val() + "&endDate=" + $("#rptSalesEndDate").val(),function(data){
+			// jAlert(data);
 			if(data==""){
 				jAlert("没有符合要求的数据。","提示")
 			}
@@ -112,7 +112,7 @@
 					arr.push("<tr class='grade0'>");
 					arr.push("<td class='center'>" + i + "</td>");
 					for(let key in val){
-						arr.push("<td class='left'>" + nullNoDisp(val[key]) + "</td>");
+						arr.push("<td class='left'" + (key=="pay_memo"?" title='" + val[key] + "'":"") + ">" + nullNoDisp((key=="pay_memo"?val[key].substring(0,10):val[key])) + "</td>");
 					}
 					arr.push("</tr>");
 				});
