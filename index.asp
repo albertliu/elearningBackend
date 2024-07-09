@@ -230,7 +230,7 @@
 			$("#menu2").hide();
 			deleteTab("统计图表");
 			deleteTab("招生概况");
-			deleteTab("收费概况");
+			// deleteTab("收费概况");
 			deleteTab("班级概况");
 		}else{
 			$("#menu11").hide();
@@ -277,8 +277,8 @@
 		// 	deleteTab("发票管理");
 		// }
 		if(!checkRole("leader") && !checkRole("saler") && currUser != "desk."){
-			deleteTab("收费概况");
 		}
+			deleteTab("收费概况");
 		if(checkRole("saler")){
 			currSales = currUser;
 		}

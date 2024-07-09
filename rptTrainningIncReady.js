@@ -1,7 +1,11 @@
 ﻿	$(document).ready(function (){
         getComboList("rptTrainningSales","userInfo","username","realName","status=0 and host='" + currHost + "' and username in(select username from roleUserList where roleID='saler') order by realName",1);
-		getComboList("rptTrainningCourseID","v_courseInfo","courseID","courseName2","status=0 and mark=1 order by seq",1);
-		$("#rptTrainningStartDate").datebox("setValue", new Date().format("yyyy-MM") + '-01');		
+		getComboList("rptTrainningCourseID","v_courseInfo","courseID","courseName2","status=0 and host=''",1);
+		$("#rptTrainningStartDate").datebox("setValue", new Date().format("yyyy-MM") + '-01');
+		if(checkRole("saler")){
+			$("#rptTrainningSales").combobox("setValue", currUser);
+			$("#rptTrainningSales").combobox("disable");
+		}	
 
 		$("#rptTrainningMoth").checkbox({
 			onChange: function(val){
@@ -39,14 +43,14 @@
 			mark1 = 'M';
 		}
 		$.getJSON(uploadURL + "/public/getRptList?op=trainning&mark=" + mark + "&sales=" + $("#rptTrainningSales").combobox("getValue") + "&host=znxf&courseID=" + $("#rptTrainningCourseID").combobox("getValue") + "&startDate=" + $("#rptTrainningStartDate").val() + "&endDate=" + $("#rptTrainningEndDate").val() + "&mark1=" + mark1,function(data){
-			//jAlert(data);
+			// jAlert(data);
 			if(data==""){
 				jAlert("没有符合要求的数据。","提示")
 			}
 			if(mark=="file" && data>""){
 				jAlert("点击右侧链接，下载<a href='" + data + "'>统计报告</a>","下载文件");
 			}
-
+			
 			if(mark=="data" && data.length>0){
 				$("#rptTrainningCover").empty();
 				arr = [];		
@@ -54,12 +58,12 @@
 				arr.push("<thead>");
 				arr.push("<tr align='center'>");
 				arr.push("<th width='10%'>日期</th>");
-				arr.push("<th width='10%'>财付通G</th>");
-				arr.push("<th width='10%'>财付通S</th>");
-				arr.push("<th width='10%'>微信收款</th>");
 				arr.push("<th width='10%'>支付宝收款</th>");
+				arr.push("<th width='10%'>微信收款</th>");
+				arr.push("<th width='10%'>银行转账</th>");
+				arr.push("<th width='10%'>支票</th>");
 				arr.push("<th width='10%'>现金收款</th>");
-				arr.push("<th width='10%'>对公汇款</th>");
+				arr.push("<th width='10%'>其他</th>");
 				arr.push("<th width='10%'>小计</th>");
 				arr.push("<th width='10%'>退款</th>");
 				arr.push("<th width='10%'>合计</th>");
