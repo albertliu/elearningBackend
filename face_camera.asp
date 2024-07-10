@@ -104,13 +104,13 @@
     var start = 0;
 
     $(document).ready(function (){
-      $("#confidence").numberbox("setValue", 63);
+      $("#confidence").numberbox("setValue", 65);
 		
       $("#confidence").numberbox({
         onChange:function(val) {
           if(val > 75 || val < 45){
             $.messager.alert("提示","识别参数应该在45-75范围内。","warning");
-            $("#confidence").numberbox("setValue", 63);
+            $("#confidence").numberbox("setValue", 65);
             return false;
           }
         }
