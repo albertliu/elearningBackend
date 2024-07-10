@@ -4,9 +4,11 @@
 
 if(op == "getStudentCourseList"){
 	var s = "";
+	var d = 0;
 	//如果有条件，按照条件查询
 	if(where > ""){ // 有条件
 		where = "(name like('%" + where + "%') or username='" + where + "' or courseName like('%" + where + "%'))";
+		d += 1;
 	}
 	//如果有公司
 	if(host > ""){ // 
@@ -85,7 +87,17 @@ if(op == "getStudentCourseList"){
 			where = s;
 		}
 	}
-	if(fStart > "" && fStart !="undefined"){
+	//如果需开票
+	if(String(Request.QueryString("needInvoice")) == "1"){ // 
+		s = "needInvoice=1";	//1 需开票
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+		d += 1;
+	}
+	if(fStart > "" && fStart !="undefined" && d == 0){
 		if(currHost>""){
 			s = "regDate>='" + fStart + "'";
 		}else{
@@ -97,7 +109,7 @@ if(op == "getStudentCourseList"){
 			where = s;
 		}
 	}
-	if(fEnd > "" && fEnd !="undefined"){
+	if(fEnd > "" && fEnd !="undefined" && d == 0){
 		if(currHost>""){
 			s = "regDate<='" + fEnd + "'";
 		}else{
@@ -237,16 +249,6 @@ if(op == "getStudentCourseList"){
 				where = s;
 			}
 		}
-	}
-	//如果需开票
-	if(String(Request.QueryString("needInvoice")) == "1"){ // 
-		s = "needInvoice=1";	//1 需开票
-		if(where > ""){
-			where = where + " and " + s;
-		}else{
-			where = s;
-		}
-		d += 1;
 	}
 
 	if(where > ""){
