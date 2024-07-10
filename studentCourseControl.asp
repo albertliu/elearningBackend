@@ -281,7 +281,7 @@ if(op == "getStudentCourseList"){
 		//57
 		result += "|" + rs("reexamine").value + "|" + rs("reexamineName").value + "|" + rs("examTimes").value + "|" + rs("certID").value + "|" + rs("missingItems").value + "|" + rs("shortName").value + "|" + rs("job").value;
 		//64
-		result += "|" + rs("diplomaID").value + "|" + rs("applyID").value + "|" + rs("score").value + "|" + rs("submiterName").value + "|" + rs(" + "|" + rs("pay_status").value").value + "|" + rs("mobile").value + "|" + rs("score1").value + "|" + rs("score2").value;
+		result += "|" + rs("diplomaID").value + "|" + rs("applyID").value + "|" + rs("score").value + "|" + rs("submiterName").value + "|" + rs("pay_status").value + "|" + rs("mobile").value + "|" + rs("score1").value + "|" + rs("score2").value;
 		//72
 		result += "|" + rs("fromID").value + "|" + rs("signature").value + "|" + rs("signatureDate").value + "|" + rs("status_photo").value + "|" + rs("status_signature").value + "|" + rs("signatureType").value;
 		//78
