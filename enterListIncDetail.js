@@ -20,6 +20,7 @@
 							<span>
 								&nbsp;&nbsp;学习进度&nbsp;&gt;=<input type="text" id="searchEnter_completion1" size="2" />%
 								&nbsp;&nbsp;模拟成绩&nbsp;&gt;=<input type="text" id="searchEnter_score1" size="2" />
+								<input class="easyui-checkbox" id="searchEnterInvoice" name="searchEnterInvoice" value="1"/>&nbsp;需开票&nbsp;
 							</span>
 						    <span style="float:right;">
 								<input class="button" type="button" id="btnSearchEnterDownload" value="下载" />

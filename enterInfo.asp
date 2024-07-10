@@ -724,7 +724,9 @@
 				if(!checkPermission("editPayDate")){
 					$("#datePay").prop("readonly",true);
 				}
-
+			}
+			if(!checkPermission("uploadInvoice")){
+				$("#btnUploadInvoice").prop("disabled",true);
 			}
 
 			if($("#file5").val()>""){
