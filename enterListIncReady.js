@@ -302,7 +302,7 @@
 			arr.push("<th width='4%'>证书</th>");
 			if(photo == 0){
 				arr.push("<th width='5%'>成绩</th>");
-				arr.push("<th width='4%'>补考</th>");
+				arr.push("<th width='2%'>款</th>");
 			}else{
 				arr.push("<th width='10%'>照片</th>");
 			}
@@ -423,7 +423,11 @@
 					}
 					if(photo == 0){
 						arr.push("<td class='left'><a href='javascript:showStudentExamPaper(" + ar1[0] + ",\"" + ar1[2] + "\");'>" + nullNoDisp(ar1[66].replace(".00","")) + "</a></td>");
-						arr.push("<td class='center'>" + nullNoDisp(ar1[68]) + "</td>");
+						if(ar1[68]==1){
+							arr.push("<td class='center'>" + imgChk1 + "</td>");	//已付
+						}else{
+							arr.push("<td class='center'>&nbsp;</td>");
+						}
 					}else{
 						if(ar1[18] > ""){
 							arr.push("<td class='center'><img id='photoB" + ar1[1] + "' src='users" + ar1[18] + "?times=" + (new Date().getTime()) + "' onclick='showCropperInfo(\"users" + ar1[18] + "\",\"" + ar1[1] + "\",\"photo\",\"B\",0,1)' style='width:50px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
