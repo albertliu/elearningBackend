@@ -57,15 +57,15 @@
 				arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='rptTrainningCoverTab' width='100%'>");
 				arr.push("<thead>");
 				arr.push("<tr align='center'>");
-				arr.push("<th width='10%'>日期</th>");
-				arr.push("<th width='10%'>支付宝收款</th>");
-				arr.push("<th width='10%'>微信收款</th>");
-				arr.push("<th width='10%'>银行转账</th>");
-				arr.push("<th width='10%'>支票</th>");
-				arr.push("<th width='10%'>现金收款</th>");
-				arr.push("<th width='10%'>其他</th>");
+				arr.push("<th width='15%'>日期</th>");
+				arr.push("<th width='12%'>ZF宝</th>");
+				arr.push("<th width='10%'>微信</th>");
+				arr.push("<th width='10%'>转账</th>");
+				arr.push("<th width='8%'>支票</th>");
+				arr.push("<th width='10%'>现金</th>");
+				arr.push("<th width='8%'>其他</th>");
 				arr.push("<th width='10%'>小计</th>");
-				arr.push("<th width='10%'>退款</th>");
+				arr.push("<th width='8%'>退款</th>");
 				arr.push("<th width='10%'>合计</th>");
 				arr.push("</tr>");
 				arr.push("</thead>");
@@ -74,8 +74,7 @@
 					let j = 0;
 					arr.push("<tr class='grade0'>");
 					for(let key in val){
-						// arr.push("<td class='left'>" + nullNoDisp(val[key]) + "</td>");
-						arr.push("<td" + (j>0 && j<9 ? " class='link1'>" : " class='left'>") + (j>0 && j<9 && val["日期"] != "合计" ? "<a href='javascript:getRptTrainningDetailList(\"" + val["日期"] + "\"," + j + ");'>" : "") + nullNoDisp(val[key]) + (j>0 && j<9 ? "</a>" : "") + "</td>");
+						arr.push("<td" + (j>0 && j<9 && val["日期"] != "合计" ? " class='link1'>" : " class='left'>") + (j>0 && j<9 && val["日期"] != "合计" ? "<a href='javascript:getRptTrainningDetailList(\"" + val["日期"] + "\"," + j + ");'>" : "") + nullNoDisp(val[key]) + (j>0 && j<9 && val["日期"] != "合计" ? "</a>" : "") + "</td>");
 						j += 1;
 					}
 					arr.push("</tr>");
@@ -114,6 +113,10 @@
 	}
 
 	function getRptTrainningDetailList(d, k){
+		let mark1 = 'D';
+		if($("#rptTrainningMoth").checkbox("options").checked){
+			mark1 = 'M';
+		}
 		$.getJSON(uploadURL + "/public/getRptDetailList?op=income&thisDate=" + d + "&key=" + k + "&sales=" + $("#rptTrainningSales").combobox("getValue") + "&host=znxf&courseID=" + $("#rptTrainningCourseID").combobox("getValue") + "&startDate=" + $("#rptTrainningStartDate").val() + "&endDate=" + $("#rptTrainningEndDate").val() + "&mark1=" + mark1,function(data){
 			// jAlert(data);
 			if(data==""){
@@ -128,13 +131,13 @@
 				arr.push("<thead>");
 				arr.push("<tr align='center'>");
 				arr.push("<th width='2%'>No</th>");
-				arr.push("<th width='18%'>身份证</th>");
-				arr.push("<th width='8%'>姓名</th>");
-				arr.push("<th width='8%'>金额</th>");
-				arr.push("<th width='12%'>日期</th>");
+				arr.push("<th width='16%'>身份证</th>");
+				arr.push("<th width='10%'>姓名</th>");
+				arr.push("<th width='10%'>金额</th>");
+				arr.push("<th width='16%'>日期</th>");
 				arr.push("<th width='10%'>类型</th>");
 				arr.push("<th width='18%'>课程</th>");
-				arr.push("<th width='10%'>备注</th>");
+				arr.push("<th width='6%'>备注</th>");
 				arr.push("</tr>");
 				arr.push("</thead>");
 				arr.push("<tbody id='tbody'>");
@@ -144,7 +147,7 @@
 					arr.push("<tr class='grade0'>");
 					arr.push("<td class='center'>" + i + "</td>");
 					for(let key in val){
-						arr.push("<td class='left'" + (key=="pay_memo"?" title='" + val[key] + "'":"") + ">" + nullNoDisp((key=="pay_memo"?val[key].substring(0,10):val[key])) + "</td>");
+						arr.push("<td class='left'" + (key=="pay_memo"?" title='" + val[key] + "'":"") + ">" + nullNoDisp((key=="pay_memo"?val[key].substring(0,4):val[key])) + "</td>");
 					}
 					arr.push("</tr>");
 				});

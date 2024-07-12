@@ -21,10 +21,10 @@
 					<div style="width:100%;">
 						<table style="width:100%;">
 							<tr>
-								<td style="width:50%;vertical-align:text-top;">
+								<td style="width:48%;vertical-align:text-top;">
 									<div id="rptTrainningCover" style="margin:0px;background:#f8fff8;"></div>
 								</td>
-								<td style="width:49%;vertical-align:text-top;">
+								<td style="width:51%;vertical-align:text-top;">
 									<div id="rptTrainningDetailCover" style="margin:0px;padding-left:10px;background:#f8fff8;">&nbsp;</div>
 								</td>
 							</tr>
