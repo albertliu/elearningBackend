@@ -18,5 +18,16 @@
 				        </form>
 					</div>
 					<hr size="1" noshadow />
-					<div id="rptTrainningCover" style="float:top;margin:0px;background:#f8fff8;"></div>
+					<div style="width:100%;">
+						<table style="width:100%;">
+							<tr>
+								<td style="width:50%;vertical-align:text-top;">
+									<div id="rptTrainningCover" style="margin:0px;background:#f8fff8;"></div>
+								</td>
+								<td style="width:49%;vertical-align:text-top;">
+									<div id="rptTrainningDetailCover" style="margin:0px;padding-left:10px;background:#f8fff8;">&nbsp;</div>
+								</td>
+							</tr>
+						</table>
+					</div>
 				</div>
