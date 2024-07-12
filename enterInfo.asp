@@ -635,7 +635,7 @@
 					$("#datePay").prop("readonly",true);
 				}
 			}
-			if(!checkPermission("uploadInvoice")){
+			if(!checkPermission("invoiceUpload")){
 				$("#btnUploadInvoice").prop("disabled",true);
 			}
 
