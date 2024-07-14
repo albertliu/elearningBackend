@@ -2139,7 +2139,7 @@
 			id: "pdfShow",
 			url:"pdfShow.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "PDF文档",
-			width: 600,
+			width: 680,
 			height: 600,
 			drag: false,
 			cover : {

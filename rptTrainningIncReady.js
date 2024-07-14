@@ -57,11 +57,10 @@
 				arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='rptTrainningCoverTab' width='100%'>");
 				arr.push("<thead>");
 				arr.push("<tr align='center'>");
-				arr.push("<th width='15%'>日期</th>");
+				arr.push("<th width='18%'>日期</th>");
 				arr.push("<th width='12%'>ZF宝</th>");
 				arr.push("<th width='10%'>微信</th>");
 				arr.push("<th width='10%'>转账</th>");
-				arr.push("<th width='8%'>支票</th>");
 				arr.push("<th width='10%'>现金</th>");
 				arr.push("<th width='8%'>其他</th>");
 				arr.push("<th width='10%'>小计</th>");
@@ -74,7 +73,7 @@
 					let j = 0;
 					arr.push("<tr class='grade0'>");
 					for(let key in val){
-						arr.push("<td" + (j>0 && j<9 && val["日期"] != "合计" ? " class='link1'>" : " class='left'>") + (j>0 && j<9 && val["日期"] != "合计" ? "<a href='javascript:getRptTrainningDetailList(\"" + val["日期"] + "\"," + j + ");'>" : "") + nullNoDisp(val[key]) + (j>0 && j<9 && val["日期"] != "合计" ? "</a>" : "") + "</td>");
+						arr.push("<td" + (j>0 && j<8 && val["日期"] != "合计" ? " class='link1'>" : " class='left'>") + (j>0 && j<8 && val["日期"] != "合计" ? "<a href='javascript:getRptTrainningDetailList(\"" + val["日期"] + "\"," + j + ");'>" : "") + nullNoDisp(val[key]) + (j>0 && j<8 && val["日期"] != "合计" ? "</a>" : "") + "</td>");
 						j += 1;
 					}
 					arr.push("</tr>");
@@ -82,7 +81,6 @@
 				arr.push("</tbody>");
 				arr.push("<tfoot>");
 				arr.push("<tr>");
-				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
@@ -131,10 +129,10 @@
 				arr.push("<thead>");
 				arr.push("<tr align='center'>");
 				arr.push("<th width='2%'>No</th>");
-				arr.push("<th width='16%'>身份证</th>");
-				arr.push("<th width='10%'>姓名</th>");
+				arr.push("<th width='15%'>身份证</th>");
+				arr.push("<th width='11%'>姓名</th>");
 				arr.push("<th width='10%'>金额</th>");
-				arr.push("<th width='16%'>日期</th>");
+				arr.push("<th width='15%'>日期</th>");
 				arr.push("<th width='10%'>类型</th>");
 				arr.push("<th width='18%'>课程</th>");
 				arr.push("<th width='6%'>备注</th>");

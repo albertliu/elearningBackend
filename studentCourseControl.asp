@@ -97,6 +97,16 @@ if(op == "getStudentCourseList"){
 		}
 		d += 1;
 	}
+	//如果应收款
+	if(String(Request.QueryString("noReceive")) == "1"){ // 
+		s = "noReceive=1";	//1 应收款
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+		d += 1;
+	}
 	if(fStart > "" && fStart !="undefined" && d == 0){
 		if(currHost>""){
 			s = "regDate>='" + fStart + "'";
@@ -484,7 +494,7 @@ if(op == "getStudentListByProject"){
 
 if(op == "getNodeInfo"){
 	result = "";
-	sql = "SELECT *,[dbo].[getPassCondition](ID) as pass_condition,[dbo].[getMissingItems](ID) as missingItems FROM v_studentCourseList where ID=" + nodeID;
+	sql = "SELECT *,[dbo].[getPassCondition](ID) as pass_condition,[dbo].[getMissingItems](ID) as missingItems,[dbo].[getCourseInvoice](ID) as invoicePDF FROM v_studentCourseList where ID=" + nodeID;
 	rs = conn.Execute(sql);
 	if(!rs.EOF){
 		result = rs("ID").value + "|" + rs("username").value + "|" + rs("name").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("courseID").value + "|" + rs("courseName").value;
@@ -511,7 +521,7 @@ if(op == "getNodeInfo"){
 		//79
 		result += "|" + rs("refunderName").value + "|" + rs("refund_amount").value + "|" + rs("refund_memo").value + "|" + rs("file3").value + "|" + rs("file4").value + "|" + rs("file5").value + "|" + rs("pay_checkerName").value + "|" + rs("completionPass").value;
 		//87
-		result += "|" + rs("check_pass").value;
+		result += "|" + rs("check_pass").value + "|" + rs("noReceive").value + "|" + rs("invoicePDF").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -1190,6 +1200,13 @@ if(op == "getEnterCheckinListOutClass"){
 	result = result.substr(2);/**/
 	Response.Write(escape(result));
 	//Response.Write(escape(sql));
+}
+
+if(op == "removeInvoice"){
+	result = "";
+	sql = "exec removeInvoice '" + nodeID + "','" + currUser + "'";
+	execSQL(sql);
+	Response.Write(0);
 }
 
 %>

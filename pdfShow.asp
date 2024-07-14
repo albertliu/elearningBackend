@@ -28,19 +28,28 @@
 		$.ajaxSetup({ 
 			async: false 
 		}); 
-		$("#img").prop("src",(nodeID.indexOf("https://")==-1?"users/":"") + nodeID + "?times=" + (new Date().getTime()) + "#view=fit");
+		var ar = new Array();
+		ar = nodeID.split("**");
+		alert(nodeID)
+		alert(ar)
+		arr = [];
+		$.each(ar,function(iNum,val){
+			if(val > ""){
+				arr.push('<iframe src="' + (val.indexOf("https://")==-1?"users/":"") + val + '?times=' + (new Date().getTime()) + '#view=fit" width="100%" height="500" style="border:0px;"></iframe>');
+				// $("#img").prop("src",(nodeID.indexOf("https://")==-1?"users/":"") + nodeID + "?times=" + (new Date().getTime()) + "#view=fit");
+			}
+		});
+		// alert(arr.join(""))
+		$("#cover").html(arr.join(""));
 	});
-	
-	function getUpdateCount(){
-		return updateCount;
-	}
 </script>
 
 </head>
 
 <body style="background:#f0f0f0;">
 
-<div id='layout' align='left' style="background:#f0f0f0; overflow: hidden;height:100%;">	
-	<iframe id="img" src="" width="100%" height="500" style="border:0px;"></iframe>
+<div id='layout' align='left' style="background:#f0f0f0; overflow: hidden;height:100%;">
+	<div id="cover"></div>
+	<iframe src="" width="100%" height="500" style="border:0px;"></iframe>
 </div>
 </body>

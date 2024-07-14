@@ -159,7 +159,9 @@
 		if(!checkPermission("studentAdd")){
 			$("#btnSearchEnterAdd").hide();
 		}
-		
+		if(!checkPermission("receiveCheck")){
+			$("#enterListLongItem6").hide();
+		}
 		$("#btnSearchEnterAdd").click(function(){
 			showStudentInfo(0,0,1,1);
 		});
@@ -201,6 +203,27 @@
 				add2Cart("visitstockchkEnter","examer",r);
 			});
 		});
+
+		$("#btnEnterReceive").click(function(){
+			if(!$("#searchEnterReceive").checkbox("options").checked){
+				jAlert("请勾选[应收]选项。");
+				return false;
+			}
+			getSelCart("visitstockchkEnter");
+			if(selCount==0){
+				jAlert("请选择要确认的名单。");
+				return false;
+			}
+			jConfirm("确定这些(" + selCount + "个)应收款已到账吗？","确认",function(r){
+				if(r){
+					$.post(uploadURL + "/public/checkReceiveList", {selList: selList, registerID: currUser} ,function(data){
+						//jAlert(data);
+						jAlert("已确认。");
+						getEnterList();
+					});
+				}
+			});
+		});
 		
 		$("#btnEnterCall").click(function(){
 			getSelCart("visitstockchkEnter");
@@ -223,6 +246,16 @@
 				}
 			});
 		});
+		$("#searchEnterInvoice").checkbox({
+			onChange: function(val){
+				getEnterList();
+			}
+		});
+		$("#searchEnterReceive").checkbox({
+			onChange: function(val){
+				getEnterList();
+			}
+		});
 		//getExamerList();
 		setCartNum("examer");
 	});
@@ -235,6 +268,7 @@
 		var Old = 0;
         var mark = 1;
 		let inv = 0;
+		let receive = 0;
         if(checkRole("saler") && !checkRole("adviser")){
             mark = 3;
         }
@@ -245,10 +279,11 @@
 		if($("#searchEnterInvoice").checkbox("options").checked){
 			inv = 1;
 		}
-		//if($("#searchEnterOld").attr("checked")){Old = 1;}
+		if($("#searchEnterReceive").checkbox("options").checked){
+			receive = 1;
+		}
 		// alert("&needInvoice=" + inv + "&mark=" + mark + "&kindID=" + $("#searchEnterDept").val() + "&refID=" + $("#searchEnterProjectID").val() + "&status=" + $("#searchEnterStatus").val() + "&reexamine=" + $("#searchEnterReexamine").val() + "&photoStatus=" + $("#searchEnterPhotoStatus").val() + "&courseID=" + $("#searchEnterCourseID").val() + "&host=" + $("#searchEnterHost").val() + "&checked=" + $("#searchEnterChecked").val() + "&materialChecked=" + $("#searchEnterMaterialChecked").val() + "&passcard=" + $("#searchEnterPasscard").val() + "&classID=" + $("#searchEnterClassID").val() + "&fStart=" + $("#searchEnterStartDate").val() + "&fEnd=" + $("#searchEnterEndDate").val() + "&completion1=" + $("#searchEnter_completion1").val() + "&score1=" + $("#searchEnter_score1").val());
-		$.get("studentCourseControl.asp?op=getStudentCourseList&where=" + escape(sWhere) + "&needInvoice=" + inv + "&mark=" + mark + "&kindID=" + $("#searchEnterDept").val() + "&refID=" + $("#searchEnterProjectID").val() + "&status=" + $("#searchEnterStatus").val() + "&reexamine=" + $("#searchEnterReexamine").val() + "&photoStatus=" + $("#searchEnterPhotoStatus").val() + "&courseID=" + $("#searchEnterCourseID").val() + "&host=" + $("#searchEnterHost").val() + "&checked=" + $("#searchEnterChecked").val() + "&materialChecked=" + $("#searchEnterMaterialChecked").val() + "&passcard=" + $("#searchEnterPasscard").val() + "&classID=" + $("#searchEnterClassID").val() + "&fStart=" + $("#searchEnterStartDate").val() + "&fEnd=" + $("#searchEnterEndDate").val() + "&completion1=" + $("#searchEnter_completion1").val() + "&score1=" + $("#searchEnter_score1").val() + "&dk=101&times=" + (new Date().getTime()),function(data){
-		//$.getJSON("enterControl.asp?op=getEnterList",function(data){
+		$.get("studentCourseControl.asp?op=getStudentCourseList&where=" + escape(sWhere) + "&needInvoice=" + inv + "&noReceive=" + receive + "&mark=" + mark + "&kindID=" + $("#searchEnterDept").val() + "&refID=" + $("#searchEnterProjectID").val() + "&status=" + $("#searchEnterStatus").val() + "&reexamine=" + $("#searchEnterReexamine").val() + "&photoStatus=" + $("#searchEnterPhotoStatus").val() + "&courseID=" + $("#searchEnterCourseID").val() + "&host=" + $("#searchEnterHost").val() + "&checked=" + $("#searchEnterChecked").val() + "&materialChecked=" + $("#searchEnterMaterialChecked").val() + "&passcard=" + $("#searchEnterPasscard").val() + "&classID=" + $("#searchEnterClassID").val() + "&fStart=" + $("#searchEnterStartDate").val() + "&fEnd=" + $("#searchEnterEndDate").val() + "&completion1=" + $("#searchEnter_completion1").val() + "&score1=" + $("#searchEnter_score1").val() + "&dk=101&times=" + (new Date().getTime()),function(data){
 			// alert((data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");

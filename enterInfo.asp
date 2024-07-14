@@ -36,6 +36,7 @@
 	var entryform = "";
 	var refAlert = "";
 	let uploadInvoice = 0;
+	let invoicePDF = "";
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";	//enterID
@@ -157,7 +158,7 @@
 		});
 
 		$("#btnViewInvoice").click(function(){
-			showPDF($("#file5").val(),0,0,0);
+			showPDF(invoicePDF,0,0,0);
 		});
 
 		$("#btnPay").click(function(){
@@ -281,6 +282,17 @@
 				}
 			});
 		});
+
+		$("#btnReInvoice").click(function(){
+			jConfirm('确定要重开发票吗?', '确认对话框', function(r) {
+				if(r){
+					$.get("studentCourseControl.asp?op=removeInvoice&nodeID=" + $("#studentCourseID").val() + "&times=" + (new Date().getTime()),function(re){
+						jAlert("已移除原发票，请上传新发票。");
+						getNodeInfo(nodeID)
+					});
+				}
+			});
+		});
 		$("#smsList").click(function(){
 			//alert($("#username").val() + ":" + $("#studentCourseID").val());
 			showStudentSmsList($("#username").val(),$("#studentCourseID").val(),0,1);
@@ -399,6 +411,7 @@
 				$("#pay_checkerName").val(ar[85]);
 				$("#completionPass").val(ar[86]);
 				$("#completion").val(ar[10]);
+				invoicePDF = ar[89];
 				if(ar[48]>""){
 					$("#signatureStatus").prop("checked",true);
 				}else{
@@ -419,6 +432,14 @@
 				}else{
 					$("#needInvoice").prop("checked",false);
 				}
+				if(ar[88]==1){
+					$("#noReceive").html("未到账");
+				}else if(ar[88]==2){
+					$("#noReceive").html("已到账");
+				}else{
+					$("#noReceive").html("");
+				}
+
 
 				// getPayDetailInfoByEnterID(ar[0]);
 				if(ar[27]=="" && ar[26]>""){
@@ -638,6 +659,11 @@
 			if(!checkPermission("invoiceUpload")){
 				$("#btnUploadInvoice").prop("disabled",true);
 			}
+			if(checkPermission("invoiceRe") && $("#invoice").val()>""){
+				$("#btnReInvoice").prop("disabled",false);
+			}else{
+				$("#btnReInvoice").prop("disabled",true);
+			}
 
 			if($("#file5").val()>""){
 				$("#btnViewInvoice").prop("disabled",false);
@@ -841,9 +867,10 @@
 			<tr>
 				<td align="right">支付方式</td>
 				<td>
-				<select id="type" style="width:80px;"></select>
-				&nbsp;&nbsp;状态&nbsp;
-				<select id="statusPay" style="width:80px;"></select>
+					<select id="type" style="width:80px;"></select>
+					&nbsp;&nbsp;状态&nbsp;
+					<select id="statusPay" style="width:55px;"></select>
+					<span id="noReceive" style="color:red;"></span>
 				</td>
 				<td align="right">付款类型</td>
 				<td><select id="payNow" style="width:100px;"></select>&nbsp;<input class="button" type="button" id="btnReGetStudent" value="刷新" /></td>
@@ -859,6 +886,7 @@
 					<input type="checkbox" id="needInvoice" />&nbsp;需开票
 					&nbsp;<input class="button" type="button" id="btnUploadInvoice" value="上传发票" />
 					&nbsp;<input class="button" type="button" id="btnViewInvoice" value="查看" />
+					&nbsp;<input class="button" type="button" id="btnReInvoice" value="重开/红冲" />
 				</td>
 				<td align="right">发票号码</td><input type="hidden" id="file5" name="file5" />
 				<td><input type="text" id="invoice" size="25" /></td>
