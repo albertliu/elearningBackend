@@ -248,12 +248,16 @@
 		});
 		$("#searchEnterInvoice").checkbox({
 			onChange: function(val){
-				getEnterList();
+				if(val){
+					getEnterList();
+				}
 			}
 		});
 		$("#searchEnterReceive").checkbox({
 			onChange: function(val){
-				getEnterList();
+				if(val){
+					getEnterList();
+				}
 			}
 		});
 		//getExamerList();
