@@ -30,8 +30,6 @@
 		}); 
 		var ar = new Array();
 		ar = nodeID.split("**");
-		alert(nodeID)
-		alert(ar)
 		arr = [];
 		$.each(ar,function(iNum,val){
 			if(val > ""){
