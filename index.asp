@@ -99,7 +99,7 @@
 	<!--#include file="rptDailyListIncReady.js"-->
 	<!--#include file="studentPreListIncReady.js"-->
 	<!--#include file="rptSalesIncReady.js"-->
-	<!--#include file="chartsClassIncReady.js"-->
+	<!--#include file="rptPayInvoiceIncReady.js"-->
 	<!--#include file="chartsIncomeIncReady.js"-->
 	<!--#include file="teacherListIncReady.js"-->
 
@@ -231,7 +231,7 @@
 			deleteTab("统计图表");
 			deleteTab("招生概况");
 			// deleteTab("收费概况");
-			deleteTab("班级概况");
+			deleteTab("收费发票");
 		}else{
 			$("#menu11").hide();
 			$("#menu2").hide();
@@ -283,7 +283,7 @@
 			currSales = currUser;
 		}
 		if(currUser == "amra."){
-			deleteTab("班级概况");
+			deleteTab("收费发票");
 			deleteTab("学员注册");
 			deleteTab("证书获取");
 			deleteTab("证书到期");
@@ -649,7 +649,7 @@
 								<!--#include file="chartsIncomeIncDetail.js"-->
 							</div>
 							<div id="dtab68" class="dhtmlgoodies_aTab">
-								<!--#include file="chartsClassIncDetail.js"-->
+								<!--#include file="rptPayInvoiceIncDetail.js"-->
 							</div>
 							<div id="dtab60" class="dhtmlgoodies_aTab">
 								<!--#include file="rptStudentIncDetail.js"-->
@@ -665,7 +665,7 @@
 							</div>
 						</div>
 						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView6',Array("收费日报","销售日报","收费概况","班级概况","学员注册","证书获取","证书到期","其他报表"),0,1260,400);
+							initTabs('dhtmlgoodies_tabView6',Array("收费日报","销售日报","收费概况","收费发票","学员注册","证书获取","证书到期","其他报表"),0,1260,400);
 						</script>
 					</div>
 					
