@@ -42,7 +42,7 @@
 		}); 
 
 		getCheckinListOnClass();
-		// getCheckinListOutClass();
+		getCheckinListOutClass();
 	});
 
 	async function getCheckinListOnClass(){
@@ -153,7 +153,7 @@
 
 	async function getCheckinListOutClass(){
 		//alert(refID + ":" + nodeID);
-		$.get("studentCourseControl.asp?op=getEnterCheckinListOnClass&refID=" + refID + "&times=" + (new Date().getTime()),function(data){
+		$.get("studentCourseControl.asp?op=getEnterCheckinListOutClass&refID=" + refID + "&times=" + (new Date().getTime()),function(data){
 			//alert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
