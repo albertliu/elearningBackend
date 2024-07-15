@@ -11,6 +11,7 @@
 <link href="css/datatables.min.css" rel="stylesheet" type="text/css" />
 <script language="javascript" src="js/jquery-3.7.0.min.js"></script>
 <script language="javascript" type="text/javascript" src="js/datatables.min.js"></script>
+<script src="js/jQuery.print.js" type="text/javascript"></script>
     <style>
         td.details-control {
             /* Image in the first column to
@@ -39,7 +40,11 @@
 		
 		$.ajaxSetup({ 
 			async: false 
-		}); 
+		});
+
+		$("#print").click(function(){
+			resumePrint();
+		});
 
 		getCheckinListOnClass();
 		getCheckinListOutClass();
@@ -102,20 +107,8 @@
 			$("#cover").html(arr.join(""));
 			arr = [];
 			table = $('#cardTab').DataTable({
-				//配置相应部分的中文显示(废话，不然就显示英文了)
-				"language": {
-					"lengthMenu": "每页 _MENU_ 条记录",
-					"zeroRecords": "没有找到记录",
-					"info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-					"infoEmpty": "无记录",
-					"paginate": {
-						"first": "第一页",
-						"last": "最后一页",
-						"next": "后一页",
-						"previous": "上一页"
-					},
-				},
-			
+        		"paging": false,
+				"info": false,
 				"pageLength": 20,           //默认每页条数
 				"lengthChange": false,      //禁掉表格自带的选择每页条数的下拉框
 				"searching": false,
@@ -153,7 +146,7 @@
 
 	async function getCheckinListOutClass(){
 		//alert(refID + ":" + nodeID);
-		$.get("studentCourseControl.asp?op=getEnterCheckinListOutClass&refID=" + refID + "&times=" + (new Date().getTime()),function(data){
+		$.get("studentCourseControl.asp?op=getEnterCheckinListOutClass&nodeID=" + nodeID + "&refID=" + refID + "&times=" + (new Date().getTime()),function(data){
 			//alert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
@@ -211,15 +204,17 @@
 			$("#cover1").html(arr.join(""));
 			arr = [];
 			table1 = $('#cardTab1').DataTable({
+        		"paging": false,
+				"info": false,
 				"pageLength": 20,           //默认每页条数
 				"lengthChange": false,      //禁掉表格自带的选择每页条数的下拉框
 				"searching": false,
 				"columnDefs": [
-					{ "visible": false, "targets": [5,6] }
+					{ "visible": false, "targets": [5,6] }	//隐藏第5，6列
 				]
 			});
 
-			$('#cardTab1 tbody1').on('click', 'td.details-control', function () {
+			$('#cardTab1 tbody').on('click', 'td.details-control', function () {
 				var tr =$(this).closest('tr');
 				var row = table1.row(tr);
 
@@ -259,6 +254,28 @@
 		callback(x);
 	}
 
+	function resumePrint(){
+		$("#resume_print").print({
+			//Use Global styles
+			globalStyles : true,
+			//Add link with attrbute media=print
+			mediaPrint : false,
+			//Custom stylesheet
+			stylesheet : "",
+			//Print in a hidden iframe
+			iframe : true,
+			//Don't print this
+			noPrintSelector : ".no-print",
+			//Add this at top
+			prepend : "",
+			//Add this on bottom
+			append : "<br/>"
+		});
+		window.setTimeout(function () {
+			window.parent.$.close("enterCheckinList");
+		}, 1000);
+	}
+
 </script>
 
 </head>
@@ -266,11 +283,14 @@
 <body>
 
 <div id='layout' align='left' style="background:#f0f0f0;">	
-	<div style="float:left;width:100%;">本班线下课程考勤情况：</div>
-	<div id="cover" style="float:left;width:100%;">
+	<div id="pageTitle" style="text-align:center;">
+		<input class="button" type="button" id="print" value="打印" />&nbsp;
 	</div>
-	<div style="float:left;width:100%;">参加其他班级课程考勤情况：</div>
-	<div id="cover1" style="float:left;width:100%;">
+	<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
+		<div style="float:left; padding-left:20px; width:100%; font-size: 1.3em;color:red;">本班线下课程考勤情况：</div>
+		<div id="cover" style="float:left;width:100%;"></div>
+		<div style="float:left; padding-left:20px; width:100%; font-size: 1.3em;color:red;">参加其他班级课程考勤情况：</div>
+		<div id="cover1" style="float:left;width:100%;"></div>
 	</div>
 </div>
 </body>
