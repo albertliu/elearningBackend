@@ -172,7 +172,7 @@
 			arr.push("<th width='10%'>班级</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
-			arr.push("<tbody id='tbody'>");
+			arr.push("<tbody id='tbody1'>");
 			if(ar>""){
 				var i = 0;
 				var c = 0;
@@ -211,9 +211,15 @@
 			$("#cover1").html(arr.join(""));
 			arr = [];
 			table1 = $('#cardTab1').DataTable({
+				"pageLength": 20,           //默认每页条数
+				"lengthChange": false,      //禁掉表格自带的选择每页条数的下拉框
+				"searching": false,
+				"columnDefs": [
+					{ "visible": false, "targets": [5,6] }
+				]
 			});
 
-			$('#cardTab1 tbody').on('click', 'td.details-control', function () {
+			$('#cardTab1 tbody1').on('click', 'td.details-control', function () {
 				var tr =$(this).closest('tr');
 				var row = table1.row(tr);
 
