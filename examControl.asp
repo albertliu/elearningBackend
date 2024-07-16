@@ -107,7 +107,7 @@ if(op == "getStudentExamByEnterID"){
 }
 
 if(op == "getStudentQuestionList"){
-	sql = "select * from v_studentQuestionList where refID=" + refID;
+	sql = "select * from v_studentQuestionList where refID=" + refID + " order by kindID, questionID";
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
 		result += "%%" + rs("kindID").value + "|" + rs("questionName").value + "|" + rs("scorePer").value + "|" + rs("score").value + "|" + rs("answer").value + "|" + rs("myAnswer").value;
