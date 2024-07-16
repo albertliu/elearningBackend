@@ -160,7 +160,7 @@
 			$("#btnSearchEnterAdd").hide();
 		}
 		if(!checkPermission("receiveCheck")){
-			$("#enterListLongItem6").hide();
+			$("#enterListLongItem8").hide();
 		}
 		$("#btnSearchEnterAdd").click(function(){
 			showStudentInfo(0,0,1,1);

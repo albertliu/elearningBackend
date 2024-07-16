@@ -48,7 +48,7 @@
 								准考证/申报&nbsp;<select id="searchEnterPasscard" style="width:50px"></select>&nbsp;
 								<input class="button" type="button" id="btnEnterCall" value="催材料" />&nbsp;
 							</span>
-							<span id="enterListLongItem6">
+							<span id="enterListLongItem8">
 								<input class="button" type="button" id="btnEnterReceive" value="应收确认" />&nbsp;
 							</span>
 							<span style="float:right;margin-right:20px;">
