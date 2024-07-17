@@ -80,7 +80,7 @@
 					arr.push("<td class='center'>" + i + "</td>");
 					for(let key in val){
 						if(j>1){
-							s = "<td" + (key == "invoicePDF" && val[key]>"" ? " class='link1'>" : " class='left' " + ((val[autoPay]=="1" && key=="datePay") || (val[autoInvoice]=="1" && key=="dateInvoice") ? "style='background:green;'" : "") + ">");
+							s = "<td" + (key == "invoicePDF" && val[key]>"" ? " class='link1'>" : " class='left' " + ((val["autoPay"]=="1" && key=="datePay") || (val["autoInvoice"]=="1" && key=="dateInvoice") ? "style='background:green;'" : "") + ">");
 							s += (key == "invoicePDF" && val[key]>"" ? "<a href='javascript:showPDF(\"" + val["invoicePDF"] + "\",0,0,0);'>" + imgChk : (key=="pay_memo"?nullNoDisp(val[key]).substring(0,10):nullNoDisp(val[key])));
 							s += (key == "invoicePDF" && val[key]>"" ? "</a>" : "") + "</td>";
 							arr.push(s);
