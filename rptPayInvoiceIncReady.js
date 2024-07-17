@@ -94,7 +94,7 @@
 								s += nullNoDisp(val[key]);
 							}
 							if(t==1){
-								s += "<a href='javascript:showEnterInfo(\"" + val["ID"] + "\",\"" + val["username"] + "\",0,0);'>" + nullNoDisp(val[key]);
+								s += "<a href='javascript:showEnterInfo(\"" + val["ID"] + "\",\"" + val["username"] + "\",0,0);'>" + (key=="pay_memo"?nullNoDisp(val[key]).substring(0,10):nullNoDisp(val[key]));
 							}
 							if(t==2){
 								s += "<a href='javascript:showPDF(\"" + val["invoicePDF"] + "\",0,0,0);'>" + imgChk;
