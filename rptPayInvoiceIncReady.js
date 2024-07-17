@@ -88,7 +88,7 @@
 							if(key == "invoicePDF" && val[key]>""){
 								t = 2;
 							}
-							s = "<td" + (t>0 ? " class='link1'>" : " class='left' " + ((val["autoPay"]=="1" && key=="datePay") || (val["autoInvoice"]=="1" && key=="dateInvoice") ? "style='background:green;'" : "") + ">");
+							s = "<td" + (t>0 ? " class='link1'>" : " class='left' " + ((val["autoPay"]=="1" && key=="datePay") || (val["autoInvoice"]=="1" && key=="dateInvoice") ? "style='background:#FFFF88;'" : "") + ">");
 							// s += (key == "invoicePDF" && val[key]>"" ? "<a href='javascript:showPDF(\"" + val["invoicePDF"] + "\",0,0,0);'>" + imgChk : (key=="pay_memo"?nullNoDisp(val[key]).substring(0,10):nullNoDisp(val[key])));
 							if(t==0){
 								s += nullNoDisp(val[key]);
