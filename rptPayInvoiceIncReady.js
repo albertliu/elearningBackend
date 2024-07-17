@@ -75,14 +75,31 @@
 				$.each(data,function(iNum,val){
 					let j = 0;
 					let s = "";
+					let t = 0;
 					i += 1;
 					arr.push("<tr class='grade0'>");
 					arr.push("<td class='center'>" + i + "</td>");
 					for(let key in val){
-						if(j>1){
-							s = "<td" + (key == "invoicePDF" && val[key]>"" ? " class='link1'>" : " class='left' " + ((val["autoPay"]=="1" && key=="datePay") || (val["autoInvoice"]=="1" && key=="dateInvoice") ? "style='background:green;'" : "") + ">");
-							s += (key == "invoicePDF" && val[key]>"" ? "<a href='javascript:showPDF(\"" + val["invoicePDF"] + "\",0,0,0);'>" + imgChk : (key=="pay_memo"?nullNoDisp(val[key]).substring(0,10):nullNoDisp(val[key])));
-							s += (key == "invoicePDF" && val[key]>"" ? "</a>" : "") + "</td>";
+						if(j>2){
+							t = 0;
+							if(key == "username" && val[key]>""){
+								t = 1;
+							}
+							if(key == "invoicePDF" && val[key]>""){
+								t = 2;
+							}
+							s = "<td" + (t>0 ? " class='link1'>" : " class='left' " + ((val["autoPay"]=="1" && key=="datePay") || (val["autoInvoice"]=="1" && key=="dateInvoice") ? "style='background:green;'" : "") + ">");
+							// s += (key == "invoicePDF" && val[key]>"" ? "<a href='javascript:showPDF(\"" + val["invoicePDF"] + "\",0,0,0);'>" + imgChk : (key=="pay_memo"?nullNoDisp(val[key]).substring(0,10):nullNoDisp(val[key])));
+							if(t==0){
+								s += nullNoDisp(val[key]);
+							}
+							if(t==1){
+								s += "<a href='javascript:showEnterInfo(\"" + val["ID"] + "\",\"" + val["username"] + "\",0,0);'>" + nullNoDisp(val[key]);
+							}
+							if(t==2){
+								s += "<a href='javascript:showPDF(\"" + val["invoicePDF"] + "\",0,0,0);'>" + imgChk;
+							}
+							s += (t>0 ? "</a>" : "") + "</td>";
 							arr.push(s);
 							//alert(s)
 						}
