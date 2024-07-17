@@ -21,16 +21,12 @@
 		});
 		$("#rptPayInvoiceAutoPay").checkbox({
 			onChange: function(val){
-				if(val){
-					getRptPayInvoiceList("data");
-				}
+				getRptPayInvoiceList("data");
 			}
 		});
 		$("#rptPayInvoiceAutoInvoice").checkbox({
 			onChange: function(val){
-				if(val){
-					getRptPayInvoiceList("data");
-				}
+				getRptPayInvoiceList("data");
 			}
 		});
 	});
@@ -52,11 +48,11 @@
 			if(mark=="file" && data>""){
 				jAlert("点击右侧链接，下载<a href='" + data + "'>统计报告</a>","下载文件");
 			}
+			$("#rptPayInvoiceCover").empty();
 			
 			if(mark=="data" && data.length>0){
 				let i = 0;
 				let imgChk = "<img src='images/attachment.png' style='width:14px;'>";
-				$("#rptPayInvoiceCover").empty();
 				arr = [];		
 				arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='rptPayInvoiceCoverTab' width='100%'>");
 				arr.push("<thead>");
@@ -78,17 +74,19 @@
 				arr.push("<tbody id='tbody'>");
 				$.each(data,function(iNum,val){
 					let j = 0;
+					let s = "";
 					i += 1;
 					arr.push("<tr class='grade0'>");
 					arr.push("<td class='center'>" + i + "</td>");
 					for(let key in val){
 						if(j>1){
-							arr.push("<td" + (key == "invoicePDF" && val[key]>"" ? " class='link1'>" : " class='left' " + (val[key]=="1" && (key=="datePay" || key=="dateInvoice") ? "style='background:green;'" : "") + ">")
-							 + (key == "invoicePDF" && val[key]>"" ? "<a href='javascript:showPDF(\"" + val["invoicePDF"] + "\",0,0,0);'>"
-							 + imgChk : (j==9?nullNoDisp(val[key]).substring(0,10):nullNoDisp(val[key])))
-							 + (key == "invoicePDF" && val[key]>"" ? "</a>" : "") + "</td>");
-							j += 1;
+							s = "<td" + (key == "invoicePDF" && val[key]>"" ? " class='link1'>" : " class='left' " + ((val[autoPay]=="1" && key=="datePay") || (val[autoInvoice]=="1" && key=="dateInvoice") ? "style='background:green;'" : "") + ">");
+							s += (key == "invoicePDF" && val[key]>"" ? "<a href='javascript:showPDF(\"" + val["invoicePDF"] + "\",0,0,0);'>" + imgChk : (j==9?nullNoDisp(val[key]).substring(0,10):nullNoDisp(val[key])));
+							s += (key == "invoicePDF" && val[key]>"" ? "</a>" : "") + "</td>";
+							arr.push(s);
+							//alert(s)
 						}
+						j += 1;
 					}
 					arr.push("</tr>");
 				});
