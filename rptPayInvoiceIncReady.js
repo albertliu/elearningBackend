@@ -19,10 +19,32 @@
 				getRptPayInvoiceList("file");
 			}
 		});
+		$("#rptPayInvoiceAutoPay").checkbox({
+			onChange: function(val){
+				if(val){
+					getRptPayInvoiceList("data");
+				}
+			}
+		});
+		$("#rptPayInvoiceAutoInvoice").checkbox({
+			onChange: function(val){
+				if(val){
+					getRptPayInvoiceList("data");
+				}
+			}
+		});
 	});
 
 	function getRptPayInvoiceList(mark){
-		$.getJSON(uploadURL + "/public/getRptList?op=payInvoice&mark=" + mark + "&host=znxf&&startDate=" + $("#rptPayInvoiceStartDate").val() + "&endDate=" + $("#rptPayInvoiceEndDate").val(),function(data){
+		let autoPay = 0;
+		let autoInvoice = 0;
+		if($("#rptPayInvoiceAutoPay").checkbox("options").checked){
+			autoPay = 1;
+		}
+		if($("#rptPayInvoiceAutoInvoice").checkbox("options").checked){
+			autoInvoice = 1;
+		}
+		$.getJSON(uploadURL + "/public/getRptList?op=payInvoice&mark=" + mark + "&autoPay=" + autoPay + "&autoInvoice=" + autoInvoice + "&host=znxf&&startDate=" + $("#rptPayInvoiceStartDate").val() + "&endDate=" + $("#rptPayInvoiceEndDate").val(),function(data){
 			// jAlert(data);
 			if(data==""){
 				jAlert("没有符合要求的数据。","提示")
@@ -60,8 +82,13 @@
 					arr.push("<tr class='grade0'>");
 					arr.push("<td class='center'>" + i + "</td>");
 					for(let key in val){
-						arr.push("<td" + (key == "invoicePDF" && val[key]>"" ? " class='link1'>" : " class='left'>") + (key == "invoicePDF" && val[key]>"" ? "<a href='javascript:showPDF(\"" + val["invoicePDF"] + "\",0,0,0);'>" + imgChk : (j==9?nullNoDisp(val[key]).substring(0,10):nullNoDisp(val[key]))) + (key == "invoicePDF" && val[key]>"" ? "</a>" : "") + "</td>");
-						j += 1;
+						if(j>1){
+							arr.push("<td" + (key == "invoicePDF" && val[key]>"" ? " class='link1'>" : " class='left' " + (val[key]=="1" && (key=="datePay" || key=="dateInvoice") ? "style='background:green;'" : "") + ">")
+							 + (key == "invoicePDF" && val[key]>"" ? "<a href='javascript:showPDF(\"" + val["invoicePDF"] + "\",0,0,0);'>"
+							 + imgChk : (j==9?nullNoDisp(val[key]).substring(0,10):nullNoDisp(val[key])))
+							 + (key == "invoicePDF" && val[key]>"" ? "</a>" : "") + "</td>");
+							j += 1;
+						}
 					}
 					arr.push("</tr>");
 				});
