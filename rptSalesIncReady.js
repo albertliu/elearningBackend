@@ -18,6 +18,9 @@
 				getRptSalesList("file");
 			}
 		});
+		$("#btnRptSalesDownLoad").click(function(){
+			getRptSalesList("file");
+		});
 	});
 
 	function getRptSalesList(mark){

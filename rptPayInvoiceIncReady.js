@@ -29,6 +29,9 @@
 				getRptPayInvoiceList("data");
 			}
 		});
+		$("#btnRptPayInvoiceDownLoad").click(function(){
+			getRptPayInvoiceList("file");
+		});
 	});
 
 	function getRptPayInvoiceList(mark){

@@ -35,6 +35,9 @@
 				getRptTrainningList("file");
 			}
 		});
+		$("#btnRptTrainningDownLoad").click(function(){
+			getRptTrainningList("file");
+		});
 	});
 
 	function getRptTrainningList(mark){
