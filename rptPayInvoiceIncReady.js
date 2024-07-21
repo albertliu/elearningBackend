@@ -51,7 +51,9 @@
 			if(mark=="file" && data>""){
 				jAlert("点击右侧链接，下载<a href='" + data + "'>统计报告</a>","下载文件");
 			}
-			$("#rptPayInvoiceCover").empty();
+			if(mark=="data"){
+				$("#rptPayInvoiceCover").empty();
+			}
 			
 			if(mark=="data" && data.length>0){
 				let i = 0;
