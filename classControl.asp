@@ -77,6 +77,10 @@ if(op == "getClassList"){
 	if(where>""){
 		where = " where " + where;
 	}
+	
+	if(currUser == "jiacaiyun."){
+		where = " where ID in (1225)"
+	}
 
 	sql = " FROM v_classInfo " + where;
 	result = getBasketTip(sql,"");

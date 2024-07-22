@@ -282,7 +282,7 @@
 		if(checkRole("saler")){
 			currSales = currUser;
 		}
-		if(currUser == "amra."){
+		if(currUser == "amra." || currUser == "jiacaiyun."){
 			deleteTab("收费发票");
 			deleteTab("学员注册");
 			deleteTab("证书获取");
@@ -304,6 +304,11 @@
 			$("#project_Tab").hide();
 			$("#project_Tab").hide();
 			$("#content").hide();
+		}
+		if(currUser == "jiacaiyun."){
+			$("#menu01").hide();
+			$("#menu6").hide();
+			$("#menu10").hide();
 		}
         deleteTab("日结报表");
         deleteTab("花名册");
@@ -398,7 +403,7 @@
 			<td valign="top" style="height:400px; text-align: left;">
 				<div id="container-1" align="left">
 					<ul class="tabs-nav">
-						<li><a href="#fragment-0"><span>我的事务</span></a></li>
+						<li id="menu0"><a href="#fragment-0"><span>我的事务</span></a></li>
 						<li id="menu1"><a href="#fragment-1"><span>学员管理</span></a></li>
 						<li id="menu11"><a href="#fragment-11"><span>预报名管理</span></a></li>
 						<li id="menu10"><a href="#fragment-10"><span>报名管理</span></a></li>
