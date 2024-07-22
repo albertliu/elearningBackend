@@ -627,12 +627,13 @@
 		$("#btnEntryform").hide();
 		$("#btnFiremanMaterials").hide();
 		$("#btnCloseStudentCourse").hide();
+		$("#btnReviveStudentCourse").hide();
 		$("#btnPrint").hide();
 		$("#btnRebuildStudentLesson").hide();
 		$("#amount").prop("readonly",false);
 		$("#btnViewInvoice").prop("disabled",true);
 		$("#check_pass").checkbox({readonly:true});
-		if($("#statusPay").val()==0 && $("#kindID").val()==0){
+		if($("#statusPay").val()==0 && $("#kindID").val()==0 && checkPermission("studentAdd")){
 			//未支付的个人付款可以支付，团体付款应到发票管理中操作。
 			$("#btnPay").show();
 		}
@@ -677,6 +678,7 @@
 						$("#btnReturn").show();
 						$("#btnRefund").show();
 						$("#btnCloseStudentCourse").show();
+						$("#btnReviveStudentCourse").show();
 						$("#btnRebuildStudentLesson").show();
 						$("#btnReviveStudentCourse").hide();
 						$("#signatureDate").prop("readonly",false);
@@ -688,6 +690,7 @@
 						$("#btnReturn").hide();
 						$("#btnRefund").hide();
 						$("#btnCloseStudentCourse").hide();
+						$("#btnReviveStudentCourse").hide();
 					}
 				}
 			}
@@ -928,7 +931,6 @@
 		<input class="button" type="button" id="btnEnter" value="报名" />&nbsp;
 		<input class="button" type="button" id="btnMaterialCheck" value="资料确认" />&nbsp;
 		<input class="button" type="button" id="btnReturn" value="退课" />&nbsp;
-		<input class="button" type="button" id="btnRefund" value="退款" />&nbsp;
 		<input class="button" type="button" id="btnDel" value="删除" />&nbsp;
 		<input class="button" type="button" id="btnCloseStudentCourse" value="关闭课程学习" />&nbsp;
 		<input class="button" type="button" id="btnReviveStudentCourse" value="重启课程学习" />&nbsp;
