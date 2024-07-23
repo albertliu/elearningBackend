@@ -63,7 +63,6 @@
 				arr.push("<thead>");
 				arr.push("<tr align='center'>");
 				arr.push("<th width='2%'>No</th>");
-				arr.push("<th width='14%'>身份证</th>");
 				arr.push("<th width='6%'>姓名</th>");
 				arr.push("<th width='6%'>金额</th>");
 				arr.push("<th width='9%'>付款日期</th>");
@@ -72,6 +71,7 @@
 				arr.push("<th width='6%'>应收</th>");
 				arr.push("<th width='14%'>发票号码</th>");
 				arr.push("<th width='9%'>开票日期</th>");
+				arr.push("<th width='14%'>发票抬头</th>");
 				arr.push("<th width='9%'>备注</th>");
 				arr.push("<th width='6%'>发票</th>");
 				arr.push("</tr>");
@@ -85,9 +85,9 @@
 					arr.push("<tr class='grade0'>");
 					arr.push("<td class='center'>" + i + "</td>");
 					for(let key in val){
-						if(j>2){
+						if(j>3){
 							t = 0;
-							if(key == "username" && val[key]>""){
+							if(key == "name" && val[key]>""){
 								t = 1;
 							}
 							if(key == "invoicePDF" && val[key]>""){
