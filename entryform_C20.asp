@@ -85,6 +85,9 @@
 		$("input[name='fire_kind5']").change(function(){
 			setKind4();
 		});
+		if(keyID==4){
+			$("#itemTitle").hide();
+		}
 		//getNeed2know(nodeID);
 		$("#item_kind7").hide();
 		getNodeInfo(nodeID, refID);
@@ -193,11 +196,13 @@
 				}
 				if(c == ""){c = "&nbsp;&nbsp;身份证正面还未上传";}
 				$("#img_cardA").html(c);
-				getAgreement(ar[1],ar[2],course,sign,sDate,price);
+				getAgreement(ar[1],ar[2],course,(keyID==4?"":sign),sDate,price);
 				k = 0;
 				var p = 1;
 				var s = 1;
-				getMaterials(ar[1],sign,p,k,s);
+				if(keyID != 4){
+					getMaterials(ar[1],sign,p,k,s);
+				}
 				if(keyID==1){
 					resumePrint();
 				}
@@ -299,18 +304,20 @@
 <div id='layout' align='left' style="background:#f0f0f0;width:1000px;">	
 	
 	<div style="width:100%;float:left;margin:0;">
-		<div style="text-align:center;">
-		<input class="button" type="button" id="print" value="打印" />&nbsp;<input class="button" type="button" id="save" value="保存" />&nbsp;
-		</div>
-		<hr style="text-align:center;margin-top:10px;margin-bottom:10px;">
-		<div>
-		申报文件
-			<span id="fire_materials" style="margin-left:20px;"></span>
-			<span id="fire_materials1" style="margin-left:20px;"></span>
-			<span id="img_cardA" style="margin-left:20px;"></span>
-			<span id="fire_zip" style="margin-left:20px;"></span>
-			<input class="button" style="margin-left:20px;" type="button" id="btnFiremanMaterials" value="生成文件" />
-			<input class="button" style="margin-left:20px;" type="button" id="btnFiremanZip" value="生成压缩包" />
+		<div id="itemTitle">
+			<div style="text-align:center;">
+			<input class="button" type="button" id="print" value="打印" />&nbsp;<input class="button" type="button" id="save" value="保存" />&nbsp;
+			</div>
+			<hr style="text-align:center;margin-top:10px;margin-bottom:10px;">
+			<div>
+			申报文件
+				<span id="fire_materials" style="margin-left:20px;"></span>
+				<span id="fire_materials1" style="margin-left:20px;"></span>
+				<span id="img_cardA" style="margin-left:20px;"></span>
+				<span id="fire_zip" style="margin-left:20px;"></span>
+				<input class="button" style="margin-left:20px;" type="button" id="btnFiremanMaterials" value="生成文件" />
+				<input class="button" style="margin-left:20px;" type="button" id="btnFiremanZip" value="生成压缩包" />
+			</div>
 		</div>
 		<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
 			<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>全国消防行业职业技能鉴定报名表</h3></div>

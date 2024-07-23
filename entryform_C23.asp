@@ -30,9 +30,15 @@
 	var op = 0;
 	var refID = 0;
 	var keyID = 0;
+	var sign = "";
+	var reex = 0;
+	var course = "";
+	var sDate = "";
+	var price = 0;
 	var updateCount = 1;
 	<!--#include file="js/commFunction.js"-->
 	<!--#include file="need2know.js"-->
+	<!--#include file="agreement.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";		//enterID
 		refID = "<%=refID%>";		//username
@@ -45,7 +51,7 @@
 		$("#print").click(function(){
 			resumePrint();
 		});
-		getNeed2know(nodeID);
+		// getNeed2know(nodeID);
 		getNodeInfo(nodeID, refID);
 });
 
@@ -56,6 +62,11 @@
 			ar = unescape(re).split("|");
 			if(ar > "0"){
 				$("#SNo").html(ar[25] + "&nbsp;&nbsp;班级：" + ar[34]);
+				sign = (ar[52]==1?ar[48]:"");
+				reex = ar[40];
+				course = ar[56];
+				sDate = ar[49];
+				price = ar[53];
 				if(ar[48] > ""){
 					$("#img_signature").attr("src","/users" + ar[48] + "?times=" + (new Date().getTime()));
 					$("#signatureDate").html(ar[49]);
@@ -100,6 +111,9 @@
 					$("#img_cardA").attr("src","images/blank_cardA.png");
 				}
 				//$("#date").html(currDate);
+				if(keyID == 4){
+					getAgreement(ar[1],ar[2],course,"","",price);	//无签名
+				}
 				if(keyID==1){
 					resumePrint();
 				}

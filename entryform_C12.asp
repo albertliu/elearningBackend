@@ -43,7 +43,7 @@
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";		//enterID
 		refID = "<%=refID%>";		//username
-		keyID = "<%=keyID%>";		//0 预览  1 打印  2 归档材料  3 报名表
+		keyID = "<%=keyID%>";		//0 预览  1 打印  2 归档材料  3 报名表  4 仅报名表（不显示身份证，签名时展示给学员) 
 		op = "<%=op%>";
 		
 		$.ajaxSetup({ 
@@ -190,7 +190,12 @@
 						getNeed2know(nodeID);
 						getAgreement(ar[1],ar[2],course,sign,sDate,price);
 					}
-					getMaterials(ar[1],sign,p,k);
+					if(keyID != 4){
+						getMaterials(ar[1],sign,p,k);
+					}
+				}
+				if(keyID == 4){
+					getAgreement(ar[1],ar[2],course,"","",price);	//无签名
 				}
 				// if(reex==1){
 				// 	if(ar[44]==""){

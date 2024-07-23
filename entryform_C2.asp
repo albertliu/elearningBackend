@@ -48,9 +48,6 @@
 		$.ajaxSetup({ 
 			async: false 
 		}); 
-		$("#print").click(function(){
-			resumePrint();
-		});
 		//getNeed2know(nodeID);
 		getNodeInfo(nodeID, refID);
 });
@@ -106,9 +103,9 @@
 					k = 1;
 					var p = 1;
 					var s = 1;	//社保证明
-					getAgreement(ar[1],ar[2],course,sign,sDate,price);
 					getMaterials(ar[1],sign,p,k,s);
 				}
+				getAgreement(ar[1],ar[2],course,(keyID==4?"":sign),sDate,price);
 
 				if(keyID==1){
 					resumePrint();
@@ -157,9 +154,6 @@
 <div id='layout' align='left' style="background:#f0f0f0;">	
 	
 	<div style="width:100%;float:left;margin:0;">
-		<div style="text-align:center;">
-		<input class="button" type="button" id="print" value="打印" />&nbsp;
-		</div>
 		<div id="resume_print" style="border:none;width:99%;margin:1px;background:#ffffff;line-height:18px;">
 			<div style='margin: 20px;text-align:center;'><h2 style='font-size:1.3em;'>上海智能消防学校</h2></div>
 			<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>重点岗位消防安全培训学员信息采集表</h3></div>

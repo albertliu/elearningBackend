@@ -461,7 +461,7 @@
 						if(hasPhoto == 1){
 							$.messager.confirm('确认对话框', '要覆盖原来的照片吗?', function(r) {
 								if(r){
-									scanPhoto = 1;
+									scanPhoto = 0;
 								}
 							});
 						}

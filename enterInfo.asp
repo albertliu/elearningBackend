@@ -332,6 +332,11 @@
 			});
 		});
 
+		$("#btnGenSignForm").click(function(){
+			generateEntryFormSign();
+			jAlert("已生成新的协议");
+		});
+
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -411,6 +416,20 @@
 				$("#pay_checkerName").val(ar[85]);
 				$("#completionPass").val(ar[86]);
 				$("#completion").val(ar[10]);
+				let c = $("#certID").val();
+				if(c == "C21" || c == "C20A"){
+					c = "C20";
+				}
+				if(c == "C30" || c == "C31" || c == "C32" || c == "C35" || c == "C18" || c == "C19" || c == "C36" || c == "C37"){
+					c = "C2";
+				}
+				if(c == "C24" || c == "C25" || c == "C26" || c == "C25B" || c == "C26B" || c == "C14" || c == "C15" || c == "C27" || c == "C27B"){
+					c = "C12";
+				}
+				if(c == "C17"){
+					c = "C16";
+				}
+				entryform = c;
 				invoicePDF = ar[89];
 				if(ar[48]>""){
 					$("#signatureStatus").prop("checked",true);
@@ -497,6 +516,7 @@
 					getNodeInfo(nodeID);
 					if(op == 1){
 						generateEntryForm(1);
+						generateEntryFormSign();	//生成签名时显示的报名表
 					}
 					op = 0;
 				}
@@ -541,39 +561,7 @@
 	}
 	
 	function generateEntryForm(i){
-		/*$.getJSON(uploadURL + "/outfiles/generate_entryform?certID=" + $("#certID").val() + "&enterID=" + $("#studentCourseID").val() + "&registerID=" + currUser ,function(data){
-			if(data>""){
-				if(i==0){
-					asyncbox.alert("报名表已生成 <a href='users" + data + "' target='_blank'>下载文件</a>",'操作成功',function(action){
-					　　//alert 返回action 值，分别是 'ok'、'close'。
-					　　if(action == 'ok'){
-					　　}
-					　　if(action == 'close'){
-					　　　　//alert('close');
-					　　}
-					});
-				}
-				getNodeInfo(nodeID);
-				window.open("entryform_" + $("#certID").val() + ".asp?nodeID=" + nodeID + "&refID=" + refID + "&keyID=1", "_self");
-			}else{
-				alert("没有可供处理的数据。");
-			}
-		});
-		*/
-		var c = $("#certID").val();
-		if(c == "C21" || c == "C20A"){
-			c = "C20";
-		}
-		if(c == "C30" || c == "C31" || c == "C32" || c == "C35" || c == "C18" || c == "C19" || c == "C36" || c == "C37"){
-			c = "C2";
-		}
-		if(c == "C24" || c == "C25" || c == "C26" || c == "C25B" || c == "C26B" || c == "C14" || c == "C15" || c == "C27" || c == "C27B"){
-			c = "C12";
-		}
-		if(c == "C17"){
-			c = "C16";
-		}
-		window.open("entryform_" + c + ".asp?nodeID=" + nodeID + "&refID=" + refID + "&keyID=1" + "&times=" + (new Date().getTime()), "_self");
+		window.open("entryform_" + entryform + ".asp?nodeID=" + nodeID + "&refID=" + refID + "&keyID=1" + "&times=" + (new Date().getTime()), "_self");
 	}
 	
 	function generateFiremanMaterials(){
@@ -595,23 +583,15 @@
 			}
 		});
 	}
+
+	function generateEntryFormSign(){
+		$.getJSON(uploadURL + "/outfiles/generate_entryform_sign?refID=" + refID + "&nodeID=" + nodeID + "&entryform=" + entryform + "&host=" + currHost ,function(data){
+			// no action
+		});
+	}
 	
 	function printEntryform(k){
-		var c = $("#certID").val();
-		//c = "C2";
-		if(c == "C21" || c == "C20A"){
-			c = "C20";
-		}
-		if(c == "C30" || c == "C31" || c == "C32" || c == "C35" || c == "C18" || c == "C19" || c == "C36" || c == "C37"){
-			c = "C2";
-		}
-		if(c == "C24" || c == "C25" || c == "C26" || c == "C25B" || c == "C26B" || c == "C14" || c == "C15" || c == "C27" || c == "C27B"){
-			c = "C12";
-		}
-		if(c == "C17"){
-			c = "C16";
-		}
-		window.open("entryform_" + c + ".asp?keyID=" + k + "&nodeID=" + nodeID + "&refID=" + refID + "&kindID=" + $("#certID").val() + "&times=" + (new Date().getTime()), "_self");
+		window.open("entryform_" + entryform + ".asp?keyID=" + k + "&nodeID=" + nodeID + "&refID=" + refID + "&kindID=" + $("#certID").val() + "&times=" + (new Date().getTime()), "_self");
 	}
 	
 	function setButton(){
@@ -798,6 +778,7 @@
 					已签名<input style="border:0px;" type="checkbox" id="signatureStatus" value="" />&nbsp;&nbsp;
 					签名日期<input class="readOnly" type="text" id="signatureDate" size="15" readOnly="true" />&nbsp;&nbsp;
 					<input class="button" type="button" id="btnShowSignature" value="查看签名" />
+					<input class="button" type="button" id="btnGenSignForm" value="生成协议" />
 				</td>
 			</tr>
 			<tr>

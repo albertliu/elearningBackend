@@ -47,14 +47,10 @@
 		$.ajaxSetup({ 
 			async: false 
 		}); 
-		$("#print").click(function(){
-			resumePrint();
-		});
-
-		$("#btnFiremanMaterials").click(function(){
-			generateFiremanMaterials();
-		});
-		getNeed2know(nodeID);
+		// $("#btnFiremanMaterials").click(function(){
+		// 	generateFiremanMaterials();
+		// });
+		// getNeed2know(nodeID);
 		getNodeInfo(nodeID, refID);
 	});
 
@@ -136,7 +132,7 @@
 				if(c == ""){c = "&nbsp;&nbsp;身份证正反面还未生成";}
 				$("#fire_materials").html(c);
 				//$("#date").html(currDate);
-				getAgreement(ar[1],ar[2],course,sign,sDate,price);
+				getAgreement(ar[1],ar[2],course,(keyID==4?"":sign),sDate,price);
 				if(keyID==1){
 					resumePrint();
 				}
@@ -195,15 +191,6 @@
 <div id='layout' align='left' style="background:#f0f0f0;width:1000px;">	
 	
 	<div style="width:100%;float:left;margin:0;">
-		<div style="text-align:center;">
-		<input class="button" type="button" id="print" value="打印" />&nbsp;
-		</div>
-		<div>
-		申报文件
-			<span id="img_education" style="margin-left:20px;"></span>
-			<span id="fire_materials" style="margin-left:20px;"></span>
-			<input class="button" style="margin-left:20px;" type="button" id="btnFiremanMaterials" value="生成文件" />
-		</div>
 		<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
 			<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>特种设备作业人员资格申请表</h3></div>
 			<div style='margin: 12px;text-align:left; width:95%;'><span style='font-size:1.2em;'>学员编号：</span><span style='font-size:1.2em;' id="SNo"></span></div>
@@ -274,7 +261,6 @@
 			</tr>
 			</table>
 			<p style='font-size:1.2em;'>注：申请人在网上申请的，填报申请表后打印盖章签字并扫描上传。同时提供身份证明、学历证明复印件各一份。相应考试大纲有要求的，还需提供一份体检报告。</p>
-			<div style="page-break-after:always">&nbsp;</div>
 			<div id="needCover"></div>
 			<div id="agreementCover"></div>
 		</div>
