@@ -420,7 +420,7 @@ if(op == "setMemo"){
 if(op == "setStatus"){
 	result = 0;
 	if(result == 0){
-		sql = "exec setStudentStatus " + nodeID + "," + status;
+		sql = "exec setStudentStatus '" + nodeID + "'," + status + ",'" + currUser + "'";
 		execSQL(sql);
 	}
 	Response.Write(escape(result));
@@ -435,7 +435,7 @@ if(op == "delNode"){
 if(op == "reset"){
 	result = 0;
 	if(result == 0){
-		sql = "exec resetStudentPwd " + nodeID + ",'" + currUser + "'";
+		sql = "exec resetStudentPwd '" + nodeID + "','" + currUser + "'";
 		execSQL(sql);
 	}
 	Response.Write(escape(result));

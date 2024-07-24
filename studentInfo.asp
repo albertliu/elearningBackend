@@ -97,7 +97,7 @@
 		$("#close").click(function(){
 			$.messager.confirm('确认对话框', '你确定要禁用这个学员吗?', function(r) {
 				if(r){
-					$.get("studentControl.asp?op=setStatus&nodeID=" + $("#studentID").val() + "&status=1&times=" + (new Date().getTime()),function(data){
+					$.get("studentControl.asp?op=setStatus&nodeID=" + $("#username").val() + "&status=1&times=" + (new Date().getTime()),function(data){
 						$.messager.alert("信息提示","成功禁用！");
 						getNodeInfo(nodeID);
 						updateCount += 1;
@@ -108,7 +108,7 @@
 		$("#open").click(function(){
 			$.messager.confirm('确认对话框', '你确定要解禁这个学员吗?', function(r) {
 				if(r){
-					$.get("studentControl.asp?op=setStatus&nodeID=" + $("#studentID").val() + "&status=0&times=" + (new Date().getTime()),function(data){
+					$.get("studentControl.asp?op=setStatus&nodeID=" + $("#username").val() + "&status=0&times=" + (new Date().getTime()),function(data){
 						$.messager.alert("信息提示","成功解禁！");
 						getNodeInfo(nodeID,"");
 						updateCount += 1;
@@ -119,7 +119,7 @@
 		$("#reset").click(function(){
 			$.messager.confirm('确认对话框', '你确定要重置密码吗?', function(r) {
 				if(r){
-					$.get("studentControl.asp?op=reset&nodeID=" + $("#studentID").val() + "&times=" + (new Date().getTime()),function(data){
+					$.get("studentControl.asp?op=reset&nodeID=" + $("#username").val() + "&times=" + (new Date().getTime()),function(data){
 						$.messager.alert("信息提示","重置完成，当前密码为123456");
 					});
 				}
