@@ -48,6 +48,6 @@
 
 <div id='layout' align='left' style="background:#f0f0f0; overflow: hidden;height:100%;">
 	<div id="cover"></div>
-	<iframe src="" width="100%" height="500" style="border:0px;"></iframe>
+	<iframe src="" width="100%" height="300" style="border:0px;"></iframe>
 </div>
 </body>
