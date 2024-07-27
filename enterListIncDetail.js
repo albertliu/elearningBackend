@@ -16,13 +16,14 @@
 							<span id="enterListLongItem6">
 								课程&nbsp;<select id="searchEnterCourseID" style="width:80px"></select>&nbsp;&nbsp;
 							</span>
-							批次&nbsp;<select id="searchEnterProjectID" style="width:180px"></select>&nbsp;
+							<span id="enterListLongItem9">
+								批次&nbsp;<select id="searchEnterProjectID" style="width:180px"></select>&nbsp;
+							</span>
 							<span>
 								&nbsp;&nbsp;学习进度&nbsp;&gt;=<input type="text" id="searchEnter_completion1" size="2" />%
 								&nbsp;&nbsp;模拟成绩&nbsp;&gt;=<input type="text" id="searchEnter_score1" size="2" />
 								<input class="easyui-checkbox" id="searchEnterInvoice" name="searchEnterInvoice" value="1"/>&nbsp;开票&nbsp;
 								<input class="easyui-checkbox" id="searchEnterReceive" name="searchEnterReceive" value="1"/>&nbsp;应收&nbsp;
-								<input class="easyui-checkbox" id="searchEnterReexamine" name="searchEnterReexamine" value="1"/>&nbsp;复训预备&nbsp;
 							</span>
 						    <span style="float:right;">
 								<input class="button" type="button" id="btnSearchEnterDownload" value="下载" />
@@ -38,6 +39,7 @@
 								班主任&nbsp;<select id="searchEnterClassAdviser" style="width:90px"></select>&nbsp;&nbsp;
 								班级&nbsp;<select id="searchEnterClassID" style="width:180px"></select>&nbsp;&nbsp;
 								类别&nbsp;<select id="searchEnterReexamine" style="width:50px"></select>&nbsp;&nbsp;
+								<input class="easyui-checkbox" id="searchEnterPre" name="searchEnterPre" value="1"/>&nbsp;预备班&nbsp;
 							    &nbsp;<label id="searchEnterDateItem">报名日期</label>&nbsp;<input type="text" id="searchEnterStartDate" size="8" />-<input type="text" id="searchEnterEndDate" size="8" />
 							</span>
 							<input style="border:0px;" type="checkbox" id="searchEnterShowPhoto" value="" />&nbsp;显示照片&nbsp;
