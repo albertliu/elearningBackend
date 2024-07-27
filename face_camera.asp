@@ -102,6 +102,7 @@
     var faceflag = false // 是否进行拍照
     var quality = 0.2;  // 0.2-0.5之间，控制压缩率。越小压缩越大，0.2可以在保证质量的情况下达到最大压缩率。
     var start = 0;
+    let refID = 0;
 
     $(document).ready(function (){
       $("#confidence").numberbox("setValue", 65);
@@ -160,7 +161,7 @@
                     //取消此人的签到
                     $.get("classControl.asp?op=cancelFaceCheckin&nodeID=" + row.ID + "&times=" + (new Date().getTime()),function(re){
                       jAlert("已取消。");
-                      // getCheckinList();
+                      getCheckinList(refID);
                     });
                 }
             });
@@ -257,7 +258,7 @@
                           }
                           $("#res").html(data.msg);
                           // getScheduleCheckIn();
-                          // getCheckinList();
+                          getCheckinList(refID);
                         });
                       }
                       faceflag = false;
@@ -393,12 +394,15 @@
     // }
 
 		function getCheckinList(id){
-      $.getJSON(uploadURLS + "/public/getScheduleCheckInList?selList=" + id + "&times=" + (new Date().getTime()),function(re){
-        $("#dg1").datagrid("loadData",re);
-      });
-      $.getJSON(uploadURLS + "/public/getScheduleNoCheckInList?selList=" + id + "&times=" + (new Date().getTime()),function(re){
-        $("#dg2").datagrid("loadData",re);
-      });
+      if(id>0){
+        refID = id;
+        $.getJSON(uploadURLS + "/public/getScheduleCheckInList?selList=" + id + "&times=" + (new Date().getTime()),function(re){
+          $("#dg1").datagrid("loadData",re);
+        });
+        $.getJSON(uploadURLS + "/public/getScheduleNoCheckInList?selList=" + id + "&times=" + (new Date().getTime()),function(re){
+          $("#dg2").datagrid("loadData",re);
+        });
+      }
 		}
 
   </script>
