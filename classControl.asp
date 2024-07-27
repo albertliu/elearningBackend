@@ -451,7 +451,7 @@ if(op == "getCurrScheduleList"){
 	result = "";
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
-		result += "%%" + rs("ID").value + "|" + rs("courseID").value + "|" + rs("title").value + "|" + rs("qty").value;
+		result += "%%" + rs("ID").value + "|" + rs("courseID").value + "|" + rs("title").value + "|" + rs("qty").value + "|" + rs("classID").value;
 		rs.MoveNext();
 	}
 	result = result.substr(2);

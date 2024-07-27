@@ -95,6 +95,16 @@
       font-weight:bold;
       font-size: 1.5em;
     }
+    .left{
+      font-size: 16px;
+    }
+    .datagrid-header-row { 
+      height: 30px;
+    }
+    .datagrid-row { 
+      height: 'auto';
+      font-size: 16px;
+    }
   </style>
   <script>
 	  <!--#include file="js/commFunction.js"-->
@@ -119,9 +129,9 @@
 		
       $("#btnStart").linkbutton({
         iconCls:'icon-ok',
-        width:85,
-        height:25,
-        text:'开始考勤',
+        width:120,
+        height:30,
+        text:'<span style="font-size:18px">开始考勤</span>',
         onClick:function() {
           getSelCart("");
           if(selCount==0){
@@ -138,9 +148,9 @@
 		
       $("#btnStop").linkbutton({
         iconCls:'icon-cancel',
-        width:85,
-        height:25,
-        text:'结束考勤',
+        width:120,
+        height:30,
+        text:'<span style="font-size:18px">结束考勤</span>',
         onClick:function() {
           start = 0;
           $("#tip").html('考勤已结束。');
@@ -150,9 +160,18 @@
       $('#dg1').datagrid({
           url:'',
           columns:[[
-              {field:'username',title:'身份证号',width:'50%'},
-              {field:'name',title:'姓名',width:'30%',align:'left'},
-              {field:'classID',title:'班级',width:'30%'}
+              {field:'username',title:'身份证号',width:'50%',formatter: function(value,row,index){
+									return "<span style='font-size:16px;'>" + value + "</span>";
+								}
+              },
+              {field:'name',title:'姓名',width:'30%',align:'left',formatter: function(value,row,index){
+									return "<span style='font-size:16px;'>" + value + "</span>";
+								}
+              },
+              {field:'classID',title:'班级',width:'30%',formatter: function(value,row,index){
+									return "<span style='font-size:16px;'>" + value + "</span>";
+								}
+              }
           ]],
           onDblClickRow: function(index, row){
             //取消签到
@@ -170,10 +189,12 @@
       $('#dg2').datagrid({
           url:'',
           columns:[[
-              {field:'username',title:'身份证号',width:'40%'},
-              {field:'name',title:'姓名',width:'20%',align:'left'},
-              {field:'classID',title:'班级',width:'15%'},
-	            {field:'photo_filename',title:'照片',width:'25%',align:'center',formatter: function(value,row,index){
+              {field:'name',title:'姓名',width:'50%',align:'left',formatter: function(value,row,index){
+									return "<span style='font-size:16px;'>" + value + "</span>";
+								}
+              },
+              // {field:'classID',title:'班级',width:'30%'},
+	            {field:'photo_filename',title:'照片',width:'50%',align:'center',formatter: function(value,row,index){
 									var s = "";
 									if(row.photo_filename > ""){
 										s = '<img style="width:40px;" src="users' + row.photo_filename + '?times=' + (new Date().getTime()) + '"></a>';
@@ -184,11 +205,12 @@
           ]]
       });
       //更改的是datagrid中的数据
-      $('.datagrid-cell').css('font-size','18px');
+      $('.datagrid-cell').css('font-size','16px');
       //datagrid中的列名称
-      $('.datagrid-header .datagrid-cell span ').css('font-size','18px');
+      $('.datagrid-header .datagrid-cell span ').css('font-size','16px');
       //标题
       $('.panel-title ').css('font-size','36px'); 
+      // $('.datagrid-row').css('height','50px');
       //分页工具栏
       // $('.datagrid-pager').css('display','none');
       var video = document.getElementById('video');
@@ -254,9 +276,9 @@
                         $.post(uploadURLS + "/alis/searchFace", {base64Data: base64Data, selList: selList, confidence: $("#confidence").numberbox("getValue")} ,function(data){
                           // alert(data)
                           if(data.status < 9){
-                            showResultMsg(data.status, data.msg);
+                            showResultMsg(data.status, data.name, data.msg);
                           }
-                          $("#res").html(data.msg);
+                          $("#res").html(data.name + data.msg);
                           // getScheduleCheckIn();
                           getCheckinList(refID);
                         });
@@ -299,17 +321,17 @@
       //根据不同标识，显示不同风格（字体颜色）。1秒后自动关闭
       let jc = $.dialog({
           title: false,
-          content: '<strong style="font-size: 13em; color:' + c[kind] + ';">' + name + '\n' + msg + '</strong>',
+          content: '<div style="font-size: 15em; font-weight:bold; text-align:center; color:' + c[kind] + ';">' + name + '<br />' + msg + '</div>',
           autoClose: '|500',
           animation: 'scale',
           closeAnimation: 'zoom'
-      });		
-      var utterThis = new window.SpeechSynthesisUtterance(name + msg);
-      window.speechSynthesis.cancel();
-		  window.speechSynthesis.speak(utterThis);
+      });
       setTimeout(() => {
           jc.close();
-      }, 500);    
+      }, 1000);    		
+      var utterThis = new window.SpeechSynthesisUtterance(name+msg);
+      window.speechSynthesis.cancel();
+		  window.speechSynthesis.speak(utterThis);
     }
 
     function getScheduleList(){
@@ -322,12 +344,12 @@
         arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='enterTab' width='100%'>");
         arr.push("<thead>");
         arr.push("<tr align='center'>");
-        arr.push("<th width='2%'>No</th>");
-        arr.push("<th width='50%'>课程名称</th>");
-        arr.push("<th width='10%'>人数</th>");
-        arr.push("<th width='10%'>签到</th>");
-        arr.push("<th width='10%'>本班</th>");
-        arr.push("<th width='10%'>其他</th>");
+        // arr.push("<th width='1%'></th>");
+        arr.push("<th width='50%' class='left'>课程名称</th>");
+        arr.push("<th width='12%' class='left'>人数</th>");
+        arr.push("<th width='12%' class='left'>签到</th>");
+        arr.push("<th width='12%' class='left'>本班</th>");
+        arr.push("<th width='12%' class='left'>其他</th>");
         arr.push("<th width='2%'></th>");
         arr.push("</tr>");
         arr.push("</thead>");
@@ -339,8 +361,8 @@
             ar1 = val.split("|");
             i += 1;
             arr.push("<tr class='grade0'>");
-            arr.push("<td class='center'>" + i + "</td>");
-            arr.push("<td class='left'><a href='javascript:getCheckinList(" + ar1[0] + ");'>" + ar1[2] + "</a></td>");
+            // arr.push("<td class='center'>" + i + "</td>");
+            arr.push("<td class='left'><a style='text-decoration: none; font-size:16px;' href='javascript:getCheckinList(" + ar1[0] + "," + ar1[4] + ");'>" + ar1[4] + "." + ar1[2] + "</a></td>");
             let ar2 = ar1[3].split("**");
             arr.push("<td class='left'>" + ar2[0] + "</td>");
             arr.push("<td class='left'>" + ar2[1] + "</td>");
@@ -353,7 +375,7 @@
         arr.push("</tbody>");
         arr.push("<tfoot>");
         arr.push("<tr>");
-        arr.push("<th>&nbsp;</th>");
+        // arr.push("<th>&nbsp;</th>");
         arr.push("<th>&nbsp;</th>");
         arr.push("<th>&nbsp;</th>");
         arr.push("<th>&nbsp;</th>");
@@ -393,7 +415,7 @@
     //   });
     // }
 
-		function getCheckinList(id){
+		function getCheckinList(id, classID){
       if(id>0){
         refID = id;
         $.getJSON(uploadURLS + "/public/getScheduleCheckInList?selList=" + id + "&times=" + (new Date().getTime()),function(re){
@@ -402,6 +424,8 @@
         $.getJSON(uploadURLS + "/public/getScheduleNoCheckInList?selList=" + id + "&times=" + (new Date().getTime()),function(re){
           $("#dg2").datagrid("loadData",re);
         });
+        $("#title_1").html(classID + "班已签到人员：");
+        $("#title_2").html(classID + "班未签到人员：");
       }
 		}
 
@@ -421,21 +445,21 @@
      </td>
     </tr>
     <tr>
-        <td style="width:25%;" valign="top">
+        <td style="width:44%;" valign="top">
           <div id="cover" style="float:top;margin:0px;background:#f8fff8;">
           </div>
-          <div class="tip">已签到人员：</div>
+          <div class="tip" id="title_1">已签到人员：</div>
           <div><table id="dg1" style="font-size:1.3em;"></table></div>
         </td>
         <td style="width:40%;" valign="top">
           <div>
             <div id="tip" class="tip-box"></div>
-            <video id="video" width="480" height="360" preload autoplay loop muted></video>
-            <canvas id="canvas" width="480" height="360"></canvas>
+            <video id="video" width="440" height="360" preload autoplay loop muted></video>
+            <canvas id="canvas" width="440" height="360"></canvas>
           </div>
         </td>
-        <td style="width:30%;" valign="top">
-          <div class="tip">本班未签到人员：</div>
+        <td style="width:15%;" valign="top">
+          <div class="tip" id="title_2">未签到人员：</div>
           <div><table id="dg2" style="font-size:1.3em;"></table></div>
         </td>
     </tr>
