@@ -130,7 +130,7 @@
             start = 1;
             $("#tip").html('考勤已开始。');
             // getScheduleCheckIn();
-            getCheckinList();
+            // getCheckinList();
           }
         }
       });
@@ -160,7 +160,7 @@
                     //取消此人的签到
                     $.get("classControl.asp?op=cancelFaceCheckin&nodeID=" + row.ID + "&times=" + (new Date().getTime()),function(re){
                       jAlert("已取消。");
-                      getCheckinList();
+                      // getCheckinList();
                     });
                 }
             });
@@ -257,7 +257,7 @@
                           }
                           $("#res").html(data.msg);
                           // getScheduleCheckIn();
-                          getCheckinList();
+                          // getCheckinList();
                         });
                       }
                       faceflag = false;
@@ -270,18 +270,6 @@
             if (!faceflag) {
               $("#tip").html('只可一人进行人脸识别！');
             }
-          }
-        }
-      });
-      
-
-      $("#scheduleID").combobox({
-        onChange: function(val){
-          if(val>""){
-            scheduleID = val;
-            getCheckinList();
-          }else{
-            scheduleID = 0;
           }
         }
       });
