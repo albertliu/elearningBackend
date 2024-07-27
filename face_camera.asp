@@ -110,7 +110,7 @@
         onChange:function(val) {
           if(val > 75 || val < 45){
             $.messager.alert("提示","识别参数应该在45-75范围内。","warning");
-            $("#confidence").numberbox("setValue", 65);
+            $("#confidence").numberbox("setValue", 66);
             return false;
           }
         }
@@ -129,7 +129,7 @@
           }else{
             start = 1;
             $("#tip").html('考勤已开始。');
-            getScheduleCheckIn();
+            // getScheduleCheckIn();
             getCheckinList();
           }
         }
@@ -256,7 +256,7 @@
                             showResultMsg(data.status, data.msg);
                           }
                           $("#res").html(data.msg);
-                          getScheduleCheckIn();
+                          // getScheduleCheckIn();
                           getCheckinList();
                         });
                       }
@@ -305,21 +305,21 @@
       getScheduleList();
     });
 
-    function showResultMsg(kind, msg){
+    function showResultMsg(kind, name, msg){
       let c = ["green", "red", "orange"];
       //根据不同标识，显示不同风格（字体颜色）。1秒后自动关闭
       let jc = $.dialog({
           title: false,
-          content: '<strong style="font-size: 15em; color:' + c[kind] + ';">' + msg + '</strong>',
+          content: '<strong style="font-size: 13em; color:' + c[kind] + ';">' + name + '\n' + msg + '</strong>',
           autoClose: '|500',
           animation: 'scale',
           closeAnimation: 'zoom'
       });		
-      var utterThis = new window.SpeechSynthesisUtterance(msg);
+      var utterThis = new window.SpeechSynthesisUtterance(name + msg);
       window.speechSynthesis.cancel();
 		  window.speechSynthesis.speak(utterThis);
       setTimeout(() => {
-            jc.close();
+          jc.close();
       }, 500);    
     }
 
@@ -334,7 +334,11 @@
         arr.push("<thead>");
         arr.push("<tr align='center'>");
         arr.push("<th width='2%'>No</th>");
-        arr.push("<th width='96%'>课程名称</th>");
+        arr.push("<th width='50%'>课程名称</th>");
+        arr.push("<th width='10%'>人数</th>");
+        arr.push("<th width='10%'>签到</th>");
+        arr.push("<th width='10%'>本班</th>");
+        arr.push("<th width='10%'>其他</th>");
         arr.push("<th width='2%'></th>");
         arr.push("</tr>");
         arr.push("</thead>");
@@ -347,7 +351,12 @@
             i += 1;
             arr.push("<tr class='grade0'>");
             arr.push("<td class='center'>" + i + "</td>");
-            arr.push("<td class='left'>" + ar1[2] + "</td>");
+            arr.push("<td class='left'><a href='javascript:getCheckinList(" + ar1[0] + ");'>" + ar1[2] + "</a></td>");
+            let ar2 = ar1[3].split("**");
+            arr.push("<td class='left'>" + ar2[0] + "</td>");
+            arr.push("<td class='left'>" + ar2[1] + "</td>");
+            arr.push("<td class='left'>" + ar2[2] + "</td>");
+            arr.push("<td class='left'>" + ar2[3] + "</td>");
             arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchk' />" + "</td>");
             arr.push("</tr>");
           });
@@ -355,6 +364,10 @@
         arr.push("</tbody>");
         arr.push("<tfoot>");
         arr.push("<tr>");
+        arr.push("<th>&nbsp;</th>");
+        arr.push("<th>&nbsp;</th>");
+        arr.push("<th>&nbsp;</th>");
+        arr.push("<th>&nbsp;</th>");
         arr.push("<th>&nbsp;</th>");
         arr.push("<th>&nbsp;</th>");
         arr.push("<th>&nbsp;</th>");
@@ -375,31 +388,29 @@
 		  });
     }
 
-    function getScheduleCheckIn(){
-      $.get("classControl.asp?op=getScheduleCheckIn&refID=" + selList + "&times=" + (new Date().getTime()),function(re){
-        var ar = new Array();
-        ar = unescape(re).split("|");
-        if(ar > ""){
-          $("#qty0").html(ar[1]);
-          $("#qty1").html(ar[2] + "/" + ar[0]);
-          $("#qty2").html(ar[3]);
-        }else{
-          $("#qty0").html("");
-          $("#qty1").html("");
-          $("#qty2").html("");
-        }
-      });
-    }
+    // function getScheduleCheckIn(){
+    //   $.get("classControl.asp?op=getScheduleCheckIn&refID=" + selList + "&times=" + (new Date().getTime()),function(re){
+    //     var ar = new Array();
+    //     ar = unescape(re).split("|");
+    //     if(ar > ""){
+    //       $("#qty0").html(ar[1]);
+    //       $("#qty1").html(ar[2] + "/" + ar[0]);
+    //       $("#qty2").html(ar[3]);
+    //     }else{
+    //       $("#qty0").html("");
+    //       $("#qty1").html("");
+    //       $("#qty2").html("");
+    //     }
+    //   });
+    // }
 
-		function getCheckinList(){
-      if(selCount > 0){
-        $.getJSON(uploadURLS + "/public/getScheduleCheckInList?selList=" + selList + "&times=" + (new Date().getTime()),function(re){
-          $("#dg1").datagrid("loadData",re);
-        });
-        $.getJSON(uploadURLS + "/public/getScheduleNoCheckInList?selList=" + selList + "&times=" + (new Date().getTime()),function(re){
-          $("#dg2").datagrid("loadData",re);
-        });
-      }
+		function getCheckinList(id){
+      $.getJSON(uploadURLS + "/public/getScheduleCheckInList?selList=" + id + "&times=" + (new Date().getTime()),function(re){
+        $("#dg1").datagrid("loadData",re);
+      });
+      $.getJSON(uploadURLS + "/public/getScheduleNoCheckInList?selList=" + id + "&times=" + (new Date().getTime()),function(re){
+        $("#dg2").datagrid("loadData",re);
+      });
 		}
 
   </script>
@@ -410,9 +421,6 @@
     <tr>
       <td colspan="3">
         <div>
-          <span class="tip">签到人数：</span><span id="qty0" class="tip1"></span>
-          &nbsp;&nbsp;&nbsp;&nbsp;<span class="tip">本班：</span><span id="qty1" class="tip1"></span>
-          &nbsp;&nbsp;&nbsp;&nbsp;<span class="tip">其他：</span><span id="qty2" class="tip1"></span>
           <span><a class="easyui-linkbutton" id="btnStart" href="javascript:void(0)"></a></span>&nbsp;&nbsp;
           <span><a class="easyui-linkbutton" id="btnStop" href="javascript:void(0)"></a></span>&nbsp;&nbsp;
           <span class="tip">识别参数：<input id="confidence" name="confidence" class="easyui-numberbox" data-options="min:0,height:22,width:50" />&nbsp;45-75&nbsp;&nbsp;</span>&nbsp;&nbsp;

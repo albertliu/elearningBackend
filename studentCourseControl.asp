@@ -107,6 +107,16 @@ if(op == "getStudentCourseList"){
 		}
 		d += 1;
 	}
+	//如果复训预备班
+	if(String(Request.QueryString("reexamine")) == "1"){ // 
+		s = "reexamine=1 and pre=1";	//1 复训
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+		d += 1;
+	}
 	if(fStart > "" && fStart !="undefined" && d == 0){
 		if(currHost>""){
 			s = "regDate>='" + fStart + "'";
