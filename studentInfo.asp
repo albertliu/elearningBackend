@@ -60,11 +60,11 @@
 		if(currHost==""){
 			getComList("companyID","deptInfo","deptID","deptName","dept_status=0 and pID=0 order by deptID",0);
 		}else{
-			if(checkRole("partner")){
-				getComList("companyID","deptInfo","deptID","deptName","deptID=46",0);	//合作单位以消防学校名义招生
-			}else{
+			// if(checkRole("partner")){
+			// 	getComList("companyID","deptInfo","deptID","deptName","deptID=46",0);	//合作单位以消防学校名义招生
+			// }else{
 				getComList("companyID","deptInfo","deptID","deptName",w,0);
-			}
+			// }
 		}
 		//setButton();
 		if(op==0){
@@ -412,7 +412,7 @@
 			alert("请填写证件号码。");
 			return false;
 		}
-		if($("#companyID").val()==""){
+		if(!$("#companyID").val()){
 			alert("请选择来源。");
 			return false;
 		}
@@ -426,10 +426,10 @@
 		}
 		var k = 0;
 		if(op==0){k=1;}
-		//alert("nodeID=" + $("#username").val() + "&name=" + ($("#name").val()) + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + ($("#mobile").val()) + "&phone=" + ($("#phone").val()) + "&email=" + ($("#email").val()) + "&job=" + ($("#job").val()) + "&education=" + ($("#education").val()) + "&memo=" + ($("#memo").val()));
+		// alert("nodeID=" + $("#username").val() + "&name=" + ($("#name").val()) + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + ($("#mobile").val()) + "&phone=" + ($("#phone").val()) + "&email=" + ($("#email").val()) + "&job=" + ($("#job").val()) + "&education=" + ($("#education").val()) + "&memo=" + ($("#memo").val()));
 		if(!$("#Tai").prop("checked")){		//普通身份证
 			$.get("studentControl.asp?op=update&nodeID=" + $("#username").val() + "&name=" + escape($("#name").val()) + "&linker=" + escape($("#linker").val()) + "&unit=" + escape($("#unit").val()) + "&dept=" + escape($("#dept").val()) + "&ethnicity=" + escape($("#ethnicity").val()) + "&IDaddress=" + escape($("#IDaddress").val()) + "&bureau=" + escape($("#bureau").val()) + "&IDdateStart=" + $("#IDdateStart").val() + "&IDdateEnd=" + $("#IDdateEnd").val() + "&experience=" + escape($("#experience").val()) + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&job_status=" + $("#job_status").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + escape($("#mobile").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&address=" + escape($("#address").val()) + "&job=" + escape($("#job").val()) + "&education=" + $("#education").val() + "&fromID=" + $("#fromID").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
-				//alert(unescape(re));
+				// alert(unescape(re));
 				var ar = new Array();
 				ar = unescape(re).split("|");
 				if(ar[0] == 0){
