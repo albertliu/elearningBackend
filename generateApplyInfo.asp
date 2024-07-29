@@ -517,7 +517,7 @@
 				alert("请确定上课地点。");
 				return false;
 			}
-			if(confirm("确定要编排课表吗？")){
+			if(confirm(($("#scheduleDate").val()>""?"课表已经存在，要重新安排吗？":"确定要编排课表吗？"))){
 				$.get("classControl.asp?op=generateClassSchedule&refID=" + $("#ID").val() + "&kindID=A&times=" + (new Date().getTime()),function(re){
 					getNodeInfo(nodeID);
 					alert("课表编排完毕。");
@@ -528,7 +528,12 @@
 			showClassSchedule($("#ID").val(),"A","{className:'" + $("#ID").val() + "', courseName:'" + $("#courseName").val()+"', transaction_id:'" + $("#applyID").val()+"', startDate:'"+$("#startDate").val().substr(0,10)+"', endDate:'', adviser:'" + $("#adviserID").find("option:selected").text() + "', qty:"+$("#qty").val()+"}",0,1);
 		});
 		$("#checkin").click(function(){
-			showClassCheckin($("#ID").val(),"A","",0,1);
+			if($("#scheduleDate").val()>""){
+				showClassCheckin($("#ID").val(),"A","",0,1);
+			}else{
+				alert("请先生成课表。");
+				return false;
+			}
 		});
 
 	  	<!--#include file="commLoadFileReady.asp"-->

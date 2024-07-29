@@ -177,6 +177,15 @@ if(op == "getStudentCourseList"){
 			where = s;
 		}
 	}
+	//销售
+	if(String(Request.QueryString("fromID")) > "" && String(Request.QueryString("fromID")) !="undefined"){
+		s = "fromID='" + String(Request.QueryString("fromID")) + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 	//确认
 	if(String(Request.QueryString("checked")) > "" && String(Request.QueryString("checked")) !="undefined"){
 		s = "checked=" + String(Request.QueryString("checked"));
@@ -304,7 +313,9 @@ if(op == "getStudentCourseList"){
 		//72
 		result += "|" + rs("fromID").value + "|" + rs("signature").value + "|" + rs("signatureDate").value + "|" + rs("status_photo").value + "|" + rs("status_signature").value + "|" + rs("signatureType").value;
 		//78
-		result += "|" + rs("file1").value + "|" + rs("file2").value + "|" + rs("employe_filename").value + "|" + rs("express").value + "|" + rs("memo").value + "|" + rs("currDiplomaDate").value + "|" + rs("needInvoice").value + "|" + rs("photo_size").value;
+		result += "|" + rs("file1").value + "|" + rs("file2").value + "|" + rs("employe_filename").value + "|" + rs("express").value + "|" + rs("memo").value + "|" + rs("currDiplomaDate").value + "|" + rs("needInvoice").value;
+		//85
+		result += "|" + rs("photo_size").value + "|" + rs("examDate").value;
 		rs.MoveNext();
 	}
 	rs.Close();

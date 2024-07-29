@@ -33,6 +33,7 @@
 	var updateCount = 0;
 	var at_name = "";	//@name
 	var at_username = "";
+	let fire = 0;
 	var imgFile = "<img src='images/attachment.png' style='width:15px;'>";
 	var imgFileRed = "<img src='images/attachmentRed.png' style='width:15px;'>";
 	var imgFileBlue = "<img src='images/attachmentBlue.png' style='width:15px;'>";
@@ -52,6 +53,13 @@
 			getComList("host","hostInfo","hostNo","title","status=0 and kindID=1 and hostNo='" + currHost + "' order by ID",0);
 			getComList("courseID","v_courseInfo a, hostCourseList b","a.courseID","a.shortName","a.certID=b.courseID and a.status=0 and b.host='" + currHost + "' order by a.courseID",1);
 		}
+		getComList("fromID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='saler') order by realName",1);
+		if(currHost==""){
+			getComList("partner","hostInfo","hostNo","title","status=0 and kindID=1 order by ID",1);
+		}else{
+			getComList("partner","hostInfo","hostNo","title","status=0 and kindID=1 and hostNo='" + currHost + "' order by ID",0);
+		}
+
 		getDicList("planStatus","status",0);
 		getDicList("online","kindID",0);
 		getDicList("pre","pre",0);
@@ -413,6 +421,9 @@
 				$("#classID").val(ar[1]);
 				//$("#projectID").val(ar[2]);
 				$("#certID").val(ar[3]);
+				if(ar[3]=='C20' || ar[3]=='C20A' || ar[3]=='C21'){
+					fire = 1;	//消防项目
+				}
 				//getComList("teacher","v_courseTeacherList","teacherID","teacherName","status=0 and courseID='" + $("#certID").val() + "' order by teacherID",1);
 				$("#kindID").val(ar[5]);
 				$("#status").val(ar[6]);
@@ -505,7 +516,7 @@
 			$("#btnAttentionSignatureClose").show();
 			$("#btnAttentionPhotoClose").show();
 		}
-		$.get("studentCourseControl.asp?op=getStudentCourseList&classID=" + $("#classID").val() + "&mark=" + mark + "&completion2=" + $("#s_completion2").val() + "&score2=" + $("#s_score2").val() + "&dk=9101&times=" + (new Date().getTime()),function(data){
+		$.get("studentCourseControl.asp?op=getStudentCourseList&classID=" + $("#classID").val() + "&mark=" + mark + "&fromID=" + $("#fromID").val() + "&host=" + $("#partner").val() + "&completion2=" + $("#s_completion2").val() + "&score2=" + $("#s_score2").val() + "&dk=9101&times=" + (new Date().getTime()),function(data){
 			//alert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
@@ -527,9 +538,12 @@
 				arr.push("<th width='7%'>单位</th>");
 				arr.push("<th width='5%'>进度%</th>");
 				arr.push("<th width='7%'>模拟</th>");
-				arr.push("<th width='5%'>准申</th>");
+				if(fire==1){
+					arr.push("<th width='8%'>考试日期</th>");
+				}else{
+					arr.push("<th width='5%'>准申</th>");
+				}
 				arr.push("<th width='5%'>成绩</th>");
-				arr.push("<th width='5%'>补考</th>");
 				arr.push("<th width='5%'>证书</th>");
 			}else{
 				arr.push("<th width='7%'>照片</th>");
@@ -583,18 +597,22 @@
 						}
 						arr.push("<td class='center'>" + c + "</td>");	//学习进度
 						arr.push("<td title='最好成绩' class='link1' onclick='showStudentExamStat(" + ar1[0] + ",\"" + ar1[2] + "\",0,0);'>" + nullNoDisp(ar1[15]) + "</td>");
-						//申报
-						if(ar1[65]>0 || ar1[53]>0){
-							arr.push("<td class='center'>" + imgChk + "</td>");	//申报/准考证
+						
+						if(fire==1){
+							arr.push("<td class='left'>" + ar1[86] + "</td>");
 						}else{
-							arr.push("<td class='center'>&nbsp;</td>");
+							//申报
+							if(ar1[65]>0 || ar1[53]>0){
+								arr.push("<td class='center'>" + imgChk + "</td>");	//申报/准考证
+							}else{
+								arr.push("<td class='center'>&nbsp;</td>");
+							}
 						}
 						h = ar1[66];
-						if($("#certID").val()=="C12" || $("#certID").val()=="C14" || $("#certID").val()=="C15" || $("#certID").val()=="C24" || $("#certID").val()=="C25" || $("#certID").val()=="C26" || $("#certID").val()=="C25B" || $("#certID").val()=="C26B"){
+						if($("#certID").val()=="C12" || $("#certID").val()=="C20" || $("#certID").val()=="C20A" || $("#certID").val()=="C21" || $("#certID").val()=="C14" || $("#certID").val()=="C15" || $("#certID").val()=="C24" || $("#certID").val()=="C25" || $("#certID").val()=="C26" || $("#certID").val()=="C25B" || $("#certID").val()=="C26B"){
 							h = ar1[70].replace(".00","") + "/" + ar1[71].replace(".00","");
 						}
 						arr.push("<td class='left'><a href='javascript:showStudentExamPaper(" + ar1[0] + ",\"" + ar1[2] + "\");'>" + nullNoDisp(h) + "</a></td>");
-						arr.push("<td class='center'>" + nullNoDisp(ar1[68]) + "</td>");
 						if(ar1[64]>""){
 							arr.push("<td class='center'>" + imgChk + "</td>");	//证书
 						}else{
@@ -684,9 +702,6 @@
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
-			if(photo == 0){
-				arr.push("<th>&nbsp;</th>");
-			}
 			arr.push("</tr>");
 			arr.push("</tfoot>");
 			arr.push("</table>");
@@ -1186,6 +1201,8 @@
 		<div>
 			学习进度&nbsp;&lt;=<input type="text" id="s_completion2" size="2" />%
 			&nbsp;&nbsp;模拟成绩&nbsp;&lt;=<input type="text" id="s_score2" size="2" />
+			&nbsp;&nbsp;销售&nbsp;<select id="fromID" style="width:80px;"></select>
+			&nbsp;&nbsp;属性&nbsp;<select id="partner" style="width:70px"></select>
 			&nbsp;&nbsp;<input class="button" type="button" id="btnFindStudent" value="查找" />&nbsp;&nbsp;
 			&nbsp;&nbsp;<input style="border:0px;" type="checkbox" id="showPhoto" value="" />&nbsp;显示照片和签名&nbsp;&nbsp;
 			&nbsp;&nbsp;<input class="button" type="button" id="btnDownload" value="名单下载" />
