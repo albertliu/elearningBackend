@@ -649,7 +649,7 @@
 							h = ar1[70].replace(".00","") + "/" + ar1[71].replace(".00","");
 							if(ar1[87]==3){h=ar1[88]}
 						}
-						arr.push("<td class='left'><a href='javascript:showStudentExamPaper(" + ar1[0] + ",\"" + ar1[2] + "\");'>" + nullNoDisp(h) + "</a></td>");
+						arr.push("<td class='left'" + (fire==1 && (ar1[87]==2 || ar1[87]==3)?" style='background-color:#FFFFAA;'":"") + ">" + (fire==0?"<a href='javascript:showStudentExamPaper(" + ar1[0] + ",\"" + ar1[2] + "\");'>":"") + nullNoDisp(h) + (fire==0?"</a>":"") + "</td>");
 						if(ar1[64]>""){
 							arr.push("<td class='center'>" + imgChk + "</td>");	//证书
 						}else{
