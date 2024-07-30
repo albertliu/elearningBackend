@@ -61,7 +61,7 @@ if (String(Request.QueryString("msg")) != "undefined" &&
 		}
 		//alert(md5("123456"));
 		$("#username").focus();
-		$("#companyLogo").attr("src","users/upload/companies/logo/" + currHost + ".png");
+		// $("#companyLogo").attr("src","users/upload/companies/logo/" + currHost + ".png");
 	    $("#log_in").click(function(){
 			if($("#username").val()=="lijun"){
 				alert($("#username").val() + " :  " + $("#passwd").val() + " : " + currHost);
