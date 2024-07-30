@@ -222,6 +222,15 @@ if(op == "getStudentCourseList"){
 			where = s;
 		}
 	}
+	//已做准考证/申报
+	if(String(Request.QueryString("examResult")) > "" && String(Request.QueryString("examResult")) !="undefined"){
+		s = "result=" + String(Request.QueryString("examResult"));
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 	//不合格图片状态
 	var photoStatus = String(Request.QueryString("photoStatus"));
 	if(photoStatus > "" && photoStatus !="undefined"){
@@ -315,7 +324,7 @@ if(op == "getStudentCourseList"){
 		//78
 		result += "|" + rs("file1").value + "|" + rs("file2").value + "|" + rs("employe_filename").value + "|" + rs("express").value + "|" + rs("memo").value + "|" + rs("currDiplomaDate").value + "|" + rs("needInvoice").value;
 		//85
-		result += "|" + rs("photo_size").value + "|" + rs("examDate").value;
+		result += "|" + rs("photo_size").value + "|" + rs("examDate").value + "|" + rs("result").value + "|" + rs("resultName").value;
 		rs.MoveNext();
 	}
 	rs.Close();

@@ -64,6 +64,7 @@
 		getDicList("online","kindID",0);
 		getDicList("pre","pre",0);
 		getDicList("signatureType","signatureType",0);
+		getDicList("examResult","examResult",1);
 		$("#dateStart").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'});});
 		$("#dateEnd").click(function(){WdatePicker();});
 		
@@ -372,6 +373,39 @@
 			});
 		});
 
+		$("#btnFireScore").click(function(){
+				getSelCart("visitstockchk");
+				if(selCount==0){
+					$.messager.alert("提示","请选择要查询成绩的人员。","info");
+					return false;
+				}
+				// jConfirm('确定要为这' + selCount + '个人报名吗?', "确认对话框",function(r){
+				$.messager.confirm('确认对话框','确定查询这' + selCount + '个人的成绩吗?<br>可能要花几分钟时间，请稍候...', function(r){
+					if(r){
+						var start = performance.now(); 
+						$.ajax({
+							url: uploadURL + "/public/fireScoreCheck?host=" + currHost + "&register=" + currUserName,
+							type: "post",
+							data: {"selList":selList, "kindID":2, refID:$("#ID").val()},
+							beforeSend: function() {   
+								$.messager.progress();	// 显示进度条
+							},
+							success: function(data){
+								//jAlert(data);
+								if(data.err==0){
+									var end = performance.now(); 
+									jAlert("成功查询数量：" + data.count_s + "; &nbsp;失败数量：" + data.count_e + "; &nbsp;耗时：" + ((end-start)/1000).toFixed(2) + "秒","信息提示");
+								}else{
+									jAlert("操作失败，请稍后再试。" + data.errMsg,"信息提示");
+								}
+								getStudentCourseList();
+								$.messager.progress('close');	// 如果提交成功则隐藏进度条 
+							}
+						});
+					}
+				});
+		});
+
 		$("#btn_feedback_submit").click(function(){
 			submit_feedback();
 		});
@@ -421,8 +455,10 @@
 				$("#classID").val(ar[1]);
 				//$("#projectID").val(ar[2]);
 				$("#certID").val(ar[3]);
+				$("#btnFireScore").hide();
 				if(ar[3]=='C20' || ar[3]=='C20A' || ar[3]=='C21'){
 					fire = 1;	//消防项目
+					$("#btnFireScore").show();
 				}
 				//getComList("teacher","v_courseTeacherList","teacherID","teacherName","status=0 and courseID='" + $("#certID").val() + "' order by teacherID",1);
 				$("#kindID").val(ar[5]);
@@ -516,8 +552,8 @@
 			$("#btnAttentionSignatureClose").show();
 			$("#btnAttentionPhotoClose").show();
 		}
-		$.get("studentCourseControl.asp?op=getStudentCourseList&classID=" + $("#classID").val() + "&mark=" + mark + "&fromID=" + $("#fromID").val() + "&host=" + $("#partner").val() + "&completion2=" + $("#s_completion2").val() + "&score2=" + $("#s_score2").val() + "&dk=9101&times=" + (new Date().getTime()),function(data){
-			//alert(unescape(data));
+		$.get("studentCourseControl.asp?op=getStudentCourseList&classID=" + $("#classID").val() + "&mark=" + mark + "&examResult=" + $("#examResult").val() + "&fromID=" + $("#fromID").val() + "&host=" + $("#partner").val() + "&completion2=" + $("#s_completion2").val() + "&score2=" + $("#s_score2").val() + "&dk=9101&times=" + (new Date().getTime()),function(data){
+			// alert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
 			$("#cover").empty();
@@ -611,6 +647,7 @@
 						h = ar1[66];
 						if($("#certID").val()=="C12" || $("#certID").val()=="C20" || $("#certID").val()=="C20A" || $("#certID").val()=="C21" || $("#certID").val()=="C14" || $("#certID").val()=="C15" || $("#certID").val()=="C24" || $("#certID").val()=="C25" || $("#certID").val()=="C26" || $("#certID").val()=="C25B" || $("#certID").val()=="C26B"){
 							h = ar1[70].replace(".00","") + "/" + ar1[71].replace(".00","");
+							if(ar1[87]==3){h=ar1[88]}
 						}
 						arr.push("<td class='left'><a href='javascript:showStudentExamPaper(" + ar1[0] + ",\"" + ar1[2] + "\");'>" + nullNoDisp(h) + "</a></td>");
 						if(ar1[64]>""){
@@ -1197,12 +1234,14 @@
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnAttentionSignatureClose" value="签名确认" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnRebuildStudentLesson" value="刷新课表" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnDiplomaIssue" value="培训证书" /></span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnFireScore" value="消防成绩" /></span>
 		</div>
 		<div>
 			学习进度&nbsp;&lt;=<input type="text" id="s_completion2" size="2" />%
 			&nbsp;&nbsp;模拟成绩&nbsp;&lt;=<input type="text" id="s_score2" size="2" />
 			&nbsp;&nbsp;销售&nbsp;<select id="fromID" style="width:80px;"></select>
 			&nbsp;&nbsp;属性&nbsp;<select id="partner" style="width:70px"></select>
+			&nbsp;&nbsp;考试&nbsp;<select id="examResult" style="width:60px;"></select>
 			&nbsp;&nbsp;<input class="button" type="button" id="btnFindStudent" value="查找" />&nbsp;&nbsp;
 			&nbsp;&nbsp;<input style="border:0px;" type="checkbox" id="showPhoto" value="" />&nbsp;显示照片和签名&nbsp;&nbsp;
 			&nbsp;&nbsp;<input class="button" type="button" id="btnDownload" value="名单下载" />
