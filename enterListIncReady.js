@@ -4,15 +4,19 @@
 	var examer_cart_memo = "";
 
 	$(document).ready(function (){
+		let w = "";
+		if(checkRole("emergency")){
+			w = " and certID not in('C27')";
+		}
 		if(currHost==""){	//公司用户只能看自己公司内容
-			getComList("searchEnterCourseID","v_courseInfo","courseID","shortName","status=0 and host='' order by courseID",1);
+			getComList("searchEnterCourseID","v_courseInfo","courseID","shortName","status=0 and host=''" + w + " order by courseID",1);
 			getComList("searchEnterClassAdviser","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='adviser' and host='') order by realName",1);
 			getComList("searchEnterHost","hostInfo","hostNo","title","status=0 order by hostName",1);
 			getComList("searchEnterClassID","v_classInfo","classID","classIDName","1=1 order by cast(ID as int) desc",1);
 			getComList("searchEnterProjectID","projectInfo","projectID","projectName","status>0 and status<9 order by cast(ID as int) desc",1);
 		}else{
 			getComList("searchEnterHost","hostInfo","hostNo","title","status=0 and hostNo='" + currHost + "'",0);
-			getComList("searchEnterCourseID","[dbo].[getHostCourseList]('" + currHost + "')","courseID","courseName","1=1",1);
+			getComList("searchEnterCourseID","[dbo].[getHostCourseList]('" + currHost + "')","courseID","courseName","1=1" + w + "",1);
 			getComList("searchEnterClassAdviser","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='adviser' and host='" + currHost + "') order by realName",1);
 			getComList("searchEnterClassID","v_classInfo","classID","classIDName","host='" + currHost + "' order by cast(ID as int) desc",1);
 			$("#searchEnterProjectID").hide();

@@ -1066,6 +1066,24 @@ if(op == "getApplyListByBatch"){
 			where = s;
 		}
 	}
+	//销售
+	if(String(Request.QueryString("fromID")) > "" && String(Request.QueryString("fromID")) !="undefined"){
+		s = "fromID='" + String(Request.QueryString("fromID")) + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//如果有公司
+	if(host > ""){ // 
+		s = "host='" + host + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 
 	if(where > ""){
 		where = " where " + where;
@@ -1086,9 +1104,9 @@ if(op == "getApplyListByBatch"){
 		//23
 		result += "|" + rs("certID").value + "|" + rs("file1").value + "|" + rs("file2").value + "|" + rs("file3").value + "|" + rs("currDiplomaDate").value + "|" + rs("reexamine").value + "|" + rs("enterStatus").value;
 		//30
-		result += "|" + rs("upload").value + "|" + rs("uploadPhoto").value + "|" + rs("step").value + "|" + rs("memo1").value;
-		//34
-		result += "|" + rs("photo_filename").value + "|" + rs("signature").value + "|" + rs("photo_size").value + "|" + rs("signatureDate").value;
+		result += "|" + rs("upload").value + "|" + rs("uploadPhoto").value + "|" + rs("step").value + "|" + rs("memo1").value + "|" + rs("photo_filename").value;
+		//35
+		result += "|" + rs("signature").value + "|" + rs("photo_size").value + "|" + rs("signatureDate").value;
 		rs.MoveNext();
 	}
 	rs.Close();

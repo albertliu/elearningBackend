@@ -310,6 +310,9 @@
 			$("#menu6").hide();
 			$("#menu10").hide();
 		}
+		if(checkRole("emergency")){
+			$("#menu6").hide();		//统计
+		}
         deleteTab("日结报表");
         deleteTab("花名册");
 		<!--#include file="commLoadFileReady.asp"-->

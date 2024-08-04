@@ -399,22 +399,6 @@
 		  });
     }
 
-    // function getScheduleCheckIn(){
-    //   $.get("classControl.asp?op=getScheduleCheckIn&refID=" + selList + "&times=" + (new Date().getTime()),function(re){
-    //     var ar = new Array();
-    //     ar = unescape(re).split("|");
-    //     if(ar > ""){
-    //       $("#qty0").html(ar[1]);
-    //       $("#qty1").html(ar[2] + "/" + ar[0]);
-    //       $("#qty2").html(ar[3]);
-    //     }else{
-    //       $("#qty0").html("");
-    //       $("#qty1").html("");
-    //       $("#qty2").html("");
-    //     }
-    //   });
-    // }
-
 		function getCheckinList(id, classID){
       if(id>0){
         refID = id;

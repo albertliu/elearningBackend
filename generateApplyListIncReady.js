@@ -4,12 +4,16 @@
 	$(document).ready(function (){
 		getComList("searchGenerateApplyRegister","v_applyRegister","registerID","registerName","1=1 order by ID desc",1);
 		getDicList("planStatus","searchGenerateApplyStatus",1);
+		let w = "";
+		if(checkRole("emergency")){
+			w = " and certID not in('C27')";
+		}
 		if(currHost==""){
 			getComList("searchGenerateApplyPartner","hostInfo","hostNo","title","status=0 and kindID=1 order by ID",1);
-			getComList("searchGenerateApplyCert","v_certificateInfo","certID","certName","status=0 and type=0 and agencyID not in(4,5) order by certName",1);
+			getComList("searchGenerateApplyCert","v_certificateInfo","certID","certName","status=0 and type=0 and agencyID not in(4,5)" + w + " order by certName",1);
 		}else{
 			getComList("searchGenerateApplyPartner","hostInfo","hostNo","title","status=0 and kindID=1 and hostNo='" + currHost + "' order by ID",0);
-			getComList("searchGenerateApplyCert","v_hostCourseList","courseID","shortName","host='" + currHost + "' order by courseID",1);
+			getComList("searchGenerateApplyCert","v_hostCourseList","courseID","shortName","host='" + currHost + "'" + w + " order by courseID",1);
 			$("#searchGenerateApplyRegister").hide();
 		}
 		$("#searchGenerateApplyStart").click(function(){WdatePicker();});
@@ -62,13 +66,13 @@
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
 			arr.push("<th width='15%'>申报名称</th>");
-			arr.push("<th width='6%'>人数</th>");
+			arr.push("<th width='3%'>人</th>");
 			arr.push("<th width='7%'>开课日期</th>");
 			arr.push("<th width='6%'>状态</th>");
 			arr.push("<th width='7%'>申报导入</th>");
-			arr.push("<th width='7%'>申报批号</th>");
-			arr.push("<th width='5%'>申报</th>");
-			arr.push("<th width='5%'>考试</th>");
+			arr.push("<th width='6%'>申报批号</th>");
+			arr.push("<th width='3%'>申</th>");
+			arr.push("<th width='3%'>考</th>");
 			arr.push("<th width='7%'>考试通知</th>");
 			arr.push("<th width='7%'>成绩通知</th>");
 			arr.push("<th width='4%'>领证</th>");

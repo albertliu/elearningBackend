@@ -57,6 +57,12 @@
 			getComList("host","hostInfo","hostNo","title","status=0 and kindID=1 and hostNo='" + currHost + "' order by ID",0);
 			getComList("courseID","v_courseInfo a, hostCourseList b","a.courseID","a.shortName","a.courseID=b.courseID and a.status=0 and b.host='" + currHost + "' order by a.courseID",1);
 		}
+		getComList("fromID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='saler') order by realName",1);
+		if(currHost==""){
+			getComList("partner","hostInfo","hostNo","title","status=0 and kindID=1 order by ID",1);
+		}else{
+			getComList("partner","hostInfo","hostNo","title","status=0 and kindID=1 and hostNo='" + currHost + "' order by ID",0);
+		}
 		$("#startDate").click(function(){WdatePicker();});
 		setButton();
 		if(nodeID>0 && op==0){
@@ -677,7 +683,7 @@
 			uploadPhoto = 1;
 		}
 		if($("#needResit").attr("checked")){ need = 1;}
-		$.get("diplomaControl.asp?op=getApplyListByBatch&refID=" + nodeID + "&status=" + $("#s_status").val() + "&keyID=" + $("#s_resit").val() + "&needResit=" + need + "&wait=" + wait + "&upload=" + upload + "&uploadPhoto=" + uploadPhoto + "&times=" + (new Date().getTime()),function(data){
+		$.get("diplomaControl.asp?op=getApplyListByBatch&refID=" + nodeID + "&fromID=" + $("#fromID").val() + "&host=" + $("#partner").val() + "&status=" + $("#s_status").val() + "&keyID=" + $("#s_resit").val() + "&needResit=" + need + "&wait=" + wait + "&upload=" + upload + "&uploadPhoto=" + uploadPhoto + "&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
@@ -1105,6 +1111,8 @@
 		<div style="border:solid 1px #e0e0e0;width:99%;margin:5px;background:#ffffff;line-height:18px;padding-left:20px;">
 			<span>申报结果&nbsp;<select id="s_status" style="width:70px"></select></span>
 			<span>&nbsp;&nbsp;申请补考&nbsp;<select id="s_resit" style="width:70px"></select></span>
+			<span>&nbsp;&nbsp;销售&nbsp;<select id="fromID" style="width:80px;"></select></span>
+			<span>&nbsp;&nbsp;属性&nbsp;<select id="partner" style="width:70px"></select></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnSearch" value="查找" /></span>
 			<span id="s_needResit"><input style="border:0px;" type="checkbox" id="needResit" value="" />&nbsp;需补考&nbsp;</span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnSel" value="全选/取消" /></span>

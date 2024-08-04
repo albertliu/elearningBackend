@@ -3,13 +3,17 @@
 	$(document).ready(function (){
 		getDicList("planStatus","searchClassStatus",1);
 		getComList("searchClassProject","projectInfo","projectID","projectName","status>0 and status<9 order by projectID desc",1);
+		let w = "";
+		if(checkRole("emergency")){
+			w = " and certID not in('C27')";
+		}
 		if(currHost==""){
 			getComList("searchClassPartner","hostInfo","hostNo","title","status=0 and kindID=1 order by ID",1);
-			getComList("searchClassCert","certificateInfo","certID","shortName","status=0 and type=0 order by certID",1);
+			getComList("searchClassCert","certificateInfo","certID","shortName","status=0 and type=0" + w + " order by certID",1);
 			getComList("searchClassAdviser","v_classAdviser","adviserID","adviserName","1=1",1);
 		}else{
 			getComList("searchClassPartner","hostInfo","hostNo","title","status=0 and kindID=1 and hostNo='" + currHost + "' order by ID",0);
-			getComList("searchClassCert","v_hostCourseList","courseID","shortName","host='" + currHost + "' order by courseID",1);
+			getComList("searchClassCert","v_hostCourseList","courseID","shortName","host='" + currHost + "'" + w + " order by courseID",1);
 			getComList("searchClassAdviser","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='adviser' and host='" + currHost + "') order by realName",1);
 			$("#searchClassProject").hide();
 			//$("#searchClassAdviser").hide();
