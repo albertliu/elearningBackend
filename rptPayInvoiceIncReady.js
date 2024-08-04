@@ -85,7 +85,7 @@
 					arr.push("<tr class='grade0'>");
 					arr.push("<td class='center'>" + i + "</td>");
 					for(let key in val){
-						if(j>3){
+						if(j>4){
 							t = 0;
 							if(key == "name" && val[key]>""){
 								t = 1;
