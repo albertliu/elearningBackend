@@ -66,7 +66,7 @@
 				arr.push("<th width='6%'>姓名</th>");
 				arr.push("<th width='6%'>金额</th>");
 				arr.push("<th width='9%'>付款日期</th>");
-				arr.push("<th width='6%'>类型</th>");
+				arr.push("<th width='7%'>类型</th>");
 				arr.push("<th width='14%'>课程</th>");
 				arr.push("<th width='6%'>应收</th>");
 				arr.push("<th width='14%'>发票号码</th>");
