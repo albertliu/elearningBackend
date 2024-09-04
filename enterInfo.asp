@@ -613,6 +613,7 @@
 		$("#amount").prop("readonly",false);
 		$("#btnViewInvoice").prop("disabled",true);
 		$("#check_pass").checkbox({readonly:true});
+		$("#fromID").prop("readonly",true);
 		if($("#statusPay").val()==0 && $("#kindID").val()==0 && checkPermission("studentAdd")){
 			//未支付的个人付款可以支付，团体付款应到发票管理中操作。
 			$("#btnPay").show();
@@ -627,7 +628,6 @@
 			$("#class1").show();
 			setEmpty();
 			$("#btnEnter").focus();
-			//$("#fromID").prop("disabled",true);
 		}else{
 			if($("#statusPay").val()==1){
 				//未支付的个人付款可以支付，团体付款应到发票管理中操作。
@@ -658,19 +658,21 @@
 						$("#btnReturn").show();
 						$("#btnRefund").show();
 						$("#btnCloseStudentCourse").show();
-						$("#btnReviveStudentCourse").show();
+						// $("#btnReviveStudentCourse").show();
 						$("#btnRebuildStudentLesson").show();
-						$("#btnReviveStudentCourse").hide();
+						// $("#btnReviveStudentCourse").hide();
 						$("#signatureDate").prop("readonly",false);
 						if(!$("#materialCheck").attr("checked")){
 							$("#btnMaterialCheck").show();
 						}
 					}else{
-						$("#btnReviveStudentCourse").show();
+						if(checkPermission("reviveStudentCourse")){
+							$("#btnReviveStudentCourse").show();
+						}
 						$("#btnReturn").hide();
 						$("#btnRefund").hide();
 						$("#btnCloseStudentCourse").hide();
-						$("#btnReviveStudentCourse").hide();
+						// $("#btnReviveStudentCourse").hide();
 					}
 				}
 			}
@@ -687,7 +689,9 @@
 			//$("#btnEntryform").show();
 			//$("#btnFiremanMaterials").show();
 			$("#btnPrint").show();
-			$("#fromID").prop("disabled",false);
+			if(checkPermission("studentAdd") || checkPermission("editPayDate")){
+				$("#fromID").prop("readonly",false);
+			}
 		}
 	}
 	function setEmpty(){
