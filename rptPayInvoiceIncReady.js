@@ -73,7 +73,7 @@
 				arr.push("<th width='9%'>开票日期</th>");
 				arr.push("<th width='14%'>发票抬头</th>");
 				arr.push("<th width='9%'>备注</th>");
-				arr.push("<th width='6%'>发票</th>");
+				arr.push("<th width='4%'>票</th>");
 				arr.push("</tr>");
 				arr.push("</thead>");
 				arr.push("<tbody id='tbody'>");
