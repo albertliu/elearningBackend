@@ -1132,7 +1132,9 @@ if(op == "getGenerateApplyNodeInfo"){
         //29
 		result += "|" + rs("diplomaTerm").value + "|" + rs("qtyCheck").value + "|" + rs("certID").value + "|" + rs("host").value + "|" + rs("zip").value + "|" + rs("pzip").value + "|" + rs("ezip").value;
         //36
-		result += "|" + rs("reexamine").value + "|" + rs("agencyID").value + "|" + rs("diplomaReady").value + "|" + rs("teacher").value + "|" + rs("classroom").value + "|" + rs("scheduleDate").value + "|" + rs("adviserID").value;
+		result += "|" + rs("reexamine").value + "|" + rs("agencyID").value + "|" + rs("diplomaReady").value + "|" + rs("teacher").value + "|" + rs("classroom").value;
+		//41
+		result += "|" + rs("scheduleDate").value + "|" + rs("adviserID").value + "|" + rs("mark").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

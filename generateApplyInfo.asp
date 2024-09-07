@@ -525,8 +525,12 @@
 			}
 			if(confirm(($("#scheduleDate").val()>""?"课表已经存在，要重新安排吗？":"确定要编排课表吗？"))){
 				$.get("classControl.asp?op=generateClassSchedule&refID=" + $("#ID").val() + "&kindID=A&times=" + (new Date().getTime()),function(re){
-					getNodeInfo(nodeID);
-					alert("课表编排完毕。");
+					if(re==0){
+						getNodeInfo(nodeID);
+						jAlert("课表编排完毕。");
+					}else{
+						jAlert("已有考勤记录，不能重新生成课表。");
+					}
 				});
 			}
 		});
