@@ -469,4 +469,11 @@ if(op == "cancelFaceCheckin"){
 	Response.Write(nodeID);
 	//Response.Write(escape(sql));
 }
+
+if(op == "autoSetClassSNo"){
+	sql = "exec autoSetClassSNo " + nodeID;
+	execSQL(sql);
+	Response.Write(nodeID);
+	//Response.Write(escape(sql));
+}
 %>

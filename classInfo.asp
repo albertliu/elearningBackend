@@ -116,6 +116,15 @@
 				}
 			}
 		});
+		$("#btnAutoSetClassSNo").click(function(){
+			if(confirm('确定要重新建立学号吗?')){
+				$.get("classControl.asp?op=autoSetClassSNo&nodeID=" + $("#ID").val() + "&times=" + (new Date().getTime()),function(data){
+					alert("已完成","信息提示");
+					getNodeInfo(nodeID);
+					updateCount += 1;
+				});
+			}
+		});
 		$("#btnSummary").click(function(){
 			$.get("classControl.asp?op=getRandSummary&refID=" + $("#ID").val() + "&times=" + (new Date().getTime()),function(data){
 				if(data==""){
@@ -993,6 +1002,7 @@
 		$("#generateEntryZip").hide();
 		$("#btnClassChange").hide();
 		$("#btnRebuildStudentLesson").hide();
+		$("#btnAutoSetClassSNo").hide();
 		$("#archived").prop("disabled",true);
 		// $("#className").prop("disabled",true);
 		$("#courseID").prop("disabled",true);
@@ -1037,6 +1047,9 @@
 				}
 				if(checkPermission("feedbackAdd")){
 					$("#feedback_item").prop("disabled",false);
+				}
+				if(checkPermission("classAdd") && s < 2){
+					$("#btnAutoSetClassSNo").show();
 				}
 				$("#btnMockView").show();
 				$("#checkStudent").show();
@@ -1235,6 +1248,7 @@
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnRebuildStudentLesson" value="刷新课表" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnDiplomaIssue" value="培训证书" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnFireScore" value="消防成绩" /></span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnAutoSetClassSNo" value="调整学号" /></span>
 		</div>
 		<div>
 			学习进度&nbsp;&lt;=<input type="text" id="s_completion2" size="2" />%
