@@ -12,7 +12,6 @@
 	<link href="css/style_inner1.css"  rel="stylesheet" type="text/css" />
 	<link href="css/jquery-confirm.min.css" rel="stylesheet" type="text/css" media="screen" />
 	<link href="css/data_table_mini.css?v=20150411" rel="stylesheet" type="text/css" />
-  <link href="css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="js/easyui/themes/default/easyui.css?v=1.21">
 	<link rel="stylesheet" type="text/css" href="js/easyui/themes/icon.css?v=1.11">
 
@@ -25,7 +24,6 @@
   <script src="js/tracking.js/data/mouth.js"></script>
 	<script src="js/jquery-confirm.min.js" type="text/javascript"></script>
   <script language="javascript" type="text/javascript" src="js/jquery.dataTables.min.js?v=1.0"></script>
-  <script src="js/jquery.alerts.js" type="text/javascript"></script>
 
   <style>
     video {
@@ -113,9 +111,11 @@
     var quality = 0.2;  // 0.2-0.5之间，控制压缩率。越小压缩越大，0.2可以在保证质量的情况下达到最大压缩率。
     var start = 0;
     let refID = 0;
+    let classID = 0;
 
     $(document).ready(function (){
       $("#confidence").numberbox("setValue", 65);
+      selCount = 0;
 		
       $("#confidence").numberbox({
         onChange:function(val) {
@@ -178,10 +178,7 @@
             $.messager.prompt('取消签到', '请输入验证码：', function(r){
                 if (r=="1357"){
                     //取消此人的签到
-                    $.get("classControl.asp?op=cancelFaceCheckin&nodeID=" + row.ID + "&times=" + (new Date().getTime()),function(re){
-                      jAlert("已取消。");
-                      getCheckinList(refID);
-                    });
+                  cancelCheck(row.ID);
                 }
             });
           }
@@ -280,12 +277,11 @@
                           }
                           $("#res").html(data.name + data.msg);
                           // getScheduleCheckIn();
-                          getCheckinList(refID);
                         });
                       }
                       faceflag = false;
                       tipFlag = false;
-                  }, 1000);
+                  }, 1500);
               }
             }
           } else {
@@ -321,17 +317,26 @@
       //根据不同标识，显示不同风格（字体颜色）。1秒后自动关闭
       let jc = $.dialog({
           title: false,
-          content: '<div style="font-size: 15em; font-weight:bold; text-align:center; color:' + c[kind] + ';">' + name + '<br />' + msg + '</div>',
           autoClose: '|500',
-          animation: 'scale',
-          closeAnimation: 'zoom'
+          content: '<div style="font-size: 15em; font-weight:bold; text-align:center; color:' + c[kind] + ';">' + name + '<br />' + msg + '</div>',
+          closeAnimation: 'zoom',
+          animation: 'scale'
       });
+      if(kind==0){
+          getScheduleList();
+          getCheckinList(refID, classID);
+          setCheckList();
+          getSelCart("");
+      }
       setTimeout(() => {
           jc.close();
-      }, 1000);    		
-      var utterThis = new window.SpeechSynthesisUtterance(name+msg);
-      window.speechSynthesis.cancel();
-		  window.speechSynthesis.speak(utterThis);
+      }, 500);    		
+      // var utterThis = new window.SpeechSynthesisUtterance(name+msg);
+      // window.speechSynthesis.cancel();
+		  // window.speechSynthesis.speak(utterThis);
+      window.speechSynthesis.cancel()
+      SpeakVoice('')
+      doSpeak(name+msg);
     }
 
     function getScheduleList(){
@@ -368,7 +373,7 @@
             arr.push("<td class='left'>" + ar2[1] + "</td>");
             arr.push("<td class='left'>" + ar2[2] + "</td>");
             arr.push("<td class='left'>" + ar2[3] + "</td>");
-            arr.push("<td class='left'>" + "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchk' />" + "</td>");
+            arr.push("<td class='left'>" + "<input id='chk" + ar1[0] + "' style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchk' />" + "</td>");
             arr.push("</tr>");
           });
         }
@@ -399,9 +404,19 @@
 		  });
     }
 
-		function getCheckinList(id, classID){
+		function setCheckList(){
+      if(selCount>0){
+        var arr = selList.split(',');
+        arr.forEach(function(item) {
+            $('#chk' + item).prop("checked",true);
+        });
+      }
+		}
+
+		function getCheckinList(id, cID){
       if(id>0){
         refID = id;
+        classID = cID
         $.getJSON(uploadURLS + "/public/getScheduleCheckInList?selList=" + id + "&times=" + (new Date().getTime()),function(re){
           $("#dg1").datagrid("loadData",re);
         });
@@ -412,6 +427,78 @@
         $("#title_2").html(classID + "班未签到人员：");
       }
 		}
+
+		function cancelCheck(id){
+      $.get("classControl.asp?op=cancelFaceCheckin&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
+        $.message.alert("提示","已取消。","info");
+        getScheduleList();
+        getCheckinList(refID, classID);
+        setCheckList();
+      });
+		}
+    //#region 语音播报封装
+    const doSpeak = newMsg => {
+      // 初次播报使用模拟按钮触发
+      virtualClick(SpeakVoice)
+      speakWithDelay(newMsg)
+    }
+
+    /**
+     * 语音播报
+     * @param msg 播报的信息
+     */
+    const SpeakVoice = (msg = '') => {
+      const speech = new SpeechSynthesisUtterance(msg)
+      // 设置兼容中文
+      const voices = window.speechSynthesis.getVoices()
+      speech.voice = voices.filter(function (voice) {
+        return voice.localService == true && voice.lang == 'zh-CN'
+      })[0]
+      window.speechSynthesis.speak(speech)
+    }
+
+    /**
+     * 语音播报 带延迟 异步
+     * 搭配async await
+     * @param msg 播报的信息
+     */
+    const speakWithDelay = (utterance, delay = 1000) => {
+      return new Promise(resolve => {
+        const speech = new SpeechSynthesisUtterance(utterance)
+        // 设置兼容中文
+        let voices = window.speechSynthesis.getVoices()
+        speech.voice = voices.filter(function (voice) {
+          return voice.localService == true && voice.lang == 'zh-CN'
+        })[0]
+        speech.onend = () => {
+          setTimeout(resolve, delay)
+        }
+        window.speechSynthesis.speak(speech)
+      })
+    }
+
+    /**
+     * 模拟按钮点击
+     * @param callback
+     */
+    const virtualClick = callback => {
+      let button = document.createElement('button')
+      button.textContent = '点击我'
+
+      // 添加点击事件处理程序
+      button.addEventListener('click', function () {
+        console.log('按钮被点击了')
+        callback && callback()
+      })
+
+      // 模拟用户点击事件
+      let event = new MouseEvent('click', {
+        view: window,
+        bubbles: true,
+        cancelable: true
+      })
+      button.dispatchEvent(event)
+    }
 
   </script>
 </head>
@@ -449,6 +536,7 @@
     </tr>
     </table>
   </div>
+  <div id="dialogdiv"></div>
 
 </body>
 </html>
