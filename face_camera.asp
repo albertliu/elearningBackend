@@ -267,17 +267,24 @@
                   setTimeout(() => {
                       // 拍照
                       let base64Data = tackPhoto();
+                      $("#res").html("");
                       if(base64Data){
-                        //upload photo for compare
-                        // alert(uploadURLS + "/alis/searchFace")
-                        $.post(uploadURLS + "/alis/searchFace", {base64Data: base64Data, selList: selList, confidence: $("#confidence").numberbox("getValue")} ,function(data){
-                          // alert(data)
-                          if(data.status < 9){
-                            showResultMsg(data.status, data.name, data.msg);
-                          }
-                          $("#res").html(data.name + data.msg);
-                          // getScheduleCheckIn();
-                        });
+                        getSelCart("");
+                        if(selCount==0){
+                          // $.messager.alert("提示","请选择课程。","warning");
+                          $("#res").html("请选择课程。");
+                        }else{
+                          //upload photo for compare
+                          // alert(uploadURLS + "/alis/searchFace")
+                          $.post(uploadURLS + "/alis/searchFace", {base64Data: base64Data, selList: selList, confidence: $("#confidence").numberbox("getValue")} ,function(data){
+                            // alert(data)
+                            if(data.status < 9){
+                              showResultMsg(data.status, data.name, data.msg);
+                            }
+                            $("#res").html(data.name + data.msg);
+                            // getScheduleCheckIn();
+                          });
+                        }
                       }
                       faceflag = false;
                       tipFlag = false;
@@ -331,12 +338,12 @@
       setTimeout(() => {
           jc.close();
       }, 500);    		
-      // var utterThis = new window.SpeechSynthesisUtterance(name+msg);
-      // window.speechSynthesis.cancel();
-		  // window.speechSynthesis.speak(utterThis);
-      window.speechSynthesis.cancel()
-      SpeakVoice('')
-      doSpeak(name+msg);
+      var utterThis = new window.SpeechSynthesisUtterance(name+msg);
+      window.speechSynthesis.cancel();
+		  window.speechSynthesis.speak(utterThis);
+      // window.speechSynthesis.cancel()
+      // SpeakVoice('')
+      // doSpeak(name+msg);
     }
 
     function getScheduleList(){
