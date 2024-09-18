@@ -526,7 +526,7 @@
 					$("#zip").html("<a href='/users" + ar[47] + "?times=" + (new Date().getTime()) + "' target='_blank'>归档压缩包</a>");
 				}
 				if(ar[48] > ""){
-					$("#pzip").html("<a href='/users" + ar[48] + "?times=" + (new Date().getTime()) + "' target='_blank'>照片压缩包</a>");
+					$("#pzip").html("<a href='/users" + ar[48] + "?times=" + (new Date().getTime()) + "' target='_blank'>资料压缩包</a>");
 				}
 				if(ar[49] > ""){
 					$("#ezip").html("<a href='/users" + ar[49] + "?times=" + (new Date().getTime()) + "' target='_blank'>报名表压缩包</a>");
@@ -975,7 +975,7 @@
 	}
 
 	function generateZip(t){
-		$.getJSON(uploadURL + "/outfiles/generate_material_zip?refID=" + $("#classID").val() + "&kind=class&type=" + t, function(data){
+		$.getJSON(uploadURL + "/outfiles/" + (t=="p"?"generate_student_material_zip":"generate_material_zip") + "?refID=" + $("#classID").val() + "&kind=class&type=" + t, function(data){
 			if(data>""){
 				alert("已生成压缩包");
 				getNodeInfo(nodeID);
@@ -1228,7 +1228,7 @@
 	<input class="button" type="button" id="doImport" value="报名表导入" />&nbsp;&nbsp;
 	<input class="button" type="button" id="checkStudent" value="报名表核对" />&nbsp;&nbsp;
 	<input class="button" type="button" id="generateZip" value="生成归档压缩包" />&nbsp;&nbsp;
-	<input class="button" type="button" id="generatePhotoZip" value="生成照片压缩包" />&nbsp;&nbsp;
+	<input class="button" type="button" id="generatePhotoZip" value="生成资料压缩包" />&nbsp;&nbsp;
 	<input class="button" type="button" id="generateEntryZip" value="生成报名表压缩包" />&nbsp;&nbsp;
 	<a href="output/学员报名表模板.xlsm">报名表模板</a>&nbsp;&nbsp;
 	<a href="output/学员信息核对模板.xlsx">报名表核对模板</a>
