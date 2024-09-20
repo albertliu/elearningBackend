@@ -43,7 +43,7 @@
 		if($("#rptPayInvoiceAutoInvoice").checkbox("options").checked){
 			autoInvoice = 1;
 		}
-		$.getJSON(uploadURL + "/public/getRptList?op=payInvoice&mark=" + mark + "&autoPay=" + autoPay + "&autoInvoice=" + autoInvoice + "&host=znxf&&startDate=" + $("#rptPayInvoiceStartDate").val() + "&endDate=" + $("#rptPayInvoiceEndDate").val(),function(data){
+		$.getJSON(uploadURL + "/public/getRptList?op=payInvoice&mark=" + mark + "&autoPay=" + autoPay + "&autoInvoice=" + autoInvoice + "&host=znxf&startDate=" + $("#rptPayInvoiceStartDate").val() + "&endDate=" + $("#rptPayInvoiceEndDate").val() + "&startDate1=" + $("#rptPayInvoiceStartDate1").val() + "&endDate1=" + $("#rptPayInvoiceEndDate1").val(),function(data){
 			// jAlert(data);
 			if(data==""){
 				jAlert("没有符合要求的数据。","提示")

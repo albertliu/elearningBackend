@@ -2,7 +2,8 @@
 					<div class="comm" align='left' style="background:#fdfdfd;">
 						<form>
 							<span>
-								&nbsp;日期&nbsp;<input id="rptPayInvoiceStartDate" class="easyui-datebox" data-options="height:22,width:100" />-<input id="rptPayInvoiceEndDate" class="easyui-datebox" data-options="height:22,width:100" />
+								&nbsp;收费日期&nbsp;<input id="rptPayInvoiceStartDate" class="easyui-datebox" data-options="height:22,width:100" />-<input id="rptPayInvoiceEndDate" class="easyui-datebox" data-options="height:22,width:100" />
+								&nbsp;开票日期&nbsp;<input id="rptPayInvoiceStartDate1" class="easyui-datebox" data-options="height:22,width:100" />-<input id="rptPayInvoiceEndDate1" class="easyui-datebox" data-options="height:22,width:100" />
 								&nbsp;&nbsp;<input class="easyui-checkbox" id="rptPayInvoiceAutoPay" name="rptPayInvoiceAutoPay" value="1"/>&nbsp;自助收费&nbsp;
 								<input class="easyui-checkbox" id="rptPayInvoiceAutoInvoice" name="rptPayInvoiceAutoInvoice" value="1"/>&nbsp;自助开票&nbsp;
 							</span>
