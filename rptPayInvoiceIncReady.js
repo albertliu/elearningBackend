@@ -1,6 +1,4 @@
 ﻿	$(document).ready(function (){
-		$("#rptPayInvoiceStartDate").datebox("setValue", new Date().format("yyyy-MM-dd"));
-		$("#rptPayInvoiceEndDate").datebox("setValue", new Date().format("yyyy-MM-dd"));
 		$("#btnRptPayInvoice").linkbutton({
 			iconCls:'icon-search',
 			width:70,
@@ -32,22 +30,26 @@
 		$("#btnRptPayInvoiceDownLoad").click(function(){
 			getRptPayInvoiceList("file");
 		});
-		$("#rptPayInvoiceStartDate1").datebox({
-			onChange:function() {
-				if($("#rptPayInvoiceStartDate1").datebox("getValue")>''){
-					$("#rptPayInvoiceStartDate").datebox("setValue","");
-					$("#rptPayInvoiceEndDate").datebox("setValue","");
-				}
-			}
-		});
 		$("#rptPayInvoiceStartDate").datebox({
 			onChange:function() {
 				if($("#rptPayInvoiceStartDate").datebox("getValue")>''){
 					$("#rptPayInvoiceStartDate1").datebox("setValue","");
 					$("#rptPayInvoiceEndDate1").datebox("setValue","");
+					$("#rptPayInvoiceEndDate").datebox("setValue", new Date().format("yyyy-MM-dd"));
 				}
 			}
 		});
+		$("#rptPayInvoiceStartDate1").datebox({
+			onChange:function() {
+				if($("#rptPayInvoiceStartDate1").datebox("getValue")>''){
+					$("#rptPayInvoiceStartDate").datebox("setValue","");
+					$("#rptPayInvoiceEndDate").datebox("setValue","");
+					$("#rptPayInvoiceEndDate1").datebox("setValue", new Date().format("yyyy-MM-dd"));
+				}
+			}
+		});
+		$("#rptPayInvoiceStartDate").datebox("setValue", new Date().format("yyyy-MM-dd"));
+		$("#rptPayInvoiceEndDate").datebox("setValue", new Date().format("yyyy-MM-dd"));
 	});
 
 	function getRptPayInvoiceList(mark){
