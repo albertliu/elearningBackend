@@ -32,6 +32,22 @@
 		$("#btnRptPayInvoiceDownLoad").click(function(){
 			getRptPayInvoiceList("file");
 		});
+		$("#rptPayInvoiceStartDate1").datebox({
+			onChange:function() {
+				if($("#rptPayInvoiceStartDate1").datebox("getValue")>''){
+					$("#rptPayInvoiceStartDate").datebox("setValue","");
+					$("#rptPayInvoiceEndDate").datebox("setValue","");
+				}
+			}
+		});
+		$("#rptPayInvoiceStartDate").datebox({
+			onChange:function() {
+				if($("#rptPayInvoiceStartDate").datebox("getValue")>''){
+					$("#rptPayInvoiceStartDate1").datebox("setValue","");
+					$("#rptPayInvoiceEndDate1").datebox("setValue","");
+				}
+			}
+		});
 	});
 
 	function getRptPayInvoiceList(mark){
