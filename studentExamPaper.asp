@@ -31,7 +31,7 @@
 	var updateCount = 0;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
-		nodeID = "<%=nodeID%>";		//enterID
+		nodeID = "<%=nodeID%>";		//passcardInfo.ID
 		refID = "<%=refID%>";		//学员姓名
 		$("#studentName").html(refID);
 		

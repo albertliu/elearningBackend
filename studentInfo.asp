@@ -585,9 +585,11 @@
 			$("#save").show();
 			$("#add_img_education").hide();
 			$("#username").prop("disabled",false);
+			// $("#Tai").prop("disabled",false);
 			setEmpty();
 			//$("#save").focus();
 		}else{
+			// $("#Tai").prop("disabled",true);
 			if(checkPermission("messageAdd")){
 				$("#reply").show();
 			}
@@ -929,181 +931,181 @@
 
 <div id='layout' align='left' style="background:#f0f0f0;">	
 	<div style="float:left;width:70%;">
-	<div style="width:100%;margin:0;">
-		<div style="border:solid 1px #e0e0e0;width:99%;margin:1px;background:#ffffff;line-height:18px;">
-			<div class="comm" style="background:#f5faf8; float:left;width:100%;">
-			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
-			<table style="width:100%;">><input type="hidden" id="bureau" />
-			<input type="hidden" id="experience" />
-			<tr>
-				<td align="right">身份证</td><input type="hidden" id="status" /><input type="hidden" id="host" />
-				<td><input type="text" id="username" size="18" /><input style="border:0px;" type="checkbox" id="Tai" value="" />&nbsp;台胞</td>
-				<td align="right">姓名</td><input type="hidden" id="studentID" />
-				<td><input class="mustFill" type="text" id="name" size="25" /></td>
-			</tr>
-			<tr>
-				<td align="right">性别</td>
-				<td><select id="sex" style="width:180px;"></select></td>
-				<td align="right">年龄</td>
-				<td><input class="readOnly" readOnly="true" type="text" id="age" size="2" />&nbsp;出生日期<input type="text" id="birthday" size="8" /></td>
-			</tr>
-			<tr>
-				<td align="left">证件期限</td>
-				<td align="left" colspan="2">
-					<input type="text" id="IDdateStart" size="15" />&nbsp;至&nbsp;<input type="text" id="IDdateEnd" size="15" />
-				</td>
-				<td align="left">民族&nbsp;<input id="ethnicity" name="ethnicity" type="text" size="10" /></td>
-			</tr>
-			<tr>
-				<td align="right">身份证地址</td>
-				<td colspan="3"><input type="text" id="IDaddress" style="width:95%;" /></td>
-			</tr>
-			<tr>
-				<td align="right">状态</td>
-				<td><input class="readOnly" readOnly="true" type="text" id="statusName" size="25" /></td>
-				<td align="right">学历</td>
-				<td><select id="education" style="width:180px;"></select></td>
-			</tr>
-			<tr>
-				<td align="right">来源</td>
-				<td><select id="companyID" style="width:180px;"></select></td>
-				<td align="right">类型</td>
-				<td><select id="kindID" style="width:180px;"></select></td>
-			</tr>
-			<tr id="spc_dept">
-				<td align="right">一级部门</td>
-				<td><select id="dept1" style="width:180px;"></select></td>
-				<td align="right">二级部门</td>
-				<td><select id="dept2" style="width:180px;"></select></td>
-			</tr>
-			<tr id="znxf_dept">
-				<td align="right">单位</td>
-				<td><input type="text" id="unit" size="25" /></td>
-				<td align="right">部门</td>
-				<td><input type="text" id="dept" size="25" /></td>
-			</tr>
-			<tr>
-				<td align="right">三级部门</td>
-				<td><select id="dept3" style="width:180px;"></select></td>
-				<td align="right">岗位/职务</td>
-				<td><input type="text" id="job" size="25" /></td>
-			</tr>
-			<tr>
-				<td align="right">手机</td>
-				<td><input class="mustFill" type="text" id="mobile" size="25" /></td>
-				<td align="right">邮箱</td>
-				<td><input type="text" id="email" size="25" /></td>
-			</tr>
-			<tr>
-				<td align="right">联系地址</td>
-				<td><input type="text" id="address" size="25" /></td>
-				<td align="right">单位电话</td>
-				<td><input type="text" id="phone" size="25" /></td>
-			</tr>
-			<tr>
-				<td align="right">就业状态</td>
-				<td><select id="job_status" style="width:180px;"></select></td>
-				<td align="right">有效期</td>
-				<td><input type="text" id="limitDate" size="25" /></td>
-			</tr>
-			<tr>
-				<td align="right">备注</td>
-				<td colspan="3"><input type="text" id="memo" style="width:95%;" /></td>
-			</tr>
-			<tr>
-				<td align="right">注册日期</td>
-				<td><input class="readOnly" type="text" id="regDate" size="25" readOnly="true" /></td>
-				<td align="right">销售标识</td><td><select id="fromID" style="width:100px;"></select></td>
-			</tr>
-			</table>
-			</form>
+		<div style="width:100%;margin:0;">
+			<div style="border:solid 1px #e0e0e0;width:99%;margin:1px;background:#ffffff;line-height:18px;">
+				<div class="comm" style="background:#f5faf8; float:left;width:100%;">
+					<input type="hidden" id="experience" /><input type="hidden" id="bureau" />
+					<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
+					<table style="width:100%;">
+					<tr>
+						<td align="right">身份证</td><input type="hidden" id="status" /><input type="hidden" id="host" />
+						<td><input type="text" id="username" size="18" /><input style="border:0px;" type="checkbox" id="Tai" value="" />&nbsp;台胞</td>
+						<td align="right">姓名</td><input type="hidden" id="studentID" />
+						<td><input class="mustFill" type="text" id="name" size="25" /></td>
+					</tr>
+					<tr>
+						<td align="right">性别</td>
+						<td><select id="sex" style="width:180px;"></select></td>
+						<td align="right">年龄</td>
+						<td><input class="readOnly" readOnly="true" type="text" id="age" size="2" />&nbsp;出生日期<input type="text" id="birthday" size="8" /></td>
+					</tr>
+					<tr>
+						<td align="right">证件期限</td>
+						<td align="left" colspan="2">
+							<input type="text" id="IDdateStart" size="15" />&nbsp;至&nbsp;<input type="text" id="IDdateEnd" size="15" />
+						</td>
+						<td align="left">民族&nbsp;<input id="ethnicity" name="ethnicity" type="text" size="10" /></td>
+					</tr>
+					<tr>
+						<td align="right">身份证地址</td>
+						<td colspan="3"><input type="text" id="IDaddress" style="width:95%;" /></td>
+					</tr>
+					<tr>
+						<td align="right">状态</td>
+						<td><input class="readOnly" readOnly="true" type="text" id="statusName" size="25" /></td>
+						<td align="right">学历</td>
+						<td><select id="education" style="width:180px;"></select></td>
+					</tr>
+					<tr>
+						<td align="right">来源</td>
+						<td><select id="companyID" style="width:180px;"></select></td>
+						<td align="right">类型</td>
+						<td><select id="kindID" style="width:180px;"></select></td>
+					</tr>
+					<tr id="spc_dept">
+						<td align="right">一级部门</td>
+						<td><select id="dept1" style="width:180px;"></select></td>
+						<td align="right">二级部门</td>
+						<td><select id="dept2" style="width:180px;"></select></td>
+					</tr>
+					<tr id="znxf_dept">
+						<td align="right">单位</td>
+						<td><input type="text" id="unit" size="25" /></td>
+						<td align="right">部门</td>
+						<td><input type="text" id="dept" size="25" /></td>
+					</tr>
+					<tr>
+						<td align="right">三级部门</td>
+						<td><select id="dept3" style="width:180px;"></select></td>
+						<td align="right">岗位/职务</td>
+						<td><input type="text" id="job" size="25" /></td>
+					</tr>
+					<tr>
+						<td align="right">手机</td>
+						<td><input class="mustFill" type="text" id="mobile" size="25" /></td>
+						<td align="right">邮箱</td>
+						<td><input type="text" id="email" size="25" /></td>
+					</tr>
+					<tr>
+						<td align="right">联系地址</td>
+						<td><input type="text" id="address" size="25" /></td>
+						<td align="right">单位电话</td>
+						<td><input type="text" id="phone" size="25" /></td>
+					</tr>
+					<tr>
+						<td align="right">就业状态</td>
+						<td><select id="job_status" style="width:180px;"></select></td>
+						<td align="right">有效期</td>
+						<td><input type="text" id="limitDate" size="25" /></td>
+					</tr>
+					<tr>
+						<td align="right">备注</td>
+						<td colspan="3"><input type="text" id="memo" style="width:95%;" /></td>
+					</tr>
+					<tr>
+						<td align="right">注册日期</td>
+						<td><input class="readOnly" type="text" id="regDate" size="25" readOnly="true" /></td>
+						<td align="right">销售标识</td><td><select id="fromID" style="width:100px;"></select></td>
+					</tr>
+					</table>
+					</form>
+				</div>
 			</div>
 		</div>
+
+		<div style="width:100%;float:left;margin:10;height:4px;"></div>
+		<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;clear:both;">
+			<input class="button" type="button" id="add" value="添加" />&nbsp;
+			<input class="button" type="button" id="save" value="保存" />&nbsp;
+			<input class="button" type="button" id="open" value="解禁" />&nbsp;
+			<input class="button" type="button" id="close" value="禁用" />&nbsp;
+			<input class="button" type="button" id="reply" value="发通知" />&nbsp;
+			<input class="button" type="button" id="reset" value="重置密码" />&nbsp;
+			<input class="button" type="button" id="smsList" value="查看通知" />&nbsp;
+			<input class="button" type="button" id="opList" value="查看操作" />&nbsp;
+			<input class="button" type="button" id="examList" value="查看考试信息" />
+		</div>
+
+		<div style="width:100%;float:left;margin:10;height:4px;"></div>
+		<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fcfcfc;clear:both;">
+			<input class="button" type="button" id="enter" value="去报名" />&nbsp;
+		</div>
+		<hr size="1" noshadow />
+		<div id='enterCover'></div>
 	</div>
-
-	<div style="width:100%;float:left;margin:10;height:4px;"></div>
-  	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;clear:both;">
-		<input class="button" type="button" id="add" value="添加" />&nbsp;
-		<input class="button" type="button" id="save" value="保存" />&nbsp;
-		<input class="button" type="button" id="open" value="解禁" />&nbsp;
-		<input class="button" type="button" id="close" value="禁用" />&nbsp;
-		<input class="button" type="button" id="reply" value="发通知" />&nbsp;
-		<input class="button" type="button" id="reset" value="重置密码" />&nbsp;
-		<input class="button" type="button" id="smsList" value="查看通知" />&nbsp;
-		<input class="button" type="button" id="opList" value="查看操作" />&nbsp;
-		<input class="button" type="button" id="examList" value="查看考试信息" />
-  	</div>
-
-	<div style="width:100%;float:left;margin:10;height:4px;"></div>
-  	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fcfcfc;clear:both;">
-		<input class="button" type="button" id="enter" value="去报名" />&nbsp;
-  	</div>
-	<hr size="1" noshadow />
-	<div id='enterCover'></div>
-</div>
-<div style="padding: 5px;text-align:center;overflow:hidden;margin:0 auto;flot:right;background: #eeeeff;" id="xx">
-	<table style="width:99%;">
-	<tr>
-		<td align="right" style="width:15%;">
-			<img id="add_img_photo" src="images/plus.png" tag="plus" />
-			<div style="padding-top:5px;"><input class="easyui-checkbox" id="scanPhoto" name="scanPhoto" />识</div>
-		</td>
-		<td id="td_img_photo" align="center" style="width:85%;">
-			<img id="img_photo" tag="student_photo" src="" value="" style='width:100px;border:none;' />
-		</td>
-	</tr>
-	<tr>
-		<td align="right" style="width:15%;"><img id="add_img_cardA" src="images/plus.png" tag="plus" /></td>
-		<td id="td_img_cardA" style="width:85%;">
-			<img id="img_cardA" tag="student_IDcardA" src="" value="" style='width:150px;border:none;' />
-		</td>
-	</tr>
-	<tr>
-		<td align="right" style="width:15%;"><img id="add_img_cardB" src="images/plus.png" tag="plus" /></td>
-		<td id="td_img_cardB" style="width:85%;">
-			<img id="img_cardB" tag="student_IDcardB" src="" value="" style='width:150px;border:none;' />
-		</td>
-	</tr>
-	<tr>
-		<td align="right" style="width:15%;"><img id="add_img_education" src="images/plus.png" tag="plus" /></td>
-		<td id="td_img_education" style="width:85%;">
-			<img id="img_education" tag="student_education" src="" value="" style='width:150px;border:none;' />
-		</td>
-	</tr>
-	<tr>
-		<td align="right" style="width:15%;"><img id="add_img_CHESICC" src="images/plus.png" tag="plus" /></td>
-		<td id="td_img_CHESICC" style="width:85%;">
-			<img id="img_CHESICC" tag="student_CHESICC" src="" value="" style='width:150px;border:none;' />
-		</td>
-	</tr>
-	<tr>
-		<td align="right" style="width:15%;"><img id="add_img_employment" src="images/plus.png" tag="plus" /></td>
-		<td id="td_img_employment" style="width:85%;">
-			<img id="img_employment" tag="student_employment" src="" value="" style='width:150px;border:none;' />
-		</td>
-	</tr>
-	<tr>
-		<td align="right" style="width:15%;"><img id="add_img_jobCertificate" src="images/plus.png" tag="plus" /></td>
-		<td id="td_img_jobCertificate" style="width:85%;">
-			<img id="img_jobCertificate" tag="student_jobCertificate" src="" value="" style='width:150px;border:none;' />
-		</td>
-	</tr>
-	<tr>
-		<td align="right" style="width:15%;"><img id="add_img_promise" src="images/plus.png" tag="plus" /></td>
-		<td id="td_img_promise" style="width:85%;">
-			<img id="img_promise" tag="student_promise" src="" value="" style='width:150px;border:none;' />
-		</td>
-	</tr>
-	<tr>
-		<td align="right" style="width:15%;"><img id="add_img_social" src="images/plus.png" tag="plus" /></td>
-		<td id="td_img_social" style="width:85%;">
-			<img id="img_social" tag="student_social" src="" value="" style='width:150px;border:none;' />
-		</td>
-	</tr>
-	<tr>
-		<td align="left" colspan="2" style="width:100%;"><textarea id="text_reader_result" style="padding:5px;width:90%;background: #eeeeee;border:solid 1px #ccc;color:#ff0000;" rows="2"></textarea></td>
-	</tr>
-	</table>
-</div>
+	<div style="padding: 5px;text-align:center;overflow:hidden;margin:0 auto;flot:right;background: #eeeeff;" id="xx">
+		<table style="width:99%;">
+		<tr>
+			<td align="right" style="width:15%;">
+				<img id="add_img_photo" src="images/plus.png" tag="plus" />
+				<div style="padding-top:5px;"><input class="easyui-checkbox" id="scanPhoto" name="scanPhoto" />识</div>
+			</td>
+			<td id="td_img_photo" align="center" style="width:85%;">
+				<img id="img_photo" tag="student_photo" src="" value="" style='width:100px;border:none;' />
+			</td>
+		</tr>
+		<tr>
+			<td align="right" style="width:15%;"><img id="add_img_cardA" src="images/plus.png" tag="plus" /></td>
+			<td id="td_img_cardA" style="width:85%;">
+				<img id="img_cardA" tag="student_IDcardA" src="" value="" style='width:150px;border:none;' />
+			</td>
+		</tr>
+		<tr>
+			<td align="right" style="width:15%;"><img id="add_img_cardB" src="images/plus.png" tag="plus" /></td>
+			<td id="td_img_cardB" style="width:85%;">
+				<img id="img_cardB" tag="student_IDcardB" src="" value="" style='width:150px;border:none;' />
+			</td>
+		</tr>
+		<tr>
+			<td align="right" style="width:15%;"><img id="add_img_education" src="images/plus.png" tag="plus" /></td>
+			<td id="td_img_education" style="width:85%;">
+				<img id="img_education" tag="student_education" src="" value="" style='width:150px;border:none;' />
+			</td>
+		</tr>
+		<tr>
+			<td align="right" style="width:15%;"><img id="add_img_CHESICC" src="images/plus.png" tag="plus" /></td>
+			<td id="td_img_CHESICC" style="width:85%;">
+				<img id="img_CHESICC" tag="student_CHESICC" src="" value="" style='width:150px;border:none;' />
+			</td>
+		</tr>
+		<tr>
+			<td align="right" style="width:15%;"><img id="add_img_employment" src="images/plus.png" tag="plus" /></td>
+			<td id="td_img_employment" style="width:85%;">
+				<img id="img_employment" tag="student_employment" src="" value="" style='width:150px;border:none;' />
+			</td>
+		</tr>
+		<tr>
+			<td align="right" style="width:15%;"><img id="add_img_jobCertificate" src="images/plus.png" tag="plus" /></td>
+			<td id="td_img_jobCertificate" style="width:85%;">
+				<img id="img_jobCertificate" tag="student_jobCertificate" src="" value="" style='width:150px;border:none;' />
+			</td>
+		</tr>
+		<tr>
+			<td align="right" style="width:15%;"><img id="add_img_promise" src="images/plus.png" tag="plus" /></td>
+			<td id="td_img_promise" style="width:85%;">
+				<img id="img_promise" tag="student_promise" src="" value="" style='width:150px;border:none;' />
+			</td>
+		</tr>
+		<tr>
+			<td align="right" style="width:15%;"><img id="add_img_social" src="images/plus.png" tag="plus" /></td>
+			<td id="td_img_social" style="width:85%;">
+				<img id="img_social" tag="student_social" src="" value="" style='width:150px;border:none;' />
+			</td>
+		</tr>
+		<tr>
+			<td align="left" colspan="2" style="width:100%;"><textarea id="text_reader_result" style="padding:5px;width:90%;background: #eeeeee;border:solid 1px #ccc;color:#ff0000;" rows="2"></textarea></td>
+		</tr>
+		</table>
+	</div>
 </div>
 </body>

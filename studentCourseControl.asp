@@ -709,7 +709,7 @@ if(op == "getPayInfo"){
 
 if(op == "enterRefund"){
 	//@enterID int,@amount decimal(18,2),@memo nvarchar(500), @registerID varchar(50)
-	sql = "exec enterRefund " + nodeID + ",'" + String(Request.QueryString("amount")) + "','" + memo + "','" + currUser + "'";
+	sql = "exec enterRefund " + nodeID + ",'" + String(Request.QueryString("amount")) + "','" + String(Request.QueryString("dateRefund")) + "','" + memo + "','" + currUser + "'";
 	rs = conn.Execute(sql);
 	Response.Write(escape(0));
 	//Response.Write(escape(sql));

@@ -180,9 +180,17 @@
 		});
 
 		$("#btnRefund").click(function(){
+			if($("#dateRefund").val() == ''){
+				$.messager.alert("提示","请填写退款日期。","warning");
+				return false;
+			}
+			if($("#refund_amount").val() == 0){
+				$.messager.alert("提示","退款金额不能为0。","warning");
+				return false;
+			}
 			jConfirm('确定要退款' + $("#refund_amount").val() + '元吗?', '确认对话框', function(r) {
 				if(r){
-					$.get("studentCourseControl.asp?op=enterRefund&nodeID=" + nodeID + "&amount=" + $("#refund_amount").val() + "&memo=" + escape($("#refund_memo").val()) + "&times=" + (new Date().getTime()),function(re){
+					$.get("studentCourseControl.asp?op=enterRefund&nodeID=" + nodeID + "&amount=" + $("#refund_amount").val() + "&dateRefund=" + $("#dateRefund").val() + "&memo=" + escape($("#refund_memo").val()) + "&times=" + (new Date().getTime()),function(re){
 						// alert(unescape(re))
 						jAlert("操作成功。");
 						updateCount += 1;

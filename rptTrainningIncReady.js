@@ -138,7 +138,7 @@
 				arr.push("<th width='15%'>日期</th>");
 				arr.push("<th width='10%'>类型</th>");
 				arr.push("<th width='18%'>课程</th>");
-				arr.push("<th width='6%'>备注</th>");
+				arr.push("<th width='8%'>备注</th>");
 				arr.push("</tr>");
 				arr.push("</thead>");
 				arr.push("<tbody id='tbody'>");
