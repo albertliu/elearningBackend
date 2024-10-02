@@ -310,9 +310,9 @@
 					var ar = $.parseJSON(unescape(data));
 					jSelect("请输入班级编号：", ar, "目标班级",function(d){
 						d = d.replace(/\s*/g,"");
-						if(d > ""){
+						// if(d > ""){
 							//alert($("#searchStudentPreProjectID").val() + "&status=1&host=" + $("#searchStudentPreHost").val() + "&keyID=" + selList);
-							// alert(d + ":" + selList);
+							alert(d + ":" + selList + ":" + $("#classID").val());
 							$.post("studentCourseControl.asp?op=pick_students2class", {batchID: d, selList: selList, fromClass: $("#classID").val()} ,function(data1){
 								// alert(data);
 								if(data1>0){
@@ -323,9 +323,9 @@
 									jAlert("操作失败，没有符合要求的学员。");
 								}
 							});
-						}else{
-							jAlert("班级编号不能为空。");
-						}
+						// }else{
+						// 	jAlert("班级编号不能为空。");
+						// }
 					});
 				});
 			}

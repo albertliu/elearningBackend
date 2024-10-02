@@ -87,8 +87,6 @@
 	<!--#include file="generateMaterialListIncReady.js"-->
 	<!--#include file="classListIncReady.js"-->
 	<!--#include file="enterListIncReady.js"-->
-	<!--#include file="payListIncReady.js"-->
-	<!--#include file="invoiceListIncReady.js"-->
 	<!--#include file="generatePasscardListIncReady.js"-->
 	<!--#include file="generateApplyListIncReady.js"-->
 	<!--#include file="rptStudentIncReady.js"-->
@@ -96,7 +94,6 @@
 	<!--#include file="rptDiplomaIncReady.js"-->
 	<!--#include file="rptDiplomaLastIncReady.js"-->
 	<!--#include file="rptOtherIncReady.js"-->
-	<!--#include file="rptDailyListIncReady.js"-->
 	<!--#include file="studentPreListIncReady.js"-->
 	<!--#include file="rptSalesIncReady.js"-->
 	<!--#include file="rptPayInvoiceIncReady.js"-->
@@ -452,7 +449,6 @@
 						</div>
 						<div id="minialDiv" style="width:85%;float:right;">
 							<ul id="tabs">
-							    <li id="rptDaily_Tab"><a href="#" name="#tab00">日报表</a></li> 
 							    <li id="project_Tab"><a href="#" name="#tab0">招生计划</a></li> 
 							    <li id="mTab1"><a href="#" name="#tab1">学员反馈</a></li>
 							    <li id="feedback_Tab"><a href="#" name="#tab2">回复信息</a></li>
@@ -462,7 +458,6 @@
 							</ul>
 							
 							<div id="content"> 
-							    <div id="tab00"><!--#include file="rptDailyListIncDetail.js"--></div>
 							    <div id="tab0"><!--#include file="projectListIncDetail.js"--></div>
 							    <div id="tab1"><!--#include file="feedbackListIncDetail.js"--></div>
 							    <div id="tab2"><!--#include file="messageListIncDetail.js"--></div>
@@ -515,35 +510,11 @@
 					</div>
 					
 					<div id="fragment-10">
-						<div id="dhtmlgoodies_tabView10">
-							<div id="dtab101" class="dhtmlgoodies_aTab">
-								<!--#include file="enterListIncDetail.js"-->
-							</div>
-							<div id="dtab102" class="dhtmlgoodies_aTab">
-								<!--#include file="payListIncDetail.js"-->
-							</div>
-							<div id="dtab103" class="dhtmlgoodies_aTab">
-								<!--#include file="invoiceListIncDetail.js"-->
-							</div>
-							<div id="dtab105" class="dhtmlgoodies_aTab">
-							</div>
-						</div>
-						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView10',Array("报名记录","收费记录","发票管理","日结报表"),0,1260,400);
-						</script>
+						<!--#include file="enterListIncDetail.js"-->
 					</div>
 					
 					<div id="fragment-9">
-						<div id="dhtmlgoodies_tabView9">
-							<div id="dtab91" class="dhtmlgoodies_aTab">
-								<!--#include file="classListIncDetail.js"-->
-							</div>
-							<div id="dtab92" class="dhtmlgoodies_aTab">
-							</div>
-						</div>
-						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView9',Array("班级列表","花名册"),0,1260,400);
-						</script>
+						<!--#include file="classListIncDetail.js"-->
 					</div>
 					
 					<div id="fragment-2">

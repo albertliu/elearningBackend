@@ -208,7 +208,7 @@ if(op == "getClassListByClassID"){
 		result += ',"' + rs("classID").value + '":"' + rs("className").value + '"';
 		rs.MoveNext();
 	}
-	result = "{" + result.substr(1) + "}";
+	result = '{"":"无班级",' + result.substr(1) + '}';
 	Response.Write(escape(result));/**/
 	//Response.Write(escape(sql));
 }	

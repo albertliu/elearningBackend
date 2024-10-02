@@ -619,7 +619,7 @@
 		$("#btnPrint").hide();
 		$("#btnRebuildStudentLesson").hide();
 		$("#amount").prop("readonly",false);
-		$("#btnViewInvoice").prop("disabled",true);
+		// $("#btnViewInvoice").prop("disabled",true);
 		$("#check_pass").checkbox({readonly:true});
 		$("#fromID").prop("readonly",true);
 		if($("#statusPay").val()==0 && $("#kindID").val()==0 && checkPermission("studentAdd")){
@@ -654,9 +654,9 @@
 				$("#btnReInvoice").prop("disabled",true);
 			}
 
-			if($("#file5").val()>""){
-				$("#btnViewInvoice").prop("disabled",false);
-			}
+			// if($("#file5").val()>""){
+			// 	$("#btnViewInvoice").prop("disabled",false);
+			// }
 
 			if(checkPermission("studentAdd") || checkPermission("editPayDate")){
 				//编辑状态：显示保存按钮；一定条件下可以退学、退款
@@ -882,7 +882,7 @@
 					<input type="checkbox" id="needInvoice" />&nbsp;需开票
 					&nbsp;<input class="button" type="button" id="btnUploadInvoice" value="上传发票" />
 					&nbsp;<input class="button" type="button" id="btnViewInvoice" value="查看" />
-					&nbsp;<input class="button" type="button" id="btnReInvoice" value="重开/红冲" />
+					&nbsp;<input class="button" type="button" id="btnReInvoice" value="重开发票" />
 				</td>
 				<td align="right">发票号码</td><input type="hidden" id="file5" name="file5" />
 				<td><input type="text" id="invoice" size="25" /></td>
