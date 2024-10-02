@@ -23,7 +23,6 @@
 								&nbsp;&nbsp;学习进度&nbsp;&gt;=<input type="text" id="searchEnter_completion1" size="2" />%
 								&nbsp;&nbsp;模拟成绩&nbsp;&gt;=<input type="text" id="searchEnter_score1" size="2" />
 								<input class="easyui-checkbox" id="searchEnterInvoice" name="searchEnterInvoice" value="1"/>&nbsp;开票&nbsp;
-								<input class="easyui-checkbox" id="searchEnterReceive" name="searchEnterReceive" value="1"/>&nbsp;应收&nbsp;
 							</span>
 						    <span style="float:right;">
 								<input class="button" type="button" id="btnSearchEnterDownload" value="下载" />
@@ -50,9 +49,6 @@
 								<input class="button" type="button" id="btnEnterCheck" value="材料确认" />&nbsp;
 								准考证/申报&nbsp;<select id="searchEnterPasscard" style="width:50px"></select>&nbsp;
 								<input class="button" type="button" id="btnEnterCall" value="催材料" />&nbsp;
-							</span>
-							<span id="enterListLongItem8">
-								<input class="button" type="button" id="btnEnterReceive" value="应收确认" />&nbsp;
 							</span>
 							<span style="float:right;margin-right:20px;">
 								<input class="button" type="button" id="btnEnterCartAdd" value="加入购物车" />&nbsp;&nbsp;&nbsp;&nbsp;

@@ -83,6 +83,9 @@
 				}
 			});
 		});
+		if(!checkPermission("receiveCheck")){
+			$("#rptPayInvoiceItem1").hide();
+		}
 	});
 
 	function getRptPayInvoiceList(mark){
@@ -125,7 +128,7 @@
 					arr.push("<th width='7%'>类型</th>");
 				}
 				arr.push("<th width='14%'>课程</th>");
-				arr.push("<th width='6%'>应收</th>");
+				arr.push("<th width='5%'>应收</th>");
 				arr.push("<th width='14%'>发票号码</th>");
 				arr.push("<th width='9%'>开票日期</th>");
 				arr.push("<th width='14%'>发票抬头</th>");
@@ -138,9 +141,7 @@
 				arr.push("</thead>");
 				arr.push("<tbody id='tbody'>");
 				$.each(data,function(iNum,val){
-					let j = 0;
 					let s = "";
-					let t = 0;
 					i += 1;
 					arr.push("<tr class='grade0'>");
 					arr.push("<td class='center'>" + i + "</td>");
@@ -151,7 +152,13 @@
 						arr.push("<td class='left'>" + val["pay_typeName"] + "</td>");
 					}
 					arr.push("<td class='left'>" + val["shortName"] + "</td>");
-					arr.push("<td class='left'>" + val["noReceive"] + "</td>");
+					if(val["noReceive"]==1){
+						s = "待收";
+					}
+					if(val["noReceive"]==2){
+						s = "已收";
+					}
+					arr.push("<td class='left'>" + s + "</td>");
 					arr.push("<td class='left'>" + val["发票号码"] + "</td>");
 					arr.push("<td class='left'" + (val["autoInvoice"]=="1"?" style='background:#FFFF88;'" : "") + ">" + val["dateInvoice"] + "</td>");
 					arr.push("<td class='left'>" + val["title"] + "</td>");

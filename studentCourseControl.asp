@@ -97,16 +97,6 @@ if(op == "getStudentCourseList"){
 		}
 		d += 1;
 	}
-	//如果应收款
-	if(String(Request.QueryString("noReceive")) == "1"){ // 
-		s = "noReceive=1";	//1 应收款
-		if(where > ""){
-			where = where + " and " + s;
-		}else{
-			where = s;
-		}
-		d += 1;
-	}
 	//如果预备班
 	if(String(Request.QueryString("pre")) == "1"){ // 
 		s = "pre=1";	//1 
