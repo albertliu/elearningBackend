@@ -123,16 +123,16 @@
 				arr.push("<th width='2%'>No</th>");
 				arr.push("<th width='6%'>姓名</th>");
 				arr.push("<th width='6%'>金额</th>");
-				arr.push("<th width='9%'>付款日期</th>");
+				arr.push("<th width='8%'>付款日期</th>");
 				if(receivable==0){
 					arr.push("<th width='7%'>类型</th>");
 				}
 				arr.push("<th width='14%'>课程</th>");
-				arr.push("<th width='5%'>应收</th>");
+				arr.push("<th width='6%'>应收</th>");
 				arr.push("<th width='14%'>发票号码</th>");
-				arr.push("<th width='9%'>开票日期</th>");
+				arr.push("<th width='8%'>开票日期</th>");
 				arr.push("<th width='14%'>发票抬头</th>");
-				arr.push("<th width='9%'>备注</th>");
+				arr.push("<th width='11%'>备注</th>");
 				arr.push("<th width='4%'>票</th>");
 				if(receivable==1){
 					arr.push("<th width='1%'></th>");
