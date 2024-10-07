@@ -133,7 +133,7 @@
 		});
 
 		$("#btnProof").click(function(){
-			window.open("trainingProof.asp?nodeID=" + nodeID + "&keyID=1&times=" + (new Date().getTime()), "_self");
+			window.open("trainingProofPerson.asp?nodeID=" + nodeID + "&keyID=1&times=" + (new Date().getTime()), "_self");
 		});
 
 		$("#btnPreview").click(function(){
@@ -292,9 +292,20 @@
 		});
 
 		$("#btnReInvoice").click(function(){
+			jConfirm('确定要对当前发票进行红冲吗?', '确认对话框', function(r) {
+				if(r){
+					$.get("studentCourseControl.asp?op=removeInvoice&refID=0&nodeID=" + $("#studentCourseID").val() + "&times=" + (new Date().getTime()),function(re){
+						jAlert("已移除原发票，请上传新发票。");
+						getNodeInfo(nodeID)
+					});
+				}
+			});
+		});
+
+		$("#btnReInvoice1").click(function(){
 			jConfirm('确定要重开发票吗?', '确认对话框', function(r) {
 				if(r){
-					$.get("studentCourseControl.asp?op=removeInvoice&nodeID=" + $("#studentCourseID").val() + "&times=" + (new Date().getTime()),function(re){
+					$.get("studentCourseControl.asp?op=removeInvoice&refID=1&nodeID=" + $("#studentCourseID").val() + "&times=" + (new Date().getTime()),function(re){
 						jAlert("已移除原发票，请上传新发票。");
 						getNodeInfo(nodeID)
 					});
@@ -424,20 +435,21 @@
 				$("#pay_checkerName").val(ar[85]);
 				$("#completionPass").val(ar[86]);
 				$("#completion").val(ar[10]);
-				let c = $("#certID").val();
-				if(c == "C21" || c == "C20A"){
-					c = "C20";
-				}
-				if(c == "C30" || c == "C31" || c == "C32" || c == "C35" || c == "C18" || c == "C19" || c == "C36" || c == "C37" || c == "C22" || c == "C23"){
-					c = "C2";
-				}
-				if(c == "C24" || c == "C25" || c == "C26" || c == "C25B" || c == "C26B" || c == "C14" || c == "C15" || c == "C27" || c == "C27B"){
-					c = "C12";
-				}
-				if(c == "C17"){
-					c = "C16";
-				}
-				entryform = c;
+				$("#invoice_amount").val(ar[90]);
+				// let c = $("#certID").val();
+				// if(c == "C21" || c == "C20A"){
+				// 	c = "C20";
+				// }
+				// if(c == "C30" || c == "C31" || c == "C32" || c == "C35" || c == "C18" || c == "C19" || c == "C36" || c == "C37" || c == "C22" || c == "C23"){
+				// 	c = "C2";
+				// }
+				// if(c == "C24" || c == "C25" || c == "C26" || c == "C25B" || c == "C26B" || c == "C14" || c == "C15" || c == "C27" || c == "C27B"){
+				// 	c = "C12";
+				// }
+				// if(c == "C17"){
+				// 	c = "C16";
+				// }
+				entryform = ar[35];
 				invoicePDF = ar[89];
 				if(ar[48]>""){
 					$("#signatureStatus").prop("checked",true);
@@ -510,10 +522,18 @@
 			var needInvoice = 0;
 			if($("#needInvoice").prop("checked")){
 				needInvoice = 1;
+				if($("#invoice_amount").val() == "" || !check_str(7,$("#invoice_amount").val())){
+					jAlert("请正确填写发票金额。");
+					return false;
+				}
+				if($("#title").val() == ""){
+					jAlert("请填写开票信息。");
+					return false;
+				}
 			}
 			
 			//@username,@classID,@price,@invoice,@projectID,@kindID,@type,@status,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo,@registerID
-			$.get("studentCourseControl.asp?op=doEnter&nodeID=" + nodeID + "&username=" + $("#username").val() + "&classID=" + $("#classID").val() + "&overdue=" + over + "&needInvoice=" + needInvoice + "&fromID=" + $("#fromID").val() + "&price=" + $("#price").val() + "&amount=" + $("#amount").val() + "&invoice=" + $("#invoice").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&payNow=" + $("#payNow").val() + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#statusPay").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&pay_memo=" + escape($("#pay_memo").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+			$.get("studentCourseControl.asp?op=doEnter&nodeID=" + nodeID + "&username=" + $("#username").val() + "&classID=" + $("#classID").val() + "&overdue=" + over + "&needInvoice=" + needInvoice + "&fromID=" + $("#fromID").val() + "&price=" + $("#price").val() + "&amount=" + $("#amount").val() + "&invoice=" + $("#invoice").val() + "&invoice_amount=" + $("#invoice_amount").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&payNow=" + $("#payNow").val() + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#statusPay").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&pay_memo=" + escape($("#pay_memo").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 				//jAlert(unescape(re));
 				var ar = new Array();
 				ar = unescape(re).split("|");
@@ -650,8 +670,21 @@
 			}
 			if(checkPermission("invoiceRe") && $("#invoice").val()>""){
 				$("#btnReInvoice").prop("disabled",false);
+				$("#btnReInvoice1").prop("disabled",false);
 			}else{
 				$("#btnReInvoice").prop("disabled",true);
+				$("#btnReInvoice1").prop("disabled",true);
+			}
+			if((checkPermission("invoiceRe") || checkPermission("studentAdd") || checkPermission("invoiceUpload")) && $("#invoice").val()==""){
+				$("#invoice_amount").prop("disabled",false);
+				$("#title").prop("disabled",false);
+				$("#dateInvoice").prop("disabled",false);
+				$("#invoice").prop("disabled",false);
+			}else{
+				$("#invoice_amount").prop("disabled",true);
+				$("#title").prop("disabled",true);
+				$("#dateInvoice").prop("disabled",true);
+				$("#invoice").prop("disabled",true);
 			}
 
 			// if($("#file5").val()>""){
@@ -878,28 +911,29 @@
 				<td><input type="text" id="datePay" style="width:80px;" />&nbsp;&nbsp;经办<input class="readOnly" type="text" id="pay_checkerName" style="width:60px;" readOnly="true" /></td>
 			</tr>
 			<tr>
-				<td colspan="2">
-					<input type="checkbox" id="needInvoice" />&nbsp;需开票
+				<td colspan="4">
+					<input type="checkbox" id="needInvoice" />&nbsp;需开票<input type="hidden" id="file5" name="file5" />
 					&nbsp;<input class="button" type="button" id="btnUploadInvoice" value="上传发票" />
-					&nbsp;<input class="button" type="button" id="btnViewInvoice" value="查看" />
-					&nbsp;<input class="button" type="button" id="btnReInvoice" value="重开发票" />
+					&nbsp;<input class="button" type="button" id="btnReInvoice" value="红冲" />
+					&nbsp;<input class="button" type="button" id="btnReInvoice1" value="重开发票" />
+					&nbsp;&nbsp;发票号码&nbsp;<input type="text" id="invoice" style="width:154px; background:lightgreen;" />
+					&nbsp;&nbsp;开票日期&nbsp;<input type="text" id="dateInvoice" style="width:70px; background:lightgreen;" />
 				</td>
-				<td align="right">发票号码</td><input type="hidden" id="file5" name="file5" />
-				<td><input type="text" id="invoice" size="25" /></td>
 			</tr>
 			<tr>
 				<td align="right">开票信息</td>
 				<td colspan="3">
-					<input type="text" id="title" style="width:95%;" />
+					<input type="text" id="title" style="width:400px; background:yellow;" />
+					&nbsp;&nbsp;开票金额&nbsp;<input type="text" id="invoice_amount" style="width:50px; background:yellow;" />红冲为负
 				</td>
 			</tr>
 			<tr>
 			</tr>
 			<tr>
-				<td align="right">开票日期</td>
-				<td><input type="text" id="dateInvoice" size="10" />
-				&nbsp;&nbsp;取票&nbsp;
-				<input type="text" id="dateInvoicePick" size="10" /></td>
+				<td colspan="2">
+					<input class="button" type="button" id="btnViewInvoice" value="查看发票" />
+					&nbsp;&nbsp;取票日期&nbsp;<input type="text" id="dateInvoicePick" size="10" />
+				</td>
 				<td align="right">退款金额</td>
 				<td>
 				<input type="text" id="refund_amount" style="width:50px;" />

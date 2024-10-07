@@ -30,6 +30,7 @@
 <script language="javascript">
 	var nodeID = "";
 	var refID = "";
+	let classID = 0;
 	var op = 0;
 	var updateCount = 0;
 	var address = "";
@@ -480,23 +481,31 @@
 		});
 	
 		$("#generateEntryDoc").click(function(){
-			getSelCart("");
-			if(selCount==0){
-				$.messager.alert("提示","请选择要操作的名单。","info");
-				return false;
-			}
-			if(confirm("确定要生成这" + selCount + "个报名表吗？")){
-				$.post(uploadURL + "/outfiles/generate_emergency_exam_materials_byclass?refID=" + nodeID + "&keyID=3&registerID=" + currUser, {selList:selList}, function(data){
-					if(data>"0"){
-						// generateZip("e");
-						alert("已生成" + data + "份文档");
-						getApplyList();
-					}else{
-						alert("没有可供处理的数据。");
-					}
-				});
-			}
+			generateEntryDoc(0);
 		});
+	
+		$("#generateEntryDoc1").click(function(){
+			generateEntryDoc(1);
+		});
+	
+		// $("#generateEntryDoc").click(function(){
+		// 	getSelCart("");
+		// 	if(selCount==0){
+		// 		$.messager.alert("提示","请选择要操作的名单。","info");
+		// 		return false;
+		// 	}
+		// 	if(confirm("确定要生成这" + selCount + "个报名表吗？")){
+		// 		$.post(uploadURL + "/outfiles/generate_emergency_exam_materials_byclass?refID=" + nodeID + "&keyID=5&registerID=" + currUser, {selList:selList}, function(data){
+		// 			if(data>"0"){
+		// 				// generateZip("e");
+		// 				alert("已生成" + data + "份文档");
+		// 				getApplyList();
+		// 			}else{
+		// 				alert("没有可供处理的数据。");
+		// 			}
+		// 		});
+		// 	}
+		// });
 	
 		$("#generateZip").click(function(){
 			generateZip("m");
@@ -544,6 +553,13 @@
 				alert("请先生成课表。");
 				return false;
 			}
+		});
+
+		$("#btnProof").click(function(){
+			$.get(uploadURL + "/outfiles/get_trainProof_shot?nodeID=" + nodeID, function(data){
+				$.messager.alert("提示","已生成","info");
+				getNodeInfo(nodeID);
+			});
 		});
 
 	  	<!--#include file="commLoadFileReady.asp"-->
@@ -604,7 +620,7 @@
 				$("#list").html("<a href=''>申报名单</a>");
 				$("#diplomaSign").html("<a href=''>证书签收单</a>");
 				if(ar[7] > ""){
-					$("#sign").html("<a href='/users" + ar[7] + "' target='_blank'>申报结果</a>");
+					$("#proof").html("<a href='/users" + ar[7] + "?" + (new Date().getTime()) + "' target='_blank' style='text-decoration:none;color:green;'>&nbsp;&nbsp;培训证明</a>");
 				}
 				if(ar[17] > ""){
 					$("#scoreResult").html("<a href='/users" + ar[17] + "' target='_blank'>成绩单</a>");
@@ -885,6 +901,25 @@
 		});
 	}
 
+	function generateEntryDoc(k){
+		//k: 0 普通  1 带培训证明
+		getSelCart("");
+		if(selCount==0){
+			$.messager.alert("提示","请选择要操作的名单。","info");
+			return false;
+		}
+		if(confirm("确定要生成这" + selCount + "个报名表吗？")){
+			$.post(uploadURL + "/outfiles/generate_emergency_exam_materials_byclass?refID=" + nodeID + "&keyID=5&registerID=" + currUser + "&kindID=" + k + "&host=" + currHost, {selList:selList}, function(data){
+				if(data>"0"){
+					$.messager.alert("提示","已生成" + data + "份文档","info");
+					getApplyList();
+				}else{
+					$.messager.alert("提示","没有可供处理的数据。","info");
+				}
+			});
+		}
+	}
+
 	function showPic(path){
 		showImage(path,2.2,2.2,0,1);
 	}
@@ -929,9 +964,6 @@
 					$("#save").show();
 					$("#doImportApply").show();
 					$("#sendMsgExam").show();
-                    if($("#sign").html()>""){
-                        $("#btnResit").show();
-                    }
 				}
 				if(s==2){
 					//结束后什么都不能做
@@ -1009,7 +1041,7 @@
 				<td><input type="text" id="applyID" size="25" /></td>
 				<td colspan="2">
 					<span id="list" style="margin-left:10px;"></span>
-					<span id="sign" style="margin-left:10px;"></span>
+					<span id="proof" style="margin-left:2px;"></span>
 					<span id="scoreResult" style="margin-left:10px;"></span>
 					<span id="diplomaSign" style="margin-left:10px;"></span>
 				</td>
@@ -1089,6 +1121,8 @@
 		<input class="button" type="button" id="sendMsgScore" value="成绩通知" />&nbsp;
 		<input class="button" type="button" id="generateClassDoc" value="生成归档文件" />&nbsp;
 		<input class="button" type="button" id="generateEntryDoc" value="生成报名表" />&nbsp;
+		<input class="button" type="button" id="generateEntryDoc1" value="生成报名表带培训证明" />&nbsp;
+		<input class="button" type="button" id="btnProof" value="生成培训证明" />&nbsp;
 		<input class="button" type="button" id="generateZip" value="生成归档压缩包" />&nbsp;
 		<input class="button" type="button" id="generatePhotoZip" value="生成照片压缩包" />&nbsp;
 		<input class="button" type="button" id="generateEntryZip" value="生成报名表压缩包" />&nbsp;

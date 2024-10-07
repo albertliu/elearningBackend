@@ -17,6 +17,15 @@
 				getRptPayInvoiceList("file");
 			}
 		});
+		$("#btnRptPayInvoiceDaily").linkbutton({
+			iconCls:'icon-print',
+			width:85,
+			height:25,
+			text:'财务日报',
+			onClick:function() {
+				showRptDailyTotal();
+			}
+		});
 		$("#rptPayInvoiceAutoPay").checkbox({
 			onChange: function(val){
 				getRptPayInvoiceList("data");

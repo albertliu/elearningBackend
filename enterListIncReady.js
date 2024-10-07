@@ -392,7 +392,7 @@
 					}
 					//arr.push("<td class='link1'><a href='javascript:window.open(\"entryform_" + ar1[60] + ".asp?keyID=0&nodeID=" + ar1[0] + "&refID=" + ar1[1] + ", \"_blank\");'>" + imgChk + "</a></td>");
 					//arr.push("<td class='left'>" + ar1[69] + "</td>");
-					arr.push("<td class='link1'><a href='javascript:openEntryForm(\"" + ar1[60] + "\"," + ar1[0] + ",\"" + ar1[1] + "\");'>" + imgChk + "</a></td>");
+					arr.push("<td class='link1'><a href='javascript:openEntryForm(\"" + ar1[89] + "\"," + ar1[0] + ",\"" + ar1[1] + "\");'>" + imgChk + "</a></td>");
 					c = ar1[10];
 					if(c>0){
 						c = c;
@@ -532,9 +532,6 @@
 	}
 
 	function openEntryForm(c,n,f){
-		if(c == "C21" || c == "C20A"){
-			c = "C20";
-		}
 		window.open("entryform_" + c + ".asp?keyID=0&nodeID=" + n + "&refID=" + f, "_blank");
 	}
 

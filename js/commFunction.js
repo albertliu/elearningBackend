@@ -1750,6 +1750,28 @@
 		});
 	}
 	
+	//nodeID: ;
+	function showRptDailyTotal(){
+		asyncbox.open({
+			id: "rptDailyTotal",
+			url:"rptDailyTotal.asp?p=1&times=" + (new Date().getTime()),
+			title: "财务日报表",
+			width: 1280,
+			height: 900,
+			cover : {
+	          //透明度
+	          opacity : 0,
+	          //背景颜色
+	           background : '#000'
+	          },
+
+			btnsbar : false,
+			callback : function(action,iframe){
+				//
+　　　		}
+		});
+	}
+	
 	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
 	function showGeneratePasscardInfo(nodeID,refID,op,mark){
 		asyncbox.open({
@@ -2993,6 +3015,25 @@
 		$("#" + obj).empty();
 	}
 
+	function divPrint(div_id){
+		$("#" + div_id).print({
+			//Use Global styles
+			globalStyles : true,
+			//Add link with attrbute media=print
+			mediaPrint : false,
+			//Custom stylesheet
+			stylesheet : "",
+			//Print in a hidden iframe
+			iframe : true,
+			//Don't print this
+			noPrintSelector : ".no-print",
+			//Add this at top
+			prepend : "",
+			//Add this on bottom
+			append : "<br/>"
+		});
+	}
+
 	//fillFormat("1",3,"0",0) = "001"
 	function fillFormat(strIn,intLng,strFill,location){
 		var result = String(strIn);
@@ -3194,7 +3235,7 @@ function isAlphaDigit(str){
 }
 
 //检查字符串是否只包含特定内容
-//type: 0 数字  1 字母  2 数字和字母  3 数字字母和横线  4 数字字母和下划线  5 Email字符  6 数字和小数点
+//type: 0 数字  1 字母  2 数字和字母  3 数字字母和横线  4 数字字母和下划线  5 Email字符  6 数字和小数点  7 数字和小数点和负号
 function check_str(type,pStr) 
 { 
 	var v_test= "";
@@ -3218,6 +3259,9 @@ function check_str(type,pStr)
 	}
 	if(type==6){
 		v_test= "0123456789.";
+	}
+	if(type==7){
+		v_test= "0123456789.-";
 	}
 
 	for(i=0;i <pStr.length;i++){

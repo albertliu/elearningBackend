@@ -45,6 +45,7 @@
 	<script type="text/javascript" src="js/ajax.js"></script>
 	<script type="text/javascript" src="js/tab-view.js"></script>
 	<script type="text/javascript" src="js/bootstrap-treeview.min.js"></script>
+<script src="js/jQuery.print.js" type="text/javascript"></script>
 <!--#include file="js/clickMenu.js"-->
 
 <script language="javascript">
