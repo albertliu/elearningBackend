@@ -52,10 +52,10 @@
 		getDicList("statusApply","s_status",1);
 		getDicList("statusNo","s_resit",1);
 		if(currHost==""){
-			getComList("host","hostInfo","hostNo","title","status=0 and kindID=1 order by ID",1);
+			// getComList("host","hostInfo","hostNo","title","status=0 and kindID=1 order by ID",1);
 			getComList("courseID","v_courseInfo","courseID","shortName","status=0 and type=0 and agencyID not in(4,5) order by courseID",1);
 		}else{
-			getComList("host","hostInfo","hostNo","title","status=0 and kindID=1 and hostNo='" + currHost + "' order by ID",0);
+			// getComList("host","hostInfo","hostNo","title","status=0 and kindID=1 and hostNo='" + currHost + "' order by ID",0);
 			getComList("courseID","v_courseInfo a, hostCourseList b","a.courseID","a.shortName","a.courseID=b.courseID and a.status=0 and b.host='" + currHost + "' order by a.courseID",1);
 		}
 		getComList("fromID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='saler') order by realName",1);
@@ -1006,6 +1006,7 @@
 		$("#startDate").val(currDate);
 		$("#qty").val(0);
 		$("#address").val("黄兴路158号D103三楼");
+		$("#host").val('znxf');
 	}
 	
 	function getUpdateCount(){
@@ -1029,7 +1030,7 @@
 			<tr>
 				<td align="right">开课日期</td>
 				<td><input class="mustFill" type="text" id="startDate" size="25" /></td>
-				<td align="right">申报科目</td><input type="hidden" id="ID" /><input type="hidden" id="status" />
+				<td align="right">申报科目</td><input type="hidden" id="ID" /><input type="hidden" id="status" /><input type="hidden" id="host" />
 				<td><select id="courseID" style="width:100%;"></select></td><input type="hidden" id="courseName" /><input type="hidden" id="reexamineName" />
 			</tr>
 			<tr>
@@ -1056,7 +1057,7 @@
 			</tr>
 			<tr>
 				<td align="right">属性</td>
-				<td><select id="host" style="width:180px;"></select></td>
+				<td></td>
 				<td align="right">考试地址</td>
 				<td><input type="text" id="address" style="width:100%;" /></td>
 			</tr>
