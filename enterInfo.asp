@@ -522,7 +522,7 @@
 			var needInvoice = 0;
 			if($("#needInvoice").prop("checked")){
 				needInvoice = 1;
-				if($("#invoice_amount").val() == "" || !check_str(7,$("#invoice_amount").val())){
+				if($("#invoice_amount").val() == "" || $("#invoice_amount").val() == 0 || !check_str(7,$("#invoice_amount").val())){
 					jAlert("请正确填写发票金额。");
 					return false;
 				}
