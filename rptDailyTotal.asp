@@ -14,6 +14,7 @@
 <link href="css/jquery-confirm.css" rel="stylesheet" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="js/easyui/themes/default/easyui.css?v=1.11">
 	<link rel="stylesheet" type="text/css" href="js/easyui/themes/icon.css?v=1.21">
+<link href="css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="css/asyncbox/asyncbox.css" type="text/css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
 <script language="javascript" src="js/jquery-1.12.4.min.js"></script>
@@ -23,6 +24,7 @@
 <script src="js/jquery-confirm.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/AsyncBox.v1.4.js"></script>
 <script language="javascript" type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+<script src="js/jquery.alerts.js" type="text/javascript"></script>
 <script src="js/jQuery.print.js" type="text/javascript"></script>
 <!--#include file="js/clickMenu.js"-->
 
@@ -76,16 +78,15 @@
 
 	function getRptDailyTotalList(mark){
 		if($("#rptDailyTotalStartDate").val() == ""){
-			jAlert("请选择日期。");
+			$.messager.alert("提示","请选择日期。","info");
 			return false;
 		}
 		$.getJSON(uploadURL + "/public/getRptList?op=dailyTotal&mark=" + mark + "&host=znxf&startDate=" + $("#rptDailyTotalStartDate").val(),function(data){
-			// jAlert(data);
 			if(data==""){
-				jAlert("没有符合要求的数据。","提示")
+				$.messager.alert("提示","没有符合要求的数据。","info");
 			}
 			if(mark=="file" && data>""){
-				jAlert("点击右侧链接，下载<a href='" + data + "'>统计报告</a>","下载文件");
+				$.messager.alert("提示","点击右侧链接，下载<a href='" + data + "'>统计报告</a>","info");
 			}
 			if(mark=="data"){
 				$("#rptDailyTotalCover").empty();
