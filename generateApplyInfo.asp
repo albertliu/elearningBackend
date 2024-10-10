@@ -817,11 +817,6 @@
 					}else{
 						k = ar1[2];
 					}
-					// if(ar1[24]==''){
-					// 	arr.push("<td class='center'><div id='material" + ar1[2] + "'><span onclick='generateMaterials(" + ar1[2] + ",\"" + ar1[4] + "\",\"" + ar1[23] + "\")' title='申报材料'><img src='images/addDoc.png' style='width:15px;'><span><div></td>");
-					// }else{
-					// 	arr.push("<td class='center'><div id='material" + ar1[2] + "'><a href='javascript:void(0);' onclick='openMaterial(\"/users" + ar1[24] + "?t=" + (new Date().getTime()) + "\");' ondblclick='generateMaterials(" + ar1[2] + ",\"" + ar1[4] + "\",\"" + ar1[23] + "\")' title='申报材料'>" + imgFile + "</a></div></td>");
-					// }
 					if(ar1[25]==''){
 						arr.push("<td class='center'></td>");
 					}else{
