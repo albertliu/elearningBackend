@@ -755,9 +755,6 @@
 					ar1 = val.split("|");
 					i += 1;
 					c = 0;
-					if(currUser=="desk."){
-						alert(ar1);
-					}
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
 					arr.push("<td class='left'>" + ar1[22] + "</td>");
