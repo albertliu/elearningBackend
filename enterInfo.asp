@@ -681,10 +681,12 @@
 				$("#dateInvoice").prop("disabled",false);
 				$("#invoice").prop("disabled",false);
 			}else{
-				$("#invoice_amount").prop("disabled",true);
-				$("#title").prop("disabled",true);
-				$("#dateInvoice").prop("disabled",true);
-				$("#invoice").prop("disabled",true);
+				if(!checkPermission("editPayDate")){
+					$("#invoice_amount").prop("disabled",true);
+					$("#title").prop("disabled",true);
+					$("#dateInvoice").prop("disabled",true);
+					$("#invoice").prop("disabled",true);
+				}
 			}
 
 			// if($("#file5").val()>""){
