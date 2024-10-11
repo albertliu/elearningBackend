@@ -51,7 +51,7 @@
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";		//enterID
 		refID = "<%=refID%>";		//username
-		keyID = "<%=keyID%>";		//0 预览  1 打印  2 文件  3 仅报名表文件
+		keyID = "<%=keyID%>";		//0 预览  1 打印  2 文件  5 仅报名表文件
 		op = "<%=op%>";
 		
 		$.ajaxSetup({ 
@@ -60,7 +60,7 @@
 		$("#print").click(function(){
 			resumePrint();
 		});
-		if(keyID==3){
+		if(keyID==5){
 			$("#keyItem4").hide();
 			$("#resume_print").css("display", "flex");
 		}else{
@@ -181,7 +181,7 @@
 				}else{
 					$("#img_cardB").attr("src","images/blank_cardB.png");
 				}
-				if(keyID ==3){
+				if(keyID ==5){
 					$("#img_A").attr("src","/users" + ar[22]);
 					$("#img_B").attr("src","/users" + ar[23]);
 					// $("#img_E").attr("src","/users" + ar[24]);
@@ -192,7 +192,7 @@
 				//$("#date").html(currDate);
 				var p = 0;
 				k = 1;
-				if(keyID == 3){
+				if(keyID == 5){
 					//上传的报名表不打印附件
 				}else{
 					if(keyID<2){
