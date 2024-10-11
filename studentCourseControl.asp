@@ -322,7 +322,54 @@ if(op == "getStudentCourseList"){
 	Session(op) = ssql;
 	Response.Write(escape(result));
 	//Response.Write((sql));
-}	
+}
+
+//被移除班级的学员
+if(op == "getStudentListOutClass"){
+	// sql = "select * from studentCourseList where status<2 and classID='' and courseID in(select courseID from v_courseInfo where agencyID<>5) order by ID desc";
+	where = " where status<2 and classID='' and courseID in(select courseID from v_courseInfo where agencyID<>5)";
+	sql = " FROM v_studentCourseList " + where;
+	result = getBasketTip(sql,"");
+	ssql = "SELECT SNo,username,name,sexName,age,educationName,(case when host<>'spc' and host<>'shm' then unit else hostName end),(case when host<>'spc' and host<>'shm' then dept else dept1Name end),(case when host='znxf' then '' else dept2Name end),job,mobile,phone,address,checkName,projectID+projectName,classID,statusName,price,pay_typeName,pay_kindName,datePay,invoice,completion,(case when examScore=0 then '' else cast(cast(examScore as int) as varchar) end),cast(score as varchar) + '/' + cast(score2 as varchar),diplomaID,diploma_startDate,diploma_endDate,memo,regDate" + sql + " order by SNo";
+	sql = "SELECT top " + basket + " *,[dbo].[getMissingItems](ID) as missingItems" + sql + " order by ID desc";
+	
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("ID").value + "|" + rs("username").value + "|" + rs("name").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("courseID").value + "|" + rs("courseName").value;
+		//7
+		result += "|" + rs("sexName").value + "|" + rs("age").value + "|" + rs("hours").value + "|" + rs("completion").value + "|" + rs("regDate").value + "|" + rs("hostName").value + "|" + rs("dept1Name").value + "|" + rs("dept2Name").value + "|" + rs("examScore").value;
+		//16
+		result += "|" + rs("checked").value + "|" + rs("checkName").value + "|" + rs("photo_filename").value + "|" + rs("IDa_filename").value + "|" + rs("IDb_filename").value + "|" + rs("edu_filename").value + "|" + rs("cert_filename").value;
+		//23
+		result += "|" + rs("status0").value + "|" + rs("askerID0").value + "|" + rs("askDate0").value + "|" + rs("status1").value + "|" + rs("askerID1").value + "|" + rs("askDate1").value + "|" + rs("status2").value + "|" + rs("askerID2").value + "|" + rs("askDate2").value;
+		//32
+		result += "|" + rs("status3").value + "|" + rs("askerID3").value + "|" + rs("askDate3").value + "|" + rs("status4").value + "|" + rs("askerID4").value + "|" + rs("askDate4").value;
+		//38
+		result += "|" + rs("submited").value + "|" + rs("submitDate").value + "|" + rs("submitName").value;
+		//41
+		result += "|" + rs("projectID").value + "|" + rs("classID").value + "|" + rs("SNo").value + "|" + rs("materialCheck").value + "|" + rs("materialChecker").value + "|" + rs("materialCheckerName").value;
+		//47
+		result += "|" + rs("price").value + "|" + rs("pay_kindName").value + "|" + rs("pay_typeName").value + "|" + rs("pay_statusName").value;
+		//51
+		result += "|" + rs("projectName").value + "|" + rs("className").value + "|" + rs("passcardID").value + "|" + rs("unit").value + "|" + rs("dept").value + "|" + rs("host").value;
+		//57
+		result += "|" + rs("reexamine").value + "|" + rs("reexamineName").value + "|" + rs("examTimes").value + "|" + rs("certID").value + "|" + rs("missingItems").value + "|" + rs("shortName").value + "|" + rs("job").value;
+		//64
+		result += "|" + rs("diplomaID").value + "|" + rs("applyID").value + "|" + rs("score").value + "|" + rs("submiterName").value + "|" + rs("pay_status").value + "|" + rs("mobile").value + "|" + rs("score1").value + "|" + rs("score2").value;
+		//72
+		result += "|" + rs("fromID").value + "|" + rs("signature").value + "|" + rs("signatureDate").value + "|" + rs("status_photo").value + "|" + rs("status_signature").value + "|" + rs("signatureType").value;
+		//78
+		result += "|" + rs("file1").value + "|" + rs("file2").value + "|" + rs("employe_filename").value + "|" + rs("express").value + "|" + rs("memo").value + "|" + rs("currDiplomaDate").value + "|" + rs("needInvoice").value;
+		//85
+		result += "|" + rs("photo_size").value + "|" + rs("examDate").value + "|" + rs("result").value + "|" + rs("resultName").value + "|" + rs("entryform").value;
+		rs.MoveNext();
+	}
+	rs.Close();/**/
+	
+	Session(op) = ssql;
+	Response.Write(escape(result));
+	//Response.Write((sql));
+}
 
 if(op == "getStudentListByClass"){
 	var s = "";

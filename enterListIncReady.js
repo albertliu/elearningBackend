@@ -233,6 +233,13 @@
 				}
 			}
 		});
+		$("#searchEnterOutClass").checkbox({
+			onChange: function(val){
+				if(val){
+					getEnterList();
+				}
+			}
+		});
 		//getExamerList();
 		setCartNum("examer");
 	});
@@ -259,8 +266,9 @@
 		if($("#searchEnterPre").checkbox("options").checked){
 			pre = 1;
 		}
-
-		$.get("studentCourseControl.asp?op=getStudentCourseList&where=" + escape(sWhere) + "&pre=" + pre + "&needInvoice=" + inv + "&mark=" + mark + "&kindID=" + $("#searchEnterDept").val() + "&refID=" + $("#searchEnterProjectID").val() + "&status=" + $("#searchEnterStatus").val() + "&reexamine=" + $("#searchEnterReexamine").val() + "&photoStatus=" + $("#searchEnterPhotoStatus").val() + "&courseID=" + $("#searchEnterCourseID").val() + "&host=" + $("#searchEnterHost").val() + "&checked=" + $("#searchEnterChecked").val() + "&materialChecked=" + $("#searchEnterMaterialChecked").val() + "&passcard=" + $("#searchEnterPasscard").val() + "&classID=" + $("#searchEnterClassID").val() + "&fStart=" + $("#searchEnterStartDate").val() + "&fEnd=" + $("#searchEnterEndDate").val() + "&completion1=" + $("#searchEnter_completion1").val() + "&score1=" + $("#searchEnter_score1").val() + "&dk=101&times=" + (new Date().getTime()),function(data){
+		let _op = ($("#searchEnterOutClass").checkbox("options").checked?"getStudentListOutClass":"getStudentCourseList");
+		// alert(_op)
+		$.get("studentCourseControl.asp?op=" + _op + "&where=" + escape(sWhere) + "&pre=" + pre + "&needInvoice=" + inv + "&mark=" + mark + "&kindID=" + $("#searchEnterDept").val() + "&refID=" + $("#searchEnterProjectID").val() + "&status=" + $("#searchEnterStatus").val() + "&reexamine=" + $("#searchEnterReexamine").val() + "&photoStatus=" + $("#searchEnterPhotoStatus").val() + "&courseID=" + $("#searchEnterCourseID").val() + "&host=" + $("#searchEnterHost").val() + "&checked=" + $("#searchEnterChecked").val() + "&materialChecked=" + $("#searchEnterMaterialChecked").val() + "&passcard=" + $("#searchEnterPasscard").val() + "&classID=" + $("#searchEnterClassID").val() + "&fStart=" + $("#searchEnterStartDate").val() + "&fEnd=" + $("#searchEnterEndDate").val() + "&completion1=" + $("#searchEnter_completion1").val() + "&score1=" + $("#searchEnter_score1").val() + "&dk=101&times=" + (new Date().getTime()),function(data){
 			// alert((data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");

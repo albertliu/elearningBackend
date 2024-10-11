@@ -38,6 +38,7 @@
 	var imgFileRed = "<img src='images/attachmentRed.png' style='width:15px;'>";
 	var imgFileBlue = "<img src='images/attachmentBlue.png' style='width:15px;'>";
 	var timer1 = null;
+	let entryForm = "";
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";
@@ -504,6 +505,7 @@
 				setHostChange();
 				$("#adviserID").val(ar[8]);
 				$("#courseID").val(ar[36]);
+				entryForm = ar[51];
 				if(ar[24]>""){
 					$("#archived").prop("checked",true);
 				}else{
@@ -956,7 +958,7 @@
 	function generateMaterials(enterID,username,cert){
 		clearTimeout(timer1);
 		if(confirm("确定要生成报名材料吗？")){
-			$.getJSON(uploadURL + "/outfiles/generate_emergency_materials?refID=" + username + "&nodeID=" + enterID + "&certID=" + cert + "&keyID=2" ,function(data){
+			$.getJSON(uploadURL + "/outfiles/generate_emergency_materials?refID=" + username + "&nodeID=" + enterID + "&certID=" + cert + "&entryForm=" + entryForm + "&keyID=2" ,function(data){
 				if(data>""){
 					alert("已生成文件");
 					$("#material" + enterID).html("<a href='/users" + data + "?t=" + (new Date().getTime()) + "' target='_blank' title='申报材料'>" + imgFileRed + "</a>");

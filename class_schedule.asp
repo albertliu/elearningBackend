@@ -99,7 +99,7 @@
 					arr.push("<td class='left'>" + ar1[8] + "</td>");
 					arr.push("<td class='left'>" + ar1[7] + "</td>");
 					arr.push("<td class='left'>" + ar1[14] + "</td>");
-					arr.push("<td class='left'>" + ar1[16] + "</td>");
+					arr.push("<td class='left'>" + nullNoDisp(ar1[16]) + "</td>");
 					arr.push("<td class='left'>" + ar1[11] + "</td>");
 					arr.push("<td class='left'>" + ar1[22] + "</td>");
 					arr.push("</tr>");
