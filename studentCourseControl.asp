@@ -327,7 +327,7 @@ if(op == "getStudentCourseList"){
 //被移除班级的学员
 if(op == "getStudentListOutClass"){
 	// sql = "select * from studentCourseList where status<2 and classID='' and courseID in(select courseID from v_courseInfo where agencyID<>5) order by ID desc";
-	where = " where status<2 and classID='' and courseID in(select courseID from v_courseInfo where agencyID<>5)";
+	where = " where ID in (select ID from studentCourseList where status<2 and classID='' and courseID in(select courseID from v_courseInfo where agencyID<>5))";
 	sql = " FROM v_studentCourseList " + where;
 	result = getBasketTip(sql,"");
 	ssql = "SELECT SNo,username,name,sexName,age,educationName,(case when host<>'spc' and host<>'shm' then unit else hostName end),(case when host<>'spc' and host<>'shm' then dept else dept1Name end),(case when host='znxf' then '' else dept2Name end),job,mobile,phone,address,checkName,projectID+projectName,classID,statusName,price,pay_typeName,pay_kindName,datePay,invoice,completion,(case when examScore=0 then '' else cast(cast(examScore as int) as varchar) end),cast(score as varchar) + '/' + cast(score2 as varchar),diplomaID,diploma_startDate,diploma_endDate,memo,regDate" + sql + " order by SNo";
