@@ -21,7 +21,7 @@
 <script type="text/javascript" src="js/asyncbox.v1.5.min.js"></script>
 <script language="javascript" type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 <script src="js/datepicker/WdatePicker.js" type="text/javascript"></script>
-<script src="js/jQuery.print.js" type="text/javascript"></script>
+<script src="js/jQuery.print.js?v=1.2" type="text/javascript"></script>
 <script type='text/javascript' src='js/jquery.autocomplete.js'></script>
 <!--#include file="js/clickMenu.js"-->
 
