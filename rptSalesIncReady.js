@@ -24,7 +24,7 @@
 	});
 
 	function getRptSalesList(mark){
-		$.getJSON(uploadURL + "/public/getRptList?op=sales&mark=" + mark + "&host=znxf&startDate=" + $("#rptSalesStartDate").val() + "&endDate=" + $("#rptSalesEndDate").val() + "&sales=" + currSales,function(data){
+		$.getJSON(uploadURL + "/public/getRptList?op=sales&mark=" + mark + "&host=znxf&startDate=" + $("#rptSalesStartDate").val() + "&endDate=" + $("#rptSalesEndDate").val() + "&sales=" + (checkRole("leader")?"":currSales),function(data){
 			//jAlert(data);
 			if(data==""){
 				jAlert("没有符合要求的数据。","提示")
