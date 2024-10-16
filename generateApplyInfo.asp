@@ -151,6 +151,12 @@
 			}
 		});
 
+		$("#showDrop").checkbox({
+			onChange: function(val){
+				getApplyList();
+			}
+		});
+
 		$("#save").click(function(){
 			saveNode();
 		});
@@ -327,6 +333,51 @@
 							url: uploadURL + "/public/applyEnter?SMS=1&reexamine=8&register=" + currUserName + "&host=znxf&classID=" + $("#applyID").val() + "&courseName=" + $("#courseName").val() + "&reex=" + (reexamine==0?"初证":"复审"),
 							type: "post",
 							data: {"selList":selList},
+							beforeSend: function() {   
+								$.messager.progress();	// 显示进度条
+							},
+							success: function(data){
+								//jAlert(data);
+								if(data.err==0){
+									var end = performance.now(); 
+									jAlert("成功上传数量：" + data.count_s + "; &nbsp;失败数量：" + data.count_e + "; &nbsp;耗时：" + ((end-start)/1000).toFixed(2) + "秒","信息提示");
+								}else{
+									jAlert("操作失败，请稍后再试。" + data.errMsg,"信息提示");
+								}
+								getApplyList();
+								$.messager.progress('close');	// 如果提交成功则隐藏进度条 
+							},
+							error: function () {
+								$.messager.progress('close');
+							}
+						});
+					}
+				});
+			}
+		});
+		
+		$("#doApplyUploadSchedule").linkbutton({
+			iconCls:'icon-upload',
+			width:85,
+			height:25,
+			text:'上传课表',
+			onClick:function() {
+				if($("#applyID").val()==""){
+					$.messager.alert("提示","请填写开班编号并保存。","info");
+					return false;
+				}
+				if($("#adviserID").val()==""){
+					$.messager.alert("提示","请选择班主任并保存。","info");
+					return false;
+				}
+				// jConfirm('确定要为这' + selCount + '个人报名吗?', "确认对话框",function(r){
+				$.messager.confirm('确认对话框','确定要上传班级课表吗?<br>可能要花几分钟时间，请稍候...', function(r){
+					if(r){
+						var start = performance.now(); 
+						$.ajax({
+							url: uploadURL + "/public/applyEnter?SMS=1&reexamine=7&register=" + currUserName + "&host=znxf&classID=" + $("#applyID").val() + "&courseName=" + $("#courseName").val() + "&reex=" + (reexamine==0?"初证":"复审"),
+							type: "post",
+							data: {"selList":$("#adviserID").text()},
 							beforeSend: function() {   
 								$.messager.progress();	// 显示进度条
 							},
@@ -690,6 +741,7 @@
 		var upload = 0;
 		var uploadPhoto = 0;
 		var photo = 0;
+		let drop = 0;
 		if($("#showPhoto").checkbox("options").checked){
 			photo = 1;
 		}
@@ -702,8 +754,11 @@
 		if($("#showWaitUploadPhoto").checkbox("options").checked){
 			uploadPhoto = 1;
 		}
+		if($("#showDrop").checkbox("options").checked){
+			drop = 1;
+		}
 		if($("#needResit").attr("checked")){ need = 1;}
-		$.get("diplomaControl.asp?op=getApplyListByBatch&refID=" + nodeID + "&fromID=" + $("#fromID").val() + "&host=" + $("#partner").val() + "&status=" + $("#s_status").val() + "&keyID=" + $("#s_resit").val() + "&needResit=" + need + "&wait=" + wait + "&upload=" + upload + "&uploadPhoto=" + uploadPhoto + "&times=" + (new Date().getTime()),function(data){
+		$.get("diplomaControl.asp?op=getApplyListByBatch&refID=" + nodeID + "&drop=" + drop + "&fromID=" + $("#fromID").val() + "&host=" + $("#partner").val() + "&status=" + $("#s_status").val() + "&keyID=" + $("#s_resit").val() + "&needResit=" + need + "&wait=" + wait + "&upload=" + upload + "&uploadPhoto=" + uploadPhoto + "&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
@@ -935,7 +990,7 @@
 		$("#btnRemove").hide();
 		$("#btnResit").hide();
 		$("#btnSchedule").hide();
-		$("#btnUploadSchedule").hide();
+		$("#doApplyUploadSchedule").hide();
 		$("#s_needResit").hide();
 		$("#generateZip").hide();
 		$("#generatePhotoZip").hide();
@@ -985,7 +1040,7 @@
 					$("#doApplyEnter").show();	// 应急局项目可以自动报名
 					$("#doApplyUpload").show();	// 
 					$("#doApplyDownload").show();	// 
-					$("#btnUploadSchedule").show();	// 
+					// $("#doApplyUploadSchedule").show();	// 
 					if(reexamine==1){
 						$("#doApplyUploadPhoto").show();	// 复训的可上传照片
 					}
@@ -1081,7 +1136,6 @@
 			<tr>
 				<td align="right"><input class="button" type="button" id="btnSchedule" value="排课表" /></td>
 				<td><input type="text" id="scheduleDate" size="15" class="readOnly" readOnly="true" />&nbsp;&nbsp;<span id="schedule" style="margin-left:10px;"></span></td>
-				<td align="right"><input class="button" type="button" id="btnUploadSchedule" value="上传课表" /></td>
 				<td><input type="text" id="uploadScheduleDate" size="15" class="readOnly" readOnly="true" />&nbsp;&nbsp;<span id="checkin" style="margin-left:10px;">考勤</span></td>
 			</tr>
 			<tr>
@@ -1133,11 +1187,13 @@
 			<a class="easyui-linkbutton" id="doApplyEnter" href="javascript:void(0)"></a>
 			<a class="easyui-linkbutton" id="doApplyUpload" href="javascript:void(0)"></a>
 			<a class="easyui-linkbutton" id="doApplyUploadPhoto" href="javascript:void(0)"></a>
+			<a class="easyui-linkbutton" id="doApplyUploadSchedule" href="javascript:void(0)"></a>
 			<a class="easyui-linkbutton" id="doApplyDownload" href="javascript:void(0)"></a>
 			&nbsp;&nbsp;<input class="easyui-checkbox" id="showPhoto" name="showPhoto" checked value="1"/>&nbsp;显示照片&nbsp;
 			&nbsp;&nbsp;<input class="easyui-checkbox" id="showWait" name="showWait" value="1"/>&nbsp;未报名&nbsp;
 			&nbsp;&nbsp;<input class="easyui-checkbox" id="showWaitUpload" name="showWaitUpload" value="1"/>&nbsp;未传材料&nbsp;
 			&nbsp;&nbsp;<input class="easyui-checkbox" id="showWaitUploadPhoto" name="showWaitUploadPhoto" value="1"/>&nbsp;未传照片&nbsp;
+			&nbsp;&nbsp;<input class="easyui-checkbox" id="showDrop" name="showDrop" value="1"/>&nbsp;已退课&nbsp;
 		</div>
 	</div>
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>

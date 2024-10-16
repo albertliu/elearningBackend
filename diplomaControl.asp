@@ -1021,6 +1021,22 @@ if(op == "getApplyListByBatch"){
 			where = s;
 		}
 	}
+	//如果有退课状态
+	if(String(Request.QueryString("drop"))==1){ // 
+		s = "enterStatus=3";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}else{
+		s = "enterStatus<3";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 	//如果有补申
 	if(keyID > ""){
 		s = "resit>=" + keyID;
