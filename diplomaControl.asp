@@ -1150,7 +1150,7 @@ if(op == "getGenerateApplyNodeInfo"){
         //36
 		result += "|" + rs("reexamine").value + "|" + rs("agencyID").value + "|" + rs("diplomaReady").value + "|" + rs("teacher").value + "|" + rs("classroom").value;
 		//41
-		result += "|" + rs("scheduleDate").value + "|" + rs("adviserID").value + "|" + rs("mark").value;
+		result += "|" + rs("scheduleDate").value + "|" + rs("adviserID").value + "|" + rs("mark").value + "|" + rs("uploadScheduleDate").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

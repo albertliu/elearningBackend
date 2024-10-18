@@ -245,12 +245,11 @@
 								$.messager.progress();	// 显示进度条
 							},
 							success: function(data){
-								//jAlert(data);
-								if(data.err==0){
+								if(data.count_s>0){
 									var end = performance.now(); 
-									jAlert("成功报名数量：" + data.count_s + "; &nbsp;失败数量：" + data.count_e + "; &nbsp;耗时：" + ((end-start)/1000).toFixed(2) + "秒","信息提示");
+									$.messager.alert("提示","成功报名数量：" + data.count_s + "; &nbsp;失败数量：" + data.count_e + "; &nbsp;耗时：" + ((end-start)/1000).toFixed(2) + "秒","info");
 								}else{
-									jAlert("操作失败，请稍后再试。" + data.errMsg,"信息提示");
+									$.messager.alert("提示","操作失败，请稍后再试。" + data.errMsg,"info");
 								}
 								getApplyList();
 								$.messager.progress('close');	// 如果提交成功则隐藏进度条 
@@ -291,12 +290,11 @@
 								$.messager.progress();	// 显示进度条
 							},
 							success: function(data){
-								//jAlert(data);
-								if(data.err==0){
+								if(data.count_s>0){
 									var end = performance.now(); 
-									jAlert("成功上传数量：" + data.count_s + "; &nbsp;失败数量：" + data.count_e + "; &nbsp;耗时：" + ((end-start)/1000).toFixed(2) + "秒","信息提示");
+									$.messager.alert("提示","成功上传数量：" + data.count_s + "; &nbsp;失败数量：" + data.count_e + "; &nbsp;耗时：" + ((end-start)/1000).toFixed(2) + "秒","info");
 								}else{
-									jAlert("操作失败，请稍后再试。" + data.errMsg,"信息提示");
+									$.messager.alert("提示","操作失败，请稍后再试。" + data.errMsg,"info");
 								}
 								getApplyList();
 								$.messager.progress('close');	// 如果提交成功则隐藏进度条 
@@ -337,12 +335,11 @@
 								$.messager.progress();	// 显示进度条
 							},
 							success: function(data){
-								//jAlert(data);
-								if(data.err==0){
+								if(data.count_s>0){
 									var end = performance.now(); 
-									jAlert("成功上传数量：" + data.count_s + "; &nbsp;失败数量：" + data.count_e + "; &nbsp;耗时：" + ((end-start)/1000).toFixed(2) + "秒","信息提示");
+									$.messager.alert("提示","成功上传数量：" + data.count_s + "; &nbsp;失败数量：" + data.count_e + "; &nbsp;耗时：" + ((end-start)/1000).toFixed(2) + "秒","info");
 								}else{
-									jAlert("操作失败，请稍后再试。" + data.errMsg,"信息提示");
+									$.messager.alert("提示","操作失败，请稍后再试。" + data.errMsg,"info");
 								}
 								getApplyList();
 								$.messager.progress('close');	// 如果提交成功则隐藏进度条 
@@ -382,14 +379,12 @@
 								$.messager.progress();	// 显示进度条
 							},
 							success: function(data){
-								//jAlert(data);
-								if(data.err==0){
+								if(data.count_s>0){
 									var end = performance.now(); 
-									jAlert("成功上传数量：" + data.count_s + "; &nbsp;失败数量：" + data.count_e + "; &nbsp;耗时：" + ((end-start)/1000).toFixed(2) + "秒","信息提示");
+									$.messager.alert("提示","成功上传数量：" + data.count_s + "; &nbsp;失败数量：" + data.count_e + "; &nbsp;耗时：" + ((end-start)/1000).toFixed(2) + "秒","info");
 								}else{
-									jAlert("操作失败，请稍后再试。" + data.errMsg,"信息提示");
+									$.messager.alert("提示","操作失败，请稍后再试。" + data.errMsg,"info");
 								}
-								getApplyList();
 								$.messager.progress('close');	// 如果提交成功则隐藏进度条 
 							},
 							error: function () {
@@ -662,6 +657,7 @@
 				$("#classroom").val(ar[40]);
 				$("#scheduleDate").val(ar[41]);
 				$("#adviserID").val(ar[42]);
+				$("#uploadScheduleDate").val(ar[44]);
 				if(ar[41]>""){
 					$("#schedule").html("<a>课程表</a>");
 				}
@@ -1135,8 +1131,8 @@
 			</tr>
 			<tr>
 				<td align="right"><input class="button" type="button" id="btnSchedule" value="排课表" /></td>
-				<td><input type="text" id="scheduleDate" size="15" class="readOnly" readOnly="true" />&nbsp;&nbsp;<span id="schedule" style="margin-left:10px;"></span></td>
-				<td><input type="text" id="uploadScheduleDate" size="15" class="readOnly" readOnly="true" />&nbsp;&nbsp;<span id="checkin" style="margin-left:10px;">考勤</span></td>
+				<td><input type="text" id="scheduleDate" size="12" class="readOnly" readOnly="true" />&nbsp;&nbsp;<span id="schedule" style="margin-left:10px; color:blue;"></span></td>
+				<td>上传课表日期&nbsp;<input type="text" id="uploadScheduleDate" size="12" class="readOnly" readOnly="true" />&nbsp;&nbsp;<span id="checkin" style="margin-left:10px; color:blue;">考勤</span></td>
 			</tr>
 			<tr>
 				<td align="right">任课教师</td>
