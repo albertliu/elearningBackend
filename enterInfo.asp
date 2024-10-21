@@ -551,7 +551,7 @@
 				jAlert(ar[1],"信息提示");
 			});
 		}
-		return false;
+		// return false;
 	}
 	
 	function setClassList(id){

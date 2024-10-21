@@ -1653,7 +1653,7 @@
 					if(companyID=="*"){
 						getEnterList();
 					}else{
-						getStudentCourseList(iframe.refID);
+						// getStudentCourseList(iframe.refID);
 					}
 				}
 				//alert(re + ":" + mark);

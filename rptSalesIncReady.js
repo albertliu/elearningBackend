@@ -39,9 +39,11 @@
 				arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='rptSalesCoverTab' width='100%'>");
 				arr.push("<thead>");
 				arr.push("<tr align='center'>");
-				arr.push("<th width='30%'>销售姓名</th>");
-				arr.push("<th width='30%'>当日合计</th>");
-				arr.push("<th width='40%'>当月合计</th>");
+				arr.push("<th width='24%'>销售</th>");
+				arr.push("<th width='19%'>日金额</th>");
+				arr.push("<th width='19%'>月金额</th>");
+				arr.push("<th width='19%'>日人数</th>");
+				arr.push("<th width='19%'>月人数</th>");
 				arr.push("</tr>");
 				arr.push("</thead>");
 				arr.push("<tbody id='tbody'>");
@@ -61,6 +63,8 @@
 				arr.push("</tbody>");
 				arr.push("<tfoot>");
 				arr.push("<tr>");
+				arr.push("<th>&nbsp;</th>");
+				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");

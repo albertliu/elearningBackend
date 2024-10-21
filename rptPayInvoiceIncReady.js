@@ -84,10 +84,16 @@
 			}
 			jConfirm("确定这些(" + selCount + "个)应收款已到账吗？","确认",function(r){
 				if(r){
-					$.post(uploadURL + "/public/checkReceiveList", {selList: selList, registerID: currUser} ,function(data){
-						//jAlert(data);
-						jAlert("已确认。");
-						getRptPayInvoiceList("data");
+					jPrompt('到账日期:', currDate, '附加信息', function (r1) {
+						if ((r1>"" && isDate(r1))) {
+							$.post(uploadURL + "/public/checkReceiveList", {selList: selList, theDate:r1, registerID: currUser} ,function(data){
+								//jAlert(data);
+								jAlert("已确认。");
+								getRptPayInvoiceList("data");
+							});
+						}else{
+							jAlert("请输入正确的到账日期");
+						}
 					});
 				}
 			});
