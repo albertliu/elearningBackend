@@ -98,7 +98,7 @@
 	<!--#include file="studentPreListIncReady.js"-->
 	<!--#include file="rptSalesIncReady.js"-->
 	<!--#include file="rptPayInvoiceIncReady.js"-->
-	<!--#include file="chartsIncomeIncReady.js"-->
+	// <!--#include file="chartsIncomeIncReady.js"-->
 	<!--#include file="teacherListIncReady.js"-->
 
 	unitListLong = 0;
@@ -229,8 +229,9 @@
 			$("#menu2").hide();
 			deleteTab("统计图表");
 			deleteTab("招生概况");
-			// deleteTab("收费概况");
 			deleteTab("收费发票");
+			deleteTab("收费日报");
+			deleteTab("销售业绩");
 		}else{
 			$("#menu11").hide();
 			$("#menu2").hide();
@@ -262,8 +263,6 @@
 			$("#menu9").show();		//班级
 			$("#menu10").show();	//报名
 			$("#menu12").show();	//考试
-			deleteTab("收费记录");
-			deleteTab("发票管理");
 			deleteTab("考试管理");
 		}
 		// if(checkRole("saler")){
@@ -277,18 +276,18 @@
 		// }
 		if(!checkRole("leader") && !checkRole("saler") && currUser != "desk."){
 		}
-			deleteTab("收费概况");
+		deleteTab("收费概况");
 		if(checkRole("saler")){
 			currSales = currUser;
 		}
 		if(currUser == "amra." || currUser == "jiacaiyun."){
 			deleteTab("收费发票");
+			deleteTab("收费日报");
+			deleteTab("销售业绩");
 			deleteTab("学员注册");
 			deleteTab("证书获取");
 			deleteTab("证书到期");
 			deleteTab("其他报表");
-			deleteTab("收费记录");
-			deleteTab("发票管理");
 			$("#menu1").hide();
 			$("#menu3").hide();
 			$("#menu4").hide();
@@ -312,8 +311,6 @@
 		if(checkRole("emergency")){
 			$("#menu6").hide();		//统计
 		}
-        deleteTab("日结报表");
-        deleteTab("花名册");
 		<!--#include file="commLoadFileReady.asp"-->
 	    refreshMsg();
 	});
