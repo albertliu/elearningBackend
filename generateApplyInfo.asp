@@ -778,7 +778,7 @@
 				arr.push("<th width='7%'>成绩</th>");
 				arr.push("<th width='7%'>结果</th>");
 			}else{
-				arr.push("<th width='8%'>电话</th>");
+				arr.push("<th width='8%'>报名备注</th>");
 				arr.push("<th width='6%'>照片</th>");
 				arr.push("<th width='6%'>签名</th>");
 			}
@@ -827,7 +827,7 @@
 						arr.push("<td class='left'>" + h + "</td>");
 						arr.push("<td class='left'>" + ar1[9] + "</td>");
 					}else{
-						arr.push("<td class='left'>" + ar1[6] + "</td>");
+						arr.push("<td class='left'>" + ar1[39] + "</td>");
 						photo_type = ar1[34].substr(ar1[34].indexOf("."));
 						photo_size = ar1[36];
 						if(photo_size > 99 || (photo_type !== ".jpg" && photo_type !== ".jpeg")){	//根据照片类型或文件大小，显示不同背景颜色

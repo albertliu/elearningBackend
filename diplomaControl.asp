@@ -1122,7 +1122,7 @@ if(op == "getApplyListByBatch"){
 		//30
 		result += "|" + rs("upload").value + "|" + rs("uploadPhoto").value + "|" + rs("step").value + "|" + rs("memo1").value + "|" + rs("photo_filename").value;
 		//35
-		result += "|" + rs("signature").value + "|" + rs("photo_size").value + "|" + rs("signatureDate").value + "|" + rs("entryform").value;
+		result += "|" + rs("signature").value + "|" + rs("photo_size").value + "|" + rs("signatureDate").value + "|" + rs("entryform").value + "|" + rs("memo_enter").value;
 		rs.MoveNext();
 	}
 	rs.Close();
