@@ -1111,6 +1111,18 @@ if(op == "pick_students2class"){
 	Response.Write(result);
 }
 
+if(op == "pick_students2paynow"){
+	result = "";
+	sql = "exec pickStudents2Paynow '" + String(Request.Form("payNow")) + "','" + String(Request.Form("selList")) + "','" + String(Request.Form("fromClass")) + "','" + currUser + "'";
+	rs = conn.Execute(sql);
+	if (!rs.EOF){
+		result = rs("re").value;
+		execSQL(sql);
+	}
+	rs.Close();
+	Response.Write(result);
+}
+
 if(op == "set_students_express"){
 	result = "";
 	sql = "exec set_students_express '" + String(Request.Form("selList")) + "','" + currUser + "'";

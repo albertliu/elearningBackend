@@ -313,7 +313,6 @@
 						d = d.replace(/\s*/g,"");
 						// if(d > ""){
 							//alert($("#searchStudentPreProjectID").val() + "&status=1&host=" + $("#searchStudentPreHost").val() + "&keyID=" + selList);
-							alert(d + ":" + selList + ":" + $("#classID").val());
 							$.post("studentCourseControl.asp?op=pick_students2class", {batchID: d, selList: selList, fromClass: $("#classID").val()} ,function(data1){
 								// alert(data);
 								if(data1>0){
@@ -327,6 +326,28 @@
 						// }else{
 						// 	jAlert("班级编号不能为空。");
 						// }
+					});
+				});
+			}
+		});
+		
+		$("#btnPaynowChange").click(function(){
+			getSelCart("visitstockchk");
+			if(selCount==0){
+				jAlert("请选择要操作的名单。");
+				return false;
+			}
+			if(confirm("确定要更改这" + selCount + "个学员的支付方式吗？")){
+				var ar = {"1":"后付费","0":"预付费"};
+				jSelect("请选择支付方式：", ar, "支付方式",function(d){
+					d = d.replace(/\s*/g,"");
+					$.post("studentCourseControl.asp?op=pick_students2paynow", {payNow: d, selList: selList, fromClass: $("#classID").val()} ,function(data){
+						// jAlert(data);
+						if(data>0){
+							jAlert("成功修改了" + data + "个学员的支付方式(已付款的不能修改)。");
+						}else{
+							jAlert("操作失败，没有符合要求的学员。");
+						}
 					});
 				});
 			}
@@ -1003,6 +1024,7 @@
 		$("#generatePhotoZip").hide();
 		$("#generateEntryZip").hide();
 		$("#btnClassChange").hide();
+		$("#btnPaynowChange").hide();
 		$("#btnRebuildStudentLesson").hide();
 		$("#btnAutoSetClassSNo").hide();
 		$("#archived").prop("disabled",true);
@@ -1025,6 +1047,7 @@
 					$("#generatePhotoZip").show();
 					$("#generateEntryZip").show();
 					$("#btnClassChange").show();
+					$("#btnPaynowChange").show();
 					$("#btnClassCall").show();
 				}
 				if(checkPermission("teacherAdd") && s < 2){
@@ -1061,6 +1084,7 @@
 			}
 			if((checkPermission("studentAdd") || checkRole("adviser")) && s < 2){
 				$("#btnClassChange").show();
+				$("#btnPaynowChange").show();
 				$("#doImport").show();
 			}
 		}
@@ -1240,6 +1264,7 @@
 		<div style="border:solid 1px #e0e0e0;width:99%;margin:5px;background:#ffffff;line-height:18px;padding-left:20px;">
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnSel" value="全选/取消" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassChange" value="更换班级" /></span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnPaynowChange" value="更换支付" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassCall" value="开课通知" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassAlert" value="进度提醒" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassExamDeny" value="不安排考试通知" /></span>
