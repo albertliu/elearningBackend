@@ -106,7 +106,7 @@
 				arr.push("<th width='18%'>身份证</th>");
 				arr.push("<th width='8%'>姓名</th>");
 				arr.push("<th width='8%'>金额</th>");
-				arr.push("<th width='12%'>日期</th>");
+				arr.push("<th width='12%'>付款日</th>");
 				arr.push("<th width='12%'>类型</th>");
 				arr.push("<th width='20%'>课程</th>");
 				arr.push("<th width='12%'>备注</th>");
@@ -118,9 +118,16 @@
 					c = 0;
 					arr.push("<tr class='grade0'>");
 					arr.push("<td class='center'>" + i + "</td>");
-					for(let key in val){
-						arr.push("<td class='left'" + (key=="pay_memo"?" title='" + val[key] + "'":"") + ">" + nullNoDisp((key=="pay_memo"?val[key].substring(0,10):val[key])) + "</td>");
-					}
+					// for(let key in val){
+					// 	arr.push("<td class='left'" + (key=="pay_memo"?" title='" + val[key] + "'":"") + ">" + nullNoDisp((key=="pay_memo"?val[key].substring(0,10):val[key])) + "</td>");
+					// }
+					arr.push("<td class='link1'><a href='javascript:showEnterInfo(\"" + val["ID"] + "\",\"" + val["username"] + "\",0,1);'>" + val["username"] + "</a></td>");
+					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + val["username"] + "\",0,1);'>" + val["name"] + "</a></td>");
+					arr.push("<td class='left'>" + nullNoDisp(val["amount"]) + "</td>");
+					arr.push("<td class='left'>" + nullNoDisp(val["datePay"]) + "</td>");
+					arr.push("<td class='left'>" + nullNoDisp(val["pay_typeName"]) + "</td>");
+					arr.push("<td class='left'>" + nullNoDisp(val["courseName"]) + "</td>");
+					arr.push("<td class='left' title='" + val["pay_memo"] + "'>" + nullNoDisp(val["pay_memo"].substring(0,10)) + "</td>");
 					arr.push("</tr>");
 				});
 				arr.push("</tbody>");
