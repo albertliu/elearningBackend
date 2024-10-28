@@ -83,7 +83,6 @@
 				sDate = ar["signatureDate"];
 				price = ar["price"];
 				unit = ar["unit"];
-				$("#hostName").html(ar["hostName"]);
 				if(sign>""){
 					$("#f_sign20").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
 					$("#f_sign30").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
@@ -96,57 +95,58 @@
 					$("#date1D").html(date1.substr(8,2));
 					$("#date0").html(date1.substr(0,4));
 					$("#date0M").html(date1.substr(5,2));
-					$("#username").html(ar["username"]);
-					$("#name").html(ar["name"]);
-					$("#sexName").html(ar["sexName"]);
-					$("#mobile").html(ar["mobile"]);
-					$("#age").html(ar["age"]);
-					$("#job").html(ar["job"]);
-					$("#unit").html(ar["unit"]);
-					$("#educationName").html(ar["educationName"]);
-					$("#birthday").html(ar["birthday"].substr(0,7));
-					$("#address").html(ar["address"]);
-					$("#ethnicity").html(ar["ethnicity"]);
-					$("#IDdate").html(ar["IDdateStart"] + (ar["IDdateStart"]>"" && ar["IDdateEnd"]==""? "<br>长期":"<br>" + ar["IDdateEnd"]));
-					if(ar["username"].length==18){
-						$("#IDK0").prop("checked",true);
-					}else{
-						$("#IDK1").prop("checked",true);
-					}
-					if(ar["photo_filename"] > ""){	//  && keyID !=4
-						$("#img_photo").attr("src","/users" + ar["photo_filename"] + "?times=" + (new Date().getTime()));
-					}else{
-						$("#img_photo").attr("src","images/blank_photo.png");
-					}
-					if(keyID ==5){
-						$("#img_A").attr("src","/users" + ar["IDa_filename"] + "?times=" + (new Date().getTime()));
-						$("#img_B").attr("src","/users" + ar["IDb_filename"] + "?times=" + (new Date().getTime()));
-						$("#f_sign40").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
-						if(reex == 0){	//初训报名表显示学历
-							$("#img_E").attr("src","/users" + ar["edu_filename"] + "?times=" + (new Date().getTime()));
-							$("#f_sign50").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
-						}
-						if(kindID == 1){	//显示培训证明
-							$("#img_P").attr("src","/users" + ar["proof_filename"] + "?times=" + (new Date().getTime()));
-						}
-					}
-
-					var p = 0;
-					if(keyID < 3){
-						//打印学历证明、身份证
-						p = 1;
-						s = 1;
-						getMaterials(ar["username"],sign,p,k);
-					}
-					if(keyID < 3 || keyID == 4){	//
-						getAgreement(ar["username"],ar["name"],course,sign,sDate,price);	//协议书
-					}
-					if(keyID==1){
-						resumePrint();
-					}
 				}else{
 					$("#f_sign20").hide();
 					$("#f_sign30").hide();
+				}
+				$("#hostName").html(ar["hostName"]);
+				$("#username").html(ar["username"]);
+				$("#name").html(ar["name"]);
+				$("#sexName").html(ar["sexName"]);
+				$("#mobile").html(ar["mobile"]);
+				$("#age").html(ar["age"]);
+				$("#job").html(ar["job"]);
+				$("#unit").html(ar["unit"]);
+				$("#educationName").html(ar["educationName"]);
+				$("#birthday").html(ar["birthday"].substr(0,7));
+				$("#address").html(ar["address"]);
+				$("#ethnicity").html(ar["ethnicity"]);
+				$("#IDdate").html(ar["IDdateStart"] + (ar["IDdateStart"]>"" && ar["IDdateEnd"]==""? "<br>长期":"<br>" + ar["IDdateEnd"]));
+				if(ar["username"].length==18){
+					$("#IDK0").prop("checked",true);
+				}else{
+					$("#IDK1").prop("checked",true);
+				}
+				if(ar["photo_filename"] > ""){	//  && keyID !=4
+					$("#img_photo").attr("src","/users" + ar["photo_filename"] + "?times=" + (new Date().getTime()));
+				}else{
+					$("#img_photo").attr("src","images/blank_photo.png");
+				}
+				if(keyID ==5){
+					$("#img_A").attr("src","/users" + ar["IDa_filename"] + "?times=" + (new Date().getTime()));
+					$("#img_B").attr("src","/users" + ar["IDb_filename"] + "?times=" + (new Date().getTime()));
+					$("#f_sign40").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
+					if(reex == 0){	//初训报名表显示学历
+						$("#img_E").attr("src","/users" + ar["edu_filename"] + "?times=" + (new Date().getTime()));
+						$("#f_sign50").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
+					}
+					if(kindID == 1){	//显示培训证明
+						$("#img_P").attr("src","/users" + ar["proof_filename"] + "?times=" + (new Date().getTime()));
+					}
+				}
+
+				var p = 0;
+				if(keyID < 3){
+					//打印学历证明、身份证
+					p = 1;
+					s = 1;
+					getMaterials(ar["username"],sign,p,k);
+				}
+				if(keyID < 3 || keyID == 4){	//
+					getAgreement(ar["username"],ar["name"],course,sign,sDate,price);	//协议书
+				}
+				if(keyID==1){
+					resumePrint();
 				}
 			}else{
 				//alert("没有找到要打印的内容。");

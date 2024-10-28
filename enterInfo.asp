@@ -613,13 +613,13 @@
 	}
 
 	function generateEntryFormSign(){
-		$.getJSON(uploadURL + "/outfiles/generate_entryform_sign?refID=" + refID + "&nodeID=" + nodeID + "&entryform=" + entryform + "&host=" + currHost ,function(data){
+		$.getJSON(uploadURL + "/outfiles/generate_entryform_sign?refID=" + refID + "&status=0&nodeID=" + nodeID + "&entryform=" + entryform + "&host=" + currHost ,function(data){
 			// no action
 		});
 	}
 	
 	function printEntryform(k){
-		window.open("entryform_" + entryform + ".asp?keyID=" + k + "&nodeID=" + nodeID + "&refID=" + refID + "&kindID=" + $("#certID").val() + "&times=" + (new Date().getTime()), "_self");
+		window.open("entryform_" + entryform + ".asp?keyID=" + k + "&status=0&nodeID=" + nodeID + "&refID=" + refID + "&kindID=" + $("#certID").val() + "&times=" + (new Date().getTime()), "_self");
 	}
 	
 	function setButton(){
