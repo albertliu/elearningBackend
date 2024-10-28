@@ -124,7 +124,7 @@
 					arr.push("<td class='link1'><a href='javascript:showEnterInfo(\"" + val["ID"] + "\",\"" + val["username"] + "\",0,1);'>" + val["username"] + "</a></td>");
 					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + val["username"] + "\",0,1);'>" + val["name"] + "</a></td>");
 					arr.push("<td class='left'>" + nullNoDisp(val["amount"]) + "</td>");
-					arr.push("<td class='left'>" + nullNoDisp(val["datePay"]) + "</td>");
+					arr.push("<td class='left'" + (val["autoPay"]=="1"?" style='background:#FFFF88;'" : "") + ">" + nullNoDisp(val["datePay"]) + "</td>");
 					arr.push("<td class='left'>" + nullNoDisp(val["pay_typeName"]) + "</td>");
 					arr.push("<td class='left'>" + nullNoDisp(val["courseName"]) + "</td>");
 					arr.push("<td class='left' title='" + val["pay_memo"] + "'>" + nullNoDisp(val["pay_memo"].substring(0,10)) + "</td>");
