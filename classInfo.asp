@@ -337,14 +337,14 @@
 				jAlert("请选择要操作的名单。");
 				return false;
 			}
-			if(confirm("确定要更改这" + selCount + "个学员的支付方式吗？")){
+			if(confirm("确定要更改这" + selCount + "个学员的付款类型吗？")){
 				var ar = {"1":"后付费","0":"预付费"};
-				jSelect("请选择支付方式：", ar, "支付方式",function(d){
+				jSelect("请选择付款类型：", ar, "付款类型",function(d){
 					d = d.replace(/\s*/g,"");
 					$.post("studentCourseControl.asp?op=pick_students2paynow", {payNow: d, selList: selList, fromClass: $("#classID").val()} ,function(data){
 						// jAlert(data);
 						if(data>0){
-							jAlert("成功修改了" + data + "个学员的支付方式(已付款的不能修改)。");
+							jAlert("成功修改了" + data + "个学员的付款类型(已付款的不能修改)。");
 						}else{
 							jAlert("操作失败，没有符合要求的学员。");
 						}
