@@ -374,7 +374,7 @@
 						$.ajax({
 							url: uploadURL + "/public/applyEnter?SMS=1&reexamine=7&register=" + currUserName + "&host=znxf&classID=" + $("#applyID").val() + "&courseName=" + $("#courseName").val() + "&reex=" + (reexamine==0?"初证":"复审"),
 							type: "post",
-							data: {"selList":$("#adviserID").text()},
+							data: {"selList":$("#adviserID").find("option:selected").text()},
 							beforeSend: function() {   
 								$.messager.progress();	// 显示进度条
 							},
@@ -1036,7 +1036,7 @@
 					$("#doApplyEnter").show();	// 应急局项目可以自动报名
 					$("#doApplyUpload").show();	// 
 					$("#doApplyDownload").show();	// 
-					// $("#doApplyUploadSchedule").show();	// 
+					$("#doApplyUploadSchedule").show();	// 
 					if(reexamine==1){
 						$("#doApplyUploadPhoto").show();	// 复训的可上传照片
 					}
