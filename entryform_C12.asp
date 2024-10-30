@@ -83,23 +83,7 @@
 				sDate = ar["signatureDate"];
 				price = ar["price"];
 				unit = ar["unit"];
-				if(sign>""){
-					$("#f_sign20").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
-					$("#f_sign30").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
-					let date1 = new Date(sDate).format("yyyy.MM.dd");
-					$("#date").html(date1.substr(0,4));
-					$("#dateM").html(date1.substr(5,2));
-					$("#dateD").html(date1.substr(8,2));
-					$("#date1").html(date1.substr(0,4));
-					$("#date1M").html(date1.substr(5,2));
-					$("#date1D").html(date1.substr(8,2));
-					$("#date0").html(date1.substr(0,4));
-					$("#date0M").html(date1.substr(5,2));
-				}else{
-					$("#f_sign20").hide();
-					$("#f_sign30").hide();
-				}
-				$("#hostName").html(ar["hostName"]);
+				$("#hostName").html(ar["certID"]=="C27"?"上海静安能企电力职业技能培训中心":ar["hostName"]);
 				$("#username").html(ar["username"]);
 				$("#name").html(ar["name"]);
 				$("#sexName").html(ar["sexName"]);
@@ -133,6 +117,22 @@
 					if(kindID == 1){	//显示培训证明
 						$("#img_P").attr("src","/users" + ar["proof_filename"] + "?times=" + (new Date().getTime()));
 					}
+				}
+				if(sign>""){
+					$("#f_sign20").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
+					$("#f_sign30").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
+					let date1 = new Date(sDate).format("yyyy.MM.dd");
+					$("#date").html(date1.substr(0,4));
+					$("#dateM").html(date1.substr(5,2));
+					$("#dateD").html(date1.substr(8,2));
+					$("#date1").html(date1.substr(0,4));
+					$("#date1M").html(date1.substr(5,2));
+					$("#date1D").html(date1.substr(8,2));
+					$("#date0").html(date1.substr(0,4));
+					$("#date0M").html(date1.substr(5,2));
+				}else{
+					$("#f_sign20").hide();
+					$("#f_sign30").hide();
 				}
 
 				var p = 0;

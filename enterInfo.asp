@@ -50,6 +50,7 @@
 		getDicList("signatureType","signatureType",0);
 		getDicList("payNow","payNow",0);
         getComList("fromID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='saler') order by realName",1);
+		getComList("host","hostInfo","hostNo","title","status=0 order by hostName",1);
 		$("#datePay").click(function(){WdatePicker();});
 		$("#dateRefund").click(function(){WdatePicker();});
 		$("#dateInvoice").click(function(){WdatePicker();});
@@ -407,6 +408,7 @@
 				$("#classID").val(ar[27]);
 				$("#className").val(ar[34]);
 				$("#certID").val(ar[36]);
+				$("#host").val(ar[39]);
 				$("#reexamineName").val(ar[41]);
 				$("#submiterName").val(ar[44]);
 				$("#currDiplomaID").val(ar[45]);
@@ -533,7 +535,7 @@
 			}
 			
 			//@username,@classID,@price,@invoice,@projectID,@kindID,@type,@status,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo,@registerID
-			$.get("studentCourseControl.asp?op=doEnter&nodeID=" + nodeID + "&username=" + $("#username").val() + "&classID=" + $("#classID").val() + "&overdue=" + over + "&needInvoice=" + needInvoice + "&fromID=" + $("#fromID").val() + "&price=" + $("#price").val() + "&amount=" + $("#amount").val() + "&invoice=" + $("#invoice").val() + "&invoice_amount=" + $("#invoice_amount").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&payNow=" + $("#payNow").val() + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#statusPay").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&pay_memo=" + escape($("#pay_memo").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+			$.get("studentCourseControl.asp?op=doEnter&nodeID=" + nodeID + "&username=" + $("#username").val() + "&classID=" + $("#classID").val() + "&overdue=" + over + "&needInvoice=" + needInvoice + "&host=" + $("#host").val() + "&fromID=" + $("#fromID").val() + "&price=" + $("#price").val() + "&amount=" + $("#amount").val() + "&invoice=" + $("#invoice").val() + "&invoice_amount=" + $("#invoice_amount").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&payNow=" + $("#payNow").val() + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#statusPay").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&pay_memo=" + escape($("#pay_memo").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 				//jAlert(unescape(re));
 				var ar = new Array();
 				ar = unescape(re).split("|");
@@ -802,9 +804,9 @@
 			</tr>
 			<tr>
 				<td align="right">公司确认</td>
-				<td><input style="border:0px;" type="checkbox" id="checked" value="" />&nbsp;&nbsp;<input class="readOnly" type="text" id="checkerName" size="5" readOnly="true" /></td>
-				<td align="right">确认日期</td>
-				<td><input class="readOnly" type="text" id="checkDate" size="25" readOnly="true" /></td>
+				<td><input style="border:0px;" type="checkbox" id="checked" value="" />&nbsp;&nbsp;<input class="readOnly" type="text" id="checkerName" size="5" readOnly="true" /><input class="readOnly" type="text" id="checkDate" size="10" readOnly="true" /></td>
+				<td align="right">来源</td>
+				<td><select id="host" style="width:180px;"></select></td>
 			</tr>
 			<tr>
 				<td align="right">开课日期</td>
@@ -938,7 +940,7 @@
 				</td>
 				<td align="right">退款金额</td>
 				<td>
-				<input type="text" id="refund_amount" style="width:50px;" />
+				<input type="text" id="refund_amount" style="width:50px; background:lightPink;" />
 				&nbsp;&nbsp;<input class="button" type="button" id="btnRefund" value="退款" />
 			</tr>
 			<tr>
@@ -946,7 +948,7 @@
 				<td><input type="text" id="refund_memo" style="width:95%;" /></td>
 				</td>
 				<td align="right">退款日期</td>
-				<td><input type="text" id="dateRefund" style="width:80px;" />&nbsp;&nbsp;经办<input class="readOnly" type="text" id="refunderName" style="width:60px;" readOnly="true" /></td>
+				<td><input type="text" id="dateRefund" style="width:80px; background:lightPink;" />&nbsp;&nbsp;经办<input class="readOnly" type="text" id="refunderName" style="width:60px;" readOnly="true" /></td>
 			</tr>
 			</table>
 			</form>
