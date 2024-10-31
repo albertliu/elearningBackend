@@ -118,6 +118,7 @@
 						$("#img_P").attr("src","/users" + ar["proof_filename"] + "?times=" + (new Date().getTime()));
 					}
 				}
+				let startDate = ar["startDate"];
 				if(sign>""){
 					$("#f_sign20").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
 					$("#f_sign30").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
@@ -128,11 +129,16 @@
 					$("#date1").html(date1.substr(0,4));
 					$("#date1M").html(date1.substr(5,2));
 					$("#date1D").html(date1.substr(8,2));
-					$("#date0").html(date1.substr(0,4));
-					$("#date0M").html(date1.substr(5,2));
 				}else{
 					$("#f_sign20").hide();
 					$("#f_sign30").hide();
+				}
+				if(startDate>""){
+					$("#date0").html(startDate.substr(0,4));
+					$("#date0M").html(startDate.substr(5,2));
+				}else{
+					$("#date0").html("&nbsp;&nbsp;&nbsp;&nbsp;");
+					$("#date0M").html("&nbsp;&nbsp;&nbsp;&nbsp;");
 				}
 
 				var p = 0;
