@@ -106,6 +106,8 @@
 	checkListLong = 0;
 	grantListLong = 0;
 	taskListLong = 0;
+	_rptSales_sales = "";
+	_rptSales_kind = 0;
   
 	$(document).ready(function (){
 		$.ajaxSetup({ 

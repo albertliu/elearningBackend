@@ -18,6 +18,15 @@
 				getRptSalesList("file");
 			}
 		});
+		$("#btnRptSalesDetailDownLoad").linkbutton({
+			iconCls:'icon-download',
+			width:85,
+			height:25,
+			text:'明细下载',
+			onClick:function() {
+				getRptSalesDetailList("",0,"file");
+			}
+		});
 		$("#btnRptSalesDownLoad").click(function(){
 			getRptSalesList("file");
 		});
@@ -54,7 +63,7 @@
 					arr.push("<tr class='grade0'>");
 					for(let key in val){
 						if(key != "sales"){
-							arr.push("<td" + (j>0 ? " class='link1'>" : " class='left'>") + (j>0 && val["sales"] != "*" ? "<a href='javascript:getRptSalesDetailList(\"" + val["sales"] + "\"," + (j - 1) + ");'>" : "") + (val[key]) + (j>0 ? "</a>" : "") + "</td>");
+							arr.push("<td" + (j>0 ? " class='link1'>" : " class='left'>") + (j>0 && val["sales"] != "*" ? "<a href='javascript:getRptSalesDetailList(\"" + val["sales"] + "\"," + (j - 1) + ",\"data\");'>" : "") + (val[key]) + (j>0 ? "</a>" : "") + "</td>");
 						}
 						j += 1
 					}
@@ -88,14 +97,23 @@
 		});
 	}
 
-	function getRptSalesDetailList(sales, k){
-		$.getJSON(uploadURL + "/public/getRptDetailList?op=sales&sales=" + sales + "&host=znxf&kind=" + k + "&startDate=" + $("#rptSalesStartDate").val() + "&endDate=" + $("#rptSalesEndDate").val(),function(data){
+	function getRptSalesDetailList(sales, k, mark){
+		if(sales>""){
+			_rptSales_sales = sales;
+		}
+		if(k>0){
+			_rptSales_kind = k;
+		}
+		$.getJSON(uploadURL + "/public/getRptDetailList?op=sales&sales=" + _rptSales_sales + "&mark=" + mark + "&host=znxf&kind=" + _rptSales_kind + "&startDate=" + $("#rptSalesStartDate").val() + "&endDate=" + $("#rptSalesEndDate").val(),function(data){
 			// jAlert(data);
 			if(data==""){
 				jAlert("没有符合要求的数据。","提示")
 			}
-	
-			if(data.length>0){
+			if(mark=="file" && data>""){
+				jAlert("点击右侧链接，下载<a href='" + data + "'>统计报告</a>","下载文件");
+			}
+
+			if(mark=="data" && data.length>0){
 				$("#rptSalesDetailCover").empty();
 				let i = 0;
 				arr = [];		
@@ -121,11 +139,11 @@
 					// for(let key in val){
 					// 	arr.push("<td class='left'" + (key=="pay_memo"?" title='" + val[key] + "'":"") + ">" + nullNoDisp((key=="pay_memo"?val[key].substring(0,10):val[key])) + "</td>");
 					// }
-					arr.push("<td class='link1'><a href='javascript:showEnterInfo(\"" + val["ID"] + "\",\"" + val["username"] + "\",0,1);'>" + val["username"] + "</a></td>");
-					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + val["username"] + "\",0,1);'>" + val["name"] + "</a></td>");
-					arr.push("<td class='left'>" + nullNoDisp(val["amount"]) + "</td>");
-					arr.push("<td class='left'" + (val["autoPay"]=="1"?" style='background:#FFFF88;'" : "") + ">" + nullNoDisp(val["datePay"]) + "</td>");
-					arr.push("<td class='left'>" + nullNoDisp(val["pay_typeName"]) + "</td>");
+					arr.push("<td class='link1'><a href='javascript:showEnterInfo(\"" + val["ID"] + "\",\"" + val["身份证"] + "\",0,1);'>" + val["身份证"] + "</a></td>");
+					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + val["身份证"] + "\",0,1);'>" + val["姓名"] + "</a></td>");
+					arr.push("<td class='left'>" + nullNoDisp(val["金额"]) + "</td>");
+					arr.push("<td class='left'" + (val["autoPay"]=="1"?" style='background:#FFFF88;'" : "") + ">" + nullNoDisp(val["日期"]) + "</td>");
+					arr.push("<td class='left'>" + nullNoDisp(val["类型"]) + "</td>");
 					arr.push("<td class='left'>" + nullNoDisp(val["courseName"]) + "</td>");
 					arr.push("<td class='left' title='" + val["pay_memo"] + "'>" + nullNoDisp(val["pay_memo"].substring(0,10)) + "</td>");
 					arr.push("</tr>");

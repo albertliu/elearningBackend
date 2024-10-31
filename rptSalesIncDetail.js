@@ -7,6 +7,7 @@
 							<span style="padding-left:50px;">
 								<a class="easyui-linkbutton" id="btnRptSales" href="javascript:void(0)"></a>
 								<a class="easyui-linkbutton" id="btnRptSalesDownLoad" href="javascript:void(0)"></a>
+								<a class="easyui-linkbutton" id="btnRptSalesDetailDownLoad" style="margin-left:100px;" href="javascript:void(0)"></a>
 							</span>
 				        </form>
 					</div>
