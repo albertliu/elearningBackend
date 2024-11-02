@@ -734,7 +734,7 @@
 			//$("#btnEntryform").show();
 			//$("#btnFiremanMaterials").show();
 			$("#btnPrint").show();
-			if(checkPermission("studentAdd") || checkPermission("editPayDate")){
+			if(checkPermission("salesChange")){
 				$("#fromID").prop("readonly",false);
 			}
 		}
