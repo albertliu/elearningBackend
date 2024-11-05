@@ -1021,7 +1021,7 @@
 				if(s<2){
 					$("#close").show();
 					$("#generateZip").show();
-					// $("#generatePhotoZip").show();
+					$("#generatePhotoZip").show();
 					$("#generateEntryZip").show();
 				}
 			}
