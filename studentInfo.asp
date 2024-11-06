@@ -585,6 +585,7 @@
 		$("#sex").prop("disabled",true);
 		$("#birthday").prop("disabled",true);
 		$("#scanPhoto").checkbox({readonly:true});
+		$("#fromID").prop("disabled",true);
 		if(op==1){
 			$("#save").show();
 			$("#add_img_education").hide();
@@ -643,6 +644,7 @@
 		$("#IDdateStart").val("");
 		$("#IDdateEnd").val("");
 		$("#companyID").val(getSession("lastcompany"));
+		$("#fromID").val(0);
 		setZNXF();
 		setDeptList($("#companyID").val(),1,$("#kindID").val());
 		//$("#dept1").val(ar[26]);				
