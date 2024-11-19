@@ -276,7 +276,7 @@
                         }else{
                           //upload photo for compare
                           // alert(uploadURLS + "/alis/searchFace")
-                          $.post(uploadURLS + "/alis/searchFace", {base64Data: base64Data, selList: selList, confidence: $("#confidence").numberbox("getValue")} ,function(data){
+                          $.post(uploadURLS + "/alis/searchFace", {base64Data: base64Data, selList: selList, confidence: $("#confidence").numberbox("getValue"), host:'znxf'} ,function(data){
                             // alert(data)
                             if(data.status < 9){
                               showResultMsg(data.status, data.name, data.msg);

@@ -991,7 +991,7 @@ if(op == "getGenerateApplyList"){
 		//24
 		result += "|" + rs("reexamineName").value + "|" + rs("importApplyDate").value + "|" + rs("importScoreDate").value + "|" + rs("diplomaStartDate").value + "|" + rs("diplomaEndDate").value;
 		//29
-		result += "|" + rs("diplomaTerm").value + "|" + rs("qtyCheck").value + "|" + rs("diplomaReady").value;
+		result += "|" + rs("diplomaTerm").value + "|" + rs("qtyCheck").value + "|" + rs("diplomaReady").value + "|" + rs("firstOfflineDate").value;
 		rs.MoveNext();
 	}
 	rs.Close();

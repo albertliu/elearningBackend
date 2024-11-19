@@ -599,7 +599,6 @@
 			arr.push("<tr align='center'>");
 			arr.push("<th width='4%'>No</th>");
 			arr.push("<th width='6%'>学号</th>");
-			arr.push("<th width='9%'>身份证</th>");
 			arr.push("<th width='6%'>姓名</th>");
 			arr.push("<th width='6%'>电话</th>");
 			if(photo == 0){
@@ -614,13 +613,14 @@
 				arr.push("<th width='5%'>成绩</th>");
 				arr.push("<th width='5%'>证书</th>");
 			}else{
-				arr.push("<th width='7%'>照片</th>");
-				arr.push("<th width='7%'>身份证</th>");
-				arr.push("<th width='7%'>签名</th>");
-				arr.push("<th width='7%'>学历</th>");
-				arr.push("<th width='7%'>在职</th>");
-				arr.push("<th width='8%'>复训日期</th>");
+				arr.push("<th width='6%'>照片</th>");
+				arr.push("<th width='6%'>身份证</th>");
+				arr.push("<th width='6%'>反面</th>");
+				arr.push("<th width='6%'>签名</th>");
+				arr.push("<th width='6%'>学历</th>");
+				arr.push("<th width='6%'>在职</th>");
 			}
+			arr.push("<th width='8%'>复训日期</th>");
 			arr.push("<th width='10%'>备注</th>");
 			arr.push("<th width='2%'>材</th>");
 			arr.push("<th width='2%'>报</th>");
@@ -646,8 +646,7 @@
 					c = 0;
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
-					arr.push("<td class='left'>" + ar1[43] + "</td>");
-					arr.push("<td class='link1'><a href='javascript:showEnterInfo(" + ar1[0] + ",\"" + ar1[1] + "\",0,1);'>" + ar1[1] + "</a></td>");
+					arr.push("<td class='link1'><a href='javascript:showEnterInfo(" + ar1[0] + ",\"" + ar1[1] + "\",0,1);'>" + ar1[43] + "</a></td>");
 					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + ar1[1] + "\",0,1,\"class\");'>" + ar1[2] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[69] + "</td>");
 					//arr.push("<td title='最好成绩' class='link1'><a href='javascript:showStudentExamStat(" + ar1[0] + ",\"" + ar1[2] + "\",0,0);'>" + c + "</a></td>");
@@ -707,6 +706,11 @@
 						}else{
 							arr.push("<td class='center'>&nbsp;</td>");
 						}
+						if(ar1[20] > ""){
+							arr.push("<td class='center'><img id='IDcardB" + ar1[1] + "' src='users" + ar1[20] + "?times=" + (new Date().getTime()) + "' onclick='showCropperInfo(\"users" + ar1[20] + "\",\"" + ar1[1] + "\",\"IDcardB\",\"\",0,1)' style='width:60px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
+						}else{
+							arr.push("<td class='center'>&nbsp;</td>");
+						}
 						if(ar1[76]>0){
 							h = " style='background-color:#" + attention_status[ar1[76]-1] + ";'";
 						}else{
@@ -736,8 +740,8 @@
 								if(x>60){bc = backcolor[3]}
 							}
 						}
-						arr.push("<td class='left' " + (ar1[57]==1 && bc>"" ? "style='background:" + bc + ";'" : "") + ">" + ar1[83] + "</td>");	// 复训日期
 					}
+					arr.push("<td class='left' " + (ar1[57]==1 && bc>"" ? "style='background:" + bc + ";'" : "") + ">" + ar1[83] + "</td>");	// 复训日期
 					arr.push("<td class='left'>" + ar1[82] + "</td>");
 					if(ar1[78]==''){
 						arr.push("<td class='center'><div id='material" + ar1[0] + "'><span onclick='generateMaterials(" + ar1[0] + ",\"" + ar1[1] + "\",\"" + ar1[60] + "\")' title='申报材料'><img src='images/addDoc.png' style='width:15px;'><span><div></td>");

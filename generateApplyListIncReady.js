@@ -68,6 +68,7 @@
 			arr.push("<th width='15%'>申报名称</th>");
 			arr.push("<th width='3%'>人</th>");
 			arr.push("<th width='7%'>开课日期</th>");
+			arr.push("<th width='7%'>线下开课</th>");
 			arr.push("<th width='6%'>状态</th>");
 			arr.push("<th width='7%'>申报导入</th>");
 			arr.push("<th width='6%'>申报批号</th>");
@@ -75,9 +76,8 @@
 			arr.push("<th width='3%'>考</th>");
 			arr.push("<th width='7%'>考试通知</th>");
 			arr.push("<th width='7%'>成绩通知</th>");
-			arr.push("<th width='4%'>领证</th>");
+			arr.push("<th width='2%'>证</th>");
 			arr.push("<th width='12%'>备注</th>");
-			arr.push("<th width='6%'>制作</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
@@ -96,6 +96,7 @@
 					arr.push("<td class='link1'><a href='javascript:showGenerateApplyInfo(" + ar1[0] + ",0,0,1,1);'>" + ar1[3] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[4] + "</td>");
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
+					arr.push("<td class='left'>" + ar1[32] + "</td>");
 					arr.push("<td class='center'>" + ar1[16] + "</td>");
 					arr.push("<td class='left'>" + ar1[25] + "</td>");
 					arr.push("<td class='left'>" + ar1[5] + "</td>");
@@ -109,7 +110,6 @@
 						arr.push("<td class='center'>&nbsp;</td>");
 					}
 					arr.push("<td class='left'>" + ar1[8] + "</td>");
-					arr.push("<td class='left'>" + ar1[10] + "</td>");
 					arr.push("</tr>");
 				});
 			}
