@@ -175,7 +175,7 @@
 		});
 
 		$("#cart_examer_img").click(function(){
-			if(checkPermission("studentAdd")){
+			if(checkPermission("studentAdd") || checkPermission("applyEdit")){
 				showCartInfo("examer",0,0,1);
 			}else{
 				jAlert("没有使用购物车的权限");
@@ -188,7 +188,7 @@
 		});
 		
 		$("#btnEnterCartAdd").click(function(){
-			if(!checkPermission("studentAdd")){
+			if(!checkPermission("studentAdd") && !checkPermission("applyEdit")){
 				jAlert("没有使用购物车的权限");
 				return false;
 			}

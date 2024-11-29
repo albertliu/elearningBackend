@@ -1180,7 +1180,7 @@ if(op == "doEnter"){
 		result = rs("re").value + "|" + rs("msg").value + "|" + rs("payID").value + "|" + rs("enterID").value;
 	}
 	rs.Close();/**/
-	Response.Write(result);
+	Response.Write(escape(result));
 	//Response.Write(escape(sql));
 }
 
