@@ -2,7 +2,7 @@
 	function getAgreement(username,name,course,path,signDate,price){
 		price = (price==0 ? price="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;":price)
 		var arr = new Array();
-		arr.push('<div style="page-break-after:always">&nbsp;</div>');
+		// arr.push('<div style="page-break-after:always">&nbsp;</div>');
 		arr.push('<div style="">');
 		arr.push('	<div style="text-align:center; margin:25px 0 20px 0;"><h2 style="font-size:1.7em;">培训协议书（2024版）</h2></div>');
 		arr.push('</div>');

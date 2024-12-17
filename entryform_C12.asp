@@ -349,6 +349,7 @@
 				</div>
 			</div>
 			<div id="keyItem4">
+				<div id="agreementCover"></div>
 				<div id="materialsCover"></div>
 			</div>
 			<div id="keyItem5" style="flex:1; text-align:center; width:800px;padding-left:20px;">

@@ -282,7 +282,7 @@
 		if(checkRole("saler")){
 			currSales = currUser;
 		}
-		if(currUser == "amra." || currUser == "jiacaiyun."){
+		if(currUser == "amra." || currUser == "jiacaiyun." || currUser == "donghai."){
 			deleteTab("收费发票");
 			deleteTab("收费日报");
 			deleteTab("销售业绩");
@@ -305,7 +305,7 @@
 			$("#project_Tab").hide();
 			$("#content").hide();
 		}
-		if(currUser == "jiacaiyun."){
+		if(currUser == "jiacaiyun." || currUser == "donghai."){
 			$("#menu01").hide();
 			$("#menu6").hide();
 			$("#menu10").hide();
