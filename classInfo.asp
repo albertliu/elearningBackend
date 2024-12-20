@@ -45,7 +45,6 @@
 		nodeID = "<%=nodeID%>";
 		refID = "<%=refID%>";
 		op = "<%=op%>";
-		
 		getComList("projectID","projectInfo","projectID","projectName","status=1 order by projectID desc",1);
 		//getComList("teacher","v_courseTeacherList","teacherID","teacherName","status=0 group by teacherID,teacherName",1);
 		if(currHost==""){
@@ -528,7 +527,7 @@
 				$("#adviserID").val(ar[8]);
 				$("#courseID").val(ar[36]);
 				entryForm = ar[51];
-				reexamine = ar[57];
+				reexamine = ar[52];
 				if(ar[24]>""){
 					$("#archived").prop("checked",true);
 				}else{
