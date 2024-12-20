@@ -976,7 +976,7 @@ if(op == "getGenerateApplyList"){
 	}
 	sql = " FROM v_generateApplyInfo " + where;
 	result = getBasketTip(sql,"");
-	ssql = "SELECT kindName,qty,hostName,memo,regDate,registerName" + sql + " order by ID desc";
+	ssql = "SELECT ID,title,courseName,applyID,startDate,firstOfflineDate,qty,qtyYes,qtyNo,memo,regDate,registerName" + sql + " order by ID desc";
 	sql = "SELECT top " + basket + " *" + sql + " order by ID desc";
 	
 	rs = conn.Execute(sql);

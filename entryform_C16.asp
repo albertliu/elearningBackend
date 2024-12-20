@@ -44,6 +44,7 @@
 	var sDate = "";
 	var price = 0;
 	var courseID = "";
+	let unit = "";
 	<!--#include file="js/commFunction.js"-->
 	<!--#include file="need2know.js"-->
 	<!--#include file="agreement.js"-->
@@ -92,6 +93,12 @@
 				course = ar[56];
 				sDate = ar[49];
 				price = ar[53];
+				if(ar[39] != 'spc' && ar[39] != 'shm'){
+					unit = ar[37];
+				}else{
+					unit = ar[12];
+				}
+				$("#unit").html(unit);
 				// courseID = ar[5];
 				$("#date2").html("&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp");
 				$("#date2M").html("&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp");
@@ -143,15 +150,15 @@
 				$("#job").html(ar[18]);
 				//$("#phone").html(ar[17]);
 				$("#job").html(ar[18]);
-				if(ar[29]=="znxf"){
-					$("#unit").html(ar[35] + "." + ar[36]);
-				}else{
-					if(keyID ==3){
-						$("#unit").html(ar[12]);
-					}else{
-						$("#unit").html(ar[12] + "." + ar[13] + "." + ar[14]);
-					}
-				}
+				// if(ar[29]=="znxf"){
+				// 	$("#unit").html(ar[35] + "." + ar[36]);
+				// }else{
+				// 	if(keyID ==3){
+				// 		$("#unit").html(ar[12]);
+				// 	}else{
+				// 		$("#unit").html(ar[12] + "." + ar[13] + "." + ar[14]);
+				// 	}
+				// }
 				$("#educationName").html(ar[31]);
 				$("#birthday").html(ar[33].substr(0,7));
 				$("#address").html(ar[34]);

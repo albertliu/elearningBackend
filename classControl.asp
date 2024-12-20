@@ -73,6 +73,15 @@ if(op == "getClassList"){
 			where = s;
 		}
 	}
+	//当前用户为special
+	if(currUser == 'donghai.'){
+		s = "classID in ('C12-24119')";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 
 	if(where>""){
 		where = " where " + where;
@@ -208,7 +217,7 @@ if(op == "getClassListByClassID"){
 		result += ',"' + rs("classID").value + '":"' + rs("className").value + '"';
 		rs.MoveNext();
 	}
-	result = '{"":"无班级",' + result.substr(1) + '}';
+	result = '{"":"无班级"' + (result>''? ','+result.substr(1):'') + '}';
 	Response.Write(escape(result));/**/
 	//Response.Write(escape(sql));
 }	
