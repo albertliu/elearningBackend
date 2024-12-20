@@ -43,7 +43,8 @@
 			refund();
 		});
 		$("#btnQuestion").click(function(){
-			$.post(uploadURL + "/outfiles/readQustionOther?mark=" + $("#mark").val(), function(re){
+			//小鹅通
+			$.post(uploadURL + "/outfiles/readQustionOther_xfgly?mark=" + $("#mark").val(), function(re){
 				alert(re);
 			});
 		});
@@ -99,7 +100,7 @@
 		$.ajax({
 			url: uploadURL + "/public/enterPay",
 			type: "post",
-			data: {"host":"znxf", "kindID":1, "enterID":$("#orderNo").val(), "amount":0.01, "item":"测试","name":"desk","sales":"system"},
+			data: {"host":"znxf", "kindID":1, "enterID":$("#orderNo").val(), "amount":200, "item":"测试","name":"desk","sales":"system"},
 			beforeSend: function() {   
 				$.messager.progress();	// 显示进度条
 			},
