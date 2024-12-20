@@ -39,6 +39,7 @@
 	var imgFileBlue = "<img src='images/attachmentBlue.png' style='width:15px;'>";
 	var timer1 = null;
 	let entryForm = "";
+	let reexamine = 0;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";
@@ -527,6 +528,7 @@
 				$("#adviserID").val(ar[8]);
 				$("#courseID").val(ar[36]);
 				entryForm = ar[51];
+				reexamine = ar[57];
 				if(ar[24]>""){
 					$("#archived").prop("checked",true);
 				}else{
@@ -620,7 +622,9 @@
 				arr.push("<th width='6%'>学历</th>");
 				arr.push("<th width='6%'>在职</th>");
 			}
-			arr.push("<th width='8%'>复训日期</th>");
+			if(reexamine==1){
+				arr.push("<th width='8%'>复训日期</th>");
+			}
 			arr.push("<th width='10%'>备注</th>");
 			arr.push("<th width='2%'>材</th>");
 			arr.push("<th width='2%'>报</th>");
@@ -741,7 +745,9 @@
 							}
 						}
 					}
-					arr.push("<td class='left' " + (ar1[57]==1 && bc>"" ? "style='background:" + bc + ";'" : "") + ">" + ar1[83] + "</td>");	// 复训日期
+					if(reexamine==1){
+						arr.push("<td class='left' " + (ar1[57]==1 && bc>"" ? "style='background:" + bc + ";'" : "") + ">" + ar1[83] + "</td>");	// 复训日期
+					}
 					arr.push("<td class='left'>" + ar1[82] + "</td>");
 					if(ar1[78]==''){
 						arr.push("<td class='center'><div id='material" + ar1[0] + "'><span onclick='generateMaterials(" + ar1[0] + ",\"" + ar1[1] + "\",\"" + ar1[60] + "\")' title='申报材料'><img src='images/addDoc.png' style='width:15px;'><span><div></td>");
@@ -774,7 +780,9 @@
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
-			arr.push("<th>&nbsp;</th>");
+			if(reexamine==1){
+				arr.push("<th>&nbsp;</th>");
+			}
 			arr.push("</tr>");
 			arr.push("</tfoot>");
 			arr.push("</table>");
