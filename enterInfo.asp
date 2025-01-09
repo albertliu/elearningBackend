@@ -451,6 +451,7 @@
 				// if(c == "C17"){
 				// 	c = "C16";
 				// }
+				$("#examTimes").html("&nbsp;<a style='text-decoration: none;' href='javascript:showExamList(" + ar[0] + ",\"" + ar[2] + "\");'>" + ar[42] + "次</a>");
 				entryform = ar[35];
 				invoicePDF = ar[89];
 				if(ar[48]>""){
@@ -861,6 +862,7 @@
 						&nbsp;<input class="button" type="button" id="btnProof" value="培训证明" />
 						&nbsp;&nbsp;<input class="easyui-checkbox" id="check_pass" name="check_pass" value="1" />
 						&nbsp;<input class="button" type="button" id="btnCheckPass" value="免签" />
+						&nbsp;&nbsp;模拟练习&nbsp;<span id="examTimes"></span>
 					</td>
 				</tr>
                 <tr>

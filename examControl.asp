@@ -118,5 +118,22 @@ if(op == "getStudentQuestionList"){
 		rs.MoveNext();
 	}
 	Response.Write(escape(result.substr(2)));
-}	
+}
+
+if(op == "getExamListByEnterID"){
+
+	sql = "select * FROM v_ref_studentExamList where refID=" + refID + " order by seq";
+
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("paperID").value + "|" + rs("examID").value + "|" + rs("score").value + "|" + rs("scorePass").value + "|" + rs("startDate").value + "|" + rs("endDate").value;
+		//6
+		result += "|" + rs("result").value + "|" + rs("username").value + "|" + rs("examName").value + "|" + rs("seq").value;
+		rs.MoveNext();
+	}
+/**/
+	Session(op) = ssql;
+	Response.Write(escape(result.substr(2)));
+	//Response.Write(escape(sql));
+}
 %>

@@ -2120,7 +2120,7 @@
 			id: "studentExamPaper",
 			url:"studentExamPaper.asp?nodeID=" + nodeID + "&refID=" + refID + "&p=1&times=" + (new Date().getTime()),
 			title: "在线试卷信息",
-			width: 740,
+			width: 700,
 			height: 600,
 			drag: false,
 			cover : {
@@ -2197,6 +2197,28 @@
 			id: "completionList",
 			url:"completionList.asp?refID=" + refID + "&times=" + (new Date().getTime()),
 			title: "在线课程进度",
+			width: 730,
+			height: 700,
+			cover : {
+	          //透明度
+	          opacity : 0,
+	          //背景颜色
+	           background : '#000'
+	          },
+
+			btnsbar : false,
+			callback : function(action,iframe){
+				//
+			}
+		});
+	}
+	
+	//nodeID: ;
+	function showExamList(nodeID, refID){
+		asyncbox.open({
+			id: "examlist",
+			url:"examList.asp?nodeID=" + nodeID + "&refID=" + refID + "&times=" + (new Date().getTime()),
+			title: "模拟考试情况",
 			width: 730,
 			height: 700,
 			cover : {

@@ -666,7 +666,7 @@
 							c = "";
 						}
 						arr.push("<td class='center'>" + c + "</td>");	//学习进度
-						arr.push("<td title='最好成绩' class='link1' onclick='showStudentExamStat(" + ar1[0] + ",\"" + ar1[2] + "\",0,0);'>" + nullNoDisp(ar1[15]) + "</td>");
+						arr.push("<td title='最好成绩' class='link1' onclick='showExamList(" + ar1[0] + ",\"" + ar1[2] + "\",0,0);'>" + nullNoDisp(ar1[15]) + "</td>");
 						
 						if(fire==1){
 							arr.push("<td class='left'>" + ar1[86] + "</td>");
