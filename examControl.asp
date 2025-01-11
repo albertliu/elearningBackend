@@ -94,7 +94,13 @@ if(op == "delNode"){
 }
 
 if(op == "getStudentExamByEnterID"){
-	sql = "SELECT * FROM v_studentExamList where refID=" + refID;
+	if(kindID==1){
+		sql = "SELECT * FROM v_studentExamList where enterID=" + refID + " and kind=1";
+	}
+	if(kindID==0){
+		sql = "SELECT * FROM v_ref_studentExamList where seq=" + refID;
+	}
+	
 	rs = conn.Execute(sql);
 	if (!rs.EOF){
 		result = rs("paperID").value + "|" + rs("examID").value + "|" + rs("score").value + "|" + rs("scorePass").value + "|" + rs("startDate").value + "|" + rs("endDate").value;
