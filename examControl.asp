@@ -95,7 +95,7 @@ if(op == "delNode"){
 
 if(op == "getStudentExamByEnterID"){
 	if(kindID==1){
-		sql = "SELECT * FROM v_studentExamList where enterID=" + refID + " and kind=1";
+		sql = "SELECT * FROM v_studentExamList where refID=" + refID + " and kind=1";
 	}
 	if(kindID==0){
 		sql = "SELECT * FROM v_ref_studentExamList where seq=" + refID;
