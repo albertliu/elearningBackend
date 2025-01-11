@@ -28,10 +28,12 @@
 	var nodeID = 0;
 	var op = 0;
 	var refID = 0;
+	let kindID = 0;
 	var updateCount = 0;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";		//passcardInfo.ID
+		kindID = "<%=kindID%>";		//0 模拟练习  1 考试
 		refID = "<%=refID%>";		//学员姓名
 		$("#studentName").html(refID);
 		
@@ -43,7 +45,7 @@
 	});
 
 	function getStudentExamByEnterID(){
-		$.get("examControl.asp?op=getStudentExamByEnterID&refID=" + nodeID + "&times=" + (new Date().getTime()),function(re){
+		$.get("examControl.asp?op=getStudentExamByEnterID&refID=" + nodeID + "&kindID=" + kindID + "&times=" + (new Date().getTime()),function(re){
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar > ""){
