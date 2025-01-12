@@ -126,6 +126,23 @@
 				}
 			});
 		});
+		$("#btnInvoiceGroup").click(function(){
+			getSelCart("");
+			if(selCount==0){
+				jAlert("请选择学员名单。");
+				return false;
+			}
+			jConfirm('确定这' + selCount + '个学员共用一个发票吗?',"确认",function(r){
+				if(r){
+					var x = prompt("请输入发票号码：","");
+					if(x && x>""){
+						$.post(uploadURL + "/public/setInvoiceGroup", {classID:$("#ID").val(), kind: "A", selList: selList, invoice: x, registerID: currUser} ,function(data){
+							jAlert(data.msg);
+						});
+					}
+				}
+			});
+		});
 
 		$("#showPhoto").checkbox({
 			onChange: function(val){
@@ -991,6 +1008,7 @@
 		$("#generateZip").hide();
 		$("#generatePhotoZip").hide();
 		$("#generateEntryZip").hide();
+		$("#btnInvoiceGroup").hide();
 		if(op==1){
 			setEmpty();
 			$("#save").show();
@@ -1042,6 +1060,9 @@
 					}
 				}
 				$("#btnSchedule").show();	// 
+			}
+			if(checkPermission("setInvoiceGroup") && s < 2){
+				$("#btnInvoiceGroup").show();
 			}
 		}
 	}
@@ -1165,6 +1186,7 @@
 		<input class="button" type="button" id="doImportScore" value="成绩证书导入" />&nbsp;
 		<input class="button" type="button" id="doImportApplyResit" value="补考名单导入" />&nbsp;
 		<input class="button" type="button" id="sendMsgScore" value="成绩通知" />&nbsp;
+		<input class="button" type="button" id="btnInvoiceGroup" value="团体发票" />&nbsp;
 		<input class="button" type="button" id="generateClassDoc" value="生成归档文件" />&nbsp;
 		<input class="button" type="button" id="generateEntryDoc" value="生成报名表" />&nbsp;
 		<input class="button" type="button" id="generateEntryDoc1" value="生成报名表带培训证明" />&nbsp;
@@ -1175,8 +1197,7 @@
 		<input class="button" type="button" id="lock" value="锁定" />&nbsp;
 		<input class="button" type="button" id="close" value="结束" />&nbsp;
 		<input class="button" type="button" id="open" value="开启" />&nbsp;
-		<a href="output/申报结果模板.xlsx">考试安排模板</a>&nbsp;&nbsp;
-		<a href="output/成绩证书模板.xlsx">成绩证书模板</a>
+		<a href="output/申报结果模板.xlsx">考试安排模板</a>
   	</div>
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
 		<div align="center" style="border:solid 1px #e0e0e0;width:99%;margin:5px;background:#ffffff;line-height:18px;">

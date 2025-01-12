@@ -117,6 +117,21 @@
 				}
 			}
 		});
+		$("#btnInvoiceGroup").click(function(){
+			getSelCart("visitstockchk");
+			if(selCount==0){
+				alert("请选择学员名单。");
+				return false;
+			}
+			if(confirm('确定这' + selCount + '个学员共用一个发票吗?')){
+				var x = prompt("请输入发票号码：","");
+				if(x && x>""){
+					$.post(uploadURL + "/public/setInvoiceGroup", {classID:$("#classID").val(), kind: "B", selList: selList, invoice: x, registerID: currUser} ,function(data){
+						alert(data.msg);
+					});
+				}
+			}
+		});
 		$("#btnAutoSetClassSNo").click(function(){
 			if(confirm('确定要重新建立学号吗?')){
 				$.get("classControl.asp?op=autoSetClassSNo&nodeID=" + $("#ID").val() + "&times=" + (new Date().getTime()),function(data){
@@ -1038,6 +1053,7 @@
 		$("#btnPaynowChange").hide();
 		$("#btnRebuildStudentLesson").hide();
 		$("#btnAutoSetClassSNo").hide();
+		$("#btnInvoiceGroup").hide();
 		$("#archived").prop("disabled",true);
 		// $("#className").prop("disabled",true);
 		$("#courseID").prop("disabled",true);
@@ -1097,6 +1113,9 @@
 				$("#btnClassChange").show();
 				$("#btnPaynowChange").show();
 				$("#doImport").show();
+			}
+			if(checkPermission("setInvoiceGroup") && s < 2){
+				$("#btnInvoiceGroup").show();
 			}
 		}
 		if((checkPermission("studentAdd") || currHost>"") && s < 2){
@@ -1287,6 +1306,7 @@
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnDiplomaIssue" value="培训证书" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnFireScore" value="消防成绩" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnAutoSetClassSNo" value="调整学号" /></span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnInvoiceGroup" value="团体发票" /></span>
 		</div>
 		<div>
 			学习进度&nbsp;&lt;=<input type="text" id="s_completion2" size="2" />%
