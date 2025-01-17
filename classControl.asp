@@ -144,6 +144,18 @@ if(op == "getNodeInfo"){
 	Response.Write(escape(result));
 }
 
+if(op == "getNodeInfoArchive"){
+	sql = "SELECT * FROM getNodeInfoArchive('" + nodeID + "','" + kindID + "')";
+	rs = conn.Execute(sql);
+	if (!rs.EOF){
+		result = rs("classID").value + "|" + rs("className").value + "|" + rs("applyID").value + "|" + rs("certName").value + "|" + rs("reexamineName").value + "|" + rs("startDate").value + "|" + rs("endDate").value + "|" + rs("adviser").value;
+		//8
+		result += "|" + rs("qty").value + "|" + rs("qtyReturn").value + "|" + rs("qtyExam").value + "|" + rs("qtyPass").value + "|" + rs("summary").value;
+	}
+	rs.Close();
+	Response.Write(escape(result));
+}
+
 if(op == "update"){
 	result = 0;
 	if(result == 0){
@@ -159,24 +171,7 @@ if(op == "update"){
 }
 
 if(op == "getStudentListByClassID"){
-	var s = "";
-	where = "";
-	//如果有班级
-	if(refID > ""){ // 
-		s = "classID='" + refID + "'";
-		if(where > ""){
-			where = where + " and " + s;
-		}else{
-			where = s;
-		}
-	}
-
-	if(where>""){
-		where = " where " + where;
-	}
-
-	sql = " FROM v_studentCourseList " + where;
-	sql = "SELECT *, (case when host='znxf' then unit else hostName end) as unit1,cast(isnull(completion,0) as decimal(18,2)) as completion1,cast(isnull(completion*hours/100,0) as decimal(18,2)) as hoursSpend1" + sql + " order by SNo";
+	sql = "SELECT * FROM getStudentListByClassIDArchive(" + refID + ",'" + kindID + "')";
 
 	result = "";
 	rs = conn.Execute(sql);
@@ -187,7 +182,7 @@ if(op == "getStudentListByClassID"){
 		//10
 		result += "|" + rs("score1").value + "|" + rs("score2").value + "|" + rs("statusName").value + "|" + rs("educationName").value;
 		//14
-		result += "|" + rs("hours").value + "|" + rs("completion1").value + "|" + rs("hoursSpend1").value + "|" + rs("startDate").value;
+		result += "|" + rs("hours").value + "|" + rs("completion1").value + "|" + rs("hoursSpend1").value + "|" + rs("startDate").value + "|" + rs("enterID").value;
 		rs.MoveNext();
 	}
 	result = result.substr(2);

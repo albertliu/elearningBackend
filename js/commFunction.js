@@ -1817,7 +1817,7 @@
 			h = $(window).height();
 		}
 		asyncbox.open({
-			id: "generateApply",
+			id: "generateApplyInfo",
 			url:"generateApplyInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "申报批次信息",
 			width: w,

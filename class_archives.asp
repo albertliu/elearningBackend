@@ -47,37 +47,36 @@
 	});
 
 	function getNodeInfo(id){
-		$.get("classControl.asp?op=getNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
+		$.get("classControl.asp?op=getNodeInfoArchive&nodeID=" + id + "&kindID=" + kindID + "&times=" + (new Date().getTime()),function(re){
 			//alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			var x = 0;
-            var qty = 0;
+			var qty = 0;
 			if(ar > ""){
-				refID = ar[1];
-				$("#home_classID").html(ar[17]);
-				$("#home_adviser").html(ar[9]);
-				$("#home_certName").html(ar[4]);
-				$("#home_startDate").html(ar[10].substring(0,10) + "&nbsp;至&nbsp;" + ar[11]);
-				$("#dateEnd").html(ar[11]);
-				$("#classID").html(ar[17] + "&nbsp;&nbsp;[" + ar[1] + "]");
-                qty = ar[20] - ar[33];
+				$("#home_classID").html(ar[1]);
+				$("#home_adviser").html(ar[7]);
+				$("#home_certName").html(ar[3]);
+				$("#home_reexamine").html(ar[4]);
+				$("#home_startDate").html(ar[5].substring(0,10) + "&nbsp;至&nbsp;" + ar[6]);
+				$("#dateEnd").html(ar[6]);
+				$("#classID").html(ar[1] + "&nbsp;&nbsp;[" + ar[0] + "]");
+				qty = ar[8] - ar[9];
 				$("#qty").html(qty);
-				$("#summary").html(ar[25].replace(/\n/g,"<br/>"));
-				$("#qtyExam").html(nullNoDisp(ar[27]));
-				$("#qtyPass").html(nullNoDisp(ar[28]));
-				$("#home_transaction_id").html(nullNoDisp(ar[40]));
-                certID = ar[3];
-				x = ar[27];
-				if(x > 0 && ar[28] > 0){
-					x = (ar[28]*100/ar[27]).toFixed(2) + "&nbsp;%";
+				$("#summary").html(ar[12].replace(/\n/g,"<br/>"));
+				$("#qtyExam").html(nullNoDisp(ar[10]));
+				$("#qtyPass").html(nullNoDisp(ar[11]));
+				$("#home_transaction_id").html(nullNoDisp(ar[2]));
+				x = ar[10];
+				if(x > 0 && ar[11] > 0){
+					x = (ar[11]*100/ar[10]).toFixed(2) + "&nbsp;%";
 				}else{
 					x = "%";
 				}
 				$("#pass_rate_exam").html(x);
 				x = qty;
-				if(x > 0 && ar[28] > 0){
-					x = (ar[28]*100/qty).toFixed(2) + "&nbsp;%";
+				if(x > 0 && ar[11] > 0){
+					x = (ar[11]*100/qty).toFixed(2) + "&nbsp;%";
 				}else{
 					x = "%";
 				}
@@ -93,23 +92,23 @@
 					arr1.push("<table cellpadding='0' cellspacing='0' border='1' width='99%'>");
 					arr1.push("<tr align='center'>");
 					arr1.push("<td align='center' width='9%' height='35px'>培训职业（工种）</td>");
-					arr1.push("<td align='center' width='20%' colspan='3'>" + ar[37] + "</td>");
+					arr1.push("<td align='center' width='20%' colspan='3'>" + ar[3] + "</td>");
 					arr1.push("<td align='center' width='10%'>开班日期 </td>");
-					arr1.push("<td align='center' width='10%'>" + ar[10].substring(0,10) + "</td>");
+					arr1.push("<td align='center' width='10%'>" + ar[5].substring(0,10) + "</td>");
 					arr1.push("<td align='center' width='8%'>结业日期</td>");
-					arr1.push("<td align='center' width='10%'>" + ar[11] + "</td>");
+					arr1.push("<td align='center' width='10%'>" + ar[6] + "</td>");
 					arr1.push("<td align='center' width='20%'>所属区县</td>");
 					arr1.push("<td align='center' width='15%'>杨浦</td>");
 					arr1.push("</tr>");
 					arr1.push("<tr align='center'>");
 					arr1.push("<td align='center' width='9%' height='35px'>班级编号</td>");
-					arr1.push("<td align='center' width='8%' colspan='3'>" + ar[17] + "</td>");
+					arr1.push("<td align='center' width='8%' colspan='3'>" + ar[1] + "</td>");
 					arr1.push("<td align='center' width='6%'>培训人数 </td>");
 					arr1.push("<td align='center' width='8%'>" + qty + "</td>");
 					arr1.push("<td align='center' width='6%'>班主任</td>");
-					arr1.push("<td align='center' width='8%'>" + ar[9] + "</td>");
+					arr1.push("<td align='center' width='8%'>" + ar[7] + "</td>");
 					arr1.push("<td align='center' width='8%'>开班号（申报批号）</td>");
-					arr1.push("<td align='center' width='8%'>" + ar[40] + "</td>");
+					arr1.push("<td align='center' width='8%'>" + ar[2] + "</td>");
 					arr1.push("</tr>");
 					arr1.push("<tr align='center'>");
 					arr1.push("<td align='center' width='9%' height='35px'>课次</td>");
@@ -146,16 +145,16 @@
 					$("#scheduleCover").html(arr1.join(""));
 					arr1 = [];
 				});
-
-				$.get("classControl.asp?op=getStudentListByClassID&refID=" + refID + "&times=" + (new Date().getTime()),function(data2){
-					//alert(unescape(data));
+				
+				$.get("classControl.asp?op=getStudentListByClassID&refID=" + nodeID + "&kindID=" + kindID + "&times=" + (new Date().getTime()),function(data2){
+					//alert(unescape(data2));
 					var ar4 = new Array();
 					ar4 = (unescape(data2)).split("%%");
 					$("#studentCover").empty();
 					var arr2 = [];			
 					var h = "";
-					$("#date_studentList").html(ar[10].substring(0,10));
-					$("#title_studentList").html(ar[17] + "培训学员花名册");
+					$("#date_studentList").html(ar[5].substring(0,10));
+					$("#title_studentList").html(ar[1] + "培训学员花名册");
 					arr2.push("<table cellpadding='0' cellspacing='0' border='1' width='99%'>");
 					arr2.push("<tr align='center'>");
 					arr2.push("<td align='center' width='9%' height='35px'>学号</td>");
@@ -188,9 +187,9 @@
 					$("#studentCover").html(arr2.join(""));
 					arr2 = [];
 
-					$("#date_scoreList").html(ar[10].substring(0,10));
-					$("#adviser_scoreList").html(ar[9]);
-					$("#title_scoreList").html(ar[17] + "培训学员成绩册");
+					$("#date_scoreList").html(ar[5].substring(0,10));
+					$("#adviser_scoreList").html(ar[7]);
+					$("#title_scoreList").html(ar[1] + "培训学员成绩册");
 					arr2.push("<table cellpadding='0' cellspacing='0' border='1' width='100%'>");
 					arr2.push("<tr align='center'>");
 					arr2.push("<td align='center' width='10%' height='35px'>学号</td>");
@@ -219,10 +218,6 @@
 							arr2.push("<td>" + ar5[6] + "</td>");
 							arr2.push("<td align='center'>" + ar5[5] + "</td>");
 							h = (ar5[7] || ar5[10]).replace(".00","");
-							/*
-							if(certID=="C12" || certID=="C14" || certID=="C15" || certID=="C24" || certID=="C25" || certID=="C26" || c == "C25B" || c == "C26B"){
-								h = ar5[10].replace(".00","") + "/" + ar5[11].replace(".00","");
-							}*/
 							if(h=="" || h==0){
 								h = "";
 							}
@@ -235,7 +230,7 @@
 					$("#scoreCover").html(arr2.join(""));
 					arr2 = [];
 
-					$("#title_onlineList").html(ar[17] + "在线学习课时统计");
+					$("#title_onlineList").html(ar[1] + "在线学习课时统计");
 					arr2.push("<table cellpadding='0' cellspacing='0' border='1' width='100%'>");
 					arr2.push("<tr align='center'>");
 					arr2.push("<td align='center' width='10%' height='35px'>学号</td>");
@@ -278,6 +273,7 @@
 				return false;
 			}
 		});
+
 	}
 
 	function resumePrint(){
@@ -299,7 +295,12 @@
 		});
 		window.setTimeout(function () {
 			//window.parent.getStudentCourseList(refID);
-			window.parent.$.close("classInfo");
+			if(kindID=="B"){
+				window.parent.$.close("classInfo");
+			}
+			if(kindID=="A"){
+				window.parent.$.close("generateApplyInfo");
+			}
 		}, 1000);
 	}
 

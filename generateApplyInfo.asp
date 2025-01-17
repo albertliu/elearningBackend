@@ -609,6 +609,15 @@
 		$("#schedule").click(function(){
 			showClassSchedule($("#ID").val(),"A","{className:'" + $("#ID").val() + "', courseName:'" + $("#courseName").val()+"', transaction_id:'" + $("#applyID").val()+"', startDate:'"+$("#startDate").val().substr(0,10)+"', endDate:'', adviser:'" + $("#adviserID").find("option:selected").text() + "', qty:"+$("#qty").val()+"}",0,1);
 		});
+		
+		$("#btnArchive").click(function(){
+			if($("#summary").val()==""){
+				jAlert("请填写工作小结。");
+				return false;
+			}
+			window.open("class_archives.asp?nodeID=" + nodeID + "&keyID=1&kindID=A", "_self");
+		});
+
 		$("#checkin").click(function(){
 			if($("#scheduleDate").val()>""){
 				showClassCheckin($("#ID").val(),"A","",0,1);
@@ -681,6 +690,9 @@
 				reexamine = ar[36];
 				agencyID = ar[37];
 				certID = ar[31];
+				$("#summary").val(ar[49]);
+				$("#archiveDate").val(ar[48]);
+				$("#archiverName").val(ar[47]);
 				$("#list").html("<a href=''>申报名单</a>");
 				$("#diplomaSign").html("<a href=''>证书签收单</a>");
 				if(ar[7] > ""){
@@ -733,7 +745,7 @@
 		}
 
 		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-		$.get("diplomaControl.asp?op=updateGenerateApplyInfo&nodeID=" + nodeID + "&teacher=" + $("#teacher").val() + "&classroom=" + escape($("#classroom").val()) + "&adviserID=" + $("#adviserID").val() + "&diplomaReady=" + diplomaReady + "&refID=" + $("#courseID").val() + "&host=" + $("#host").val() + "&keyID=" + $("#applyID").val() + "&startDate=" + $("#startDate").val() + "&item=" + escape($("#title").val()) + "&address=" + escape($("#address").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.post("diplomaControl.asp?op=updateGenerateApplyInfo&nodeID=" + nodeID + "&teacher=" + $("#teacher").val() + "&classroom=" + escape($("#classroom").val()) + "&adviserID=" + $("#adviserID").val() + "&diplomaReady=" + diplomaReady + "&refID=" + $("#courseID").val() + "&host=" + $("#host").val() + "&keyID=" + $("#applyID").val() + "&startDate=" + $("#startDate").val() + "&item=" + escape($("#title").val()) + "&address=" + escape($("#address").val()), {"memo":$("#memo").val(), "summary":$("#summary").val()},function(re){
 			//alert(unescape(re));
 			if(re>0){
 				jAlert("保存成功");
@@ -1116,15 +1128,11 @@
 			</tr>
 			<tr>
 				<td align="right">打包文件</td>
-				<td colspan="3">
+				<td>
 					<span id="zip" style="margin-left:10px;"></span>
 					<span id="pzip" style="margin-left:10px;"></span>
 					<span id="ezip" style="margin-left:10px;"></span>
 				</td>
-			</tr>
-			<tr>
-				<td align="right">属性</td>
-				<td></td>
 				<td align="right">考试地址</td>
 				<td><input type="text" id="address" style="width:100%;" /></td>
 			</tr>
@@ -1158,10 +1166,17 @@
 			<tr>
 				<td align="right">任课教师</td>
 				<td colspan="3">
-					<select id="teacher" style="width:100px;"></select>
-					&nbsp;&nbsp;教室&nbsp;<input type="text" id="classroom" style="width:160px;" />
-					&nbsp;&nbsp;班主任&nbsp;<select id="adviserID" style="width:70px;"></select>
+					<select id="teacher" style="width:65;"></select>
+					&nbsp;&nbsp;教室&nbsp;<input type="text" id="classroom" style="width:150px;" />
+					&nbsp;&nbsp;班主任&nbsp;<select id="adviserID" style="width:65px;"></select>
+					&nbsp;&nbsp;<input class="button" type="button" id="btnArchive" value="班级档案" /><input class="readOnly" type="text" id="archiveDate" size="8" readOnly="true" /><input class="readOnly" type="text" id="archiverName" size="6" readOnly="true" />
 				</td>
+			</tr>
+			<tr>
+				<td align="right">
+					工作小结
+				</td>
+				<td colspan="3"><textarea id="summary" style="padding:2px;width:100%;" rows="3"></textarea></td>
 			</tr>
 			<tr>
 				<td align="right">备注</td>
