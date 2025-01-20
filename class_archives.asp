@@ -66,7 +66,7 @@
 				$("#summary").html(ar[12].replace(/\n/g,"<br/>"));
 				$("#qtyExam").html(nullNoDisp(ar[10]));
 				$("#qtyPass").html(nullNoDisp(ar[11]));
-				$("#attendanceRate").html('%' + nullNoDisp(ar[12]));
+				$("#attendanceRate").html(nullNoDisp(ar[12]) + '&nbsp;%');
 				$("#home_transaction_id").html(nullNoDisp(ar[2]));
 				x = ar[10];
 				if(x > 0 && ar[11] > 0){
