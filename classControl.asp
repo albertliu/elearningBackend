@@ -150,7 +150,7 @@ if(op == "getNodeInfoArchive"){
 	if (!rs.EOF){
 		result = rs("classID").value + "|" + rs("className").value + "|" + rs("applyID").value + "|" + rs("certName").value + "|" + rs("reexamineName").value + "|" + rs("startDate").value + "|" + rs("endDate").value + "|" + rs("adviser").value;
 		//8
-		result += "|" + rs("qty").value + "|" + rs("qtyReturn").value + "|" + rs("qtyExam").value + "|" + rs("qtyPass").value + "|" + rs("summary").value;
+		result += "|" + rs("qty").value + "|" + rs("qtyReturn").value + "|" + rs("qtyExam").value + "|" + rs("qtyPass").value + "|" + rs("summary").value + "|" + rs("attendanceRate").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
