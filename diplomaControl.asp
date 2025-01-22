@@ -138,7 +138,7 @@ if(op == "getDiplomaLastList"){
 		}
 	}
 	//如果有部门
-	if(refID > ""){ // 
+	if(refID > "" && refID != "undefined" && refID != "null"){ // 
 		s = "dept1=" + refID;
 		if(where > ""){
 			where = where + " and " + s;
