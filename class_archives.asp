@@ -66,7 +66,7 @@
 				$("#summary").html(ar[12].replace(/\n/g,"<br/>"));
 				$("#qtyExam").html(nullNoDisp(ar[10]));
 				$("#qtyPass").html(nullNoDisp(ar[11]));
-				$("#attendanceRate").html(nullNoDisp(ar[12]) + '&nbsp;%');
+				$("#attendanceRate").html(nullNoDisp(ar[13]) + '&nbsp;%');
 				$("#home_transaction_id").html(nullNoDisp(ar[2]));
 				x = ar[10];
 				if(x > 0 && ar[11] > 0){
@@ -382,7 +382,7 @@
 				<td align="center" class='table_resume_title' width='18%'>鉴定合格率</td><td class='table_resume_title' width='18%'>培训合格率</td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' width='15%' height='55px;'><p style='font-size:1em;' id="qty"></p></td><td align="right"><p style='font-size:1em;' id="attendanceRate"></p></td>
+				<td align="center" class='table_resume_title' width='15%' height='55px;'><p style='font-size:1em;' id="qty"></p></td><td align="center"><p style='font-size:1em;' id="attendanceRate"></p></td>
 				<td align="center" class='table_resume_title' width='15%'><p style='font-size:1em;' id="qtyExam"></p></td><td align="center" width='15%'><p style='font-size:1em;' id="qtyPass"></p></td>
 				<td align="right" width='18%'><p style='font-size:1em; padding-right:15px;' id="pass_rate_exam"></p></td><td align="right" width='18%'><p style='font-size:1em; padding-right:15px;' id="pass_rate_training"></p></td>
 			</tr>
