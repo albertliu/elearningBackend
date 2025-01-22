@@ -384,7 +384,7 @@
 			<tr>
 				<td align="center" class='table_resume_title' width='15%' height='55px;'><p style='font-size:1em;' id="qty"></p></td><td align="center"><p style='font-size:1em;' id="attendanceRate"></p></td>
 				<td align="center" class='table_resume_title' width='15%'><p style='font-size:1em;' id="qtyExam"></p></td><td align="center" width='15%'><p style='font-size:1em;' id="qtyPass"></p></td>
-				<td align="right" width='18%'><p style='font-size:1em; padding-right:15px;' id="pass_rate_exam"></p></td><td align="right" width='18%'><p style='font-size:1em; padding-right:15px;' id="pass_rate_training"></p></td>
+				<td align="right" width='18%'><p style='font-size:1em; padding-right:15px;' id="pass_rate_exam"></p></td><td align="center" width='18%'><p style='font-size:1em; padding-right:15px;' id="pass_rate_training"></p></td>
 			</tr>
 			<tr>
 				<td align="left" class='table_resume_title' height='110px;' rowspan="2" colspan="4">
