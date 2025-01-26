@@ -59,8 +59,8 @@
 				$("#home_certName").html(ar[3]);
 				$("#home_reexamine").html(ar[4]);
 				$("#home_startDate").html(ar[5].substring(0,10) + "&nbsp;至&nbsp;" + ar[6]);
-				$("#dateEnd").html(ar[6]);
-				$("#classID").html(ar[1] + "&nbsp;&nbsp;[" + ar[0] + "]");
+				// $("#dateEnd").html(ar[6]);
+				$("#classID").html(ar[2] + "&nbsp;&nbsp;[" + ar[0] + "]");
 				qty = ar[8] - ar[9];
 				$("#qty").html(qty);
 				$("#summary").html(ar[12].replace(/\n/g,"<br/>"));
