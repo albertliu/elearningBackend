@@ -9,7 +9,7 @@
 							<span id="diplomalastListLongItem2">&nbsp;&nbsp;
 					          &nbsp;&nbsp;部门&nbsp;<select id="searchDiplomaLastDept" style="width:100px"></select>&nbsp;&nbsp;
 				          	</span>
-					          证书&nbsp;<select id="searchDiplomaLastKind" style="width:60px"></select>&nbsp;&nbsp;
+					          证书&nbsp;<select id="searchDiplomaLastKind" style="width:160px"></select>&nbsp;&nbsp;
 					          状态&nbsp;<select id="searchDiplomaLastStatus" style="width:60px"></select>&nbsp;&nbsp;
 		          			<input style="border:0px;" type="checkbox" name="searchDiplomaLastWarning" id="searchDiplomaLastWarning" value="" checked />&nbsp;30天内过期&nbsp;&nbsp;
 							    &nbsp;有效日期&nbsp;<input type="text" id="searchDiplomaLastStartDate" size="8" />-<input type="text" id="searchDiplomaLastEndDate" size="8" />
