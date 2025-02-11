@@ -540,7 +540,7 @@
 					if(ar1[5]==0){
 						k = "";	//缺考的不显示成绩
 					}
-					arr.push("<td class='left'><a href='javascript:showStudentExamPaper(" + ar1[14] + ",\"" + ar1[2] + "\",1);'>" + k + "</a></td>");
+					arr.push("<td class='left'><a href='javascript:showStudentExamPaper(" + ar1[0] + ",\"" + ar1[2] + "\",1);'>" + k + "</a></td>");
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
 					arr.push("<td class='left'>" + ar1[7] + "</td>");
                     h = "";
