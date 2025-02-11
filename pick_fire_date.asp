@@ -19,12 +19,13 @@
         $("#btnSave").prop("disabled",true);
 		
 		$("#id-input").change(function(){
+            $("#id-input").val($("#id-input").val().toUpperCase());
             let t = $("#id-input").val();
 			if($("#id-input").val()==""){
-                jAlert("请填写身份证号码。");
+                jAlert('<span style="font-size: 3em; color: red;">请填写身份证号码。</span>');
                 return false;
 			}
-            $("#id-input").val($("#id-input").val().toUpperCase());
+            
             $.post(uploadURL + "/public/postCommInfo", {"proc":"getFiremanInfo", "params":{"username":t}},function(data){
                 if(data>""){
                     let status = data[0]["status"];
@@ -38,7 +39,7 @@
                             $("#btnSave").prop("disabled",true);
                         }
                     }else{
-                        jAlert(data[0]["msg"]);
+                        jAlert('<span style="font-size: 3em; color: red;">'+data[0]["msg"]+'</span>');
                         if(status==1){
                             $("#id-input").val("");
                         }
@@ -50,18 +51,18 @@
         $("#btnSave").click(function(){
             let t = $("#date-input").val();
             if(t==""){
-                jAlert("请填写考试日期。");
+                jAlert('<span style="font-size: 3em; color: red">请填写考试日期。</span>');
                 return false;
             }
             $.post(uploadURL + "/public/postCommInfo", {"proc":"setFiremanExamDate", "params":{refID:refID, examDate:t}},function(data){
                 if(data>""){
                     let status = data[0]["status"];
                     if(data[0]["status"]==0){
-                        jAlert("保存成功");
+                        jAlert('<span style="font-size: 3em; color: blue;">保存成功</span>');
                         window.location.href = "about:blank";
                         window.close();
                     }else{
-                        jAlert(data[0]["msg"]);
+                        jAlert('<span style="font-size: 3em; color: red;">'+data[0]["msg"]+'</span>');
                     }
                 }
             });
@@ -84,19 +85,19 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 16px;
+            padding: 1em;
             background-color: #f0f0f0;
         }
 
         .content-box {
             max-width: 600px;
-            margin: 20px auto;
+            margin: 5em;
             text-align: center;
         }
 
         h1 {
             color: orange;
-            font-size: 3em;
+            font-size: 5em;
             margin-bottom: 20px;
         }
 
@@ -109,7 +110,7 @@
             padding: 8px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            font-size: 2em;
+            font-size: 4em;
         }
 
         .button {
@@ -121,7 +122,7 @@
             border-radius: 4px;
             background-color: #007bff;
             color: white;
-            font-size: 2em;
+            font-size: 4em;
         }
     </style>
 </head>
