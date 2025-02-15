@@ -37,6 +37,7 @@
 	var course = "";
 	var sDate = "";
 	var price = 0;
+	let priceStandard = 0;
 	let classID = 0;
 	var host = "znxf";
 	<!--#include file="js/commFunction.js"-->
@@ -82,6 +83,7 @@
 				course = ar["courseName"];
 				sDate = ar["signatureDate"];
 				price = ar["price"];
+				priceStandard = ar["priceStandard"];
 				unit = ar["unit"];
 				$("#hostName").html(ar["certID"]=="C27"?"上海静安能企电力职业技能培训中心":ar["hostName"]);
 				$("#username").html(ar["username"]);
@@ -151,7 +153,7 @@
 					getMaterials(ar["username"],sign,p,k);
 				}
 				if(keyID < 3 || keyID == 4){	//
-					getAgreement(ar["username"],ar["name"],course,sign,sDate,price);	//协议书
+					getAgreement(ar["username"],ar["name"],course,sign,sDate,price,priceStandard);	//协议书
 				}
 				if(keyID==1){
 					resumePrint();

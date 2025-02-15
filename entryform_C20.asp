@@ -47,6 +47,7 @@
 	var sDate = "";
 	var price = 0;
 	var k = 0;
+	let priceStandard = 0;
 	<!--#include file="js/commFunction.js"-->
 	<!--#include file="agreement.js"-->
 	<!--#include file="materials_emergency.js"-->
@@ -112,7 +113,8 @@
 				reex = ar[40];
 				course = ar[56];
 				sDate = ar[49];
-				// price = ar[53];
+				price = ar[53];
+				priceStandard = ar[91];
 				if(kindID=="C20A"){
 					$("#fire_kind4_0").prop("disabled",true);
 				}else{
@@ -196,7 +198,7 @@
 				}
 				if(c == ""){c = "&nbsp;&nbsp;身份证正面还未上传";}
 				$("#img_cardA").html(c);
-				getAgreement(ar[1],ar[2],course,(keyID==4?"":sign),sDate,price);
+				getAgreement(ar[1],ar[2],course,(keyID==4?"":sign),sDate,price,priceStandard);
 				k = 0;
 				var p = 1;
 				var s = 1;

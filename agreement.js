@@ -1,5 +1,5 @@
 ﻿
-	function getAgreement(username,name,course,path,signDate,price){
+	function getAgreement(username,name,course,path,signDate,price,priceStandard){
 		price = (price==0 ? price="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;":price)
 		var arr = new Array();
 		// arr.push('<div style="page-break-after:always">&nbsp;</div>');
@@ -12,7 +12,7 @@
 		arr.push('			<td colspan="2" style="height:30px;"><p style="font-size:1.3em;text-indent:2em;">为了确保培训学员[' + name + ']身份证号[' + username + ']（乙方）和上海智能消防学校（甲方）的权益，明确甲乙双方的义务，经平等、自愿、协商签订本“培训协议书”。具体约定如下：</p></td>');
 		arr.push('		</tr>');
 		arr.push('		<tr>');
-		arr.push('			<td colspan="2" style="height:30px;"><p style="font-size:1.3em;text-indent:2em;line-height:50px;">1、乙方自主选择[' + course + ']培训项目，该项目培训费为：' + price + '元（包括培训费、申报考试鉴定费等），乙方缴纳' + price + '元（由单位支付培训费的部分无需缴纳）。</p></td>');
+		arr.push('			<td colspan="2" style="height:30px;"><p style="font-size:1.3em;text-indent:2em;line-height:50px;">1、乙方自主选择[' + course + ']培训项目，该项目培训费为：' + priceStandard + '元（包括培训费、申报考试鉴定费等），乙方缴纳' + price + '元（由单位支付培训费的部分无需缴纳）。</p></td>');
 		arr.push('		</tr>');
 		arr.push('		<tr>');
 		arr.push('			<td colspan="2" style="height:30px;"><p style="font-size:1.3em;text-indent:2em;">2、乙方已详细阅读甲方报名处公示的各项内容（属于单位集体报名的学员，开班当天须本人到报名处阅读各项公示内容，如有不解之处可向报名处工作人员咨询）。</p></td>');
