@@ -469,6 +469,11 @@
 				}else{
 					$("#overdue").prop("checked",false);
 				}
+				if(ar[58]==1){
+					$("#express").prop("checked",true);
+				}else{
+					$("#express").prop("checked",false);
+				}
 				if(ar[61]==1){
 					$("#needInvoice").prop("checked",true);
 				}else{
@@ -518,11 +523,15 @@
 		setSession("lastone_item", lastone_item.join(","));
 
 		if($("#classID").val()>""){
-			var over = 0;
+			let over = 0;
+			let express = 0;
 			if($("#overdue").prop("checked")){
 				over = 1;
 			}
-			var needInvoice = 0;
+			if($("#express").prop("checked")){
+				express = 1;
+			}
+			let needInvoice = 0;
 			if($("#needInvoice").prop("checked")){
 				needInvoice = 1;
 				if($("#invoice_amount").val() == "" || $("#invoice_amount").val() == 0 || !check_str(7,$("#invoice_amount").val())){
@@ -536,9 +545,9 @@
 			}
 			
 			//@username,@classID,@price,@invoice,@projectID,@kindID,@type,@status,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo,@registerID
-			$.get("studentCourseControl.asp?op=doEnter&nodeID=" + nodeID + "&username=" + $("#username").val() + "&classID=" + $("#classID").val() + "&overdue=" + over + "&needInvoice=" + needInvoice + "&host=" + $("#host").val() + "&fromID=" + $("#fromID").val() + "&price=" + $("#price").val() + "&amount=" + $("#amount").val() + "&invoice=" + $("#invoice").val() + "&invoice_amount=" + $("#invoice_amount").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&payNow=" + $("#payNow").val() + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#statusPay").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&pay_memo=" + escape($("#pay_memo").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+			$.get("studentCourseControl.asp?op=doEnter&nodeID=" + nodeID + "&username=" + $("#username").val() + "&classID=" + $("#classID").val() + "&overdue=" + over + "&express=" + express + "&needInvoice=" + needInvoice + "&host=" + $("#host").val() + "&fromID=" + $("#fromID").val() + "&price=" + $("#price").val() + "&amount=" + $("#amount").val() + "&invoice=" + $("#invoice").val() + "&invoice_amount=" + $("#invoice_amount").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&payNow=" + $("#payNow").val() + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#statusPay").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&pay_memo=" + escape($("#pay_memo").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 				//jAlert(unescape(re));
-				var ar = new Array();
+				let ar = new Array();
 				ar = unescape(re).split("|");
 				if(ar[0] == 0){
 					updateCount += 1;
@@ -849,7 +858,7 @@
 				<br>
 				<span id="class1">所属班级&nbsp;<select id="classID" style="width:250px"></select>&nbsp;&nbsp;</span>
 				<span id="class0">所属班级&nbsp;<input class="readOnly" type="text" id="className" style="width:250px" readOnly="true" />&nbsp;&nbsp;经办人&nbsp;<input class="readOnly" type="text" id="submiterName" style="width:50px" readOnly="true" />&nbsp;&nbsp;</span>
-				编号&nbsp;<input type="text" id="SNo" style="width:80px" />
+				编号&nbsp;<input type="text" id="SNo" style="width:70px" />&nbsp;&nbsp;<input type="checkbox" id="express" />延期换证
 				<div>
                 <form style="width:99%;float:right;margin:1px;padding-left:2px;background:#f8f8ee;">
                 <table>
