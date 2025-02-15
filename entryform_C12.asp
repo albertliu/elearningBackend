@@ -80,7 +80,7 @@
 				reex = ar["reexamine"];
 				let rex = reex;
 				if(ar["express"]===1){
-					ree = 2;
+					rex = 2;
 				}
 				$("#R" + rex).prop("checked",true);
 				sign = (ar["signatureType"]==1?ar["signature"]:"");
