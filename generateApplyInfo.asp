@@ -173,6 +173,9 @@
 				getApplyList();
 			}
 		});
+		$("#studyOnline").click(function(){
+			showClassStudyOnline(nodeID,"A","",0,1);
+		});
 
 		$("#save").click(function(){
 			saveNode();
@@ -1161,7 +1164,11 @@
 			<tr>
 				<td align="right"><input class="button" type="button" id="btnSchedule" value="排课表" /></td>
 				<td><input type="text" id="scheduleDate" size="12" class="readOnly" readOnly="true" />&nbsp;&nbsp;<span id="schedule" style="margin-left:10px; color:blue;"></span></td>
-				<td>上传课表日期&nbsp;<input type="text" id="uploadScheduleDate" size="12" class="readOnly" readOnly="true" />&nbsp;&nbsp;<span id="checkin" style="margin-left:10px; color:blue;">考勤</span></td>
+				<td>
+					上传课表日期&nbsp;<input type="text" id="uploadScheduleDate" size="12" class="readOnly" readOnly="true" />&nbsp;&nbsp;
+					<span id="checkin" style="margin-left:10px; color:blue;">考勤</span>&nbsp;&nbsp;
+					<span id="studyOnline" style="margin-left:10px; color:blue;">在线学习</span>
+				</td>
 			</tr>
 			<tr>
 				<td align="right">任课教师</td>
