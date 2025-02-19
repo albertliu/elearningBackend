@@ -128,7 +128,7 @@ if(op == "getStudentQuestionList"){
 
 if(op == "getExamListByEnterID"){
 
-	sql = "select * FROM v_ref_studentExamList where refID=" + refID + " order by seq";
+	sql = "select * FROM v_ref_studentExamList where refID=" + refID + " order by seq desc";
 
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
