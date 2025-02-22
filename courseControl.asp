@@ -100,7 +100,7 @@ if(op == "update"){
 }
 
 if(op == "getCoursePrice"){
-	sql = "SELECT dbo.getCoursePrice('" + nodeID + "','" + refID + "','" + host + "'," + keyID + ") as price";
+	sql = "SELECT dbo.getCoursePrice('" + nodeID + "','" + kindID + "','" + keyID + "') as price";
 	rs = conn.Execute(sql);
 	if (!rs.EOF){
 		result = rs("price").value;

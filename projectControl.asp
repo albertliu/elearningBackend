@@ -153,10 +153,10 @@ if(op == "getStatus"){
 }
 
 if(op == "getPrice"){
-	sql = "SELECT price,payKind FROM projectInfo where projectID='" + refID + "'";
+	sql = "SELECT [dbo].[getProjectPrice]('" + refID + "','" + keyID + "') as price";
 	rs = conn.Execute(sql);
 	if (!rs.EOF){
-		result = rs("price").value + "|" + rs("payKind").value;
+		result = rs("price").value + "|0";
 	}
 	rs.Close();
 	Response.Write((result));

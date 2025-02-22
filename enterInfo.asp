@@ -91,7 +91,19 @@
 			if($("#projectID").val()>""){
 				var id=$("#projectID").val();
 				setClassList(id);
-				$.get("projectControl.asp?op=getPrice&refID=" + id + "&times=" + (new Date().getTime()),function(re){
+				$.get("projectControl.asp?op=getPrice&refID=" + id + "&keyID=" + $("#fromID").val() + "&times=" + (new Date().getTime()),function(re){
+					var ar = re.split("|");
+					$("#price").val(ar[0]);
+					$("#kindID").val(ar[1]);
+				});
+			}
+			
+		});
+
+		$("#fromID").change(function(){
+			if($("#projectID").val()>""){
+				var id=$("#projectID").val();
+				$.get("projectControl.asp?op=getPrice&refID=" + id + "&keyID=" + $("#fromID").val() + "&times=" + (new Date().getTime()),function(re){
 					var ar = re.split("|");
 					$("#price").val(ar[0]);
 					$("#kindID").val(ar[1]);

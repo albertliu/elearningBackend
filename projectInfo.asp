@@ -300,7 +300,7 @@
 	function setPrice(){
 		if($("#courseID").val()>"" && $("#host").val()>""){
 			//获取费用标准
-			$.get("courseControl.asp?op=getCoursePrice&nodeID=" + $("#courseID").val() + "&refID=&keyID=0&host=" + $("#host").val() + "&times=" + (new Date().getTime()),function(re){
+			$.get("courseControl.asp?op=getCoursePrice&nodeID=" + $("#courseID").val() + "&kindID=host&keyID=" + $("#host").val() + "&times=" + (new Date().getTime()),function(re){
 				$("#price").val(re);
 			});
 			if(op==1){
