@@ -368,6 +368,21 @@
 			}
 		});
 
+		$("#btnCloseStudentCourse").click(function(){
+			getSelCart("visitstockchk");
+			if(selCount==0){
+				jAlert("请选择要操作的名单。");
+				return false;
+			}
+			jConfirm('确定要关闭/重启这' + selCount + '个学员的课程吗?', '确认对话框', function(r) {
+				if(r){
+					$.post("studentCourseControl.asp?op=closeStudentCourseBatch", {selList: selList} ,function(data){
+						jAlert("操作成功。");
+					});
+				}
+			});
+		});
+
 		$("#btnMockView").click(function(){
 			showClassExamStat($("#classID").val(),$("#className").val(),0,0);
 		});
@@ -1054,6 +1069,7 @@
 		$("#btnRebuildStudentLesson").hide();
 		$("#btnAutoSetClassSNo").hide();
 		$("#btnInvoiceGroup").hide();
+		$("#btnCloseStudentCourse").hide();
 		$("#archived").prop("disabled",true);
 		// $("#className").prop("disabled",true);
 		$("#courseID").prop("disabled",true);
@@ -1113,6 +1129,7 @@
 				$("#btnClassChange").show();
 				$("#btnPaynowChange").show();
 				$("#doImport").show();
+				$("#btnCloseStudentCourse").show();
 			}
 			if(checkPermission("setInvoiceGroup") && s < 2){
 				$("#btnInvoiceGroup").show();
@@ -1211,7 +1228,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="4">
+				<td colspan="4"><input id="timetable" type="hidden" />
 					<span id="photo" style="margin-left:10px;"></span>
 					<span id="refundList" style="margin-left:10px;"></span>
 					<span id="archive" style="margin-left:10px;"></span>
@@ -1223,15 +1240,11 @@
 				</td>
 			</tr>
 			<tr>
-				<td align="right">课程安排</td>
-				<td colspan="5"><textarea id="timetable" style="padding:2px;width:100%;" rows="3"></textarea></td>
-			</tr>
-			<tr>
 				<td align="right">
 					工作小结<br />
 					<div class="comm" align="center"><input class="button" type="button" id="btnSummary" value="..." /></div>
 				</td>
-				<td colspan="5"><textarea id="summary" style="padding:2px;width:100%;" rows="5"></textarea></td>
+				<td colspan="5"><textarea id="summary" style="padding:2px;width:100%;" rows="8"></textarea></td>
 			</tr>
 			<tr>
 				<td align="right">开课通知</td>
@@ -1307,6 +1320,7 @@
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnFireScore" value="消防成绩" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnAutoSetClassSNo" value="调整学号" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnInvoiceGroup" value="团体发票" /></span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnCloseStudentCourse" value="关闭/开启课程" /></span>
 		</div>
 		<div>
 			学习进度&nbsp;&lt;=<input type="text" id="s_completion2" size="2" />%

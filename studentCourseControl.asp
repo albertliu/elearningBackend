@@ -1191,6 +1191,13 @@ if(op == "closeStudentCourse"){
 	Response.Write(0);
 }
 
+if(op == "closeStudentCourseBatch"){
+	result = "";
+	sql = "exec closeStudentCourseBatch '" + String(Request.Form("selList")) + "','" + currUser + "'";
+	execSQL(sql);
+	Response.Write(0);
+}
+
 if(op == "reviveStudentCourse"){
 	result = "";
 	sql = "exec reviveStudentCourse '" + nodeID + "','" + currUser + "'";
