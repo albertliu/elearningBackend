@@ -17,7 +17,7 @@
 	text-align: center;
 	line-height: 1.75em;
 	color: #666;
-	background: #CCC no-repeat url(../images/info.gif) top;
+	background: #CCC;
 	border: solid 1px #FFF;
 	border-bottom: solid 1px #999;
 	cursor: default;
@@ -26,7 +26,7 @@
 }
 
 #popup_content {
-	background: 16px 16px url(../images/info.gif);
+	background: 16px 16px no-repeat url(../images/info.gif);
 	padding: 1em 1.75em;
 	margin: 0em;
 }
