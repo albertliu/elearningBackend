@@ -1193,7 +1193,7 @@ if(op == "closeStudentCourse"){
 
 if(op == "closeStudentCourseBatch"){
 	result = "";
-	sql = "exec closeStudentCourseBatch '" + String(Request.Form("selList")) + "','" + currUser + "'";
+	sql = "exec closeStudentCourseBatch '" + String(Request.Form("classID")) + "','" + String(Request.Form("selList")) + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(0);
 }

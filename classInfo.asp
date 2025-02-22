@@ -376,7 +376,7 @@
 			}
 			jConfirm('确定要关闭/重启这' + selCount + '个学员的课程吗?', '确认对话框', function(r) {
 				if(r){
-					$.post("studentCourseControl.asp?op=closeStudentCourseBatch", {selList: selList} ,function(data){
+					$.post("studentCourseControl.asp?op=closeStudentCourseBatch", {selList: selList, classID: $("#classID").val()} ,function(data){
 						jAlert("操作成功。");
 					});
 				}
