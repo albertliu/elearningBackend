@@ -181,8 +181,8 @@ if(op == "getDiplomaLastList"){
 		}
 	}
 
-	if(where > ""){
-		where = " where " + where;
+	if(where > ""){	//	显示那些当前未报名的人员
+		where = " where " + where + " and username not in(select username from studentCourseList a, courseInfo b where a.courseID=b.courseID and b.certID='" + kindID + "' and a.status<2)";
 	}
 	sql = " FROM v_diplomaLastInfo " + where;
 	result = getBasketTip(sql,"");

@@ -51,6 +51,10 @@
 	});
 
 	function getDiplomaLastList(){
+		if($("#searchDiplomaLastKind").val()==""){
+			jAlert("请选择一个证书。");
+			return false;
+		}
 		sWhere = $("#txtSearchDiplomaLast").val();
 		//alert((sWhere) + "&kindID=" + $("#searchDiplomaLastKind").val() + "&status=" + $("#searchDiplomaLastStatus").val() + "&host=" + $("#searchDiplomaLastHost").val() + "&fStart=" + $("#searchDiplomaLastStartDate").val() + "&fEnd=" + $("#searchDiplomaLastEndDate").val());
 		$.get("diplomaControl.asp?op=getDiplomaLastList&where=" + escape(sWhere) + "&kindID=" + $("#searchDiplomaLastKind").val() + "&status=" + $("#searchDiplomaLastStatus").val() + "&host=" + $("#searchDiplomaLastHost").val() + "&refID=" + $("#searchDiplomaLastDept").val() + "&fStart=" + $("#searchDiplomaLastStartDate").val() + "&fEnd=" + $("#searchDiplomaLastEndDate").val() + "&dk=23&times=" + (new Date().getTime()),function(data){
@@ -69,9 +73,10 @@
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
 			arr.push("<th width='13%'>身份证</th>");
-			arr.push("<th width='7%'>姓名</th>");
-			arr.push("<th width='7%'>性别</th>");
-			arr.push("<th width='7%'>年龄</th>");
+			arr.push("<th width='6%'>姓名</th>");
+			arr.push("<th width='10%'>手机</th>");
+			arr.push("<th width='5%'>性别</th>");
+			arr.push("<th width='5%'>年龄</th>");
 			arr.push("<th width='13%'>证书名称</th>");
 			arr.push("<th width='12%'>证书编号</th>");
 			if(currHost==""){
@@ -79,7 +84,7 @@
 			}else{
 				arr.push("<th width='12%'>部门</th>");
 			}
-			arr.push("<th width='9%'>有效期</th>");
+			arr.push("<th width='7%'>有效期</th>");
 			arr.push("<th width='5%'>状态</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -98,8 +103,9 @@
 					if(currHost==""){h = ar1[12];}	//系统用户显示公司名称
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
-					arr.push("<td class='link1'><a href='javascript:showDiplomaInfo(\"" + ar1[0] + "\",0,0,1);'>" + ar1[1] + "</a></td>");
+					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + ar1[1] + "\",0,1);'>" + ar1[1] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[2] + "</td>");
+					arr.push("<td class='left'>" + ar1[10] + "</td>");
 					arr.push("<td class='left'>" + ar1[8] + "</td>");
 					arr.push("<td class='left'>" + ar1[9] + "</td>");
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
@@ -117,6 +123,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
