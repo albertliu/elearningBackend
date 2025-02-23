@@ -39,7 +39,7 @@
 		$("#searchDiplomaLastWarning").change(function(){
 			if($("#searchDiplomaLastWarning").attr("checked")){
 				$("#searchDiplomaLastStartDate").val(currDate);
-				$("#searchDiplomaLastEndDate").val(addDays(currDate,30));
+				$("#searchDiplomaLastEndDate").val(addDays(currDate,90));
 			}else{
 				$("#searchDiplomaLastStartDate").val('');
 				$("#searchDiplomaLastEndDate").val('');
