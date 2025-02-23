@@ -72,12 +72,12 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
-			arr.push("<th width='13%'>身份证</th>");
+			arr.push("<th width='12%'>身份证</th>");
 			arr.push("<th width='6%'>姓名</th>");
-			arr.push("<th width='10%'>手机</th>");
+			arr.push("<th width='8%'>手机</th>");
 			arr.push("<th width='5%'>性别</th>");
 			arr.push("<th width='5%'>年龄</th>");
-			arr.push("<th width='13%'>证书名称</th>");
+			arr.push("<th width='12%'>证书名称</th>");
 			arr.push("<th width='12%'>证书编号</th>");
 			if(currHost==""){
 				arr.push("<th width='12%'>公司</th>");
