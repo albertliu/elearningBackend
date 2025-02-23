@@ -11,7 +11,7 @@
 				          	</span>
 					          证书&nbsp;<select id="searchDiplomaLastKind" style="width:160px"></select>&nbsp;&nbsp;
 					          状态&nbsp;<select id="searchDiplomaLastStatus" style="width:60px"></select>&nbsp;&nbsp;
-		          			<input style="border:0px;" type="checkbox" name="searchDiplomaLastWarning" id="searchDiplomaLastWarning" value="" checked />&nbsp;30天内过期&nbsp;&nbsp;
+		          			<input style="border:0px;" type="checkbox" name="searchDiplomaLastWarning" id="searchDiplomaLastWarning" value="" checked />&nbsp;90天内过期&nbsp;&nbsp;
 							    &nbsp;有效日期&nbsp;<input type="text" id="searchDiplomaLastStartDate" size="8" />-<input type="text" id="searchDiplomaLastEndDate" size="8" />
 						    <span style="float:right;">
 								<input class="button" type="button" id="btnDownLoad23" onClick="outputFloat(23,'file')" value="下载" />
