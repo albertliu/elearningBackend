@@ -285,7 +285,9 @@
 		if(currUser == "amra." || currUser == "jiacaiyun." || currUser == "donghai."){
 			deleteTab("收费发票");
 			deleteTab("收费日报");
-			deleteTab("销售业绩");
+			if(currUser !== "amra."){
+				deleteTab("销售业绩");
+			}
 			deleteTab("学员注册");
 			deleteTab("证书获取");
 			deleteTab("证书到期");

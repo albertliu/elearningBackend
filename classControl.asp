@@ -434,7 +434,7 @@ if(op == "generateClassSchedule"){
 		result = rs("re").value;
 	}
 	rs.Close();
-	Response.Write(escape(result));/**/
+	Response.Write((result));/**/
 }
 
 if(op == "getScheduleCheckIn"){
