@@ -602,10 +602,14 @@
 
 	function getCertList(){
 		//默认显示本校发证项目，勾选后显示其他项目
-		if($("#certOther").checkbox("options").checked){
-			getComList("certID","v_certificateInfo","certID","certName","status=0 and type=0 and agencyID<>4 order by certName",1);
-		}else{
-			getComList("certID","v_certificateInfo","certID","certName","status=0 and type=0 and agencyID=4 order by certName",1);
+		if(op==1){
+			if($("#certOther").checkbox("options").checked){
+				getComList("certID","v_certificateInfo","certID","certName","status=0 and type=0 and agencyID<>4 order by certName",1);
+			}else{
+				getComList("certID","v_certificateInfo","certID","certName","status=0 and type=0 and agencyID=4 order by certName",1);
+			}
+		}else{	//
+			getComList("certID","v_certificateInfo","certID","certName","status=0 and type=0 order by certName",1);
 		}
 	}
 
