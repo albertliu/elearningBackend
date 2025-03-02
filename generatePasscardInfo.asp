@@ -39,7 +39,7 @@
 		$.ajaxSetup({ 
 			async: false 
 		}); 
-		getComList("certID","certificateInfo","certID","shortName","status=0 and type=0 and agencyID=4 order by certID",1);
+		// getComList("certID","certificateInfo","certID","shortName","status=0 and type=0 and agencyID=4 order by certID",1);
 		getDicList("examResult","s_status",1);
 		getDicList("statusNo","s_resit",1);
 		getDicList("online","kindID",0);
@@ -244,6 +244,14 @@
 			showLoadFile("score_list",$("#ID").val(),"studentList",'');
 			updateCount += 1;
 		});
+		$("#certOther").checkbox({
+			onChange: function(val){
+				if(val){
+					getCertList();
+				}
+			}
+		});
+		getCertList();
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -592,6 +600,15 @@
 		}
 	}
 
+	function getCertList(){
+		//默认显示本校发证项目，勾选后显示其他项目
+		if($("#certOther").checkbox("options").checked){
+			getComList("certID","v_certificateInfo","certID","certName","status=0 and type=0 and agencyID<>4 order by certName",1);
+		}else{
+			getComList("certID","v_certificateInfo","certID","certName","status=0 and type=0 and agencyID=4 order by certName",1);
+		}
+	}
+
 	function setButton(){
 		var s = $("#status").val();
 		$("#save").hide();
@@ -691,9 +708,12 @@
 			</tr>
 			<tr>
 				<td align="right">考试科目</td><input type="hidden" id="status" /><input type="hidden" id="startNo" />
-				<td><select id="certID" style="width:100%;"></select></td>
-				<td align="right">人数</td>
-				<td><input class="readOnly" type="text" id="qty" size="5" readOnly="true" />&nbsp;&nbsp;类型&nbsp;<select id="kindID" style="width:60px;"></select></td>
+				<td colspan="3">
+					&nbsp;<select id="certID" style="width:100px;"></select>&nbsp;&nbsp;
+					<input class="easyui-checkbox" id="certOther" value="1"/>&nbsp;其他
+					&nbsp;&nbsp;人数&nbsp;<input class="readOnly" type="text" id="qty" size="2" readOnly="true" />&nbsp;&nbsp;
+					类型&nbsp;<select id="kindID" style="width:60px;"></select>
+				</td>
 			</tr>
 			<tr>
 				<td align="right">标准时长</td>
