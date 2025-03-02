@@ -46,6 +46,7 @@
 		getDicList("statusNo","sync",0);
 		$("#startDate").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd HH:mm', onpicked:pickerChange});});
 		$("#startTime").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'});});
+		getCertList();
 		setButton();
 		if(nodeID>0 && op==0){
 			getNodeInfo(nodeID);
@@ -251,7 +252,6 @@
 				}
 			}
 		});
-		getCertList();
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
