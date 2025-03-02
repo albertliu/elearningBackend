@@ -6,6 +6,7 @@
 				          <input class="button" type="button" id="btnSearchGeneratePasscardAdd" value="添加" />
 					          &nbsp;&nbsp;经办人&nbsp;<select id="searchGeneratePasscardRegister" style="width:100px"></select>&nbsp;&nbsp;
 					          &nbsp;&nbsp;课程&nbsp;<select id="searchGeneratePasscardCert" style="width:100px"></select>&nbsp;&nbsp;
+								<input class="easyui-checkbox" id="searchGeneratePasscardFull" name="searchGeneratePasscardFull" value="1"/>&nbsp;其他&nbsp;&nbsp;
 					          状态&nbsp;<select id="searchGeneratePasscardStatus" style="width:80px"></select>&nbsp;&nbsp;
 							  &nbsp;&nbsp;<label>考试日期</label>
 				          	<input type="text" id="searchGeneratePasscardStart" size="8" title="起始日期" style="background:#AAFFAA;" />

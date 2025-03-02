@@ -2,7 +2,6 @@
 	var generatePasscardListChk = 0;
 
 	$(document).ready(function (){
-		getComList("searchGeneratePasscardCert","v_certificateInfo","certID","certName","status=0 and type=0 and agencyID=4 order by certName",1);
 		getComList("searchGeneratePasscardRegister","v_examRegister","registerID","registerName","1=1 order by ID desc",1);
 		getDicList("planStatus","searchGeneratePasscardStatus",1);
 		$("#searchGeneratePasscardStart").click(function(){WdatePicker();});
@@ -33,6 +32,14 @@
 		$("#btnSearchGeneratePasscardAdd").click(function(){
 			showGeneratePasscardInfo(0,0,1,1);
 		});
+		$("#searchGeneratePasscardFull").checkbox({
+			onChange: function(val){
+				if(val){
+					getGeneratePasscardCertList();
+				}
+			}
+		});
+		getGeneratePasscardCertList();
 		//getGeneratePasscardList();
 	});
 
@@ -155,4 +162,13 @@
 			floatContent = "";	//records data for output
 			floatModel = 1;
 		});
+	}
+
+	function getGeneratePasscardCertList(){
+		//默认显示本校发证项目，勾选后显示其他项目
+		if($("#searchGeneratePasscardFull").checkbox("options").checked){
+			getComList("searchGeneratePasscardCert","v_certificateInfo","certID","certName","status=0 and type=0 and agencyID<>4 order by certName",1);
+		}else{
+			getComList("searchGeneratePasscardCert","v_certificateInfo","certID","certName","status=0 and type=0 and agencyID=4 order by certName",1);
+		}
 	}
