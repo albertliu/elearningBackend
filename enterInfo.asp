@@ -369,6 +369,11 @@
 			jAlert("已生成新的协议");
 		});
 
+		$("#btnGetNewReceipt").click(function(){
+			let re = getDicItem('0','receipt');
+			$("#receipt").val(parseInt(re) + 1);
+		});
+
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -450,6 +455,7 @@
 				$("#completionPass").val(ar[86]);
 				$("#completion").val(ar[10]);
 				$("#invoice_amount").val(ar[90]);
+				$("#receipt").val(ar[92]);
 				// let c = $("#certID").val();
 				// if(c == "C21" || c == "C20A"){
 				// 	c = "C20";
@@ -557,7 +563,7 @@
 			}
 			
 			//@username,@classID,@price,@invoice,@projectID,@kindID,@type,@status,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo,@registerID
-			$.get("studentCourseControl.asp?op=doEnter&nodeID=" + nodeID + "&username=" + $("#username").val() + "&classID=" + $("#classID").val() + "&overdue=" + over + "&express=" + express + "&needInvoice=" + needInvoice + "&host=" + $("#host").val() + "&fromID=" + $("#fromID").val() + "&price=" + $("#price").val() + "&amount=" + $("#amount").val() + "&invoice=" + $("#invoice").val() + "&invoice_amount=" + $("#invoice_amount").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&payNow=" + $("#payNow").val() + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#statusPay").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&pay_memo=" + escape($("#pay_memo").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+			$.get("studentCourseControl.asp?op=doEnter&nodeID=" + nodeID + "&username=" + $("#username").val() + "&classID=" + $("#classID").val() + "&overdue=" + over + "&express=" + express + "&needInvoice=" + needInvoice + "&host=" + $("#host").val() + "&fromID=" + $("#fromID").val() + "&price=" + $("#price").val() + "&amount=" + $("#amount").val() + "&invoice=" + $("#invoice").val() + "&receipt=" + $("#receipt").val() + "&invoice_amount=" + $("#invoice_amount").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&payNow=" + $("#payNow").val() + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#statusPay").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&pay_memo=" + escape($("#pay_memo").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 				//jAlert(unescape(re));
 				let ar = new Array();
 				ar = unescape(re).split("|");
@@ -914,11 +920,14 @@
 			<tr>
 				<td align="right">票据类型</td>
 				<td colspan="3"><select id="kindID" style="width:100px;"></select>
-				&nbsp;&nbsp;应付金额
-				<input type="text" id="price" style="width:50px;" />
-				&nbsp;&nbsp;实付金额
-				<input type="text" id="amount" style="width:50px;" />
-				&nbsp;&nbsp;<input class="button" type="button" id="btnPay" value="付款" /></td>
+					&nbsp;&nbsp;应付金额
+					<input type="text" id="price" style="width:50px;" />
+					&nbsp;&nbsp;实付金额
+					<input type="text" id="amount" style="width:50px;" />
+					&nbsp;&nbsp;<input class="button" type="button" id="btnPay" value="付款" />
+					&nbsp;&nbsp;<input class="button" type="button" id="btnGetNewReceipt" value="收据" />
+					<input type="text" id="receipt" style="width:80px;" />
+				</td>
 			</tr>
 			<tr>
 				<td align="right">支付方式</td>

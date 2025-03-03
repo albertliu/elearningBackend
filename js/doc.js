@@ -552,7 +552,7 @@ function getYM(theDate,addMonth){
 
 function getDicItem(keyID,kind){
 	var result = "";
-	sql = "SELECT item FROM dictionaryDoc WHERE ID=" + keyID + " and kind='" + kind + "'";
+	sql = "SELECT item FROM dictionaryDoc WHERE ID='" + keyID + "' and kind='" + kind + "'";
 	rs = conn.Execute(sql);
 	if (!rs.EOF){
 		result = rs("item").value;
