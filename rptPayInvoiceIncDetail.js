@@ -7,6 +7,7 @@
 								&nbsp;&nbsp;<input class="easyui-checkbox" id="rptPayInvoiceAutoPay" name="rptPayInvoiceAutoPay" value="1"/>&nbsp;自助收费&nbsp;
 								<input class="easyui-checkbox" id="rptPayInvoiceAutoInvoice" name="rptPayInvoiceAutoInvoice" value="1"/>&nbsp;自助开票&nbsp;
 								<input class="easyui-checkbox" id="rptPayInvoiceReceivable" name="rptPayInvoiceReceivable" value="1"/>&nbsp;应收款&nbsp;
+								<input class="easyui-checkbox" id="rptPayInvoiceReceived" name="rptPayInvoiceReceived" value="1"/>&nbsp;已收款&nbsp;
 							</span>
 							<span id="rptPayInvoiceItem1">
 								<input class="button" type="button" id="btnRptPayInvoiceReceive" value="应收确认" />&nbsp;

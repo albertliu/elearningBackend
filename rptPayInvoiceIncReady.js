@@ -36,6 +36,11 @@
 				getRptPayInvoiceList("data");
 			}
 		});
+		$("#rptPayInvoiceReceived").checkbox({
+			onChange: function(val){
+				getRptPayInvoiceList("data");
+			}
+		});
 		$("#rptPayInvoiceReceivable").checkbox({
 			onChange: function(val){
 				if(val){
@@ -107,6 +112,7 @@
 		let autoPay = 0;
 		let autoInvoice = 0;
 		let receivable = 0;
+		let received = 0;
 		if($("#rptPayInvoiceAutoPay").checkbox("options").checked){
 			autoPay = 1;
 		}
@@ -116,7 +122,10 @@
 		if($("#rptPayInvoiceReceivable").checkbox("options").checked){
 			receivable = 1;
 		}
-		$.getJSON(uploadURL + "/public/getRptList?op=payInvoice&mark=" + mark + "&autoPay=" + autoPay + "&autoInvoice=" + autoInvoice + "&receivable=" + receivable + "&host=znxf&startDate=" + $("#rptPayInvoiceStartDate").val() + "&endDate=" + $("#rptPayInvoiceEndDate").val() + "&startDate1=" + $("#rptPayInvoiceStartDate1").val() + "&endDate1=" + $("#rptPayInvoiceEndDate1").val(),function(data){
+		if($("#rptPayInvoiceReceived").checkbox("options").checked){
+			received = 1;
+		}
+		$.getJSON(uploadURL + "/public/getRptList?op=payInvoice&mark=" + mark + "&autoPay=" + autoPay + "&autoInvoice=" + autoInvoice + "&receivable=" + receivable + "&received=" + received + "&host=znxf&startDate=" + $("#rptPayInvoiceStartDate").val() + "&endDate=" + $("#rptPayInvoiceEndDate").val() + "&startDate1=" + $("#rptPayInvoiceStartDate1").val() + "&endDate1=" + $("#rptPayInvoiceEndDate1").val(),function(data){
 			// jAlert(data);
 			if(data==""){
 				jAlert("没有符合要求的数据。","提示")
