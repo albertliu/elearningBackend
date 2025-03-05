@@ -37,6 +37,7 @@
 	var refAlert = "";
 	let uploadInvoice = 0;
 	let invoicePDF = "";
+	let ref_id = 0;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";	//enterID
@@ -49,6 +50,7 @@
 		getDicList("statusPay","statusPay",0);
 		getDicList("signatureType","signatureType",0);
 		getDicList("payNow","payNow",0);
+		getDicList("examResult","result",1);
         getComList("fromID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='saler') order by realName",1);
 		getComList("host","hostInfo","hostNo","title","status=0 order by hostName",1);
 		$("#datePay").click(function(){WdatePicker();});
@@ -374,6 +376,14 @@
 			$("#receipt").val(parseInt(re) + 1);
 		});
 
+		$("#btnSaveScore").click(function(){
+			$.get("studentCourseControl.asp?op=saveExamScore&refID=" + ref_id + "&score=" + $("#score").val() + "&score2=" + $("#score2").val() + "&result=" + $("#result").val() + "&times=" + (new Date().getTime()),function(re){
+				// alert(unescape(re))
+				$.messager.alert("提示","保存成功。","info");
+				getNodeInfo(nodeID);
+			});
+		});
+
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -456,6 +466,10 @@
 				$("#completion").val(ar[10]);
 				$("#invoice_amount").val(ar[90]);
 				$("#receipt").val(ar[92]);
+				$("#score").val(nullNoDisp(ar[93]));
+				$("#score2").val(nullNoDisp(ar[94]));
+				$("#result").val(ar[95]);
+				ref_id = ar[96];
 				// let c = $("#certID").val();
 				// if(c == "C21" || c == "C20A"){
 				// 	c = "C20";
@@ -668,6 +682,7 @@
 		$("#btnReviveStudentCourse").hide();
 		$("#btnPrint").hide();
 		$("#btnRebuildStudentLesson").hide();
+		$("#btnSaveScore").hide();
 		$("#amount").prop("readonly",false);
 		// $("#btnViewInvoice").prop("disabled",true);
 		$("#check_pass").checkbox({readonly:true});
@@ -764,6 +779,10 @@
 			$("#btnPrint").show();
 			if(checkPermission("salesChange")){
 				$("#fromID").prop("readonly",false);
+			}
+			let certID = $("#certID").val();
+			if(checkPermission("firemanScore") && (certID=="C20" || certID=="C20A" || certID=="C21")){
+				$("#btnSaveScore").show();
 			}
 		}
 	}
@@ -870,47 +889,56 @@
 			<div style="width:100%;float:left;margin:10;height:4px;"></div>
 			<div id="new" style="width:100%;margin:0; padding-left:12px; padding-top:5px;background:#fff8f8;">
 				<div>
-				<span id="project1">招生批次&nbsp;<select id="projectID" style="width:250px"></select>&nbsp;&nbsp;</span>
-				<span id="project0">招生批次&nbsp;<input class="readOnly" type="text" id="projectName" style="width:250px" readOnly="true" />&nbsp;&nbsp;</span>
-				类别&nbsp;<input class="readOnly" type="text" id="reexamineName" style="width:50px" readOnly="true" />&nbsp;&nbsp;<input type="checkbox" id="overdue" />复审过期
-				<br>
-				<span id="class1">所属班级&nbsp;<select id="classID" style="width:250px"></select>&nbsp;&nbsp;</span>
-				<span id="class0">所属班级&nbsp;<input class="readOnly" type="text" id="className" style="width:250px" readOnly="true" />&nbsp;&nbsp;经办人&nbsp;<input class="readOnly" type="text" id="submiterName" style="width:50px" readOnly="true" />&nbsp;&nbsp;</span>
-				编号&nbsp;<input type="text" id="SNo" style="width:70px" />&nbsp;&nbsp;<input type="checkbox" id="express" />延期换证
-				<div>
-                <form style="width:99%;float:right;margin:1px;padding-left:2px;background:#f8f8ee;">
-                <table>
-				<tr>
-					<td align="right">在线进度</td>
-					<td colspan="3">
-						<input id="completion" name="completion" class="readOnly" size="4" readOnly="true" />&nbsp;%
-						&nbsp;<input class="button" type="button" id="btnShowCompletion" value="在线考勤" />
-						&nbsp;<input class="button" type="button" id="btnShowEnterCheckin" value="线下考勤" />
-						&nbsp;<input class="button" type="button" id="btnProof" value="培训证明" />
-						&nbsp;&nbsp;<input class="easyui-checkbox" id="check_pass" name="check_pass" value="1" />
-						&nbsp;<input class="button" type="button" id="btnCheckPass" value="免签" />
-						&nbsp;&nbsp;模拟练习&nbsp;<span id="examTimes"></span>
-					</td>
-				</tr>
-                <tr>
-                    <td align="right">初训证书编号</td>
-                    <td><input type="text" id="currDiplomaID" style="width:140px;" /></td>
-                    <td align="right">应复训日期</td>
-                    <td><input type="text" id="currDiplomaDate" style="width:80px;" />&nbsp;销售<select id="fromID" style="width:80px;"></select></td>
-                </tr>
-				<tr>
-					<td align="right">备注</td>
-					<td colspan="3"><input type="text" id="memo" style="width:100%;" /></td>
-				</tr>
-                </table>
-                </form>
-				</div>
-				<br>
-					<input class="button" type="button" id="btnEntryform" value="生成" />
-					<input class="button" type="button" id="save" value="保存" />
-					<input class="button" type="button" id="btnPreview" value="预览" />
-					<input class="button" type="button" id="btnPrint" value="打印" />
-					<input class="button" type="button" id="btnFiremanMaterials" value="消防员" />
+					<span id="project1">招生批次&nbsp;<select id="projectID" style="width:250px"></select>&nbsp;&nbsp;</span>
+					<span id="project0">招生批次&nbsp;<input class="readOnly" type="text" id="projectName" style="width:250px" readOnly="true" />&nbsp;&nbsp;</span>
+					类别&nbsp;<input class="readOnly" type="text" id="reexamineName" style="width:50px" readOnly="true" />&nbsp;&nbsp;<input type="checkbox" id="overdue" />复审过期
+					<br>
+					<span id="class1">所属班级&nbsp;<select id="classID" style="width:250px"></select>&nbsp;&nbsp;</span>
+					<span id="class0">所属班级&nbsp;<input class="readOnly" type="text" id="className" style="width:250px" readOnly="true" />&nbsp;&nbsp;经办人&nbsp;<input class="readOnly" type="text" id="submiterName" style="width:50px" readOnly="true" />&nbsp;&nbsp;</span>
+					编号&nbsp;<input type="text" id="SNo" style="width:70px" />&nbsp;&nbsp;<input type="checkbox" id="express" />延期换证
+					<div>
+						<form style="width:99%;float:right;margin:1px;padding-left:2px;background:#f8f8ee;">
+						<table>
+						<tr>
+							<td align="right">在线进度</td>
+							<td colspan="3">
+								<input id="completion" name="completion" class="readOnly" size="4" readOnly="true" />&nbsp;%
+								&nbsp;<input class="button" type="button" id="btnShowCompletion" value="在线考勤" />
+								&nbsp;<input class="button" type="button" id="btnShowEnterCheckin" value="线下考勤" />
+								&nbsp;<input class="button" type="button" id="btnProof" value="培训证明" />
+								&nbsp;&nbsp;<input class="easyui-checkbox" id="check_pass" name="check_pass" value="1" />
+								&nbsp;<input class="button" type="button" id="btnCheckPass" value="免签" />
+								&nbsp;&nbsp;模拟练习&nbsp;<span id="examTimes"></span>
+							</td>
+						</tr>
+						<tr>
+							<td align="right">初训证书编号</td>
+							<td><input type="text" id="currDiplomaID" style="width:140px;" /></td>
+							<td align="right">应复训日期</td>
+							<td><input type="text" id="currDiplomaDate" style="width:80px;" />&nbsp;销售<select id="fromID" style="width:80px;"></select></td>
+						</tr>
+						<tr>
+							<td align="right">备注</td>
+							<td colspan="3"><input type="text" id="memo" style="width:100%;" /></td>
+						</tr>
+						</table>
+						</form>
+					</div>
+					<div>
+						<span>
+							<input class="button" type="button" id="btnEntryform" value="生成" />
+							<input class="button" type="button" id="save" value="保存" />
+							<input class="button" type="button" id="btnPreview" value="预览" />
+							<input class="button" type="button" id="btnPrint" value="打印" />
+							<input class="button" type="button" id="btnFiremanMaterials" value="消防员" />
+						</span>
+						<span style="padding-left:50px;">
+							成绩：<select id="result" style="width:70px;"></select>
+							&nbsp;&nbsp;应知<input type="text" id="score" style="width:50px;" />
+							&nbsp;&nbsp;应会<input type="text" id="score2" style="width:50px;" />
+							&nbsp;&nbsp;<input class="button" type="button" id="btnSaveScore" value="ok" />
+						</span>
+					</div>
 				</div>
 			</div>
 

@@ -655,8 +655,8 @@
 				arr.push("<th width='8%'>复训日期</th>");
 			}
 			arr.push("<th width='10%'>备注</th>");
-			arr.push("<th width='2%'>材</th>");
-			arr.push("<th width='2%'>报</th>");
+			// arr.push("<th width='2%'>材</th>");
+			// arr.push("<th width='2%'>报</th>");
 			arr.push("<th width='2%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -778,16 +778,16 @@
 						arr.push("<td class='left' " + (ar1[57]==1 && bc>"" ? "style='background:" + bc + ";'" : "") + ">" + ar1[83] + "</td>");	// 复训日期
 					}
 					arr.push("<td class='left'>" + ar1[82] + "</td>");
-					if(ar1[78]==''){
-						arr.push("<td class='center'><div id='material" + ar1[0] + "'><span onclick='generateMaterials(" + ar1[0] + ",\"" + ar1[1] + "\",\"" + ar1[60] + "\")' title='申报材料'><img src='images/addDoc.png' style='width:15px;'><span><div></td>");
-					}else{
-						arr.push("<td class='center'><div id='material" + ar1[0] + "'><a href='javascript:void(0);' onclick='openMaterial(\"/users" + ar1[78] + "?t=" + (new Date().getTime()) + "\");' ondblclick='generateMaterials(" + ar1[0] + ",\"" + ar1[1] + "\",\"" + ar1[60] + "\")' title='存档材料'>" + imgFile + "</a></div></td>");
-					}
-					if(ar1[79]==''){
-						arr.push("<td class='center'>&nbsp;</td>");
-					}else{
-						arr.push("<td class='center'><div id='material1" + ar1[0] + "'><a href='javascript:void(0);' onclick='openMaterial(\"/users" + ar1[79] + "?t=" + (new Date().getTime()) + "\");' title='报名材料'>" + imgFileBlue + "</a></div></td>");
-					}
+					// if(ar1[78]==''){
+					// 	arr.push("<td class='center'><div id='material" + ar1[0] + "'><span onclick='generateMaterials(" + ar1[0] + ",\"" + ar1[1] + "\",\"" + ar1[60] + "\")' title='申报材料'><img src='images/addDoc.png' style='width:15px;'><span><div></td>");
+					// }else{
+					// 	arr.push("<td class='center'><div id='material" + ar1[0] + "'><a href='javascript:void(0);' onclick='openMaterial(\"/users" + ar1[78] + "?t=" + (new Date().getTime()) + "\");' ondblclick='generateMaterials(" + ar1[0] + ",\"" + ar1[1] + "\",\"" + ar1[60] + "\")' title='存档材料'>" + imgFile + "</a></div></td>");
+					// }
+					// if(ar1[79]==''){
+					// 	arr.push("<td class='center'>&nbsp;</td>");
+					// }else{
+					// 	arr.push("<td class='center'><div id='material1" + ar1[0] + "'><a href='javascript:void(0);' onclick='openMaterial(\"/users" + ar1[79] + "?t=" + (new Date().getTime()) + "\");' title='报名材料'>" + imgFileBlue + "</a></div></td>");
+					// }
 					arr.push("<td class='left'><input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[1] + "' name='visitstockchk'></td>");
 					arr.push("</tr>");
 				});
@@ -795,8 +795,6 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
-			arr.push("<th>&nbsp;</th>");
-			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
@@ -1120,7 +1118,7 @@
 					$("#btnAutoSetClassSNo").show();
 				}
 				$("#btnMockView").show();
-				$("#checkStudent").show();
+				// $("#checkStudent").show();
 				if(!checkPermission("diplomaAdd")){
 					$("#btnDiplomaIssue").hide();
 				}
@@ -1295,12 +1293,11 @@
   	<input class="button" type="button" id="del" value="删除" />&nbsp;&nbsp;
 	<input class="button" type="button" id="doImportRef" value="石化预报名表" />
 	<input class="button" type="button" id="doImport" value="报名表导入" />&nbsp;&nbsp;
-	<input class="button" type="button" id="checkStudent" value="报名表核对" />&nbsp;&nbsp;
+	<input class="button" type="button" id="checkStudent" value="报名表核对" />
 	<input class="button" type="button" id="generateZip" value="生成归档压缩包" />&nbsp;&nbsp;
 	<input class="button" type="button" id="generatePhotoZip" value="生成资料压缩包" />&nbsp;&nbsp;
 	<input class="button" type="button" id="generateEntryZip" value="生成报名表压缩包" />&nbsp;&nbsp;
-	<a href="output/学员报名表模板.xlsm">报名表模板</a>&nbsp;&nbsp;
-	<a href="output/学员信息核对模板.xlsx">报名表核对模板</a>
+	<a href="output/学员报名表模板.xlsm">报名表模板</a>
 
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
 	<div style="width:100%;float:left;margin:0;">

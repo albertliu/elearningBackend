@@ -588,6 +588,8 @@ if(op == "getNodeInfo"){
 		result += "|" + rs("refunderName").value + "|" + rs("refund_amount").value + "|" + rs("refund_memo").value + "|" + rs("file3").value + "|" + rs("file4").value + "|" + rs("file5").value + "|" + rs("pay_checkerName").value + "|" + rs("completionPass").value;
 		//87
 		result += "|" + rs("check_pass").value + "|" + rs("noReceive").value + "|" + rs("invoicePDF").value + "|" + rs("invoice_amount").value + "|" + rs("priceStandard").value + "|" + rs("receipt").value;
+		//93
+		result += "|" + rs("score").value + "|" + rs("score2").value + "|" + rs("result").value + "|" + rs("refID").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -1290,6 +1292,13 @@ if(op == "getEnterCheckinListOutClass"){
 if(op == "removeInvoice"){
 	result = "";
 	sql = "exec removeInvoice '" + nodeID + "'," + refID + ",'" + currUser + "'";
+	execSQL(sql);
+	Response.Write(0);
+}
+
+if(op == "saveExamScore"){
+	result = "";
+	sql = "exec saveExamScore '" + refID + "','" + String(Request.QueryString("score")) + "','" + String(Request.QueryString("score2")) + "','" + String(Request.QueryString("result")) + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(0);
 }
