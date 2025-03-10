@@ -38,12 +38,19 @@
 		});
 		$("#rptPayInvoiceReceived").checkbox({
 			onChange: function(val){
+				if(val){
+					//if it's true, set other checkbox to false
+					$("#rptPayInvoiceReceivable").prop("checked",false);
+					$("#rptPayInvoiceAutoInvoice").prop("checked",false);
+					$("#rptPayInvoiceAutoPay").prop("checked",false);
+				}
 				getRptPayInvoiceList("data");
 			}
 		});
 		$("#rptPayInvoiceReceivable").checkbox({
 			onChange: function(val){
 				if(val){
+					$("#rptPayInvoiceReceived").prop("checked",false);
 					$("#rptPayInvoiceStartDate1").datebox("setValue","");
 					$("#rptPayInvoiceEndDate1").datebox("setValue","");
 					$("#rptPayInvoiceStartDate").datebox("setValue","");
