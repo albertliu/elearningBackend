@@ -75,7 +75,7 @@ if (String(Request.QueryString("msg")) != "undefined" &&
 					if($("#passwd").val()=="123456"){
 						alert("您用的是默认密码，登录以后请在首页上修改密码。");
 					}
-					if($("#username").val()=="room"){
+					if($("#username").val().substring(0, 4)=="room"){
 						self.location = "face_camera.asp", 'width=' + screen.width + ', height=' + screen.height + ', top=0, left=0, toolbar=no, menubar=no, location=no, status=no, help=no, center=yes, scrollbars=yes, resizable=yes, minmizebutton=yes, maxmizebutton=yes'
 					}else{
 						self.location = "index.asp?times=" + (new Date().getTime());
