@@ -1125,9 +1125,9 @@
 			<tr>
 				<td align="right">申报标识</td>
 				<td colspan="3">
-					<input class="mustFill" type="text" id="title" style="width:60%;" />&nbsp;&nbsp;
+					<input class="mustFill" type="text" id="title" style="width:55%;" />&nbsp;&nbsp;
 					状态<input class="readOnly" type="text" id="statusName" size="5" readOnly="true" />&nbsp;&nbsp;
-					属性<select id="host" style="width:70px;"></select>
+					属性<select id="host" style="width:60px;"></select>
 				</td>
 			</tr>
 			<tr>
