@@ -227,7 +227,7 @@
 		if(currHost > ""){	//公司的人看不到班级
 			$("#menu9").hide();
 			$("#menu10").hide();
-			$("#menu12").hide();
+			$("#dtab121").hide();	//考试
 			$("#menu2").hide();
 			deleteTab("统计图表");
 			deleteTab("招生概况");

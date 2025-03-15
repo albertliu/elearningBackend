@@ -51,19 +51,17 @@
 		}); 
 		getDicList("statusApply","s_status",1);
 		getDicList("statusNo","s_resit",1);
+		getComList("courseID","v_courseInfo","courseID","shortName","status=0 and type=0 and agencyID not in(4,5) order by courseID",1);
 		if(currHost==""){
-			// getComList("host","hostInfo","hostNo","title","status=0 and kindID=1 order by ID",1);
-			getComList("courseID","v_courseInfo","courseID","shortName","status=0 and type=0 and agencyID not in(4,5) order by courseID",1);
-		}else{
-			// getComList("host","hostInfo","hostNo","title","status=0 and kindID=1 and hostNo='" + currHost + "' order by ID",0);
-			getComList("courseID","v_courseInfo a, hostCourseList b","a.courseID","a.shortName","a.courseID=b.courseID and a.status=0 and b.host='" + currHost + "' order by a.courseID",1);
-		}
-		getComList("fromID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='saler') order by realName",1);
-		if(currHost==""){
+			getComList("host","hostInfo","hostNo","title","status=0 and kindID=1 order by ID",1);
 			getComList("partner","hostInfo","hostNo","title","status=0 and kindID=1 order by ID",1);
 		}else{
+			getComList("host","hostInfo","hostNo","title","status=0 and kindID=1 and hostNo='" + currHost + "' order by ID",0);
 			getComList("partner","hostInfo","hostNo","title","status=0 and kindID=1 and hostNo='" + currHost + "' order by ID",0);
+			// getComList("courseID","v_courseInfo a, hostCourseList b","a.courseID","a.shortName","a.courseID=b.courseID and a.status=0 and b.host='" + currHost + "' order by a.courseID",1);
 		}
+		getComList("fromID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='saler') order by realName",1);
+
 		$("#startDate").click(function(){WdatePicker();});
 		setButton();
 		if(nodeID>0 && op==0){
@@ -1024,12 +1022,20 @@
 		$("#generatePhotoZip").hide();
 		$("#generateEntryZip").hide();
 		$("#btnInvoiceGroup").hide();
+		$("#item_btn1").hide();
+		$("#item_btn2").hide();
+		$("#btnArchive").hide();
+		if(currHost==""){
+			$("#item_btn1").show();
+			$("#item_btn2").show();
+		}
+			
 		if(op==1){
 			setEmpty();
 			$("#save").show();
 			//$("#save").focus();
 		}else{
-			if(checkPermission("studentAdd")){
+			if(checkPermission("studentAdd") && currHost==""){
 				if(s==0){		//考前可以删除申报、调整人员
 					$("#save").show();
 					$("#del").show();
@@ -1057,6 +1063,7 @@
 					$("#generatePhotoZip").show();
 					$("#generateEntryZip").show();
 				}
+				$("#btnArchive").show();
 			}
 			// if(checkPermission("scoreUpload") && s == 1){
 				// $("#doImportScore").show();
@@ -1112,12 +1119,16 @@
 			<tr>
 				<td align="right">开课日期</td>
 				<td><input class="mustFill" type="text" id="startDate" size="25" /></td>
-				<td align="right">申报科目</td><input type="hidden" id="ID" /><input type="hidden" id="status" /><input type="hidden" id="host" />
+				<td align="right">申报科目</td><input type="hidden" id="ID" /><input type="hidden" id="status" />
 				<td><select id="courseID" style="width:100%;"></select></td><input type="hidden" id="courseName" /><input type="hidden" id="reexamineName" />
 			</tr>
 			<tr>
 				<td align="right">申报标识</td>
-				<td colspan="3"><input class="mustFill" type="text" id="title" style="width:70%;" />&nbsp;&nbsp;状态<input class="readOnly" type="text" id="statusName" size="5" readOnly="true" /></td>
+				<td colspan="3">
+					<input class="mustFill" type="text" id="title" style="width:60%;" />&nbsp;&nbsp;
+					状态<input class="readOnly" type="text" id="statusName" size="5" readOnly="true" />&nbsp;&nbsp;
+					属性<select id="host" style="width:70px;"></select>
+				</td>
 			</tr>
 			<tr>
 				<td align="right">开班编号</td>
@@ -1164,7 +1175,7 @@
 			<tr>
 				<td align="right"><input class="button" type="button" id="btnSchedule" value="排课表" /></td>
 				<td><input type="text" id="scheduleDate" size="12" class="readOnly" readOnly="true" />&nbsp;&nbsp;<span id="schedule" style="margin-left:10px; color:blue;"></span></td>
-				<td>
+				<td colspan="2">
 					上传课表日期&nbsp;<input type="text" id="uploadScheduleDate" size="12" class="readOnly" readOnly="true" />&nbsp;&nbsp;
 					<span id="checkin" style="margin-left:10px; color:blue;">考勤</span>&nbsp;&nbsp;
 					<span id="studyOnline" style="margin-left:10px; color:blue;">在线学习</span>
@@ -1200,7 +1211,7 @@
 	</div>
 	
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
-  	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
+  	<div id="item_btn1" class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
 		<input class="button" type="button" id="save" value="保存" />&nbsp;
 		<input class="button" type="button" id="del" value="删除" />&nbsp;
 		<input class="button" type="button" id="doImportApply" value="考试安排导入" />&nbsp;
@@ -1222,18 +1233,17 @@
 		<a href="output/申报结果模板.xlsx">考试安排模板</a>
   	</div>
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
-		<div align="center" style="border:solid 1px #e0e0e0;width:99%;margin:5px;background:#ffffff;line-height:18px;">
-			<a class="easyui-linkbutton" id="doApplyEnter" href="javascript:void(0)"></a>
-			<a class="easyui-linkbutton" id="doApplyUpload" href="javascript:void(0)"></a>
-			<a class="easyui-linkbutton" id="doApplyUploadPhoto" href="javascript:void(0)"></a>
-			<a class="easyui-linkbutton" id="doApplyUploadSchedule" href="javascript:void(0)"></a>
-			<a class="easyui-linkbutton" id="doApplyDownload" href="javascript:void(0)"></a>
-			&nbsp;&nbsp;<input class="easyui-checkbox" id="showPhoto" name="showPhoto" checked value="1"/>&nbsp;显示照片&nbsp;
-			&nbsp;&nbsp;<input class="easyui-checkbox" id="showWait" name="showWait" value="1"/>&nbsp;未报名&nbsp;
-			&nbsp;&nbsp;<input class="easyui-checkbox" id="showWaitUpload" name="showWaitUpload" value="1"/>&nbsp;未传材料&nbsp;
-			&nbsp;&nbsp;<input class="easyui-checkbox" id="showWaitUploadPhoto" name="showWaitUploadPhoto" value="1"/>&nbsp;未传照片&nbsp;
-			&nbsp;&nbsp;<input class="easyui-checkbox" id="showDrop" name="showDrop" value="1"/>&nbsp;已退课&nbsp;
-		</div>
+	<div id="item_btn2" align="center" style="border:solid 1px #e0e0e0;width:99%;margin:5px;background:#ffffff;line-height:18px;">
+		<a class="easyui-linkbutton" id="doApplyEnter" href="javascript:void(0)"></a>
+		<a class="easyui-linkbutton" id="doApplyUpload" href="javascript:void(0)"></a>
+		<a class="easyui-linkbutton" id="doApplyUploadPhoto" href="javascript:void(0)"></a>
+		<a class="easyui-linkbutton" id="doApplyUploadSchedule" href="javascript:void(0)"></a>
+		<a class="easyui-linkbutton" id="doApplyDownload" href="javascript:void(0)"></a>
+		&nbsp;&nbsp;<input class="easyui-checkbox" id="showPhoto" name="showPhoto" checked value="1"/>&nbsp;显示照片&nbsp;
+		&nbsp;&nbsp;<input class="easyui-checkbox" id="showWait" name="showWait" value="1"/>&nbsp;未报名&nbsp;
+		&nbsp;&nbsp;<input class="easyui-checkbox" id="showWaitUpload" name="showWaitUpload" value="1"/>&nbsp;未传材料&nbsp;
+		&nbsp;&nbsp;<input class="easyui-checkbox" id="showWaitUploadPhoto" name="showWaitUploadPhoto" value="1"/>&nbsp;未传照片&nbsp;
+		&nbsp;&nbsp;<input class="easyui-checkbox" id="showDrop" name="showDrop" value="1"/>&nbsp;已退课&nbsp;
 	</div>
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
 	<div style="width:100%;float:left;margin:0;">
