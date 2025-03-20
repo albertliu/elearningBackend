@@ -1065,9 +1065,9 @@
 				}
 				$("#btnArchive").show();
 			}
-			// if(checkPermission("scoreUpload") && s == 1){
-				// $("#doImportScore").show();
-			// }
+			if(checkPermission("scoreUpload") && s == 1){
+				$("#doImportScore").show();
+			}
 			if(checkPermission("examOpen") && s > 0){
 				$("#open").show();
 			}
