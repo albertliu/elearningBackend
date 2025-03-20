@@ -754,15 +754,15 @@
 							$("#btnMaterialCheck").show();
 						}
 					}else{
-						if(checkPermission("reviveStudentCourse")){
-							$("#btnReviveStudentCourse").show();
-						}
 						$("#btnReturn").hide();
 						$("#btnRefund").hide();
 						$("#btnCloseStudentCourse").hide();
 						// $("#btnReviveStudentCourse").hide();
 					}
 				}
+			}
+			if(checkPermission("reviveStudentCourse")){
+				$("#btnReviveStudentCourse").show();
 			}
             //if(checkPermission("studentDel") && ($("#className").val()=="" || dateDiff(currDate, $("#regDate").val())<180) && $("#statusPay").val()==0 && $("#invoice").val()=="" && $("#dateInvoicePick").val()=="" || $("#name").val().indexOf("测试")>-1){
             if(checkPermission("studentDel") && ($("#className").val()=="" || dateDiff(currDate, $("#regDate").val())<720) || $("#name").val().indexOf("测试")>-1){
