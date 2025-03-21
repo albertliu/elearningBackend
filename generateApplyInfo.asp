@@ -839,7 +839,7 @@
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
 					arr.push("<td class='left'>" + ar1[22] + "</td>");
-					arr.push("<td class='link1'><a href='javascript:showEnterInfo(\"" + ar1[2] + "\",\"" + ar1[4] + "\",0,1);'>" + ar1[4] + "</a></td>");
+					arr.push("<td class='link1' " + (ar1[40]>"" && ar1[40]<addDays(currDate,90) ? "style='background:yellow;' title='注意身份证有效期'" : "") + "><a href='javascript:showEnterInfo(\"" + ar1[2] + "\",\"" + ar1[4] + "\",0,1);'>" + ar1[4] + "</a></td>");
 					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + ar1[4] + "\",0,1);'>" + ar1[5] + "</a></td>");
 					arr.push("<td class='left' title='" + ar1[13] + "." + ar1[14] + "'>" + ar1[13].substr(0,4) + "</td>");
 					// arr.push("<td class='left'>" + ar1[17] + "</td>");

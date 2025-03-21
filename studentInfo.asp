@@ -686,6 +686,8 @@
 		cardJson = re;
 		if(re.expire<currDate.replace("-","")){
 			alert("该身份证已过有效期。");
+		}else if(re.expire<currDate.dateAdd("d",90)){
+			alert("该身份证将要过期。");
 		}
 		if(k==0 && op==0 && re.certNo != $("#username").val()){
 			//编辑状态，如果是新的身份证，则自动定位到身份证之人，并进入编辑状态。

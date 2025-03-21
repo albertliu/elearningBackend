@@ -684,7 +684,7 @@
 		$("#btnPrint").hide();
 		$("#btnRebuildStudentLesson").hide();
 		$("#btnSaveScore").hide();
-		$("#amount").prop("readonly",false);
+		$("#amount").prop("disabled",true);
 		// $("#btnViewInvoice").prop("disabled",true);
 		$("#check_pass").checkbox({readonly:true});
 		$("#fromID").prop("disabled",true);
@@ -695,6 +695,7 @@
 		}
 		if(currHost=="" && checkPermission("studentAdd") && s<2){
 			$("#statusPay").prop("disabled",false);
+			$("#amount").prop("disabled",false);
 		}
 		if(op==1){
 			//新增报名：显示报名选项、报名按钮
@@ -707,35 +708,37 @@
 			setEmpty();
 			$("#btnEnter").focus();
 		}else{
-			if($("#statusPay").val()==1){
-				//未支付的个人付款可以支付，团体付款应到发票管理中操作。
-				$("#amount").prop("readonly",true);
-				$("#btnRefund").show();
-				if(!checkPermission("editPayDate")){
-					$("#datePay").prop("readonly",true);
+			if(currHost==""){
+				if($("#statusPay").val()==1){
+					//未支付的个人付款可以支付，团体付款应到发票管理中操作。
+					$("#amount").prop("disabled",true);
+					$("#btnRefund").show();
+					if(!checkPermission("editPayDate")){
+						$("#datePay").prop("readonly",true);
+					}
 				}
-			}
-			if(!checkPermission("invoiceUpload")){
-				$("#btnUploadInvoice").prop("disabled",true);
-			}
-			if(checkPermission("invoiceRe") && $("#invoice").val()>""){
-				$("#btnReInvoice").prop("disabled",false);
-				$("#btnReInvoice1").prop("disabled",false);
-			}else{
-				$("#btnReInvoice").prop("disabled",true);
-				$("#btnReInvoice1").prop("disabled",true);
-			}
-			if((checkPermission("invoiceRe") || checkPermission("studentAdd") || checkPermission("invoiceUpload")) && $("#invoice").val()==""){
-				$("#invoice_amount").prop("disabled",false);
-				$("#title").prop("disabled",false);
-				$("#dateInvoice").prop("disabled",false);
-				$("#invoice").prop("disabled",false);
-			}else{
-				if(!checkPermission("editPayDate")){
-					$("#invoice_amount").prop("disabled",true);
-					$("#title").prop("disabled",true);
-					$("#dateInvoice").prop("disabled",true);
-					$("#invoice").prop("disabled",true);
+				if(!checkPermission("invoiceUpload")){
+					$("#btnUploadInvoice").prop("disabled",true);
+				}
+				if(checkPermission("invoiceRe") && $("#invoice").val()>""){
+					$("#btnReInvoice").prop("disabled",false);
+					$("#btnReInvoice1").prop("disabled",false);
+				}else{
+					$("#btnReInvoice").prop("disabled",true);
+					$("#btnReInvoice1").prop("disabled",true);
+				}
+				if((checkPermission("invoiceRe") || checkPermission("studentAdd") || checkPermission("invoiceUpload")) && $("#invoice").val()==""){
+					$("#invoice_amount").prop("disabled",false);
+					$("#title").prop("disabled",false);
+					$("#dateInvoice").prop("disabled",false);
+					$("#invoice").prop("disabled",false);
+				}else{
+					if(!checkPermission("editPayDate")){
+						$("#invoice_amount").prop("disabled",true);
+						$("#title").prop("disabled",true);
+						$("#dateInvoice").prop("disabled",true);
+						$("#invoice").prop("disabled",true);
+					}
 				}
 			}
 
