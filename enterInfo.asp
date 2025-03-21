@@ -667,6 +667,7 @@
 	}
 	
 	function setButton(){
+		let s = $("#status").val();
 		$("#save").hide();
 		//$("#new").hide();
 		$("#btnEnter").hide();
@@ -686,10 +687,14 @@
 		$("#amount").prop("readonly",false);
 		// $("#btnViewInvoice").prop("disabled",true);
 		$("#check_pass").checkbox({readonly:true});
-		$("#fromID").prop("readonly",true);
-		if($("#statusPay").val()==0 && $("#kindID").val()==0 && checkPermission("studentAdd")){
+		$("#fromID").prop("disabled",true);
+		$("#statusPay").prop("disabled",true);
+		if($("#statusPay").val()==0 && $("#kindID").val()==0 && checkPermission("studentAdd") && currHost==""){
 			//未支付的个人付款可以支付，团体付款应到发票管理中操作。
 			$("#btnPay").show();
+		}
+		if(currHost=="" && checkPermission("studentAdd") && s<2){
+			$("#statusPay").prop("disabled",false);
 		}
 		if(op==1){
 			//新增报名：显示报名选项、报名按钮
@@ -778,7 +783,7 @@
 			//$("#btnFiremanMaterials").show();
 			$("#btnPrint").show();
 			if(checkPermission("salesChange")){
-				$("#fromID").prop("readonly",false);
+				$("#fromID").prop("disabled",false);
 			}
 			let certID = $("#certID").val();
 			if(checkPermission("firemanScore") && (certID=="C20" || certID=="C20A" || certID=="C21")){
