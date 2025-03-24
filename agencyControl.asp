@@ -84,4 +84,70 @@ if(op == "delNode"){
 	Response.Write(nodeID);
 }
 
+if(op == "getSourceList"){
+	var s = "";
+	//如果有条件，按照条件查询
+	if(where > ""){ // 有条件
+		where = "(source like('%" + where + "%')";
+	}
+	//如果有状态
+	if(status > ""){ // 
+		s = "status=" + status;
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	if(where>""){
+		where = " where " + where;
+	}
+	sql = " FROM v_sourceInfo " + where;
+	ssql = "SELECT source,statusName,regDate,registerName" + sql + " order by ID";
+	sql = "SELECT *" + sql + " order by ID";
+
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("ID").value + "|" + rs("source").value + "|" + rs("status").value + "|" + rs("statusName").value;
+		//4
+		result +=  "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value;
+		rs.MoveNext();
+	}
+
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}
+
+if(op == "getSourceNodeInfo"){
+	sql = "SELECT * FROM v_sourceInfo where ID=" + nodeID;
+	rs = conn.Execute(sql);
+	if (!rs.EOF){
+		result = rs("ID").value + "|" + rs("source").value + "|" + rs("status").value + "|" + rs("statusName").value;
+		//4
+		result +=  "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value;
+		execSQL(sql);
+	}
+	rs.Close();
+	Response.Write(escape(result));
+}
+
+if(op == "updateSource"){
+	result = 0;
+	sql = "exec updateSourceInfo " + nodeID + ",'" + unescape(String(Request.QueryString("source"))) + "'," + status + ",'" + currUser + "'";
+
+	rs = conn.Execute(sql);
+	if(!rs.EOF){
+		result = rs("re").value;
+	}
+	rs.Close();
+	Response.Write(result);
+	//Response.Write(escape(sql));
+}
+
+if(op == "delSourceNode"){
+	sql = "exec delSourceInfo '" + nodeID + "','" + item + "','" + currUser + "'";
+	execSQL(sql);
+	Response.Write(nodeID);
+}
+
 %>

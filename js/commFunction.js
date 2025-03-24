@@ -1190,6 +1190,31 @@
 	}
 	
 	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
+	function showSourceInfo(nodeID,refID,op,mark){
+		asyncbox.open({
+			id: "source",
+			url:"sourceInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
+			title: "学员来源信息",
+			width: 600,
+			height: 380,
+			cover : {
+	          //透明度
+	          opacity : 0,
+	          //背景颜色
+	           background : '#000'
+	          },
+
+			btnsbar : false,
+			callback : function(action,iframe){	
+				var re = iframe.updateCount;
+				if(re>0 && mark==1){
+					getSourceList();
+				}
+　　　		}
+		});
+	}
+	
+	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
 	function showStudentNeedDiplomaInfo(nodeID,refID,op,mark){
 		asyncbox.open({
 			id: "studentNeedDiploma",

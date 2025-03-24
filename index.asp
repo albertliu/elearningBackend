@@ -98,7 +98,7 @@
 	<!--#include file="studentPreListIncReady.js"-->
 	<!--#include file="rptSalesIncReady.js"-->
 	<!--#include file="rptPayInvoiceIncReady.js"-->
-	// <!--#include file="chartsIncomeIncReady.js"-->
+	<!--#include file="sourceListIncReady.js"-->
 	<!--#include file="teacherListIncReady.js"-->
 
 	unitListLong = 0;
@@ -609,9 +609,12 @@
 							<div id="dtab8" class="dhtmlgoodies_aTab">
 								<!--#include file="deptListIncDetail.js"-->
 							</div>
+							<div id="dtab9" class="dhtmlgoodies_aTab">
+								<!--#include file="sourceListIncDetail.js"-->
+							</div>
 						</div>
 						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView4',Array("认证项目","培训课程","视频管理","课件管理","知识点","试卷管理","认证机构","公司单位","公司部门"),0,1260,400);
+							initTabs('dhtmlgoodies_tabView4',Array("认证项目","培训课程","视频管理","课件管理","知识点","试卷管理","认证机构","公司单位","公司部门","学员来源"),0,1260,400);
 						</script>
 					</div>
 					
