@@ -35,6 +35,9 @@
 	var course = "";
 	var sDate = "";
 	var price = 0;
+	let priceStandard = 0;
+	let classID = 0;
+	var host = "znxf";
 	<!--#include file="js/commFunction.js"-->
 	<!--#include file="need2know.js"-->
 	<!--#include file="agreement.js"-->
@@ -43,6 +46,7 @@
 		refID = "<%=refID%>";		//username
 		keyID = "<%=keyID%>";		//0 预览  1 打印
 		op = "<%=op%>";
+		classID = "<%=status%>";		//classID
 		
 		$.ajaxSetup({ 
 			async: false 
@@ -55,92 +59,117 @@
 	});
 
 	function getNodeInfo(id,ref){
-		$.get("studentCourseControl.asp?op=getNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
+		// $.get("studentCourseControl.asp?op=getNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
+		$.post(uploadURL + "/public/postCommInfo", {proc:"getEntryformInfo", params:{enterID:id, classID:classID, host:host}}, function(data){
 			//alert(unescape(re));
-			var ar = new Array();
-			ar = unescape(re).split("|");
+			let ar = data[0]
+			// alert(ar)
 			if(ar > "0"){
-				$("#SNo").html(ar[25] + "&nbsp;&nbsp;班级：" + ar[34]);
-				//$("#reexamine").html(ar[41]);
-				$("#courseName").html(ar[6]);
-				sign = (ar[52]==1?ar[48]:"");
-				reex = ar[40];
-				course = ar[56];
-				sDate = ar[49];
-				// price = ar[53];
+				// $("#SNo").html(ar[25] + "&nbsp;&nbsp;班级：" + ar[34]);
+				sign = (ar["signatureType"]==1?ar["signature"]:"");
+				course = ar["courseName"];
+				sDate = ar["signatureDate"];
+				price = ar["price"];
+				priceStandard = ar["priceStandard"];
+				$("#SNo").html(ar["SNo"]);
 				if(sign>""){
 					$("#f_sign20").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
 					$("#date").html(sDate);
 				}else{
 					$("#f_sign20").hide();
 				}
+				$("#username").html(ar["username"]);
+				$("#name").html(ar["name"]);
+				$("#sexName").html(ar["sexName"]);
+				$("#mobile").html(ar["mobile"]);
+				$("#age").html(ar["age"]);
+				$("#job").html(ar["job"]);
+				$("#unit").html(ar["unit"]);
+				$("#educationName").html(ar["educationName"]);
+				$("#address").html(ar["address"]);
+				$("#IDaddress").html(ar["IDaddress"]);
+				// $("#IDdate").html(ar["IDdateStart"] + (ar["IDdateStart"]>"" && ar["IDdateEnd"]==""? "<br>长期":"<br>" + ar["IDdateEnd"]));
+				if(ar["photo_filename"] > ""){	//  && keyID !=4
+					$("#img_photo").attr("src","/users" + ar["photo_filename"] + "?times=" + (new Date().getTime()));
+				}else{
+					$("#img_photo").attr("src","images/blank_photo.png");
+				}
+				$("#img_A").attr("src","/users" + ar["IDa_filename"] + "?times=" + (new Date().getTime()));
+				$("#img_B").attr("src","/users" + ar["IDb_filename"] + "?times=" + (new Date().getTime()));
+				getAgreement(ar["username"],ar["name"],course,sign,sDate,price,priceStandard);	//协议书
+				if(keyID==1){
+					resumePrint();
+				}
+				// let startDate = ar["startDate"];				
+				// $.get("studentControl.asp?op=getNodeInfo&nodeID=0&refID=" + ref + "&times=" + (new Date().getTime()),function(re){
+				// 	//alert(ref + ":" + unescape(re));
+				// 	var ar = new Array();
+				// 	ar = unescape(re).split("|");
+				// 	if(ar > ""){
+				// 		$("#username").html(ar[1]);
+				// 		$("#name").html(ar[2]);
+				// 		$("#sexName").html(ar[8]);
+				// 		$("#mobile").html(ar[7] + "&nbsp;&nbsp;" + ar[17]);
+				// 		$("#age").html(ar[9]);
+				// 		$("#job").html(ar[18]);
+				// 		//$("#phone").html(ar[17]);
+				// 		$("#job").html(ar[18]);
+				// 		if(ar[29]=="znxf"){
+				// 			$("#company").html(ar[35] + "." + ar[36]);
+				// 			//$("#dept2").html(ar[36]);
+				// 		}else{
+				// 			$("#company").html(ar[12] + "." + ar[13] + "." + ar[14]);
+				// 			//$("#dept2").html(ar[14]);
+				// 		}
+				// 		$("#educationName").html(ar[31]);
+				// 		//$("#birthday").html(ar[33].substr(0,7));
+				// 		$("#address").html(ar[34]);
+				// 		$("#IDaddress").html(ar[38]);
+				// 		//$("#ethnicity").html(ar[37]);
+				// 		var c = "";
+				// 		if(ar[21] > ""){
+				// 			$("#img_photo").attr("src","/users" + ar[21]);
+				// 		}else{
+				// 			$("#img_photo").attr("src","images/blank_photo.png");
+				// 		}
+				// 		if(ar[22] > ""){
+				// 			$("#img_cardA").attr("src","/users" + ar[22]);
+				// 		}else{
+				// 			$("#img_cardA").attr("src","images/blank_cardA.png");
+				// 		}
+				// 		if(ar[23] > ""){
+				// 			$("#img_cardB").attr("src","/users" + ar[23]);
+				// 		}else{
+				// 			$("#img_cardB").attr("src","images/blank_cardB.png");
+				// 		}
+				// 		if(ar[24] > ""){
+				// 			c += "<a href='/users" + ar[24] + "' target='_blank'>学历证明</a>";
+				// 		}
+				// 		if(c == ""){c = "&nbsp;&nbsp;缺少学历证明";}
+				// 		$("#img_education").html(c);
+				// 		c = "";
+				// 		if(ar[49] > ""){
+				// 			c += "<a href='/users" + ar[49] + "' target='_blank'>身份证正反面</a>";
+				// 		}
+				// 		if(c == ""){c = "&nbsp;&nbsp;身份证正反面还未生成";}
+				// 		$("#fire_materials").html(c);
+				// 		//$("#date").html(currDate);
+				// 		alert(price)
+				// 		getAgreement(ar[1],ar[2],course,(keyID==4?"":sign),sDate,price,priceStandard);
+				// 		if(keyID==1){
+				// 			resumePrint();
+				// 		}
+				// 	}else{
+				// 		alert("没有找到要打印的内容。");
+				// 		return false;
+				// 	}
+				// });	
 			}else{
 				//alert("没有找到要打印的内容。");
 				return false;
 			}
 		});
-		$.get("studentControl.asp?op=getNodeInfo&nodeID=0&refID=" + ref + "&times=" + (new Date().getTime()),function(re){
-			//alert(ref + ":" + unescape(re));
-			var ar = new Array();
-			ar = unescape(re).split("|");
-			if(ar > ""){
-				$("#username").html(ar[1]);
-				$("#name").html(ar[2]);
-				$("#sexName").html(ar[8]);
-				$("#mobile").html(ar[7] + "&nbsp;&nbsp;" + ar[17]);
-				$("#age").html(ar[9]);
-				$("#job").html(ar[18]);
-				//$("#phone").html(ar[17]);
-				$("#job").html(ar[18]);
-				if(ar[29]=="znxf"){
-					$("#company").html(ar[35] + "." + ar[36]);
-					//$("#dept2").html(ar[36]);
-				}else{
-					$("#company").html(ar[12] + "." + ar[13] + "." + ar[14]);
-					//$("#dept2").html(ar[14]);
-				}
-				$("#educationName").html(ar[31]);
-				//$("#birthday").html(ar[33].substr(0,7));
-				$("#address").html(ar[34]);
-				$("#IDaddress").html(ar[38]);
-				//$("#ethnicity").html(ar[37]);
-				var c = "";
-				if(ar[21] > ""){
-					$("#img_photo").attr("src","/users" + ar[21]);
-				}else{
-					$("#img_photo").attr("src","images/blank_photo.png");
-				}
-				if(ar[22] > ""){
-					$("#img_cardA").attr("src","/users" + ar[22]);
-				}else{
-					$("#img_cardA").attr("src","images/blank_cardA.png");
-				}
-				if(ar[23] > ""){
-					$("#img_cardB").attr("src","/users" + ar[23]);
-				}else{
-					$("#img_cardB").attr("src","images/blank_cardB.png");
-				}
-				if(ar[24] > ""){
-					c += "<a href='/users" + ar[24] + "' target='_blank'>学历证明</a>";
-				}
-				if(c == ""){c = "&nbsp;&nbsp;缺少学历证明";}
-				$("#img_education").html(c);
-				c = "";
-				if(ar[49] > ""){
-					c += "<a href='/users" + ar[49] + "' target='_blank'>身份证正反面</a>";
-				}
-				if(c == ""){c = "&nbsp;&nbsp;身份证正反面还未生成";}
-				$("#fire_materials").html(c);
-				//$("#date").html(currDate);
-				getAgreement(ar[1],ar[2],course,(keyID==4?"":sign),sDate,price);
-				if(keyID==1){
-					resumePrint();
-				}
-			}else{
-				alert("没有找到要打印的内容。");
-				return false;
-			}
-		});
+
 	}
 	
 	function generateFiremanMaterials(){
@@ -213,7 +242,7 @@
 				<td align="center" class='table_resume_title'>报名所属区</td><td class='table_resume_title'><p style='font-size:1em;float:right;'>区</p></td>
 			</tr>
 			<tr>
-				<td align="center" class='table_resume_title' height='48px;'>工作单位</td><td align="center" colspan="3"><p style='font-size:1em;' id="company"></p></td>
+				<td align="center" class='table_resume_title' height='48px;'>工作单位</td><td align="center" colspan="3"><p style='font-size:1em;' id="unit"></p></td>
 			</tr>
 			<tr>
 				<td align="center" class='table_resume_title' height='48px;'>工作单位地址</td><td align="center" colspan="3"><p style='font-size:1em;' id="address"></p></td>
@@ -234,8 +263,8 @@
 			</tr>
 			<tr>
 				<td align="center" height='48px;' colspan="5" class='table_resume_title' width='15%' height='250px;'>
-					<span style="float:left;"><img id="img_cardA" src="" value="" style='disply:block;width:340px;height:auto;max-height:230px;border:none;' /></span>
-					<span style="float:right;"><img id="img_cardB" src="" value="" style='disply:block;width:340px;height:auto;max-height:230px;border:none;' /></span>
+					<span style="float:left;"><img id="img_A" src="" value="" style='disply:block;width:340px;height:auto;max-height:230px;border:none;' /></span>
+					<span style="float:right;"><img id="img_B" src="" value="" style='disply:block;width:340px;height:auto;max-height:230px;border:none;' /></span>
 				</td>
 			</tr>
 			<tr>
