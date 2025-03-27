@@ -119,7 +119,7 @@ if(op == "getSourceList"){
 }
 
 if(op == "getCurrSourceList"){
-	sql = "SELECT source, source as item FROM v_sourceInfo where status=0 order by ID";
+	sql = "SELECT source, source as item FROM v_sourceInfo where status=0 union select title,title as item from hostInfo where status=0 order by source";
 
 	result = "";
 	rs = conn.Execute(sql);
