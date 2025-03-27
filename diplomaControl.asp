@@ -1120,9 +1120,9 @@ if(op == "getApplyListByBatch"){
 		//23
 		result += "|" + rs("certID").value + "|" + rs("file1").value + "|" + rs("file2").value + "|" + rs("file3").value + "|" + rs("currDiplomaDate").value + "|" + rs("reexamine").value + "|" + rs("enterStatus").value;
 		//30
-		result += "|" + rs("upload").value + "|" + rs("uploadPhoto").value + "|" + rs("step").value + "|" + rs("memo1").value + "|" + rs("photo_filename").value;
-		//35
-		result += "|" + rs("signature").value + "|" + rs("photo_size").value + "|" + rs("signatureDate").value + "|" + rs("entryform").value + "|" + rs("memo_enter").value + "|" + rs("IDdateEnd").value;
+		result += "|" + rs("upload").value + "|" + rs("uploadPhoto").value + "|" + rs("step").value + "|" + rs("memo1").value + "|" + rs("photo_filename").value + "|" + rs("signature").value;
+		//36
+		result += "|" + rs("photo_size").value + "|" + rs("signatureDate").value + "|" + rs("entryform").value + "|" + rs("memo_enter").value + "|" + rs("IDdateEnd").value + "|" + rs("source").value;
 		rs.MoveNext();
 	}
 	rs.Close();

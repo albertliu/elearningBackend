@@ -118,6 +118,20 @@ if(op == "getSourceList"){
 	//Response.Write(escape(sql));
 }
 
+if(op == "getCurrSourceList"){
+	sql = "SELECT source, source as item FROM v_sourceInfo where status=0 order by ID";
+
+	result = "";
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += ',"' + rs("source").value + '":"' + rs("item").value + '"';
+		rs.MoveNext();
+	}
+	result = '{"":""' + (result>''? ','+result.substr(1):'') + '}';
+	Response.Write(escape(result));/**/
+	//Response.Write(escape(sql));
+}
+
 if(op == "getSourceNodeInfo"){
 	sql = "SELECT * FROM v_sourceInfo where ID=" + nodeID;
 	rs = conn.Execute(sql);

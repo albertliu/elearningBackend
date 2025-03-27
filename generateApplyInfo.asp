@@ -544,6 +544,34 @@
 			}
 		});
 	
+		$("#btnSetSource").click(function(){
+			getSelCart("");
+			if(selCount==0){
+				$.messager.alert("提示","请选择要操作的名单。","info");
+				return false;
+			}
+			if(confirm("确定为这" + selCount + "个学员设置来源吗？")){
+				$.get("agencyControl.asp?op=getCurrSourceList",function(re){
+					// alert(unescape(data));
+					let ar0 = $.parseJSON(unescape(re));
+					jSelect("请选择来源：", ar0, "学员来源",function(d){
+						d = d.replace(/\s*/g,"");
+						$.post(uploadURL + "/public/postCommInfo", {proc:"setStudentSource", params:{selList:selList, kind:"A", classID:nodeID, source:d, registerID:currUser}}, function(data){
+							//alert(unescape(re));
+							let ar = data[0]
+							// alert(ar)
+							if(ar["status"] == "0"){
+								$.messager.alert("提示","操作成功","info");
+								getApplyList();
+							}else{
+								$.messager.alert("提示",ar["msg"],"info");
+							}
+						});
+					});
+				});
+			}
+		});
+	
 		$("#generateEntryDoc").click(function(){
 			generateEntryDoc(0);
 		});
@@ -794,10 +822,11 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
-			arr.push("<th width='8%'>学号</th>");
+			arr.push("<th width='6%'>学号</th>");
 			arr.push("<th width='10%'>身份证</th>");
-			arr.push("<th width='7%'>姓名</th>");
+			arr.push("<th width='6%'>姓名</th>");
 			arr.push("<th width='8%'>单位</th>");
+			arr.push("<th width='6%'>来源</th>");
 			arr.push("<th width='7%'>申报</th>");
 			arr.push("<th width='6%'>上传</th>");
 			if(reexamine == 1){
@@ -841,8 +870,8 @@
 					arr.push("<td class='left'>" + ar1[22] + "</td>");
 					arr.push("<td class='link1' " + (ar1[40]>"" && ar1[40]<addDays(currDate,90) ? "style='background:yellow;' title='注意身份证有效期'" : "") + "><a href='javascript:showEnterInfo(\"" + ar1[2] + "\",\"" + ar1[4] + "\",0,1);'>" + ar1[4] + "</a></td>");
 					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + ar1[4] + "\",0,1);'>" + ar1[5] + "</a></td>");
-					arr.push("<td class='left' title='" + ar1[13] + "." + ar1[14] + "'>" + ar1[13].substr(0,4) + "</td>");
-					// arr.push("<td class='left'>" + ar1[17] + "</td>");
+					arr.push("<td class='left' title='" + ar1[13] + "." + ar1[14] + "'>" + ar1[13].substr(0,10) + "</td>");	//unit
+					arr.push("<td class='left'>" + ar1[41] + "</td>");	//source
 					arr.push("<td class='left'>" + ar1[32] + "</td>");
 					arr.push("<td class='left'>" + (ar1[30]==1?imgChk:'&nbsp;') + "</td>");	// 上传报名表
 					if(reexamine == 1){
@@ -910,6 +939,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
@@ -1025,6 +1055,7 @@
 		$("#item_btn1").hide();
 		$("#item_btn2").hide();
 		$("#btnArchive").hide();
+		$("#btnSetSource").hide();
 		if(currHost==""){
 			$("#item_btn1").show();
 			$("#item_btn2").show();
@@ -1062,6 +1093,7 @@
 					$("#generateZip").show();
 					$("#generatePhotoZip").show();
 					$("#generateEntryZip").show();
+					$("#btnSetSource").show();
 				}
 				$("#btnArchive").show();
 			}
@@ -1258,6 +1290,7 @@
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnRemove" value="移出名单" /></span>
             <span>&nbsp;&nbsp;<input class="button" type="button" id="btnResit" value="加入补考购物车" /></span>
             <span>&nbsp;&nbsp;<input class="button" type="button" id="sendMsgDiploma" value="领证通知" /></span>
+            <span>&nbsp;&nbsp;<input class="button" type="button" id="btnSetSource" value="来源设置" /></span>
 		</div>
 	</div>
 	<hr size="1" noshadow />

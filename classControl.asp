@@ -203,7 +203,7 @@ if(op == "getClassListByProject"){
 	result = "{" + result.substr(1) + "}";
 	Response.Write(escape(result));/**/
 	//Response.Write(escape(sql));
-}	
+}
 
 if(op == "getClassListByClassID"){
 	sql = "SELECT a.classID, cast(a.ID as varchar) + '-' + a.className as className FROM v_classInfo a, classInfo b where b.classID='" + refID + "' and a.courseID=b.courseID and a.status<2 and a.classID<>'" + refID + "' order by a.ID desc";;
@@ -217,7 +217,7 @@ if(op == "getClassListByClassID"){
 	result = '{"":"无班级"' + (result>''? ','+result.substr(1):'') + '}';
 	Response.Write(escape(result));/**/
 	//Response.Write(escape(sql));
-}	
+}
 
 if(op == "getClassSchedule"){
 	var s = "";

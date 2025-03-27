@@ -88,6 +88,7 @@
 				$("#educationName").html(ar["educationName"]);
 				$("#address").html(ar["address"]);
 				$("#IDaddress").html(ar["IDaddress"]);
+				$("#courseName").html(ar["courseName"]);
 				// $("#IDdate").html(ar["IDdateStart"] + (ar["IDdateStart"]>"" && ar["IDdateEnd"]==""? "<br>长期":"<br>" + ar["IDdateEnd"]));
 				if(ar["photo_filename"] > ""){	//  && keyID !=4
 					$("#img_photo").attr("src","/users" + ar["photo_filename"] + "?times=" + (new Date().getTime()));
