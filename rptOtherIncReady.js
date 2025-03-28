@@ -8,7 +8,8 @@
 		/*$("#btnRptOther").click(function(){
 			getRptOtherList("data");
 		});*/
-      	$("#rptOtherStartDate").val(getLastDay(currDate));
+      	$("#rptOtherStartDate").val(new Date().format("yyyy-MM") + '-01');
+		// $("#rptOtherStartDate").datebox("setValue", new Date().format("yyyy-MM") + '-01');
       	$("#rptOtherEndDate").val(currDate);
 		
 		$("#btnRptOther1").click(function(){
@@ -20,10 +21,26 @@
 		$("#btnRptOther3").click(function(){
 			setRptOtherOption(3);
 		});
-		
-		$("#btnSearchRptOther").click(function(){
-			getRptOtherList();
+
+		$("#btnRptOther").linkbutton({
+			iconCls:'icon-search',
+			width:70,
+			height:25,
+			text:'预览',
+			onClick:function() {
+				getRptOtherList("data");
+			}
 		});
+		$("#btnRptOtherDownLoad").linkbutton({
+			iconCls:'icon-download',
+			width:70,
+			height:25,
+			text:'下载',
+			onClick:function() {
+				getRptOtherList("file");
+			}
+		});
+		
 		setRptOtherOption(1);
 	});
 

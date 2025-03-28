@@ -91,7 +91,7 @@
 			if(data>""){
 				for(let key in data[0]){
 					// 遍历数组，对每个元素进行操作
-					if(j>5){
+					if(j>6){
 						arr.push("<th>" + key + "</th>");
 					}
 					j = j + 1;
@@ -113,9 +113,9 @@
 					arr.push("<tr class='grade0'>");
 					arr.push("<td>" + i + "</td>");
 					for(let key in val){
-						if(j>3){	//第一列passNo,ID,enterID,qty不显示
-							if(j<6){
-								arr.push("<td>" + val[key] + "</td>");
+						if(j>4){	//第一列passNo,ID,enterID,qty不显示
+							if(j<7){
+								arr.push("<td " + (key=="username"?"title=" + val["SNo"]:"") + ">" + val[key] + "</td>");
 							}else{
 								ok += (val[key] ? 1 : 0);	//签到次数累计
 								if(showImg==0){
