@@ -466,6 +466,34 @@
 					}
 				});
 		});
+	
+		$("#btnSetSource").click(function(){
+			getSelCart("");
+			if(selCount==0){
+				$.messager.alert("提示","请选择要操作的名单。","info");
+				return false;
+			}
+			if(confirm("确定为这" + selCount + "个学员设置来源吗？")){
+				$.get("agencyControl.asp?op=getCurrSourceList",function(re){
+					// alert(unescape(data));
+					let ar0 = $.parseJSON(unescape(re));
+					jSelect("请选择来源：", ar0, "学员来源",function(d){
+						d = d.replace(/\s*/g,"");
+						$.post(uploadURL + "/public/postCommInfo", {proc:"setStudentSource", params:{selList:selList, kind:"B", classID:$("#classID").val(), source:d, registerID:currUser}}, function(data){
+							//alert(unescape(re));
+							let ar = data[0]
+							// alert(ar)
+							if(ar["status"] == "0"){
+								$.messager.alert("提示","操作成功","info");
+								getApplyList();
+							}else{
+								$.messager.alert("提示",ar["msg"],"info");
+							}
+						});
+					});
+				});
+			}
+		});
 
 		$("#btn_feedback_submit").click(function(){
 			submit_feedback();
@@ -628,16 +656,17 @@
 			arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='cardTab' width='100%'>");
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
-			arr.push("<th width='4%'>No</th>");
-			arr.push("<th width='6%'>学号</th>");
-			arr.push("<th width='6%'>姓名</th>");
+			arr.push("<th width='3%'>No</th>");
+			arr.push("<th width='5%'>学号</th>");
+			arr.push("<th width='5%'>姓名</th>");
 			arr.push("<th width='6%'>电话</th>");
+			arr.push("<th width='6%'>来源</th>");
 			if(photo == 0){
-				arr.push("<th width='7%'>单位</th>");
+				arr.push("<th width='10%'>单位</th>");
 				arr.push("<th width='5%'>进度%</th>");
 				arr.push("<th width='7%'>模拟</th>");
 				if(fire==1){
-					arr.push("<th width='8%'>考试日期</th>");
+					arr.push("<th width='6%'>考试日期</th>");
 				}else{
 					arr.push("<th width='5%'>准申</th>");
 				}
@@ -652,7 +681,7 @@
 				arr.push("<th width='6%'>在职</th>");
 			}
 			if(reexamine==1){
-				arr.push("<th width='8%'>复训日期</th>");
+				arr.push("<th width='6%'>复训日期</th>");
 			}
 			arr.push("<th width='10%'>备注</th>");
 			// arr.push("<th width='2%'>材</th>");
@@ -682,12 +711,13 @@
 					arr.push("<td class='link1'><a href='javascript:showEnterInfo(" + ar1[0] + ",\"" + ar1[1] + "\",0,1);'>" + ar1[43] + "</a></td>");
 					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + ar1[1] + "\",0,1,\"class\");'>" + ar1[2] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[69] + "</td>");
+					arr.push("<td class='left'>" + ar1[90] + "</td>");
 					//arr.push("<td title='最好成绩' class='link1'><a href='javascript:showStudentExamStat(" + ar1[0] + ",\"" + ar1[2] + "\",0,0);'>" + c + "</a></td>");
 					if(photo == 0){
 						if(ar1[56]!="spc" && ar1[56]!="shm"){	//非集团客户，显示自己的单位和部门
-							arr.push("<td class='left' title='" + ar1[54] + "'>" + ar1[54].substr(0,4) + "</td>");
+							arr.push("<td class='left' title='" + ar1[54] + "'>" + ar1[54].substr(0,12) + "</td>");
 						}else{
-							arr.push("<td class='left' title='" + ar1[12] + "'>" + ar1[12].substr(0,6) + "</td>");
+							arr.push("<td class='left' title='" + ar1[12] + "'>" + ar1[12].substr(0,12) + "</td>");
 						}
 						c = ar1[10];
 						if(c>0){
@@ -795,6 +825,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
@@ -1069,6 +1100,7 @@
 		$("#btnInvoiceGroup").hide();
 		$("#btnCloseStudentCourse").hide();
 		$("#archived").prop("disabled",true);
+		$("#btnSetSource").hide();
 		// $("#className").prop("disabled",true);
 		$("#courseID").prop("disabled",true);
 		if(op ==1){
@@ -1128,6 +1160,7 @@
 				$("#btnPaynowChange").show();
 				$("#doImport").show();
 				$("#btnCloseStudentCourse").show();
+				$("#btnSetSource").show();
 			}
 			if(checkPermission("setInvoiceGroup") && s < 2){
 				$("#btnInvoiceGroup").show();
@@ -1328,6 +1361,7 @@
 			&nbsp;&nbsp;<input class="button" type="button" id="btnFindStudent" value="查找" />&nbsp;&nbsp;
 			&nbsp;&nbsp;<input style="border:0px;" type="checkbox" id="showPhoto" value="" />&nbsp;显示照片和签名&nbsp;&nbsp;
 			&nbsp;&nbsp;<input class="button" type="button" id="btnDownload" value="名单下载" />
+			&nbsp;&nbsp;<input class="button" type="button" id="btnSetSource" value="来源设置" />
 			<span id="btnMockView">&nbsp;&nbsp;模拟考试汇总</span>
 			<span id="btnMockDetail">&nbsp;&nbsp;模拟考试明细</span>
 		</div>

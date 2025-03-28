@@ -2,8 +2,8 @@
 						<div class="comm" align='left' style="background:#fdfdfd;">
 						<form><label>搜索:</label>
 				          <input type="text" id="txtSearchEnter" name="txtSearchEnter" size="10" title="姓名、身份证" style="background:yellow;" />
-				          <input class="button" type="button" id="btnSearchEnter" value="查找" />&nbsp;
-				          <input class="button" type="button" id="btnSearchEnterAdd" value="添加" />
+				          <input class="button" type="button" id="btnSearchEnter" style="padding:0 3px 0 3px;" value="查找" />&nbsp;
+				          <input class="button" type="button" id="btnSearchEnterAdd" style="padding:0 3px 0 3px;" value="添加" />
 						  	<span id="enterListLongItem1">&nbsp;
 					          &nbsp;公司&nbsp;<select id="searchEnterHost" style="width:80px"></select>&nbsp;&nbsp;
 				          	</span>
