@@ -80,6 +80,7 @@
 			arr.push("<th width='10%'>授课教师</th>");
 			arr.push("<th width='18%'>授课内容</th>");
 			arr.push("<th width='6%'>形式</th>");
+			arr.push("<th width='2%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
@@ -102,12 +103,14 @@
 					arr.push("<td class='left'>" + nullNoDisp(ar1[16]) + "</td>");
 					arr.push("<td class='left'>" + ar1[11] + "</td>");
 					arr.push("<td class='left'>" + ar1[22] + "</td>");
+					arr.push("<td class='left'>" + (ar1[24]==1?imgChk:"") + "</td>");
 					arr.push("</tr>");
 				});
 			}
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");

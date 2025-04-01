@@ -39,6 +39,7 @@
 	var backendURL = "";
 	var token_user = new Array();
 	var ctree = 0;
+	var imgChk = "<img src='images/green_check.png' />";
 	// var today = new Date().format("yyyy-MM-dd");
 	
 	var pickupID = 0;			//选择项目编号

@@ -94,6 +94,11 @@
 				$("#memo").val(ar[11]);
 				$("#regDate").val(ar[12]);
 				$("#registerName").val(ar[14]);
+				if(ar[17]==1){
+					$("#point").prop("checked",true);
+				}else{
+					$("#point").prop("checked",false);
+				}
 			}else{
 				jAlert("该信息未找到！","信息提示");
 				setEmpty();
@@ -115,8 +120,12 @@
 			jAlert("课程内容不能为空");
 			return false;
 		}
-		//alert($("#ID").val() + "&refID=" + $("#agencyID").val() + "&agencyName=" + ($("#agencyName").val()) + "&title=" + ($("#title").val()) + "&linker=" +  ($("#linker").val()) + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&phone=" +  ($("#phone").val()) + "&email=" + ($("#email").val()) + "&address=" + ($("#address").val()) + "&memo=" + ($("#memo").val()));
-		$.get("classControl.asp?op=updateStandardSchedule&nodeID=" + $("#ID").val() + "&courseID=" + $("#courseID").val() + "&online=" + $("#online").val() + "&seq=" + $("#seq").val() + "&refID=" + $("#typeID").val() + "&period=" + $("#period").val() + "&hours=" +  $("#hours").val() + "&kindID=" + $("#kindID").val() + "&item=" + escape($("#item").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		let point = 0;
+		if($("#point").prop("checked")){
+			point = 1;
+		}
+		// alert(point);
+		$.get("classControl.asp?op=updateStandardSchedule&nodeID=" + $("#ID").val() + "&courseID=" + $("#courseID").val() + "&point=" + point + "&online=" + $("#online").val() + "&seq=" + $("#seq").val() + "&refID=" + $("#typeID").val() + "&period=" + $("#period").val() + "&hours=" +  $("#hours").val() + "&kindID=" + $("#kindID").val() + "&item=" + escape($("#item").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			// alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -195,7 +204,10 @@
 				<td align="right">上课类型</td>
 				<td><select id="kindID" style="width:100px;"></select></td>
 				<td align="right">上课形式</td>
-				<td><select id="online" style="width:100px;"></select></td>
+				<td>
+					<select id="online" style="width:80px;"></select>
+					&nbsp;&nbsp;<input style="border:0px;" type="checkbox" id="point" value="" />
+				</td>
 			</tr>
 			<tr>
 				<td align="right">课程内容</td>

@@ -855,7 +855,6 @@
 				var h = "";
 				var k = 0;
 				var s = $("#status").val();
-				var imgChk = "<img src='images/green_check.png'>";
 				var backcolor = ["#F0F0F0","#FFFF00","#00FF00","#FF8888"];
 				var bc = "";
 				let photo_size = 0;

@@ -335,8 +335,7 @@
 				var c = 0;
 				var h = "";
 				var n = 0;
-				var imgChk = "<img src='images/attachment.png' style='width:14px;'>";
-				var imgChk1 = "<img src='images/green_check.png'>";
+				var imgChk3 = "<img src='images/attachment.png' style='width:14px;'>";
 				var imgChk2 = "<img src='images/cancel.png'>";
 				var backcolor = ["#F0F0F0","#FFFF00","#00FF00","#FF8888"];
 				var bc = "";
@@ -357,7 +356,7 @@
 							var ar3 = new Array();
 							ar3 = val1.split("|");
 							var fn = "";
-							var imgChk = "&nbsp;";
+							imgChk3 = "&nbsp;";
 							var m = parseInt(ar3[0]);
 							var bc = "#fff";
 							if(ar1[23 + m*3] == 1){
@@ -371,10 +370,10 @@
 							}
 							fn = ar1[18 + m];
 							if(fn>""){
-								imgChk = "<img src='users" + fn + "' style='width:50px;background: #ccc;border:2px " + bc + " solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'>";
-								imgChk += "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "|" + m + "' name='visitstockchkEnterPhoto'>";
+								imgChk3 = "<img src='users" + fn + "' style='width:50px;background: #ccc;border:2px " + bc + " solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'>";
+								imgChk3 += "<input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "|" + m + "' name='visitstockchkEnterPhoto'>";
 							}
-							arr.push("<td class='center'>" + imgChk + "</td>");
+							arr.push("<td class='center'>" + imgChk3 + "</td>");
 						});
 					}else{
 						if($("#searchEnterProjectID").val()>""){
@@ -400,7 +399,7 @@
 					}
 					//arr.push("<td class='link1'><a href='javascript:window.open(\"entryform_" + ar1[60] + ".asp?keyID=0&nodeID=" + ar1[0] + "&refID=" + ar1[1] + ", \"_blank\");'>" + imgChk + "</a></td>");
 					//arr.push("<td class='left'>" + ar1[69] + "</td>");
-					arr.push("<td class='link1'><a href='javascript:openEntryForm(\"" + ar1[89] + "\"," + ar1[0] + ",\"" + ar1[1] + "\");'>" + imgChk + "</a></td>");
+					arr.push("<td class='link1'><a href='javascript:openEntryForm(\"" + ar1[89] + "\"," + ar1[0] + ",\"" + ar1[1] + "\");'>" + imgChk3 + "</a></td>");
 					c = ar1[10];
 					if(c>0){
 						c = c;
@@ -432,19 +431,19 @@
 					arr.push("<td class='left' " + (ar1[57]==1 && bc>"" ? "style='background:" + bc + ";'" : "") + ">" + ar1[83] + "</td>");	// 复训日期
 					/*申报*/
 					if(ar1[65]>0 || ar1[53]>0){
-						arr.push("<td class='center'>" + imgChk1 + "</td>");	//申报/准考证
+						arr.push("<td class='center'>" + imgChk + "</td>");	//申报/准考证
 					}else{
 						arr.push("<td class='center'>&nbsp;</td>");
 					}
 					if(ar1[64]>""){
-						arr.push("<td class='center'>" + imgChk1 + "</td>");	//证书
+						arr.push("<td class='center'>" + imgChk + "</td>");	//证书
 					}else{
 						arr.push("<td class='center'>&nbsp;</td>");
 					}
 					if(photo == 0){
 						arr.push("<td class='left'><a href='javascript:showStudentExamPaper(" + ar1[0] + ",\"" + ar1[2] + "\");'>" + nullNoDisp(ar1[66].replace(".00","")) + "</a></td>");
 						if(ar1[68]==1){
-							arr.push("<td class='center'>" + imgChk1 + "</td>");	//已付
+							arr.push("<td class='center'>" + imgChk + "</td>");	//已付
 						}else{
 							arr.push("<td class='center'>&nbsp;</td>");
 						}

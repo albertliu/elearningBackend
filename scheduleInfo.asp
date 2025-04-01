@@ -76,6 +76,11 @@
 				$("#regDate").val(ar[18]);
 				$("#registerName").val(ar[20]);
 				$("#online").val(ar[21]);
+				if(ar[24]==1){
+					$("#point").prop("checked",true);
+				}else{
+					$("#point").prop("checked",false);
+				}
 			}else{
 				jAlert("该信息未找到！","信息提示");
 				setEmpty();
@@ -84,7 +89,6 @@
 	}
 	
 	function saveNode(){
-		//alert($("#agencyID").val() + "&item=" + ($("#memo").val()));
 		if($("#seq").val()==""){
 			jAlert("课次不能为空");
 			return false;
@@ -101,8 +105,11 @@
 			jAlert("课程内容不能为空");
 			return false;
 		}
-		//alert($("#ID").val() + "&refID=" + $("#agencyID").val() + "&agencyName=" + ($("#agencyName").val()) + "&title=" + ($("#title").val()) + "&linker=" +  ($("#linker").val()) + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&phone=" +  ($("#phone").val()) + "&email=" + ($("#email").val()) + "&address=" + ($("#address").val()) + "&memo=" + ($("#memo").val()));
-		$.get("classControl.asp?op=updateClassSchedule&nodeID=" + $("#ID").val() + "&online=" + $("#online").val() + "&seq=" + $("#seq").val() + "&refID=" + $("#typeID").val() + "&period=" + $("#period").val() + "&hours=" +  $("#hours").val() + "&kindID=" + $("#kindID").val() + "&teacher=" + $("#teacher").val() + "&theDate=" +  $("#theDate").val() + "&address=" + escape($("#address").val()) + "&item=" + escape($("#item").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		let point = 0;
+		if($("#point").prop("checked")){
+			point = 1;
+		}
+		$.get("classControl.asp?op=updateClassSchedule&nodeID=" + $("#ID").val() + "&online=" + $("#online").val() + "&point=" + point + "&seq=" + $("#seq").val() + "&refID=" + $("#typeID").val() + "&period=" + $("#period").val() + "&hours=" +  $("#hours").val() + "&kindID=" + $("#kindID").val() + "&teacher=" + $("#teacher").val() + "&theDate=" +  $("#theDate").val() + "&address=" + escape($("#address").val()) + "&item=" + escape($("#item").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -165,7 +172,10 @@
 			</tr>
 			<tr>
 				<td align="right">上课形式</td>
-				<td><select id="online" style="width:100px;"></select></td>
+				<td>
+					<select id="online" style="width:80px;"></select>
+					&nbsp;&nbsp;<input style="border:0px;" type="checkbox" id="point" value="" />
+				</td>
 				<td align="right">教室</td>
 				<td><input type="text" id="address" size="25"/></td>
 			</tr>

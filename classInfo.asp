@@ -695,7 +695,6 @@
 				var h = "";
 				var k = 0;
 				var s = $("#status").val();
-				var imgChk = "<img src='images/green_check.png'>";
 				var attention_status = ["FFFFAA","AAFFAA","F3F3F3"];
 				var backcolor = ["#F0F0F0","#FFFF00","#00FF00","#FF8888"];
 				var bc = "";

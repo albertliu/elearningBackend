@@ -267,7 +267,7 @@ if(op == "getClassSchedule"){
 		//14
 		result += "|" + rs("kindName").value + "|" + rs("typeName").value + "|" + rs("teacherName").value + "|" + rs("memo").value + "|" + rs("regDate").value;
 		//19
-		result += "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("online").value + "|" + rs("onlineName").value + "|" + rs("mark").value;
+		result += "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("online").value + "|" + rs("onlineName").value + "|" + rs("mark").value + "|" + rs("point").value;
 		rs.MoveNext();
 	}
 	result = result.substr(2);
@@ -288,7 +288,7 @@ if(op == "getClassScheduleInfo"){
 		//14
 		result += "|" + rs("kindName").value + "|" + rs("typeName").value + "|" + rs("teacherName").value + "|" + rs("memo").value + "|" + rs("regDate").value;
 		//19
-		result += "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("online").value + "|" + rs("onlineName").value + "|" + rs("mark").value;
+		result += "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("online").value + "|" + rs("onlineName").value + "|" + rs("mark").value + "|" + rs("point").value;
 	}
 	Session(op) = ssql;
 	Response.Write(escape(result));/**/
@@ -298,7 +298,7 @@ if(op == "getClassScheduleInfo"){
 if(op == "updateClassSchedule"){
 	result = 0;
 	//@ID int,@seq int,@kindID int,@typeID int,@hours int,@period varchar(50),@theDate varchar(50),@teacher varchar(50),@memo varchar(500),@registerID
-	sql = "exec updateClassSchedule " + nodeID + "," + String(Request.QueryString("seq")) + "," + kindID + "," + refID + "," + String(Request.QueryString("online")) + "," + String(Request.QueryString("hours")) + ",'" + String(Request.QueryString("period")) + "','" + String(Request.QueryString("theDate")) + "','" + String(Request.QueryString("teacher")) + "','" + unescape(String(Request.QueryString("address"))) + "','" + item + "','" + memo + "','" + currUser + "'";
+	sql = "exec updateClassSchedule " + nodeID + "," + String(Request.QueryString("seq")) + "," + kindID + "," + refID + "," + String(Request.QueryString("online")) + "," + String(Request.QueryString("hours")) + ",'" + String(Request.QueryString("period")) + "','" + String(Request.QueryString("theDate")) + "','" + String(Request.QueryString("teacher")) + "','" + unescape(String(Request.QueryString("address"))) + "','" + item + "'," + String(Request.QueryString("point")) + ",'" + memo + "','" + currUser + "'";
 	rs = conn.Execute(sql);
 	if (!rs.EOF){
 		result = rs("status").value + "|" + rs("msg").value;
@@ -310,7 +310,7 @@ if(op == "updateClassSchedule"){
 
 if(op == "updateStandardSchedule"){
 	result = 0;	
-	sql = "exec updateStandardSchedule " + nodeID + ",'" + String(Request.QueryString("courseID")) + "'," + String(Request.QueryString("seq")) + "," + kindID + "," + refID + "," + String(Request.QueryString("online")) + "," + String(Request.QueryString("hours")) + ",'" + String(Request.QueryString("period")) + "','" + item + "','" + memo + "','" + currUser + "'";
+	sql = "exec updateStandardSchedule " + nodeID + ",'" + String(Request.QueryString("courseID")) + "'," + String(Request.QueryString("seq")) + "," + kindID + "," + refID + "," + String(Request.QueryString("online")) + "," + String(Request.QueryString("hours")) + ",'" + String(Request.QueryString("period")) + "','" + item + "'," + String(Request.QueryString("point")) + ",'" + memo + "','" + currUser + "'";
 	
 	rs = conn.Execute(sql);
 	if (!rs.EOF){
@@ -358,9 +358,9 @@ if(op == "getStandardSchedule"){
 		//6
 		result += "|" + rs("hours").value + "|" + rs("period").value + "|" + rs("item").value;
 		//9
-		result += "|" + rs("kindName").value + "|" + rs("typeName").value + "|" + rs("memo").value + "|" + rs("regDate").value;
-		//13
-		result += "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("online").value + "|" + rs("onlineName").value;
+		result += "|" + rs("kindName").value + "|" + rs("typeName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value;
+		//14
+		result += "|" + rs("registerName").value + "|" + rs("online").value + "|" + rs("onlineName").value + "|" + rs("point").value;
 		rs.MoveNext();
 	}
 	result = result.substr(2);
@@ -379,9 +379,9 @@ if(op == "getStandardScheduleInfo"){
 		//6
 		result += "|" + rs("hours").value + "|" + rs("period").value + "|" + rs("item").value;
 		//9
-		result += "|" + rs("kindName").value + "|" + rs("typeName").value + "|" + rs("memo").value + "|" + rs("regDate").value;
-		//13
-		result += "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("online").value + "|" + rs("onlineName").value;
+		result += "|" + rs("kindName").value + "|" + rs("typeName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value;
+		//14
+		result += "|" + rs("registerName").value + "|" + rs("online").value + "|" + rs("onlineName").value + "|" + rs("point").value;
 	}
 	Session(op) = ssql;
 	Response.Write(escape(result));/**/
