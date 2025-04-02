@@ -30,8 +30,7 @@
 			}
 			jConfirm("确定要重新制作证书吗？证书编号将保持不变。","确认",function(r){
 				if(r){
-					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
-					$.post(uploadURL + "/outfiles/generate_diploma_byUsername",{"selList":selList, "username":currUser} ,function(data){
+					$.post(uploadURL + "/outfiles/generate_diploma_byUsername",{"selList":s, "username":currUser} ,function(data){
 						if(data>""){
 							jAlert("重新制作了" + data + "个证书");
 						}else{
