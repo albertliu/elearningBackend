@@ -8,13 +8,13 @@
 										<a class="easyui-linkbutton" id="btnRptOtherDownLoad" href="javascript:void(0)"></a>&nbsp;&nbsp;
 										<a class="easyui-linkbutton" id="btnRptOtherPrint" href="javascript:void(0)"></a>
 									</span>
-									<span id="rptOtherItem1" style="padding-left:5em;">
-										教师&nbsp;<input class="easyui-radiobutton" name="rptOtherRadio" value="0" label="" checked />&nbsp;&nbsp;
-										班主任&nbsp;<input class="easyui-radiobutton" name="rptOtherRadio" value="1" label="" />&nbsp;&nbsp;
+									<span id="rptOtherItem1" style="padding-left: 50px;">
+										<input class="easyui-radiobutton" name="rptOtherRadio" value="0" label="" checked />&nbsp;教师&nbsp;&nbsp;
+										<input class="easyui-radiobutton" name="rptOtherRadio" value="1" label="" />&nbsp;班主任&nbsp;&nbsp;
 									</span>
 									<span id="rptOtherItem2">
-										学生来源&nbsp;<input class="easyui-radiobutton" name="rptOtherRadio" value="2" label="" />&nbsp;&nbsp;
-										课程&nbsp;<input class="easyui-radiobutton" name="rptOtherRadio" value="3" label="" />
+										<input class="easyui-radiobutton" name="rptOtherRadio" value="2" label="" />&nbsp;学生来源&nbsp;&nbsp;
+										<input class="easyui-radiobutton" name="rptOtherRadio" value="3" label="" />&nbsp;课程
 									</span>
 								</div>
 				        </form>

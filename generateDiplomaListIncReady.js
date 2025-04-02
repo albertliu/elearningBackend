@@ -52,7 +52,7 @@
 			}
 		});
 		
-		if(currUser.substring(0, 4)!=="admin"){
+		if(currUser.substring(0, 5)!=="admin"){
 			$("#searchGenerateDiplomaItem").hide();
 		}
 	});

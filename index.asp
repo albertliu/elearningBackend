@@ -650,7 +650,7 @@
 							</div>
 						</div>
 						<script type="text/javascript">
-							initTabs('dhtmlgoodies_tabView6',Array("收费日报","销售业绩","收费概况","收费发票","学员注册","证书获取","证书到期","其他报表"),0,1260,400);
+							initTabs('dhtmlgoodies_tabView6',Array("收费日报","销售业绩","收费概况","收费发票","学员注册","证书获取","证书到期","工作统计"),0,1260,400);
 						</script>
 					</div>
 					
