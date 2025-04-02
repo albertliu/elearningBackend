@@ -879,7 +879,7 @@
 					if(photo == 0){
 						arr.push("<td class='left'>" + ar1[18] + "</td>");
 						h = ar1[19];
-						if(certID=="C12" || certID=="C14" || certID=="C15" || certID=="C24" || certID=="C25" || certID=="C26" || c == "C25B" || c == "C26B"){
+						if(agencyID == "1"){
 							h = ar1[20].replace(".00","") + "/" + ar1[21].replace(".00","");
 						}
 						arr.push("<td class='left'>" + h + "</td>");
