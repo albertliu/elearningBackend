@@ -1605,10 +1605,10 @@
 	}
 	
 	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
-	function showScheduleInfo(nodeID,refID,op,mark){
+	function showScheduleInfo(nodeID,refID,keyID,op,mark){
 		asyncbox.open({
 			id: "schedule",
-			url:"scheduleInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
+			url:"scheduleInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&keyID=" + keyID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "授课计划",
 			width: 680,
 			height: 380,

@@ -276,7 +276,8 @@
 		// 	$("#menu12").hide();
 		// 	deleteTab("发票管理");
 		// }
-		if(!checkRole("leader") && !checkRole("saler") && currUser != "desk."){
+		if(!checkRole("leader") && !checkRole("adviser") && !checkRole("teacher") && !checkPermission("workRptShow")){
+			deleteTab("工作统计");
 		}
 		deleteTab("收费概况");
 		if(checkRole("saler")){

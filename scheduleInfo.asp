@@ -27,12 +27,14 @@
 <script language="javascript">
 	var nodeID = 0;
 	var refID = 0;
+	let keyID = '';
 	var op = 0;
 	var updateCount = 0;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>"; //classSchedule.ID
 		refID = "<%=refID%>";	//courseID
+		keyID = "<%=keyID%>";	//classID
 		op = "<%=op%>";
 		
 		getDicList("scheduleKind","kindID",0);
@@ -43,7 +45,7 @@
 		
 		$.ajaxSetup({ 
 			async: false 
-		}); 
+		});
 		
 		if(op==0){
 			getNodeInfo(nodeID);
@@ -109,7 +111,7 @@
 		if($("#point").prop("checked")){
 			point = 1;
 		}
-		$.get("classControl.asp?op=updateClassSchedule&nodeID=" + $("#ID").val() + "&online=" + $("#online").val() + "&point=" + point + "&seq=" + $("#seq").val() + "&refID=" + $("#typeID").val() + "&period=" + $("#period").val() + "&hours=" +  $("#hours").val() + "&kindID=" + $("#kindID").val() + "&teacher=" + $("#teacher").val() + "&theDate=" +  $("#theDate").val() + "&address=" + escape($("#address").val()) + "&item=" + escape($("#item").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("classControl.asp?op=updateClassSchedule&nodeID=" + $("#ID").val() + "&keyID=" + keyID + "&online=" + $("#online").val() + "&point=" + point + "&seq=" + $("#seq").val() + "&refID=" + $("#typeID").val() + "&period=" + $("#period").val() + "&hours=" +  $("#hours").val() + "&kindID=" + $("#kindID").val() + "&teacher=" + $("#teacher").val() + "&theDate=" +  $("#theDate").val() + "&address=" + escape($("#address").val()) + "&item=" + escape($("#item").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -128,6 +130,22 @@
 		if(checkRole("operator") || checkRole("partner") || checkRole("adviser")){
 			$("#btnSave").show();
 		}
+	}
+	
+	function setEmpty(){
+		$("#ID").val(0);
+		$("#seq").val(1);
+		$("#kindID").val(0);
+		$("#typeID").val(0);
+		$("#hours").val(4);
+		$("#period").val("08:30-11:30");
+		$("#theDate").val(currDate);
+		$("#item").val("");
+		$("#online").val(0);
+		$("#memo").val("");
+		$("#regDate").val(currDate);
+		$("#registerID").val(currUser);
+		$("#registerName").val(currUserName);
 	}
 	
 	function getUpdateCount(){

@@ -21,7 +21,7 @@
 <script type="text/javascript" src="js/AsyncBox.v1.4.js"></script>
 <script language="javascript" type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 <script src="js/jQuery.print.js" type="text/javascript"></script>
-<script type='text/javascript' src='js/jquery.autocomplete.js'></script>
+<script src="js/datepicker/WdatePicker.js" type="text/javascript"></script>
 <!--#include file="js/clickMenu.js"-->
 
 <script language="javascript">
@@ -36,7 +36,10 @@
 		refID = "<%=refID%>";
 		keyID = "<%=keyID%>";	// mark: A apply, B class
 		op = "<%=op%>";
-		
+
+		$("#theDate").click(function(){WdatePicker();});
+		$("#theDate").val(currDate);
+
 		$.ajaxSetup({ 
 			async: false 
 		}); 
@@ -48,7 +51,7 @@
 	});
 
 	function getClassStudyOnlineList(){
-		$.post(uploadURL + "/public/postCommInfo", {proc:"getClassStudyOnline", params:{classID:nodeID, mark:keyID}}, function(data){
+		$.post(uploadURL + "/public/postCommInfo", {proc:"getClassStudyOnline", params:{classID:nodeID, mark:keyID, theDate:$("#theDate").val()}}, function(data){
 			// alert(unescape(data));
 			let i = 0;
 			let j = 0;
@@ -67,6 +70,7 @@
 			arr.push("<th>模拟次数</th>");
 			arr.push("<th>合格率%</th>");
 			arr.push("<th>最近5次合格率</th>");
+			arr.push("<th>当天模拟</th>");
 			arr.push("<th>考试结果</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -82,6 +86,7 @@
 					arr.push("<td align='center' title='应知/应会'><a style='text-decoration: none;' href='javascript:showExamList(" + val["enterID"] + ",\"" + val["name"] + "\");'>" + val["examTimes"] + "&nbsp;/&nbsp;" + val["examTimes1"] + "</a></td>");
 					arr.push("<td align='center' title='应知/应会'>" + val["goodRate"] + "&nbsp;/&nbsp;" + val["goodRate1"] + "</td>");
 					arr.push("<td align='center' title='应知/应会'>" + val["goodRateLast"] + "&nbsp;/&nbsp;" + val["goodRate1Last"] + "</td>");
+					arr.push("<td align='center' title='次数/合格'>" + val["todayExamTimes"] + "&nbsp;/&nbsp;" + val["todayGoodTimes"] + "</td>");
 					arr.push("<td align='left'>" + rs[val["result"]] + "</td>");
 					arr.push("</tr>");
 				});
@@ -89,6 +94,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
@@ -148,7 +154,7 @@
 		<input class="button" type="button" id="print" value="打印" />&nbsp;
 	</div>
 	<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
-		<div style='text-align:center; margin:10px 0 10px 0;'><h3 style='font-size:1.8em;'>班级在线学习情况统计表</h3></div>
+		<div style='text-align:center; margin:10px 0 10px 0;'><h3 style='font-size:1.8em;'>班级在线学习情况统计表 &nbsp;&nbsp;&nbsp;&nbsp;<input class="mustFill" type="text" id="theDate" size="10" /></h3></div>
 		<div id="cover" style="float:top;background:#f8fff8;">
 		</div>
 	</div>

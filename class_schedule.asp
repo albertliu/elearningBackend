@@ -29,17 +29,29 @@
 	var op = 0;
 	var refID = 0;
 	var keyID = "A";
+	let courseID = "";
 	var updateCount = 0;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";	//classID
-		refID = "<%=refID%>";
+		refID = "<%=refID%>";	// params in obj
 		keyID = "<%=keyID%>";	// mark: A apply, B class
 		op = "<%=op%>";
 		
 		$.ajaxSetup({ 
 			async: false 
-		}); 
+		});
+		
+		if(checkPermission("courseAdd")){
+			$("#btnAdd").show();
+		}else{
+			$("#btnAdd").hide();
+		}
+		
+		$("#btnAdd").click(function(){
+			showScheduleInfo(0,courseID,nodeID,1,1);	//(nodeID,refID,op,mark) op:0 浏览 1 新增; mark:0 不动作  1 有修改时刷新列表
+		});
+
 		$("#btnDownload").click(function(){
 			$.getJSON(uploadURL + "/outfiles/generate_excel?tag=class_schedule&mark=班级授课计划&classID=" + nodeID + "&pobj=" + refID + "&keyID=" + keyID ,function(data){
 				if(data>""){
@@ -87,6 +99,7 @@
 			if(ar>""){
 				var i = 0;
 				var c = 0;
+				courseID = ar1[2];
 				$.each(ar,function(iNum,val){
 					var ar1 = new Array();
 					ar1 = val.split("|");
@@ -94,7 +107,7 @@
 					c = 0;
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + ar1[3] + "</td>");
-					arr.push("<td class='link1'><a href='javascript:showScheduleInfo(" + ar1[0] + ",\"" + ar1[2] + "\",0,1);'>" + ar1[9] + "</a></td>");
+					arr.push("<td class='link1'><a href='javascript:showScheduleInfo(" + ar1[0] + ",\"" + ar1[2] + "\",\"" + nodeID + "\",0,1);'>" + ar1[9] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[10] + "</td>");
 					arr.push("<td class='left'>" + ar1[15] + "</td>");
 					arr.push("<td class='left'>" + ar1[8] + "</td>");
@@ -146,7 +159,10 @@
 
 <div id='layout' align='left' style="background:#f0f0f0;">	
 	<div style='text-align:center; margin:10px 0 10px 0;'><h3 style='font-size:1.8em;'>授课计划表</h3></div>
-	<div style='float:right; padding-right:50px;'><input class="button" type="button" id="btnDownload" value="下载" /></div>
+	<div>
+		<span style="float:left; padding-left:50px;"><input class="button" type="button" id="btnAdd" value="添加" /></span>
+		<span style="float:right; padding-right:50px;"><input class="button" type="button" id="btnDownload" value="下载" /></span>
+	</div>
 	<div id="cover" style="float:top;background:#f8fff8;">
 	</div>
 </div>
