@@ -1498,12 +1498,14 @@
 	
 	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
 	function showClassInfo(nodeID,refID,op,mark){
+		w = $(window).width();
+		h = $(window).height();
 		asyncbox.open({
 			id: "classInfo",
 			url:"classInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "班级信息",
-			width: 1880,
-			height: 900,
+			width: w,
+			height: h,
 			cover : {
 	          //透明度
 	          opacity : 0,
