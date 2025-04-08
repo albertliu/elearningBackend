@@ -99,12 +99,12 @@
 			if(ar>""){
 				var i = 0;
 				var c = 0;
-				courseID = ar1[2];
 				$.each(ar,function(iNum,val){
 					var ar1 = new Array();
 					ar1 = val.split("|");
 					i += 1;
 					c = 0;
+					courseID = ar1[2];
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + ar1[3] + "</td>");
 					arr.push("<td class='link1'><a href='javascript:showScheduleInfo(" + ar1[0] + ",\"" + ar1[2] + "\",\"" + nodeID + "\",0,1);'>" + ar1[9] + "</a></td>");
