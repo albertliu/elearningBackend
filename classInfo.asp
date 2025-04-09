@@ -353,7 +353,7 @@
 				return false;
 			}
 			if(confirm("确定要更改这" + selCount + "个学员的付款类型吗？")){
-				var ar = {"1":"后付费","0":"预付费"};
+				var ar = {"10":"后付费/未付","00":"预付费/未付","11":"后付费/已付","01":"预付费/已付"};
 				jSelect("请选择付款类型：", ar, "付款类型",function(d){
 					d = d.replace(/\s*/g,"");
 					$.post("studentCourseControl.asp?op=pick_students2paynow", {payNow: d, selList: selList, fromClass: $("#classID").val()} ,function(data){
