@@ -62,7 +62,6 @@
 				arr.push("<th width='12%'>开票抬头</th>");
 				arr.push("<th width='12%'>项目</th>");
 				arr.push("<th width='7%'>付款方式</th>");
-				// arr.push("<th width='6%'>单价</th>");
 				arr.push("<th width='6%'>金额</th>");
 				arr.push("<th width='7%'>标识</th>");
 				arr.push("<th width='1%'>票</th>");
@@ -80,9 +79,8 @@
 					arr.push("<td class='left'>" + val["title"] + "</td>");
 					arr.push("<td class='left'>" + val["shortName"] + "</td>");
 					arr.push("<td class='left'>" + val["pay_typeName"] + "</td>");
-					// arr.push("<td class='left'>" + nullNoDisp(val["price"]) + (val["price"]>""?"*1":"") + "</td>");
-					arr.push("<td class='left'" + (val["kindID"]>=5?" style='color:red;'":"") + ">" + nullNoDisp(val["amount"]) + "</td>");
-					// arr.push("<td class='left' title='" + val["pay_memo"] + "'>" + nullNoDisp(val["pay_memo"]).substring(0,10) + "</td>");
+					// 合计为红色字体；红冲、历史发票、预收开票、重开发票为灰色背景，不计入合计金额。
+					arr.push("<td class='left'" + (val["kindID"]>=5?" style='color:red;'":(val["kindID"]>=3?" style='background:#f8f8f8;'":"")) + ">" + nullNoDisp(val["amount"]) + "</td>");
 					arr.push("<td class='left'" + (val["kindID"]==1?" style='background:#ffe0e0;'":(val["kindID"]==3?" style='background:#e0ffff;'":"")) + ">" + val["mark"] + "</td>");
 					arr.push("<td class='link1'><a href='javascript:showPDF(\"" + val["invoicePDF"] + "\",0,0,0);'>" + (val["invoicePDF"]>""?imgChk:"") + "</td>");
 					arr.push("</tr>");
@@ -90,7 +88,6 @@
 				arr.push("</tbody>");
 				arr.push("<tfoot>");
 				arr.push("<tr>");
-				// arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
