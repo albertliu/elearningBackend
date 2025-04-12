@@ -456,6 +456,13 @@ if(op == "delStandardSchedule"){
 	//Response.Write(escape(sql));
 }
 
+if(op == "delSchedule"){
+	sql = "exec delSchedule '" + nodeID + "','" + where + "','" + currUser + "'";
+	execSQL(sql);
+	Response.Write(nodeID);
+	//Response.Write(escape(sql));
+}
+
 if(op == "getCurrScheduleList"){
 	sql = "select * from [dbo].[getCurrScheduleList]('" + currHost + "') where typeID=0";
 	result = "";

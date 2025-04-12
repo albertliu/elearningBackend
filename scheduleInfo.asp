@@ -55,6 +55,29 @@
 		$("#btnSave").click(function(){
 			saveNode();
 		});
+		
+		$("#typeID").change(function(){
+			if($("#typeID").val()==0){
+				$("#period").val("08:30-11:30");
+			}else{
+				$("#period").val("12:30-15:30");
+			}
+		});
+		
+		$("#btnDel").click(function(){
+			if(confirm('确定删除该课节吗?')){
+				var x = prompt("请输入删除原因：","");
+				if(x && x>""){
+					$.get("classControl.asp?op=delSchedule&nodeID=" + nodeID + "&where=" + escape(x) + "&times=" + (new Date().getTime()),function(data){
+						//alert(unescape(data));
+						alert("已成功删除。","信息提示");
+						updateCount += 1;
+						op = 1;
+						setButton();
+					});
+				}
+			}
+		});
 	});
 
 	function getNodeInfo(id){
@@ -126,12 +149,15 @@
 	}
 	
 	function setButton(){
-		if(op==1){
-			setEmpty();
-		}
 		$("#btnSave").hide();
-		if(checkRole("operator") || checkRole("partner") || checkRole("adviser")){
+		$("#btnDel").hide();
+		if(checkPermission("courseAdd")){
 			$("#btnSave").show();
+			if(op ==1){
+				setEmpty();
+			}else{
+				$("#btnDel").show();
+			}
 		}
 	}
 	
@@ -223,6 +249,7 @@
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
   	<input class="button" type="button" id="btnSave" value="保存" />&nbsp;
+  	<input class="button" type="button" id="btnDel" value="删除" />&nbsp;
   </div>
 </div>
 </body>
