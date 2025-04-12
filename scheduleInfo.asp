@@ -112,7 +112,7 @@
 			point = 1;
 		}
 		$.get("classControl.asp?op=updateClassSchedule&nodeID=" + $("#ID").val() + "&keyID=" + keyID + "&online=" + $("#online").val() + "&point=" + point + "&seq=" + $("#seq").val() + "&refID=" + $("#typeID").val() + "&period=" + $("#period").val() + "&hours=" +  $("#hours").val() + "&kindID=" + $("#kindID").val() + "&teacher=" + $("#teacher").val() + "&theDate=" +  $("#theDate").val() + "&address=" + escape($("#address").val()) + "&item=" + escape($("#item").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
-			//alert(unescape(re));
+			// alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar[0] == 0){
@@ -126,6 +126,9 @@
 	}
 	
 	function setButton(){
+		if(op==1){
+			setEmpty();
+		}
 		$("#btnSave").hide();
 		if(checkRole("operator") || checkRole("partner") || checkRole("adviser")){
 			$("#btnSave").show();
