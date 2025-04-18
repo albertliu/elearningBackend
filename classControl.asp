@@ -267,7 +267,7 @@ if(op == "getClassSchedule"){
 		//14
 		result += "|" + rs("kindName").value + "|" + rs("typeName").value + "|" + rs("teacherName").value + "|" + rs("memo").value + "|" + rs("regDate").value;
 		//19
-		result += "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("online").value + "|" + rs("onlineName").value + "|" + rs("mark").value + "|" + rs("point").value;
+		result += "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("online").value + "|" + rs("onlineName").value + "|" + rs("mark").value + "|" + rs("point").value + "|" + rs("std").value;
 		rs.MoveNext();
 	}
 	result = result.substr(2);
@@ -288,7 +288,7 @@ if(op == "getClassScheduleInfo"){
 		//14
 		result += "|" + rs("kindName").value + "|" + rs("typeName").value + "|" + rs("teacherName").value + "|" + rs("memo").value + "|" + rs("regDate").value;
 		//19
-		result += "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("online").value + "|" + rs("onlineName").value + "|" + rs("mark").value + "|" + rs("point").value;
+		result += "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("online").value + "|" + rs("onlineName").value + "|" + rs("mark").value + "|" + rs("point").value + "|" + rs("std").value;
 	}
 	Session(op) = ssql;
 	Response.Write(escape(result));/**/
@@ -298,7 +298,7 @@ if(op == "getClassScheduleInfo"){
 if(op == "updateClassSchedule"){
 	result = 0;
 	//@ID int,@seq int,@kindID int,@typeID int,@hours int,@period varchar(50),@theDate varchar(50),@teacher varchar(50),@memo varchar(500),@registerID
-	sql = "exec updateClassSchedule " + nodeID + ",'" + keyID + "'," + String(Request.QueryString("seq")) + "," + kindID + "," + refID + "," + String(Request.QueryString("online")) + "," + String(Request.QueryString("hours")) + ",'" + String(Request.QueryString("period")) + "','" + String(Request.QueryString("theDate")) + "','" + String(Request.QueryString("teacher")) + "','" + unescape(String(Request.QueryString("address"))) + "','" + item + "'," + String(Request.QueryString("point")) + ",'" + memo + "','" + currUser + "'";
+	sql = "exec updateClassSchedule " + nodeID + ",'" + keyID + "'," + String(Request.QueryString("seq")) + "," + kindID + "," + refID + "," + String(Request.QueryString("online")) + "," + String(Request.QueryString("hours")) + ",'" + String(Request.QueryString("period")) + "','" + String(Request.QueryString("theDate")) + "','" + String(Request.QueryString("teacher")) + "','" + unescape(String(Request.QueryString("address"))) + "','" + item + "'," + String(Request.QueryString("point")) + "," + String(Request.QueryString("std")) + ",'" + memo + "','" + currUser + "'";
 	rs = conn.Execute(sql);
 	if (!rs.EOF){
 		result = rs("status").value + "|" + rs("msg").value;

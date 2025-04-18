@@ -106,6 +106,11 @@
 				}else{
 					$("#point").prop("checked",false);
 				}
+				if(ar[25]==1){
+					$("#std").prop("checked",true);
+				}else{
+					$("#std").prop("checked",false);
+				}
 			}else{
 				jAlert("该信息未找到！","信息提示");
 				setEmpty();
@@ -134,7 +139,11 @@
 		if($("#point").prop("checked")){
 			point = 1;
 		}
-		$.get("classControl.asp?op=updateClassSchedule&nodeID=" + $("#ID").val() + "&keyID=" + keyID + "&online=" + $("#online").val() + "&point=" + point + "&seq=" + $("#seq").val() + "&refID=" + $("#typeID").val() + "&period=" + $("#period").val() + "&hours=" +  $("#hours").val() + "&kindID=" + $("#kindID").val() + "&teacher=" + $("#teacher").val() + "&theDate=" +  $("#theDate").val() + "&address=" + escape($("#address").val()) + "&item=" + escape($("#item").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		let std = 0;
+		if($("#std").prop("checked")){
+			std = 1;
+		}
+		$.get("classControl.asp?op=updateClassSchedule&nodeID=" + $("#ID").val() + "&keyID=" + keyID + "&online=" + $("#online").val() + "&point=" + point + "&std=" + std + "&seq=" + $("#seq").val() + "&refID=" + $("#typeID").val() + "&period=" + $("#period").val() + "&hours=" +  $("#hours").val() + "&kindID=" + $("#kindID").val() + "&teacher=" + $("#teacher").val() + "&theDate=" +  $("#theDate").val() + "&address=" + escape($("#address").val()) + "&item=" + escape($("#item").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			// alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -175,6 +184,8 @@
 		$("#regDate").val(currDate);
 		$("#registerID").val(currUser);
 		$("#registerName").val(currUserName);
+		$("#std").prop("checked",false);
+		$("#point").prop("checked",true);
 	}
 	
 	function getUpdateCount(){
@@ -221,7 +232,8 @@
 				<td align="right">上课形式</td>
 				<td>
 					<select id="online" style="width:80px;"></select>
-					&nbsp;&nbsp;<input style="border:0px;" type="checkbox" id="point" value="" />
+					&nbsp;&nbsp;<input style="border:0px;" type="checkbox" id="point" value="" />**
+					&nbsp;&nbsp;<input style="border:0px;" type="checkbox" id="std" value="" />标准
 				</td>
 				<td align="right">教室</td>
 				<td><input type="text" id="address" size="25"/></td>
