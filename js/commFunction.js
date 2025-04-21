@@ -1535,7 +1535,7 @@
 			id: "class_schedule",
 			url:"class_schedule.asp?nodeID=" + nodeID + "&refID=" + refID + "&keyID=" + keyID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "授课计划表",
-			width: 900,
+			width: 950,
 			height: 780,
 			cover : {
 	          //透明度
