@@ -1043,7 +1043,6 @@ if(op == "updateFiremanEnterInfo"){
 	rs = conn.Execute(sql);
 	if (!rs.EOF){
 		result = rs("status").value + "|" + rs("msg").value;
-		execSQL(sql);
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -1057,7 +1056,6 @@ if(op == "delNode"){
 	rs = conn.Execute(sql);
 	if (!rs.EOF){
 		result = rs("status").value + "|" + rs("msg").value;
-		execSQL(sql);
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -1069,7 +1067,6 @@ if(op == "doReturn"){
 	rs = conn.Execute(sql);
 	if (!rs.EOF){
 		result = rs("status").value + "|" + rs("msg").value;
-		execSQL(sql);
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -1095,7 +1092,6 @@ if(op == "pick_students4class"){
 	rs = conn.Execute(sql);
 	if (!rs.EOF){
 		result = rs("re").value;
-		execSQL(sql);
 	}
 	rs.Close();
 	Response.Write(result);
@@ -1107,7 +1103,6 @@ if(op == "pick_students2class"){
 	rs = conn.Execute(sql);
 	if (!rs.EOF){
 		result = rs("re").value;
-		execSQL(sql);
 	}
 	rs.Close();
 	Response.Write(result);
@@ -1119,7 +1114,6 @@ if(op == "pick_students2paynow"){
 	rs = conn.Execute(sql);
 	if (!rs.EOF){
 		result = rs("re").value;
-		execSQL(sql);
 	}
 	rs.Close();
 	Response.Write(result);
