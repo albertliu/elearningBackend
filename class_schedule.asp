@@ -86,10 +86,10 @@
 			arr.push("<th width='12%'>上课日期</th>");
 			arr.push("<th width='6%'>星期</th>");
 			arr.push("<th width='6%'>时段</th>");
-			arr.push("<th width='12%'>上课时间</th>");
+			arr.push("<th width='12%'>时间</th>");
 			arr.push("<th width='6%'>课时</th>");
 			arr.push("<th width='6%'>类型</th>");
-			arr.push("<th width='10%'>授课教师</th>");
+			arr.push("<th width='10%'>教师</th>");
 			arr.push("<th width='18%'>授课内容</th>");
 			arr.push("<th width='6%'>形式</th>");
 			arr.push("<th width='1%'>标</th>");
