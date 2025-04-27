@@ -43,6 +43,14 @@
 		$.ajaxSetup({ 
 			async: false 
 		}); 
+		
+		$("#btnFind").click(function(){
+			if($("#theDate").val()==""){
+				alert("请选择当前日期。");
+				return false;
+			}
+			getClassStudyOnlineList();
+		});
 
 		$("#print").click(function(){
 			resumePrint();
@@ -86,7 +94,7 @@
 					arr.push("<td align='center' title='应知/应会'><a style='text-decoration: none;' href='javascript:showExamList(" + val["enterID"] + ",\"" + val["name"] + "\");'>" + val["examTimes"] + "&nbsp;/&nbsp;" + val["examTimes1"] + "</a></td>");
 					arr.push("<td align='center' title='应知/应会'>" + val["goodRate"] + "&nbsp;/&nbsp;" + val["goodRate1"] + "</td>");
 					arr.push("<td align='center' title='应知/应会'>" + val["goodRateLast"] + "&nbsp;/&nbsp;" + val["goodRate1Last"] + "</td>");
-					arr.push("<td align='center' title='次数/合格'>" + val["todayExamTimes"] + "&nbsp;/&nbsp;" + val["todayGoodTimes"] + "</td>");
+					arr.push("<td align='center' title='次数/合格/最高'>" + val["todayExamTimes"] + "&nbsp;/&nbsp;" + val["todayGoodTimes"] + "&nbsp;/&nbsp;" + val["todayBestScore"] + "</td>");
 					arr.push("<td align='left'>" + rs[val["result"]] + "</td>");
 					arr.push("</tr>");
 				});
@@ -154,7 +162,10 @@
 		<input class="button" type="button" id="print" value="打印" />&nbsp;
 	</div>
 	<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
-		<div style='text-align:center; margin:10px 0 10px 0;'><h3 style='font-size:1.8em;'>班级在线学习情况统计表 &nbsp;&nbsp;&nbsp;&nbsp;<input class="mustFill" type="text" id="theDate" size="10" /></h3></div>
+		<div style='text-align:center; margin:10px 0 10px 0;'>
+			<h3 style='font-size:1.8em;'>班级在线学习情况统计表 &nbsp;&nbsp;&nbsp;&nbsp;
+			<input class="mustFill" type="text" id="theDate" size="10" /><input class="button" type="button" id="btnFind" value="查询" /></h3>
+		</div>
 		<div id="cover" style="float:top;background:#f8fff8;">
 		</div>
 	</div>
