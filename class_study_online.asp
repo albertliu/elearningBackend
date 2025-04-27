@@ -71,15 +71,15 @@
 			arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='cardTab' width='100%'>");
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
-			arr.push("<th width='10'>No</th>");
+			arr.push("<th>No</th>");
 			arr.push("<th>姓名</th>");
-			arr.push("<th>线下考勤</th>");
-			arr.push("<th>在线进度%</th>");
-			arr.push("<th>模拟次数</th>");
+			arr.push("<th>考勤</th>");
+			arr.push("<th>在线%</th>");
+			arr.push("<th>模拟</th>");
 			arr.push("<th>合格率%</th>");
 			arr.push("<th>最近5次合格率</th>");
 			arr.push("<th>当天模拟</th>");
-			arr.push("<th>考试结果</th>");
+			arr.push("<th>考试</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
@@ -159,12 +159,12 @@
 
 <div id='layout' align='left' style="background:#f0f0f0;">	
 	<div id="pageTitle" style="text-align:center;">
-		<input class="button" type="button" id="print" value="打印" />&nbsp;
+		<input class="button" type="button" id="print" value="打印" />&nbsp;&nbsp;&nbsp;<input class="button" type="button" id="btnFind" value="查询" />
 	</div>
 	<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
 		<div style='text-align:center; margin:10px 0 10px 0;'>
 			<h3 style='font-size:1.8em;'>班级在线学习情况统计表 &nbsp;&nbsp;&nbsp;&nbsp;
-			<input class="mustFill" type="text" id="theDate" size="10" /><input class="button" type="button" id="btnFind" value="查询" /></h3>
+			<input class="mustFill" type="text" id="theDate" size="10" /></h3>
 		</div>
 		<div id="cover" style="float:top;background:#f8fff8;">
 		</div>
