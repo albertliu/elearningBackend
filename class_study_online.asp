@@ -91,10 +91,10 @@
 					arr.push("<td align='left'>" + val["name"] + "</td>");
 					arr.push("<td align='center'>" + val["pOffline"] + "</td>");
 					arr.push("<td align='left'><a href='javascript:showCompletionList(" + val["enterID"] + ",0,0,0);'>" + val["completion"] + "</a></td>");
-					arr.push("<td align='center' title='应知/应会'><a style='text-decoration: none;' href='javascript:showExamList(" + val["enterID"] + ",\"" + val["name"] + "\");'>" + val["examTimes"] + "&nbsp;/&nbsp;" + val["examTimes1"] + "</a></td>");
+					arr.push("<td align='center' title='应知/应会/最好成绩'><a style='text-decoration: none;' href='javascript:showExamList(" + val["enterID"] + ",\"" + val["name"] + "\");'>" + val["examTimes"] + "&nbsp;/&nbsp;" + val["examTimes1"] + "&nbsp;/&nbsp;" + val["bestScore"] + "</a></td>");
 					arr.push("<td align='center' title='应知/应会'>" + val["goodRate"] + "&nbsp;/&nbsp;" + val["goodRate1"] + "</td>");
 					arr.push("<td align='center' title='应知/应会'>" + val["goodRateLast"] + "&nbsp;/&nbsp;" + val["goodRate1Last"] + "</td>");
-					arr.push("<td align='center' title='次数/合格/最高'>" + val["todayExamTimes"] + "&nbsp;/&nbsp;" + val["todayGoodTimes"] + "&nbsp;/&nbsp;" + val["todayBestScore"] + "</td>");
+					arr.push("<td align='center' title='次数/合格/最好成绩'>" + val["todayExamTimes"] + "&nbsp;/&nbsp;" + val["todayGoodTimes"] + "&nbsp;/&nbsp;" + val["todayBestScore"] + "</td>");
 					arr.push("<td align='left'>" + rs[val["result"]] + "</td>");
 					arr.push("</tr>");
 				});
