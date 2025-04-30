@@ -708,7 +708,7 @@
 			setEmpty();
 			$("#btnEnter").focus();
 		}else{
-			if(currHost==""){
+			if(currHost=="" && !checkRole("sniper")){
 				if($("#statusPay").val()==1){
 					//未支付的个人付款可以支付，团体付款应到发票管理中操作。
 					$("#amount").prop("disabled",true);
