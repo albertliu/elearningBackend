@@ -280,14 +280,11 @@
 			deleteTab("工作统计");
 		}
 		deleteTab("收费概况");
-		if(checkRole("saler")){
-			currSales = currUser;
-		}
 		if(currUser == "amra." || currUser == "samra." || currUser == "jiacaiyun." || checkRole("sniper")){
 			deleteTab("收费发票");
-			deleteTab("收费日报");
-			if(currUser !== "amra."){
+			if(currUser !== "amra." && currUser !== "samra."){
 				deleteTab("销售业绩");
+				deleteTab("收费日报");
 			}
 			deleteTab("学员注册");
 			deleteTab("证书获取");
@@ -316,6 +313,9 @@
 		if(checkRole("sniper")){
 			$("#menu12").show();
 			deleteTab("考试管理");
+		}
+		if(checkRole("saler")){
+			currSales = currUser;
 		}
 		if(checkRole("emergency")){
 			$("#menu6").hide();		//统计
