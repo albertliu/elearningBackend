@@ -1106,7 +1106,7 @@
 		$("#courseID").prop("disabled",true);
 		$("#item_btn1").hide();
 		$("#item_btn2").hide();
-		if(currHost=="" && !checkRole("sniper")){
+		if(!checkRole("sniper")){
 			$("#item_btn1").show();
 			$("#item_btn2").show();
 		}
