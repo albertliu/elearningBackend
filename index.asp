@@ -283,7 +283,7 @@
 		if(checkRole("saler")){
 			currSales = currUser;
 		}
-		if(currUser == "amra." || currUser == "samra." || currUser == "jiacaiyun." || currUser == "donghai."){
+		if(currUser == "amra." || currUser == "samra." || currUser == "jiacaiyun." || checkRole("sniper")){
 			deleteTab("收费发票");
 			deleteTab("收费日报");
 			if(currUser !== "amra."){
@@ -308,10 +308,14 @@
 			$("#project_Tab").hide();
 			$("#content").hide();
 		}
-		if(currUser == "jiacaiyun." || currUser == "donghai."){
+		if(currUser == "jiacaiyun." || checkRole("sniper")){
 			$("#menu01").hide();
 			$("#menu6").hide();
 			$("#menu10").hide();
+		}
+		if(checkRole("sniper")){
+			$("#menu12").show();
+			deleteTab("考试管理");
 		}
 		if(checkRole("emergency")){
 			$("#menu6").hide();		//统计

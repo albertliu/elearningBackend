@@ -1055,7 +1055,7 @@
 		$("#item_btn2").hide();
 		$("#btnArchive").hide();
 		$("#btnSetSource").hide();
-		if(currHost==""){
+		if(currHost=="" && !checkRole("sniper")){
 			$("#item_btn1").show();
 			$("#item_btn2").show();
 		}

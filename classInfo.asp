@@ -1104,6 +1104,12 @@
 		$("#btnSetSource").hide();
 		// $("#className").prop("disabled",true);
 		$("#courseID").prop("disabled",true);
+		$("#item_btn1").hide();
+		$("#item_btn2").hide();
+		if(currHost=="" && !checkRole("sniper")){
+			$("#item_btn1").show();
+			$("#item_btn2").show();
+		}
 		if(op ==1){
 			setEmpty();
 			$("#feedback_item").prop("disabled",true);
@@ -1335,7 +1341,7 @@
 
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
 	<div style="width:100%;float:left;margin:0;">
-		<div style="border:solid 1px #e0e0e0;width:99%;margin:5px;background:#ffffff;line-height:18px;padding-left:20px;">
+		<div id="item_btn1" style="border:solid 1px #e0e0e0;width:99%;margin:5px;background:#ffffff;line-height:18px;padding-left:20px;">
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnSel" value="全选/取消" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassChange" value="更换班级" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnPaynowChange" value="更换支付" /></span>
@@ -1353,7 +1359,7 @@
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnInvoiceGroup" value="团体发票" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnCloseStudentCourse" value="关闭/开启课程" /></span>
 		</div>
-		<div>
+		<div id="item_btn2">
 			学习进度&nbsp;&lt;=<input type="text" id="s_completion2" size="2" />%
 			&nbsp;&nbsp;模拟成绩&nbsp;&lt;=<input type="text" id="s_score2" size="2" />
 			&nbsp;&nbsp;销售&nbsp;<select id="fromID" style="width:80px;"></select>

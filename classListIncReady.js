@@ -64,8 +64,12 @@
 		if($("#searchClassPre").prop("checked")){
 			pre = 1
 		}
+		let sniper = 0;
+		if(checkRole("sniper")){
+			sniper = 1
+		}
 		//alert((sWhere) + "&refID=" + $("#searchClassCert").val() + "&status=" + $("#searchClassStatus").val() + "&project=" + $("#searchClassProject").val());
-		$.get("classControl.asp?op=getClassList&where=" + escape(sWhere) + "&mark=" + mark + "&refID=" + $("#searchClassCert").val() + "&pre=" + pre + "&host=" + $("#searchClassPartner").val() + "&status=" + $("#searchClassStatus").val() + "&kindID=" + k + "&project=" + $("#searchClassProject").val() + "&dk=91&times=" + (new Date().getTime()),function(data){
+		$.get("classControl.asp?op=getClassList&where=" + escape(sWhere) + "&sniper=" + sniper + "&mark=" + mark + "&refID=" + $("#searchClassCert").val() + "&pre=" + pre + "&host=" + $("#searchClassPartner").val() + "&status=" + $("#searchClassStatus").val() + "&kindID=" + k + "&project=" + $("#searchClassProject").val() + "&dk=91&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");

@@ -49,8 +49,12 @@
 
 	function getGenerateApplyList(){
 		sWhere = $("#txtSearchGenerateApply").val();
+		let sniper = 0;
+		if(checkRole("sniper")){
+			sniper = 1
+		}
 		//alert((sWhere) + "&kindID=" + $("#searchGenerateApplyCourse").val() + "&host=" + $("#searchGenerateApplyHost").val() + "&keyID=" + photo);
-		$.get("diplomaControl.asp?op=getGenerateApplyList&where=" + escape(sWhere) + "&host=" + $("#searchGenerateApplyPartner").val() + "&kindID=" + $("#searchGenerateApplyCert").val() + "&refID=" + $("#searchGenerateApplyRegister").val()  + "&status=" + $("#searchGenerateApplyStatus").val() + "&fStart=" + $("#searchGenerateApplyStart").val() + "&fEnd=" + $("#searchGenerateApplyEnd").val() + "&dk=106&times=" + (new Date().getTime()),function(data){
+		$.get("diplomaControl.asp?op=getGenerateApplyList&where=" + escape(sWhere) + "&sniper=" + sniper + "&host=" + $("#searchGenerateApplyPartner").val() + "&kindID=" + $("#searchGenerateApplyCert").val() + "&refID=" + $("#searchGenerateApplyRegister").val()  + "&status=" + $("#searchGenerateApplyStatus").val() + "&fStart=" + $("#searchGenerateApplyStart").val() + "&fEnd=" + $("#searchGenerateApplyEnd").val() + "&dk=106&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");

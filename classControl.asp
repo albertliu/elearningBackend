@@ -73,9 +73,9 @@ if(op == "getClassList"){
 			where = s;
 		}
 	}
-	//当前用户为special
-	if(currUser == 'donghai.'){
-		s = "classID in ('C12-24119')";
+	//当前用户为special sniper
+	if(String(Request.QueryString("sniper")) == 1){
+		s = "ID in (select classID from [user_class_list] where username='" + currUser + "' and mark='B' and status=0)";
 		if(where > ""){
 			where = where + " and " + s;
 		}else{

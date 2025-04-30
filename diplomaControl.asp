@@ -970,6 +970,15 @@ if(op == "getGenerateApplyList"){
 			where = s;
 		}
 	}
+	//当前用户为special sniper
+	if(String(Request.QueryString("sniper")) == 1){
+		s = "ID in (select classID from [user_class_list] where username='" + currUser + "' and mark='A' and status=0)";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 
 	if(where > ""){
 		where = " where " + where;
