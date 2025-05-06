@@ -659,6 +659,15 @@ if(op == "getGeneratePasscardList"){
 			where = s;
 		}
 	}
+	//当前用户为special sniper
+	if(String(Request.QueryString("sniper")) == 1){
+		s = "sniper='" + currUser + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 
 	if(where > ""){
 		where = " where " + where;
@@ -794,7 +803,7 @@ if(op == "getGeneratePasscardNodeInfo"){
 		//20
 		result += "|" + rs("sendScore").value + "|" + rs("sendScoreDate").value + "|" + rs("senderScoreName").value + "|" + rs("qtyYes").value + "|" + rs("qtyNo").value + "|" + rs("qtyNull").value;
 		//26
-		result += "|" + rs("kindID").value + "|" + rs("kindName").value + "|" + rs("closeDate").value + "|" + rs("minutes").value + "|" + rs("scorePass").value + "|" + rs("sync").value;
+		result += "|" + rs("kindID").value + "|" + rs("kindName").value + "|" + rs("closeDate").value + "|" + rs("minutes").value + "|" + rs("scorePass").value + "|" + rs("sync").value + "|" + rs("sniper").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -803,7 +812,7 @@ if(op == "getGeneratePasscardNodeInfo"){
 
 if(op == "updateGeneratePasscardInfo"){
 	//@ID int,@certID varchar(50),@title nvarchar(100),@startNo int,@startDate varchar(100),@startTime varchar(100),@address nvarchar(100),@notes nvarchar(500),@memo nvarchar(500),@registerID
-	sql = "exec updateGeneratePasscardInfo1 " + nodeID + ",'" + refID + "','" + item + "','" + keyID + "','" + kindID + "','" + String(Request.QueryString("startDate")) + "','" + String(Request.QueryString("startTime")) + "','" + unescape(String(Request.QueryString("address"))) + "','" + unescape(String(Request.QueryString("notes"))) + "'," + String(Request.QueryString("sync")) + ",'" + memo + "','" + currUser + "'";
+	sql = "exec updateGeneratePasscardInfo1 " + nodeID + ",'" + refID + "','" + item + "','" + keyID + "','" + kindID + "','" + String(Request.QueryString("startDate")) + "','" + String(Request.QueryString("startTime")) + "','" + unescape(String(Request.QueryString("address"))) + "','" + unescape(String(Request.QueryString("notes"))) + "'," + String(Request.QueryString("sync")) + ",'" + String(Request.QueryString("sniper")) + "','" + memo + "','" + currUser + "'";
 	rs = conn.Execute(sql);
 	if(!rs.EOF){
 		result = rs("re").value;

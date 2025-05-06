@@ -312,7 +312,7 @@
 		}
 		if(checkRole("sniper")){
 			$("#menu12").show();
-			deleteTab("考试管理");
+			// deleteTab("考试管理");
 		}
 		if(checkRole("saler")){
 			currSales = currUser;

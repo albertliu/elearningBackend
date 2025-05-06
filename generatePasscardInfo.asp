@@ -44,6 +44,7 @@
 		getDicList("statusNo","s_resit",1);
 		getDicList("online","kindID",0);
 		getDicList("statusNo","sync",0);
+		getComList("sniper","v_sniperList","userName","realName","1=1",1);
 		$("#startDate").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd HH:mm', onpicked:pickerChange});});
 		$("#startTime").click(function(){WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'});});
 		getCertList();
@@ -292,6 +293,7 @@
 				$("#minutes").val(ar[29]);
 				$("#scorePass").val(ar[30]);
 				$("#sync").val(ar[31]);
+				$("#sniper").val(ar[31]);
 				$("#sendMsgExam").hide();
 				$("#sendMsgScore").hide();
 				var c = "";
@@ -386,7 +388,7 @@
 			return false;
 		}*/
 		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-		$.get("diplomaControl.asp?op=updateGeneratePasscardInfo&nodeID=" + nodeID + "&refID=" + $("#certID").val() + "&sync=" + $("#sync").val() + "&kindID=" + $("#kindID").val() + "&keyID=" + $("#startNo").val() + "&startDate=" + $("#startDate").val() + "&startTime=" + $("#startTime").val() + "&item=" + escape($("#title").val()) + "&address=" + escape($("#address").val()) + "&notes=" + escape($("#notes").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("diplomaControl.asp?op=updateGeneratePasscardInfo&nodeID=" + nodeID + "&refID=" + $("#certID").val() + "&sniper=" + $("#sniper").val() + "&sync=" + $("#sync").val() + "&kindID=" + $("#kindID").val() + "&keyID=" + $("#startNo").val() + "&startDate=" + $("#startDate").val() + "&startTime=" + $("#startTime").val() + "&item=" + escape($("#title").val()) + "&address=" + escape($("#address").val()) + "&notes=" + escape($("#notes").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//alert(unescape(re));
 			if(re>0){
 				jAlert("保存成功");
@@ -721,7 +723,7 @@
 			</tr>
 			<tr>
 				<td align="right">标准时长</td>
-				<td><input class="readOnly" type="text" id="minutes" readOnly="true" size="5" />&nbsp;&nbsp;分钟</td>
+				<td><input class="readOnly" type="text" id="minutes" readOnly="true" size="3" />&nbsp;分钟&nbsp;&nbsp;指定&nbsp;<select id="sniper" style="width:60px;"></select></td>
 				<td align="right">合格分数</td>
 				<td><input class="readOnly" type="text" id="scorePass" readOnly="true" size="5" />&nbsp;&nbsp;优化&nbsp;<select id="sync" style="width:60px;"></select></td>
 			</tr>

@@ -45,8 +45,12 @@
 
 	function getGeneratePasscardList(){
 		sWhere = $("#txtSearchGeneratePasscard").val();
+		let sniper = 0;
+		if(checkRole("sniper")){
+			sniper = 1
+		}
 		//alert((sWhere) + "&kindID=" + $("#searchGeneratePasscardCert").val() + "&host=" + $("#searchGeneratePasscardHost").val() + "&keyID=" + photo);
-		$.get("diplomaControl.asp?op=getGeneratePasscardList&where=" + escape(sWhere) + "&kindID=" + $("#searchGeneratePasscardCert").val() + "&refID=" + $("#searchGeneratePasscardRegister").val() + "&status=" + $("#searchGeneratePasscardStatus").val() + "&fStart=" + $("#searchGeneratePasscardStart").val() + "&fEnd=" + $("#searchGeneratePasscardEnd").val() + "&dk=104&times=" + (new Date().getTime()),function(data){
+		$.get("diplomaControl.asp?op=getGeneratePasscardList&where=" + escape(sWhere) + "&sniper=" + sniper + "&kindID=" + $("#searchGeneratePasscardCert").val() + "&refID=" + $("#searchGeneratePasscardRegister").val() + "&status=" + $("#searchGeneratePasscardStatus").val() + "&fStart=" + $("#searchGeneratePasscardStart").val() + "&fEnd=" + $("#searchGeneratePasscardEnd").val() + "&dk=104&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
