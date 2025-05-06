@@ -293,7 +293,7 @@
 				$("#minutes").val(ar[29]);
 				$("#scorePass").val(ar[30]);
 				$("#sync").val(ar[31]);
-				$("#sniper").val(ar[31]);
+				$("#sniper").val(ar[32]);
 				$("#sendMsgExam").hide();
 				$("#sendMsgScore").hide();
 				var c = "";
@@ -723,7 +723,7 @@
 			</tr>
 			<tr>
 				<td align="right">标准时长</td>
-				<td><input class="readOnly" type="text" id="minutes" readOnly="true" size="3" />&nbsp;分钟&nbsp;&nbsp;指定&nbsp;<select id="sniper" style="width:60px;"></select></td>
+				<td><input class="readOnly" type="text" id="minutes" readOnly="true" size="3" />&nbsp;分&nbsp;&nbsp;指定&nbsp;<select id="sniper" style="width:80px;"></select></td>
 				<td align="right">合格分数</td>
 				<td><input class="readOnly" type="text" id="scorePass" readOnly="true" size="5" />&nbsp;&nbsp;优化&nbsp;<select id="sync" style="width:60px;"></select></td>
 			</tr>
