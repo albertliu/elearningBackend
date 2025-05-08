@@ -59,6 +59,7 @@
 		$("#dateInvoicePick").click(function(){WdatePicker();});
 		$("#currDiplomaDate").click(function(){WdatePicker();});
 		$("#signatureDate").click(function(){WdatePicker();});
+		$("#examDate").click(function(){WdatePicker();});
 		$.ajaxSetup({ 
 			async: false 
 		}); 
@@ -377,7 +378,7 @@
 		});
 
 		$("#btnSaveScore").click(function(){
-			$.get("studentCourseControl.asp?op=saveExamScore&refID=" + ref_id + "&score=" + $("#score").val() + "&score2=" + $("#score2").val() + "&result=" + $("#result").val() + "&times=" + (new Date().getTime()),function(re){
+			$.get("studentCourseControl.asp?op=saveExamScore&refID=" + ref_id + "&score=" + $("#score").val() + "&score2=" + $("#score2").val() + "&result=" + $("#result").val() + "&examDate=" + $("#examDate").val() + "&times=" + (new Date().getTime()),function(re){
 				// alert(unescape(re))
 				$.messager.alert("提示","保存成功。","info");
 				getNodeInfo(nodeID);
@@ -469,6 +470,7 @@
 				$("#score").val(nullNoDisp(ar[93]));
 				$("#score2").val(nullNoDisp(ar[94]));
 				$("#result").val(ar[95]);
+				$("#examDate").val(ar[98]);
 				ref_id = ar[96];
 				// let c = $("#certID").val();
 				// if(c == "C21" || c == "C20A"){
@@ -941,7 +943,8 @@
 							<input class="button" type="button" id="btnFiremanMaterials" value="消防员" />
 						</span>
 						<span style="padding-left:50px;">
-							成绩：<select id="result" style="width:70px;"></select>
+							考试<input type="text" id="examDate" style="width:80px;" />
+							&nbsp;&nbsp;成绩：<select id="result" style="width:70px;"></select>
 							&nbsp;&nbsp;应知<input type="text" id="score" style="width:50px;" />
 							&nbsp;&nbsp;应会<input type="text" id="score2" style="width:50px;" />
 							&nbsp;&nbsp;<input class="button" type="button" id="btnSaveScore" value="ok" />

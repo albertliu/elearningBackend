@@ -589,7 +589,7 @@ if(op == "getNodeInfo"){
 		//87
 		result += "|" + rs("check_pass").value + "|" + rs("noReceive").value + "|" + rs("invoicePDF").value + "|" + rs("invoice_amount").value + "|" + rs("priceStandard").value + "|" + rs("receipt").value;
 		//93
-		result += "|" + rs("score").value + "|" + rs("score2").value + "|" + rs("result").value + "|" + rs("refID").value + "|" + rs("source").value;
+		result += "|" + rs("score").value + "|" + rs("score2").value + "|" + rs("result").value + "|" + rs("refID").value + "|" + rs("source").value + "|" + rs("examDate").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -1292,7 +1292,7 @@ if(op == "removeInvoice"){
 
 if(op == "saveExamScore"){
 	result = "";
-	sql = "exec saveExamScore '" + refID + "','" + String(Request.QueryString("score")) + "','" + String(Request.QueryString("score2")) + "','" + String(Request.QueryString("result")) + "','" + currUser + "'";
+	sql = "exec saveExamScore '" + refID + "','" + String(Request.QueryString("score")) + "','" + String(Request.QueryString("score2")) + "','" + String(Request.QueryString("result")) + "','" + String(Request.QueryString("examDate")) + "','" + currUser + "'";
 	execSQL(sql);
 	Response.Write(0);
 }
