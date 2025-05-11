@@ -137,7 +137,7 @@
 				if(rptOtherItem==4 || rptOtherItem==5){
 					arr.push("<th width='20%'>项目</th>");
 					arr.push("<th width='15%'>当期人数</th>");
-					arr.push("<th width='15%'>去年同比</th>");
+					arr.push("<th width='15%'>去年同期</th>");
 					arr.push("<th width='15%'>同比增长%</th>");
 					arr.push("<th width='15%'>去年全年</th>");
 					arr.push("<th width='15%'>前年全年</th>");
@@ -264,7 +264,7 @@
 			return false;
 		}
 		if(mark===4){	//课程招生统计
-			$("#rptOtherItem1").show();
+			$("#rptOtherItem1").hide();
 			$("#rptOtherItem2").hide();
 			$("#btnRptOther4").css("background-color", "yellow");
 			$("#btnRptOther1").css("background-color", "#fcfcfc");
