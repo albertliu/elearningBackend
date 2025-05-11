@@ -18,6 +18,12 @@
 		$("#btnRptOther3").click(function(){
 			setRptOtherOption(3);
 		});
+		$("#btnRptOther4").click(function(){
+			setRptOtherOption(4);
+		});
+		$("#btnRptOther5").click(function(){
+			setRptOtherOption(5);
+		});
 
 		$("#btnRptOther").linkbutton({
 			iconCls:'icon-search',
@@ -67,6 +73,14 @@
 		if(rptOtherItem===3){
 			op = "getRptPassRate";
 			param["opt"] = value;
+		}
+		if(rptOtherItem===4){
+			op = "getYOYRpt";
+			param["kind"] = 0;
+		}
+		if(rptOtherItem===5){
+			op = "getYOYRpt";
+			param["kind"] = 1;
 		}
 		//alert("op=other&mark=" + mark + "&host=" + $("#rptOtherHost").val() + "&kindID=" + $("#rptOtherKind").val() + "&startDate=" + $("#rptOtherStartDate").val() + "&endDate=" + $("#rptOtherEndDate").val() + "&groupHost=" + g1 + "&groupDept1=" + g2 + "&groupKindID=" + g3 + "&groupDate=" + g4);
 		//@host varchar(50),@startDate varchar(50),@endDate varchar(50),@kindID varchar(20),@groupHost int,@groupDept1 int,@groupKindID int,@groupDate
@@ -120,6 +134,14 @@
 					arr.push("<th width='9%'>发布日期</th>");
 					arr.push("<th width='22%'>备注</th>");
 				}
+				if(rptOtherItem==4 || rptOtherItem==5){
+					arr.push("<th width='20%'>项目</th>");
+					arr.push("<th width='15%'>当期人数</th>");
+					arr.push("<th width='15%'>去年同比</th>");
+					arr.push("<th width='15%'>同比增长%</th>");
+					arr.push("<th width='15%'>去年全年</th>");
+					arr.push("<th width='15%'>前年全年</th>");
+				}
 				arr.push("</tr>");
 				arr.push("</thead>");
 				arr.push("<tbody id='tbody'>");
@@ -162,6 +184,14 @@
 						arr.push("<td class='left'>" + val["dateEnd"] + "</td>");
 						arr.push("<td class='left'>" + val["memo"] + "</td>");
 					}
+					if(rptOtherItem==4 || rptOtherItem==5){
+						arr.push("<td class='left'>" + val["item"] + "</td>");
+						arr.push("<td class='right'>" + nullNoDisp(val["thisYear"]) + "</td>");
+						arr.push("<td class='right'>" + nullNoDisp(val["YOY"]) + "</td>");
+						arr.push("<td class='right'>" + nullNoDisp(val["rate"]) + "</td>");
+						arr.push("<td class='right'>" + nullNoDisp(val["lastYear"]) + "</td>");
+						arr.push("<td class='right'>" + nullNoDisp(val["blastYear"]) + "</td>");
+					}
 					arr.push("</tr>");
 				});
 				arr.push("</tbody>");
@@ -174,8 +204,10 @@
 				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
-				arr.push("<th>&nbsp;</th>");
-				arr.push("<th>&nbsp;</th>");
+				if(rptOtherItem<4){
+					arr.push("<th>&nbsp;</th>");
+					arr.push("<th>&nbsp;</th>");
+				}
 				if(rptOtherItem==3){
 					arr.push("<th>&nbsp;</th>");
 				}
@@ -207,6 +239,8 @@
 			$("#btnRptOther1").css("background-color", "yellow");
 			$("#btnRptOther2").css("background-color", "#fcfcfc");
 			$("#btnRptOther3").css("background-color", "#fcfcfc");
+			$("#btnRptOther4").css("background-color", "#fcfcfc");
+			$("#btnRptOther5").css("background-color", "#fcfcfc");
 			return false;
 		}
 		if(mark===2){	//工作量统计
@@ -215,6 +249,8 @@
 			$("#btnRptOther2").css("background-color", "yellow");
 			$("#btnRptOther1").css("background-color", "#fcfcfc");
 			$("#btnRptOther3").css("background-color", "#fcfcfc");
+			$("#btnRptOther4").css("background-color", "#fcfcfc");
+			$("#btnRptOther5").css("background-color", "#fcfcfc");
 			return false;
 		}
 		if(mark===3){	//通过率统计
@@ -223,6 +259,28 @@
 			$("#btnRptOther3").css("background-color", "yellow");
 			$("#btnRptOther2").css("background-color", "#fcfcfc");
 			$("#btnRptOther1").css("background-color", "#fcfcfc");
+			$("#btnRptOther4").css("background-color", "#fcfcfc");
+			$("#btnRptOther5").css("background-color", "#fcfcfc");
+			return false;
+		}
+		if(mark===4){	//课程招生统计
+			$("#rptOtherItem1").show();
+			$("#rptOtherItem2").hide();
+			$("#btnRptOther4").css("background-color", "yellow");
+			$("#btnRptOther1").css("background-color", "#fcfcfc");
+			$("#btnRptOther3").css("background-color", "#fcfcfc");
+			$("#btnRptOther2").css("background-color", "#fcfcfc");
+			$("#btnRptOther5").css("background-color", "#fcfcfc");
+			return false;
+		}
+		if(mark===5){	//客户招生统计
+			$("#rptOtherItem1").hide();
+			$("#rptOtherItem2").hide();
+			$("#btnRptOther5").css("background-color", "yellow");
+			$("#btnRptOther2").css("background-color", "#fcfcfc");
+			$("#btnRptOther1").css("background-color", "#fcfcfc");
+			$("#btnRptOther4").css("background-color", "#fcfcfc");
+			$("#btnRptOther3").css("background-color", "#fcfcfc");
 			return false;
 		}
 	}

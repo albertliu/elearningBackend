@@ -396,6 +396,7 @@
 			ar = unescape(re).split("|");
 			if(ar > ""){
 				$("#studentCourseID").val(ar[0]);
+				$("#enterID").html(ar[0]);
 				$("#username").val(ar[1]);
 				$("#name").val(ar[2]);
 				$("#status").val(ar[3]);
@@ -843,7 +844,7 @@
 			<table>
 			<tr>
 				<td align="right">姓名</td><input type="hidden" id="studentCourseID" /><input type="hidden" id="certID" /><input type="hidden" id="status" />
-				<td><input class="readOnly" type="text" id="name" size="25" readOnly="true" /></td>
+				<td><input class="readOnly" type="text" id="name" size="15" readOnly="true" />&nbsp;&nbsp;<span id="enterID"></span></td>
 				<td align="right">身份证</td>
 				<td><input class="readOnly" type="text" id="username" size="25" readOnly="true" /></td>
 			</tr>

@@ -27,6 +27,10 @@
 							<input class="button" type="button" id="btnRptOther2" value="工作量统计" style="padding:0 10px 0 10px;height:28px;margin:5px;" />
 							<br />
 							<input class="button" type="button" id="btnRptOther3" value="通过率统计" style="padding:0 10px 0 10px;height:28px;margin:5px;" />
+							<br />
+							<input class="button" type="button" id="btnRptOther4" value="课程招生统计" style="padding:0 10px 0 10px;height:28px;margin:5px;" />
+							<br />
+							<input class="button" type="button" id="btnRptOther5" value="客户招生统计" style="padding:0 10px 0 10px;height:28px;margin:5px;" />
 						</div>
 						<div id="rptOtherCover" style="flex-grow: 1;">
 						</div>	

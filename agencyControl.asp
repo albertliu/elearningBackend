@@ -119,12 +119,12 @@ if(op == "getSourceList"){
 }
 
 if(op == "getCurrSourceList"){
-	sql = "SELECT source, source as item FROM v_sourceInfo where status=0 union select title,title as item from hostInfo where status=0 order by source";
+	sql = "select * from dbo.[getCurrSourceList]() order by source";
 
 	result = "";
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
-		result += ',"' + rs("source").value + '":"' + rs("item").value + '"';
+		result += ',"' + rs("ID").value + '":"' + rs("item").value + '"';
 		rs.MoveNext();
 	}
 	result = '{"":""' + (result>''? ','+result.substr(1):'') + '}';
