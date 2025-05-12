@@ -119,7 +119,7 @@ if(op == "getSourceList"){
 }
 
 if(op == "getCurrSourceList"){
-	sql = "select * from dbo.[getCurrSourceList]() order by source";
+	sql = "select * from dbo.[getCurrSourceList]() order by ID";
 
 	result = "";
 	rs = conn.Execute(sql);
