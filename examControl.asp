@@ -113,7 +113,12 @@ if(op == "getStudentExamByEnterID"){
 }
 
 if(op == "getStudentQuestionList"){
-	sql = "select * from v_studentQuestionList where refID=" + refID + " order by ID";
+	if(kindID==1){
+		sql = "select a.* from v_studentQuestionList a, studentExamList b where a.refID=b.paperID and b.refID=" + refID + " order by a.ID";
+	}else{
+		sql = "select * from v_ref_studentQuestionList where seq=" + refID + " order by ID";
+	}
+	
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
 		result += "%%" + rs("kindID").value + "|" + rs("questionName").value + "|" + rs("scorePer").value + "|" + rs("score").value + "|" + rs("answer").value + "|" + rs("myAnswer").value;

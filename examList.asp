@@ -33,7 +33,7 @@
 
 	function getExamListByEnterID(){
 		//alert(refID + ":" + nodeID);
-		$.get("examControl.asp?op=getExamListByEnterID&refID=" + nodeID + "&times=" + (new Date().getTime()),function(data){
+		$.get("examControl.asp?op=getExamListByEnterID&refID=" + nodeID + "&kindID=0&times=" + (new Date().getTime()),function(data){
 			// alert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");

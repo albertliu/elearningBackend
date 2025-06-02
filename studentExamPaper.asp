@@ -32,7 +32,7 @@
 	var updateCount = 0;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
-		nodeID = "<%=nodeID%>";		//passcardInfo.ID
+		nodeID = "<%=nodeID%>";		//passcardInfo.ID, seq
 		kindID = "<%=kindID%>";		//0 模拟练习  1 考试
 		refID = "<%=refID%>";		//学员姓名
 		$("#studentName").html(refID);
@@ -54,16 +54,16 @@
 				$("#endDate").html(ar[5]);
 				$("#statusName").html(ar[6]);
 				$("#username").html(ar[7]);
-				getStudentQuestionList(ar[0]);
+				getStudentQuestionList();
 			}else{
 				alert("该试卷未找到！请核实是否为在线考试。","信息提示");
 			}
 		});
 	}
 
-	function getStudentQuestionList(paperID){
+	function getStudentQuestionList(){
 		//alert(paperID);
-		$.get("examControl.asp?op=getStudentQuestionList&refID=" + paperID + "&times=" + (new Date().getTime()),function(data){
+		$.get("examControl.asp?op=getStudentQuestionList&refID=" + nodeID + "&kindID=" + kindID + "&times=" + (new Date().getTime()),function(data){
 			//alert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
