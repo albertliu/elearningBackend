@@ -286,6 +286,20 @@
 			}
 		});
 		
+		$("#btnAttentionLogin").click(function(){
+			getSelCart("visitstockchk");
+			if(selCount==0){
+				alert("请选择要通知的名单。");
+				return false;
+			}
+			if(confirm("确定要通知这" + selCount + "个学员登录系统吗？")){
+				$.post(uploadURL + "/public/send_message_submit_login", {batchID: $("#classID").val(), selList: selList, SMS:1, registerID: currUser} ,function(data){
+					getNodeInfo(nodeID);
+					alert("发送成功。");
+				});
+			}
+		});
+		
 		$("#btnAttentionPhotoClose").click(function(){
 			getSelCart("visitstockchk");
 			if(selCount==0){
@@ -1347,7 +1361,8 @@
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnPaynowChange" value="更换支付" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassCall" value="开课通知" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassAlert" value="进度提醒" /></span>
-			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassExamDeny" value="不安排考试通知" /></span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassExamDeny" value="不考试通知" /></span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnAttentionLogin" value="登录通知" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnAttentionPhoto" value="照片通知" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnAttentionSignature" value="签名通知" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnAttentionPhotoClose" value="照片确认" /></span>
@@ -1357,7 +1372,7 @@
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnFireScore" value="消防成绩" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnAutoSetClassSNo" value="调整学号" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnInvoiceGroup" value="团体发票" /></span>
-			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnCloseStudentCourse" value="关闭/开启课程" /></span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnCloseStudentCourse" value="关/开课程" /></span>
 		</div>
 		<div id="item_btn2">
 			学习进度&nbsp;&lt;=<input type="text" id="s_completion2" size="2" />%
