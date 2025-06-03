@@ -1041,8 +1041,8 @@
 			id: "question",
 			url:"questionInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "题目",
-			width: 650,
-			height: 580,
+			width: 830,
+			height: 760,
 			cover : {
 	          //透明度
 	          opacity : 0,
@@ -1094,6 +1094,33 @@
 					setObjValue("diploma",iframe.getValList(),0,0);  //根据请求，返回任意个数的项目，为相应的对象赋值。objList:传入的Object列表；valList：输出的值；mark：0 不动作 1 关闭本窗口（与objList同名）; loc: 0 同级别  1 父窗体
 				}
 　　　		}
+		});
+	}
+	
+	//nodeID: ID; mark: 0 不动作 1 有修改时刷新列表  2 有修改时刷新对象; after:关闭后执行的操作；key:0 仅上传  1 上传后需要处理  memo:在上传页面显示的title
+	function showUploadFile1(nodeID,refID,kindID,item,after,key,mark,memo){
+		asyncbox.open({
+			id: "fileUpload",
+			url:"fileUpload.asp?nodeID=" + nodeID + "&refID=" + refID + "&kindID=" + kindID + "&item=" + item + "&keyID=" + key + "&memo=" + memo + "&times=" + (new Date().getTime()),
+			title: "上传文件",
+			width: 600,
+			height: 720,
+			cover : {
+	          //透明度
+	          opacity : 0,
+	          //背景颜色
+	           background : '#000'
+	          },
+
+			btnsbar : false,
+			callback : function(action,iframe){
+				//setReturnLog("user",iframe.nodeID);	//写回执（审批件）
+				var re = iframe.updateCount;
+				var reDo = iframe.reDo;
+				if(re>0 && mark==1 && after>""){
+					eval('(' + after + ')');	//执行指定的操作
+				}
+			}
 		});
 	}
 	

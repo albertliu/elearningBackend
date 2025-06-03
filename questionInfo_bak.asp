@@ -35,7 +35,7 @@
 		refID = "<%=refID%>";
 		op = "<%=op%>";
 
-		getComList("knowpointID","knowPointInfo","knowPointID","knowpointID","status=0 order by knowPointID",1);
+		getComList("knowpointID","knowPointInfo","knowPointID","knowPointName","status=0 order by knowPointID",1);
 		getDicList("statusEffect","status",0);
 		getDicList("questionType","kindID",0);
 		
@@ -55,27 +55,7 @@
 		$("#save").click(function(){
 			saveNode();
 		});
-		$("#add_image").click(function(){
-			showUploadFile1(nodeID, "", "question_image", "题干图片", "setImag('image',reDo)", 0, 1);
-		});
-		$("#add_imageA").click(function(){
-			showUploadFile1(nodeID, "", "question_imageA", "选项A图片", "setImag('imageA',reDo)", 0, 1);
-		});
-		$("#add_imageB").click(function(){
-			showUploadFile1(nodeID, "", "question_imageB", "选项B图片", "setImag('imageB',reDo)", 0, 1);
-		});
-		$("#add_imageC").click(function(){
-			showUploadFile1(nodeID, "", "question_imageC", "选项C图片", "setImag('imageC',reDo)", 0, 1);
-		});
-		$("#add_imageD").click(function(){
-			showUploadFile1(nodeID, "", "question_imageD", "选项D图片", "setImag('imageD',reDo)", 0, 1);
-		});
-		$("#add_imageE").click(function(){
-			showUploadFile1(nodeID, "", "question_imageE", "选项E图片", "setImag('imageE',reDo)", 0, 1);
-		});
-		$("#add_imageF").click(function(){
-			showUploadFile1(nodeID, "", "question_imageF", "选项F图片", "setImag('imageF',reDo)", 0, 1);
-		});
+	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
 	function getNodeInfo(id){
@@ -93,41 +73,12 @@
 				$("#C").val(ar[10]);
 				$("#D").val(ar[11]);
 				$("#E").val(ar[12]);
-				$("#F").val(ar[19]);
 				$("#knowpointID").val(ar[13]);
 				$("#kindID").val(ar[5]);
 				$("#status").val(ar[3]);
 				$("#memo").val(ar[15]);
 				$("#regDate").val(ar[16]);
 				$("#registerName").val(ar[18]);
-				if(ar[20] > ""){
-					$("#image").attr("src","/users" + ar[20] + "?times=" + (new Date().getTime()));
-					$("#image").attr("title",ar[20].replace('/upload/questions/images/',''));
-				}
-				if(ar[21] > ""){
-					$("#imageA").attr("src","/users" + ar[21] + "?times=" + (new Date().getTime()));
-					$("#imageA").attr("title",ar[21].replace('/upload/questions/images/',''));
-				}
-				if(ar[22] > ""){
-					$("#imageB").attr("src","/users" + ar[22] + "?times=" + (new Date().getTime()));
-					$("#imageB").attr("title",ar[22].replace('/upload/questions/images/',''));
-				}
-				if(ar[23] > ""){
-					$("#imageC").attr("src","/users" + ar[23] + "?times=" + (new Date().getTime()));
-					$("#imageC").attr("title",ar[23].replace('/upload/questions/images/',''));
-				}
-				if(ar[24] > ""){
-					$("#imageD").attr("src","/users" + ar[24] + "?times=" + (new Date().getTime()));
-					$("#imageD").attr("title",ar[24].replace('/upload/questions/images/',''));
-				}
-				if(ar[25] > ""){
-					$("#imageE").attr("src","/users" + ar[25] + "?times=" + (new Date().getTime()));
-					$("#imageE").attr("title",ar[25].replace('/upload/questions/images/',''));
-				}
-				if(ar[26] > ""){
-					$("#imageF").attr("src","/users" + ar[26] + "?times=" + (new Date().getTime()));
-					$("#imageF").attr("title",ar[26].replace('/upload/questions/images/',''));
-				}
 				setButton();
 			}else{
 				jAlert("该信息未找到！","信息提示");
@@ -135,14 +86,10 @@
 			}
 		});
 	}
-
-	function setImag(obj,path){
-		$("#" + obj).prop("src","/users" + path + "?times=" + (new Date().getTime()));
-	}
 	
 	function saveNode(){
 		//alert($("#questionID").val() + "&item=" + ($("#memo").val()));
-		$.get("questionControl.asp?op=update&nodeID=" + $("#ID").val() + "&questionID=" + $("#questionID").val() + "&questionName=" + escape($("#questionName").val()) + "&answer=" + $("#answer").val() + "&A=" + escape($("#A").val()) + "&B=" + escape($("#B").val()) + "&C=" + escape($("#C").val()) + "&D=" + escape($("#D").val()) + "&E=" + escape($("#E").val()) + "&F=" + escape($("#F").val()) + "&refID=" + $("#knowpointID").val() + "&status=" + $("#status").val() + "&kindID=" + $("#kindID").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("questionControl.asp?op=update&nodeID=" + $("#ID").val() + "&questionID=" + $("#questionID").val() + "&questionName=" + escape($("#questionName").val()) + "&answer=" + $("#answer").val() + "&A=" + escape($("#A").val()) + "&B=" + escape($("#B").val()) + "&C=" + escape($("#C").val()) + "&D=" + escape($("#D").val()) + "&E=" + escape($("#E").val()) + "&refID=" + $("#knowpointID").val() + "&status=" + $("#status").val() + "&kindID=" + $("#kindID").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -192,6 +139,8 @@
 </head>
 
 <body style="background:#f0f0f0;">
+ <!--#include file='commFloatDetail.asp' -->
+ <!--#include file='commLoadFileDetail.asp' -->
 
 <div id='layout' align='left' style="background:#f0f0f0;">	
 	
@@ -201,94 +150,52 @@
 			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
-				<td align="right" style="5%;">编号</td><input id="ID" type="hidden" />
+				<td align="right">编号</td><input id="ID" type="hidden" />
 				<td><input type="text" id="questionID" size="25" /></td>
 				<td align="right">知识点</td>
 				<td><select id="knowpointID" style="width:200px;"></select></td>
-				<td style="width:2%;"></td>
-				<td></td>
 			</tr>
 			<tr>
 				<td align="right">题型</td>
 				<td><select id="kindID" style="width:100px;"></select></td>
 				<td align="right">状态</td>
 				<td><select id="status" style="width:100px;"></select></td>
-				<td></td>
-				<td></td>
 			</tr>
 			<tr>
 				<td align="right">题干</td>
-				<td colspan="3"><textarea id="questionName" rows="4" cols="75"></textarea></td>
-				<td align="right" style="width:2%;"><img id="add_image" src="images/plus.png" tag="plus" /></td>
-				<td style="width:10%;">
-					<img id="image" src="" value="" style='width:100px;border:none;' />
-				</td>
+				<td colspan="5"><textarea id="questionName" rows="5" cols="75"></textarea></td>
 			</tr>
 			<tr>
 				<td align="right">选项A</td>
-				<td colspan="3"><textarea id="A" rows="3" cols="75"></textarea></td>
-				<td align="right"><img id="add_imageA" src="images/plus.png" tag="plus" /></td>
-				<td>
-					<img id="imageA" src="" value="" style='width:100px;border:none;' />
-				</td>
+				<td colspan="5"><textarea id="A" rows="1" cols="75"></textarea></td>
 			</tr>
 			<tr>
 				<td align="right">选项B</td>
-				<td colspan="3"><textarea id="B" rows="3" cols="75"></textarea></td>
-				<td align="right"><img id="add_imageB" src="images/plus.png" tag="plus" /></td>
-				<td>
-					<img id="imageB" src="" value="" style='width:100px;border:none;' />
-				</td>
+				<td colspan="5"><textarea id="B" rows="1" cols="75"></textarea></td>
 			</tr>
 			<tr>
 				<td align="right">选项C</td>
-				<td colspan="3"><textarea id="C" rows="3" cols="75"></textarea></td>
-				<td align="right"><img id="add_imageC" src="images/plus.png" tag="plus" /></td>
-				<td>
-					<img id="imageC" src="" value="" style='width:100px;border:none;' />
-				</td>
+				<td colspan="5"><textarea id="C" rows="1" cols="75"></textarea></td>
 			</tr>
 			<tr>
 				<td align="right">选项D</td>
-				<td colspan="3"><textarea id="D" rows="3" cols="75"></textarea></td>
-				<td align="right"><img id="add_imageD" src="images/plus.png" tag="plus" /></td>
-				<td>
-					<img id="imageD" src="" value="" style='width:100px;border:none;' />
-				</td>
+				<td colspan="5"><textarea id="D" rows="1" cols="75"></textarea></td>
 			</tr>
 			<tr>
 				<td align="right">选项E</td>
-				<td colspan="3"><textarea id="E" rows="3" cols="75"></textarea></td>
-				<td align="right"><img id="add_imageE" src="images/plus.png" tag="plus" /></td>
-				<td>
-					<img id="imageE" src="" value="" style='width:100px;border:none;' />
-				</td>
-			</tr>
-			<tr>
-				<td align="right">选项F</td>
-				<td colspan="3"><textarea id="F" rows="2" cols="75"></textarea></td>
-				<td align="right"><img id="add_imageF" src="images/plus.png" tag="plus" /></td>
-				<td>
-					<img id="imageF" src="" value="" style='width:100px;border:none;' />
-				</td>
+				<td colspan="5"><textarea id="E" rows="1" cols="75"></textarea></td>
 			</tr>
 			<tr>
 				<td align="right">答案</td>
 				<td><input type="text" id="answer" size="25" /></td>
-				<td align="right"></td>
-				<td colspan="3"></td>
-			</tr>
-			<tr>
-				<td align="right">解析</td>
-				<td colspan="5"><textarea id="memo" rows="2" cols="75"></textarea></td>
+				<td align="right">备注</td>
+				<td><input type="text" id="memo" size="25" /></td>
 			</tr>
 			<tr>
 				<td align="right">登记日期</td>
 				<td><input class="readOnly" type="text" id="regDate" size="25" readOnly="true" /></td>
 				<td align="right">登记人</td>
 				<td><input class="readOnly" type="text" id="registerName" size="25" readOnly="true" /></td>
-				<td></td>
-				<td></td>
 			</tr>
 			</table>
 			</form>

@@ -69,6 +69,8 @@ if(op == "getNodeInfo"){
 		result += "|" + rs("answer").value + "|" + rs("A").value + "|" + rs("B").value + "|" + rs("C").value + "|" + rs("D").value + "|" + rs("E").value;
 		//13
 		result += "|" + rs("knowpointID").value + "|" + rs("knowpointName").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value;
+		//19
+		result += "|" + rs("F").value + "|" + rs("image").value + "|" + rs("imageA").value + "|" + rs("imageB").value + "|" + rs("imageC").value + "|" + rs("imageD").value + "|" + rs("imageE").value + "|" + rs("imageF").value;
 		execSQL(sql);
 	}
 	rs.Close();
@@ -78,7 +80,7 @@ if(op == "getNodeInfo"){
 if(op == "update"){
 	result = 0;
 	if(result == 0){
-		sql = "exec updateQuestionInfo " + nodeID + ",'" + String(Request.QueryString("questionID")) + "','" + unescape(String(Request.QueryString("questionName"))) + "','" + refID + "','" + String(Request.QueryString("answer")) + "','" + unescape(String(Request.QueryString("A"))) + "','" + unescape(String(Request.QueryString("B"))) + "','" + unescape(String(Request.QueryString("C"))) + "','" + unescape(String(Request.QueryString("D"))) + "','" + unescape(String(Request.QueryString("E"))) + "'," + kindID + "," +  + status + ",'" + memo + "','" + currUser + "'";
+		sql = "exec updateQuestionInfo " + nodeID + ",'" + String(Request.QueryString("questionID")) + "','" + unescape(String(Request.QueryString("questionName"))) + "','" + refID + "','" + String(Request.QueryString("answer")) + "','" + unescape(String(Request.QueryString("A"))) + "','" + unescape(String(Request.QueryString("B"))) + "','" + unescape(String(Request.QueryString("C"))) + "','" + unescape(String(Request.QueryString("D"))) + "','" + unescape(String(Request.QueryString("E"))) + "','" + unescape(String(Request.QueryString("F"))) + "'," + kindID + "," +  + status + ",'" + memo + "','" + currUser + "'";
 
 		execSQL(sql);
 		if(nodeID == 0){
