@@ -96,8 +96,8 @@
 					arr.push("<td align='center' title='应知/应会'>" + val["goodRate"] + "&nbsp;/&nbsp;" + val["goodRate1"] + "</td>");
 					arr.push("<td align='center' title='应知/应会'>" + val["goodRateLast"] + "&nbsp;/&nbsp;" + val["goodRate1Last"] + "</td>");
 					arr.push("<td align='center' title='次数/合格/最好成绩'>" + val["todayExamTimes"] + "&nbsp;/&nbsp;" + val["todayGoodTimes"] + "&nbsp;/&nbsp;" + val["todayBestScore"] + "</td>");
-					arr.push("<td align='left'>" + rs[val["predictedGrade"]] + "</td>");
-					arr.push("<td align='left'>" + rs[val["score"]] + "&nbsp;/&nbsp;" + val["score2"] + "</td>");
+					arr.push("<td align='left'>" + val["predictedGrade"] + "</td>");
+					arr.push("<td align='left' title='" + rs[val["result"]] + "'>" + val["score"] + "&nbsp;/&nbsp;" + val["score2"] + "</td>");
 					arr.push("</tr>");
 				});
 			}
