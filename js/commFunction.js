@@ -2192,7 +2192,7 @@
 	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
 	function showClassStudyOnline(nodeID,keyID,refID,op,mark){
 		// let w = $(window).width() - 50;
-		let w = 900;
+		let w = 1000;
 		let h = $(window).height() - 50;
 		asyncbox.open({
 			id: "class_study_online",

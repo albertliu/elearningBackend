@@ -171,7 +171,7 @@ if(op == "update"){
 }
 
 if(op == "getStudentListByClassID"){
-	sql = "SELECT * FROM getStudentListByClassIDArchive(" + refID + ",'" + kindID + "')";
+	sql = "SELECT * FROM getStudentListByClassIDArchive(" + refID + ",'" + kindID + "') order by SNo";
 
 	result = "";
 	rs = conn.Execute(sql);

@@ -77,8 +77,9 @@
 			arr.push("<th>在线%</th>");
 			arr.push("<th>模拟</th>");
 			arr.push("<th>合格率%</th>");
-			arr.push("<th>最近5次合格率</th>");
+			arr.push("<th>近5次合格率</th>");
 			arr.push("<th>当天模拟</th>");
+			arr.push("<th>预测</th>");
 			arr.push("<th>考试</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -95,7 +96,8 @@
 					arr.push("<td align='center' title='应知/应会'>" + val["goodRate"] + "&nbsp;/&nbsp;" + val["goodRate1"] + "</td>");
 					arr.push("<td align='center' title='应知/应会'>" + val["goodRateLast"] + "&nbsp;/&nbsp;" + val["goodRate1Last"] + "</td>");
 					arr.push("<td align='center' title='次数/合格/最好成绩'>" + val["todayExamTimes"] + "&nbsp;/&nbsp;" + val["todayGoodTimes"] + "&nbsp;/&nbsp;" + val["todayBestScore"] + "</td>");
-					arr.push("<td align='left'>" + rs[val["result"]] + "</td>");
+					arr.push("<td align='left'>" + rs[val["predictedGrade"]] + "</td>");
+					arr.push("<td align='left'>" + rs[val["score"]] + "&nbsp;/&nbsp;" + val["score2"] + "</td>");
 					arr.push("</tr>");
 				});
 			}

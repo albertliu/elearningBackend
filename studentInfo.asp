@@ -1040,8 +1040,9 @@
 			<input class="button" type="button" id="reply" value="发通知" />&nbsp;
 			<input class="button" type="button" id="reset" value="重置密码" />&nbsp;
 			<input class="button" type="button" id="smsList" value="查看通知" />&nbsp;
-			<input class="button" type="button" id="opList" value="查看操作" />&nbsp;
-			<input class="button" type="button" id="examList" value="查看考试信息" />
+			<input class="button" type="button" id="opList" value="操作记录" />&nbsp;
+			<input class="button" type="button" id="serviceList" value="服务记录" />&nbsp;
+			<input class="button" type="button" id="examList" value="考试信息" />
 		</div>
 
 		<div style="width:100%;float:left;margin:10;height:4px;"></div>

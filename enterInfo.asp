@@ -1035,12 +1035,13 @@
 		<input class="button" type="button" id="btnMaterialCheck" value="资料确认" />&nbsp;
 		<input class="button" type="button" id="btnReturn" value="退课" />&nbsp;
 		<input class="button" type="button" id="btnDel" value="删除" />&nbsp;
-		<input class="button" type="button" id="btnCloseStudentCourse" value="关闭课程学习" />&nbsp;
-		<input class="button" type="button" id="btnReviveStudentCourse" value="重启课程学习" />&nbsp;
+		<input class="button" type="button" id="btnCloseStudentCourse" value="关闭课程" />&nbsp;
+		<input class="button" type="button" id="btnReviveStudentCourse" value="重启课程" />&nbsp;
 		<input class="button" type="button" id="btnRebuildStudentLesson" value="刷新课表" />&nbsp;
 		<input class="button" type="button" id="smsList" value="查看通知" />&nbsp;
-		<input class="button" type="button" id="opList" value="查看操作" />&nbsp;
-		<input class="button" type="button" id="examList" value="查看考试信息" />
+		<input class="button" type="button" id="opList" value="操作记录" />&nbsp;
+		<input class="button" type="button" id="serviceList" value="服务记录" />&nbsp;
+		<input class="button" type="button" id="examList" value="考试信息" />
   	</div>
 </div>
 </body>
