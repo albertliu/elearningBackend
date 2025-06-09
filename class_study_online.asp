@@ -113,6 +113,7 @@
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("</tr>");
 			arr.push("</tfoot>");
 			arr.push("</table>");
