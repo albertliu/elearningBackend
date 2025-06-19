@@ -2170,6 +2170,26 @@
 	}
 	
 	//nodeID: ID; op: 0 浏览 1 新增  2 编辑  3 删除  4 审批; mark: 0 不动作  1 有修改时刷新列表  2 有修改时刷新对象
+	function showStudentServiceList(nodeID,refID){
+		asyncbox.open({
+			id: "studentServiceList",
+			url:"studentServiceList.asp?nodeID=" + nodeID + "&refID=" + refID + "&p=1&times=" + (new Date().getTime()),
+			title: "报名操作情况",
+			width: 700,
+			height: 600,
+			drag: false,
+			cover : {
+	          //透明度
+	          opacity : 0,
+	          //背景颜色
+	           background : '#000'
+	          },
+
+			btnsbar : false
+		});
+	}
+	
+	//nodeID: ID; op: 0 浏览 1 新增  2 编辑  3 删除  4 审批; mark: 0 不动作  1 有修改时刷新列表  2 有修改时刷新对象
 	function showStudentExamPaper(nodeID,refID,kindID){
 		asyncbox.open({
 			id: "studentExamPaper",
@@ -2212,6 +2232,34 @@
 				var re = iframe.updateCount;
 				if(re>0 && mark==1){
 					//getClassScheduleList();
+				}
+			}
+		});
+	}
+	
+	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
+	function showStudentServiceInfo(nodeID,keyID,refID,op,mark){
+		// let w = $(window).width() - 50;
+		let w = 600;
+		let h = $(window).height() - 50;
+		asyncbox.open({
+			id: "studentService",
+			url:"studentServiceInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&keyID=" + keyID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
+			title: "学员服务记录",
+			width: w,
+			height: h,
+			cover : {
+	          //透明度
+	          opacity : 0,
+	          //背景颜色
+	           background : '#000'
+	          },
+
+			btnsbar : false,
+			callback : function(action,iframe){	
+				var re = iframe.updateCount;
+				if(re>0 && mark==1){
+					getStudentServiceList();
 				}
 			}
 		});

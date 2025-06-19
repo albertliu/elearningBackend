@@ -17,6 +17,7 @@
 		getDicList("material","searchStudentMaterial",1);
 		$("#searchStudentStartDate").click(function(){WdatePicker();});
 		$("#searchStudentEndDate").click(function(){WdatePicker();});
+		$("#studentListLongItem1").hide();
 		
 		$("#btnSearchStudent").click(function(){
 			getStudentList();

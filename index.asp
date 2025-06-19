@@ -248,6 +248,7 @@
 			$("#tab4").hide();
 			$("#generatePhoto_Tab").hide();
 			$("#tab5").hide();
+			deleteTab("考试管理");
 		}
 		if(!checkPermission("courseAdd")){
 			deleteTab("视频管理");

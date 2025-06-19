@@ -510,4 +510,83 @@ if(op == "getDeptPayTitle"){
 	Response.Write(escape(result));
 }
 
+if(op == "getStudentServiceList"){
+	result = "";
+	var s = "";
+	//如果有条件，按照条件查询
+	if(where > ""){ // 有条件
+		where = "(item like('%" + where + "%'))";
+	}
+	//如果有username
+	if(nodeID > ""){ // 
+		s = "username='" + nodeID + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+	//如果有enterID
+	if(refID > ""){ // 
+		s = "refID='" + refID + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
+
+	if(where > ""){
+		where = " where " + where;
+	}
+	sql = " FROM v_studentServiceInfo " + where;
+	ssql = "SELECT item,typeName,refID,memo,serviceDate,registerName" + sql + " order by ID";
+	sql = "SELECT *" + sql + " order by ID desc";
+	
+	rs = conn.Execute(sql);
+	while (!rs.EOF){
+		result += "%%" + rs("ID").value + "|" + rs("item").value + "|" + rs("username").value + "|" + rs("refID").value;
+		//4
+		result += "|" + rs("type").value + "|" + rs("typeName").value + "|" + rs("serviceDate").value + "|" + rs("memo").value;
+		//8
+		result += "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("name").value;
+		rs.MoveNext();
+	}
+	rs.Close();
+	result = result.substr(2);
+	/**/
+	Session(op) = ssql;
+	Response.Write(escape(result));
+}
+
+if(op == "getStudentServiceNodeInfo"){
+	result = "";
+	sql = "SELECT * FROM v_StudentServiceInfo where ID=" + nodeID;
+	rs = conn.Execute(sql);
+	if(!rs.EOF){
+		result = rs("ID").value + "|" + rs("item").value + "|" + rs("username").value + "|" + rs("refID").value;
+		//4
+		result += "|" + rs("type").value + "|" + rs("typeName").value + "|" + rs("serviceDate").value + "|" + rs("memo").value;
+		//8
+		result += "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("name").value;
+	}
+	rs.Close();
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}
+
+if(op == "updateStudentServiceInfo"){
+	result = 0;
+	sql = "exec updateStudentServiceInfo " + nodeID + ",'" + keyID + "','" + item + "','" + refID + "','" + kindID + "','" + String(Request.QueryString("serviceDate")) + "','" + memo + "','" + currUser + "'";
+	
+	/*rs = conn.Execute(sql);
+	if(!rs.EOF){
+		result = rs("re").value;
+	}
+	rs.Close();
+	*/
+	//Response.Write(escape(result));
+	Response.Write(escape(sql));
+}
+
 %>

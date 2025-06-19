@@ -338,6 +338,9 @@
 		$("#opList").click(function(){
 			showStudentOpList($("#studentCourseID").val(),0,0,1);
 		});
+		$("#serviceList").click(function(){
+			showStudentServiceList(refID,nodeID);
+		});
 		$("#btnReGetStudent").click(function(){
 			getStudentInfo();
 		});

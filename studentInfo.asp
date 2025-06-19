@@ -90,6 +90,9 @@
 		$("#opList").click(function(){
 			showStudentOpList($("#username").val(),1,0,1);
 		});
+		$("#serviceList").click(function(){
+			showStudentServiceList($("#username").val(),'');
+		});
 		$("#save").click(function(){
 			fromCard = 0;
 			saveNode();
