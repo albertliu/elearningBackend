@@ -675,6 +675,7 @@
 			arr.push("<th width='5%'>姓名</th>");
 			arr.push("<th width='6%'>电话</th>");
 			arr.push("<th width='6%'>来源</th>");
+			arr.push("<th width='6%'>支付</th>");
 			if(photo == 0){
 				arr.push("<th width='10%'>单位</th>");
 				arr.push("<th width='5%'>进度%</th>");
@@ -725,6 +726,7 @@
 					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + ar1[1] + "\",0,1,\"class\");'>" + ar1[2] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[69] + "</td>");
 					arr.push("<td class='left'>" + ar1[90] + "</td>");
+					arr.push("<td class='left'>" + ar1[49] + "</td>");
 					//arr.push("<td title='最好成绩' class='link1'><a href='javascript:showStudentExamStat(" + ar1[0] + ",\"" + ar1[2] + "\",0,0);'>" + c + "</a></td>");
 					if(photo == 0){
 						if(ar1[56]!="spc" && ar1[56]!="shm"){	//非集团客户，显示自己的单位和部门
@@ -839,6 +841,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
