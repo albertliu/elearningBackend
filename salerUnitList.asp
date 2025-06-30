@@ -23,22 +23,20 @@
 <script language="javascript">
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
-		nodeID = "<%=nodeID%>";	//username
-		refID = "<%=refID%>";	//enterID
-		op = "<%=op%>";
-		
 		$.ajaxSetup({ 
 			async: false 
 		});
+		getDicList("fromKind","fromKind",1);
+        getComboList("saler","userInfo","username","realName","status=0 and host='" + currHost + "' and username in(select username from roleUserList where roleID='saler') order by realName",1);
 		
 		$("#btnSearch").click(function(){
-			getStudentServiceList();
+			getSalerUnitList();
 		});
 		
 		$("#txtSearch").keypress(function(event){
 			if(event.keyCode==13){
 				if($("#txtSearch").val()>""){
-					getStudentServiceList();
+					getSalerUnitList();
 				}else{
 					jAlert("请输入查询条件");
 				}
@@ -46,15 +44,43 @@
 		});
 		
 		$("#btnAdd").click(function(){
-			showStudentServiceInfo(0,nodeID,refID,1,1);	//showClassInfo(nodeID,refID,op,mark) op:0 浏览 1 新增; mark:0 不动作  1 有修改时刷新列表
+			showSalerUnitInfo(0,1,1);	//
+		});
+		
+		$("#txtSearch").keypress(function(event){
+			if(event.keyCode==13){
+				if($("#txtSearch").val()>""){
+					getSalerUnitList();
+				}else{
+					jAlert("请输入查询条件");
+				}
+			}
 		});
 
-		getStudentServiceList();
+		if(!checkRole("saler")){
+			$("#btnAdd").hide();
+		}
+		
+		$("#saler").combobox({
+			onChange:function() {
+				getSalerUnitList();
+			}
+		});
+
+		if(checkRole("saler")){
+			$("#saler").combobox("setValue", currUser);
+			if(!checkRole("leader")){
+				$("#saler").combobox("disable");
+			}
+		}
+		// getSalerUnitList();
 	});
 
-	function getStudentServiceList(){
+	function getSalerUnitList(){
 		//alert(refID + ":" + nodeID);
-		$.get("studentControl.asp?op=getStudentServiceList&nodeID=" + nodeID + "&refID=" + refID + "&dk=1011&times=" + (new Date().getTime()),function(data){
+		sWhere = $("#txtSearch").val();
+		let kindID = $("#fromKind").val();
+		$.get("studentControl.asp?op=getSalerUnitList&where=" + escape(sWhere) + "&refID=" + $("#saler").combobox("getValue") + "&kindID=" + kindID + "&times=" + (new Date().getTime()),function(data){
 			//alert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
@@ -63,12 +89,12 @@
 			arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='cardTab' width='100%'>");
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
-			arr.push("<th width='4%'>No</th>");
-			arr.push("<th width='15%'>服务日期</th>");
-			arr.push("<th width='12%'>方式</th>");
-			arr.push("<th width='40%'>服务内容</th>");
-			arr.push("<th width='15%'>备注</th>");
-			arr.push("<th width='12%'>登记人</th>");
+			arr.push("<th width='3%'>No</th>");
+			arr.push("<th width='20%'>企业名称</th>");
+			arr.push("<th width='10%'>属性</th>");
+			arr.push("<th width='20%'>联系人</th>");
+			arr.push("<th width='35%'>基本情况</th>");
+			arr.push("<th width='12%'>所属协会</th>");
 			// arr.push("<th width='12%'>登记日期</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -84,12 +110,11 @@
 					c = 0;
 					arr.push("<tr class='grade0'>");
 					arr.push("<td class='center'>" + i + "</td>");
-					arr.push("<td class='link1'><a href='javascript:showStudentServiceInfo(" + ar1[0] + ",\"" + nodeID + "\",\"" + refID + "\",0,1);'>" + ar1[6] + "</a></td>");
-					arr.push("<td class='left'>" + ar1[5] + "</td>");
-					arr.push("<td class='left'>" + ar1[1] + "</td>");
+					arr.push("<td class='link1'><a href='javascript:showSalerUnitInfo(" + ar1[0] + ",0,1);'>" + ar1[1] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[7] + "</td>");
-					arr.push("<td class='left'>" + ar1[10] + "</td>");
-					// arr.push("<td class='left'>" + ar1[8] + "</td>");
+					arr.push("<td class='left'>" + ar1[8] + "</td>");
+					arr.push("<td class='left'>" + ar1[13] + "</td>");
+					arr.push("<td class='left'>" + ar1[12] + "</td>");
 					arr.push("</tr>");
 				});
 			}
@@ -118,21 +143,7 @@
 				"bInfo": true,
 				"aoColumnDefs": []
 			});
-			floatCount = i;
-			floatTitle = "";	//excel file's title in the 1st row, if it's blank then keep the excel's present one.
-			floatItem = "";		//write to excel file's 2nd row
-			floatLog = "打印日期：" + currDate + "&nbsp;&nbsp;&nbsp;&nbsp;打印人：" + currUserName;		//write to excel file's 3rd row
-			floatKey = "";		//
-			floatContent = "";	//records data for output
-			floatModel = 1;
 		});
-	}
-	
-	function setButton(){
-		$("#btnAdd").hide();
-		if(checkPermission("studentEdit") || checkRole("saler") || checkRole("adviser")){
-			$("#btnAdd").show();
-		}
 	}
 </script>
 
@@ -142,11 +153,14 @@
 
 <div id='layout' align='left' style="background:#f0f0f0;">
 	<form><label>搜索：</label>
-		<input type="text" id="txtSearch" name="txtSearchClass" size="15" title="服务内容" style="background:yellow;" />
+		<input type="text" id="txtSearch" name="txtSearch" size="15" title="企业名称" style="background:yellow;" />
 		<input class="button" type="button" name="btnSearch" id="btnSearch" value="查找" />
 		<input class="button" type="button" id="btnAdd" name="btnAdd" value="新增" />
-		<span style="float:right;">
-			<input class="button" type="button" id="btnDownLoad" onClick="outputFloat(1011,'file')" value="下载" />
+		<span style="padding-left:50px;">
+			销售&nbsp;<select id="saler" style="width:90px"></select>
+		</span>
+		<span style="padding-left:20px;">
+			资源&nbsp;<select id="fromKind" style="width:80px;"></select>
 		</span>
 	</form>
 	<div id="cover" style="float:left;width:100%;">

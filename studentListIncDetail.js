@@ -6,15 +6,23 @@
 				          <input class="button" type="button" id="btnSearchStudentAdd" value="添加" />
 					        <span id="studentListLongItem1">
 					          &nbsp;&nbsp;公司&nbsp;<select id="searchStudentHost" style="width:100px"></select>&nbsp;&nbsp;
-					          类别&nbsp;<select id="searchStudentKind" style="width:50px"></select>&nbsp;&nbsp;
-							  年龄&nbsp;<input type="text" id="searchStudentOld" name="searchStudentOld" size="2" title="以上" />&nbsp;&nbsp;
-							  缺项&nbsp;<select id="searchStudentMaterial" style="width:50px"></select>&nbsp;&nbsp;
-					          批次&nbsp;<select id="searchStudentProjectID" style="width:75px"></select>&nbsp;&nbsp;
 				          </span>
-							    &nbsp;注册日期&nbsp;<input type="text" id="searchStudentStartDate" size="7" />-<input type="text" id="searchStudentEndDate" size="7" />
-						      <span style="float:right;">
-								    <input class="button" type="button" id="btnDownLoad11" onClick="outputFloat(11,'file')" value="下载" />
-							    </span>
+							&nbsp;注册日期&nbsp;<input type="text" id="searchStudentStartDate" size="7" />-<input type="text" id="searchStudentEndDate" size="7" />
+							<span>
+								销售&nbsp;<select id="searchStudentSaler" style="width:90px"></select>&nbsp;&nbsp;
+							</span>
+							<span id="searchStudentFromKindItem">
+								资源&nbsp;<select id="searchStudentFromKind" style="width:80px"></select>&nbsp;&nbsp;
+							</span>
+							<span id="searchStudentUnitItem">
+								企业&nbsp;<select id="searchStudentUnit" style="width:250px"></select>&nbsp;&nbsp;
+							</span>
+							<span>
+								<input class="button" type="button" id="btnSearchStudentUnit" value="企业管理" />
+							</span>
+							<span style="float:right;">
+								<input class="button" type="button" id="btnDownLoad11" onClick="outputFloat(11,'file')" value="下载" />
+							</span>
 				        </form>
 							</div>
 							<hr size="1" noshadow />

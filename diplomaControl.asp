@@ -788,7 +788,7 @@ if(op == "getPasscardExamList"){
 	result = result.substr(2);
 	Response.Write(escape(result));
     //Response.Write(escape(sql));
-}	
+}
 
 if(op == "getGeneratePasscardNodeInfo"){
 	result = "";
@@ -808,7 +808,7 @@ if(op == "getGeneratePasscardNodeInfo"){
 	rs.Close();
 	Response.Write(escape(result));
 	//Response.Write(escape(sql));
-}	
+}
 
 if(op == "updateGeneratePasscardInfo"){
 	//@ID int,@certID varchar(50),@title nvarchar(100),@startNo int,@startDate varchar(100),@startTime varchar(100),@address nvarchar(100),@notes nvarchar(500),@memo nvarchar(500),@registerID

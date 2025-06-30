@@ -353,7 +353,7 @@
 		
 	function outputFloat(id,key){
 		var m = getSession("dk" + id + "_count");
-		//alert(floatCount);
+		// alert(floatCount + ":" + id);
 		if(m>""){
 			floatCount = m;
 		}
@@ -361,9 +361,9 @@
 			//alert("floatKind=" + id + "&floatItem=" + (floatItem.replace(/&nbsp;/g,' ')) + "&floatLog=" + (floatLog.replace('&nbsp;',' ')) + "&floatSum=" + (floatSum));
 			//$.get("writeExcel.asp?floatKind=" + floatKind[id] + "&floatTitle=" + escape(floatTitle) + "&floatItem=" + escape(floatItem.replace(/&nbsp;/g,' ')) + "&floatLog=" + escape(floatLog.replace(/&nbsp;/g,' ')) + "&floatSum=" + escape(floatSum.replace(/&nbsp;/g,' ')) + "&times=" + (new Date().getTime()),function(re){
 			$.get("writeExcel.asp?floatKind=" + id + "&floatTitle=" + escape(floatTitle) + "&floatItem=" + escape(floatItem.replace(/&nbsp;/g,' ')) + "&floatLog=" + escape(floatLog.replace(/&nbsp;/g,' ')) + "&floatSum=" + escape(floatSum.replace(/&nbsp;/g,' ')) + "&times=" + (new Date().getTime()),function(re){
-				//alert(re);
+				// alert(re);
 				if(re>0){
-					//alert("gin.asp?floatKind=" + id + "&floatModel=" + floatModel);
+					// alert("gin.asp?floatKind=" + id + "&floatModel=" + floatModel);
 					$.get("gin.asp?floatKind=" + id + "&floatModel=" + floatModel + "&times=" + (new Date().getTime()),function(data){
 						//alert(data);
 						if(key=="file"){
@@ -2190,6 +2190,26 @@
 	}
 	
 	//nodeID: ID; op: 0 浏览 1 新增  2 编辑  3 删除  4 审批; mark: 0 不动作  1 有修改时刷新列表  2 有修改时刷新对象
+	function showSalerUnitList(){
+		asyncbox.open({
+			id: "salerUnitList",
+			url:"salerUnitList.asp?p=1&times=" + (new Date().getTime()),
+			title: "企业客户列表",
+			width: 1000,
+			height: 800,
+			drag: false,
+			cover : {
+	          //透明度
+	          opacity : 0,
+	          //背景颜色
+	           background : '#000'
+	          },
+
+			btnsbar : false
+		});
+	}
+	
+	//nodeID: ID; op: 0 浏览 1 新增  2 编辑  3 删除  4 审批; mark: 0 不动作  1 有修改时刷新列表  2 有修改时刷新对象
 	function showStudentExamPaper(nodeID,refID,kindID){
 		asyncbox.open({
 			id: "studentExamPaper",
@@ -2260,6 +2280,34 @@
 				var re = iframe.updateCount;
 				if(re>0 && mark==1){
 					getStudentServiceList();
+				}
+			}
+		});
+	}
+	
+	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表;
+	function showSalerUnitInfo(nodeID,op,mark){
+		// let w = $(window).width() - 50;
+		let w = 700;
+		let h = 600;
+		asyncbox.open({
+			id: "salerUnit",
+			url:"salerUnitInfo.asp?nodeID=" + nodeID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
+			title: "企业客户信息",
+			width: w,
+			height: h,
+			cover : {
+	          //透明度
+	          opacity : 0,
+	          //背景颜色
+	           background : '#000'
+	          },
+
+			btnsbar : false,
+			callback : function(action,iframe){	
+				var re = iframe.updateCount;
+				if(re>0 && mark==1){
+					getSalerUnitList();
 				}
 			}
 		});

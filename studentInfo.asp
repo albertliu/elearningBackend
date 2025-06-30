@@ -51,6 +51,7 @@
 		getDicList("statusJob","job_status",0);
 		getDicList("education","education",1);
 		getDicList("sex","sex",0);
+		getDicList("fromKind","fromKind",0);
         getComList("fromID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='saler') order by realName",1);
 		$("#IDdateStart").click(function(){WdatePicker();});
 		$("#IDdateEnd").click(function(){WdatePicker();});
@@ -122,8 +123,8 @@
 		$("#reset").click(function(){
 			$.messager.confirm('确认对话框', '你确定要重置密码吗?', function(r) {
 				if(r){
-					$.get("studentControl.asp?op=reset&nodeID=" + $("#username").val() + "&times=" + (new Date().getTime()),function(data){
-						$.messager.alert("信息提示","重置完成，当前密码为123456");
+					$.get("studentControl.asp?op=reset&nodeID=" + $("#username").val() + "&times=" + (new Date().getTime()),function(re){
+						$.messager.alert("信息提示","重置完成，新密码为" + unescape(re));
 					});
 				}
 			});
@@ -321,6 +322,7 @@
 				$("#experience").val(ar[42]);
 				$("#linker").val(ar[46]);
 				$("#fromID").val(ar[47]);
+				$("#fromKind").val(ar[54]);
 				if(ar[53]==1){
 					$("#scanPhoto").checkbox({checked:true});
 					scanPhoto = 1;
@@ -433,7 +435,7 @@
 		if(!$("#Tai").prop("checked")){		//普通身份证
 			// $.get("studentControl.asp?op=update&nodeID=" + $("#username").val() + "&name=" + escape($("#name").val()) + "&linker=" + escape($("#linker").val()) + "&unit=" + escape($("#unit").val()) + "&dept=" + escape($("#dept").val()) + "&ethnicity=" + escape($("#ethnicity").val()) + "&IDaddress=" + escape($("#IDaddress").val()) + "&bureau=" + escape($("#bureau").val()) + "&IDdateStart=" + $("#IDdateStart").val() + "&IDdateEnd=" + $("#IDdateEnd").val() + "&experience=" + escape($("#experience").val()) + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&job_status=" + $("#job_status").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + escape($("#mobile").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&address=" + escape($("#address").val()) + "&job=" + escape($("#job").val()) + "&education=" + $("#education").val() + "&fromID=" + $("#fromID").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			$.post("studentControl.asp?op=update&nodeID=" + $("#username").val() + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&memo=" + escape($("#memo").val()),
-			{"name":$("#name").val(),"linker":$("#linker").val(),"unit":$("#unit").val(),"dept":$("#dept").val(),"ethnicity":$("#ethnicity").val(),"IDaddress":$("#IDaddress").val(),"bureau":$("#bureau").val(),"IDdateStart":$("#IDdateStart").val(),"IDdateEnd":$("#IDdateEnd").val(),"experience":$("#experience").val(),"companyID":$("#companyID").val(),"dept1":$("#dept1").val(),"dept2":$("#dept2").val(),"job_status":$("#job_status").val(),"limitDate":$("#limitDate").val(),"mobile":$("#mobile").val(),"phone":$("#phone").val(),"email":$("#email").val(),"address":$("#address").val(),"job":$("#job").val(),"education":$("#education").val(),"fromID":$("#fromID").val()},
+			{"name":$("#name").val(),"linker":$("#linker").val(),"unit":$("#unit").val(),"dept":$("#dept").val(),"ethnicity":$("#ethnicity").val(),"IDaddress":$("#IDaddress").val(),"bureau":$("#bureau").val(),"IDdateStart":$("#IDdateStart").val(),"IDdateEnd":$("#IDdateEnd").val(),"experience":$("#experience").val(),"companyID":$("#companyID").val(),"dept1":$("#dept1").val(),"dept2":$("#dept2").val(),"job_status":$("#job_status").val(),"limitDate":$("#limitDate").val(),"mobile":$("#mobile").val(),"phone":$("#phone").val(),"email":$("#email").val(),"address":$("#address").val(),"job":$("#job").val(),"education":$("#education").val(),"fromID":$("#fromID").val(),"fromKind":$("#fromKind").val()},
 			function(re){
 				// alert(unescape(re));
 				var ar = new Array();
@@ -498,7 +500,7 @@
 				return false;
 			}
 			// $.get("studentControl.asp?op=updateTai&nodeID=" + $("#username").val() + "&name=" + escape($("#name").val()) + "&sex=" + $("#sex").val() + "&birthday=" + $("#birthday").val() + "&linker=" + escape($("#linker").val()) + "&unit=" + escape($("#unit").val()) + "&dept=" + escape($("#dept").val()) + "&ethnicity=" + escape($("#ethnicity").val()) + "&IDaddress=" + escape($("#IDaddress").val()) + "&bureau=" + escape($("#bureau").val()) + "&IDdateStart=" + $("#IDdateStart").val() + "&IDdateEnd=" + $("#IDdateEnd").val() + "&experience=" + escape($("#experience").val()) + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&job_status=" + $("#job_status").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + escape($("#mobile").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&address=" + escape($("#address").val()) + "&job=" + escape($("#job").val()) + "&education=" + $("#education").val() + "&fromID=" + $("#fromID").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
-			$.post("studentControl.asp?op=updateTai&nodeID=" + $("#username").val() + "&sex=" + $("#sex").val() + "&birthday=" + $("#birthday").val() + "&linker=" + escape($("#linker").val()) + "&unit=" + escape($("#unit").val()) + "&dept=" + escape($("#dept").val()) + "&ethnicity=" + escape($("#ethnicity").val()) + "&IDaddress=" + escape($("#IDaddress").val()) + "&bureau=" + escape($("#bureau").val()) + "&IDdateStart=" + $("#IDdateStart").val() + "&IDdateEnd=" + $("#IDdateEnd").val() + "&experience=" + escape($("#experience").val()) + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&job_status=" + $("#job_status").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + escape($("#mobile").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&address=" + escape($("#address").val()) + "&job=" + escape($("#job").val()) + "&education=" + $("#education").val() + "&fromID=" + $("#fromID").val() + "&memo=" + escape($("#memo").val()),{"name":$("#name").val()},function(re){
+			$.post("studentControl.asp?op=updateTai&nodeID=" + $("#username").val() + "&sex=" + $("#sex").val() + "&birthday=" + $("#birthday").val() + "&linker=" + escape($("#linker").val()) + "&unit=" + escape($("#unit").val()) + "&dept=" + escape($("#dept").val()) + "&ethnicity=" + escape($("#ethnicity").val()) + "&IDaddress=" + escape($("#IDaddress").val()) + "&bureau=" + escape($("#bureau").val()) + "&IDdateStart=" + $("#IDdateStart").val() + "&IDdateEnd=" + $("#IDdateEnd").val() + "&experience=" + escape($("#experience").val()) + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&job_status=" + $("#job_status").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + escape($("#mobile").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&address=" + escape($("#address").val()) + "&job=" + escape($("#job").val()) + "&education=" + $("#education").val() + "&fromID=" + $("#fromID").val() + "&fromKind=" + $("#fromKind").val() + "&memo=" + escape($("#memo").val()),{"name":$("#name").val()},function(re){
 				//alert(unescape(re));
 				var ar = new Array();
 				ar = unescape(re).split("|");
@@ -647,7 +649,8 @@
 		$("#IDdateStart").val("");
 		$("#IDdateEnd").val("");
 		$("#companyID").val(getSession("lastcompany"));
-		$("#fromID").val(0);
+		$("#fromID").val('');
+		$("#fromKind").val(0);
 		setZNXF();
 		setDeptList($("#companyID").val(),1,$("#kindID").val());
 		//$("#dept1").val(ar[26]);				
@@ -1026,7 +1029,7 @@
 					<tr>
 						<td align="right">注册日期</td>
 						<td><input class="readOnly" type="text" id="regDate" size="25" readOnly="true" /></td>
-						<td align="right">销售标识</td><td><select id="fromID" style="width:100px;"></select></td>
+						<td align="right">销售标识</td><td><select id="fromID" style="width:60px;"></select>&nbsp;&nbsp;资源&nbsp;<select id="fromKind" style="width:60px"></select></td>
 					</tr>
 					</table>
 					</form>

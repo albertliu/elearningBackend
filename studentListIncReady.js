@@ -1,20 +1,17 @@
 ﻿	var studentListLong = 0;		//0: 标准栏目  1：短栏目
 	var studentListChk = 0;
+	let searchStudentSaler = "";
 
 	$(document).ready(function (){
 		var w = "status=0 and hostNo='" + currHost + "'";
 		if(currHost==""){	//公司用户只能看自己公司内容
 			getComList("searchStudentHost","hostInfo","hostNo","title","status=0 order by hostName",1);
-			getComList("searchStudentProjectID","projectInfo","projectID","projectID","status=1 or status=2 order by ID desc",1);
 		}else{
 			getComList("searchStudentHost","hostInfo","hostNo","title",w,0);
-			getComList("searchStudentProjectID","projectInfo","projectID","projectID","host='" + currHost + "' and status=1 or status=2 order by ID desc",1);
 		}
-		if(currHost!="spc" && currHost!=""){
-			$("#searchStudentKind").prop("disabled",true);
-		}
-		getDicList("student","searchStudentKind",1);
-		getDicList("material","searchStudentMaterial",1);
+		
+		getDicList("fromKind","searchStudentFromKind",1);
+        getComboList("searchStudentSaler","userInfo","username","realName","status=0 and host='" + currHost + "' and username in(select username from roleUserList where roleID='saler') order by realName",1);
 		$("#searchStudentStartDate").click(function(){WdatePicker();});
 		$("#searchStudentEndDate").click(function(){WdatePicker();});
 		$("#studentListLongItem1").hide();
@@ -27,6 +24,10 @@
 			showStudentInfo(0,0,1,1,"student");
 		});
 		
+		$("#btnSearchStudentUnit").click(function(){
+			showSalerUnitList();
+		});
+		
 		$("#txtSearchStudent").keypress(function(event){
 			if(event.keyCode==13){
 				if($("#txtSearchStudent").val()>""){
@@ -36,41 +37,39 @@
 				}
 			}
 		});
-		
-		$("#searchStudentOld").change(function(){
-			getStudentList();
-		});
-		$("#searchStudentPhoto").change(function(){
-			getStudentList();
-		});
-		$("#searchStudentIDcard").change(function(){
-			getStudentList();
-		});
-		
-		if(!checkPermission("studentAdd")){
+
+		if(!checkPermission("studentAdd") && !checkRole("saler")){
 			$("#btnSearchStudentAdd").hide();
 		}
 		
+		$("#searchStudentSaler").combobox({
+			onChange:function() {
+				setStudentSalerItem();
+			}
+		});
+		
+		if(checkRole("saler")){
+			$("#searchStudentSaler").combobox("setValue", currUser);
+			if(!checkRole("leader")){
+				$("#searchStudentSaler").combobox("disable");
+			}
+		}
 
-		//getStudentList();
+		setStudentSalerItem();
 	});
 
 	function getStudentList(){
 		sWhere = $("#txtSearchStudent").val();
-		var Old = $("#searchStudentOld").val();
-        var mark = 1;
-        if(checkRole("saler") && !checkRole("adviser")){
-            mark = 3;
-        }
+		let unit = $("#searchStudentUnit").val();
+		let kindID = $("#searchStudentFromKind").val();
 		//var photo = 0;
 		//var IDcard = 0;
 		//if($("#searchStudentOld").attr("checked")){Old = 1;}
 		//if($("#searchStudentPhoto").attr("checked")){photo = 1;}
 		//if($("#searchStudentIDcard").attr("checked")){IDcard = 1;}
-		//alert((sWhere) + "&kindID=" + $("#searchStudentKind").val() + "&host=" + $("#searchStudentHost").val() + "&Old=" + Old + "&keyID=" + $("#searchStudentMaterial").val() + "&refID=" + $("#searchStudentProjectID").val() + "&fStart=" + $("#searchStudentStartDate").val() + "&fEnd=" + $("#searchStudentEndDate").val());
-		//$.get("studentControl.asp?op=getStudentList&where=" + escape(sWhere) + "&kindID=" + $("#searchStudentKind").val() + "&host=" + $("#searchStudentHost").val() + "&Old=" + Old + "&IDcard=" + IDcard + "&photo=" + photo + "&fStart=" + $("#searchStudentStartDate").val() + "&fEnd=" + $("#searchStudentEndDate").val() + "&dk=11&times=" + (new Date().getTime()),function(data){
-		$.get("studentControl.asp?op=getStudentList&where=" + escape(sWhere) + "&mark=" + mark + "&kindID=" + $("#searchStudentKind").val() + "&host=" + $("#searchStudentHost").val() + "&Old=" + Old + "&keyID=" + $("#searchStudentMaterial").val() + "&refID=" + $("#searchStudentProjectID").val() + "&fStart=" + $("#searchStudentStartDate").val() + "&fEnd=" + $("#searchStudentEndDate").val() + "&dk=11&times=" + (new Date().getTime()),function(data){
-			//jAlert(unescape(data));
+		// alert((sWhere) + "&unit=" + (unit) + "&kindID=" + kindID + "&sales=" + searchStudentSaler + "&host=" + $("#searchStudentHost").val() + "&fStart=" + $("#searchStudentStartDate").val() + "&fEnd=" + $("#searchStudentEndDate").val());
+		$.get("studentControl.asp?op=getStudentList&where=" + escape(sWhere) + "&unit=" + encodeURI(unit) + "&kindID=" + kindID + "&sales=" + searchStudentSaler + "&host=" + $("#searchStudentHost").val() + "&fStart=" + $("#searchStudentStartDate").val() + "&fEnd=" + $("#searchStudentEndDate").val() + "&dk=11&times=" + (new Date().getTime()),function(data){
+			// jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
 			$("#studentCover").empty();
@@ -100,7 +99,7 @@
 			arr.push("<th width='5%'>状态</th>");
 			arr.push("<th width='8%'>注册</th>");
 			arr.push("<th width='5%'>报名</th>");
-			arr.push("<th width='5%'>资料</th>");
+			arr.push("<th width='5%'>" + (searchStudentSaler>""?'资源':'资料') + "</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
@@ -138,8 +137,8 @@
 					arr.push("<td class='left'>" + ar1[21] + "</td>");
 					arr.push("<td class='left'>" + ar1[4] + "</td>");
 					arr.push("<td class='left'>" + ar1[11] + "</td>");
-					arr.push("<td class='left'>" + nullNoDisp(ar1[20]) + "</td>");
-					arr.push("<td class='left'>" + ar1[15] + "</td>");
+					arr.push("<td class='left'>" + nullNoDisp(searchStudentSaler>""?ar1[26]:ar1[20]) + "</td>");
+					arr.push("<td class='left'>" + (searchStudentSaler>""?ar1[25]:ar1[15]) + "</td>");
 					arr.push("</tr>");
 				});
 			}
@@ -170,6 +169,8 @@
 				"bPaginate": true,
 				"bLengthChange": true,
 				"bInfo": true,
+				"aLengthMenu":[15,30,50,100,500],
+				"iDisplayLength": 100,
 				"aoColumnDefs": []
 			});
 			floatCount = i;
@@ -180,5 +181,20 @@
 			floatContent = "";	//records data for output
 			floatModel = 1;
 		});
+	}
+
+	function setStudentSalerItem(){
+		searchStudentSaler = $("#searchStudentSaler").combobox("getValue");
+		if(searchStudentSaler>""){
+			$("#btnSearchStudentUnit").show();
+			$("#searchStudentUnitItem").show();
+			$("#searchStudentFromKindItem").show();
+			getComboList("searchStudentUnit","v_unitInfo","unitName","unitName","sales='" + searchStudentSaler + "' and status=0 order by unitName",0);
+		}else{
+			$("#btnSearchStudentUnit").hide();
+			$("#searchStudentUnitItem").hide();
+			$("#searchStudentFromKindItem").hide();
+			$("#searchStudentUnit").empty();
+		}		
 	}
 	

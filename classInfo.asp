@@ -1186,7 +1186,7 @@
 				$("#btnCloseStudentCourse").show();
 				$("#btnSetSource").show();
 			}
-			if(checkPermission("setInvoiceGroup") && s < 2){
+			if(checkPermission("setInvoiceGroup")){
 				$("#btnInvoiceGroup").show();
 			}
 		}

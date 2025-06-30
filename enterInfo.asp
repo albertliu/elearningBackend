@@ -51,6 +51,7 @@
 		getDicList("signatureType","signatureType",0);
 		getDicList("payNow","payNow",0);
 		getDicList("examResult","result",1);
+		getDicList("fromKind","fromKind",0);
         getComList("fromID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='saler') order by realName",1);
 		getComList("host","hostInfo","hostNo","title","status=0 order by hostName",1);
 		$("#datePay").click(function(){WdatePicker();});
@@ -446,6 +447,7 @@
 				$("#currDiplomaID").val(ar[45]);
 				$("#currDiplomaDate").val(ar[46]);
 				$("#fromID").val(ar[47]);
+				$("#fromKind").val(ar[99]);
 				$("#signature").val(ar[48]);
 				$("#signatureDate").val(ar[49]);
 				$("#signatureType").val(ar[52]);
@@ -583,7 +585,7 @@
 			}
 			
 			//@username,@classID,@price,@invoice,@projectID,@kindID,@type,@status,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo,@registerID
-			$.get("studentCourseControl.asp?op=doEnter&nodeID=" + nodeID + "&username=" + $("#username").val() + "&classID=" + $("#classID").val() + "&overdue=" + over + "&express=" + express + "&needInvoice=" + needInvoice + "&host=" + $("#host").val() + "&fromID=" + $("#fromID").val() + "&price=" + $("#price").val() + "&amount=" + $("#amount").val() + "&invoice=" + $("#invoice").val() + "&receipt=" + $("#receipt").val() + "&invoice_amount=" + $("#invoice_amount").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&payNow=" + $("#payNow").val() + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#statusPay").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&pay_memo=" + escape($("#pay_memo").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+			$.get("studentCourseControl.asp?op=doEnter&nodeID=" + nodeID + "&username=" + $("#username").val() + "&classID=" + $("#classID").val() + "&overdue=" + over + "&express=" + express + "&needInvoice=" + needInvoice + "&host=" + $("#host").val() + "&fromID=" + $("#fromID").val() + "&fromKind=" + $("#fromKind").val() + "&price=" + $("#price").val() + "&amount=" + $("#amount").val() + "&invoice=" + $("#invoice").val() + "&receipt=" + $("#receipt").val() + "&invoice_amount=" + $("#invoice_amount").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&payNow=" + $("#payNow").val() + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#statusPay").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&pay_memo=" + escape($("#pay_memo").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 				//jAlert(unescape(re));
 				let ar = new Array();
 				ar = unescape(re).split("|");
@@ -929,7 +931,7 @@
 							<td align="right">初训证书编号</td>
 							<td><input type="text" id="currDiplomaID" style="width:140px;" /></td>
 							<td align="right">应复训日期</td>
-							<td><input type="text" id="currDiplomaDate" style="width:80px;" />&nbsp;销售<select id="fromID" style="width:80px;"></select></td>
+							<td><input type="text" id="currDiplomaDate" style="width:80px;" />&nbsp;销售<select id="fromID" style="width:60px;"></select>&nbsp;&nbsp;资源&nbsp;<select id="fromKind" style="width:60px"></select></td>
 						</tr>
 						<tr>
 							<td align="right">备注</td>

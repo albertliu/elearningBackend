@@ -21,19 +21,15 @@
 
 <script language="javascript">
 	var nodeID = 0;
-	var refID = "";
-	var keyID = "";
 	var op = 0;
 	var updateCount = 0;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";
-		refID = "<%=refID%>";	//enterID
-		keyID = "<%=keyID%>";	//username
 		op = "<%=op%>";
 		
-		getDicList("serviceType","type",0);
-		$("#serviceDate").click(function(){WdatePicker();});
+		getDicList("fromKind","fromKind",0);
+        getComList("saler","userInfo","username","realName","status=0 and host='" + currHost + "' and username in(select username from roleUserList where roleID='saler') order by realName",0);
 		
 		$.ajaxSetup({ 
 			async: false 
@@ -55,21 +51,25 @@
 	});
 
 	function getNodeInfo(id){
-		$.get("studentControl.asp?op=getStudentServiceNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
+		$.get("studentControl.asp?op=getSalerUnitNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar > ""){
 				$("#ID").val(ar[0]);
-				keyID = ar[2];
-				refID = ar[3];
-				$("#item").val(ar[1]);
-				$("#type").val(ar[4]);
-				$("#serviceDate").val(ar[6]);
-				$("#memo").val(ar[7]);
-				$("#regDate").val(ar[8]);
-				$("#registerID").val(ar[9]);
-				$("#registerName").val(ar[10]);
+				$("#unitName").val(ar[1]);
+				$("#taxNo").val(ar[2]);
+				$("#fromKind").val(ar[6]);
+				$("#saler").val(ar[3]);
+				$("#phone").val(ar[9]);
+				$("#email").val(ar[11]);
+				$("#linker").val(ar[8]);
+				$("#address").val(ar[10]);
+				$("#association").val(ar[12]);
+				$("#memo").val(ar[13]);
+				$("#regDate").val(ar[14]);
+				$("#registerID").val(ar[15]);
+				$("#registerName").val(ar[16]);
 				setButton();
 			}else{
 				jAlert("该信息未找到！","信息提示");
@@ -79,17 +79,17 @@
 	}
 	
 	function saveNode(){
-		if($("#item").val()==""){
-			jAlert("服务内容不能为空");
+		if($("#memo").val()==""){
+			jAlert("基本情况不能为空");
 			return false;
 		}
-		if($("#serviceDate").val()==""){
-			jAlert("服务日期不能为空");
+		if($("#unitName").val()==""){
+			jAlert("企业名称不能为空");
 			return false;
 		}
-		//alert($("#ID").val() + "&refID=" + $("#agencyID").val() + "&agencyName=" + ($("#agencyName").val()) + "&title=" + ($("#title").val()) + "&linker=" +  ($("#linker").val()) + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&phone=" +  ($("#phone").val()) + "&email=" + ($("#email").val()) + "&address=" + ($("#address").val()) + "&memo=" + ($("#memo").val()));
-		$.get("studentControl.asp?op=updateStudentServiceInfo&nodeID=" + $("#ID").val() + "&item=" + escape($("#item").val()) + "&memo=" + escape($("#memo").val()) + "&keyID=" + keyID + "&refID=" + refID + "&kindID=" + $("#type").val() + "&serviceDate=" + $("#serviceDate").val() + "&times=" + (new Date().getTime()),function(re){
-			// alert(unescape(re));
+		// alert($("#ID").val() + "&taxNo=" + $("#taxNo").val() + "&address=" + encodeURI($("#address").val()) + "&phone=" + encodeURI($("#phone").val()) + "&email=" + encodeURI($("#email").val()) + "&linker=" + encodeURI($("#linker").val()) + "&item=" + escape($("#unitName").val()) + "&association=" + encodeURI($("#association").val()) + "&memo=" + escape($("#memo").val()) + "&kindID=" + $("#fromKind").val() + "&saler=" + currUser);
+		$.get("studentControl.asp?op=updateSalerUnitInfo&nodeID=" + $("#ID").val() + "&taxNo=" + $("#taxNo").val() + "&address=" + encodeURI($("#address").val()) + "&phone=" + encodeURI($("#phone").val()) + "&email=" + encodeURI($("#email").val()) + "&linker=" + encodeURI($("#linker").val()) + "&item=" + escape($("#unitName").val()) + "&association=" + encodeURI($("#association").val()) + "&memo=" + escape($("#memo").val()) + "&kindID=" + $("#fromKind").val() + "&refID=" + currUser + "&times=" + (new Date().getTime()),function(re){
+			// jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(op == 1){
@@ -106,28 +106,32 @@
 	function setButton(){
 		$("#btnSave").hide();
 		$("#btnAdd").hide();
-		$("#btnDel").hide();
-		if(checkPermission("studentEdit") || checkRole("saler") || checkRole("adviser")){
+		if(checkRole("saler")){
 			$("#btnAdd").show();
 		}
 		if(op ==1){
 			setEmpty();
 			$("#btnAdd").hide();
 		}
-		if($("#registerID").val() == currUser && $("#regDate").val()==currDate){
+		if($("#registerID").val() == currUser || $("#saler").val()==currUser || checkRole("leader")){
 			$("#btnSave").show();
-			$("#btnDel").show();
 		}
 	}
 	
 	function setEmpty(){
 		nodeID = 0;
 		$("#ID").val(0);
-		$("#item").val("");
+		$("#unitName").val("");
 		$("#memo").val("");
-		$("#type").val(0);
+		$("#taxNo").val("");
+		$("#address").val("");
+		$("#phone").val("");
+		$("#email").val("");
+		$("#linker").val("");
+		$("#association").val("");
+		$("#saler").val(currUser);
+		$("#fromKind").val(0);
 		$("#regDate").val(currDate);
-		$("#serviceDate").val(currDate);
 		$("#registerName").val(currUserName);
 		$("#registerID").val(currUser);
 	}
@@ -149,18 +153,34 @@
 			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
-				<td align="right">服务方式</td><input type="hidden" id="ID" /><input type="hidden" id="registerID" />
-				<td><select id="type" style="width:100px;"></select></td>
-				<td align="right">服务日期</td>
-				<td><input type="text" id="serviceDate" style="width:80px;" /></td>
+				<td align="right">企业名称</td><input type="hidden" id="ID" /><input type="hidden" id="registerID" />
+				<td><input type="text" id="unitName" style="width:300px;" /></td>
+				<td align="right">统一编码</td>
+				<td><input type="text" id="taxNo" style="width:150px;" /></td>
 			</tr>
 			<tr>
-				<td align="right">内容</td>
-				<td colspan="3"><textarea id="item" style="padding:2px;width:100%;" rows="5"></textarea></td>
+				<td align="right">资源属性</td>
+				<td><select id="fromKind" style="width:100px;"></select>&nbsp;&nbsp;&nbsp;&nbsp;所属协会&nbsp;<input id="association" style="padding:2px;width:120px;" /></td>
+				<td align="right">销售</td>
+				<td><select id="saler" style="width:100px"></select></td>
 			</tr>
 			<tr>
-				<td align="right">备注</td>
-				<td colspan="3"><textarea id="memo" style="padding:2px;width:100%;" rows="2"></textarea></td>
+				<td align="right">基本情况</td>
+				<td colspan="3"><textarea id="memo" style="padding:2px;width:100%;" rows="5"></textarea></td>
+			</tr>
+			<tr>
+				<td align="right">联系地址</td>
+				<td colspan="3"><input id="address" style="padding:2px;width:100%;" /></td>
+			</tr>
+			<tr>
+				<td align="right">联系人</td>
+				<td colspan="3"><input id="linker" style="padding:2px;width:100%;" /></td>
+			</tr>
+			<tr>
+				<td align="right">联系电话</td>
+				<td><input type="text" id="phone" style="width:300px;" /></td>
+				<td align="right">邮箱</td>
+				<td><input type="text" id="email" style="width:150px;" /></td>
 			</tr>
 			<tr>
 				<td align="right">登记人</td>
@@ -178,7 +198,6 @@
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
   	<input class="button" type="button" id="btnSave" value="保存" />&nbsp;
   	<input class="button" type="button" id="btnAdd" value="添加" />&nbsp;
-  	<input class="button" type="button" id="btnDel" value="删除" />&nbsp;
   </div>
 </div>
 </body>
