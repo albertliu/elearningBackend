@@ -1,7 +1,7 @@
 ﻿	var questionListLong = 0;		//0: 标准栏目  1：短栏目
 
 	$(document).ready(function (){
-		getComList("searchQuestionKnowPoint","knowpointInfo","knowpointID","knowpointName","status=0 order by knowpointID",1);
+		getComList("searchQuestionKnowPoint","v_knowpointInfo","knowpointID","IDName","status=0 order by knowpointID",1);
 		getDicList("statusEffect","searchQuestionStatus",1);
 		getDicList("questionType","searchQuestionKind",1);
 		
