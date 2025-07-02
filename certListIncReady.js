@@ -91,6 +91,8 @@
 				"bFilter": true,
 				"bPaginate": true,
 				"bLengthChange": true,
+				"aLengthMenu":[15,30,50,100],
+				"iDisplayLength": 100,
 				"bInfo": true,
 				"aoColumnDefs": []
 			});
