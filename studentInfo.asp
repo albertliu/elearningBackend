@@ -649,7 +649,11 @@
 		$("#IDdateStart").val("");
 		$("#IDdateEnd").val("");
 		$("#companyID").val(getSession("lastcompany"));
-		$("#fromID").val('');
+		if(checkRole("saler")){
+			$("#fromID").val(currUser);
+		}else{
+			$("#fromID").val('');
+		}
 		$("#fromKind").val(0);
 		setZNXF();
 		setDeptList($("#companyID").val(),1,$("#kindID").val());

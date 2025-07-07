@@ -154,7 +154,7 @@
 			<table>
 			<tr>
 				<td align="right">企业名称</td><input type="hidden" id="ID" /><input type="hidden" id="registerID" />
-				<td><input type="text" id="unitName" style="width:300px;" /></td>
+				<td><input class="mustFill" type="text" id="unitName" style="width:300px;" /></td>
 				<td align="right">统一编码</td>
 				<td><input type="text" id="taxNo" style="width:150px;" /></td>
 			</tr>
