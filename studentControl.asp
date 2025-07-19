@@ -497,6 +497,15 @@ if(op == "getStudentServiceList"){
 			where = s;
 		}
 	}
+	//如果不是销售或领导，只能看公开记录
+	if(keyID == 0){ // 
+		s = "private=0";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 
 	if(where > ""){
 		where = " where " + where;
@@ -530,7 +539,7 @@ if(op == "getStudentServiceNodeInfo"){
 		//4
 		result += "|" + rs("type").value + "|" + rs("typeName").value + "|" + rs("serviceDate").value + "|" + rs("memo").value;
 		//8
-		result += "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("name").value;
+		result += "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("name").value + "|" + rs("private").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -539,7 +548,7 @@ if(op == "getStudentServiceNodeInfo"){
 
 if(op == "updateStudentServiceInfo"){
 	result = "";
-	sql = "exec updateStudentServiceInfo " + nodeID + ",'" + keyID + "','" + item + "','" + refID + "','" + kindID + "','" + String(Request.QueryString("serviceDate")) + "','" + memo + "','" + currUser + "'";
+	sql = "exec updateStudentServiceInfo " + nodeID + ",'" + keyID + "','" + item + "','" + refID + "','" + kindID + "','" + String(Request.QueryString("serviceDate")) + "','" + String(Request.QueryString("private")) + "','" + memo + "','" + currUser + "'";
 	
 	rs = conn.Execute(sql);
 	if(!rs.EOF){

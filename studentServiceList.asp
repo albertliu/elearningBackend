@@ -26,6 +26,7 @@
 		nodeID = "<%=nodeID%>";	//username
 		refID = "<%=refID%>";	//enterID
 		op = "<%=op%>";
+		keyID = 0;  //private
 		
 		$.ajaxSetup({ 
 			async: false 
@@ -54,7 +55,11 @@
 
 	function getStudentServiceList(){
 		//alert(refID + ":" + nodeID);
-		$.get("studentControl.asp?op=getStudentServiceList&nodeID=" + nodeID + "&refID=" + refID + "&dk=1011&times=" + (new Date().getTime()),function(data){
+		if(checkRole("saler") || checkRole("leader")){
+			keyID = 1;	//销售或领导可以查看所有记录，其他只能看公开记录
+		}
+
+		$.get("studentControl.asp?op=getStudentServiceList&nodeID=" + nodeID + "&refID=" + refID + "&keyID=" + keyID + "&dk=1011&times=" + (new Date().getTime()),function(data){
 			//alert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");

@@ -33,6 +33,7 @@
 		op = "<%=op%>";
 		
 		getDicList("serviceType","type",0);
+		getDicList("servicePrivate","private",0);
 		$("#serviceDate").click(function(){WdatePicker();});
 		
 		$.ajaxSetup({ 
@@ -65,6 +66,7 @@
 				refID = ar[3];
 				$("#item").val(ar[1]);
 				$("#type").val(ar[4]);
+				$("#private").val(ar[12]);
 				$("#serviceDate").val(ar[6]);
 				$("#memo").val(ar[7]);
 				$("#regDate").val(ar[8]);
@@ -88,7 +90,7 @@
 			return false;
 		}
 		//alert($("#ID").val() + "&refID=" + $("#agencyID").val() + "&agencyName=" + ($("#agencyName").val()) + "&title=" + ($("#title").val()) + "&linker=" +  ($("#linker").val()) + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&phone=" +  ($("#phone").val()) + "&email=" + ($("#email").val()) + "&address=" + ($("#address").val()) + "&memo=" + ($("#memo").val()));
-		$.get("studentControl.asp?op=updateStudentServiceInfo&nodeID=" + $("#ID").val() + "&item=" + escape($("#item").val()) + "&memo=" + escape($("#memo").val()) + "&keyID=" + keyID + "&refID=" + refID + "&kindID=" + $("#type").val() + "&serviceDate=" + $("#serviceDate").val() + "&times=" + (new Date().getTime()),function(re){
+		$.get("studentControl.asp?op=updateStudentServiceInfo&nodeID=" + $("#ID").val() + "&item=" + escape($("#item").val()) + "&memo=" + escape($("#memo").val()) + "&keyID=" + keyID + "&refID=" + refID + "&kindID=" + $("#type").val() + "&private=" + $("#private").val() + "&serviceDate=" + $("#serviceDate").val() + "&times=" + (new Date().getTime()),function(re){
 			// alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -107,8 +109,12 @@
 		$("#btnSave").hide();
 		$("#btnAdd").hide();
 		$("#btnDel").hide();
+		$("#private").prop("disabled", true);
 		if(checkPermission("studentEdit") || checkRole("saler") || checkRole("adviser")){
 			$("#btnAdd").show();
+		}
+		if(checkRole("saler")){
+			$("#private").prop("disabled", false);
 		}
 		if(op ==1){
 			setEmpty();
@@ -126,6 +132,7 @@
 		$("#item").val("");
 		$("#memo").val("");
 		$("#type").val(0);
+		$("#private").val(0);
 		$("#regDate").val(currDate);
 		$("#serviceDate").val(currDate);
 		$("#registerName").val(currUserName);
@@ -150,7 +157,7 @@
 			<table>
 			<tr>
 				<td align="right">服务方式</td><input type="hidden" id="ID" /><input type="hidden" id="registerID" />
-				<td><select id="type" style="width:100px;"></select></td>
+				<td><select id="type" style="width:60px;"></select>&nbsp;&nbsp;类型<select id="private" style="width:60px;"></select></td>
 				<td align="right">服务日期</td>
 				<td><input type="text" id="serviceDate" style="width:80px;" /></td>
 			</tr>
