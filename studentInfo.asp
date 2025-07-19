@@ -590,7 +590,9 @@
 		$("#sex").prop("disabled",true);
 		$("#birthday").prop("disabled",true);
 		$("#scanPhoto").checkbox({readonly:true});
-		$("#fromID").prop("disabled",true);
+		if(!checkRole("leader")){
+			$("#fromID").prop("disabled",true);
+		}
 		if(op==1){
 			$("#save").show();
 			$("#add_img_education").hide();
