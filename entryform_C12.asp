@@ -358,32 +358,32 @@
 				<div id="agreementCover"></div>
 				<div id="materialsCover"></div>
 			</div>
-			<div id="keyItem5" style="flex:1; text-align:center; width:800px;padding-left:20px;">
+			<div id="keyItem5" style="flex:1; text-align:center; width:600px;padding-left:20px;">
 				<div style="position: relative;">
 					<div style="position: absolute; z-index:10;">
 					<div style="float:center; text-align:center;">
-						<span><img id="f_sign40" src="" style="width:120px;margin:0px 0px 0px 520px;padding-left:0px;padding-top:360px;"></span>
+						<span><img id="f_sign40" src="" style="width:120px;margin:0px 0px 0px 410px;padding-left:0px;padding-top:300px;"></span>
 					</div>
 					</div>
 					<div style="position: absolute; z-index:10;">
 					<div style="float:center; text-align:center;">
-						<span><img src="images/sign_stamp.png" style="width:180px;margin:0px 0px 0px 440px;padding-left:0px;padding-top:330px;opacity:0.6;"></span>
+						<span><img src="images/sign_stamp.png" style="width:180px;margin:0px 0px 0px 320px;padding-left:0px;padding-top:270px;opacity:0.6;"></span>
 					</div>
 					</div>
 				</div>
-				<div><img id="img_A" src="" value="" style="max-width:400px;max-height:500px;padding-top:20px;" /></div>
-				<div><img id="img_B" src="" value="" style="max-width:400px;max-height:500px;padding-top:20px;" /></div>
+				<div><img id="img_A" src="" value="" style="max-width:450px;max-height:500px;padding-top:20px;" /></div>
+				<div><img id="img_B" src="" value="" style="max-width:450px;max-height:500px;padding-top:20px;" /></div>
 			</div>
-			<div id="keyItem6" style="text-align:center; width:800px;padding-left:20px;">
+			<div id="keyItem6" style="text-align:center; width:1000px;padding-left:1px;">
 				<div style="position: relative;">
 					<div style="position: absolute; z-index:10;">
 					<div style="float:center; text-align:center;">
-						<span><img id="f_sign50" src="" style="width:120px;margin:0px 0px 0px 630px;padding-left:0px;padding-top:290px;"></span>
+						<span><img id="f_sign50" src="" style="width:120px;margin:0px 0px 0px 880px;padding-left:0px;padding-top:290px;"></span>
 					</div>
 					</div>
 					<div style="position: absolute; z-index:10;">
 					<div style="float:center; text-align:center;">
-						<span id="img_E_stamp"><img src="images/sign_stamp.png" style="width:180px;margin:0px 0px 0px 550px;padding-left:0px;padding-top:260px;opacity:0.6;"></span>
+						<span id="img_E_stamp"><img src="images/sign_stamp.png" style="width:180px;margin:0px 0px 0px 790px;padding-left:0px;padding-top:260px;opacity:0.6;"></span>
 					</div>
 					</div>
 				</div>
