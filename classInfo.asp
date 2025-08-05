@@ -127,7 +127,7 @@
 				var x = prompt("请输入发票号码：","");
 				if(x && x>""){
 					$.post(uploadURL + "/public/setInvoiceGroup", {classID:$("#classID").val(), kind: "B", selList: selList, invoice: x, registerID: currUser} ,function(data){
-						alert(data.msg);
+						alert(data.msg + "。共更新了" + data.qty + "个学员发票。" + (selCount>data.qty?"其中有" + (selCount-data.qty) + "个学员已有发票，不能重复绑定。":""));
 					});
 				}
 			}
