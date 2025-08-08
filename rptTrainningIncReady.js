@@ -64,8 +64,8 @@
 				arr.push("<th width='12%'>ZF宝</th>");
 				arr.push("<th width='10%'>微信</th>");
 				arr.push("<th width='10%'>转账</th>");
-				arr.push("<th width='10%'>现金</th>");
-				arr.push("<th width='8%'>其他</th>");
+				arr.push("<th width='10%'>应收</th>");
+				arr.push("<th width='8%'>..</th>");
 				arr.push("<th width='10%'>小计</th>");
 				arr.push("<th width='8%'>退款</th>");
 				arr.push("<th width='10%'>合计</th>");

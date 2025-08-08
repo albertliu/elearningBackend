@@ -125,7 +125,7 @@
 				"bPaginate": true,
 				"bLengthChange": false,
 				"aLengthMenu":[15,30,50,100,500],
-				"iDisplayLength": 50,
+				"iDisplayLength": 500,
 				"bInfo": true,
 				"aoColumnDefs": []
 			});
