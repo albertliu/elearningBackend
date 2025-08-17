@@ -230,6 +230,20 @@
 			}
 		});
 		
+		$("#btnCompetition").click(function(){
+			getSelCart("visitstockchk");
+			if(selCount==0){
+				alert("请选择要通知的名单。");
+				return false;
+			}
+			if(confirm("确定要通知这" + selCount + "个学员报名竞赛课程吗？")){
+				$.post(uploadURL + "/public/send_message_competition", {batchID: $("#classID").val(), selList: selList, SMS:1, registerID: currUser} ,function(data){
+					getNodeInfo(nodeID);
+					alert("发送成功。");
+				});
+			}
+		});
+		
 		$("#btnClassAlert").click(function(){
 			getSelCart("visitstockchk");
 			if(selCount==0){
@@ -1376,6 +1390,7 @@
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnAutoSetClassSNo" value="调整学号" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnInvoiceGroup" value="团体发票" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnCloseStudentCourse" value="关/开课程" /></span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnCompetition" value="竞赛通知" /></span>
 		</div>
 		<div id="item_btn2">
 			学习进度&nbsp;&lt;=<input type="text" id="s_completion2" size="2" />%
