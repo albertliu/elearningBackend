@@ -475,6 +475,39 @@
 						$.ajax({
 							url: uploadURL + "/public/fireScoreCheck?host=" + currHost + "&register=" + currUserName,
 							type: "post",
+							data: {"selList":selList, "kindID":2, "refID":$("#ID").val()},
+							beforeSend: function() {   
+								$.messager.progress();	// 显示进度条
+							},
+							success: function(data){
+								//jAlert(data);
+								if(data.err==0){
+									var end = performance.now(); 
+									jAlert("成功查询数量：" + data.count_s + "; &nbsp;失败数量：" + data.count_e + "; &nbsp;耗时：" + ((end-start)/1000).toFixed(2) + "秒","信息提示");
+								}else{
+									jAlert("操作失败，请稍后再试。" + data.errMsg,"信息提示");
+								}
+								getStudentCourseList();
+								$.messager.progress('close');	// 如果提交成功则隐藏进度条 
+							}
+						});
+					}
+				});
+		});
+
+		$("#btnDiplomaDate").click(function(){
+				getSelCart("visitstockchk");
+				if(selCount==0){
+					$.messager.alert("提示","请选择要查询复训日期的人员。","info");
+					return false;
+				}
+				// jConfirm('确定要为这' + selCount + '个人报名吗?', "确认对话框",function(r){
+				$.messager.confirm('确认对话框','确定查询这' + selCount + '个人的复训日期吗?<br>可能要花几分钟时间，请稍候...', function(r){
+					if(r){
+						var start = performance.now(); 
+						$.ajax({
+							url: uploadURL + "/public/diplomaCheck?host=" + currHost + "&register=" + currUserName,
+							type: "post",
 							data: {"selList":selList, "kindID":2, refID:$("#ID").val()},
 							beforeSend: function() {   
 								$.messager.progress();	// 显示进度条
@@ -1387,6 +1420,7 @@
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnRebuildStudentLesson" value="刷新课表" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnDiplomaIssue" value="培训证书" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnFireScore" value="消防成绩" /></span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnDiplomaDate" value="复训日期" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnAutoSetClassSNo" value="调整学号" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnInvoiceGroup" value="团体发票" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnCloseStudentCourse" value="关/开课程" /></span>

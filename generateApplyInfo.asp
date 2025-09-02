@@ -887,9 +887,9 @@
 				arr.push("<th width='6%'>照片</th>");
 				arr.push("<th width='6%'>签名</th>");
 			}
-			arr.push("<th width='15%'>备注</th>");
+			arr.push("<th width='12%'>备注</th>");
 			// arr.push("<th width='7%'>补考</th>");
-			arr.push("<th width='8%'>复训日期</th>");
+			arr.push("<th width='10%'>复训日期</th>");
 			arr.push("<th width='1%'>材</th>");
 			arr.push("<th width='1%'></th>");
 			arr.push("</tr>");
