@@ -52,7 +52,7 @@
 		getDicList("payNow","payNow",0);
 		getDicList("examResult","result",1);
 		getDicList("fromKind","fromKind",0);
-        getComList("fromID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='saler') order by realName",1);
+        getComList("fromID","userInfo","username","realName","username in(select username from roleUserList where roleID='saler') order by realName",1);
 		getComList("host","hostInfo","hostNo","title","status=0 order by hostName",1);
 		$("#datePay").click(function(){WdatePicker();});
 		$("#dateRefund").click(function(){WdatePicker();});
