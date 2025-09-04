@@ -15,7 +15,7 @@
 			getComList("searchEnterClassID","v_classInfo","classID","classIDName","1=1 order by cast(ID as int) desc",1);
 			getComList("searchEnterProjectID","projectInfo","projectID","projectName","status>0 and status<9 order by cast(ID as int) desc",1);
 			getComList("searchEnterClassSaler","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='saler') order by realName",1);
-			if(checkRole("saler") && !checkRole("adviser")){
+			if(checkRole("saler") && !checkRole("adviser") && !checkRole("leader")){
 				$("#searchEnterClassSaler").val(currUser);
 				$("#searchEnterClassSaler").prop("disabled",true);
 			}
@@ -255,7 +255,7 @@
 	function getEnterList(){
 		sWhere = $("#txtSearchEnter").val();
 		var Old = 0;
-        var mark = 1;
+        // var mark = 1;
 		let inv = 0;
 		let pre = 0;
         // if(checkRole("saler") && !checkRole("adviser")){
