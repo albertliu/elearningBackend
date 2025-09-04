@@ -1686,7 +1686,7 @@
 	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表; re:0 normal  1 big window
 	function showEnterInfo(nodeID,refID,op,mark,companyID,re){
 		var w = 750;
-		var h = 680;
+		var h = 690;
 		if(re==1){
 			w = 1000;
 			h = 960;
