@@ -929,9 +929,12 @@
 						</tr>
 						<tr>
 							<td align="right">应复训日期</td>
-							<td><input type="text" id="currDiplomaDate" style="width:80px;" />&nbsp;销售<select id="fromID" style="width:60px;"></select>&nbsp;&nbsp;资源&nbsp;<select id="fromKind" style="width:60px"></select></td>
-							<td align="right">证书查询</td>
-							<td><input type="text" id="currDiplomaID" style="width:140px;" /></td>
+							<td colspan="3">
+								<input type="text" id="currDiplomaDate" style="width:80px;" />&nbsp;&nbsp;
+								证书查询&nbsp;<input type="text" id="currDiplomaID" style="width:140px;" />&nbsp;&nbsp;
+								销售&nbsp;<select id="fromID" style="width:60px;"></select>&nbsp;&nbsp;
+								资源&nbsp;<select id="fromKind" style="width:60px"></select>
+							</td>
 						</tr>
 						<tr>
 							<td align="right">备注</td>
