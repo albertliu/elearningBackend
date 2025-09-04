@@ -14,6 +14,11 @@
 			getComList("searchEnterHost","hostInfo","hostNo","title","status=0 order by hostName",1);
 			getComList("searchEnterClassID","v_classInfo","classID","classIDName","1=1 order by cast(ID as int) desc",1);
 			getComList("searchEnterProjectID","projectInfo","projectID","projectName","status>0 and status<9 order by cast(ID as int) desc",1);
+			getComList("searchEnterClassSaler","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='saler') order by realName",1);
+			if(checkRole("saler") && !checkRole("adviser")){
+				$("#searchEnterClassSaler").val(currUser);
+				$("#searchEnterClassSaler").prop("disabled",true);
+			}
 		}else{
 			getComList("searchEnterHost","hostInfo","hostNo","title","status=0 and hostNo='" + currHost + "'",0);
 			getComList("searchEnterCourseID","[dbo].[getHostCourseList]('" + currHost + "')","courseID","courseName","1=1" + w + "",1);
@@ -253,9 +258,9 @@
         var mark = 1;
 		let inv = 0;
 		let pre = 0;
-        if(checkRole("saler") && !checkRole("adviser")){
-            mark = 3;
-        }
+        // if(checkRole("saler") && !checkRole("adviser")){
+        //     mark = 3;
+        // }
 		var photo = 0;
 		if($("#searchEnterShowPhoto").prop("checked")){
 			photo = 1;
@@ -268,7 +273,7 @@
 		}
 		let _op = ($("#searchEnterOutClass").checkbox("options").checked?"getStudentListOutClass":"getStudentCourseList");
 		// alert(_op)
-		$.get("studentCourseControl.asp?op=" + _op + "&where=" + escape(sWhere) + "&pre=" + pre + "&needInvoice=" + inv + "&mark=" + mark + "&kindID=" + $("#searchEnterDept").val() + "&refID=" + $("#searchEnterProjectID").val() + "&status=" + $("#searchEnterStatus").val() + "&reexamine=" + $("#searchEnterReexamine").val() + "&photoStatus=" + $("#searchEnterPhotoStatus").val() + "&courseID=" + $("#searchEnterCourseID").val() + "&host=" + $("#searchEnterHost").val() + "&checked=" + $("#searchEnterChecked").val() + "&materialChecked=" + $("#searchEnterMaterialChecked").val() + "&passcard=" + $("#searchEnterPasscard").val() + "&classID=" + $("#searchEnterClassID").val() + "&fStart=" + $("#searchEnterStartDate").val() + "&fEnd=" + $("#searchEnterEndDate").val() + "&completion1=" + $("#searchEnter_completion1").val() + "&score1=" + $("#searchEnter_score1").val() + "&dk=101&times=" + (new Date().getTime()),function(data){
+		$.get("studentCourseControl.asp?op=" + _op + "&where=" + escape(sWhere) + "&pre=" + pre + "&needInvoice=" + inv + "&fromID=" + $("#searchEnterClassSaler").val() + "&kindID=" + $("#searchEnterDept").val() + "&refID=" + $("#searchEnterProjectID").val() + "&status=" + $("#searchEnterStatus").val() + "&reexamine=" + $("#searchEnterReexamine").val() + "&photoStatus=" + $("#searchEnterPhotoStatus").val() + "&courseID=" + $("#searchEnterCourseID").val() + "&host=" + $("#searchEnterHost").val() + "&checked=" + $("#searchEnterChecked").val() + "&materialChecked=" + $("#searchEnterMaterialChecked").val() + "&passcard=" + $("#searchEnterPasscard").val() + "&classID=" + $("#searchEnterClassID").val() + "&fStart=" + $("#searchEnterStartDate").val() + "&fEnd=" + $("#searchEnterEndDate").val() + "&completion1=" + $("#searchEnter_completion1").val() + "&score1=" + $("#searchEnter_score1").val() + "&dk=101&times=" + (new Date().getTime()),function(data){
 			// alert((data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");

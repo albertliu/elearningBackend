@@ -36,8 +36,9 @@
 								材料确认&nbsp;<select id="searchEnterMaterialChecked" style="width:50px"></select>&nbsp;&nbsp;
 							</span>
 							<span id="enterListLongItem3">
-								班主任&nbsp;<select id="searchEnterClassAdviser" style="width:90px"></select>&nbsp;&nbsp;
-								班级&nbsp;<select id="searchEnterClassID" style="width:180px"></select>&nbsp;&nbsp;
+								班主任&nbsp;<select id="searchEnterClassAdviser" style="width:80px"></select>&nbsp;&nbsp;
+								销售&nbsp;<select id="searchEnterClassSaler" style="width:80px"></select>&nbsp;&nbsp;
+								班级&nbsp;<select id="searchEnterClassID" style="width:100px"></select>&nbsp;&nbsp;
 								类别&nbsp;<select id="searchEnterReexamine" style="width:50px"></select>&nbsp;&nbsp;
 								<input class="easyui-checkbox" id="searchEnterPre" name="searchEnterPre" value="1"/>&nbsp;预备班&nbsp;
 							    &nbsp;<label id="searchEnterDateItem">报名日期</label>&nbsp;<input type="text" id="searchEnterStartDate" size="8" />-<input type="text" id="searchEnterEndDate" size="8" />
