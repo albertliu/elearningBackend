@@ -261,6 +261,9 @@ if(op == "getStudentNeedDiplomaList"){
 	//如果有公司
 	if(host > ""){ // 
 		s = "a.host='" + host + "'";
+		if(currHost==="spc"){
+			s = "a.type=1";
+		}
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
