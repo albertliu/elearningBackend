@@ -587,6 +587,9 @@
 			setSession("need2DiplomaList", selList);
 			showGenerateDiplomaInfo1(0,$("#certID").val(),"need2DiplomaList",selCount,'',1,0);
 		});
+		$("#studyOnline").click(function(){
+			showClassStudyOnline($("#classID").val(),"B","",0,1);
+		});
 
 		var timer = setInterval(getFeedbackList, 300000);
 		//var div = document.getElementById('feedback_list');
@@ -1178,6 +1181,7 @@
 			setEmpty();
 			$("#feedback_item").prop("disabled",true);
 			$("#courseID").prop("disabled",false);
+			$("#save").show();
 			// $("#className").prop("disabled",false);
 		}else{
 			$("#pre").prop("disabled",true);
@@ -1204,6 +1208,7 @@
 				}
 				if((checkPermission("classAdd")) && currHost==""){
 					$("#archived").prop("disabled",false);
+					$("#save").show();
 				}
 				if((checkPermission("rebuildStudentLesson") && s < 2)){
 					$("#btnRebuildStudentLesson").show();
@@ -1327,6 +1332,8 @@
 			<tr>
 				<td colspan="4">
 					资料归档<input style="border:0px;" type="checkbox" id="archived" value="" />&nbsp;&nbsp;<input class="readOnly" type="text" id="archiverName" size="6" readOnly="true" />&nbsp;&nbsp;<input class="readOnly" type="text" id="archiveDate" size="8" readOnly="true" />
+					&nbsp;&nbsp;
+					<span id="studyOnline" style="margin-left:10px; color:blue;">在线学习</span>
 				</td>
 			</tr>
 			<tr>
