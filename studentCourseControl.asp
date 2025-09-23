@@ -315,6 +315,8 @@ if(op == "getStudentCourseList"){
 		result += "|" + rs("file1").value + "|" + rs("file2").value + "|" + rs("employe_filename").value + "|" + rs("express").value + "|" + rs("memo").value + "|" + rs("currDiplomaDate").value + "|" + rs("needInvoice").value;
 		//85
 		result += "|" + rs("photo_size").value + "|" + rs("examDate").value + "|" + rs("result").value + "|" + rs("resultName").value + "|" + rs("entryform").value + "|" + rs("source").value;
+		//91
+		result += "|" + rs("social_filename").value + "|" + rs("job_filename").value;
 		rs.MoveNext();
 	}
 	rs.Close();

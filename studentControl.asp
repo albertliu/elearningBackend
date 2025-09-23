@@ -126,7 +126,7 @@ if(op == "getNodeInfo"){
 		//43
 		result += "|" + rs("CHESICC_filename").value + "|" + rs("employe_filename").value + "|" + rs("job_filename").value + "|" + rs("linker").value + "|" + rs("fromID").value + "|" + rs("sex").value + "|" + rs("IDab_filename").value + "|" + rs("promise_filename").value;
 		//51
-		result += "|" + rs("social_filename").value + "|" + rs("scanID").value + "|" + rs("scanPhoto").value + "|" + rs("fromKind").value;
+		result += "|" + rs("social_filename").value + "|" + rs("scanID").value + "|" + rs("scanPhoto").value + "|" + rs("fromKind").value + "|" + rs("tax").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -192,7 +192,7 @@ if(op == "update"){
 	result = 0;
 	if(result == 0){
 		//@mark int,@username varchar(50),@name nvarchar(50),@password varchar(50),@kindID int,@companyID varchar(50),@dept1 varchar(50),@dept1Name nvarchar(100),@dept2 varchar(50),@dept3 varchar(50),@job varchar(50),@mobile nvarchar(50),@phone nvarchar(50),@email nvarchar(50),@limitDate varchar(50),@memo nvarchar(500),@host varchar(50),@registerID varchar(50)
-		sql = "exec updateStudentInfo " + keyID + ",'" + nodeID + "',N'" + String(Request.Form("name")) + "',''," + kindID + ",'" + String(Request.Form("companyID")) + "','" + String(Request.Form("dept1")) + "','','" + String(Request.Form("dept2")) + "','','" + unescape(String(Request.Form("job"))) + "','" + String(Request.Form("linker")) + "'," + String(Request.Form("job_status")) + ",'" + String(Request.Form("mobile")) + "','" + String(Request.Form("phone")) + "','" + (String(Request.Form("email"))) + "','" + (String(Request.Form("address"))) + "','" + String(Request.Form("limitDate")) + "','" + String(Request.Form("education")) + "','" + (String(Request.Form("unit"))) + "','" + (String(Request.Form("dept"))) + "','" + (String(Request.Form("ethnicity"))) + "','" + (String(Request.Form("IDaddress"))) + "','" + (String(Request.Form("bureau"))) + "','" + String(Request.Form("IDdateStart")) + "','" + String(Request.Form("IDdateEnd")) + "','" + (String(Request.Form("experience"))) + "','" + String(Request.Form("fromID")) + "','" + String(Request.Form("fromKind")) + "','" + memo + "','" + host + "','" + currUser + "'";
+		sql = "exec updateStudentInfo " + keyID + ",'" + nodeID + "',N'" + String(Request.Form("name")) + "',''," + kindID + ",'" + String(Request.Form("companyID")) + "','" + String(Request.Form("dept1")) + "','','" + String(Request.Form("dept2")) + "','','" + unescape(String(Request.Form("job"))) + "','" + String(Request.Form("linker")) + "'," + String(Request.Form("job_status")) + ",'" + String(Request.Form("mobile")) + "','" + String(Request.Form("phone")) + "','" + (String(Request.Form("email"))) + "','" + (String(Request.Form("address"))) + "','" + String(Request.Form("limitDate")) + "','" + String(Request.Form("education")) + "','" + (String(Request.Form("unit"))) + "','" + (String(Request.Form("tax"))) + "','" + (String(Request.Form("dept"))) + "','" + (String(Request.Form("ethnicity"))) + "','" + (String(Request.Form("IDaddress"))) + "','" + (String(Request.Form("bureau"))) + "','" + String(Request.Form("IDdateStart")) + "','" + String(Request.Form("IDdateEnd")) + "','" + (String(Request.Form("experience"))) + "','" + String(Request.Form("fromID")) + "','" + String(Request.Form("fromKind")) + "','" + memo + "','" + host + "','" + currUser + "'";
 		execSQL(sql);
 	}
 

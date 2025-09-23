@@ -872,20 +872,22 @@
 			arr.push("<th width='10%'>身份证</th>");
 			arr.push("<th width='6%'>姓名</th>");
 			arr.push("<th width='8%'>单位</th>");
-			arr.push("<th width='6%'>来源</th>");
 			arr.push("<th width='7%'>申报</th>");
-			arr.push("<th width='6%'>上传</th>");
 			if(reexamine == 1){
 				arr.push("<th width='5%'>照片</th>");
 			}
 			if(photo == 0){
+				arr.push("<th width='6%'>来源</th>");
+				arr.push("<th width='6%'>上传</th>");
 				arr.push("<th width='12%'>考试时间</th>");
 				arr.push("<th width='7%'>成绩</th>");
 				arr.push("<th width='7%'>结果</th>");
 			}else{
-				arr.push("<th width='8%'>报名备注</th>");
+				arr.push("<th width='10%'>报名备注</th>");
 				arr.push("<th width='6%'>照片</th>");
 				arr.push("<th width='6%'>签名</th>");
+				arr.push("<th width='6%'>证明</th>");
+				arr.push("<th width='10%'>统一编码</th>");
 			}
 			arr.push("<th width='12%'>备注</th>");
 			// arr.push("<th width='7%'>补考</th>");
@@ -916,13 +918,13 @@
 					arr.push("<td class='link1' " + (ar1[40]>"" && ar1[40]<addDays(currDate,90) ? "style='background:yellow;' title='注意身份证有效期'" : "") + "><a href='javascript:showEnterInfo(\"" + ar1[2] + "\",\"" + ar1[4] + "\",0,1);'>" + ar1[4] + "</a></td>");
 					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + ar1[4] + "\",0,1);'>" + ar1[5] + "</a></td>");
 					arr.push("<td class='left' title='" + ar1[13] + "." + ar1[14] + "'>" + ar1[13].substr(0,10) + "</td>");	//unit
-					arr.push("<td class='left'>" + ar1[41] + "</td>");	//source
 					arr.push("<td class='left'>" + ar1[32] + "</td>");
-					arr.push("<td class='left'>" + (ar1[30]==1?imgChk:'&nbsp;') + "</td>");	// 上传报名表
 					if(reexamine == 1){
 						arr.push("<td class='left'>" + (ar1[31]==1?imgChk:'&nbsp;') + "</td>");	// 上传照片
 					}
 					if(photo == 0){
+						arr.push("<td class='left'>" + ar1[41] + "</td>");	//source
+						arr.push("<td class='left'>" + (ar1[30]==1?imgChk:'&nbsp;') + "</td>");	// 上传报名表
 						arr.push("<td class='left'>" + ar1[18] + "</td>");
 						h = ar1[19];
 						if(agencyID == "1"){
@@ -949,6 +951,13 @@
 						}else{
 							arr.push("<td class='center'>&nbsp;</td>");
 						}
+						if(ar1[42] > "" || ar1[43] > "" || ar1[44] > ""){	//工作证明、社保证明、居住证三选一, 按顺序优先取前面文件
+							let t = (ar1[42] > ""?"工作证明":(ar1[43] > ""?"社保证明":"居住证"));
+							arr.push("<td class='center' title='" + t + "'><img src='users" + (ar1[42] || ar1[43] || ar1[44]) + "?times=" + (new Date().getTime()) + "' style='width:60px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
+						}else{
+							arr.push("<td class='center'>&nbsp;</td>");
+						}
+						arr.push("<td class='left'>" + ar1[45] + "</td>");	//tax
 					}
 					arr.push("<td class='link1'><a href='javascript:showMsg(\"" + ar1[33] + "\",\"历史数据\");'>" + ar1[10] + "</a></td>");	// 备注
 					// if(ar1[7]>0){

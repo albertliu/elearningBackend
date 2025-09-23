@@ -854,8 +854,10 @@
 						}else{
 							arr.push("<td class='center'>&nbsp;</td>");
 						}
-						if(ar1[80] > ""){
-							arr.push("<td class='center'><img id='employment" + ar1[1] + "' src='users" + ar1[80] + "?times=" + (new Date().getTime()) + "' onclick='showCropperInfo(\"users" + ar1[80] + "\",\"" + ar1[1] + "\",\"employment\",\"\",0,1)' style='width:60px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
+						if(ar1[80] > "" || ar1[91] > "" || ar1[92] > ""){	//工作证明、社保证明、居住证三选一, 按顺序优先取前面文件){
+							let t = (ar1[80] > ""?"工作证明":(ar1[91] > ""?"社保证明":"居住证"));
+							// arr.push("<td class='center' title='" + t + "'><img id='employment" + ar1[1] + "' src='users" + (ar1[80] || ar1[91] || ar1[92]) + "?times=" + (new Date().getTime()) + "' onclick='showCropperInfo(\"users" + ar1[80] + "\",\"" + ar1[1] + "\",\"employment\",\"\",0,1)' style='width:60px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
+							arr.push("<td class='center' title='" + t + "'><img id='employment" + ar1[1] + "' src='users" + (ar1[80] || ar1[91] || ar1[92]) + "?times=" + (new Date().getTime()) + "' style='width:60px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
 						}else{
 							arr.push("<td class='center'>&nbsp;</td>");
 						}

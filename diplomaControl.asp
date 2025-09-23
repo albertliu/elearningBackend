@@ -1143,7 +1143,9 @@ if(op == "getApplyListByBatch"){
 		//30
 		result += "|" + rs("upload").value + "|" + rs("uploadPhoto").value + "|" + rs("step").value + "|" + rs("memo1").value + "|" + rs("photo_filename").value + "|" + rs("signature").value;
 		//36
-		result += "|" + rs("photo_size").value + "|" + rs("signatureDate").value + "|" + rs("entryform").value + "|" + rs("memo_enter").value + "|" + rs("IDdateEnd").value + "|" + rs("source").value;
+		result += "|" + rs("photo_size").value + "|" + rs("signatureDate").value + "|" + rs("entryform").value + "|" + rs("memo_enter").value + "|" + rs("IDdateEnd").value + "|" + rs("source").valuee;
+		//42
+		result += "|" + rs("employe_filename").value + "|" + rs("social_filename").value + "|" + rs("job_filename").value + "|" + rs("tax").value;
 		rs.MoveNext();
 	}
 	rs.Close();

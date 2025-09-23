@@ -313,6 +313,7 @@
 				$("#birthday").val(ar[33]);
 				$("#address").val(ar[34]);
 				$("#unit").val(ar[35]);
+				$("#tax").val(ar[55]);
 				$("#dept").val(ar[36]);
 				$("#ethnicity").val(ar[37]);
 				$("#IDaddress").val(ar[38]);
@@ -425,6 +426,10 @@
 			alert("请正确填写手机。");
 			return false;
 		}
+		if($("#tax").val() !="" && $("#tax").val().length != 18){
+			alert("请正确填写单位统一编码。");
+			return false;
+		}
 		if($("#name").val()==""){
 			alert("请填写姓名。");
 			return false;
@@ -435,7 +440,7 @@
 		if(!$("#Tai").prop("checked")){		//普通身份证
 			// $.get("studentControl.asp?op=update&nodeID=" + $("#username").val() + "&name=" + escape($("#name").val()) + "&linker=" + escape($("#linker").val()) + "&unit=" + escape($("#unit").val()) + "&dept=" + escape($("#dept").val()) + "&ethnicity=" + escape($("#ethnicity").val()) + "&IDaddress=" + escape($("#IDaddress").val()) + "&bureau=" + escape($("#bureau").val()) + "&IDdateStart=" + $("#IDdateStart").val() + "&IDdateEnd=" + $("#IDdateEnd").val() + "&experience=" + escape($("#experience").val()) + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&job_status=" + $("#job_status").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + escape($("#mobile").val()) + "&phone=" + escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&address=" + escape($("#address").val()) + "&job=" + escape($("#job").val()) + "&education=" + $("#education").val() + "&fromID=" + $("#fromID").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			$.post("studentControl.asp?op=update&nodeID=" + $("#username").val() + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&memo=" + escape($("#memo").val()),
-			{"name":$("#name").val(),"linker":$("#linker").val(),"unit":$("#unit").val(),"dept":$("#dept").val(),"ethnicity":$("#ethnicity").val(),"IDaddress":$("#IDaddress").val(),"bureau":$("#bureau").val(),"IDdateStart":$("#IDdateStart").val(),"IDdateEnd":$("#IDdateEnd").val(),"experience":$("#experience").val(),"companyID":$("#companyID").val(),"dept1":$("#dept1").val(),"dept2":$("#dept2").val(),"job_status":$("#job_status").val(),"limitDate":$("#limitDate").val(),"mobile":$("#mobile").val(),"phone":$("#phone").val(),"email":$("#email").val(),"address":$("#address").val(),"job":$("#job").val(),"education":$("#education").val(),"fromID":$("#fromID").val(),"fromKind":$("#fromKind").val()},
+			{"name":$("#name").val(),"linker":$("#linker").val(),"unit":$("#unit").val(),"tax":$("#tax").val(),"dept":$("#dept").val(),"ethnicity":$("#ethnicity").val(),"IDaddress":$("#IDaddress").val(),"bureau":$("#bureau").val(),"IDdateStart":$("#IDdateStart").val(),"IDdateEnd":$("#IDdateEnd").val(),"experience":$("#experience").val(),"companyID":$("#companyID").val(),"dept1":$("#dept1").val(),"dept2":$("#dept2").val(),"job_status":$("#job_status").val(),"limitDate":$("#limitDate").val(),"mobile":$("#mobile").val(),"phone":$("#phone").val(),"email":$("#email").val(),"address":$("#address").val(),"job":$("#job").val(),"education":$("#education").val(),"fromID":$("#fromID").val(),"fromKind":$("#fromKind").val()},
 			function(re){
 				// alert(unescape(re));
 				var ar = new Array();
@@ -663,6 +668,7 @@
 		//$("#dept2").val(ar[27]);
 		$("#job_status").val(1);	//默认就业
 		$("#memo").val("");
+		$("#tax").val("");
 		$("#regDate").val(currDate);
 		$("#host").val(currHost);
 		$("#education").val(0);
@@ -681,10 +687,10 @@
 			$("#kindID").val(0);
 			$("#spc_dept").hide();
 			$("#dept3").hide();
-			$("#znxf_dept").show();
+			// $("#znxf_dept").show();
 		}else{
 			$("#spc_dept").show();
-			$("#znxf_dept").hide();
+			// $("#znxf_dept").hide();
 			$("#dept3").show();
 		}
 		if($("#companyID").val()==8){
@@ -999,10 +1005,12 @@
 						<td><select id="dept2" style="width:180px;"></select></td>
 					</tr>
 					<tr id="znxf_dept">
-						<td align="right">单位</td>
-						<td><input type="text" id="unit" size="25" /></td>
-						<td align="right">部门</td>
-						<td><input type="text" id="dept" size="25" /></td>
+						<td align="right">单位名称</td>
+						<td><input type="text" id="unit" size="25" /></td><input type="hidden" id="dept" />
+						<td align="right">统一编码</td>
+						<td>
+							<input type="text" id="tax" size="25" />
+						</td>
 					</tr>
 					<tr>
 						<td align="right">三级部门</td>
@@ -1017,7 +1025,7 @@
 						<td><input type="text" id="email" size="25" /></td>
 					</tr>
 					<tr>
-						<td align="right">联系地址</td>
+						<td align="right">单位地址</td>
 						<td><input type="text" id="address" size="25" /></td>
 						<td align="right">单位电话</td>
 						<td><input type="text" id="phone" size="25" /></td>
@@ -1071,56 +1079,56 @@
 				<img id="add_img_photo" src="images/plus.png" tag="plus" />
 				<div style="padding-top:5px;"><input class="easyui-checkbox" id="scanPhoto" name="scanPhoto" />识</div>
 			</td>
-			<td id="td_img_photo" align="center" style="width:85%;">
+			<td id="td_img_photo" align="center" style="width:85%;" title="照片">
 				<img id="img_photo" tag="student_photo" src="" value="" style='width:100px;border:none;' />
 			</td>
 		</tr>
 		<tr>
 			<td align="right" style="width:15%;"><img id="add_img_cardA" src="images/plus.png" tag="plus" /></td>
-			<td id="td_img_cardA" style="width:85%;">
+			<td id="td_img_cardA" style="width:85%;" title="身份证正面">
 				<img id="img_cardA" tag="student_IDcardA" src="" value="" style='width:150px;border:none;' />
 			</td>
 		</tr>
 		<tr>
 			<td align="right" style="width:15%;"><img id="add_img_cardB" src="images/plus.png" tag="plus" /></td>
-			<td id="td_img_cardB" style="width:85%;">
+			<td id="td_img_cardB" style="width:85%;" title="身份证背面">
 				<img id="img_cardB" tag="student_IDcardB" src="" value="" style='width:150px;border:none;' />
 			</td>
 		</tr>
 		<tr>
 			<td align="right" style="width:15%;"><img id="add_img_education" src="images/plus.png" tag="plus" /></td>
-			<td id="td_img_education" style="width:85%;">
+			<td id="td_img_education" style="width:85%;" title="学历证明">
 				<img id="img_education" tag="student_education" src="" value="" style='width:150px;border:none;' />
 			</td>
 		</tr>
 		<tr>
-			<td align="right" style="width:15%;"><img id="add_img_CHESICC" src="images/plus.png" tag="plus" /></td>
-			<td id="td_img_CHESICC" style="width:85%;">
-				<img id="img_CHESICC" tag="student_CHESICC" src="" value="" style='width:150px;border:none;' />
-			</td>
-		</tr>
-		<tr>
 			<td align="right" style="width:15%;"><img id="add_img_employment" src="images/plus.png" tag="plus" /></td>
-			<td id="td_img_employment" style="width:85%;">
+			<td id="td_img_employment" style="width:85%;" title="工作证明">
 				<img id="img_employment" tag="student_employment" src="" value="" style='width:150px;border:none;' />
 			</td>
 		</tr>
 		<tr>
+			<td align="right" style="width:15%;"><img id="add_img_social" src="images/plus.png" tag="plus" /></td>
+			<td id="td_img_social" style="width:85%;" title="社保证明">
+				<img id="img_social" tag="student_social" src="" value="" style='width:150px;border:none;' />
+			</td>
+		</tr>
+		<tr>
 			<td align="right" style="width:15%;"><img id="add_img_jobCertificate" src="images/plus.png" tag="plus" /></td>
-			<td id="td_img_jobCertificate" style="width:85%;">
+			<td id="td_img_jobCertificate" style="width:85%;" title="居住证">
 				<img id="img_jobCertificate" tag="student_jobCertificate" src="" value="" style='width:150px;border:none;' />
 			</td>
 		</tr>
 		<tr>
-			<td align="right" style="width:15%;"><img id="add_img_promise" src="images/plus.png" tag="plus" /></td>
-			<td id="td_img_promise" style="width:85%;">
-				<img id="img_promise" tag="student_promise" src="" value="" style='width:150px;border:none;' />
+			<td align="right" style="width:15%;"><img id="add_img_CHESICC" src="images/plus.png" tag="plus" /></td>
+			<td id="td_img_CHESICC" style="width:85%;" title="学信网证明">
+				<img id="img_CHESICC" tag="student_CHESICC" src="" value="" style='width:150px;border:none;' />
 			</td>
 		</tr>
 		<tr>
-			<td align="right" style="width:15%;"><img id="add_img_social" src="images/plus.png" tag="plus" /></td>
-			<td id="td_img_social" style="width:85%;">
-				<img id="img_social" tag="student_social" src="" value="" style='width:150px;border:none;' />
+			<td align="right" style="width:15%;"><img id="add_img_promise" src="images/plus.png" tag="plus" /></td>
+			<td id="td_img_promise" style="width:85%;" title="承诺书">
+				<img id="img_promise" tag="student_promise" src="" value="" style='width:150px;border:none;' />
 			</td>
 		</tr>
 		<tr>
