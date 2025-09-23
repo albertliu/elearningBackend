@@ -904,7 +904,7 @@
 				var k = 0;
 				var s = $("#status").val();
 				let backcolor = ["#F0F0F0","#FFFF00","#00FF00","#FF8888"];
-				let jobbc = ["#F5FF5","#F5FFF5","#F5F5F5"];
+				let jobbc = ["#F5FFF5","#FFFFF5","#F5F5F5"];
 				let jobtt = ["工作证明","社保证明","居住证"];
 				let bc = "";
 				let photo_size = 0;
