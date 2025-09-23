@@ -903,12 +903,14 @@
 				var h = "";
 				var k = 0;
 				var s = $("#status").val();
-				var backcolor = ["#F0F0F0","#FFFF00","#00FF00","#FF8888"];
-				var bc = "";
+				let backcolor = ["#F0F0F0","#FFFF00","#00FF00","#FF8888"];
+				let jobbc = ["#3F8F3F","#8F8F3F","#F0F0F0"];
+				let jobtt = ["工作证明","社保证明","居住证"];
+				let bc = "";
 				let photo_size = 0;
 				let photo_type = "jpg";
 				$.each(ar,function(iNum,val){
-					var ar1 = new Array();
+					let ar1 = new Array();
 					ar1 = val.split("|");
 					i += 1;
 					c = 0;
@@ -952,8 +954,8 @@
 							arr.push("<td class='center'>&nbsp;</td>");
 						}
 						if(ar1[42] > "" || ar1[43] > "" || ar1[44] > ""){	//工作证明、社保证明、居住证三选一, 按顺序优先取前面文件
-							let t = (ar1[42] > ""?"工作证明":(ar1[43] > ""?"社保证明":"居住证"));
-							arr.push("<td class='center' title='" + t + "'><img src='users" + (ar1[42] || ar1[43] || ar1[44]) + "?times=" + (new Date().getTime()) + "' style='width:60px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
+							let t = (ar1[42] > "" ? 0 : (ar1[43] > "" ? 1 : 2));
+							arr.push("<td class='center' title='" + jobtt[t] + "' style='background-color:" + jobbc[t] + "'><img src='users" + (ar1[42] || ar1[43] || ar1[44]) + "?times=" + (new Date().getTime()) + "' style='width:60px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
 						}else{
 							arr.push("<td class='center'>&nbsp;</td>");
 						}
