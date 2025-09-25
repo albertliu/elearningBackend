@@ -149,6 +149,13 @@
 				}
 			}
 		});
+		$("#tax").change(function(){
+			if($("#tax").val()>""){
+				if(!checkUSCI($("#tax").val())){
+					alert("统一社会信用代码有误，请核对。");
+				}
+			}
+		});
 
 		$("#Tai").change(function(){
 			if(!$("#Tai").prop("checked")){
@@ -424,10 +431,6 @@
 		}
 		if($("#mobile").val() !="" && $("#mobile").val().length != 11){
 			alert("请正确填写手机。");
-			return false;
-		}
-		if($("#tax").val() !="" && $("#tax").val().length != 18){
-			alert("请正确填写单位统一编码。");
 			return false;
 		}
 		if($("#name").val()==""){
@@ -1007,7 +1010,7 @@
 					<tr id="znxf_dept">
 						<td align="right">单位名称</td>
 						<td><input type="text" id="unit" size="25" /></td><input type="hidden" id="dept" />
-						<td align="right">统一编码</td>
+						<td align="right">信用代码</td>
 						<td>
 							<input type="text" id="tax" size="25" />
 						</td>
