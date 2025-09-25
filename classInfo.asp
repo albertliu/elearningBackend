@@ -763,7 +763,7 @@
 				let attention_status = ["FFFFAA","AAFFAA","F3F3F3"];
 				let backcolor = ["#F0F0F0","#FFFF00","#00FF00","#FF8888"];
 				let jobbc = ["#C5FFC5","#FFFFC5","#E5E5E5"];
-				let jobtt = ["工作证明","社保证明","居住证"];
+				let jobtt = ["工作证明","社保","居住证"];
 				let bc = "";
 				let photo_size = 0;
 				let photo_type = "jpg";
