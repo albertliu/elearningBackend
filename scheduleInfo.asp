@@ -101,6 +101,7 @@
 				$("#regDate").val(ar[18]);
 				$("#registerName").val(ar[20]);
 				$("#online").val(ar[21]);
+				$("#teacherSID").val(ar[26]);
 				if(ar[24]==1){
 					$("#point").prop("checked",true);
 				}else{
@@ -225,8 +226,8 @@
 			<tr>
 				<td align="right">上课类型</td>
 				<td><select id="kindID" style="width:100px;"></select></td>
-				<td align="right">授课教师</td>
-				<td><select id="teacher" style="width:100px;"></select></td>
+				<td align="right">课程内容</td>
+				<td><input class="mustFill" type="text" id="item" style="width:100%;"/></td>
 			</tr>
 			<tr>
 				<td align="right">上课形式</td>
@@ -239,8 +240,10 @@
 				<td><input type="text" id="address" size="25"/></td>
 			</tr>
 			<tr>
-				<td align="right">课程内容</td>
-				<td colspan="3"><input class="mustFill" type="text" id="item" style="width:95%;"/></td>
+				<td align="right">授课教师</td>
+				<td><select id="teacher" style="width:100px;"></select></td>
+				<td align="right">身份证号</td>
+				<td><input type="text" id="teacherSID" class="readOnly" readOnly="true" style="width:100%;" /></td>
 			</tr>
 			<tr>
 				<td align="right">备注</td>

@@ -63,6 +63,7 @@
 		getComList("fromID","userInfo","username","realName","status=0 and username in(select username from roleUserList where roleID='saler') order by realName",1);
 
 		$("#startDate").click(function(){WdatePicker();});
+		$("#endDate").click(function(){WdatePicker();});
 		setButton();
 		if(nodeID>0 && op==0){
 			getNodeInfo(nodeID);
@@ -375,10 +376,18 @@
 			iconCls:'icon-upload',
 			width:85,
 			height:25,
-			text:'上传课表',
+			text:'创建计划',
 			onClick:function() {
-				if($("#applyID").val()==""){
-					$.messager.alert("提示","请填写开班编号并保存。","info");
+				if($("#startDate").val()==""){
+					alert("请确定开课日期。");
+					return false;
+				}
+				if($("#endDate").val()==""){
+					alert("请确定结束日期。");
+					return false;
+				}
+				if($("#notes").val()==""){
+					$.messager.alert("提示","请填写办学地点并保存。","info");
 					return false;
 				}
 				if($("#adviserID").val()==""){
@@ -386,11 +395,11 @@
 					return false;
 				}
 				// jConfirm('确定要为这' + selCount + '个人报名吗?', "确认对话框",function(r){
-				$.messager.confirm('确认对话框','确定要上传班级课表吗?<br>可能要花几分钟时间，请稍候...', function(r){
+				$.messager.confirm('确认对话框','确定要创建新的计划吗?<br>可能要花几分钟时间，请稍候...', function(r){
 					if(r){
 						var start = performance.now(); 
 						$.ajax({
-							url: uploadURL + "/public/applyEnter?SMS=1&reexamine=7&register=" + currUserName + "&host=znxf&classID=" + $("#applyID").val() + "&courseName=" + $("#courseName").val() + "&reex=" + (reexamine==0?"初证":"复审"),
+							url: uploadURL + "/public/applyEnter?SMS=1&reexamine=7&register=" + currUserName + "&host=znxf&classID=" + $("#ID").val() + "&courseName=" + $("#courseName").val() + "&reex=" + (reexamine==0?"初证":"复审"),
 							type: "post",
 							data: {"selList":$("#adviserID").find("option:selected").text()},
 							beforeSend: function() {   
@@ -667,7 +676,7 @@
 				return false;
 			}
 			if($("#classroom").val()==""){
-				alert("请确定上课地点。");
+				alert("请确定教室。");
 				return false;
 			}
 			if(confirm(($("#scheduleDate").val()>""?"课表已经存在，要重新安排吗？":"确定要编排课表吗？"))){
@@ -734,6 +743,7 @@
 					$("#showPhoto").checkbox({checked:true});
 				}
 				$("#startDate").val(ar[6]);
+				$("#endDate").val(ar[53]);
 				$("#address").val(ar[11]);
 				address = ar[11];
 				$("#memo").val(ar[8]);
@@ -759,6 +769,9 @@
 				$("#scheduleDate").val(ar[41]);
 				$("#adviserID").val(ar[42]);
 				$("#uploadScheduleDate").val(ar[44]);
+				$("#planID").val(ar[50]);
+				$("#planQty").val(ar[51]);
+				$("#notes").val(ar[52]);
 				if(ar[41]>""){
 					$("#schedule").html("<a>课程表</a>");
 				}
@@ -806,10 +819,10 @@
 			jAlert("请填写申报日期。");
 			return false;
 		}
-		if($("#startTime").val()==""){
-			jAlert("请填写申报时间。");
-			return false;
-		}
+		// if($("#startTime").val()==""){
+		// 	jAlert("请填写申报时间。");
+		// 	return false;
+		// }
 		if($("#courseID").val()==""){
 			jAlert("请选择申报科目。");
 			return false;
@@ -820,7 +833,7 @@
 		}
 
 		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-		$.post("diplomaControl.asp?op=updateGenerateApplyInfo&nodeID=" + nodeID + "&teacher=" + $("#teacher").val() + "&classroom=" + escape($("#classroom").val()) + "&adviserID=" + $("#adviserID").val() + "&diplomaReady=" + diplomaReady + "&refID=" + $("#courseID").val() + "&host=" + $("#host").val() + "&keyID=" + $("#applyID").val() + "&startDate=" + $("#startDate").val() + "&item=" + escape($("#title").val()) + "&address=" + escape($("#address").val()), {"memo":$("#memo").val(), "summary":$("#summary").val()},function(re){
+		$.post("diplomaControl.asp?op=updateGenerateApplyInfo&nodeID=" + nodeID + "&planID=" + $("#planID").val() + "&planQty=" + $("#planQty").val() + "&notes=" + escape($("#notes").val()) + "&teacher=" + $("#teacher").val() + "&classroom=" + escape($("#classroom").val()) + "&adviserID=" + $("#adviserID").val() + "&diplomaReady=" + diplomaReady + "&refID=" + $("#courseID").val() + "&host=" + $("#host").val() + "&keyID=" + $("#applyID").val() + "&fStart=" + $("#startDate").val()  + "&fEnd=" + $("#endDate").val()+ "&item=" + escape($("#title").val()) + "&address=" + escape($("#address").val()), {"memo":$("#memo").val(), "summary":$("#summary").val()},function(re){
 			//alert(unescape(re));
 			if(re>0){
 				jAlert("保存成功");
@@ -1182,7 +1195,9 @@
 		$("#title").val("");
 		$("#startDate").val(currDate);
 		$("#qty").val(0);
+		$("#planQty").val(0);
 		$("#address").val("黄兴路158号D103三楼");
+		$("#notes").val("上海市杨浦区黄兴路158号D");
 		$("#host").val('znxf');
 	}
 	
@@ -1205,8 +1220,8 @@
 			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
-				<td align="right">开课日期</td>
-				<td><input class="mustFill" type="text" id="startDate" size="25" /></td>
+				<td align="right">培训日期</td>
+				<td><input class="mustFill" type="text" id="startDate" size="9" />-<input class="mustFill" type="text" id="endDate" size="9" /></td>
 				<td align="right">申报科目</td><input type="hidden" id="ID" /><input type="hidden" id="status" />
 				<td><select id="courseID" style="width:100%;"></select></td><input type="hidden" id="courseName" /><input type="hidden" id="reexamineName" />
 			</tr>
@@ -1220,12 +1235,20 @@
 			</tr>
 			<tr>
 				<td align="right">开班编号</td>
-				<td><input type="text" id="applyID" size="25" /></td>
-				<td colspan="2">
+				<td colspan="3">
+					<input type="text" id="applyID" size="12" />&nbsp;&nbsp;
+					计划编号&nbsp;<input type="text" id="planID" size="13" />&nbsp;&nbsp;
 					<span id="list" style="margin-left:10px;"></span>
 					<span id="proof" style="margin-left:2px;"></span>
 					<span id="scoreResult" style="margin-left:10px;"></span>
 					<span id="diplomaSign" style="margin-left:10px;"></span>
+				</td>
+			</tr>
+			<tr>
+				<td align="right">计划数量</td>
+				<td colspan="3">
+					<input type="text" id="planQty" size="5" />&nbsp;&nbsp;
+					办学地点&nbsp;<input type="text" id="notes" size="40" />
 				</td>
 			</tr>
 			<tr>

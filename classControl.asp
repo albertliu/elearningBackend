@@ -267,7 +267,9 @@ if(op == "getClassSchedule"){
 		//14
 		result += "|" + rs("kindName").value + "|" + rs("typeName").value + "|" + rs("teacherName").value + "|" + rs("memo").value + "|" + rs("regDate").value;
 		//19
-		result += "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("online").value + "|" + rs("onlineName").value + "|" + rs("mark").value + "|" + rs("point").value + "|" + rs("std").value;
+		result += "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("online").value + "|" + rs("onlineName").value + "|" + rs("mark").value + "|" + rs("point").value;
+		//25
+		result += "|" + rs("std").value + "|" + rs("teacherSID").value + "|" + rs("kindOnline").value;
 		rs.MoveNext();
 	}
 	result = result.substr(2);
@@ -288,7 +290,7 @@ if(op == "getClassScheduleInfo"){
 		//14
 		result += "|" + rs("kindName").value + "|" + rs("typeName").value + "|" + rs("teacherName").value + "|" + rs("memo").value + "|" + rs("regDate").value;
 		//19
-		result += "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("online").value + "|" + rs("onlineName").value + "|" + rs("mark").value + "|" + rs("point").value + "|" + rs("std").value;
+		result += "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("online").value + "|" + rs("onlineName").value + "|" + rs("mark").value + "|" + rs("point").value + "|" + rs("std").value + "|" + rs("teacherSID").value;
 	}
 	Session(op) = ssql;
 	Response.Write(escape(result));/**/

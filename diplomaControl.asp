@@ -1173,7 +1173,9 @@ if(op == "getGenerateApplyNodeInfo"){
         //36
 		result += "|" + rs("reexamine").value + "|" + rs("agencyID").value + "|" + rs("diplomaReady").value + "|" + rs("teacher").value + "|" + rs("classroom").value + "|" + rs("scheduleDate").value;
 		//42
-		result += "|" + rs("adviserID").value + "|" + rs("mark").value + "|" + rs("uploadScheduleDate").value + "|" + rs("fileArchive").value + "|" + rs("archiver").value + "|" + rs("archiverName").value + "|" + rs("archiveDate").value + "|" + rs("summary").value;
+		result += "|" + rs("adviserID").value + "|" + rs("mark").value + "|" + rs("uploadScheduleDate").value + "|" + rs("fileArchive").value + "|" + rs("archiver").value + "|" + rs("archiverName").value;
+		//48
+		result += "|" + rs("archiveDate").value + "|" + rs("summary").value + "|" + rs("planID").value + "|" + rs("planQty").value + "|" + rs("notes").value + "|" + rs("endDate").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -1182,7 +1184,7 @@ if(op == "getGenerateApplyNodeInfo"){
 
 if(op == "updateGenerateApplyInfo"){
 	//@ID int,@courseID varchar(50),@applyID varchar(50),@title nvarchar(100),@startDate varchar(100),@memo nvarchar(500),@registerID
-	sql = "exec updateGenerateApplyInfo " + nodeID + ",'" + refID + "','" + keyID + "','" + item + "','" + String(Request.QueryString("startDate")) + "','" + unescape(String(Request.QueryString("address"))) + "','" + String(Request.QueryString("teacher")) + "','" + unescape(String(Request.QueryString("classroom"))) + "','" + String(Request.QueryString("adviserID")) + "','" + String(Request.QueryString("diplomaReady")) + "','" + host + "','" + String(Request.Form("memo")) + "','" + String(Request.Form("summary")) + "','" + currUser + "'";
+	sql = "exec updateGenerateApplyInfo " + nodeID + ",'" + refID + "','" + keyID + "','" + item + "','" + fStart + "','" + fEnd + "','" + String(Request.QueryString("planID")) + "','" + String(Request.QueryString("planQty")) + "','" + unescape(String(Request.QueryString("notes"))) + "','" + unescape(String(Request.QueryString("address"))) + "','" + String(Request.QueryString("teacher")) + "','" + unescape(String(Request.QueryString("classroom"))) + "','" + String(Request.QueryString("adviserID")) + "','" + String(Request.QueryString("diplomaReady")) + "','" + host + "','" + String(Request.Form("memo")) + "','" + String(Request.Form("summary")) + "','" + currUser + "'";
 	rs = conn.Execute(sql);
 	if(!rs.EOF){
 		result = rs("re").value;

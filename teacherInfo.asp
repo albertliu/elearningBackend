@@ -67,6 +67,10 @@
 				alert("请填写教师姓名。");
 				return false;
 			}
+			if($("#memo").val()=="" || checkIDcard($("#memo").val())>1){
+				alert("请正确填写身份证号。");
+				return false;
+			}
 			//alert($("#ID").val() + "&refID=" + ($("#teacherID").val()) + "&item=" + ($("#teacherName").val()) + "&status=" + $("#status").val() + "&host=" + $("#host").val() + "&memo=" + ($("#memo").val()));
 			$.get("userControl.asp?op=updateTeacherInfo&nodeID=" + $("#ID").val() + "&refID=" + $("#teacherID").val() + "&item=" + escape($("#teacherName").val()) + "&status=" + $("#status").val() + "&host=" + $("#host").val() + "&memo=" + escape($("#memo").val()) + "&p=0&times=" + (new Date().getTime()),function(re){
 				//alert(unescape(re));
@@ -323,8 +327,8 @@
 		              <td><select id="status" style="width:100px;" ></select></td>
 		            </tr>
 					<tr>
-						<td align="right">备注</td>
-						<td colspan="5"><textarea id="memo" style="padding:2px;" rows="1" cols="75"></textarea></td>
+						<td align="right">身份证号</td>
+						<td colspan="3"><input class="mustFill" id="memo" name="memo" type="text" size="50" /></td>
 					</tr>
 		            <tr>
 						<td align="right">登记日期</td>
