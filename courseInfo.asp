@@ -131,6 +131,7 @@
 		$("#status").val(0);
 		$("#reexamine").val(0);
 		$("#kindID").val(0);
+		$("#period").val(1);
 		$("#regDate").val(currDate);
 		$("#registerID").val(currUser);
 		$("#registerName").val(currUserName);

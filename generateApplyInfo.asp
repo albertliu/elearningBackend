@@ -394,28 +394,35 @@
 					$.messager.alert("提示","请选择班主任并保存。","info");
 					return false;
 				}
-				// jConfirm('确定要为这' + selCount + '个人报名吗?', "确认对话框",function(r){
-				$.messager.confirm('确认对话框','确定要创建新的计划吗?<br>可能要花几分钟时间，请稍候...', function(r){
-					if(r){
-						var start = performance.now(); 
-						$.ajax({
-							url: uploadURL + "/public/applyEnter?SMS=1&reexamine=7&register=" + currUserName + "&host=znxf&classID=" + $("#ID").val() + "&courseName=" + $("#courseName").val() + "&reex=" + (reexamine==0?"初证":"复审"),
-							type: "post",
-							data: {"selList":$("#adviserID").find("option:selected").text()},
-							beforeSend: function() {   
-								$.messager.progress();	// 显示进度条
-							},
-							success: function(data){
-								if(data.count_s>0){
-									var end = performance.now(); 
-									$.messager.alert("提示","成功上传数量：" + data.count_s + "; &nbsp;失败数量：" + data.count_e + "; &nbsp;耗时：" + ((end-start)/1000).toFixed(2) + "秒","info");
-								}else{
-									$.messager.alert("提示","操作失败，请稍后再试。" + data.errMsg,"info");
-								}
-								$.messager.progress('close');	// 如果提交成功则隐藏进度条 
-							},
-							error: function () {
-								$.messager.progress('close');
+				$.post(uploadURL + "/public/postCommInfo", {proc:"checkClassSchedule", params:{classID:nodeID}}, function(data){
+					let ar = data[0]
+					if(ar["msg"] > ""){
+						$.messager.alert("提示","不能创建，请检查以下事项：\n" + ar["msg"],"warning");
+					}else{
+						// jConfirm('确定要为这' + selCount + '个人报名吗?', "确认对话框",function(r){
+						$.messager.confirm('确认对话框','确定要创建新的计划吗?<br>可能要花几分钟时间，请稍候...', function(r){
+							if(r){
+								var start = performance.now(); 
+								$.ajax({
+									url: uploadURL + "/public/applyEnter?SMS=1&reexamine=7&register=" + currUserName + "&host=znxf&classID=" + $("#ID").val() + "&courseName=" + $("#courseName").val() + "&reex=" + (reexamine==0?"初证":"复审"),
+									type: "post",
+									data: {"selList":$("#adviserID").find("option:selected").text()},
+									beforeSend: function() {   
+										$.messager.progress();	// 显示进度条
+									},
+									success: function(data){
+										if(data.count_s>0){
+											var end = performance.now(); 
+											$.messager.alert("提示","成功上传数量：" + data.count_s + "; &nbsp;失败数量：" + data.count_e + "; &nbsp;耗时：" + ((end-start)/1000).toFixed(2) + "秒","info");
+										}else{
+											$.messager.alert("提示","操作失败，请稍后再试。" + data.errMsg,"info");
+										}
+										$.messager.progress('close');	// 如果提交成功则隐藏进度条 
+									},
+									error: function () {
+										$.messager.progress('close');
+									}
+								});
 							}
 						});
 					}
@@ -816,13 +823,13 @@
 			return false;
 		}
 		if($("#startDate").val()==""){
-			jAlert("请填写申报日期。");
+			jAlert("请填写培训开始日期。");
 			return false;
 		}
-		// if($("#startTime").val()==""){
-		// 	jAlert("请填写申报时间。");
-		// 	return false;
-		// }
+		if($("#endDate").val()==""){
+			jAlert("请填写培训截止日期。");
+			return false;
+		}
 		if($("#courseID").val()==""){
 			jAlert("请选择申报科目。");
 			return false;
