@@ -1127,7 +1127,7 @@ if(op == "getApplyListByBatch"){
 	}
 	sql = " FROM v_applyInfo " + where;
 	ssql = "SELECT kindName,qty,hostName,memo,regDate,registerName" + sql + " order by ID";
-	sql = "SELECT *" + sql + " order by passNo, ID";
+	sql = "SELECT *, [dbo].[getStudentMaterialSize](username,5) as employe_size, [dbo].[getStudentMaterialSize](username,8) as social_size, [dbo].[getStudentMaterialSize](username,6) as job_size" + sql + " order by passNo, ID";
 	
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
@@ -1145,7 +1145,7 @@ if(op == "getApplyListByBatch"){
 		//36
 		result += "|" + rs("photo_size").value + "|" + rs("signatureDate").value + "|" + rs("entryform").value + "|" + rs("memo_enter").value + "|" + rs("IDdateEnd").value + "|" + rs("source").value;
 		//42
-		result += "|" + rs("employe_filename").value + "|" + rs("social_filename").value + "|" + rs("job_filename").value + "|" + rs("tax").value;
+		result += "|" + rs("employe_filename").value + "|" + rs("social_filename").value + "|" + rs("job_filename").value + "|" + rs("tax").value + "|" + rs("employe_size").value + "|" + rs("social_size").value + "|" + rs("job_size").value;
 		rs.MoveNext();
 	}
 	rs.Close();
