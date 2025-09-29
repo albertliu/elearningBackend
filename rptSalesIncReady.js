@@ -98,9 +98,9 @@
 	}
 
 	function getRptSalesDetailList(sales, k, mark){
-		if(sales>""){
+		// if(sales>""){
 			_rptSales_sales = sales;
-		}
+		// }
 		if(k>0){
 			_rptSales_kind = k;
 		}
