@@ -126,7 +126,7 @@ if(op == "getNodeInfo"){
 		//43
 		result += "|" + rs("CHESICC_filename").value + "|" + rs("employe_filename").value + "|" + rs("job_filename").value + "|" + rs("linker").value + "|" + rs("fromID").value + "|" + rs("sex").value + "|" + rs("IDab_filename").value + "|" + rs("promise_filename").value;
 		//51
-		result += "|" + rs("social_filename").value + "|" + rs("scanID").value + "|" + rs("scanPhoto").value + "|" + rs("fromKind").value + "|" + rs("tax").value;
+		result += "|" + rs("social_filename").value + "|" + rs("scanID").value + "|" + rs("scanPhoto").value + "|" + rs("fromKind").value + "|" + rs("tax").value + "|" + rs("checker").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -599,7 +599,7 @@ if(op == "getSalerUnitList"){
 		//6
 		result += "|" + rs("kindID").value + "|" + rs("fromKindName").value + "|" + rs("linker").value + "|" + rs("phone").value + "|" + rs("address").value + "|" + rs("email").value;
 		//12
-		result += "|" + rs("association").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value;
+		result += "|" + rs("association").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("checker").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -617,7 +617,7 @@ if(op == "getSalerUnitNodeInfo"){
 		//6
 		result += "|" + rs("kindID").value + "|" + rs("fromKindName").value + "|" + rs("linker").value + "|" + rs("phone").value + "|" + rs("address").value + "|" + rs("email").value;
 		//12
-		result += "|" + rs("association").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value;
+		result += "|" + rs("association").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("checker").value + "|" + rs("checkerName").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

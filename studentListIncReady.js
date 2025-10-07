@@ -185,7 +185,7 @@
 
 	function setStudentSalerItem(){
 		searchStudentSaler = $("#searchStudentSaler").combobox("getValue");
-		if(searchStudentSaler>""){
+		if(searchStudentSaler>"" || checkPermission("checkUnitTax") || checkRole("leader")){
 			$("#btnSearchStudentUnit").show();
 			$("#searchStudentUnitItem").show();
 			$("#searchStudentFromKindItem").show();

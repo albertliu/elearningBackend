@@ -90,11 +90,11 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='3%'>No</th>");
-			arr.push("<th width='20%'>企业名称</th>");
+			arr.push("<th width='30%'>企业名称</th>");
 			arr.push("<th width='10%'>属性</th>");
 			arr.push("<th width='20%'>联系人</th>");
 			arr.push("<th width='35%'>基本情况</th>");
-			arr.push("<th width='12%'>所属协会</th>");
+			arr.push("<th width='2%'>核</th>");
 			// arr.push("<th width='12%'>登记日期</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -102,7 +102,6 @@
 			if(ar>""){
 				var i = 0;
 				var c = 0;
-				var imgChk = "<img src='images/green_check.png'>";
 				$.each(ar,function(iNum,val){
 					var ar1 = new Array();
 					ar1 = val.split("|");
@@ -114,7 +113,7 @@
 					arr.push("<td class='left'>" + ar1[7] + "</td>");
 					arr.push("<td class='left'>" + ar1[8] + "</td>");
 					arr.push("<td class='left'>" + ar1[13] + "</td>");
-					arr.push("<td class='left'>" + ar1[12] + "</td>");
+					arr.push("<td class='left'>" + (ar1[17]>""?imgChk:"") + "</td>");
 					arr.push("</tr>");
 				});
 			}
@@ -153,7 +152,7 @@
 
 <div id='layout' align='left' style="background:#f0f0f0;">
 	<form><label>搜索：</label>
-		<input type="text" id="txtSearch" name="txtSearch" size="15" title="企业名称" style="background:yellow;" />
+		<input type="text" id="txtSearch" name="txtSearch" size="25" title="企业名称" style="background:yellow;" />
 		<input class="button" type="button" name="btnSearch" id="btnSearch" value="查找" />
 		<input class="button" type="button" id="btnAdd" name="btnAdd" value="新增" />
 		<span style="padding-left:50px;">

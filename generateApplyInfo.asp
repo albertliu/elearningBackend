@@ -907,7 +907,7 @@
 				arr.push("<th width='6%'>照片</th>");
 				arr.push("<th width='6%'>签名</th>");
 				arr.push("<th width='6%'>证明</th>");
-				arr.push("<th width='10%'>统一编码</th>");
+				arr.push("<th width='10%'>单位代码</th>");
 			}
 			arr.push("<th width='12%'>备注</th>");
 			// arr.push("<th width='7%'>补考</th>");
@@ -940,7 +940,7 @@
 					arr.push("<td class='left'>" + ar1[22] + "</td>");
 					arr.push("<td class='link1' " + (ar1[40]>"" && ar1[40]<addDays(currDate,90) ? "style='background:yellow;' title='注意身份证有效期'" : "") + "><a href='javascript:showEnterInfo(\"" + ar1[2] + "\",\"" + ar1[4] + "\",0,1);'>" + ar1[4] + "</a></td>");
 					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + ar1[4] + "\",0,1);'>" + ar1[5] + "</a></td>");
-					arr.push("<td class='left' title='" + ar1[13] + "." + ar1[14] + "'>" + ar1[13].substr(0,10) + "</td>");	//unit
+					arr.push("<td class='left' title='" + ar1[13] + "." + ar1[14] + "'>" + ar1[13] + "</td>");	//unit
 					arr.push("<td class='left'>" + ar1[32] + "</td>");
 					if(reexamine == 1){
 						arr.push("<td class='left'>" + (ar1[31]==1?imgChk:'&nbsp;') + "</td>");	// 上传照片
@@ -977,11 +977,11 @@
 						if(ar1[42] > "" || ar1[43] > "" || ar1[44] > ""){	//工作证明、社保证明、居住证三选一, 
 							let jobsize = [ar1[46],ar1[47],ar1[48]]
 							let t = (ar1[42] > "" ? 0 : (ar1[43] > "" ? 1 : 2));
-							arr.push("<td class='center' title='" + jobtt[t] + jobsize[t] + "k' style='background-color:" + jobbc[t] + "'><img id='" + jobid[t] + ar1[4] + "' src='users" + (ar1[42] || ar1[43] || ar1[44]) + "?times=" + (new Date().getTime()) + "' onclick='showCropperInfo(\"users" + (ar1[42] || ar1[43] || ar1[44]) + "\",\"" + ar1[4] + "\",\"" + jobid[t] + "\",\"\",0,1)' style='width:60px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
+							arr.push("<td class='center' title='" + jobtt[t] + " 大小:" + jobsize[t] + "k' style='background-color:" + jobbc[t] + "'><img id='" + jobid[t] + ar1[4] + "' src='users" + (ar1[42] || ar1[43] || ar1[44]) + "?times=" + (new Date().getTime()) + "' onclick='showCropperInfo(\"users" + (ar1[42] || ar1[43] || ar1[44]) + "\",\"" + ar1[4] + "\",\"" + jobid[t] + "\",\"\",0,1)' style='width:60px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'></td>");
 						}else{
 							arr.push("<td class='center'>&nbsp;</td>");
 						}
-						arr.push("<td class='left'>" + ar1[45] + "</td>");	//tax
+						arr.push("<td class='left'>" + (ar1[49]>""?imgChk:'&nbsp;') + ar1[45] + "</td>");	//tax
 					}
 					arr.push("<td class='link1'><a href='javascript:showMsg(\"" + ar1[33] + "\",\"历史数据\");'>" + ar1[10] + "</a></td>");	// 备注
 					// if(ar1[7]>0){
@@ -1186,7 +1186,9 @@
 					$("#doApplyEnter").show();	// 应急局项目可以自动报名
 					$("#doApplyUpload").show();	// 
 					$("#doApplyDownload").show();	// 
-					$("#doApplyUploadSchedule").show();	// 
+					if($("#planID").val()==""){
+						$("#doApplyUploadSchedule").show();	// 
+					}
 					if(reexamine==1){
 						$("#doApplyUploadPhoto").show();	// 复训的可上传照片
 					}

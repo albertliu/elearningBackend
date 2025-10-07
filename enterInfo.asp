@@ -477,20 +477,8 @@
 				$("#score2").val(nullNoDisp(ar[94]));
 				$("#result").val(ar[95]);
 				$("#examDate").val(ar[98]);
+				$("#tax").val(ar[100]);
 				ref_id = ar[96];
-				// let c = $("#certID").val();
-				// if(c == "C21" || c == "C20A"){
-				// 	c = "C20";
-				// }
-				// if(c == "C30" || c == "C31" || c == "C32" || c == "C35" || c == "C18" || c == "C19" || c == "C36" || c == "C37" || c == "C22" || c == "C23"){
-				// 	c = "C2";
-				// }
-				// if(c == "C24" || c == "C25" || c == "C26" || c == "C25B" || c == "C26B" || c == "C14" || c == "C15" || c == "C27" || c == "C27B"){
-				// 	c = "C12";
-				// }
-				// if(c == "C17"){
-				// 	c = "C16";
-				// }
 				$("#examTimes").html("&nbsp;<a style='text-decoration: none;' href='javascript:showExamList(" + ar[0] + ",\"" + ar[2] + "\");'>" + ar[42] + "次</a>");
 				entryform = ar[35];
 				invoicePDF = ar[89];
@@ -872,10 +860,10 @@
 				<td><select id="host" style="width:180px;"></select></td>
 			</tr>
 			<tr>
-				<td align="right">开课日期</td>
-				<td><input class="readOnly" type="text" id="startDate" size="25" readOnly="true" /></td>
-				<td align="right">结束日期</td>
-				<td><input class="readOnly" type="text" id="endDate" size="25" readOnly="true" /></td>
+				<td align="right">培训日期</td>
+				<td><input class="readOnly" type="text" id="startDate" size="9" readOnly="true" />-<input class="readOnly" type="text" id="endDate" size="9" readOnly="true" /></td>
+				<td align="right">统一代码</td>
+				<td><input class="readOnly" type="text" id="tax" size="25" readOnly="true" /></td>
 			</tr>
 			<tr>
 				<td align="right">手机</td>

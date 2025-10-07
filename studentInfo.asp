@@ -38,6 +38,7 @@
 	var fromCard = 0;
 	let scanPhoto = 0;
 	let hasPhoto = 0;
+	let checker = "";
 	<!--#include file="js/commFunction.js"-->
 	<!--#include file="js/EST_reader.js"-->
 	$(document).ready(function (){
@@ -129,6 +130,9 @@
 				}
 			});
 		});
+		$("#btnUnitTaxConfirm").click(function(){
+			showUnitTaxConfirm($("#unit").val(),$("#tax").val(),$("#address").val(),$("#username").val(),1);
+		});
 		$("#username").change(function(){
 			if($("#username").val()>""){
 				$("#username").val($("#username").val().toUpperCase());
@@ -153,7 +157,14 @@
 			if($("#tax").val()>""){
 				if(!checkUSCI($("#tax").val())){
 					alert("统一社会信用代码有误，请核对。");
+				}else{
+					getUnitTax("",$("#tax").val());
 				}
+			}
+		});
+		$("#unit").change(function(){
+			if($("#unit").val()>""){
+				getUnitTax($("#unit").val(),"");
 			}
 		});
 
@@ -337,6 +348,13 @@
 				}else{
 					$("#scanPhoto").checkbox({checked:false});
 					scanPhoto = 0;
+				}
+				if(ar[56] > ""){
+					$("#checker").checkbox({checked:true});
+					checker = ar[56];
+				}else{
+					$("#checker").checkbox({checked:false});
+					checker = "";
 				}
 				//$("#upload1").html("<a href='javascript:showLoadFile(\"student_education\",\"" + ar[1] + "\",\"student\",\"\");' style='padding:3px;'>上传</a>");
 				//<a href='/users" + ar[21] + "' target='_blank'></a>
@@ -591,7 +609,7 @@
 		$("#close").hide();
 		$("#reset").hide();
 		$("#btnDel").hide();
-		//$("#upload1").hide();
+		$("#btnUnitTaxConfirm").hide();
 		$("#enter").hide();
 		$("#username").prop("disabled",true);
 		$("*[tag='plus'").hide();
@@ -635,6 +653,9 @@
 				$("#open").hide();
 			}else{
 				$("#close").hide();
+			}
+			if(checkPermission("checkUnitTax") && checker==""){
+				$("#btnUnitTaxConfirm").show();
 			}
 		}
 		setZNXF();
@@ -929,6 +950,28 @@
 		setDraggable();
 	}
 
+	function getUnitTax(unitName, taxNo){
+		$.post(uploadURL + "/public/postCommInfo", {proc:"checkUnitInfo", params:{taxNo, unitName}}, function(data){
+			if(data.length > 0 && data[0]["re"] > 0){
+				let ar = data[0];
+				if(ar["re"] ===1 && unitName != ar["unitName"]){
+					$("#unit").val(ar["unitName"]);
+				}
+				if(ar["re"] ===2 && taxNo != ar["taxNo"]){
+					$("#tax").val(ar["taxNo"]);
+				}
+				checker = ar["checkerName"];
+				$("#address").val(ar["address"]);
+				if(checker > ""){
+					$("#checker").checkbox({checked:true});
+				}else{
+					$("#checker").checkbox({checked:false});
+				}
+				setButton();
+			}
+		});
+	}
+
 	function getUpdateCount(){
 		return updateCount;
 	}
@@ -991,7 +1034,7 @@
 					</tr>
 					<tr>
 						<td align="right">状态</td>
-						<td><input class="readOnly" readOnly="true" type="text" id="statusName" size="25" /></td>
+						<td><input class="readOnly" readOnly="true" type="text" id="statusName" size="30" /></td>
 						<td align="right">学历</td>
 						<td><select id="education" style="width:180px;"></select></td>
 					</tr>
@@ -1009,35 +1052,35 @@
 					</tr>
 					<tr id="znxf_dept">
 						<td align="right">单位名称</td>
-						<td><input type="text" id="unit" size="25" /></td><input type="hidden" id="dept" />
-						<td align="right">信用代码</td>
+						<td><input type="text" id="unit" size="30" /></td><input type="hidden" id="dept" />
+						<td align="right">代码&nbsp;&nbsp;<input class="easyui-checkbox" id="checker" value="1" /></td>
 						<td>
-							<input type="text" id="tax" size="25" />
+							<input type="text" id="tax" size="20" />&nbsp;<input class="button" type="button" id="btnUnitTaxConfirm" value="审核" />
 						</td>
 					</tr>
 					<tr>
 						<td align="right">三级部门</td>
 						<td><select id="dept3" style="width:180px;"></select></td>
 						<td align="right">岗位/职务</td>
-						<td><input type="text" id="job" size="25" /></td>
+						<td><input type="text" id="job" size="30" /></td>
 					</tr>
 					<tr>
 						<td align="right">手机</td>
-						<td><input class="mustFill" type="text" id="mobile" size="25" /></td>
+						<td><input class="mustFill" type="text" id="mobile" size="30" /></td>
 						<td align="right">邮箱</td>
-						<td><input type="text" id="email" size="25" /></td>
+						<td><input type="text" id="email" size="30" /></td>
 					</tr>
 					<tr>
 						<td align="right">单位地址</td>
-						<td><input type="text" id="address" size="25" /></td>
+						<td><input type="text" id="address" size="30" /></td>
 						<td align="right">单位电话</td>
-						<td><input type="text" id="phone" size="25" /></td>
+						<td><input type="text" id="phone" size="30" /></td>
 					</tr>
 					<tr>
 						<td align="right">就业状态</td>
 						<td><select id="job_status" style="width:180px;"></select></td>
 						<td align="right">有效期</td>
-						<td><input type="text" id="limitDate" size="25" /></td>
+						<td><input type="text" id="limitDate" size="30" /></td>
 					</tr>
 					<tr>
 						<td align="right">备注</td>
@@ -1045,7 +1088,7 @@
 					</tr>
 					<tr>
 						<td align="right">注册日期</td>
-						<td><input class="readOnly" type="text" id="regDate" size="25" readOnly="true" /></td>
+						<td><input class="readOnly" type="text" id="regDate" size="30" readOnly="true" /></td>
 						<td align="right">销售标识</td><td><select id="fromID" style="width:60px;"></select>&nbsp;&nbsp;资源&nbsp;<select id="fromKind" style="width:60px"></select></td>
 					</tr>
 					</table>

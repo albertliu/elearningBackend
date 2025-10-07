@@ -23,13 +23,14 @@
 	var nodeID = 0;
 	var op = 0;
 	var updateCount = 0;
+	let checker = "";
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";
 		op = "<%=op%>";
 		
 		getDicList("fromKind","fromKind",0);
-        getComList("saler","userInfo","username","realName","status=0 and host='" + currHost + "' and username in(select username from roleUserList where roleID='saler') order by realName",0);
+        getComList("saler","userInfo","username","realName","status=0 and host='" + currHost + "' and username in(select username from roleUserList where roleID='saler') order by realName",1);
 		
 		$.ajaxSetup({ 
 			async: false 
@@ -47,6 +48,9 @@
 		$("#btnAdd").click(function(){
 			op = 1;
 			setButton();
+		});
+		$("#btnUnitTaxConfirm").click(function(){
+			showUnitTaxConfirm($("#unitName").val(),$("#taxNo").val(),$("#address").val(),"",0);
 		});
 	});
 
@@ -70,6 +74,13 @@
 				$("#regDate").val(ar[14]);
 				$("#registerID").val(ar[15]);
 				$("#registerName").val(ar[16]);
+				$("#checkerName").val(ar[18]);
+				checker = ar[17];
+				if(ar[17] > ""){
+					$("#checker").checkbox({checked:true});
+				}else{
+					$("#checker").checkbox({checked:false});
+				}
 				setButton();
 			}else{
 				jAlert("该信息未找到！","信息提示");
@@ -106,15 +117,27 @@
 	function setButton(){
 		$("#btnSave").hide();
 		$("#btnAdd").hide();
+		$("#btnUnitTaxConfirm").hide();
 		if(checkRole("saler")){
 			$("#btnAdd").show();
 		}
 		if(op ==1){
 			setEmpty();
 			$("#btnAdd").hide();
+		}else{
+			if(checkPermission("checkUnitTax") && checker==""){
+				$("#btnUnitTaxConfirm").show();
+			}
 		}
-		if($("#registerID").val() == currUser || $("#saler").val()==currUser || checkRole("leader")){
+		if($("#registerID").val() == currUser || $("#saler").val()==currUser || checkRole("leader") || checkPermission("checkUnitTax")){
 			$("#btnSave").show();
+		}
+		if($("#saler").val()!=currUser && $("#saler").val()!="" && !checkRole("leader")){
+			$("#phone").prop("disabled",true);
+			$("#linker").prop("disabled",true);
+			$("#memo").prop("disabled",true);
+			$("#saler").prop("disabled",true);
+			$("#fromKind").prop("disabled",true);
 		}
 	}
 	
@@ -153,10 +176,17 @@
 			<form id="detailCover" name="detailCover" style="width:98%;float:right;margin:1px;padding-left:2px;background:#eefaf8;">
 			<table>
 			<tr>
-				<td align="right">企业名称</td><input type="hidden" id="ID" /><input type="hidden" id="registerID" />
+				<td align="right">单位名称</td><input type="hidden" id="ID" /><input type="hidden" id="registerID" />
 				<td><input class="mustFill" type="text" id="unitName" style="width:300px;" /></td>
 				<td align="right">统一编码</td>
-				<td><input type="text" id="taxNo" style="width:150px;" /></td>
+				<td><input type="text" id="taxNo" style="width:145px;" /></td>
+			</tr>
+			<tr>
+				<td align="right">单位地址</td>
+				<td colspan="3">
+					<input id="address" style="padding:2px;width:70%;" />
+					&nbsp;&nbsp;审核&nbsp;<input class="easyui-checkbox" id="checker" value="1" />&nbsp;<input class="readOnly" type="text" id="checkerName" size="8" readOnly="true" />
+				</td>
 			</tr>
 			<tr>
 				<td align="right">资源属性</td>
@@ -167,10 +197,6 @@
 			<tr>
 				<td align="right">基本情况</td>
 				<td colspan="3"><textarea id="memo" style="padding:2px;width:100%;" rows="5"></textarea></td>
-			</tr>
-			<tr>
-				<td align="right">联系地址</td>
-				<td colspan="3"><input id="address" style="padding:2px;width:100%;" /></td>
 			</tr>
 			<tr>
 				<td align="right">联系人</td>
@@ -198,6 +224,7 @@
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
   	<input class="button" type="button" id="btnSave" value="保存" />&nbsp;
   	<input class="button" type="button" id="btnAdd" value="添加" />&nbsp;
+  	<input class="button" type="button" id="btnUnitTaxConfirm" value="审核" />&nbsp;
   </div>
 </div>
 </body>
