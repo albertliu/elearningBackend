@@ -745,13 +745,13 @@
 			if(checkPermission("studentAdd") || checkPermission("editPayDate")){
 				//编辑状态：显示保存按钮；一定条件下可以退学、退款
 				$("#save").show();
+				$("#btnRebuildStudentLesson").show();
 				if(!checkRole("partner")){
 					if($("#status").val() < 2){
 						$("#btnReturn").show();
 						$("#btnRefund").show();
 						$("#btnCloseStudentCourse").show();
 						// $("#btnReviveStudentCourse").show();
-						$("#btnRebuildStudentLesson").show();
 						// $("#btnReviveStudentCourse").hide();
 						$("#signatureDate").prop("readonly",false);
 						if(!$("#materialCheck").attr("checked")){
