@@ -1087,7 +1087,7 @@
 					<tr id="znxf_dept">
 						<td align="right">单位名称</td>
 						<td><input type="text" id="unit" size="30" /></td><input type="hidden" id="dept" />
-						<td align="right">代码&nbsp;&nbsp;<input class="easyui-checkbox" id="checker" value="1" /></td>
+						<td align="right">代码&nbsp;&nbsp;<input class="easyui-checkbox" id="checker" value="1" disabled="true" /></td>
 						<td>
 							<input type="text" id="tax" size="20" />&nbsp;<input class="button" type="button" id="btnUnitTaxConfirm" value="审核" />
 						</td>
