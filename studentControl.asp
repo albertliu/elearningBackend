@@ -6,7 +6,7 @@ if(op == "getStudentList"){
 	var s = "";
 	//如果有条件，按照条件查询
 	if(where > ""){ // 有条件
-		where = "(name like('%" + where + "%') or username='" + where + "')";
+		where = "(name like('%" + where + "%') or username='" + where + "' or mobile='" + where + "')";
 	}
 	/*
 	//如果有公司

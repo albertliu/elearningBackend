@@ -1,7 +1,7 @@
 ﻿				  	<div style="width:100%;float:right;margin:0;">
 							<div class="comm" align='left' style="background:#fdfdfd;">
 								<form><label>搜索:</label>
-				          <input type="text" id="txtSearchStudent" name="txtSearchStudent" size="14" title="姓名、身份证" style="background:yellow;" />
+				          <input type="text" id="txtSearchStudent" name="txtSearchStudent" size="14" title="姓名、身份证、手机" style="background:yellow;" />
 				          <input class="button" type="button" id="btnSearchStudent" value="查找" />&nbsp;&nbsp;
 				          <input class="button" type="button" id="btnSearchStudentAdd" value="添加" />
 					        <span id="studentListLongItem1">
