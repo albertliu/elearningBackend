@@ -342,6 +342,20 @@
 			}
 		});
 		
+		$("#btnAttentionFireEnter").click(function(){
+			getSelCart("visitstockchk");
+			if(selCount==0){
+				alert("请选择要通知的名单。");
+				return false;
+			}
+			if(confirm("确定要通知这" + selCount + "个学员考试报名吗？")){
+				$.post(uploadURL + "/public/send_message_fire_enter_alert", {batchID: $("#classID").val(), selList: selList, SMS:1, registerID: currUser} ,function(data){
+					getNodeInfo(nodeID);
+					alert("操作成功。");
+				});
+			}
+		});
+		
 		$("#btnClassChange").click(function(){
 			getSelCart("visitstockchk");
 			if(selCount==0){
@@ -609,9 +623,11 @@
 				//$("#projectID").val(ar[2]);
 				$("#certID").val(ar[3]);
 				$("#btnFireScore").hide();
+				$("#btnAttentionFireEnter").hide();
 				if(ar[3]=='C20' || ar[3]=='C20A' || ar[3]=='C21'){
 					fire = 1;	//消防项目
 					$("#btnFireScore").show();
+					$("#btnAttentionFireEnter").show();
 				}
 				//getComList("teacher","v_courseTeacherList","teacherID","teacherName","status=0 and courseID='" + $("#certID").val() + "' order by teacherID",1);
 				$("#kindID").val(ar[5]);
@@ -1431,6 +1447,7 @@
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnRebuildStudentLesson" value="刷新课表" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnDiplomaIssue" value="培训证书" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnFireScore" value="消防成绩" /></span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnAttentionFireEnter" value="消防考试报名通知*" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnDiplomaDate" value="复训日期" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnAutoSetClassSNo" value="调整学号" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnInvoiceGroup" value="团体发票" /></span>

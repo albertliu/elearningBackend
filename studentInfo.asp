@@ -473,6 +473,18 @@
 			alert("请填写姓名。");
 			return false;
 		}
+		if($("#unit").val()=="" && ($("#host").val() !=="spc" || $("#kindID").val() == "1")){
+			alert("请填写单位名称。");
+			return false;
+		}
+		if($("#address").val()==""){
+			alert("请填写单位地址。");
+			return false;
+		}
+		if($("#education").val()==""){
+			alert("请填写学历。");
+			return false;
+		}
 		var k = 0;
 		if(op==0){k=1;}
 		// alert("nodeID=" + $("#username").val() + "&name=" + ($("#name").val()) + "&keyID=" + k + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&companyID=" + $("#companyID").val() + "&dept1=" + $("#dept1").val() + "&dept2=" + $("#dept2").val() + "&limitDate=" + $("#limitDate").val() + "&mobile=" + ($("#mobile").val()) + "&phone=" + ($("#phone").val()) + "&email=" + ($("#email").val()) + "&job=" + ($("#job").val()) + "&education=" + ($("#education").val()) + "&memo=" + ($("#memo").val()));
@@ -1086,7 +1098,7 @@
 					</tr>
 					<tr id="znxf_dept">
 						<td align="right">单位名称</td>
-						<td><input type="text" id="unit" size="30" /></td><input type="hidden" id="dept" />
+						<td><input class="mustFill" type="text" id="unit" size="30" /></td><input type="hidden" id="dept" />
 						<td align="right">代码&nbsp;&nbsp;<input class="easyui-checkbox" id="checker" value="1" disabled="true" /></td>
 						<td>
 							<input type="text" id="tax" size="20" />&nbsp;<input class="button" type="button" id="btnUnitTaxConfirm" value="审核" />
@@ -1106,7 +1118,7 @@
 					</tr>
 					<tr>
 						<td align="right">单位地址</td>
-						<td><input type="text" id="address" size="30" /></td>
+						<td><input class="mustFill" type="text" id="address" size="30" /></td>
 						<td align="right">单位电话</td>
 						<td><input type="text" id="phone" size="30" /></td>
 					</tr>
