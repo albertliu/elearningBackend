@@ -114,7 +114,7 @@ if(op == "getStudentExamByEnterID"){
 
 if(op == "getStudentQuestionList"){
 	if(kindID==1){
-		sql = "select a.* from v_studentQuestionList a, studentExamList b where a.refID=b.paperID and b.refID=" + refID + " order by a.ID";
+		sql = "select a.* from v_studentQuestionList a, studentExamList b where a.refID=b.paperID and b.refID=" + refID + " order by a.kindID desc, a.ID";
 	}else{
 		sql = "select * from v_ref_studentQuestionList where seq=" + refID + " order by ID";
 	}
