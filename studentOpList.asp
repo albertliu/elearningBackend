@@ -49,7 +49,7 @@
 			arr.push("<th width='4%'>No</th>");
 			arr.push("<th width='25%'>操作项目</th>");
 			arr.push("<th width='30%'>备注</th>");
-			arr.push("<th width='25%'>操作日期</th>");
+			arr.push("<th width='26%'>操作日期</th>");
 			arr.push("<th width='15%'>操作人</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -64,9 +64,9 @@
 					c = 0;
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
-					arr.push("<td class='left'>" + ar1[1] + "</td>");
-					arr.push("<td class='left'>" + ar1[4] + "</td>");
-					arr.push("<td class='left'>" + ar1[2] + "</td>");
+					arr.push("<td class='left' style='word-wrap:break-word;word-break:break-all;'>" + ar1[1] + "</td>");
+					arr.push("<td class='left' style='word-wrap:break-word;word-break:break-all;'>" + ar1[4] + "</td>");
+					arr.push("<td class='left' style='word-wrap:break-word;word-break:break-all;'>" + ar1[2] + "</td>");
 					arr.push("<td class='left'>" + ar1[3] + "</td>");
 					arr.push("</tr>");
 				});
