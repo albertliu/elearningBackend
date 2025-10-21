@@ -219,7 +219,7 @@
 			delStudentMaterial("student_employment");
 		});
 		$("#del_img_jobCertificate").click(function(){
-			delStudentMaterial("student_jobCertificaten");
+			delStudentMaterial("student_jobCertificate");
 		});
 		$("#del_img_social").click(function(){
 			delStudentMaterial("student_social");
