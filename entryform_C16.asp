@@ -45,6 +45,7 @@
 	var price = 0;
 	var courseID = "";
 	let unit = "";
+	let agreement = "A1";
 	<!--#include file="js/commFunction.js"-->
 	<!--#include file="need2know.js"-->
 	<!--#include file="agreement.js"-->
@@ -204,14 +205,14 @@
 				}else{
 					if(keyID<2){
 						getNeed2know(nodeID);
-						getAgreement(ar[1],ar[2],course,sign,sDate,price);
+						getAgreement(ar[1],ar[2],course,sign,sDate,price,price,agreement);
 					}
 					if(keyID != 4){
 						getMaterials(ar[1],sign,p,k);
 					}
 				}
 				if(keyID == 4){
-					getAgreement(ar[1],ar[2],course,"","",price);	//无签名
+					getAgreement(ar[1],ar[2],course,"","",price,price,agreement);	//无签名
 				}
 				if(keyID==1){
 					resumePrint();

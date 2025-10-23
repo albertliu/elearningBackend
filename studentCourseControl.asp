@@ -881,7 +881,7 @@ if(op == "getFiremanEnterInfo"){
 		//9
 		result += "|" + rs("kind1").value + "|" + rs("kind2").value + "|" + rs("kind3").value + "|" + rs("kind4").value + "|" + rs("kind5").value + "|" + rs("kind6").value + "|" + rs("kind7").value + "|" + rs("kind8").value + "|" + rs("kind9").value + "|" + rs("kind10").value + "|" + rs("kind11").value + "|" + rs("kind12").value;
 		//21
-		result += "|" + rs("materials").value + "|" + rs("materials1").value + "|" + rs("zip").value + "|" + rs("memo").value + "|" + rs("registerID").value;
+		result += "|" + rs("materials").value + "|" + rs("materials1").value + "|" + rs("zip").value + "|" + rs("memo").value + "|" + rs("registerID").value + "|" + rs("agreement").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

@@ -36,6 +36,7 @@
 	var sDate = "";
 	var price = 0;
 	var k = 0;
+	let agreement = "A1";
 	<!--#include file="js/commFunction.js"-->
 	<!--#include file="agreement.js"-->
 	<!--#include file="materials_emergency.js"-->
@@ -105,7 +106,7 @@
 					var s = 1;	//社保证明
 					getMaterials(ar[1],sign,p,k,s);
 				}
-				getAgreement(ar[1],ar[2],course,(keyID==4?"":sign),sDate,price);
+				getAgreement(ar[1],ar[2],course,(keyID==4?"":sign),sDate,price,price,agreement);
 
 				if(keyID==1){
 					resumePrint();

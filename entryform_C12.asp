@@ -40,6 +40,7 @@
 	let priceStandard = 0;
 	let classID = 0;
 	var host = "znxf";
+	let agreement = "A1";
 	<!--#include file="js/commFunction.js"-->
 	<!--#include file="agreement.js"-->
 	<!--#include file="materials_emergency.js"-->
@@ -89,6 +90,7 @@
 				price = ar["price"];
 				priceStandard = ar["priceStandard"];
 				unit = ar["unit"];
+				agreement = ar["agreement"];
 				$("#hostName").html(ar["certID"]=="C27"?"上海静安能企电力职业技能培训中心":ar["hostName"]);
 				$("#username").html(ar["username"]);
 				$("#name").html(ar["name"]);
@@ -153,11 +155,11 @@
 				if(keyID < 3){
 					//打印学历证明、身份证
 					p = 1;
-					s = 1;
-					getMaterials(ar["username"],sign,p,k);
+					s = 0;
+					getMaterials(ar["username"],sign,p,k,s);
 				}
 				if(keyID < 3 || keyID == 4){	//
-					getAgreement(ar["username"],ar["name"],course,sign,sDate,price,priceStandard);	//协议书
+					getAgreement(ar["username"],ar["name"],course,sign,sDate,price,priceStandard,agreement);	//协议书
 				}
 				if(keyID==1){
 					resumePrint();
@@ -207,13 +209,13 @@
 	
 	<div style="width:100%;float:left;margin:0;">
 		<div id="resume_print" style="border:none;width:100%;margin:1px;line-height:18px;">
-			<div style="position: relative; width:800px;height:99%;">
+			<div style="position: relative; width:100%;height:99%;">
 				<div style="position: absolute; z-index:10;">
-					<div style='text-align:center; margin:10px 0 15px 0;'><h3 id="reexamine" style='font-size:1.75em; font-family: 幼圆;'></h3></div>
-					<div style='text-align:left; margin:10px 0 15px 30px;'><p style='font-size:1.5em; font-family: 幼圆;'>申请类别：<input type="checkbox" id="R0" />&nbsp;初次取证&nbsp;&nbsp;<input type="checkbox" id="R1" />&nbsp;复审&nbsp;&nbsp;<input type="checkbox" id="R2" />&nbsp;延期换证</p></div>
+					<div style='text-align:center; margin:5px 0 10px 0;'><h3 id="reexamine" style='font-size:1.55em; font-family: 幼圆;'></h3></div>
+					<div style='text-align:left; margin:5px 0 10px 30px;'><p style='font-size:1.2em; font-family: 幼圆;'>申请类别：<input type="checkbox" id="R0" />&nbsp;初次取证&nbsp;&nbsp;<input type="checkbox" id="R1" />&nbsp;复审&nbsp;&nbsp;<input type="checkbox" id="R2" />&nbsp;延期换证</p></div>
 					<table class='table_resume' style='width:99%;border:2px solid black;'>
 					<tr>
-						<td align="center" class='table_resume_title' width='10%' height='45px'>姓名</td><td align="center" width='13%'><p style='font-size:1em;' id="name"></p></td>
+						<td align="center" class='table_resume_title' width='10%' height='40px'>姓名</td><td align="center" width='13%'><p style='font-size:1em;' id="name"></p></td>
 						<td align="center" class='table_resume_title' width='10%'>性别</td><td align="center" width='14%'><p style='font-size:1em;' id="sexName"></p></td>
 						<td align="center" class='table_resume_title' width='13%'>出生年月</td><td class='table_resume_title' width='14%'><p style='font-size:1em;' id="birthday"></p></td>
 						<td rowspan="4" colspan="2" align="center" class='table_resume_title' width='18%'>
@@ -221,27 +223,27 @@
 						</td>
 					</tr>
 					<tr>
-						<td align="center" class='table_resume_title' height='45px'>国籍</td><td align="center" width='13%'><p style='font-size:1em;'>中国</p></td>
+						<td align="center" class='table_resume_title' height='40px'>国籍</td><td align="center" width='13%'><p style='font-size:1em;'>中国</p></td>
 						<td align="center" class='table_resume_title'>民族</td><td align="center" width='10%'><p style='font-size:1em;' id="ethnicity"></p></td>
 						<td align="center" class='table_resume_title'>文化程度</td><td class='table_resume_title' width='14%'><p style='font-size:1em;' id="educationName"></p></td>
 					</tr>
 					<tr>
-						<td align="center" class='table_resume_title' height='45px'>证件类型</td><td align="center" colspan="3" class="ef1p1"><input type="checkbox" id="IDK0" />&nbsp;身份证 <input type="checkbox" />&nbsp;护照 <input type="checkbox" id="IDK1" />&nbsp;其他</td>
+						<td align="center" class='table_resume_title' height='40px'>证件类型</td><td align="center" colspan="3" class="ef1p1"><input type="checkbox" id="IDK0" />&nbsp;身份证 <input type="checkbox" />&nbsp;护照 <input type="checkbox" id="IDK1" />&nbsp;其他</td>
 						<td align="center" class='table_resume_title'>证件有效期</td><td class='table_resume_title'><p style='font-size:1em;' id="IDdate"></p></td>
 					</tr>
 					<tr>
-						<td align="center" class='table_resume_title' height='45px'>证件号码</td><td align="center" colspan="5"><p style='font-size:1em;' id="username"></p></td>
+						<td align="center" class='table_resume_title' height='36px'>证件号码</td><td align="center" colspan="5"><p style='font-size:1em;' id="username"></p></td>
 					</tr>
 					<tr>
-						<td align="center" class='table_resume_title' height='45px'>工作单位</td><td align="center" colspan="3"><p style='font-size:1em;' id="unit"></p></td>
+						<td align="center" class='table_resume_title' height='36px'>工作单位</td><td align="center" colspan="3"><p style='font-size:1em;' id="unit"></p></td>
 						<td align="center" class='table_resume_title'>从事岗位</td><td align="center" colspan="3"><p style='font-size:1em;' id="job"></p></td>
 					</tr>
 					<tr>
-						<td align="center" class='table_resume_title' height='45px'>联系地址</td><td align="center" colspan="3"><p style='font-size:1em;' id="address"></p></td>
+						<td align="center" class='table_resume_title' height='36px'>联系地址</td><td align="center" colspan="3"><p style='font-size:1em;' id="address"></p></td>
 						<td align="center" class='table_resume_title'>联系方式</td><td align="center" colspan="3"><p style='font-size:1em;' id="mobile"></p></td>
 					</tr>
 					<tr>
-						<td align="center" class='table_resume_title' height='45px'>培训机构</td><td align="center" colspan="3"><p style='font-size:1em;' id="hostName"></p></td>
+						<td align="center" class='table_resume_title' height='36px'>培训机构</td><td align="center" colspan="3"><p style='font-size:1em;' id="hostName"></p></td>
 						<td align="center" class='table_resume_title'>培训时间</td>
 						<td align="center" colspan="3">
 								<span id="date0" style='font-size:1em;padding-left:10px;padding-top:20px;'></span>
@@ -251,33 +253,33 @@
 						</td>
 					</tr>
 					<tr>
-						<td align="center" rowspan="6" class='table_resume_title' height='45px'>申<br>请<br>项<br>目</td>
-						<td align="left" colspan="2" class="ef1p1" style="padding-left:10px;" height='60px'>电工作业</td>
+						<td align="center" rowspan="6" class='table_resume_title' height='40px'>申<br>请<br>项<br>目</td>
+						<td align="left" colspan="2" class="ef1p1" style="padding-left:10px;" height='40px'>电工作业</td>
 						<td align="left" colspan="5" class="ef1p1">
 							<input type="checkbox" id="CC12" />&nbsp;低压电工作业 <input type="checkbox" id="CC27" />&nbsp;高压电工作业 <input type="checkbox" />&nbsp;电力电缆作业</br>
 							<input type="checkbox" />&nbsp;继电保护作业 <input type="checkbox" />&nbsp;电气试验作业 <input type="checkbox" />&nbsp;防爆电气作业
 						</td>
 					</tr>
 					<tr>
-						<td align="left" colspan="2" class="ef1p1" style="padding-left:10px;" height='40px'>焊接与热切割作业</td>
+						<td align="left" colspan="2" class="ef1p1" style="padding-left:10px;" height='36px'>焊接与热切割作业</td>
 						<td align="left" colspan="5" class="ef1p1">
 							<input type="checkbox" id="CC24" />&nbsp;熔化焊接与热切割作业
 						</td>
 					</tr>
 					<tr>
-						<td align="left" colspan="2" class="ef1p1" style="padding-left:10px;" height='40px'>高处作业</td>
+						<td align="left" colspan="2" class="ef1p1" style="padding-left:10px;" height='36px'>高处作业</td>
 						<td align="left" colspan="5" class="ef1p1">
 							<input type="checkbox" />&nbsp;登高架设作业 <input type="checkbox" id="CC15" />&nbsp;高处安装、维护、拆除作业
 						</td>
 					</tr>
 					<tr>
-						<td align="left" colspan="2" class="ef1p1" style="padding-left:10px;" height='40px'>制冷与空调作业</td>
+						<td align="left" colspan="2" class="ef1p1" style="padding-left:10px;" height='36px'>制冷与空调作业</td>
 						<td align="left" colspan="5" class="ef1p1">
 							<input type="checkbox" id="CC25" />&nbsp;制冷与空调设备运行操作作业 <input type="checkbox" id="CC26" />&nbsp;制冷与空调设备安装修理作业
 						</td>
 					</tr>
 					<tr>
-						<td align="left" colspan="2" class="ef1p1" style="padding-left:10px;" height='45px'>冶金(有色)生产<br>安全作业</td>
+						<td align="left" colspan="2" class="ef1p1" style="padding-left:10px;" height='36px'>冶金(有色)生产<br>安全作业</td>
 						<td align="left" colspan="5" class="ef1p1">
 							<input type="checkbox" />&nbsp;煤气作业
 						</td>
@@ -294,12 +296,12 @@
 						</td>
 					</tr>
 					<tr>
-						<td align="center" class='table_resume_title' height='45px'>健<br>康<br>承<br>诺</td>
+						<td align="center" class='table_resume_title' height='40px'>健<br>康<br>承<br>诺</td>
 						<td align="left" colspan="7" class="ef1p1">
 							<p class="ef1p1" style='text-indent:30px;font-weight:bold;padding:10px;'>
 							我承诺：本人身体健康，肢体健全，无妨碍从事相应特种作业的器质性心脏病、癫痫病、美尼尔氏症、眩晕症、癔病、震颤麻痹症、精神病、痴呆症以及其他疾病和生理缺陷。
 							</p>
-							<div style="display:table-cell;height:50px;vertical-align:middle;text-align:center">
+							<div style="display:table-cell;height:40px;vertical-align:middle;text-align:center">
 								<span style='font-size:1.2em;padding-left:200px;'>承诺人（签名）：</span>
 								<span style="position: relative; top: 15px;"><img id="f_sign20" src="" style="max-width:150px;max-height:35px;padding-left:10px;"></span>
 								<span id="date" style='font-size:1.5em;padding-left:10px;padding-top:20px;color:#555;font-family:"qyt","Ink Free";'></span>
@@ -336,10 +338,10 @@
 					</tr>
 					<tr>
 						<td align="left" colspan="8" style="padding-left:5px;">
-							<p class="ef1p1" style='text-indent:30px;font-weight:bold;padding:10px;'>
+							<p class="ef1p1" style='text-indent:30px;font-weight:bold;padding:5px;'>
 							本人已阅读并充分了解上述申请须知。本人承诺所提供的资料真实、完整、有效，如因提供资料虚假而产生相关影响，由本人承担全部责任。
 							</p>
-							<div style="display:table-cell;height:50px;vertical-align:middle;text-align:center">
+							<div style="display:table-cell;height:40px;vertical-align:middle;text-align:center">
 								<span style='font-size:1.2em;padding-left:300px;'>申请人（签名）：</span>
 								<span style="position: relative; top: 15px;"><img id="f_sign30" src="" style="max-width:150px;max-height:35px;padding-left:10px;"></span>
 								<span id="date1" style='font-size:1.5em;padding-left:10px;padding-top:20px;color:#555;font-family:"qyt","Ink Free";'></span>

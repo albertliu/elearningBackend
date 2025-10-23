@@ -59,15 +59,11 @@
 					// arr.push('	<span><img src="/users' + path + '?times=' + (new Date().getTime()) + '" style="width:170px;margin:0px 0px 8px 250px;padding-left:80px;padding-top:' + (p==1? 180 : 180) + 'px;"></span>');
 					// arr.push('</div>');
 					// arr.push('</div>');
-					arr.push('<div style="position: absolute; z-index:20;">');
-					arr.push('<div style="float:left;">');
-					arr.push('	<span><img src="/users' + path + '?times=' + (new Date().getTime()) + '" style="width:90px;margin:0px 0px 0px 537px;padding-left:0px;padding-top:200px;"></span>');
+					arr.push('<div style="position: absolute; z-index:20;width:100px;">');
+					arr.push('<img src="/users' + path + '?times=' + (new Date().getTime()) + '" style="width:90px;margin:0px 0px 0px 557px;padding-left:0px;padding-top:200px;">');
 					arr.push('</div>');
-					arr.push('</div>');
-					arr.push('<div style="position: absolute; z-index:40;">');
-					arr.push('<div style="float:left;">');
-					arr.push('	<span><img src="images/sign_stamp.png" style="width:150px;margin:0px 0px 0px 457px;padding-left:0px;padding-top:170px;opacity:0.7;"></span>');
-					arr.push('</div>');
+					arr.push('<div style="position: absolute; z-index:40; margin-left:100;">');
+					arr.push('<img src="images/sign_stamp.png" style="width:150px;margin:0px 0px 0px 377px;padding-left:0px;padding-top:173px;opacity:0.7;">');
 					arr.push('</div>');
 				}
 				if(path>"" && c==1){
@@ -77,15 +73,11 @@
 					// arr.push('	<span><img src="/users' + path + '?times=' + (new Date().getTime()) + '" style="width:170px;margin:0px 0px 8px 250px;padding-left:80px;padding-top:670px;"></span>');
 					// arr.push('</div>');
 					// arr.push('</div>');
-					arr.push('<div style="position: absolute; z-index:10;">');
-					arr.push('<div style="float:left;">');
-					arr.push('	<span><img src="/users' + path + '?times=' + (new Date().getTime()) + '" style="width:90px;margin:-200px 0px 0px 580px;padding-left:0px;padding-top:850px;"></span>');
+					arr.push('<div style="position: absolute; z-index:10;width:100;">');
+					arr.push('<img src="/users' + path + '?times=' + (new Date().getTime()) + '" style="width:90px;margin:-200px 0px 0px 600px;padding-left:0px;padding-top:850px;">');
 					arr.push('</div>');
-					arr.push('</div>');
-					arr.push('<div style="position: absolute; z-index:40;">');
-					arr.push('<div style="float:left;">');
-					arr.push('	<span><img src="images/sign_stamp.png" style="width:150px;margin:-200px 0px 0px 500px;padding-left:0px;padding-top:820px;opacity:0.7;"></span>');
-					arr.push('</div>');
+					arr.push('<div style="position: absolute; z-index:40; margin-left:100;">');
+					arr.push('<img src="images/sign_stamp.png" style="width:150px;margin:-200px 0px 0px 420px;padding-left:0px;padding-top:820px;opacity:0.7;">');
 					arr.push('</div>');
 				}
 				arr.push('</div>');

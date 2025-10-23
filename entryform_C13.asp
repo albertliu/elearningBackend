@@ -38,6 +38,7 @@
 	let priceStandard = 0;
 	let classID = 0;
 	var host = "znxf";
+	let agreement = "A1";
 	<!--#include file="js/commFunction.js"-->
 	<!--#include file="need2know.js"-->
 	<!--#include file="agreement.js"-->
@@ -71,6 +72,7 @@
 				sDate = ar["signatureDate"];
 				price = ar["price"];
 				priceStandard = ar["priceStandard"];
+				agreement = ar["agreement"];
 				$("#SNo").html(ar["SNo"]);
 				if(sign>""){
 					$("#f_sign20").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
@@ -97,7 +99,7 @@
 				}
 				$("#img_A").attr("src","/users" + ar["IDa_filename"] + "?times=" + (new Date().getTime()));
 				$("#img_B").attr("src","/users" + ar["IDb_filename"] + "?times=" + (new Date().getTime()));
-				getAgreement(ar["username"],ar["name"],course,sign,sDate,price,priceStandard);	//协议书
+				getAgreement(ar["username"],ar["name"],course,sign,sDate,price,priceStandard,agreement);	//协议书
 				if(keyID==1){
 					resumePrint();
 				}

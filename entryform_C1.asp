@@ -35,6 +35,7 @@
 	var course = "";
 	var sDate = "";
 	var price = 0;
+	let agreement = "A1";
 	var updateCount = 1;
 	<!--#include file="js/commFunction.js"-->
 	<!--#include file="need2know.js"-->
@@ -111,7 +112,7 @@
 				
 				//$("#date").html(currDate);
 				if(keyID == 4){
-					getAgreement(ar[1],ar[2],course,"","",price);	//无签名
+					getAgreement(ar[1],ar[2],course,"","",price,price,agreement);	//无签名
 				}
 				if(keyID==1){
 					resumePrint();
