@@ -209,8 +209,8 @@
 	
 	<div style="width:100%;float:left;margin:0;">
 		<div id="resume_print" style="border:none;width:100%;margin:1px;line-height:18px;">
-			<div style="position: relative; width:100%;height:99%;">
-				<div style="position: absolute; z-index:10;">
+			<div style="position: relative; width:800px;height:99%;">
+				<div style="position: absolute; z-index:10; width:100%;">
 					<div style='text-align:center; margin:5px 0 10px 0;'><h3 id="reexamine" style='font-size:1.55em; font-family: 幼圆;'></h3></div>
 					<div style='text-align:left; margin:5px 0 10px 30px;'><p style='font-size:1.2em; font-family: 幼圆;'>申请类别：<input type="checkbox" id="R0" />&nbsp;初次取证&nbsp;&nbsp;<input type="checkbox" id="R1" />&nbsp;复审&nbsp;&nbsp;<input type="checkbox" id="R2" />&nbsp;延期换证</p></div>
 					<table class='table_resume' style='width:99%;border:2px solid black;'>
