@@ -595,7 +595,7 @@
 				return false;
 			}
 			if(confirm("确定要生成这" + selCount + "个存档资料吗？")){
-				$.post(uploadURL + "/outfiles/generate_emergency_exam_materials_byclass?refID=" + nodeID + "&keyID=2&registerID=" + currUser, {selList:selList}, function(data){
+				$.post(uploadURL + "/outfiles/generate_emergency_exam_materials_byclass?refID=" + nodeID + "&keyID=2&mrk=A&registerID=" + currUser, {selList:selList}, function(data){
 					if(data>"0"){
 						// generateZip("e");
 						alert("已生成" + data + "份文档");

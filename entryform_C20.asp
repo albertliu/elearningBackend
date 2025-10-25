@@ -87,7 +87,7 @@
 		$("input[name='fire_kind5']").change(function(){
 			setKind4();
 		});
-		if(keyID==4){
+		if(keyID==4 || keyID==2){
 			$("#itemTitle").hide();
 		}
 		//getNeed2know(nodeID);

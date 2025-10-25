@@ -4,7 +4,9 @@
 		let top1 = 0;
 		let top2 = 0;
 		let arr = new Array();
-		// arr.push('<div style="page-break-after:always">&nbsp;</div>');
+		if(keyID==2){
+			arr.push('<div style="page-break-after:always">&nbsp;</div>');
+		}
 		arr.push('<div style="">');
 		arr.push('	<div style="text-align:center; margin:25px 0 20px 0;"><h2 style="font-size:1.7em;">培训协议书</h2></div>');
 		arr.push('</div>');
@@ -174,7 +176,12 @@
 		arr.push('</div>');
 		
 		if(path>""){
-			//alert(path);
+			// let a_ml = (kyeID==2?350:250);
+			let a_ml = (keyID==2 && fmt==="A2"?350:250);
+			let a_tk = (keyID==2?(fmt==="A2"?100:50):0);
+			top1 -= a_tk;
+			top2 -= a_tk;
+			// alert(top1);
 			arr.push('<div style="position: relative;width:100%;height:80%;">');
 			arr.push('<div style="position: absolute; z-index:10; width:200px;">');
 			// arr.push('	<span><img src="/users/upload/companies/stamp/znxf.png" style="opacity:0.6; width:200px;margin:0px 0px 8px 50px;padding-left:80px;padding-top:' + top2 + 'px;"></span>');
@@ -182,7 +189,7 @@
 			arr.push('</div>');
 			arr.push('<div style="position: absolute; z-index:10; width:200px; margin-left:200px;">');
 			// arr.push('	<span><img src="/users' + path + '?times=' + (new Date().getTime()) + '" style="width:170px;margin:0px 0px 8px 480px;padding-left:80px;padding-top:' + top1 + 'px;"></span>');
-			arr.push('<img src="/users' + path + '?times=' + (new Date().getTime()) + '" style="width:170px;margin:0px 0px 8px 250px;padding-left:60px;padding-top:' + top2 + 'px;">');
+			arr.push('<img src="/users' + path + '?times=' + (new Date().getTime()) + '" style="width:170px;margin:0px 0px 8px ' + a_ml + 'px;padding-left:60px;padding-top:' + top2 + 'px;">');
 			arr.push('</div>');
 			arr.push('</div>');
 			arr.push('<div style="clear: both;"></div>');

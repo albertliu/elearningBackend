@@ -52,6 +52,9 @@
 				arr.push('</table>');
 				arr.push('</div>');
 				arr.push('<div style="position: relative;width:100%;height:80%;">');
+				let m_lk = (keyID==2?100:0);
+				let m_left1 = 377 + m_lk;
+				let m_left2 = 420 + m_lk;
 				if(idc>0){
 					//身份证签字
 					// arr.push('<div style="position: absolute; z-index:10;">');
@@ -63,7 +66,7 @@
 					arr.push('<img src="/users' + path + '?times=' + (new Date().getTime()) + '" style="width:90px;margin:0px 0px 0px 557px;padding-left:0px;padding-top:200px;">');
 					arr.push('</div>');
 					arr.push('<div style="position: absolute; z-index:40; margin-left:100;">');
-					arr.push('<img src="images/sign_stamp.png" style="width:150px;margin:0px 0px 0px 377px;padding-left:0px;padding-top:173px;opacity:0.7;">');
+					arr.push('<img src="images/sign_stamp.png" style="width:150px;margin:0px 0px 0px ' + m_left1 + 'px;padding-left:0px;padding-top:173px;opacity:0.7;">');
 					arr.push('</div>');
 				}
 				if(path>"" && c==1){
@@ -77,7 +80,7 @@
 					arr.push('<img src="/users' + path + '?times=' + (new Date().getTime()) + '" style="width:90px;margin:-200px 0px 0px 600px;padding-left:0px;padding-top:850px;">');
 					arr.push('</div>');
 					arr.push('<div style="position: absolute; z-index:40; margin-left:100;">');
-					arr.push('<img src="images/sign_stamp.png" style="width:150px;margin:-200px 0px 0px 420px;padding-left:0px;padding-top:820px;opacity:0.7;">');
+					arr.push('<img src="images/sign_stamp.png" style="width:150px;margin:-200px 0px 0px ' + m_left2 + 'px;padding-left:0px;padding-top:820px;opacity:0.7;">');
 					arr.push('</div>');
 				}
 				arr.push('</div>');

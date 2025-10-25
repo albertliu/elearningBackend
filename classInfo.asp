@@ -424,6 +424,25 @@
 				}
 			});
 		});
+	
+		$("#generateClassDoc").click(function(){
+			getSelCart("");
+			if(selCount==0){
+				$.messager.alert("提示","请选择要操作的名单。","info");
+				return false;
+			}
+			if(confirm("确定要生成这" + selCount + "个存档资料吗？")){
+				$.post(uploadURL + "/outfiles/generate_emergency_exam_materials_byclass?refID=" + $("#classID").val() + "&keyID=2&mark=B&registerID=" + currUser, {selList:selList}, function(data){
+					if(data>"0"){
+						// generateZip("e");
+						alert("已生成" + data + "份文档");
+						getApplyList();
+					}else{
+						alert("没有可供处理的数据。");
+					}
+				});
+			}
+		});
 
 		$("#btnMockView").click(function(){
 			showClassExamStat($("#classID").val(),$("#className").val(),0,0);
@@ -1425,6 +1444,7 @@
 	<input class="button" type="button" id="doImportRef" value="石化预报名表" />
 	<input class="button" type="button" id="doImport" value="报名表导入" />&nbsp;&nbsp;
 	<input class="button" type="button" id="checkStudent" value="报名表核对" />
+	<input class="button" type="button" id="generateClassDoc" value="生成归档文件" />&nbsp;
 	<input class="button" type="button" id="generateZip" value="生成归档压缩包" />&nbsp;&nbsp;
 	<input class="button" type="button" id="generatePhotoZip" value="生成资料压缩包" />&nbsp;&nbsp;
 	<input class="button" type="button" id="generateEntryZip" value="生成报名表压缩包" />&nbsp;&nbsp;
