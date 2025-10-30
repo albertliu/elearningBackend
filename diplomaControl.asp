@@ -1154,7 +1154,7 @@ if(op == "getApplyListByBatch"){
 	result = result.substr(2);
 	Session(op) = ssql;
 	Response.Write(escape(result));
-}	
+}
 
 if(op == "getGenerateApplyNodeInfo"){
 	result = "";
@@ -1195,6 +1195,22 @@ if(op == "updateGenerateApplyInfo"){
 	Response.Write(result);
 	//Response.Write(escape(sql));
 }
+
+if(op == "getApplyNodeInfo"){
+	result = "";
+	sql = "SELECT * FROM v_applyInfo where ID=" + nodeID;
+	rs = conn.Execute(sql);
+	if(!rs.EOF){
+		result = rs("ID").value + "|" + rs("memo").value + "|" + rs("memo1").value + "|" + rs("upload").value + "|" + rs("uploadPhoto").value;
+		//5
+		result += "|" + rs("unit").value + "|" + rs("examDate").value + "|" + rs("step").value + "|" + rs("age").value + "|" + rs("IDdateEnd").value;
+		//10
+		result += "|" + rs("score").value + "|" + rs("score1").value + "|" + rs("score2").value + "|" + rs("status").value + "|" + rs("memo_enter").value;
+	}
+	rs.Close();
+	Response.Write(escape(result));
+	//Response.Write(escape(sql));
+}	
 
 if(op == "getRptDailyInvoiceList"){
 	result = "";
