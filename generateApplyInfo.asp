@@ -927,7 +927,7 @@
 				let backcolor = ["#F0F0F0","#FFFF00","#00FF00","#FF8888"];
 				let jobbc = ["#C5FFC5","#FFFFC5","#E5E5E5"];
 				let jobtt = ["工作证明","社保","居住证"];
-				let jobid = ["employee","social","student_jobCertificate"];
+				let jobid = ["employment","social","jobCertificate"];
 				let bc = "";
 				let photo_size = 0;
 				let photo_type = "jpg";
