@@ -473,7 +473,7 @@
 			alert("请填写姓名。");
 			return false;
 		}
-		if($("#unit").val()=="" && ($("#host").val() !=="spc" || $("#kindID").val() == "1")){
+		if($("#unit").val()=="" && ($("#companyID").val() !=="8" || $("#kindID").val() == "1")){
 			alert("请填写单位名称。");
 			return false;
 		}

@@ -66,7 +66,7 @@
 			arr.push("<th width='3%'>No</th>");
 			arr.push("<th width='12%'>批次</th>");
 			arr.push("<th width='20%'>标题</th>");
-			arr.push("<th width='12%'>截止日期</th>");
+			arr.push("<th width='12%'>价格</th>");
 			arr.push("<th width='8%'>总数</th>");
 			arr.push("<th width='8%'>已确认</th>");
 			arr.push("<th width='8%'>待确认</th>");
@@ -90,7 +90,7 @@
 					arr.push("<td class='center'>" + i + "</td>");
 					arr.push("<td class='link1'><a href='javascript:showProjectInfo(" + ar1[0] + ",0,0,1);'>" + ar1[1] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[2] + "</td>");
-					arr.push("<td class='left'>" + ar1[10] + "</td>");
+					arr.push("<td class='left'>" + ar1[28] + "</td>");
 					arr.push("<td class='left'>" + nullNoDisp(ar1[20]) + "</td>");
 					arr.push("<td class='left'>" + nullNoDisp(ar1[17]) + "</td>");
 					arr.push("<td class='left'>" + nullNoDisp(ar1[35]) + "</td>");
@@ -130,6 +130,8 @@
 				"bPaginate": true,
 				"bLengthChange": true,
 				"bInfo": true,
+				"aLengthMenu":[15,30,50,100],
+				"iDisplayLength": 50,
 				"aoColumnDefs": []
 			});
 			floatCount = i;

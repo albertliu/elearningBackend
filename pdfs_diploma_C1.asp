@@ -43,7 +43,7 @@
 					k += 1;
 					arr.push('<section class="login-form-wrap3s">');
 					arr.push('<div style="position: relative;">');
-					arr.push('<div style="position: absolute; z-index:10; width:100%; padding-left:18mm;padding-top:30mm;">');
+					arr.push('<div style="position: absolute; z-index:10; width:100%; padding-left:18mm;padding-top:35mm;">');
 					arr.push('<div class="lineC1s"><span style="padding-left:15mm;">' + val["name"] + '</span><span style="padding-left:52mm;">' + val["class_startDate"] + '</span></div>');
 					arr.push('<div class="lineC1s"><span style="padding-left:18mm;">' + val["class_endDate"] + '</span></div>');
 					arr.push('<div class="lineC1s" style="padding-top:120mm;padding-left:65mm;"><span style="padding-left:20mm;">' + val["startDate"] + '</span></div>');
