@@ -920,7 +920,7 @@
 							<td colspan="3">
 								<input type="text" id="currDiplomaDate" style="width:80px;" />&nbsp;&nbsp;
 								证书查询&nbsp;<input type="text" id="currDiplomaID" style="width:140px;" />&nbsp;&nbsp;
-								销售&nbsp;<select id="fromID" style="width:60px;"></select>&nbsp;&nbsp;
+								销售&nbsp;<select id="fromID" style="width:80px;"></select>&nbsp;&nbsp;
 								资源&nbsp;<select id="fromKind" style="width:60px"></select>
 							</td>
 						</tr>
