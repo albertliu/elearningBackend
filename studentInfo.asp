@@ -477,7 +477,7 @@
 			alert("请填写单位名称。");
 			return false;
 		}
-		if($("#address").val()==""){
+		if($("#address").val()=="" && $("#companyID").val() !=="8"){
 			alert("请填写单位地址。");
 			return false;
 		}
@@ -997,7 +997,7 @@
 				}else{
 					$("#checker").checkbox({checked:false});
 				}
-				setButton();
+				// setButton();
 			}
 		});
 	}
