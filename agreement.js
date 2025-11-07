@@ -23,8 +23,8 @@
 		arr.push('		</tr>');
 		if(fmt==="A2"){
 			// 消防项目
-			top1 = 1280;
-			top2 = 1340;
+			top1 = 1320;
+			top2 = 1380;
 			arr.push('		<tr>');
 			arr.push('			<td colspan="2" style="height:30px;"><p style="font-size:1.3em;text-indent:2em;">3、该培训项目实行考培分离制度，学校负责培训，乙方自行向相关鉴定机构申报考试，若乙方在申报时遇到困难，可向甲方提出协助。</p></td>');
 			arr.push('		</tr>');
