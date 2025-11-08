@@ -188,9 +188,13 @@
 				if(r){
 					$.get("studentCourseControl.asp?op=enterPay&nodeID=" + nodeID + "&amount=" + $("#amount").val() + "&kindID=" + $("#kindID").val() + "&refID=" + $("#type").val() + "&memo=" + escape($("#pay_memo").val()) + "&times=" + (new Date().getTime()),function(re){
 						// alert(unescape(re))
-						$.messager.alert("提示","操作成功。","info");
-						updateCount += 1;
-						getNodeInfo(nodeID);
+						var ar = new Array();
+						ar = unescape(re).split("|");
+						$.messager.alert("提示",ar[1],"info");
+						if(ar[0]==1){
+							updateCount += 1;
+							getNodeInfo(nodeID);
+						}
 					});
 				}
 			});

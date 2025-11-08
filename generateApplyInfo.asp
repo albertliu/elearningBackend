@@ -892,6 +892,7 @@
 			arr.push("<th width='6%'>学号</th>");
 			arr.push("<th width='10%'>身份证</th>");
 			arr.push("<th width='6%'>姓名</th>");
+			arr.push("<th width='1%'></th>");
 			arr.push("<th width='8%'>单位</th>");
 			arr.push("<th width='7%'>申报</th>");
 			if(reexamine == 1){
@@ -914,7 +915,6 @@
 			// arr.push("<th width='7%'>补考</th>");
 			arr.push("<th width='10%'>复训日期</th>");
 			arr.push("<th width='1%'>材</th>");
-			arr.push("<th width='1%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
@@ -941,6 +941,7 @@
 					arr.push("<td class='link1'><a href='javascript:showApplyInfo(" + ar1[0] + ",0,1);'>" + ar1[22] + "</td>");
 					arr.push("<td class='link1' " + (ar1[40]>"" && ar1[40]<addDays(currDate,90) ? "style='background:yellow;' title='注意身份证有效期'" : (ar1[50]<18 && ar1[51]==1?"style='background:pink;' title='不满18岁'":"")) + "><a href='javascript:showEnterInfo(\"" + ar1[2] + "\",\"" + ar1[4] + "\",0,1);'>" + ar1[4] + "</a></td>");
 					arr.push("<td class='link1'><a href='javascript:showStudentInfo(0,\"" + ar1[4] + "\",0,1);'>" + ar1[5] + "</a></td>");
+					arr.push("<td class='left'><input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchk'></td>");
 					arr.push("<td class='left' title='" + ar1[13] + "." + ar1[14] + "'>" + ar1[13] + "</td>");	//unit
 					arr.push("<td class='left'>" + ar1[32] + "</td>");
 					if(reexamine == 1){
@@ -1011,7 +1012,6 @@
 					}else{
 						arr.push("<td class='center'><a href='javascript:void(0);' title='申报材料' onclick='showPic(\"" + ar1[25] + "\");' title='申报材料'>" + imgFile + "</a></td>");
 					}
-					arr.push("<td class='left'><input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchk'></td>");
 					arr.push("</tr>");
 				});
 			}
