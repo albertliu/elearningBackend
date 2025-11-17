@@ -643,7 +643,7 @@
 				$("#certID").val(ar[3]);
 				$("#btnFireScore").hide();
 				$("#btnAttentionFireEnter").hide();
-				if(ar[3]=='C20' || ar[3]=='C20A' || ar[3]=='C21'){
+				if(ar[3]=='C20' || ar[3]=='C20A' || ar[3]=='C20B' || ar[3]=='C21'){
 					fire = 1;	//消防项目
 					$("#btnFireScore").show();
 					$("#btnAttentionFireEnter").show();
