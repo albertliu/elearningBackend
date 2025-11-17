@@ -789,7 +789,7 @@
 				$("#fromID").prop("disabled",false);
 			}
 			let certID = $("#certID").val();
-			if(checkPermission("firemanScore") && (certID=="C20" || certID=="C20A" || certID=="C21" || certID=="C51" || certID=="C52") || certID=="C53")){
+			if(checkPermission("firemanScore")){
 				$("#btnSaveScore").show();
 			}
 		}
