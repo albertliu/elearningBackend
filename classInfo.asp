@@ -40,6 +40,7 @@
 	var timer1 = null;
 	let entryForm = "";
 	let reexamine = 0;
+	let agencyID = 0;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";
@@ -685,6 +686,7 @@
 				$("#courseID").val(ar[36]);
 				entryForm = ar[51];
 				reexamine = ar[52];
+				agencyID = ar[53];
 				if(ar[24]>""){
 					$("#archived").prop("checked",true);
 				}else{
@@ -841,7 +843,8 @@
 							}
 						}
 						h = ar1[66];
-						if($("#certID").val()=="C12" || $("#certID").val()=="C20" || $("#certID").val()=="C20A" || $("#certID").val()=="C21" || $("#certID").val()=="C14" || $("#certID").val()=="C15" || $("#certID").val()=="C24" || $("#certID").val()=="C25" || $("#certID").val()=="C26" || $("#certID").val()=="C25B" || $("#certID").val()=="C26B"){
+						// if($("#certID").val()=="C12" || $("#certID").val()=="C20" || $("#certID").val()=="C20A" || $("#certID").val()=="C20B" || $("#certID").val()=="C21" || $("#certID").val()=="C14" || $("#certID").val()=="C15" || $("#certID").val()=="C24" || $("#certID").val()=="C25" || $("#certID").val()=="C26" || $("#certID").val()=="C25B" || $("#certID").val()=="C26B"){
+						if(agencyID == 1 || agencyID == 2 || agencyID == 8){
 							h = ar1[70].replace(".00","") + "/" + ar1[71].replace(".00","");
 							if(ar1[87]==3){h=ar1[88]}
 						}

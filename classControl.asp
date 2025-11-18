@@ -137,7 +137,7 @@ if(op == "getNodeInfo"){
 		//38
 		result += "|" + rs("teacherName").value + "|" + rs("host").value + "|" + rs("transaction_id").value + "|" + rs("re").value + "|" + rs("reexamineName").value + "|" + rs("kindName").value + "|" + rs("qtyDiploma").value;
 		//45
-		result += "|" + rs("signatureType").value + "|" + rs("signatureTypeName").value + "|" + rs("zip").value + "|" + rs("pzip").value + "|" + rs("ezip").value + "|" + rs("pre").value + "|" + rs("entryForm").value + "|" + rs("reexamine").value;
+		result += "|" + rs("signatureType").value + "|" + rs("signatureTypeName").value + "|" + rs("zip").value + "|" + rs("pzip").value + "|" + rs("ezip").value + "|" + rs("pre").value + "|" + rs("entryForm").value + "|" + rs("reexamine").value + "|" + rs("agencyID").value;
 		//execSQL(sql);
 	}
 	rs.Close();
