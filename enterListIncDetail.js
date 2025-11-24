@@ -24,6 +24,7 @@
 								&nbsp;&nbsp;模拟成绩&nbsp;&gt;=<input type="text" id="searchEnter_score1" size="2" />
 								<input class="easyui-checkbox" id="searchEnterInvoice" name="searchEnterInvoice" value="1"/>&nbsp;开票&nbsp;
 								<input class="easyui-checkbox" id="searchEnterOutClass" name="searchEnterOutClass" value="1"/>&nbsp;班外&nbsp;
+								&nbsp;&nbsp;单位&nbsp;<input type="text" id="searchEnter_unit" size="10" title="单位名称" />
 							</span>
 						    <span style="float:right;">
 								<input class="button" type="button" id="btnSearchEnterDownload" value="下载" />

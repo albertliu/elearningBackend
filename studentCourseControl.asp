@@ -130,6 +130,14 @@ if(op == "getStudentCourseList"){
 			where = s;
 		}
 	}
+	if(item > "" && item !="undefined"){
+		s = "unit like('%" + item + "%')";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 	//mark=1: 学校教务查询。
 	if(String(Request.QueryString("mark")) == 1){
 		//s = "projectID>'' and ((host = 'spc' and checked=1) or host<>'spc')";
