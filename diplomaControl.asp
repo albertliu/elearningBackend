@@ -180,6 +180,15 @@ if(op == "getDiplomaLastList"){
 			where = s;
 		}
 	}
+	//如果有销售
+	if(String(Request.QueryString("sales")) > "" && String(Request.QueryString("sales")) != "null" && String(Request.QueryString("sales")) !="undefined"){ // 
+		s = "fromID='" + String(Request.QueryString("sales")) + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 
 	if(where > ""){	//	显示那些当前未报名的人员
 		where = " where " + where + " and username not in(select username from studentCourseList a, courseInfo b where a.courseID=b.courseID and b.certID='" + kindID + "' and a.status<2)";

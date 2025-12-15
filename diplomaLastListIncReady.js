@@ -55,10 +55,11 @@
 			jAlert("请选择一个证书。");
 			return false;
 		}
+		let sales = (checkRole("saler")?currUser:"");
 		sWhere = $("#txtSearchDiplomaLast").val();
 		//alert((sWhere) + "&kindID=" + $("#searchDiplomaLastKind").val() + "&status=" + $("#searchDiplomaLastStatus").val() + "&host=" + $("#searchDiplomaLastHost").val() + "&fStart=" + $("#searchDiplomaLastStartDate").val() + "&fEnd=" + $("#searchDiplomaLastEndDate").val());
-		$.get("diplomaControl.asp?op=getDiplomaLastList&where=" + escape(sWhere) + "&kindID=" + $("#searchDiplomaLastKind").val() + "&status=" + $("#searchDiplomaLastStatus").val() + "&host=" + $("#searchDiplomaLastHost").val() + "&refID=" + $("#searchDiplomaLastDept").val() + "&fStart=" + $("#searchDiplomaLastStartDate").val() + "&fEnd=" + $("#searchDiplomaLastEndDate").val() + "&dk=23&times=" + (new Date().getTime()),function(data){
-			//alert(unescape(data));
+		$.get("diplomaControl.asp?op=getDiplomaLastList&where=" + escape(sWhere) + "&sales=" + sales + "&kindID=" + $("#searchDiplomaLastKind").val() + "&status=" + $("#searchDiplomaLastStatus").val() + "&host=" + $("#searchDiplomaLastHost").val() + "&refID=" + $("#searchDiplomaLastDept").val() + "&fStart=" + $("#searchDiplomaLastStartDate").val() + "&fEnd=" + $("#searchDiplomaLastEndDate").val() + "&dk=23&times=" + (new Date().getTime()),function(data){
+			// alert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
 			$("#diplomalastCover").empty();
