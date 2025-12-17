@@ -4,7 +4,7 @@
 		let top1 = 0;
 		let top2 = 0;
 		let arr = new Array();
-		if(keyID==2){
+		if(keyID==2 || keyID == 4){
 			arr.push('<div style="page-break-after:always">&nbsp;</div>');
 		}
 		arr.push('<div style="">');

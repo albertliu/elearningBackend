@@ -111,7 +111,7 @@
 				}
 				
 				//$("#date").html(currDate);
-				if(keyID == 4){
+				if(keyID < 3 || keyID == 4){
 					getAgreement(ar[1],ar[2],course,"","",price,price,agreement);	//无签名
 				}
 				if(keyID==1){
