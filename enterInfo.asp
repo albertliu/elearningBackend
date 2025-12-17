@@ -518,6 +518,11 @@
 				}else{
 					$("#noReceive").html("");
 				}
+				if(ar[87]==1){
+					$("#check_pass").checkbox({checked:true});
+				}else{
+					$("#check_pass").checkbox({checked:false});
+				}
 
 
 				// getPayDetailInfoByEnterID(ar[0]);
