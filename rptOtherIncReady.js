@@ -148,6 +148,14 @@
 					arr.push("<th width='15%'>去年全年</th>");
 					arr.push("<th width='15%'>前年全年</th>");
 				}
+				if(rptOtherItem==6){
+					arr.push("<th width='3%'>No</th>");
+					arr.push("<th width='31%'>项目</th>");
+					arr.push("<th width='20%'>班级人数</th>");
+					arr.push("<th width='13%'>合格</th>");
+					arr.push("<th width='20%'>不合格%</th>");
+					arr.push("<th width='13%'>缺考</th>");
+				}
 				arr.push("</tr>");
 				arr.push("</thead>");
 				arr.push("<tbody id='tbody'>");
@@ -198,12 +206,19 @@
 						arr.push("<td class='right'>" + nullNoDisp(val["lastYear"]) + "</td>");
 						arr.push("<td class='right'>" + nullNoDisp(val["blastYear"]) + "</td>");
 					}
+					if(rptOtherItem==6){
+						arr.push("<td class='left'>" + val["No"] + "</td>");
+						arr.push("<td class='right'>" + nullNoDisp(val["courseName"]) + "</td>");
+						arr.push("<td class='right'>" + nullNoDisp(val["qty"]) + "</td>");
+						arr.push("<td class='right'>" + nullNoDisp(val["qty1"]) + "</td>");
+						arr.push("<td class='right'>" + nullNoDisp(val["qty2"]) + "</td>");
+						arr.push("<td class='right'>" + nullNoDisp(val["qty3"]) + "</td>");
+					}
 					arr.push("</tr>");
 				});
 				arr.push("</tbody>");
 				arr.push("<tfoot>");
 				arr.push("<tr>");
-				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
