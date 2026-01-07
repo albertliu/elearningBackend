@@ -24,6 +24,9 @@
 		$("#btnRptOther5").click(function(){
 			setRptOtherOption(5);
 		});
+		$("#btnRptOther6").click(function(){
+			setRptOtherOption(6);
+		});
 
 		$("#btnRptOther").linkbutton({
 			iconCls:'icon-search',
@@ -81,6 +84,9 @@
 		if(rptOtherItem===5){
 			op = "getYOYRpt";
 			param["kind"] = 1;
+		}
+		if(rptOtherItem===6){
+			op = "getRptExamResult";
 		}
 		//alert("op=other&mark=" + mark + "&host=" + $("#rptOtherHost").val() + "&kindID=" + $("#rptOtherKind").val() + "&startDate=" + $("#rptOtherStartDate").val() + "&endDate=" + $("#rptOtherEndDate").val() + "&groupHost=" + g1 + "&groupDept1=" + g2 + "&groupKindID=" + g3 + "&groupDate=" + g4);
 		//@host varchar(50),@startDate varchar(50),@endDate varchar(50),@kindID varchar(20),@groupHost int,@groupDept1 int,@groupKindID int,@groupDate
@@ -241,6 +247,7 @@
 			$("#btnRptOther3").css("background-color", "#fcfcfc");
 			$("#btnRptOther4").css("background-color", "#fcfcfc");
 			$("#btnRptOther5").css("background-color", "#fcfcfc");
+			$("#btnRptOther6").css("background-color", "#fcfcfc");
 			return false;
 		}
 		if(mark===2){	//工作量统计
@@ -251,6 +258,7 @@
 			$("#btnRptOther3").css("background-color", "#fcfcfc");
 			$("#btnRptOther4").css("background-color", "#fcfcfc");
 			$("#btnRptOther5").css("background-color", "#fcfcfc");
+			$("#btnRptOther6").css("background-color", "#fcfcfc");
 			return false;
 		}
 		if(mark===3){	//通过率统计
@@ -261,6 +269,7 @@
 			$("#btnRptOther1").css("background-color", "#fcfcfc");
 			$("#btnRptOther4").css("background-color", "#fcfcfc");
 			$("#btnRptOther5").css("background-color", "#fcfcfc");
+			$("#btnRptOther6").css("background-color", "#fcfcfc");
 			return false;
 		}
 		if(mark===4){	//课程招生统计
@@ -271,6 +280,7 @@
 			$("#btnRptOther3").css("background-color", "#fcfcfc");
 			$("#btnRptOther2").css("background-color", "#fcfcfc");
 			$("#btnRptOther5").css("background-color", "#fcfcfc");
+			$("#btnRptOther6").css("background-color", "#fcfcfc");
 			return false;
 		}
 		if(mark===5){	//客户招生统计
@@ -281,6 +291,18 @@
 			$("#btnRptOther1").css("background-color", "#fcfcfc");
 			$("#btnRptOther4").css("background-color", "#fcfcfc");
 			$("#btnRptOther3").css("background-color", "#fcfcfc");
+			$("#btnRptOther6").css("background-color", "#fcfcfc");
+			return false;
+		}
+		if(mark===6){	//鉴定结果统计
+			$("#rptOtherItem1").hide();
+			$("#rptOtherItem2").hide();
+			$("#btnRptOther6").css("background-color", "yellow");
+			$("#btnRptOther2").css("background-color", "#fcfcfc");
+			$("#btnRptOther1").css("background-color", "#fcfcfc");
+			$("#btnRptOther4").css("background-color", "#fcfcfc");
+			$("#btnRptOther3").css("background-color", "#fcfcfc");
+			$("#btnRptOther5").css("background-color", "#fcfcfc");
 			return false;
 		}
 	}

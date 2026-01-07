@@ -1,5 +1,5 @@
 ﻿	$(document).ready(function (){
-        getComboList("rptTrainningSales","userInfo","username","realName","status=0 and host='" + currHost + "' and username in(select username from roleUserList where roleID='saler') order by realName",1);
+        getComboList("rptTrainningSales","userInfo","username","realName","host='" + currHost + "' and username in(select username from roleUserList where roleID='saler') order by realName",1);
 		getComboList("rptTrainningCourseID","v_courseInfo","courseID","courseName2","status=0 and host=''",1);
 		$("#rptTrainningStartDate").datebox("setValue", new Date().format("yyyy-MM") + '-01');
 		if(checkRole("saler") && !checkRole("leader")){

@@ -31,6 +31,8 @@
 							<input class="button" type="button" id="btnRptOther4" value="课程招生量" style="padding:0 10px 0 10px;height:28px;margin:5px;" />
 							<br />
 							<input class="button" type="button" id="btnRptOther5" value="客户招生量" style="padding:0 10px 0 10px;height:28px;margin:5px;" />
+							<br />
+							<input class="button" type="button" id="btnRptOther6" value="鉴定结果" style="padding:0 10px 0 10px;height:28px;margin:5px;" />
 						</div>
 						<div id="rptOtherCover" style="flex-grow: 1;">
 						</div>	
