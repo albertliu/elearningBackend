@@ -149,7 +149,6 @@
 					arr.push("<th width='15%'>前年全年</th>");
 				}
 				if(rptOtherItem==6){
-					arr.push("<th width='3%'>No</th>");
 					arr.push("<th width='31%'>项目</th>");
 					arr.push("<th width='20%'>班级人数</th>");
 					arr.push("<th width='13%'>合格</th>");
