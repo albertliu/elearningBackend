@@ -152,7 +152,7 @@
 					arr.push("<th width='31%'>项目</th>");
 					arr.push("<th width='20%'>班级人数</th>");
 					arr.push("<th width='13%'>合格</th>");
-					arr.push("<th width='20%'>不合格%</th>");
+					arr.push("<th width='20%'>不合格</th>");
 					arr.push("<th width='13%'>缺考</th>");
 				}
 				arr.push("</tr>");
@@ -217,6 +217,7 @@
 				arr.push("</tbody>");
 				arr.push("<tfoot>");
 				arr.push("<tr>");
+				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
