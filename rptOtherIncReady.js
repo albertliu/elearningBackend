@@ -207,7 +207,6 @@
 						arr.push("<td class='right'>" + nullNoDisp(val["blastYear"]) + "</td>");
 					}
 					if(rptOtherItem==6){
-						arr.push("<td class='left'>" + val["No"] + "</td>");
 						arr.push("<td class='right'>" + nullNoDisp(val["courseName"]) + "</td>");
 						arr.push("<td class='right'>" + nullNoDisp(val["qty"]) + "</td>");
 						arr.push("<td class='right'>" + nullNoDisp(val["qty1"]) + "</td>");
@@ -224,8 +223,8 @@
 				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
-				arr.push("<th>&nbsp;</th>");
 				if(rptOtherItem<4){
+					arr.push("<th>&nbsp;</th>");
 					arr.push("<th>&nbsp;</th>");
 					arr.push("<th>&nbsp;</th>");
 				}
