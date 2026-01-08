@@ -1,4 +1,4 @@
-﻿<!--#include file="js/doc.js" -->
+﻿<!--#include file="js/doc1.js" -->
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/nav.dwt" codeOutsideHTMLIsLocked="false" -->
@@ -19,8 +19,6 @@
 	var op = 0;
 	var updateCount = 0;
 
-	<!--#include file="js/commFunction.js"-->
-
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";	//url
 		refID = "<%=refID%>";
@@ -28,15 +26,20 @@
 		$.ajaxSetup({ 
 			async: false 
 		}); 
-		var ar = new Array();
+		let ar = new Array();
+		nodeID = (nodeID==0?"":nodeID);
 		ar = nodeID.split("**");
 		arr = [];
+		let i = 0;
 		$.each(ar,function(iNum,val){
 			if(val > ""){
-				arr.push('<iframe src="' + (val.indexOf("https://")==-1?"users/":"") + val + '?times=' + (new Date().getTime()) + '#view=fit" width="100%" height="500" style="border:0px;"></iframe>');
-				// $("#img").prop("src",(nodeID.indexOf("https://")==-1?"users/":"") + nodeID + "?times=" + (new Date().getTime()) + "#view=fit");
+				arr.push('<iframe src="' + (val.indexOf("https://")==-1?"users":"") + val + '?times=' + (new Date().getTime()) + '#view=fit" width="100%" height="580" style="border:0px;"></iframe>');
+				i += 1;
 			}
 		});
+		if(i===0){
+			arr.push('<input type="text" size="40" style="font-size:1.3em;align:center;color:red;height:18px;vertical-align:middle;border:solid 1px gray;" value="无相关文档" />');
+		}
 		// alert(arr.join(""))
 		$("#cover").html(arr.join(""));
 	});
@@ -48,6 +51,5 @@
 
 <div id='layout' align='left' style="background:#f0f0f0; overflow: hidden;height:100%;">
 	<div id="cover"></div>
-	<iframe src="" width="100%" height="300" style="border:0px;"></iframe>
 </div>
 </body>
