@@ -31,11 +31,11 @@
 			let username = $("#username").val();
 			let name = $("#name").val();
 			if(username==""){
-				$.messager.alert("提示","请填写身份证","info");
+				jAlert("请填写身份证","提示");
 				return false;
 			}
 			if(name==""){
-				$.messager.alert("提示","请填写姓名","info");
+				jAlert("请填写姓名","提示");
 				return false;
 			}
           	
@@ -47,14 +47,13 @@
 					let i = 0;
 					$.each(ar,function(iNum,val){
 						if(val > ""){
-							arr.push('<iframe src="' + (val.indexOf("https://")==-1?"users":"") + val + '?times=' + (new Date().getTime()) + '#view=fit" width="600" height="600" style="border:0px;"></iframe>');
+							arr.push('<div><iframe src="' + (val.indexOf("https://")==-1?"users":"") + val + '?times=' + (new Date().getTime()) + '#view=fit" width="600" height="auto" style="border:0px;"></iframe></div>');
 							i += 1;
 						}
 					});
 					if(i===0){
 						arr.push('<input type="text" size="40" style="font-size:1.3em;align:center;color:red;height:18px;vertical-align:middle;border:solid 1px gray;" value="无相关文档" />');
 					}
-					// alert(arr.join(""))
 					$("#cover").html(arr.join(""));
 				}
 				if(status==1){  //username is wrong
@@ -73,15 +72,14 @@
 
 <body>
 
-<div>
-	<div style="text-align:center;align:center">
-		<table>
+	<div style="text-align:center; margin:10px;">
+		<table style="text-align:center; ">
 			<tr>
 				<td align="left">
 					<label>身份证：</label>
 				</td>
 				<td align="left">
-					<input type="text" id="username" size="40" style="height:18px;vertical-align:middle;border:solid 1px gray;" value="" />
+					<input type="text" id="username" size="40" style="height:18px;vertical-align:middle;border:solid 1px gray;" placeholder="请输入身份证" />
 				</td>
 			</tr>
 			<tr>
@@ -89,7 +87,7 @@
 					<label>姓&nbsp;&nbsp;名：</label> 
 				</td>
 				<td>
-					<input type="text" id="name"  size="40" style="height:18px;vertical-align:middle;border:solid 1px gray;" value="" />
+					<input type="text" id="name"  size="40" style="height:18px;vertical-align:middle;border:solid 1px gray;" placeholder="请输入姓名" />
 				</td>
 			</tr>
 			<tr>
@@ -102,6 +100,5 @@
 			</tr>
 		</table>
     </div>
-	<div id="cover"></div>
-</div>
+	<div id="cover" style="text-align:center; "></div>
 </body>
