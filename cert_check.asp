@@ -72,8 +72,8 @@
 
 <body>
 
-	<div style="text-align:center; margin:10px;">
-		<table style="text-align:center; ">
+	<div style="display: grid; justify-items: center;">
+		<div><table>
 			<tr>
 				<td align="left">
 					<label>身份证：</label>
@@ -98,7 +98,7 @@
 					<input class="button" type="button" id="log_in" value="查询" />
 				</td>
 			</tr>
-		</table>
+		</table></div>
     </div>
 	<div id="cover" style="text-align:center; "></div>
 </body>
