@@ -51,10 +51,11 @@
 			let F5 = $("input[name='F5']:checked").val();
 			let F6 = $("input[name='F6']:checked").val();
 			let F7 = $("input[name='F7']:checked").val();
-			$.post(uploadURL + "/public/postCommInfo", {proc:"updateEvalutionFormInfo", params:{ID:nodeID,enterID:0,F1,F2,F3,F4,F5,F6,F7,memo:$("#memo").val(),registerID:""}}, function(data){
+			$.post(uploadURL + "/public/postCommInfo", {proc:"updateEvalutionFormInfo", params:{ID,enterID:0,F1,F2,F3,F4,F5,F6,F7,memo:$("#memo").val(),registerID:""}}, function(data){
 				let status = data[0]["re"];
 				if(status>0){  //successed
 					jAlert("提交成功","提示");
+					window.opener.close();
 				}else{  //wrong
 					jAlert("提交失败","提示");
 				}
@@ -167,7 +168,7 @@
 				</td>
 				<td align="center">
 					<br />
-					<input class="button" type="button" id="btnSave" value="提交" />
+					<input type="button" id="btnSave" value="提交" style="font-size:1.3em; padding:2px 6px;" />
 				</td>
 			</tr>
 		</table></div>
