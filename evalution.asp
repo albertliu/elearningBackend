@@ -72,7 +72,7 @@
 		<div><table style="border: 0 solid gray;">
 			<tr>
 				<td align="left" class="thisTD">
-					课程名称：
+					<div style="font-size:1.1em; color:gray; opacity: 0.75;">教学评议表</div>
 				</td>
 				<td class="thisTD">
 					<div id="courseName" style="font-size:1.2em; color:orange;"></div>
@@ -160,7 +160,7 @@
 					意见与建议：
 				</td>
 				<td class="thisTD">
-					<textarea id="memo" style="padding:2px;width:100%;" rows="5"></textarea>
+					<textarea id="memo" style="padding:2px;width:100%; font-size:1.2em;" rows="5" placeholder="感谢您的支持"></textarea>
 				</td>
 			</tr>
 			<tr>

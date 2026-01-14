@@ -66,10 +66,9 @@
 		}); 
 		//alert(window.parent.lastone_item["price"]);
 		if(op==1){
-			var x = "dbo.getStudentProjectRestList('" + refID + "')";
-			getComList("projectID",x,"projectID","projectName","1=1 order by projectID desc",1);
-			//setClassList();
 			setButton();
+			setProjectByUser();
+			//setClassList();
 			$("#username").val(refID);
 			var companyID = 0;
 			lastone_item = getSession("lastone_item").split(",");
@@ -155,6 +154,10 @@
 
 		$("#btnPreview").click(function(){
 			printEntryform(0);
+		});
+
+		$("#host").change(function(){
+			setProjectByUser();
 		});
 
 		$("#kindID").change(function(){
@@ -671,6 +674,11 @@
 		window.open("entryform_" + entryform + ".asp?keyID=" + k + "&status=0&nodeID=" + nodeID + "&refID=" + refID + "&kindID=" + $("#certID").val() + "&times=" + (new Date().getTime()), "_self");
 	}
 	
+	function setProjectByUser(){
+		let x = "dbo.getStudentProjectRestList('" + refID + "','" + $("#host").val() + "')";
+		getComList("projectID",x,"projectID","projectName","1=1 order by projectID desc",1);
+	}
+	
 	function setButton(){
 		let s = $("#status").val();
 		$("#save").hide();
@@ -807,6 +815,7 @@
 		$("#price").val(0);
 		$("#statusPay").val(0);
 		$("#invoice").val("");
+		$("#host").val("znxf");
 		nodeID = 0;
 		if($("#kindID").val()==0){
 			//个人缴费
