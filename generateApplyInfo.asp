@@ -607,6 +607,25 @@
 			}
 		});
 	
+		$("#btnEvalution").click(function(){
+			getSelCart("");
+			if(selCount==0){
+				$.messager.alert("提示","请选择要操作的名单。","info");
+				return false;
+			}
+			if(confirm("确定要这" + selCount + "个学员填写评议表吗？")){
+				$.post(uploadURL + "/public/postCommInfo", {proc:"setEvalutionList", params:{selList:selList, kindID:"A", classID:"", registerID:currUser}}, function(data){
+					//alert(unescape(re));
+					let ar = data[0]
+					// alert(ar)
+					if(ar["re"] == "0"){
+						$.messager.alert("提示","操作成功","info");
+						getApplyList();
+					}
+				});
+			}
+		});
+	
 		$("#btnSetSource").click(function(){
 			getSelCart("");
 			if(selCount==0){
@@ -913,7 +932,8 @@
 			}
 			arr.push("<th width='12%'>备注</th>");
 			// arr.push("<th width='7%'>补考</th>");
-			arr.push("<th width='10%'>复训日期</th>");
+			arr.push("<th width='11%'>复训日期</th>");
+			arr.push("<th width='1%'>评</th>");
 			arr.push("<th width='1%'>材</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -1002,6 +1022,7 @@
 					}
 					// arr.push("<td class='left'>" + ar1[27] + "</td>");
 					arr.push("<td class='left' " + (ar1[28]==1 && bc>"" ? "style='background:" + bc + ";'" : "") + ">" + ar1[27] + "</td>");	// 复训日期
+					arr.push("<td class='left'>" + (ar1[52]==1?imgStar:(ar1[52]==2?imgChk:"&nbsp;")) + "</td>");	//评议表
 					if(s==0){
 						k = ar1[0];
 					}else{
@@ -1032,7 +1053,8 @@
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
-			arr.push("<th>&nbsp;</th>");					
+			arr.push("<th>&nbsp;</th>");
+			arr.push("<th>&nbsp;</th>");
 			if(reexamine == 1){
 				arr.push("<th>&nbsp;</th>");
 			}
@@ -1384,6 +1406,7 @@
             <span>&nbsp;&nbsp;<input class="button" type="button" id="btnResit" value="加入补考购物车" /></span>
             <span>&nbsp;&nbsp;<input class="button" type="button" id="sendMsgDiploma" value="领证通知" /></span>
             <span>&nbsp;&nbsp;<input class="button" type="button" id="btnSetSource" value="来源设置" /></span>
+            <span>&nbsp;&nbsp;<input class="button" type="button" id="btnEvalution" value="评议表" /></span>
 		</div>
 	</div>
 	<hr size="1" noshadow />

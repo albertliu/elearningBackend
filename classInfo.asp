@@ -580,12 +580,31 @@
 							// alert(ar)
 							if(ar["status"] == "0"){
 								$.messager.alert("提示","操作成功","info");
-								getApplyList();
+								getStudentCourseList();
 							}else{
 								$.messager.alert("提示",ar["msg"],"info");
 							}
 						});
 					});
+				});
+			}
+		});
+	
+		$("#btnEvalution").click(function(){
+			getSelCart("");
+			if(selCount==0){
+				$.messager.alert("提示","请选择要操作的名单。","info");
+				return false;
+			}
+			if(confirm("确定要这" + selCount + "个学员填写评议表吗？")){
+				$.post(uploadURL + "/public/postCommInfo", {proc:"setEvalutionList", params:{selList:selList, kindID:"B", classID:$("#classID").val(), registerID:currUser}}, function(data){
+					//alert(unescape(re));
+					let ar = data[0]
+					// alert(ar)
+					if(ar["re"] == "0"){
+						$.messager.alert("提示","操作成功","info");
+						getStudentCourseList();
+					}
 				});
 			}
 		});
@@ -786,7 +805,7 @@
 				arr.push("<th width='6%'>复训日期</th>");
 			}
 			arr.push("<th width='2%'>费</th>");
-			// arr.push("<th width='2%'>报</th>");
+			arr.push("<th width='2%'>评</th>");
 			arr.push("<th width='10%'>备注</th>");
 			arr.push("<th width='2%'></th>");
 			arr.push("</tr>");
@@ -915,17 +934,8 @@
 						arr.push("<td class='left' " + (ar1[57]==1 && bc>"" ? "style='background:" + bc + ";'" : "") + ">" + ar1[83] + "</td>");	// 复训日期
 					}
 					arr.push("<td class='left'>" + (ar1[68]==1?imgChk:'&nbsp;') + "</td>");	// 
-					arr.push("<td class='left'>" + ar1[82] + "</td>");
-					// if(ar1[78]==''){
-					// 	arr.push("<td class='center'><div id='material" + ar1[0] + "'><span onclick='generateMaterials(" + ar1[0] + ",\"" + ar1[1] + "\",\"" + ar1[60] + "\")' title='申报材料'><img src='images/addDoc.png' style='width:15px;'><span><div></td>");
-					// }else{
-					// 	arr.push("<td class='center'><div id='material" + ar1[0] + "'><a href='javascript:void(0);' onclick='openMaterial(\"/users" + ar1[78] + "?t=" + (new Date().getTime()) + "\");' ondblclick='generateMaterials(" + ar1[0] + ",\"" + ar1[1] + "\",\"" + ar1[60] + "\")' title='存档材料'>" + imgFile + "</a></div></td>");
-					// }
-					// if(ar1[79]==''){
-					// 	arr.push("<td class='center'>&nbsp;</td>");
-					// }else{
-					// 	arr.push("<td class='center'><div id='material1" + ar1[0] + "'><a href='javascript:void(0);' onclick='openMaterial(\"/users" + ar1[79] + "?t=" + (new Date().getTime()) + "\");' title='报名材料'>" + imgFileBlue + "</a></div></td>");
-					// }
+					arr.push("<td class='left'>" + (ar1[93]==1?imgStar:(ar1[93]==2?imgChk:"&nbsp;")) + "</td>");	//评议表
+					arr.push("<td class='left'>" + ar1[82] + "</td>");	//备注
 					arr.push("<td class='left'><input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[1] + "' name='visitstockchk'></td>");
 					arr.push("</tr>");
 				});
@@ -933,6 +943,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
@@ -1211,6 +1222,7 @@
 		$("#btnCloseStudentCourse").hide();
 		$("#archived").prop("disabled",true);
 		$("#btnSetSource").hide();
+		$("#btnEvalution").hide();
 		// $("#className").prop("disabled",true);
 		$("#courseID").prop("disabled",true);
 		$("#item_btn1").hide();
@@ -1279,6 +1291,7 @@
 				$("#doImport").show();
 				$("#btnCloseStudentCourse").show();
 				$("#btnSetSource").show();
+				$("#btnEvalution").show();
 			}
 			if(checkPermission("setInvoiceGroup")){
 				$("#btnInvoiceGroup").show();
@@ -1487,6 +1500,7 @@
 			&nbsp;&nbsp;<input style="border:0px;" type="checkbox" id="showPhoto" value="" />&nbsp;显示照片和签名&nbsp;&nbsp;
 			&nbsp;&nbsp;<input class="button" type="button" id="btnDownload" value="名单下载" />
 			&nbsp;&nbsp;<input class="button" type="button" id="btnSetSource" value="来源设置" />
+            &nbsp;&nbsp;<input class="button" type="button" id="btnEvalution" value="评议表" />
 			<span id="btnMockView">&nbsp;&nbsp;模拟考试汇总</span>
 			<span id="btnMockDetail">&nbsp;&nbsp;模拟考试明细</span>
 		</div>

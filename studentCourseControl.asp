@@ -324,7 +324,7 @@ if(op == "getStudentCourseList"){
 		//85
 		result += "|" + rs("photo_size").value + "|" + rs("examDate").value + "|" + rs("result").value + "|" + rs("resultName").value + "|" + rs("entryform").value + "|" + rs("source").value;
 		//91
-		result += "|" + rs("social_filename").value + "|" + rs("job_filename").value;
+		result += "|" + rs("social_filename").value + "|" + rs("job_filename").value + "|" + rs("evalution").value;
 		rs.MoveNext();
 	}
 	rs.Close();

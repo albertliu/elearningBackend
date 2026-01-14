@@ -1156,7 +1156,7 @@ if(op == "getApplyListByBatch"){
 		//42
 		result += "|" + rs("employe_filename").value + "|" + rs("social_filename").value + "|" + rs("job_filename").value + "|" + rs("tax").value + "|" + rs("employe_size").value + "|" + rs("social_size").value + "|" + rs("job_size").value;
 		//49
-		result += "|" + rs("checker").value + "|" + rs("age").value + "|" + rs("agencyID").value;
+		result += "|" + rs("checker").value + "|" + rs("age").value + "|" + rs("agencyID").value + "|" + rs("evalution").value;
 		rs.MoveNext();
 	}
 	rs.Close();
