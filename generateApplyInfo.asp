@@ -1022,7 +1022,7 @@
 					}
 					// arr.push("<td class='left'>" + ar1[27] + "</td>");
 					arr.push("<td class='left' " + (ar1[28]==1 && bc>"" ? "style='background:" + bc + ";'" : "") + ">" + ar1[27] + "</td>");	// 复训日期
-					arr.push("<td class='left'>" + (ar1[52]==1?imgStar:(ar1[52]==2?imgChk:"&nbsp;")) + "</td>");	//评议表
+					arr.push("<td class='left'>" + (ar1[52]==1?imgChkGray:(ar1[52]==2?imgChk:"&nbsp;")) + "</td>");	//评议表
 					if(s==0){
 						k = ar1[0];
 					}else{

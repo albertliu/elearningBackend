@@ -934,7 +934,7 @@
 						arr.push("<td class='left' " + (ar1[57]==1 && bc>"" ? "style='background:" + bc + ";'" : "") + ">" + ar1[83] + "</td>");	// 复训日期
 					}
 					arr.push("<td class='left'>" + (ar1[68]==1?imgChk:'&nbsp;') + "</td>");	// 
-					arr.push("<td class='left'>" + (ar1[93]==1?imgStar:(ar1[93]==2?imgChk:"&nbsp;")) + "</td>");	//评议表
+					arr.push("<td class='left'>" + (ar1[93]==1?imgChkGray:(ar1[93]==2?imgChk:"&nbsp;")) + "</td>");	//评议表
 					arr.push("<td class='left'>" + ar1[82] + "</td>");	//备注
 					arr.push("<td class='left'><input style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[1] + "' name='visitstockchk'></td>");
 					arr.push("</tr>");
