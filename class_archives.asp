@@ -31,6 +31,8 @@
 	var kindID = "";
 	var updateCount = 1;
     var certID = "";
+	let courseName = "";
+	let classID = "";
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";		//ID
@@ -43,11 +45,11 @@
 		$("#print").click(function(){
 			resumePrint();
 		});
-		getNodeInfo(nodeID);
+		getNodeInfo();
 	});
 
-	function getNodeInfo(id){
-		$.get("classControl.asp?op=getNodeInfoArchive&nodeID=" + id + "&kindID=" + kindID + "&times=" + (new Date().getTime()),function(re){
+	function getNodeInfo(){
+		$.get("classControl.asp?op=getNodeInfoArchive&nodeID=" + nodeID + "&kindID=" + kindID + "&times=" + (new Date().getTime()),function(re){
 			//alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -61,6 +63,8 @@
 				$("#home_startDate").html(ar[5].substring(0,10) + "&nbsp;至&nbsp;" + ar[6]);
 				// $("#dateEnd").html(ar[6]);
 				$("#classID").html(ar[2] + "&nbsp;&nbsp;[" + ar[0] + "]");
+				classID = ar[0];
+				courseName = ar[3];
 				qty = ar[8] - ar[9];
 				$("#qty").html(qty);
 				$("#summary").html(ar[12].replace(/\n/g,"<br/>"));
@@ -111,6 +115,7 @@
 					arr1.push("<td align='center' width='8%'>开班号（申报批号）</td>");
 					arr1.push("<td align='center' width='8%'>" + ar[2] + "</td>");
 					arr1.push("</tr>");
+					// 课程表
 					arr1.push("<tr align='center'>");
 					arr1.push("<td align='center' width='9%' height='35px'>课次</td>");
 					arr1.push("<td align='center' width='8%'>上课日期</td>");
@@ -147,6 +152,7 @@
 					arr1 = [];
 				});
 				
+				// 花名册
 				$.get("classControl.asp?op=getStudentListByClassID&refID=" + nodeID + "&kindID=" + kindID + "&times=" + (new Date().getTime()),function(data2){
 					//alert(unescape(data2));
 					var ar4 = new Array();
@@ -188,6 +194,7 @@
 					$("#studentCover").html(arr2.join(""));
 					arr2 = [];
 
+					// 成绩册
 					$("#date_scoreList").html(ar[5].substring(0,10));
 					$("#adviser_scoreList").html(ar[7]);
 					$("#title_scoreList").html(ar[1] + "培训学员成绩册");
@@ -231,6 +238,7 @@
 					$("#scoreCover").html(arr2.join(""));
 					arr2 = [];
 
+					// 课时统计
 					$("#title_onlineList").html(ar[1] + "在线学习课时统计");
 					arr2.push("<table cellpadding='0' cellspacing='0' border='1' width='100%'>");
 					arr2.push("<tr align='center'>");
@@ -264,6 +272,93 @@
 					}
 					arr2.push("</table>");
 					$("#onlineCover").html(arr2.join(""));
+
+					// 学员评议表
+					$.post(uploadURL + "/public/postCommInfo", {proc:"getEvalutionListByClass", params:{kindID, classID:nodeID}}, function(data3){
+						let arr3 = [];
+						let pi = 0;
+						let pj = 0;
+						if(data3.length > 0){
+							$.each(data3,function(iNum,val){
+								pi += 1;
+								arr3.push("<div style='text-align:center; margin-bottom:10px;'><h3 style='font-size:1.8em;'>学员评议表</h3></div>");
+								arr3.push("<table cellpadding='0' cellspacing='0' border='1' style='width:90%; margin:10px;'>");
+								arr3.push("<tr align='center'>");
+								arr3.push("<td align='left' colspan='3' height='35px' style='padding-left:5px;'>培训项目：" + courseName + "</td>");
+								arr3.push("<td align='left' colspan='3' height='35px' style='padding-left:5px;'>班级编号：" + classID + "</td>");
+								arr3.push("</tr>");
+								arr3.push("<tr align='center' height='35px'>");
+								arr3.push("<td align='center' rowspan='8' height='35px' style='width:5%;'>教<br>师<br>授<br>课<br>情<br>况</td>");
+								arr3.push("<td align='center' style='width:35%;'>内容</td>");
+								arr3.push("<td align='center' style='width:15%;'>好</td>");
+								arr3.push("<td align='center' style='width:15%;'>较好</td>");
+								arr3.push("<td align='center' style='width:15%;'>尚可</td>");
+								arr3.push("<td align='center' style='width:15%;'>差</td>");
+								arr3.push("</tr>");
+								arr3.push("<tr align='center' height='35px'>");
+								arr3.push("<td align='center'>教学态度</td>");
+								arr3.push("<td align='center'>" + (val["F1"]==0?imgChk:"&nbsp;") + "</td>");
+								arr3.push("<td align='center'>" + (val["F1"]==1?imgChk:"&nbsp;") + "</td>");
+								arr3.push("<td align='center'>" + (val["F1"]==2?imgChk:"&nbsp;") + "</td>");
+								arr3.push("<td align='center'>" + (val["F1"]==3?imgChk:"&nbsp;") + "</td>");
+								arr3.push("</tr>");
+								arr3.push("<tr align='center' height='35px'>");
+								arr3.push("<td align='center'>教学内容</td>");
+								arr3.push("<td align='center'>" + (val["F2"]==0?imgChk:"&nbsp;") + "</td>");
+								arr3.push("<td align='center'>" + (val["F2"]==1?imgChk:"&nbsp;") + "</td>");
+								arr3.push("<td align='center'>" + (val["F2"]==2?imgChk:"&nbsp;") + "</td>");
+								arr3.push("<td align='center'>" + (val["F2"]==3?imgChk:"&nbsp;") + "</td>");
+								arr3.push("</tr>");
+								arr3.push("<tr align='center' height='35px'>");
+								arr3.push("<td align='center'>教学方法</td>");
+								arr3.push("<td align='center'>" + (val["F3"]==0?imgChk:"&nbsp;") + "</td>");
+								arr3.push("<td align='center'>" + (val["F3"]==1?imgChk:"&nbsp;") + "</td>");
+								arr3.push("<td align='center'>" + (val["F3"]==2?imgChk:"&nbsp;") + "</td>");
+								arr3.push("<td align='center'>" + (val["F3"]==3?imgChk:"&nbsp;") + "</td>");
+								arr3.push("</tr>");
+								arr3.push("<tr align='center' height='35px'>");
+								arr3.push("<td align='center'>教学手段</td>");
+								arr3.push("<td align='center'>" + (val["F4"]==0?imgChk:"&nbsp;") + "</td>");
+								arr3.push("<td align='center'>" + (val["F4"]==1?imgChk:"&nbsp;") + "</td>");
+								arr3.push("<td align='center'>" + (val["F4"]==2?imgChk:"&nbsp;") + "</td>");
+								arr3.push("<td align='center'>" + (val["F4"]==3?imgChk:"&nbsp;") + "</td>");
+								arr3.push("</tr>");
+								arr3.push("<tr align='center' height='35px'>");
+								arr3.push("<td align='center'>讲解示范</td>");
+								arr3.push("<td align='center'>" + (val["F5"]==0?imgChk:"&nbsp;") + "</td>");
+								arr3.push("<td align='center'>" + (val["F5"]==1?imgChk:"&nbsp;") + "</td>");
+								arr3.push("<td align='center'>" + (val["F5"]==2?imgChk:"&nbsp;") + "</td>");
+								arr3.push("<td align='center'>" + (val["F5"]==3?imgChk:"&nbsp;") + "</td>");
+								arr3.push("</tr>");
+								arr3.push("<tr align='center' height='35px'>");
+								arr3.push("<td align='center'>巡回指导</td>");
+								arr3.push("<td align='center'>" + (val["F6"]==0?imgChk:"&nbsp;") + "</td>");
+								arr3.push("<td align='center'>" + (val["F6"]==1?imgChk:"&nbsp;") + "</td>");
+								arr3.push("<td align='center'>" + (val["F6"]==2?imgChk:"&nbsp;") + "</td>");
+								arr3.push("<td align='center'>" + (val["F6"]==3?imgChk:"&nbsp;") + "</td>");
+								arr3.push("</tr>");
+								arr3.push("<tr align='center' height='35px'>");
+								arr3.push("<td align='center'>课时完成情况</td>");
+								arr3.push("<td align='center'>" + (val["F7"]==0?imgChk:"&nbsp;") + "</td>");
+								arr3.push("<td align='center'>" + (val["F7"]==1?imgChk:"&nbsp;") + "</td>");
+								arr3.push("<td align='center'>" + (val["F7"]==2?imgChk:"&nbsp;") + "</td>");
+								arr3.push("<td align='center'>" + (val["F7"]==3?imgChk:"&nbsp;") + "</td>");
+								arr3.push("</tr>");
+								arr3.push("<tr align='center' height='50px'>");
+								arr3.push("<td align='center' colspan='2'>意见与建议</td>");
+								arr3.push("<td align='left' colspan='4'><p style='font-size:1.2em; line-height:200%; text-indent:2em; white-space:pre-wrap;'>" + val["memo"] + "</p></td>");
+								arr3.push("</tr>");
+								arr3.push("</table>");
+								arr3.push("<div style='margin-bottom:40px;'><span style='padding-left:100px;'>评议日期：" + val["regDate"] + "</span><span>评议人：" + (val["signature"]>""?"<img id='f_sign' src='/users" + val["signature"] + "' style='max-width:120px;max-height:30px;padding-left:10px;' >":"") + "</span></div>");
+								pj += 1;
+								if(pi<data3.length && pj > 1){
+									pj = 0;
+									arr3.push('<div style="page-break-after:always">&nbsp;</div>')
+								}
+							});
+						}
+						$("#evalutionCover").html(arr3.join(""));
+					});
 
 					if(keyID==1){
 						resumePrint();
@@ -346,29 +441,31 @@
 			</tr>
 			</table>
 
-			<div style="page-break-after:always"></div>
+			<div style="page-break-after:always">&nbsp;</div>
 
 			<div style='text-align:center; margin:10px 0 0 0;'><h3 style='font-size:1.8em;'>授课计划表</h3></div>
 			<div id="scheduleCover" style="float:center; margin:15px; font-size:1.2em;"></div>
 
-			<div style="page-break-after:always"></div>
+			<div style="page-break-after:always">&nbsp;</div>
 
 			<div style='text-align:center; margin:10px 0 0 0;'><h3 style='font-size:1.8em;' id='title_studentList'>学员花名册</h3></div>
 			<div style='margin: 12px;text-align:left; width:95%;'><span style='font-size:1.2em; padding-left:10px;'>培训日期：</span><span style='font-size:1.2em;' id='date_studentList'></span><span style='font-size:1.2em; padding-left:100px;'>考试日期：</span></div>
 			<div id="studentCover" style="float:center; margin:15px; font-size:1.2em;"></div>
 
-			<div style="page-break-after:always"></div>
+			<div style="page-break-after:always">&nbsp;</div>
 
 			<div style='text-align:center; margin:10px 0 0 0;'><h3 style='font-size:1.8em;' id='title_onlineList'>在线学习课时统计</h3></div>
 			<div id="onlineCover" style="float:center; margin:15px; font-size:1.2em;"></div>
 
-			<div style="page-break-after:always"></div>
+			<div style="page-break-after:always">&nbsp;</div>
 
 			<div style='text-align:center; margin:10px 0 0 0;'><h3 style='font-size:1.8em;' id='title_scoreList'>学员成绩册</h3></div>
 			<div style='margin: 12px;text-align:left; width:95%;'><span style='font-size:1.2em; padding-left:10px;'>培训日期：</span><span style='font-size:1.2em;' id='date_scoreList'></span><span style='font-size:1.2em; padding-left:100px;'>考试日期：</span><span style='font-size:1.2em; padding-left:100px;'>班主任：</span><span style='font-size:1.2em;' id='adviser_scoreList'></span></div>
 			<div id="scoreCover" style="float:center; margin:15px; font-size:1.2em;"></div>
 			
-			<div style="page-break-after:always"></div>
+			<div style="page-break-after:always">&nbsp;</div>
+			<div id="evalutionCover"></div>
+			<div style="page-break-after:always">&nbsp;</div>
 
 			<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>培训结果统计表</h3></div>
 			<div style='margin: 12px;text-align:right; width:95%;'><span style='font-size:1.2em;'>班级编号：</span><span style='font-size:1.2em;' id="classID"></span></div>

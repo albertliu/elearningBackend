@@ -91,7 +91,7 @@
 				priceStandard = ar["priceStandard"];
 				unit = ar["unit"];
 				agreement = ar["agreement"];
-				$("#hostName").html(ar["certID"]=="C27"?"上海静安能企电力职业技能培训中心":ar["hostName"]);
+				$("#hostName").html(ar["certID"]=="C27"?"上海黄浦区文华职业技术培训学校":ar["hostName"]);
 				$("#username").html(ar["username"]);
 				$("#name").html(ar["name"]);
 				$("#sexName").html(ar["sexName"]);
