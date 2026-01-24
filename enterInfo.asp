@@ -38,6 +38,7 @@
 	let uploadInvoice = 0;
 	let invoicePDF = "";
 	let ref_id = 0;
+	let courseID = "";
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";	//enterID
@@ -158,6 +159,8 @@
 
 		$("#host").change(function(){
 			setProjectByUser();
+			$("#project0").hide();
+			$("#project1").show();
 		});
 
 		$("#kindID").change(function(){
@@ -216,6 +219,19 @@
 				if(r){
 					$.get("studentCourseControl.asp?op=enterRefund&nodeID=" + nodeID + "&amount=" + $("#refund_amount").val() + "&dateRefund=" + $("#dateRefund").val() + "&memo=" + escape($("#refund_memo").val()) + "&times=" + (new Date().getTime()),function(re){
 						// alert(unescape(re))
+						jAlert("操作成功。");
+						updateCount += 1;
+						getNodeInfo(nodeID);
+					});
+				}
+			});
+		});
+
+		$("#btnRemoveClass").click(function(){
+			jConfirm('确定要退出当前班级，置为无班级状态吗?', '确认对话框', function(r) {
+				if(r){
+					$.post(uploadURL + "/public/postCommInfo", {proc:"setEnterRemoveClass", params:{enterID:nodeID, registerID:currUser}}, function(data){
+						//alert(unescape(re));
 						jAlert("操作成功。");
 						updateCount += 1;
 						getNodeInfo(nodeID);
@@ -412,6 +428,7 @@
 				$("#name").val(ar[2]);
 				$("#status").val(ar[3]);
 				$("#statusName").val(ar[4]);
+				courseID = ar[5];
 				$("#courseName").val(ar[6]);
 				$("#regDate").val(ar[11]);
 				if(ar[39]!="spc" && ar[39]!="shm"){	//非集团客户，显示自己的单位和部门
@@ -675,7 +692,7 @@
 	}
 	
 	function setProjectByUser(){
-		let x = "dbo.getStudentProjectRestList('" + refID + "','" + $("#host").val() + "')";
+		let x = "dbo.getStudentProjectRestList('" + refID + "','" + $("#host").val() + "','" + courseID + "')";
 		getComList("projectID",x,"projectID","projectName","1=1 order by projectID desc",1);
 	}
 	
@@ -686,6 +703,7 @@
 		$("#btnEnter").hide();
 		$("#btnReturn").hide();
 		$("#btnRefund").hide();
+		$("#btnRemoveClass").hide();
 		$("#btnMaterialCheck").hide();
 		$("#reply").hide();
 		$("#btnPay").hide();
@@ -763,6 +781,7 @@
 				//编辑状态：显示保存按钮；一定条件下可以退学、退款
 				$("#save").show();
 				$("#btnRebuildStudentLesson").show();
+				$("#btnRemoveClass").show();
 				if(!checkRole("partner")){
 					if($("#status").val() < 2){
 						$("#btnReturn").show();
@@ -1028,6 +1047,7 @@
 				<td>
 				<input type="text" id="refund_amount" style="width:50px; background:lightPink;" />
 				&nbsp;&nbsp;<input class="button" type="button" id="btnRefund" value="退款" />
+				&nbsp;&nbsp;<input class="button" type="button" id="btnRemoveClass" value="退班" />
 			</tr>
 			<tr>
 				<td align="right">退款说明</td>
