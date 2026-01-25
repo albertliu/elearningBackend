@@ -114,7 +114,6 @@
 			async: false 
 		}); 
 		currPage = "homePage";
-		alert(unescape("LCxX2TI/3y/Pc1WrcsoZT7Q1+QgVusztOoRhi4xDDeFYCrprP/k01GJMObJkkjGSTz+ZZMnHiYGRL3FNLwqniCNyKco8Rl1UwlE+WCi2ALodGI6eZ7YUcoAM2G3llxgXtIaJ89FhO5qF8Ew/1jqkWTPFWXqn0zJRYzYtliAadoOIjpIOuQyTLBOvh86AUeDdHbGqJoCmfI/WqO39Ig2H9A=="))
 		$("#currUser").html(currUserName);
 		//setCurrMenuItem();
 		//写登录日志
