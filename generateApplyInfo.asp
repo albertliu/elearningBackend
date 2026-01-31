@@ -240,6 +240,17 @@
 				}
 			});
 		});
+		$("#btnCheck").click(function(){
+			if(confirm('确定审核这个班级的档案吗?')){
+				var x = prompt("请输入审核意见：","同意");
+				if(x && x>""){
+					$.post(uploadURL + "/public/postCommInfo", {proc:"setCheckClass", params:{kindID:"A", classID:$("#ID").val(), checkNote:x, registerID:currUser}}, function(data){
+						alert("审核完成","信息提示");
+						getNodeInfo(nodeID);
+					});
+				}
+			}
+		});
 
 		$("#doApplyEnter").linkbutton({
 			iconCls:'icon-gear',
@@ -799,15 +810,22 @@
 				$("#planID").val(ar[50]);
 				$("#planQty").val(ar[51]);
 				$("#notes").val(ar[52]);
+				$("#checkDate").val(ar[55]);
+				$("#checkerName").val(ar[56]);
 				if(ar[41]>""){
 					$("#schedule").html("<a>课程表</a>");
 				}
 				reexamine = ar[36];
 				agencyID = ar[37];
 				certID = ar[31];
-				$("#summary").val(ar[49]);
-				$("#archiveDate").val(ar[48]);
 				$("#archiverName").val(ar[47]);
+				$("#archiveDate").val(ar[48]);
+				$("#summary").val(ar[49]);
+				if(ar[48]>""){
+					$("#archived").prop("checked",true);
+				}else{
+					$("#archived").prop("checked",false);
+				}
 				$("#list").html("<a href=''>申报名单</a>");
 				$("#diplomaSign").html("<a href=''>证书签收单</a>");
 				if(ar[7] > ""){
@@ -858,9 +876,9 @@
 		if($("#diplomaReady").prop("checked")){
 			diplomaReady = 1;
 		}
-
-		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
-		$.post("diplomaControl.asp?op=updateGenerateApplyInfo&nodeID=" + nodeID + "&planID=" + $("#planID").val() + "&planQty=" + $("#planQty").val() + "&notes=" + escape($("#notes").val()) + "&teacher=" + $("#teacher").val() + "&classroom=" + escape($("#classroom").val()) + "&adviserID=" + $("#adviserID").val() + "&diplomaReady=" + diplomaReady + "&refID=" + $("#courseID").val() + "&host=" + $("#host").val() + "&keyID=" + $("#applyID").val() + "&fStart=" + $("#startDate").val()  + "&fEnd=" + $("#endDate").val()+ "&item=" + escape($("#title").val()) + "&address=" + escape($("#address").val()), {"memo":$("#memo").val(), "summary":$("#summary").val()},function(re){
+		let archived = 0;
+		if($("#archived").prop("checked")){archived = 1;}
+		$.post("diplomaControl.asp?op=updateGenerateApplyInfo&nodeID=" + nodeID + "&planID=" + $("#planID").val() + "&archived=" + archived + "&planQty=" + $("#planQty").val() + "&notes=" + escape($("#notes").val()) + "&teacher=" + $("#teacher").val() + "&classroom=" + escape($("#classroom").val()) + "&adviserID=" + $("#adviserID").val() + "&diplomaReady=" + diplomaReady + "&refID=" + $("#courseID").val() + "&host=" + $("#host").val() + "&keyID=" + $("#applyID").val() + "&fStart=" + $("#startDate").val()  + "&fEnd=" + $("#endDate").val()+ "&item=" + escape($("#title").val()) + "&address=" + escape($("#address").val()), {"memo":$("#memo").val(), "summary":$("#summary").val()},function(re){
 			//alert(unescape(re));
 			if(re>0){
 				jAlert("保存成功");
@@ -1158,6 +1176,7 @@
 		$("#btnArchive").hide();
 		$("#btnSetSource").hide();
 		$("#generateEntryDoc1").hide();
+		$("#btnCheck").hide();
 		if(currHost=="" && !checkRole("sniper")){
 			$("#item_btn1").show();
 			$("#item_btn2").show();
@@ -1221,6 +1240,9 @@
 			}
 			if(checkPermission("setInvoiceGroup") && s < 2){
 				$("#btnInvoiceGroup").show();
+			}
+			if(checkPermission("checkClass") && $("#archived").prop("checked")){
+				$("#btnCheck").show();
 			}
 		}
 	}
@@ -1333,7 +1355,12 @@
 					<select id="teacher" style="width:65;"></select>
 					&nbsp;&nbsp;教室&nbsp;<input type="text" id="classroom" style="width:150px;" />
 					&nbsp;&nbsp;班主任&nbsp;<select id="adviserID" style="width:65px;"></select>
-					&nbsp;&nbsp;<input class="button" type="button" id="btnArchive" value="班级档案" /><input class="readOnly" type="text" id="archiveDate" size="8" readOnly="true" /><input class="readOnly" type="text" id="archiverName" size="6" readOnly="true" />
+					&nbsp;&nbsp;<input class="button" type="button" id="btnArchive" value="班级档案" />
+					归档<input style="border:0px;" type="checkbox" id="archived" value="" />&nbsp;
+					<input class="readOnly" type="text" id="archiverName" size="6" readOnly="true" />&nbsp;
+					<input class="readOnly" type="text" id="archiveDate" size="8" readOnly="true" />&nbsp;
+					审核<input class="readOnly" type="text" id="checkerName" size="6" readOnly="true" />&nbsp;
+					<input class="readOnly" type="text" id="checkDate" size="8" readOnly="true" />
 				</td>
 			</tr>
 			<tr>
@@ -1373,6 +1400,7 @@
 		<input class="button" type="button" id="generateZip" value="生成归档压缩包" />&nbsp;
 		<input class="button" type="button" id="generatePhotoZip" value="生成照片压缩包" />&nbsp;
 		<input class="button" type="button" id="generateEntryZip" value="生成报名表压缩包" />&nbsp;
+  	<input class="button" type="button" id="btnCheck" value="审批" />&nbsp;
 		<input class="button" type="button" id="lock" value="锁定" />&nbsp;
 		<input class="button" type="button" id="close" value="结束" />&nbsp;
 		<input class="button" type="button" id="open" value="开启" />&nbsp;

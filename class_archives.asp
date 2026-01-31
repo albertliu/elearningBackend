@@ -72,6 +72,18 @@
 				$("#qtyPass").html(nullNoDisp(ar[11]));
 				$("#attendanceRate").html(nullNoDisp(ar[13]) + '&nbsp;%');
 				$("#home_transaction_id").html(nullNoDisp(ar[2]));
+				sign = ar[14];
+				if(sign>""){
+					$("#signature_adviser").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
+					$("#signature_sum").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
+				}
+				if(ar[15]>""){
+					$("#signature_checker").attr("src","/users" + ar[15] + "?times=" + (new Date().getTime()));
+				}
+				if(ar[17]>""){
+					$("#checkDate").html(ar[17]);
+				}
+				$("#checkNote").html(ar[18]);
 				x = ar[10];
 				if(x > 0 && ar[11] > 0){
 					x = (ar[11]*100/ar[10]).toFixed(2) + "&nbsp;%";
@@ -491,7 +503,12 @@
 				培训合格率=获证人数/注册人数
 				</p>
 				</td>
-				<td align="center" height='55px;'>统计人签名</td>
+				<td align="center" height='55px;'>
+				<div>
+					<span style='font-size:1.15em;'>统计人签名</span>
+					<span><img id="signature_sum" src="" style="max-width:200px;max-height:50px;padding-left:10px;"></span>
+				</div>
+				</td>
 				<td align="center">日&nbsp;&nbsp;期</td>
 			</tr>
 			<tr>
@@ -508,16 +525,23 @@
 						<div style="float:left; padding-left:15px;"><p style="font-size:1.2em; line-height:200%; text-indent:2em; white-space:pre-wrap;" id="summary"></p></div>
 					</td></tr>
 					<tr height='55px;'><td style="border:0px;">
-						<div style="float:left; padding-left:50%; font-size:1.15em;">班主任（签名）：</div>
+						<div style="display: flex;align-items: center;">
+							<span style="float:left; padding-left:50%; font-size:1.15em;">班主任（签名）：</span>
+							<span><img id="signature_adviser" src="" style="max-width:200px;max-height:50px;padding-left:10px;"></span>
+						</div>
 					</td></tr></table>
 				</td>
 			</tr>
 			<tr>
 				<td align="center" class='table_resume_title' width='5%' height='150px;'>领导意见</td>
 				<td align="left" class='table_resume_title' colspan="5">
+					<div id="checkNote" style="float:left; padding-left:30%; font-size:1.15em;"></div>
 					<br><br><br>
-					<span style='font-size:1em;float:center;padding-right:30px;'>签名：</span>
-					<span style='font-size:1em;float:right; padding-right:10px;'>年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日</span>
+					<div style="display: flex;align-items: center;">
+					<span style='font-size:1.15em;float:center;padding-left:100px;'>签名：</span>
+					<span><img id="signature_checker" src="" style="max-width:200px;max-height:50px;padding-left:30px;"></span>
+					<span id="checkDate" style='font-size:1.15em; padding-left:50px;'>年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日</span>
+					</div>
 				</td>
 			</tr>
 			</table>

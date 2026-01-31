@@ -28,6 +28,7 @@
 	var updateCount = 0;
 	var userName = "";
 	var realName = "";
+	let signature = "";
 	<!--#include file="js/commFunction.js"-->
 	
 	$(document).ready(function (){
@@ -120,6 +121,14 @@
     $("#changePermission").click(function(){
     	showUserPermissionList();
     });
+
+	$("#btnSignature").click(function(){
+		showSignatureInfo("user_letter_signature",userName,0,1,"getNodeInfo($('#userID').val())");
+	});
+
+	$("#signature").click(function(){
+		showImage(signature,0,0,0);
+	});
     
     $("#userNo").change(function(){
     	if($("#userNo").val()>""){
@@ -160,10 +169,15 @@
 				$("#registerID").val(ar[14]);
 				$("#registerName").val(ar[16]);
 				$("#kindName").val(ar[17]);
-				//getDownloadFile("userID");
-	    	getRoleListByUser();
-	    	getPermissionListByUser();
-	    	getAllPermissionListByUser();
+				signature = ar[18];
+				if(ar[18] > ""){
+					$("#signature").html("<img src='users" + ar[18] + "?times=" + (new Date().getTime()) + "' style='width:60px;background: #ccc;border:2px #fff solid;box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);'>");
+				}else{
+					$("#signature").html("尚未签名");
+				}
+				getRoleListByUser();
+				getPermissionListByUser();
+				getAllPermissionListByUser();
 			}else{
 				jAlert("该信息未找到！","信息提示");
 				setEmpty();
@@ -181,6 +195,7 @@
 		$("#userNo").attr("disabled",true);
 		$("#changeRole").hide();
 		$("#changePermission").hide();
+		$("#btnSignature").hide();
 		if(op == 0){
 			if(($("#registerID").val() == currUser && $("#regDate").val() == currDate) || (checkPermission("userAdd") && currHost=="")){
 				$("#save").show();
@@ -189,6 +204,9 @@
 			if($("#userName").val() == currUser && !checkPermission("userAdd")){
 				$("#save").show();
 				setObjReadOnly("deptID|limitedDate|realName|status",1,0);
+			}
+			if(currUser == userName){
+				$("#btnSignature").show();
 			}
 			if(checkPermission("userAdd")){
 				$("#addNew").show();
@@ -379,8 +397,14 @@
 		              <td><select id="status" style="width:100px;" ></select></td>
 		            </tr>
 					<tr>
+						<td align="right"><input class="button" type="button" id="btnSignature" value="签名" /></td>
+						<td><span id="signature"></span></td>
+						<td align="right"></td>
+						<td></td>
+					</tr>
+					<tr>
 						<td align="right">备注</td>
-						<td colspan="5"><textarea id="memo" style="padding:2px;" rows="5" cols="75"></textarea></td>
+						<td colspan="5"><textarea id="memo" style="padding:2px;" rows="1" cols="75"></textarea></td>
 					</tr>
 		            <tr>
 						<td align="right">登记日期</td>

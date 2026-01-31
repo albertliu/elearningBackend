@@ -19,20 +19,18 @@
 
 <script language="javascript">
 	var nodeID = "";
-	var refID = ""; 
+	var refID = "";
 	var op = 0;
 	var updateCount = 0;
-	var reDo = "";
+
 	<!--#include file="js/commFunction.js"-->
 
 	$(document).ready(function (){
-		nodeID = "<%=nodeID%>";	//user_letter_signature
+		nodeID = "<%=nodeID%>";
 		refID = "<%=refID%>";	//username
 		op = "<%=op%>";
-		reDo = refID;
-		
 		$("#signature").jSignature({
-			color:'black',
+			color:'blue',
 			lineWidth:3,
 			height:250,
 			width:400
@@ -41,10 +39,10 @@
 			async: false 
 		}); 
 	});
-	//输出签名图片
+//输出签名图片
 	function jSignatureTest(){
 		if ($("#signature").jSignature("getData", "native").length == 0) {
-			jAlert("请签名。");
+			alert("请签名。");
 			return false;
 		}
 		var $sigdiv = $("#signature");
@@ -55,9 +53,8 @@
 
 		jConfirm('确定要提交签名吗?', '确认对话框', function(r) {
 			if(r){
-				$.post(uploadURL + "/outfiles/uploadBase64img",{upID:nodeID,username:refID,currUser:currUser,imgData:datapair[1]},function(re){
-					jAlert("签名成功。");
-					updateCount += 1;
+				$.post(uploadURL + "/outfiles/uploadBase64img",{upID:"student_letter_signature",username:nodeID,currUser:currUser,imgData:datapair[1]},function(re){
+					alert("签名成功。");
 					window.parent.$.close("signature");
 				});
 			}
@@ -82,7 +79,7 @@
 	<div id="signature" style="height:100%; width:100%; border:1px solid #blue; background:#FFF;"></div>
   	<div class="comm" align="center" style="width:96%;float:top;margin:5px;background:#eeeeee;">
 		<div style="height:3px;"></div>
-		<button type="button" onclick="jSignatureTest()">保存签名</button>&nbsp;&nbsp;&nbsp;&nbsp;
+		<button type="button" onclick="jSignatureTest()">生成签名</button>&nbsp;&nbsp;&nbsp;&nbsp;
 		<button type="button" onclick="reset()">重置签名</button>
 	</div>
 </div>

@@ -8,6 +8,7 @@
 					          &nbsp;&nbsp;课程&nbsp;<select id="searchGenerateApplyCert" style="width:100px"></select>&nbsp;&nbsp;
 					          &nbsp;&nbsp;状态&nbsp;<select id="searchGenerateApplyStatus" style="width:100px"></select>&nbsp;&nbsp;
 							  属性&nbsp;<select id="searchGenerateApplyPartner" style="width:90px"></select>&nbsp;
+							  归档&nbsp;<select id="searchGenerateApplyArchive" style="width:70px"></select>&nbsp;
 							  &nbsp;&nbsp;<label>申报日期</label>
 				          	<input type="text" id="searchGenerateApplyStart" size="8" title="起始日期" style="background:#AAFFAA;" />
 				          	-

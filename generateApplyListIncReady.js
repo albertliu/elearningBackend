@@ -4,6 +4,7 @@
 	$(document).ready(function (){
 		getComList("searchGenerateApplyRegister","v_applyRegister","registerID","registerName","1=1 order by ID desc",1);
 		getDicList("planStatus","searchGenerateApplyStatus",1);
+		getDicList("archiveStatus","searchGenerateApplyArchive",1);
 		let w = "";
 		if(checkRole("emergency")){
 			w = " and certID not in('C27')";
@@ -54,7 +55,7 @@
 			sniper = 1
 		}
 		//alert((sWhere) + "&kindID=" + $("#searchGenerateApplyCourse").val() + "&host=" + $("#searchGenerateApplyHost").val() + "&keyID=" + photo);
-		$.get("diplomaControl.asp?op=getGenerateApplyList&where=" + escape(sWhere) + "&sniper=" + sniper + "&host=" + $("#searchGenerateApplyPartner").val() + "&kindID=" + $("#searchGenerateApplyCert").val() + "&refID=" + $("#searchGenerateApplyRegister").val()  + "&status=" + $("#searchGenerateApplyStatus").val() + "&fStart=" + $("#searchGenerateApplyStart").val() + "&fEnd=" + $("#searchGenerateApplyEnd").val() + "&dk=106&times=" + (new Date().getTime()),function(data){
+		$.get("diplomaControl.asp?op=getGenerateApplyList&where=" + escape(sWhere) + "&sniper=" + sniper + "&archiveStatus=" + $("#searchGenerateApplyArchive").val() + "&host=" + $("#searchGenerateApplyPartner").val() + "&kindID=" + $("#searchGenerateApplyCert").val() + "&refID=" + $("#searchGenerateApplyRegister").val()  + "&status=" + $("#searchGenerateApplyStatus").val() + "&fStart=" + $("#searchGenerateApplyStart").val() + "&fEnd=" + $("#searchGenerateApplyEnd").val() + "&dk=106&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
@@ -72,7 +73,6 @@
 			arr.push("<th width='15%'>申报名称</th>");
 			arr.push("<th width='3%'>人</th>");
 			arr.push("<th width='7%'>开课日期</th>");
-			arr.push("<th width='7%'>线下开课</th>");
 			arr.push("<th width='6%'>状态</th>");
 			arr.push("<th width='7%'>申报导入</th>");
 			arr.push("<th width='6%'>申报批号</th>");
@@ -81,6 +81,7 @@
 			arr.push("<th width='7%'>考试通知</th>");
 			arr.push("<th width='7%'>成绩通知</th>");
 			arr.push("<th width='2%'>证</th>");
+			arr.push("<th width='6%'>归档</th>");
 			arr.push("<th width='12%'>备注</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
@@ -89,8 +90,6 @@
 				var i = 0;
 				var c = 0;
 				var h = "";
-				var imgChk = "<img src='images/printer1.png'>";
-				var imgChk1 = "<img src='images/green_check.png'>";
 				$.each(ar,function(iNum,val){
 					var ar1 = new Array();
 					ar1 = val.split("|");
@@ -100,7 +99,6 @@
 					arr.push("<td class='link1'><a href='javascript:showGenerateApplyInfo(" + ar1[0] + ",0,0,1,1);'>" + ar1[3] + "</a></td>");
 					arr.push("<td class='left'>" + ar1[4] + "</td>");
 					arr.push("<td class='left'>" + ar1[6] + "</td>");
-					arr.push("<td class='left'>" + ar1[32] + "</td>");
 					arr.push("<td class='center'>" + ar1[16] + "</td>");
 					arr.push("<td class='left'>" + ar1[25] + "</td>");
 					arr.push("<td class='left'>" + ar1[5] + "</td>");
@@ -109,10 +107,11 @@
 					arr.push("<td class='left'>" + ar1[13] + "</td>");
 					arr.push("<td class='left'>" + ar1[19] + "</td>");
 					if(ar1[31]==1){
-						arr.push("<td class='center'>" + imgChk1 + "</td>");	//证书领取
+						arr.push("<td class='center'>" + imgChk + "</td>");	//证书领取
 					}else{
 						arr.push("<td class='center'>&nbsp;</td>");
 					}
+					arr.push("<td class='left'>" + (ar1[34]>''?imgChk:(ar1[36]>''?imgChkGray:"&nbsp;")) + "</td>");	//归档
 					arr.push("<td class='left'>" + ar1[8] + "</td>");
 					arr.push("</tr>");
 				});

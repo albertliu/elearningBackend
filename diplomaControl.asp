@@ -1000,6 +1000,24 @@ if(op == "getGenerateApplyList"){
 			where = s;
 		}
 	}
+	//如果有归档状态
+	var archiveStatus = String(Request.QueryString("archiveStatus"));
+	if(archiveStatus > "" && archiveStatus !="undefined"){ // 
+		if(archiveStatus==0){	//未提交
+			s = "archiveDate='' and checkDate=''";
+		}
+		if(archiveStatus==1){	//已提交
+			s = "archiveDate>'' and checkDate=''";
+		}
+		if(archiveStatus==2){	//已审核
+			s = "checkDate>''";
+		}
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 
 	if(where > ""){
 		where = " where " + where;
@@ -1022,6 +1040,8 @@ if(op == "getGenerateApplyList"){
 		result += "|" + rs("reexamineName").value + "|" + rs("importApplyDate").value + "|" + rs("importScoreDate").value + "|" + rs("diplomaStartDate").value + "|" + rs("diplomaEndDate").value;
 		//29
 		result += "|" + rs("diplomaTerm").value + "|" + rs("qtyCheck").value + "|" + rs("diplomaReady").value + "|" + rs("firstOfflineDate").value;
+		//33
+		result += "|" + rs("checkerID").value + "|" + rs("checkDate").value + "|" + rs("archiver").value + "|" + rs("archiveDate").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -1187,6 +1207,8 @@ if(op == "getGenerateApplyNodeInfo"){
 		result += "|" + rs("adviserID").value + "|" + rs("mark").value + "|" + rs("uploadScheduleDate").value + "|" + rs("fileArchive").value + "|" + rs("archiver").value + "|" + rs("archiverName").value;
 		//48
 		result += "|" + rs("archiveDate").value + "|" + rs("summary").value + "|" + rs("planID").value + "|" + rs("planQty").value + "|" + rs("notes").value + "|" + rs("endDate").value;
+		//54
+		result += "|" + rs("checkerID").value + "|" + rs("checkDate").value + "|" + rs("checkerName").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
@@ -1195,7 +1217,7 @@ if(op == "getGenerateApplyNodeInfo"){
 
 if(op == "updateGenerateApplyInfo"){
 	//@ID int,@courseID varchar(50),@applyID varchar(50),@title nvarchar(100),@startDate varchar(100),@memo nvarchar(500),@registerID
-	sql = "exec updateGenerateApplyInfo " + nodeID + ",'" + refID + "','" + keyID + "','" + item + "','" + fStart + "','" + fEnd + "','" + String(Request.QueryString("planID")) + "','" + String(Request.QueryString("planQty")) + "','" + unescape(String(Request.QueryString("notes"))) + "','" + unescape(String(Request.QueryString("address"))) + "','" + String(Request.QueryString("teacher")) + "','" + unescape(String(Request.QueryString("classroom"))) + "','" + String(Request.QueryString("adviserID")) + "','" + String(Request.QueryString("diplomaReady")) + "','" + host + "','" + String(Request.Form("memo")) + "','" + String(Request.Form("summary")) + "','" + currUser + "'";
+	sql = "exec updateGenerateApplyInfo " + nodeID + ",'" + refID + "','" + keyID + "','" + item + "','" + fStart + "','" + fEnd + "','" + String(Request.QueryString("planID")) + "','" + String(Request.QueryString("planQty")) + "','" + unescape(String(Request.QueryString("notes"))) + "','" + unescape(String(Request.QueryString("address"))) + "','" + String(Request.QueryString("teacher")) + "','" + unescape(String(Request.QueryString("classroom"))) + "','" + String(Request.QueryString("adviserID")) + "','" + String(Request.QueryString("diplomaReady")) + "','" + String(Request.QueryString("archived")) + "','" + host + "','" + String(Request.Form("memo")) + "','" + String(Request.Form("summary")) + "','" + currUser + "'";
 	rs = conn.Execute(sql);
 	if(!rs.EOF){
 		result = rs("re").value;

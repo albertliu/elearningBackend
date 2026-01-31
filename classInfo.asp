@@ -133,6 +133,17 @@
 				}
 			}
 		});
+		$("#btnCheck").click(function(){
+			if(confirm('确定审核这个班级的档案吗?')){
+				var x = prompt("请输入审核意见：","同意");
+				if(x && x>""){
+					$.post(uploadURL + "/public/postCommInfo", {proc:"setCheckClass", params:{kindID:"B", classID:$("#ID").val(), checkNote:x, registerID:currUser}}, function(data){
+						alert("审核完成","信息提示");
+						getNodeInfo(nodeID);
+					});
+				}
+			}
+		});
 		$("#btnAutoSetClassSNo").click(function(){
 			if(confirm('确定要重新建立学号吗?')){
 				$.get("classControl.asp?op=autoSetClassSNo&nodeID=" + $("#ID").val() + "&times=" + (new Date().getTime()),function(data){
@@ -703,6 +714,8 @@
 				setHostChange();
 				$("#adviserID").val(ar[8]);
 				$("#courseID").val(ar[36]);
+				$("#checkDate").val(ar[55]);
+				$("#checkerName").val(ar[56]);
 				entryForm = ar[51];
 				reexamine = ar[52];
 				agencyID = ar[53];
@@ -1002,10 +1015,10 @@
 			alert("请选择课程。");
 			return false;
 		}
-		var photo = 0;
-		if($("#archived").prop("checked")){photo = 1;}
+		let archived = 0;
+		if($("#archived").prop("checked")){archived = 1;}
 		//alert($("#ID").val() + "&signatureType=" + $("#signatureType").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&className=" + ($("#className").val()) + "&classroom=" + ($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&courseID=" + $("#courseID").val() + "&adviserID=" + $("#adviserID").val() + "&host=" + $("#host").val() + "&teacher=" + $("#teacher").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&transaction_id=" + $("#transaction_id").val() + "&archived=" + photo);
-		$.post("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&signatureType=" + $("#signatureType").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&className=" + escape($("#className").val()) + "&classroom=" + escape($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&courseID=" + $("#courseID").val() + "&adviserID=" + $("#adviserID").val() + "&pre=" + $("#pre").val() + "&host=" + $("#host").val() + "&teacher=" + $("#teacher").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&transaction_id=" + $("#transaction_id").val() + "&archived=" + photo, {"memo":$("#memo").val(), "summary":$("#summary").val()},function(re){
+		$.post("classControl.asp?op=update&nodeID=" + $("#ID").val() + "&signatureType=" + $("#signatureType").val() + "&projectID=" + $("#projectID").combobox("getValues") + "&className=" + escape($("#className").val()) + "&classroom=" + escape($("#classroom").val()) + "&timetable=" + escape($("#timetable").val()) + "&certID=" + $("#certID").val() + "&courseID=" + $("#courseID").val() + "&adviserID=" + $("#adviserID").val() + "&pre=" + $("#pre").val() + "&host=" + $("#host").val() + "&teacher=" + $("#teacher").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&dateStart=" + $("#dateStart").val() + "&dateEnd=" + $("#dateEnd").val() + "&transaction_id=" + $("#transaction_id").val() + "&archived=" + archived, {"memo":$("#memo").val(), "summary":$("#summary").val()},function(re){
 			// $.messager.alert("提示",unescape(re));
 			if(re > 0){
 				nodeID = re;
@@ -1223,6 +1236,7 @@
 		$("#archived").prop("disabled",true);
 		$("#btnSetSource").hide();
 		$("#btnEvalution").hide();
+		$("#btnCheck").hide();
 		// $("#className").prop("disabled",true);
 		$("#courseID").prop("disabled",true);
 		$("#item_btn1").hide();
@@ -1295,6 +1309,9 @@
 			}
 			if(checkPermission("setInvoiceGroup")){
 				$("#btnInvoiceGroup").show();
+			}
+			if(checkPermission("checkClass") && $("#archived").prop("checked")){
+				$("#btnCheck").show();
 			}
 		}
 		if((checkPermission("studentAdd") || currHost>"") && s < 2){
@@ -1386,8 +1403,11 @@
 			</tr>
 			<tr>
 				<td colspan="4">
-					资料归档<input style="border:0px;" type="checkbox" id="archived" value="" />&nbsp;&nbsp;<input class="readOnly" type="text" id="archiverName" size="6" readOnly="true" />&nbsp;&nbsp;<input class="readOnly" type="text" id="archiveDate" size="8" readOnly="true" />
-					&nbsp;&nbsp;
+					归档<input style="border:0px;" type="checkbox" id="archived" value="" />&nbsp;
+					<input class="readOnly" type="text" id="archiverName" size="6" readOnly="true" />&nbsp;
+					<input class="readOnly" type="text" id="archiveDate" size="8" readOnly="true" />&nbsp;
+					审核<input class="readOnly" type="text" id="checkerName" size="6" readOnly="true" />&nbsp;
+					<input class="readOnly" type="text" id="checkDate" size="8" readOnly="true" />&nbsp;
 					<span id="studyOnline" style="margin-left:10px; color:blue;">在线学习</span>
 				</td>
 			</tr>
@@ -1457,6 +1477,7 @@
   	<input class="button" type="button" id="close" value="结束" />&nbsp;&nbsp;
   	<input class="button" type="button" id="open" value="开启" />&nbsp;&nbsp;
   	<input class="button" type="button" id="del" value="删除" />&nbsp;&nbsp;
+  	<input class="button" type="button" id="btnCheck" value="审批" />&nbsp;&nbsp;
 	<input class="button" type="button" id="doImportRef" value="石化预报名表" />
 	<input class="button" type="button" id="doImport" value="报名表导入" />&nbsp;&nbsp;
 	<input class="button" type="button" id="checkStudent" value="报名表核对" />

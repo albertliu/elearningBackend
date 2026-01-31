@@ -2,6 +2,7 @@
 
 	$(document).ready(function (){
 		getDicList("planStatus","searchClassStatus",1);
+		getDicList("archiveStatus","searchClassArchive",1);
 		getComList("searchClassProject","projectInfo","projectID","projectName","status>0 and status<9 order by projectID desc",1);
 		let w = "";
 		if(checkRole("emergency")){
@@ -68,8 +69,7 @@
 		if(checkRole("sniper")){
 			sniper = 1
 		}
-		//alert((sWhere) + "&refID=" + $("#searchClassCert").val() + "&status=" + $("#searchClassStatus").val() + "&project=" + $("#searchClassProject").val());
-		$.get("classControl.asp?op=getClassList&where=" + escape(sWhere) + "&sniper=" + sniper + "&mark=" + mark + "&refID=" + $("#searchClassCert").val() + "&pre=" + pre + "&host=" + $("#searchClassPartner").val() + "&status=" + $("#searchClassStatus").val() + "&kindID=" + k + "&project=" + $("#searchClassProject").val() + "&dk=91&times=" + (new Date().getTime()),function(data){
+		$.get("classControl.asp?op=getClassList&where=" + escape(sWhere) + "&sniper=" + sniper + "&mark=" + mark + "&refID=" + $("#searchClassCert").val() + "&pre=" + pre + "&host=" + $("#searchClassPartner").val() + "&archiveStatus=" + $("#searchClassArchive").val() + "&status=" + $("#searchClassStatus").val() + "&kindID=" + k + "&project=" + $("#searchClassProject").val() + "&dk=91&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
@@ -91,7 +91,7 @@
 			arr.push("<th width='8%'>结课日期</th>");
 			arr.push("<th width='7%'>班主任</th>");
 			arr.push("<th width='8%'>开课通知</th>");
-			arr.push("<th width='8%'>归档日期</th>");
+			arr.push("<th width='6%'>归档</th>");
 			arr.push("<th width='6%'>状态</th>");
 			arr.push("<th width='6%'>人数</th>");
 			arr.push("<th width='6%'>报考</th>");
@@ -121,7 +121,7 @@
 					arr.push("<td class='left'>" + ar1[11] + "</td>");
 					arr.push("<td class='left'>" + ar1[9] + "</td>");
 					arr.push("<td class='left'>" + ar1[29] + "</td>");
-					arr.push("<td class='left'>" + ar1[23] + "</td>");
+					arr.push("<td class='left'>" + (ar1[47]>''?imgChk:(ar1[23]>''?imgChkGray:"&nbsp;")) + "</td>");
 					if(ar1[6]==0){
 						arr.push("<td class='center'>&nbsp;</td>");
 					}else{

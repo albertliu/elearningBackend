@@ -159,6 +159,8 @@ if(op == "getNodeInfo"){
 		result = rs("userID") + "|" + rs("userNo") + "|" + rs("userName") + "|" + rs("realName") + "|" + rs("status") + "|" + rs("statusName") + "|" + rs("deptID") + "|" + rs("deptName") + "|" + rs("host");
 		//9
 		result += "|" + rs("kindID") + "|" + rs("limitedDate") + "|" + rs("phone") + "|" + rs("email") + "|" + rs("memo") + "|" + rs("regDate") + "|" + rs("registerID") + "|" + rs("registerName") + "|" + rs("kindName");
+		//18
+		result += "|" + rs("signature")
 	}
 	rs.Close();
 	Response.Write(escape(result));
