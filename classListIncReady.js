@@ -20,6 +20,10 @@
 			//$("#searchClassAdviser").hide();
 		}
 		
+		if(checkPermission("checkClass")){
+			$("#searchClassArchive").val(1);
+		}
+		
 		if(checkPermission("classAdd")){
 			$("#btnAddClass").show();
 		}else{

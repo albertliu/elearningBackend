@@ -20,6 +20,10 @@
 		$("#searchGenerateApplyStart").click(function(){WdatePicker();});
 		$("#searchGenerateApplyEnd").click(function(){WdatePicker();});
 		
+		if(checkPermission("checkClass")){
+			$("#searchGenerateApplyArchive").val(1);
+		}
+
 		$("#btnSearchGenerateApply").click(function(){
 			getGenerateApplyList();
 		});
