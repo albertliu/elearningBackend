@@ -248,7 +248,7 @@
 			// alert(re1);
 			x += '<tr>' +
 			'<td><img src="/users' + f2 + '" style="max-width:50px;" /></td>' +
-			'<td>' + (re1>'' ? '<img src="data:image/png;base64,' + re1 + '" style="max-width:50px;" />' : '') + '</td>';
+			'<td>' + (re1>'' ? '<img src="data:image/png;base64,' + re1 + '" style="max-width:800px;" />' : '') + '</td>';
 			'</tr>'
 		});
 		callback(x);
