@@ -336,7 +336,7 @@ if(op == "getStudentCourseList"){
 
 //被移除班级的学员
 if(op == "getStudentListOutClass"){
-	// sql = "select * from studentCourseList where status<2 and classID='' and courseID in(select courseID from v_courseInfo where agencyID<>5) order by ID desc";
+	// sql = "select * from studentCourseList where status<2 and (classID='' or classID is null) and courseID in(select courseID from v_courseInfo where agencyID<>5) order by ID desc";
 	where = " where ID in (select ID from studentCourseList where status<2 and classID='' and courseID in(select courseID from v_courseInfo where agencyID<>5))";
 	sql = " FROM v_studentCourseList " + where;
 	result = getBasketTip(sql,"");
