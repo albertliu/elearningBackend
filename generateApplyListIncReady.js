@@ -86,7 +86,8 @@
 			arr.push("<th width='7%'>成绩通知</th>");
 			arr.push("<th width='2%'>证</th>");
 			arr.push("<th width='6%'>归档</th>");
-			arr.push("<th width='12%'>备注</th>");
+			arr.push("<th width='2%'>评</th>");
+			arr.push("<th width='10%'>备注</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
@@ -116,6 +117,7 @@
 						arr.push("<td class='center'>&nbsp;</td>");
 					}
 					arr.push("<td class='left'>" + (ar1[34]>''?imgChk:(ar1[36]>''?imgChkGray:"&nbsp;")) + "</td>");	//归档
+					arr.push("<td class='left' title='已发出/已完成'>" + ar1[37] + "</td>");	//评议表数量
 					arr.push("<td class='left'>" + ar1[8] + "</td>");
 					arr.push("</tr>");
 				});
@@ -123,6 +125,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");

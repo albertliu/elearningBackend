@@ -1025,7 +1025,7 @@ if(op == "getGenerateApplyList"){
 	sql = " FROM v_generateApplyInfo " + where;
 	result = getBasketTip(sql,"");
 	ssql = "SELECT ID,title,courseName,applyID,startDate,firstOfflineDate,qty,qtyYes,qtyNo,memo,regDate,registerName" + sql + " order by ID desc";
-	sql = "SELECT top " + basket + " *" + sql + " order by ID desc";
+	sql = "SELECT top " + basket + " *, [dbo].[getClassEvalutionCount](ID,'A') as evalutionCount" + sql + " order by ID desc";
 	
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
@@ -1041,7 +1041,7 @@ if(op == "getGenerateApplyList"){
 		//29
 		result += "|" + rs("diplomaTerm").value + "|" + rs("qtyCheck").value + "|" + rs("diplomaReady").value + "|" + rs("firstOfflineDate").value;
 		//33
-		result += "|" + rs("checkerID").value + "|" + rs("checkDate").value + "|" + rs("archiver").value + "|" + rs("archiveDate").value;
+		result += "|" + rs("checkerID").value + "|" + rs("checkDate").value + "|" + rs("archiver").value + "|" + rs("archiveDate").value + "|" + rs("evalutionCount").value;
 		rs.MoveNext();
 	}
 	rs.Close();

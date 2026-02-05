@@ -112,7 +112,7 @@ if(op == "getClassList"){
 	sql = " FROM v_classInfo " + where;
 	result = getBasketTip(sql,"");
 	ssql = "SELECT classID,className,statusName,certName,reexamineName,dateStart,dateEnd,adviserName,classroom,qty,qtyApply,qtyExam,qtyPass,qtyDiploma,archiveDate,memo,regDate,registerName" + sql + " order by ID desc";
-	sql = "SELECT top " + basket + " *" + sql + " order by pre desc, ID desc";
+	sql = "SELECT top " + basket + " *, [dbo].[getClassEvalutionCount](ID,'B') as evalutionCount" + sql + " order by pre desc, ID desc";
 
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
@@ -128,7 +128,7 @@ if(op == "getClassList"){
 		//36
 		result += "|" + rs("teacherName").value + "|" + rs("host").value + "|" + rs("transaction_id").value + "|" + rs("re").value + "|" + rs("reexamineName").value + "|" + rs("kindName").value + "|" + rs("qtyDiploma").value + "|" + rs("pre").value;
 		//44
-		result += "|" + rs("reexamine").value + "|" + rs("entryForm").value + "|" + rs("checkerID").value + "|" + rs("checkDate").value;
+		result += "|" + rs("reexamine").value + "|" + rs("entryForm").value + "|" + rs("checkerID").value + "|" + rs("checkDate").value + "|" + rs("evalutionCount").value;
 		rs.MoveNext();
 	}
 /**/

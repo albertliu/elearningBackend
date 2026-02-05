@@ -96,6 +96,7 @@
 			arr.push("<th width='7%'>班主任</th>");
 			arr.push("<th width='8%'>开课通知</th>");
 			arr.push("<th width='6%'>归档</th>");
+			arr.push("<th width='2%'>评</th>");
 			arr.push("<th width='6%'>状态</th>");
 			arr.push("<th width='6%'>人数</th>");
 			arr.push("<th width='6%'>报考</th>");
@@ -125,7 +126,8 @@
 					arr.push("<td class='left'>" + ar1[11] + "</td>");
 					arr.push("<td class='left'>" + ar1[9] + "</td>");
 					arr.push("<td class='left'>" + ar1[29] + "</td>");
-					arr.push("<td class='left'>" + (ar1[47]>''?imgChk:(ar1[23]>''?imgChkGray:"&nbsp;")) + "</td>");
+					arr.push("<td class='left'>" + (ar1[47]>''?imgChk:(ar1[23]>''?imgChkGray:"&nbsp;")) + "</td>");	//归档
+					arr.push("<td class='left' title='已发出/已完成'>" + ar1[48] + "</td>");	//评议表数量
 					if(ar1[6]==0){
 						arr.push("<td class='center'>&nbsp;</td>");
 					}else{
@@ -157,6 +159,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");

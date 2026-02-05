@@ -62,8 +62,8 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='5%'>No</th>");
-			arr.push("<th width='15%'>日期</th>");
-			arr.push("<th width='50%'>课程内容</th>");
+			arr.push("<th width='25%'>日期</th>");
+			arr.push("<th width='40%'>课程内容</th>");
 			arr.push("<th width='15%'>教师</th>");
 			arr.push("<th width='15%'>签到</th>");
 			arr.push("<th width='0%'></th>");
@@ -156,8 +156,8 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='5%'>No</th>");
-			arr.push("<th width='15%'>日期</th>");
-			arr.push("<th width='50%'>课程内容</th>");
+			arr.push("<th width='25%'>日期</th>");
+			arr.push("<th width='40%'>课程内容</th>");
 			arr.push("<th width='10%'>教师</th>");
 			arr.push("<th width='10%'>签到</th>");
 			arr.push("<th width='0%'></th>");
