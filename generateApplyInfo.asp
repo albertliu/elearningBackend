@@ -425,6 +425,7 @@
 										if(data.count_s>0){
 											var end = performance.now(); 
 											$.messager.alert("提示","成功上传数量：" + data.count_s + "; &nbsp;失败数量：" + data.count_e + "; &nbsp;耗时：" + ((end-start)/1000).toFixed(2) + "秒","info");
+											getNodeInfo(nodeID);
 										}else{
 											$.messager.alert("提示","操作失败，请稍后再试。" + data.errMsg,"info");
 										}
