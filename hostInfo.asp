@@ -92,6 +92,8 @@
 				$("#memo").val(ar[13]);
 				$("#regDate").val(ar[14]);
 				$("#registerName").val(ar[16]);
+				$("#accountA").val(ar[18]);
+				$("#passwdA").val(ar[19]);
 				$("#upload1").html("<a href='javascript:showLoadFile(\"host_logo\",\"" + ar[1] + "\",\"host\",\"\");' style='padding:3px;'>上传</a>");
 				var c = "";
 				if(ar[12] > ""){
@@ -118,7 +120,7 @@
 			jAlert("单位名称或简称不能为空");
 			return false;
 		}
-		$.get("hostControl.asp?op=update&nodeID=" + $("#hostID").val() + "&refID=" + $("#hostNo").val() + "&hostName=" + escape($("#hostName").val()) + "&title=" + escape($("#title").val()) + "&linker=" +  escape($("#linker").val()) + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&phone=" +  escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&address=" + escape($("#address").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("hostControl.asp?op=update&nodeID=" + $("#hostID").val() + "&refID=" + $("#hostNo").val() + "&accountA=" + $("#accountA").val() + "&passwdA=" + $("#passwdA").val() + "&hostName=" + escape($("#hostName").val()) + "&title=" + escape($("#title").val()) + "&linker=" +  escape($("#linker").val()) + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&phone=" +  escape($("#phone").val()) + "&email=" + escape($("#email").val()) + "&address=" + escape($("#address").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -215,6 +217,12 @@
 				<td><input type="text" id="address" size="25" /></td>
 			</tr>
 			<tr>
+				<td align="right">安监账户</td>
+				<td><input id="accountA" name="accountA" type="text" /></td>
+				<td align="right">密码</td>
+				<td><input id="passwdA" name="passwdA" type="password" /></td>
+			</tr>
+			<tr>
 				<td align="right">电话</td>
 				<td><input type="text" id="phone" size="25" /></td>
 				<td align="right">邮箱</td>
@@ -222,7 +230,7 @@
 			</tr>
 			<tr>
 				<td align="right">说明</td>
-				<td colspan="5"><textarea id="memo" style="padding:2px; width:100%;" rows="5"></textarea></td>
+				<td colspan="5"><textarea id="memo" style="padding:2px; width:100%;" rows="3"></textarea></td>
 			</tr>
 			<tr>
 				<td align="right">登记人</td>

@@ -49,7 +49,7 @@
 		$("#cancel").click(function(){
 			if(confirm("确定要将该证书暂停失效吗？失效后可恢复。")){
 				$.get("diplomaControl.asp?op=cancelDiploma&nodeID=" + $("#diplomaID").val() + "&times=" + (new Date().getTime()),function(re){
-					jAlert("操作成功！","信息提示");
+					$.messager.alert("提示","操作成功！","info");
 					updateCount += 1;
 				});
 			}
@@ -57,7 +57,7 @@
 		$("#restart").click(function(){
 			if(confirm("确定要恢复该证书的有效性吗？")){
 				$.get("diplomaControl.asp?op=restartDiploma&nodeID=" + $("#diplomaID").val() + "&times=" + (new Date().getTime()),function(re){
-					jAlert("操作成功！","信息提示");
+					$.messager.alert("提示","操作成功！","info");
 					updateCount += 1;
 				});
 			}
@@ -105,7 +105,7 @@
 				//getDownloadFile("diplomaID");
 				setButton();
 			}else{
-				jAlert("该信息未找到！","信息提示");
+				$.messager.alert("提示","该信息未找到！","info");
 				setEmpty();
 			}
 		});
@@ -113,7 +113,7 @@
 	
 	function saveNode(){
 		if($("#memo").val().length < 3){
-			jAlert("备注信息请至少填写3个字的内容。");
+			$.messager.alert("提示","备注信息请至少填写3个字的内容。","info");
 			return false;
 		}
 		//alert($("#studentID").val() + "&item=" + ($("#memo").val()));
@@ -122,7 +122,7 @@
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar[0] == 0){
-				jAlert("保存成功！","信息提示");
+				$.messager.alert("提示","保存成功！","info");
 				updateCount += 1;
 			}
 		});

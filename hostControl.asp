@@ -57,7 +57,9 @@ if(op == "getNodeInfo"){
 	if (!rs.EOF){
 		result = rs("hostID").value + "|" + rs("hostNo").value + "|" + rs("hostName").value + "|" + rs("title").value + "|" + rs("kindID").value + "|" + rs("status").value + "|" + rs("kindName").value + "|" + rs("statusName").value;
 		//8
-		result +=  "|" + rs("linker").value + "|" + rs("phone").value + "|" + rs("email").value + "|" + rs("address").value + "|" + rs("logo").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("QR").value;
+		result += "|" + rs("linker").value + "|" + rs("phone").value + "|" + rs("email").value + "|" + rs("address").value + "|" + rs("logo").value + "|" + rs("memo").value;
+		//14
+		result += "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("QR").value + "|" + rs("accountA").value + "|" + rs("passwdA").value;
 		execSQL(sql);
 	}
 	rs.Close();
@@ -67,7 +69,7 @@ if(op == "getNodeInfo"){
 if(op == "update"){
 	result = 0;
 	if(result == 0){
-		sql = "exec updateHostInfo " + nodeID + "," + refID + ",'" + unescape(String(Request.QueryString("hostName"))) + "','" + unescape(String(Request.QueryString("title"))) + "'," + kindID + "," + status + ",'" + unescape(String(Request.QueryString("linker"))) + "','" + unescape(String(Request.QueryString("phone"))) + "','" + unescape(String(Request.QueryString("email"))) + "','" + unescape(String(Request.QueryString("address"))) + "','" + memo + "','" + currUser + "'";
+		sql = "exec updateHostInfo " + nodeID + "," + refID + ",'" + unescape(String(Request.QueryString("hostName"))) + "','" + unescape(String(Request.QueryString("title"))) + "'," + kindID + "," + status + ",'" + unescape(String(Request.QueryString("linker"))) + "','" + unescape(String(Request.QueryString("phone"))) + "','" + unescape(String(Request.QueryString("email"))) + "','" + unescape(String(Request.QueryString("address"))) + "','" + escape(String(Request.QueryString("accountA"))) + "','" + escape(String(Request.QueryString("passwdA"))) + "','" + memo + "','" + currUser + "'";
 
 		execSQL(sql);
 		if(nodeID == 0){
