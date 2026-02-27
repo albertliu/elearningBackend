@@ -23,6 +23,7 @@ if (String(Request.QueryString("msg")) != "undefined" &&
 <link rel="stylesheet" type="text/css" href="css/easyui/icon.css">
 <link href="css/colortip-1.0-jquery.css" rel="stylesheet" type="text/css" />
 <link href="css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="css/asyncbox/asyncbox.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="js/md5.min.js"></script>
 <script type="text/javascript" src="js/jquery.easyui.min.js"></script>
@@ -31,6 +32,7 @@ if (String(Request.QueryString("msg")) != "undefined" &&
 <script src="js/colortip-script.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/jquery.jmpopups-0.5.1.js"></script>
 <script src="js/jquery.alerts.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/AsyncBox.v1.4.js"></script>
 <!--#include file="js/correctPng.js"-->
 <!--#include file="js/clickMenuHome.js"-->
 
@@ -63,17 +65,15 @@ if (String(Request.QueryString("msg")) != "undefined" &&
 		$("#username").focus();
 		// $("#companyLogo").attr("src","users/upload/companies/logo/" + currHost + ".png");
 	    $("#log_in").click(function(){
-			if($("#username").val()=="lijun"){
-				alert($("#username").val() + " :  " + $("#passwd").val() + " : " + currHost);
-			}
-          	
 			$.get("login.asp?op=login&username=" + $("#username").val() + "&passwd=" + md5($("#passwd").val()) + "&host=" + currHost + "&times=" + (new Date().getTime()),function(re){
 				var ar = new Array();
 				ar = unescape(re).split("|");
 				//alert(ar);
 				if(ar[0]==0){  //passed
 					if($("#passwd").val()=="123456"){
-						alert("您用的是默认密码，登录以后请在首页上修改密码。");
+						alert("您用的是默认密码，请修改密码。");
+						showUserPasswdInfo();
+						return false;
 					}
 					if($("#username").val().substring(0, 4)=="room"){
 						self.location = "face_camera.asp", 'width=' + screen.width + ', height=' + screen.height + ', top=0, left=0, toolbar=no, menubar=no, location=no, status=no, help=no, center=yes, scrollbars=yes, resizable=yes, minmizebutton=yes, maxmizebutton=yes'
@@ -162,6 +162,29 @@ if (String(Request.QueryString("msg")) != "undefined" &&
 			}      
 		});
 	});
+
+	function showUserPasswdInfo(){
+		asyncbox.open({
+			url:'userPasswordInfo.asp?nodeID=" + currUser + "&p=1&times=' + (new Date().getTime()),
+			title: '修改用户密码',
+			width : 380,
+			height : 350,
+			cover : {
+				//透明度
+				opacity : 0,
+				//背景颜色
+				background : '#000'
+			},
+
+			btnsbar : false,
+			callback : function(action,iframe){
+				var re = iframe.getUpdateCount();
+				if(re>0){
+					self.location = "index.asp?times=" + (new Date().getTime());
+				}
+ 			}
+		});
+	}
 	
 	function openHelp(){
 		window.open("help.asp?times=" + (new Date().getTime()),"_blank");

@@ -2953,11 +2953,11 @@
 
 			btnsbar : false,
 			callback : function(action,iframe){
-				if(action == 'ok'){
-					//iframe.saveNode();
-					//jAlert("密码修改成功。","信息提示");
-		　　　　}
-		　　}
+				var re = iframe.getUpdateCount();
+				if(re>0){
+					//
+				}
+ 			}
 		});
 	}
 

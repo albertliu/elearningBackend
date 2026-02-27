@@ -21,6 +21,7 @@
 
 <script language="javascript">
 	var nodeID = "";
+	var updateCount = 0;
 	<!--#include file="js/commFunction.js"-->
 	
 	$(document).ready(function (){
@@ -31,6 +32,14 @@
 		$("#confirmPasswd").val("");
 		$("#save").click(function(){
 			saveNode();
+		});
+		$("#newPasswd").change(function(){
+			if(!containsAllTypes($("#newPasswd").val())){
+				alert("必须包含小写字母、大写字母和数字。");
+				$("#newPasswd").val("");
+				$("#newPasswd").focus();
+				return false;
+			}
 		});
 	});
 
@@ -52,8 +61,23 @@
 			//alert((data));
 			if(data==0){
 				jAlert("密码修改成功。","信息提示");
+				updateCount += 1;
 			}
 		});
+	}
+
+	function getUpdateCount(){
+		return updateCount;
+	}
+
+	/**
+	 * 检查字符串是否同时包含大写字母、小写字母和数字
+	 * @param {string} str - 要检查的字符串
+	 * @returns {boolean} - 同时包含三种类型返回 true，否则返回 false
+	 */
+	function containsAllTypes(str) {
+		// 使用正则表达式：必须至少包含一个小写字母、一个大写字母和一个数字
+		return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(str);
 	}
 
 </script>
@@ -71,15 +95,15 @@
           <table border="0" cellpadding="0" cellspacing="0" width="100%" style="line-height:10px;">
             <tr>
               <td>用户名</td>
-              <td><input class="readOnly" type="text" id="userName" size="30" readOnly="true" /></td>
+              <td><input class="readOnly" type="text" id="userName" size="20" readOnly="true" /></td>
             </tr>
             <tr>
               <td>新密码</td>
-              <td><input id="newPasswd" name="newPasswd" type="password" size="30" /></td>
+              <td><input id="newPasswd" name="newPasswd" type="password" size="20" /><p style="color:red;">密码至少6位，必须包含大小写字母和数字</p></td>
             </tr>
             <tr>
               <td>密码确认</td>
-              <td><input id="confirmPasswd" name="confirmPasswd" type="password" size="30" /></td>
+              <td><input id="confirmPasswd" name="confirmPasswd" type="password" size="20" /></td>
             </tr>
           </table>
 			</div>
