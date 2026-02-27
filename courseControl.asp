@@ -26,6 +26,15 @@ if(op == "getCourseList"){
 			where = s;
 		}
 	}
+	//如果有host
+	if(currHost == ""){ // 
+		s = "host=''";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 
 	if(where>""){
 		where = " where " + where;
