@@ -40,6 +40,12 @@
 				$("#newPasswd").focus();
 				return false;
 			}
+			if($("#newPasswd").val().length<8){
+				alert("不得少于8位长度。");
+				$("#newPasswd").val("");
+				$("#newPasswd").focus();
+				return false;
+			}
 		});
 	});
 
@@ -99,7 +105,7 @@
             </tr>
             <tr>
               <td>新密码</td>
-              <td><input id="newPasswd" name="newPasswd" type="password" size="20" /><p style="color:red;">密码至少6位，必须包含大小写字母和数字</p></td>
+              <td><input id="newPasswd" name="newPasswd" type="password" size="20" /><p style="color:red;">密码至少8位，必须包含大小写字母和数字</p></td>
             </tr>
             <tr>
               <td>密码确认</td>

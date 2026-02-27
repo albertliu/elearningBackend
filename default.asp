@@ -70,8 +70,9 @@ if (String(Request.QueryString("msg")) != "undefined" &&
 				ar = unescape(re).split("|");
 				//alert(ar);
 				if(ar[0]==0){  //passed
-					if($("#passwd").val()=="123456"){
-						alert("您用的是默认密码，请修改密码。");
+					// if($("#passwd").val()=="123456"){
+					if(!containsAllTypes($("#passwd").val()) || $("#passwd").val().length<8){
+						alert("您的密码不符合要求，请修改。");
 						showUserPasswdInfo();
 						return false;
 					}
@@ -193,6 +194,16 @@ if (String(Request.QueryString("msg")) != "undefined" &&
 	function printDiv(){
 		document.body.innerHTML=document.getElementById('barcode').innerHTML;
 		window.print();
+	}
+
+	/**
+	 * 检查字符串是否同时包含大写字母、小写字母和数字
+	 * @param {string} str - 要检查的字符串
+	 * @returns {boolean} - 同时包含三种类型返回 true，否则返回 false
+	 */
+	function containsAllTypes(str) {
+		// 使用正则表达式：必须至少包含一个小写字母、一个大写字母和一个数字
+		return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(str);
 	}
 
 </script>
