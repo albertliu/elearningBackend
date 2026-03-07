@@ -315,7 +315,7 @@
 			floatModel = 5;
 			floatTitle = p2;
 			floatItem = p3;
-			sql = "select name,sexName,educationName,username,mobile,unit,dept1Name,IDdateStart,IDdateEnd,diplomaID,score1,score2,statusName from v_applyInfo where refID=" + p1 + " order by passNo,ID";
+			sql = "select SNo,name,sexName,educationName,username,mobile,unit,dept1Name,IDdateStart,IDdateEnd,diplomaID,score1,score2,statusName from v_applyInfo where refID=" + p1 + " order by passNo,ID";
 		}
 		if(id=='x06'){
 			p = "getDiplomaIssueList3rd";

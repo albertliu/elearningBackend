@@ -72,14 +72,12 @@ var userid = Session("user_key");
 	
 	function checkPwd(passwd){ 
 		var r = true;
-	    if(passwd.value.length<6) 
+	    if(passwd.value.length<8) 
 	    { 
-			r = false;
-	    } 
-	    if(r == false){
-	        alert('密码长度不能少于6位!'); 
+	        alert('密码长度不能少于8位!'); 
 	        passwd.value=""; 
 	        passwd.select(); 
+			r = false;
 	    }
 
 		return r; 
@@ -119,7 +117,7 @@ var userid = Session("user_key");
 				    <tr valign="baseline">
 				      <td align="left" colspan="2" scope="col" style="backgroud:#f0f0f9;">
 				      	<div style="background:#fcfcfc;">
-				      	<font color="red">*</font>&nbsp;密码要求至少6位，重置密码时不得与原密码相同。
+				      	<font color="red">*</font>&nbsp;密码要求至少8位，重置密码时不得与原密码相同。
 				      	<input type="hidden" id="userName" name="userName" value="<%=rs("userName")%>">
 				      	<input type="hidden" id="realName" name="realName" value="<%=rs("realName")%>">
 				      	</div>
