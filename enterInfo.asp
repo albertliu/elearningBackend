@@ -834,7 +834,7 @@
 		$("#price").val(0);
 		$("#statusPay").val(0);
 		$("#invoice").val("");
-		$("#host").val("znxf");
+		$("#host").val(currHost || 'znxf');
 		nodeID = 0;
 		if($("#kindID").val()==0){
 			//个人缴费
