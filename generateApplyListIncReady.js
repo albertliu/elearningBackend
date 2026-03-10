@@ -42,7 +42,7 @@
 			getGenerateApplyList();
 		});
 		
-		if(!checkPermission("studentAdd") || currHost>""){
+		if(!checkPermission("applyAdd") || currHost>""){
 			$("#btnSearchGenerateApplyAdd").hide();
 		}
 		

@@ -1188,7 +1188,7 @@
 			$("#save").show();
 			//$("#save").focus();
 		}else{
-			if(checkPermission("studentAdd") && currHost==""){
+			if(checkPermission("applyEdit") && currHost==""){
 				if(s==0){		//考前可以删除申报、调整人员
 					$("#save").show();
 					$("#del").show();
