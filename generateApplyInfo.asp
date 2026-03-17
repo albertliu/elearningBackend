@@ -142,6 +142,20 @@
 				}
 			});
 		});
+		$("#btnInvoiceGroupCancel").click(function(){
+			getSelCart("");
+			if(selCount!=1){
+				jAlert("请选择一个学员。");
+				return false;
+			}
+			jConfirm('确定将与这' + selCount + '个学员共用一个发票的人解绑吗?',"确认",function(r){
+				if(r){
+					$.post(uploadURL + "/public/setInvoiceGroupCancel", {classID:$("#ID").val(), kind: "A", selList: selList, registerID: currUser} ,function(data){
+						jAlert(data.msg);
+					});
+				}
+			});
+		});
 
 		$("#showPhoto").checkbox({
 			onChange: function(val){
@@ -1172,6 +1186,7 @@
 		$("#generatePhotoZip").hide();
 		$("#generateEntryZip").hide();
 		$("#btnInvoiceGroup").hide();
+		$("#btnInvoiceGroupCancel").hide();
 		$("#item_btn1").hide();
 		$("#item_btn2").hide();
 		$("#btnArchive").hide();
@@ -1241,6 +1256,7 @@
 			}
 			if(checkPermission("setInvoiceGroup") && s < 2){
 				$("#btnInvoiceGroup").show();
+				$("#btnInvoiceGroupCancel").show();
 			}
 			if(checkPermission("checkClass") && $("#archived").prop("checked")){
 				$("#btnCheck").show();
@@ -1394,6 +1410,7 @@
 		<input class="button" type="button" id="doImportApplyResit" value="补考名单导入" />&nbsp;
 		<input class="button" type="button" id="sendMsgScore" value="成绩通知" />&nbsp;
 		<input class="button" type="button" id="btnInvoiceGroup" value="团体发票" />&nbsp;
+		<input class="button" type="button" id="btnInvoiceGroupCancel" value="发票解绑" />&nbsp;
 		<input class="button" type="button" id="generateClassDoc" value="生成归档文件" />&nbsp;
 		<input class="button" type="button" id="generateEntryDoc" value="生成报名表" />&nbsp;
 		<input class="button" type="button" id="generateEntryDoc1" value="生成报名表带培训证明" />&nbsp;
