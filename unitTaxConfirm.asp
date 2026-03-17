@@ -112,7 +112,7 @@
 	
 	function setButton(){
 		$("#save").hide();
-		if(checkPermission("checkUnitTax") && checker==""){
+		if(checkPermission("checkUnitTax") && (checker=="" || checker==currUserName)){
 			$("#save").show();
 		}
 	}
