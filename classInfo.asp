@@ -133,6 +133,20 @@
 				}
 			}
 		});
+		$("#btnInvoiceGroupCancel").click(function(){
+			getSelCart("");
+			if(selCount!=1){
+				alert("请选择一个学员。");
+				return false;
+			}
+			jConfirm('确定将与这' + selCount + '个学员共用一个发票的人解绑吗?',"确认",function(r){
+				if(r){
+					$.post(uploadURL + "/public/setInvoiceGroupCancel", {classID:$("#ID").val(), kind: "B", selList: selList, registerID: currUser} ,function(data){
+						alert(data.msg);
+					});
+				}
+			});
+		});
 		$("#btnCheck").click(function(){
 			if(confirm('确定审核这个班级的档案吗?')){
 				var x = prompt("请输入审核意见：","同意");
@@ -1232,6 +1246,7 @@
 		$("#btnRebuildStudentLesson").hide();
 		$("#btnAutoSetClassSNo").hide();
 		$("#btnInvoiceGroup").hide();
+		$("#btnInvoiceGroupCancel").hide();
 		$("#btnCloseStudentCourse").hide();
 		$("#archived").prop("disabled",true);
 		$("#btnSetSource").hide();
@@ -1309,6 +1324,7 @@
 			}
 			if(checkPermission("setInvoiceGroup")){
 				$("#btnInvoiceGroup").show();
+				$("#btnInvoiceGroupCancel").show();
 			}
 			if(checkPermission("checkClass") && $("#archived").prop("checked")){
 				$("#btnCheck").show();
@@ -1508,6 +1524,7 @@
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnDiplomaDate" value="复训日期" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnAutoSetClassSNo" value="调整学号" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnInvoiceGroup" value="团体发票" /></span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnInvoiceGroupCancel" value="发票解绑" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnCloseStudentCourse" value="关/开课程" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnCompetition" value="竞赛通知" /></span>
 		</div>
