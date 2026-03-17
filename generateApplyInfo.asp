@@ -148,7 +148,7 @@
 				jAlert("请选择一个学员。");
 				return false;
 			}
-			jConfirm('确定将与这' + selCount + '个学员共用一个发票的人解绑吗?',"确认",function(r){
+			jConfirm('确定将与这个学员共用一个发票的人解绑吗?',"确认",function(r){
 				if(r){
 					$.post(uploadURL + "/public/setInvoiceGroupCancel", {classID:$("#ID").val(), kind: "A", selList: selList, registerID: currUser} ,function(data){
 						jAlert(data.msg);
