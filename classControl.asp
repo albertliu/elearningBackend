@@ -91,7 +91,7 @@ if(op == "getClassList"){
 			where = s;
 		}
 	}
-	//当前用户为special sniper
+	//当前用户为special sniper 特别班查看
 	if(String(Request.QueryString("sniper")) == 1){
 		s = "ID in (select classID from [user_class_list] where username='" + currUser + "' and mark='B' and status=0)";
 		if(where > ""){
