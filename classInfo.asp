@@ -958,7 +958,7 @@
 						}
 					}
 					if(reexamine==1){
-						arr.push("<td class='left' " + (ar1[57]==1 && bc>"" ? "style='background:" + bc + ";'" : "") + ">" + (ar1[94]>""?"*":"") + ar1[83] + "</td>");	// 复训日期(已确认的加*)
+						arr.push("<td class='left' " + (ar1[57]==1 && bc>"" ? "style='background:" + bc + ";'" : "") + (ar1[94]>""?" title='" + ar1[94] + "'":"") + ">" + (ar1[94]>""?"*":"") + ar1[83] + "</td>");	// 复训日期(已确认的加*)
 					}
 					arr.push("<td class='left'>" + (ar1[68]==1?imgChk:'&nbsp;') + "</td>");	// 
 					arr.push("<td class='left'>" + (ar1[93]==1?imgChkGray:(ar1[93]==2?imgChk:"&nbsp;")) + "</td>");	//评议表
