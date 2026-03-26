@@ -1150,6 +1150,15 @@ if(op == "getApplyListByBatch"){
 			where = s;
 		}
 	}
+	//来源
+	if(String(Request.QueryString("source")) > "" && String(Request.QueryString("source")) !="undefined"){
+		s = "source='" + String(Request.QueryString("source")) + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 
 	if(where > ""){
 		where = " where " + where;

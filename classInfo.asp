@@ -790,7 +790,11 @@
 			$("#btnAttentionSignatureClose").show();
 			$("#btnAttentionPhotoClose").show();
 		}
-		$.get("studentCourseControl.asp?op=getStudentCourseList&classID=" + $("#classID").val() + "&mark=" + mark + "&examResult=" + $("#examResult").val() + "&fromID=" + $("#fromID").val() + "&host=" + $("#partner").val() + "&completion2=" + $("#s_completion2").val() + "&score2=" + $("#s_score2").val() + "&dk=9101&times=" + (new Date().getTime()),function(data){
+		let source = "";
+		if(checkRole("sniper")){
+			source = currUserName;
+		}
+		$.get("studentCourseControl.asp?op=getStudentCourseList&classID=" + $("#classID").val() + "&source=" + source + "&mark=" + mark + "&examResult=" + $("#examResult").val() + "&fromID=" + $("#fromID").val() + "&host=" + $("#partner").val() + "&completion2=" + $("#s_completion2").val() + "&score2=" + $("#s_score2").val() + "&dk=9101&times=" + (new Date().getTime()),function(data){
 			// alert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");

@@ -184,6 +184,15 @@ if(op == "getStudentCourseList"){
 			where = s;
 		}
 	}
+	//来源
+	if(String(Request.QueryString("source")) > "" && String(Request.QueryString("source")) !="undefined"){
+		s = "source='" + String(Request.QueryString("source")) + "'";
+		if(where > ""){
+			where = where + " and " + s;
+		}else{
+			where = s;
+		}
+	}
 	//确认
 	if(String(Request.QueryString("checked")) > "" && String(Request.QueryString("checked")) !="undefined"){
 		s = "checked=" + String(Request.QueryString("checked"));

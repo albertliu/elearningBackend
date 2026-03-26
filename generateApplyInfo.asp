@@ -930,8 +930,12 @@
 		if($("#showDrop").checkbox("options").checked){
 			drop = 1;
 		}
+		let source = "";
+		if(checkRole("sniper")){
+			source = currUserName;
+		}
 		if($("#needResit").attr("checked")){ need = 1;}
-		$.get("diplomaControl.asp?op=getApplyListByBatch&refID=" + nodeID + "&drop=" + drop + "&fromID=" + $("#fromID").val() + "&host=" + $("#partner").val() + "&status=" + $("#s_status").val() + "&keyID=" + $("#s_resit").val() + "&needResit=" + need + "&wait=" + wait + "&upload=" + upload + "&uploadPhoto=" + uploadPhoto + "&times=" + (new Date().getTime()),function(data){
+		$.get("diplomaControl.asp?op=getApplyListByBatch&refID=" + nodeID + "&source=" + source + "&drop=" + drop + "&fromID=" + $("#fromID").val() + "&host=" + $("#partner").val() + "&status=" + $("#s_status").val() + "&keyID=" + $("#s_resit").val() + "&needResit=" + need + "&wait=" + wait + "&upload=" + upload + "&uploadPhoto=" + uploadPhoto + "&times=" + (new Date().getTime()),function(data){
 			//jAlert(unescape(data));
 			var ar = new Array();
 			ar = (unescape(data)).split("%%");
