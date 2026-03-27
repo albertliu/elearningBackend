@@ -1284,7 +1284,7 @@
 		$("#startDate").val(currDate);
 		$("#qty").val(0);
 		$("#planQty").val(0);
-		$("#address").val("黄兴路158号D103三楼");
+		$("#address").val("");
 		$("#notes").val("上海市杨浦区黄兴路158号D");
 		$("#host").val('znxf');
 	}
