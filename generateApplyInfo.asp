@@ -1239,14 +1239,14 @@
 				$("#btnArchive").show();
 			}
 			if(checkPermission("sendMsg") && currHost==""){
-				if(s==1){		//锁定后可以导入申报结果，发考试通知，上传成绩，发成绩通知，安排补考
+				if(s<2){		//锁定后可以导入申报结果，发考试通知，上传成绩，发成绩通知，安排补考
 					$("#sendMsgExam").show();
-				}
-				if(s==2){
-					//结束后什么都不能做
 					$("#sendMsgScore").show();
 					$("#sendMsgDiploma").show();
 				}
+			}
+			if(checkRole("adviser") && s < 2){
+				$("#save").show();
 			}
 			if(checkPermission("scoreUpload") && s == 1){
 				$("#doImportScore").show();

@@ -110,7 +110,7 @@
 		$("#btnAdd").hide();
 		$("#btnDel").hide();
 		$("#private").prop("disabled", true);
-		if(checkPermission("studentEdit") || checkRole("saler") || checkRole("adviser")){
+		if(checkPermission("studentService")){
 			$("#btnAdd").show();
 		}
 		if(checkRole("saler")){
