@@ -61,7 +61,7 @@
 				$("#home_certName").html(ar[3]);
 				$("#home_reexamine").html(ar[4]);
 				$("#home_startDate").html(ar[5].substring(0,10) + "&nbsp;至&nbsp;" + ar[6]);
-				// $("#dateEnd").html(ar[6]);
+				$("#dateEnd").html(ar[6]);
 				$("#classID").html(ar[2] + "&nbsp;&nbsp;[" + ar[0] + "]");
 				classID = ar[0];
 				courseName = ar[3];
@@ -506,13 +506,12 @@
 				<td align="center" height='55px;'>
 				<div>
 					<span style='font-size:1.15em;'>统计人签名</span>
-					<span><img id="signature_sum" src="" style="max-width:200px;max-height:50px;padding-left:10px;"></span>
 				</div>
 				</td>
 				<td align="center">日&nbsp;&nbsp;期</td>
 			</tr>
 			<tr>
-				<td align="center" height='55px;'>&nbsp;</td>
+				<td align="center" height='55px;'><img id="signature_sum" src="" style="max-width:200px;max-height:50px;padding-left:10px;"></td>
 				<td align="center"><p style='font-size:1em;' id="dateEnd"></p></td>
 			</tr>
 			<tr>

@@ -158,6 +158,16 @@
 				}
 			}
 		});
+		$("#btnStorage").click(function(){
+			jConfirm('确定将这个班级的档案存档吗?',"确认",function(r){
+				if(r){
+					$.post(uploadURL + "/public/postCommInfo", {proc:"setStorageClass", params:{kindID:"B", classID:$("#ID").val(), registerID:currUser}}, function(data){
+						alert("存档完成","信息提示");
+						getNodeInfo(nodeID);
+					});
+				}
+			});
+		});
 		$("#btnAutoSetClassSNo").click(function(){
 			if(confirm('确定要重新建立学号吗?')){
 				$.get("classControl.asp?op=autoSetClassSNo&nodeID=" + $("#ID").val() + "&times=" + (new Date().getTime()),function(data){
@@ -730,6 +740,8 @@
 				$("#courseID").val(ar[36]);
 				$("#checkDate").val(ar[55]);
 				$("#checkerName").val(ar[56]);
+				$("#storageDate").val(ar[59]);
+				$("#storagerName").val(ar[58]);
 				entryForm = ar[51];
 				reexamine = ar[52];
 				agencyID = ar[53];
@@ -1256,6 +1268,7 @@
 		$("#btnSetSource").hide();
 		$("#btnEvalution").hide();
 		$("#btnCheck").hide();
+		$("#btnStorage").hide();
 		// $("#className").prop("disabled",true);
 		$("#courseID").prop("disabled",true);
 		$("#item_btn1").hide();
@@ -1330,8 +1343,11 @@
 				$("#btnInvoiceGroup").show();
 				$("#btnInvoiceGroupCancel").show();
 			}
-			if(checkPermission("checkClass") && $("#archived").prop("checked")){
+			if(checkPermission("checkClass") && $("#archived").prop("checked") && $("#checkDate").val()==""){
 				$("#btnCheck").show();
+			}
+			if(checkPermission("storageClass") && $("#checkDate").val()>"" && $("#storageDate").val()==""){
+				$("#btnStorage").show();
 			}
 		}
 		if((checkPermission("studentAdd") || currHost>"") && s < 2){
@@ -1428,7 +1444,9 @@
 					<input class="readOnly" type="text" id="archiveDate" size="8" readOnly="true" />&nbsp;
 					审核<input class="readOnly" type="text" id="checkerName" size="6" readOnly="true" />&nbsp;
 					<input class="readOnly" type="text" id="checkDate" size="8" readOnly="true" />&nbsp;
-					<span id="studyOnline" style="margin-left:10px; color:blue;">在线学习</span>
+					<span id="studyOnline" style="margin-left:10px; color:blue;">在线学习</span>&nbsp;
+					存档<input class="readOnly" type="text" id="storagerName" size="6" readOnly="true" />&nbsp;
+					<input class="readOnly" type="text" id="storageDate" size="8" readOnly="true" />
 				</td>
 			</tr>
 			<tr>
@@ -1498,6 +1516,7 @@
   	<input class="button" type="button" id="open" value="开启" />&nbsp;&nbsp;
   	<input class="button" type="button" id="del" value="删除" />&nbsp;&nbsp;
   	<input class="button" type="button" id="btnCheck" value="审批" />&nbsp;&nbsp;
+	<input class="button" type="button" id="btnStorage" value="存档" />&nbsp;
 	<input class="button" type="button" id="doImportRef" value="石化预报名表" />
 	<input class="button" type="button" id="doImport" value="报名表导入" />&nbsp;&nbsp;
 	<input class="button" type="button" id="checkStudent" value="报名表核对" />

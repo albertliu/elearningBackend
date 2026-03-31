@@ -265,6 +265,16 @@
 				}
 			}
 		});
+		$("#btnStorage").click(function(){
+			jConfirm('确定将这个班级的档案存档吗?',"确认",function(r){
+				if(r){
+					$.post(uploadURL + "/public/postCommInfo", {proc:"setStorageClass", params:{kindID:"A", classID:$("#ID").val(), registerID:currUser}}, function(data){
+						alert("存档完成","信息提示");
+						getNodeInfo(nodeID);
+					});
+				}
+			});
+		});
 
 		$("#doApplyEnter").linkbutton({
 			iconCls:'icon-gear',
@@ -827,6 +837,8 @@
 				$("#notes").val(ar[52]);
 				$("#checkDate").val(ar[55]);
 				$("#checkerName").val(ar[56]);
+				$("#storageDate").val(ar[59]);
+				$("#storagerName").val(ar[58]);
 				if(ar[41]>""){
 					$("#schedule").html("<a>课程表</a>");
 				}
@@ -1197,6 +1209,7 @@
 		$("#btnSetSource").hide();
 		$("#generateEntryDoc1").hide();
 		$("#btnCheck").hide();
+		$("#btnStorage").hide();
 		if(currHost=="" && !checkRole("sniper")){
 			$("#item_btn1").show();
 			$("#item_btn2").show();
@@ -1272,8 +1285,11 @@
 				$("#btnInvoiceGroup").show();
 				$("#btnInvoiceGroupCancel").show();
 			}
-			if(checkPermission("checkClass") && $("#archived").prop("checked")){
+			if(checkPermission("checkClass") && $("#archived").prop("checked") && $("#checkDate").val()==""){
 				$("#btnCheck").show();
+			}
+			if(checkPermission("storageClass") && $("#checkDate").val()>"" && $("#storageDate").val()==""){
+				$("#btnStorage").show();
 			}
 		}
 	}
@@ -1391,7 +1407,9 @@
 					<input class="readOnly" type="text" id="archiverName" size="6" readOnly="true" />&nbsp;
 					<input class="readOnly" type="text" id="archiveDate" size="8" readOnly="true" />&nbsp;
 					审核<input class="readOnly" type="text" id="checkerName" size="6" readOnly="true" />&nbsp;
-					<input class="readOnly" type="text" id="checkDate" size="8" readOnly="true" />
+					<input class="readOnly" type="text" id="checkDate" size="8" readOnly="true" />&nbsp;
+					存档<input class="readOnly" type="text" id="storagerName" size="6" readOnly="true" />&nbsp;
+					<input class="readOnly" type="text" id="storageDate" size="8" readOnly="true" />
 				</td>
 			</tr>
 			<tr>
@@ -1432,7 +1450,8 @@
 		<input class="button" type="button" id="generateZip" value="生成归档压缩包" />&nbsp;
 		<input class="button" type="button" id="generatePhotoZip" value="生成照片压缩包" />&nbsp;
 		<input class="button" type="button" id="generateEntryZip" value="生成报名表压缩包" />&nbsp;
-  	<input class="button" type="button" id="btnCheck" value="审批" />&nbsp;
+		<input class="button" type="button" id="btnCheck" value="审批" />&nbsp;
+		<input class="button" type="button" id="btnStorage" value="存档" />&nbsp;
 		<input class="button" type="button" id="lock" value="锁定" />&nbsp;
 		<input class="button" type="button" id="close" value="结束" />&nbsp;
 		<input class="button" type="button" id="open" value="开启" />&nbsp;

@@ -56,6 +56,9 @@ if(op == "getClassList"){
 		if(archiveStatus==2){	//已审核
 			s = "checkDate>''";
 		}
+		if(archiveStatus==3){	//已存档
+			s = "storageDate>''";
+		}
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
@@ -129,6 +132,8 @@ if(op == "getClassList"){
 		result += "|" + rs("teacherName").value + "|" + rs("host").value + "|" + rs("transaction_id").value + "|" + rs("re").value + "|" + rs("reexamineName").value + "|" + rs("kindName").value + "|" + rs("qtyDiploma").value + "|" + rs("pre").value;
 		//44
 		result += "|" + rs("reexamine").value + "|" + rs("entryForm").value + "|" + rs("checkerID").value + "|" + rs("checkDate").value + "|" + rs("evalutionCount").value;
+		//49
+		result += "|" + rs("storagerID").value + "|" + rs("storagerName").value + "|" + rs("storageDate").value;
 		rs.MoveNext();
 	}
 /**/
@@ -158,6 +163,8 @@ if(op == "getNodeInfo"){
 		result += "|" + rs("signatureType").value + "|" + rs("signatureTypeName").value + "|" + rs("zip").value + "|" + rs("pzip").value + "|" + rs("ezip").value + "|" + rs("pre").value + "|" + rs("entryForm").value;
 		//52
 		result += "|" + rs("reexamine").value + "|" + rs("agencyID").value + "|" + rs("checkerID").value + "|" + rs("checkDate").value + "|" + rs("checkerName").value;
+		//57
+		result += "|" + rs("storagerID").value + "|" + rs("storagerName").value + "|" + rs("storageDate").value;
 		//execSQL(sql);
 	}
 	rs.Close();
@@ -173,6 +180,8 @@ if(op == "getNodeInfoArchive"){
 		result += "|" + rs("qty").value + "|" + rs("qtyReturn").value + "|" + rs("qtyExam").value + "|" + rs("qtyPass").value + "|" + rs("summary").value + "|" + rs("attendanceRate").value;
 		//14
 		result += "|" + rs("signature_adviser").value + "|" + rs("signature_checker").value + "|" + rs("checkerID").value + "|" + rs("checkDate").value + "|" + rs("checkNote").value;
+		//19
+		result += "|" + "|" + rs("archiverName").value + rs("archiveDate").value + "|" + rs("storagerID").value + "|" + rs("storagerName").value + "|" + rs("storageDate").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

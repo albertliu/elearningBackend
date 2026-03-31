@@ -126,7 +126,7 @@
 					arr.push("<td class='left'>" + ar1[11] + "</td>");
 					arr.push("<td class='left'>" + ar1[9] + "</td>");
 					arr.push("<td class='left'>" + ar1[29] + "</td>");
-					arr.push("<td class='left'>" + (ar1[47]>''?imgChk:(ar1[23]>''?imgChkGray:"&nbsp;")) + "</td>");	//归档
+					arr.push("<td class='left'>" + (ar1[49]>''?imgChk:(ar1[47]>''?imgChkPink:(ar1[23]>''?imgChkGray:"&nbsp;"))) + "</td>");	//归档
 					arr.push("<td class='left' title='已发出/已完成'>" + ar1[48] + "</td>");	//评议表数量
 					if(ar1[6]==0){
 						arr.push("<td class='center'>&nbsp;</td>");

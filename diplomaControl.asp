@@ -1012,6 +1012,9 @@ if(op == "getGenerateApplyList"){
 		if(archiveStatus==2){	//已审核
 			s = "checkDate>''";
 		}
+		if(archiveStatus==3){	//已存档
+			s = "storageDate>''";
+		}
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
@@ -1042,6 +1045,8 @@ if(op == "getGenerateApplyList"){
 		result += "|" + rs("diplomaTerm").value + "|" + rs("qtyCheck").value + "|" + rs("diplomaReady").value + "|" + rs("firstOfflineDate").value;
 		//33
 		result += "|" + rs("checkerID").value + "|" + rs("checkDate").value + "|" + rs("archiver").value + "|" + rs("archiveDate").value + "|" + rs("evalutionCount").value;
+		//38
+		result += "|" + rs("storagerID").value + "|" + rs("storageDate").value + "|" + rs("storagerName").value;
 		rs.MoveNext();
 	}
 	rs.Close();
@@ -1217,7 +1222,7 @@ if(op == "getGenerateApplyNodeInfo"){
 		//48
 		result += "|" + rs("archiveDate").value + "|" + rs("summary").value + "|" + rs("planID").value + "|" + rs("planQty").value + "|" + rs("notes").value + "|" + rs("endDate").value;
 		//54
-		result += "|" + rs("checkerID").value + "|" + rs("checkDate").value + "|" + rs("checkerName").value;
+		result += "|" + rs("checkerID").value + "|" + rs("checkDate").value + "|" + rs("checkerName").value + "|" + rs("storagerID").value + "|" + rs("storagerName").value + "|" + rs("storageDate").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
