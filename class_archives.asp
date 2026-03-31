@@ -84,6 +84,9 @@
 					$("#checkDate").html(ar[17]);
 				}
 				$("#checkNote").html(ar[18]);
+				if(ar[23]>""){
+					$("#storageDate").html(ar[22] + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + ar[23]);
+				}
 				x = ar[10];
 				if(x > 0 && ar[11] > 0){
 					x = (ar[11]*100/ar[10]).toFixed(2) + "&nbsp;%";
@@ -511,7 +514,7 @@
 				<td align="center">日&nbsp;&nbsp;期</td>
 			</tr>
 			<tr>
-				<td align="center" height='55px;'><img id="signature_sum" src="" style="max-width:200px;max-height:50px;padding-left:10px;"></td>
+				<td align="center" height='55px;'><img id="signature_sum" src="" style="max-width:200px;max-height:50px;padding-left:10px;" ></td>
 				<td align="center"><p style='font-size:1em;' id="dateEnd"></p></td>
 			</tr>
 			<tr>
@@ -544,6 +547,7 @@
 				</td>
 			</tr>
 			</table>
+			<div id="storageDate" style="font-size:1.15em; float:right;padding-right:50px;"></div>
 		</div>
 	</div>
 </div>
