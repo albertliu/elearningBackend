@@ -1444,9 +1444,9 @@
 					<input class="readOnly" type="text" id="archiveDate" size="8" readOnly="true" />&nbsp;
 					审核<input class="readOnly" type="text" id="checkerName" size="6" readOnly="true" />&nbsp;
 					<input class="readOnly" type="text" id="checkDate" size="8" readOnly="true" />&nbsp;
-					<span id="studyOnline" style="margin-left:10px; color:blue;">在线学习</span>&nbsp;
 					存档<input class="readOnly" type="text" id="storagerName" size="6" readOnly="true" />&nbsp;
 					<input class="readOnly" type="text" id="storageDate" size="8" readOnly="true" />
+					<span id="studyOnline" style="margin-left:10px; color:blue;">在线学习</span>&nbsp;
 				</td>
 			</tr>
 			<tr>
