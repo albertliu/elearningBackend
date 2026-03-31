@@ -85,7 +85,7 @@
 				}
 				$("#checkNote").html(ar[18]);
 				if(ar[23]>""){
-					$("#storageDate").html(ar[22] + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + ar[23]);
+					$("#storageDate").html("存档人：" + ar[22] + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + ar[23]);
 				}
 				x = ar[10];
 				if(x > 0 && ar[11] > 0){
@@ -547,7 +547,7 @@
 				</td>
 			</tr>
 			</table>
-			<div id="storageDate" style="font-size:1.15em; float:right;padding-right:50px;"></div>
+			<div id="storageDate" style="font-size:1.15em; float:right;padding-right:50px; margin-top:10px;"></div>
 		</div>
 	</div>
 </div>
