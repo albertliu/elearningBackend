@@ -181,7 +181,7 @@ if(op == "getNodeInfoArchive"){
 		//14
 		result += "|" + rs("signature_adviser").value + "|" + rs("signature_checker").value + "|" + rs("checkerID").value + "|" + rs("checkDate").value + "|" + rs("checkNote").value;
 		//19
-		result += "|" + rs("archiverName").value + rs("archiveDate").value + "|" + rs("storagerID").value + "|" + rs("storagerName").value + "|" + rs("storageDate").value;
+		result += "|" + rs("archiverName").value + "|" + rs("archiveDate").value + "|" + rs("storagerID").value + "|" + rs("storagerName").value + "|" + rs("storageDate").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
