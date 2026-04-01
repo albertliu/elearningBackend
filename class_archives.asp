@@ -61,7 +61,7 @@
 				$("#home_certName").html(ar[3]);
 				$("#home_reexamine").html(ar[4]);
 				$("#home_startDate").html(ar[5].substring(0,10) + "&nbsp;至&nbsp;" + ar[6]);
-				$("#dateEnd").html(ar[6]);
+				$("#archiveDate").html(ar[20]);
 				$("#classID").html(ar[2] + "&nbsp;&nbsp;[" + ar[0] + "]");
 				classID = ar[0];
 				courseName = ar[3];
@@ -515,7 +515,7 @@
 			</tr>
 			<tr>
 				<td align="center" height='55px;'><img id="signature_sum" src="" style="max-width:200px;max-height:50px;padding-left:10px;" ></td>
-				<td align="center"><p style='font-size:1em;' id="dateEnd"></p></td>
+				<td align="center"><p style='font-size:1em;' id="archiveDate"></p></td>
 			</tr>
 			<tr>
 				<td align="center" class='table_resume_title' width='100%' height='55px;' colspan="6"><h4 style='font-size:1em;'>班级工作小结</h4></td>
