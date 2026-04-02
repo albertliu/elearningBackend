@@ -256,7 +256,7 @@
 		});
 		$("#btnCheck").click(function(){
 			if(confirm('确定审核这个班级的档案吗?')){
-				var x = prompt("请输入审核意见：","同意");
+				var x = prompt("请输入审核意见：","情况属实");
 				if(x && x>""){
 					$.post(uploadURL + "/public/postCommInfo", {proc:"setCheckClass", params:{kindID:"A", classID:$("#ID").val(), checkNote:x, registerID:currUser}}, function(data){
 						alert("审核完成","信息提示");
