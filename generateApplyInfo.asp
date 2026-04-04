@@ -40,6 +40,7 @@
 	var imgFile = "<img src='images/attachment.png' style='width:15px;'>";
 	var imgFileRed = "<img src='images/attachmentRed.png' style='width:15px;'>";
 	var timer1 = null;
+	let allowUpload = false;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";		//
@@ -926,6 +927,8 @@
 					$("#ezip").html("<a href='/users" + ar[35] + "?times=" + (new Date().getTime()) + "' target='_blank'>报名表压缩包</a>");
 				}
 				//getDownloadFile("generateDiplomaID");
+				// 未存档的可以添加删除附件
+				allowUpload = (checkRole("adviser") && $("#storageDate").val()==""? true:false);
 				nodeID = ar[0];
 				setButton();
 				getApplyList();
@@ -939,15 +942,13 @@
 
 	function getFileList(){
 		$.post(uploadURL + "/public/postCommInfo", {proc:"getAttachmentList", params:{kindID:"A", classID:$("#ID").val()}}, function(data){
-			var s = $("#status").val();
-			let isAdmin = (checkRole("adviser") && s < 2? true:false);
 			arr = [];
 			if (data.length === 0) {
 				$("#fileList").html("无附件");
 				return;
 			}
 			$.each(data,function(iNum,val){
-				arr.push("<a href='javascript:showImage(\"" + val["filename"] + "\",1,3,0,0);' style='padding-left:10px;'>" + val["title"] + "</a>" + (isAdmin?"<a href='javascript:delAttachment(" + val["ID"] + ");' style='padding-left:3px;color:red;'>x</a>":""));
+				arr.push("<a href='javascript:showImage(\"" + val["filename"] + "\",1,3,0,0);' style='padding-left:10px;'>" + val["title"] + "</a>" + (allowUpload?"<a href='javascript:delAttachment(" + val["ID"] + ");' style='padding-left:3px;color:red;'>x</a>":""));
 			});
 			$("#fileList").html(arr.join(""));
  		});
@@ -1294,6 +1295,7 @@
 		$("#generateEntryDoc1").hide();
 		$("#btnCheck").hide();
 		$("#btnStorage").hide();
+		$("#btnUpload").hide();
 		if(currHost=="" && !checkRole("sniper")){
 			$("#item_btn1").show();
 			$("#item_btn2").show();
@@ -1374,6 +1376,9 @@
 			}
 			if(checkPermission("storageClass") && $("#checkDate").val()>"" && $("#storageDate").val()==""){
 				$("#btnStorage").show();
+			}
+			if(allowUpload){
+				$("#btnUpload").show();
 			}
 		}
 	}

@@ -41,6 +41,7 @@
 	let entryForm = "";
 	let reexamine = 0;
 	let agencyID = 0;
+	let allowUpload = false;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";
@@ -829,7 +830,8 @@
 				}
 				getStudentCourseList();
 				$("#teacher").val(ar[34]);
-				//getDownloadFile("classID");
+				// 未存档的可以添加删除附件
+				allowUpload = (checkRole("adviser") && $("#storageDate").val()==""? true:false);
 				getFeedbackList();
 				getFileList();
 				setButton();
@@ -1300,15 +1302,13 @@
 
 	function getFileList(){
 		$.post(uploadURL + "/public/postCommInfo", {proc:"getAttachmentList", params:{kindID:"B", classID:$("#ID").val()}}, function(data){
-			var s = $("#status").val();
-			let isAdmin = (checkRole("adviser") && s < 2? true:false);
 			arr = [];
 			if (data.length === 0) {
 				$("#fileList").html("无附件");
 				return;
 			}
 			$.each(data,function(iNum,val){
-				arr.push("<a href='javascript:showImage(\"" + val["filename"] + "\",1,3,0,0);' style='padding-left:10px;'>" + val["title"] + "</a>" + (isAdmin?"<a href='javascript:delAttachment(" + val["ID"] + ");' style='padding-left:3px;color:red;'>x</a>":""));
+				arr.push("<a href='javascript:showImage(\"" + val["filename"] + "\",1,3,0,0);' style='padding-left:10px;'>" + val["title"] + "</a>" + (allowUpload?"<a href='javascript:delAttachment(" + val["ID"] + ");' style='padding-left:3px;color:red;'>x</a>":""));
 			});
 			$("#fileList").html(arr.join(""));
  		});
@@ -1354,6 +1354,7 @@
 		$("#btnEvalution").hide();
 		$("#btnCheck").hide();
 		$("#btnStorage").hide();
+		$("#btnUpload").hide();
 		// $("#className").prop("disabled",true);
 		$("#courseID").prop("disabled",true);
 		$("#item_btn1").hide();
@@ -1433,6 +1434,9 @@
 			}
 			if(checkPermission("storageClass") && $("#checkDate").val()>"" && $("#storageDate").val()==""){
 				$("#btnStorage").show();
+			}
+			if(allowUpload){
+				$("#btnUpload").show();
 			}
 		}
 		if((checkPermission("studentAdd") || currHost>"") && s < 2){
