@@ -206,6 +206,7 @@
 						});
 					}
 					arr2.push("</table>");
+					arr2.push("<div style='page-break-after:always'>&nbsp;</div>");
 					$("#studentCover").html(arr2.join(""));
 					arr2 = [];
 
@@ -371,8 +372,21 @@
 									arr3.push('<div style="page-break-after:always">&nbsp;</div>')
 								}
 							});
+							arr3.push("<div style='page-break-after:always'>&nbsp;</div>");
 						}
 						$("#evalutionCover").html(arr3.join(""));
+					});
+
+					// 附件
+					$.post(uploadURL + "/public/postCommInfo", {proc:"getAttachmentList", params:{kindID:kindID, classID:nodeID}}, function(data4){
+						let arr4 = [];
+						if(data4.length > 0){
+							$.each(data4,function(iNum,val){
+								arr4.push("<div style='text-align:center;'><img src='/users" + val["filename"] + "?times=" + (new Date().getTime()) + "' value='' style='max-width:800px;border:none;' /></div>");
+							});
+							arr4.push("<div style='page-break-after:always'>&nbsp;</div>");
+						}
+						$("#attachmentCover").html(arr4.join(""));
 					});
 
 					if(keyID==1){
@@ -467,8 +481,6 @@
 			<div style='margin: 12px;text-align:left; width:95%;'><span style='font-size:1.2em; padding-left:10px;'>培训日期：</span><span style='font-size:1.2em;' id='date_studentList'></span><span style='font-size:1.2em; padding-left:100px;'>考试日期：</span></div>
 			<div id="studentCover" style="float:center; margin:15px; font-size:1.2em;"></div>
 
-			<div style="page-break-after:always">&nbsp;</div>
-
 			<div style='text-align:center; margin:10px 0 0 0;'><h3 style='font-size:1.8em;' id='title_onlineList'>在线学习课时统计</h3></div>
 			<div id="onlineCover" style="float:center; margin:15px; font-size:1.2em;"></div>
 
@@ -480,7 +492,7 @@
 			
 			<div style="page-break-after:always">&nbsp;</div>
 			<div id="evalutionCover"></div>
-			<div style="page-break-after:always">&nbsp;</div>
+			<div id="attachmentCover"></div>
 
 			<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>培训结果统计表</h3></div>
 			<div style='margin: 12px;text-align:right; width:95%;'><span style='font-size:1.2em;'>班级编号：</span><span style='font-size:1.2em;' id="classID"></span></div>

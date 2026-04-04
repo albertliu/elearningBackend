@@ -683,6 +683,61 @@
 		//var div = document.getElementById('feedback_list');
 		//div.scrollTop = div.scrollHeight; 
 
+		$('#btnUpload').click(function() {
+			$('#avatar').val('');
+			$('#avatar').click();
+		});
+
+		$('#avatar').change(function() {
+			if (this.files.length === 0) {
+				return;
+			}
+			const file = this.files[0];
+			if (!file.type.startsWith('image/')) {
+				$.messager.alert("提示","请选择图片文件","info");
+				return;
+			}
+			selectedFile = file;
+
+			// 使用prompt弹窗填写说明文字，默认值是文件名去后缀
+			const defaultDesc = stripExtension(file.name);
+			const desc = prompt('请输入说明：', defaultDesc);
+
+			if (desc === null) {
+				// 用户取消，清空选择，取消上传
+				selectedFile = null;
+				$('#avatar').val('');
+				return;
+			}
+			if (desc.trim() === '') {
+				$.messager.alert("提示","说明文字不能为空","info");
+				selectedFile = null;
+			$('#avatar').val('');
+				return;
+			}
+
+			const formData = new FormData();
+			formData.append('avatar', selectedFile);
+			formData.append('description', desc.trim());
+
+			$.ajax({
+				url: uploadURL + "/outfiles/uploadSingle?upID=classArchive&username=" + $("#ID").val() + "&refID=B&keyID=&currUser=" + currUser + "&host=" + currHost,
+				type: 'POST',
+				data: formData,
+				processData: false,
+				contentType: false,
+				success: (res) => {
+					$.messager.alert("提示","上传成功","info");
+					selectedFile = null;
+					getFileList();
+				},
+				error: (xhr) => {
+					$.messager.alert("提示","上传失败" + xhr.responseJSON?.error || xhr.statusText,"info");
+				}
+			});
+		});
+
+
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
 
@@ -776,6 +831,7 @@
 				$("#teacher").val(ar[34]);
 				//getDownloadFile("classID");
 				getFeedbackList();
+				getFileList();
 				setButton();
 			}else{
 				alert("该信息未找到！","信息提示");
@@ -1242,6 +1298,35 @@
 		});
 	}
 
+	function getFileList(){
+		$.post(uploadURL + "/public/postCommInfo", {proc:"getAttachmentList", params:{kindID:"B", classID:$("#ID").val()}}, function(data){
+			var s = $("#status").val();
+			let isAdmin = (checkRole("adviser") && s < 2? true:false);
+			arr = [];
+			if (data.length === 0) {
+				$("#fileList").html("无附件");
+				return;
+			}
+			$.each(data,function(iNum,val){
+				arr.push("<a href='javascript:showImage(\"" + val["filename"] + "\",1,3,0,0);' style='padding-left:10px;'>" + val["title"] + "</a>" + (isAdmin?"<a href='javascript:delAttachment(" + val["ID"] + ");' style='padding-left:3px;color:red;'>x</a>":""));
+			});
+			$("#fileList").html(arr.join(""));
+ 		});
+	}
+
+	function delAttachment(ID){
+		if(confirm("确定要删除这个附件吗？")){
+			$.post(uploadURL + "/public/postCommInfo", {proc:"delAttachment", params:{ID:ID, registerID:currUser}} ,function(data){
+				if(data.length>0){
+					alert("已删除文件");
+					getFileList();
+				}else{
+					alert("操作失败。");
+				}
+			});
+		}
+	}
+
 	function setButton(){
 		var s = $("#status").val();
 		$("#save").hide();
@@ -1306,7 +1391,7 @@
 					$("#btnSchedule").show();
 					$("#save").show();
 				}
-				if((checkPermission("classAdd")) && currHost==""){
+				if((checkPermission("adviser")) && currHost==""){
 					$("#archived").prop("disabled",false);
 					$("#save").show();
 				}
@@ -1467,6 +1552,14 @@
 					<div class="comm" align="center"><input class="button" type="button" id="btnSummary" value="..." /></div>
 				</td>
 				<td colspan="5"><textarea id="summary" style="padding:2px;width:100%;" rows="8"></textarea></td>
+			</tr>
+			<tr>
+				<td align="right">图片附件</td>
+				<td colspan="5"><div>
+					<span><input type="file" id="avatar" name="avatar" accept="image/*" style="display:none;" /></span>
+					<span><input class="button" type="button" id="btnUpload" value="上传" /></span>
+					<span id="fileList"></span>
+				</div></td>
 			</tr>
 			<tr>
 				<td align="right">开课通知</td>

@@ -3518,6 +3518,11 @@ function isAlphaDigit(str){
   }
 }
 
+//去除文件名后缀
+function stripExtension(filename) {
+	return filename.replace(/\.[^/.]+$/, "");
+}
+
 //检查字符串是否只包含特定内容
 //type: 0 数字  1 字母  2 数字和字母  3 数字字母和横线  4 数字字母和下划线  5 Email字符  6 数字和小数点  7 数字和小数点和负号
 function check_str(type,pStr) 
