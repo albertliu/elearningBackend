@@ -381,6 +381,7 @@
 					$.post(uploadURL + "/public/postCommInfo", {proc:"getAttachmentList", params:{kindID:kindID, classID:nodeID}}, function(data4){
 						let arr4 = [];
 						if(data4.length > 0){
+							arr4.push("<div style='text-align:center; margin-bottom:10px;'><h3 style='font-size:1.8em;'>附件</h3></div>");
 							$.each(data4,function(iNum,val){
 								arr4.push("<div style='text-align:center;'><img src='/users" + val["filename"] + "?times=" + (new Date().getTime()) + "' value='' style='max-width:800px;border:none;' /></div>");
 							});
