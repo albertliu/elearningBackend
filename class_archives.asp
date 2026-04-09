@@ -91,14 +91,14 @@
 				if(x > 0 && ar[11] > 0){
 					x = (ar[11]*100/ar[10]).toFixed(2) + "&nbsp;%";
 				}else{
-					x = "%";
+					x = "0&nbsp;%";
 				}
 				$("#pass_rate_exam").html(x);
 				x = qty;
 				if(x > 0 && ar[11] > 0){
 					x = (ar[11]*100/qty).toFixed(2) + "&nbsp;%";
 				}else{
-					x = "%";
+					x = "0&nbsp;%";
 				}
 				$("#pass_rate_training").html(x);
 
