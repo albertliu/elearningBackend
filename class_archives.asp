@@ -68,10 +68,10 @@
 				qty = ar[8] - ar[9];
 				$("#qty").html(qty);
 				$("#summary").html(ar[12].replace(/\n/g,"<br/>"));
-				$("#qtyExam").html(nullNoDisp(ar[10]));
-				$("#qtyPass").html(nullNoDisp(ar[11]));
-				$("#attendanceRate").html(nullNoDisp(ar[13]) + '&nbsp;%');
-				$("#home_transaction_id").html(nullNoDisp(ar[2]));
+				$("#qtyExam").html(ar[10]);
+				$("#qtyPass").html(ar[11]);
+				$("#attendanceRate").html(ar[13] + '&nbsp;%');
+				$("#home_transaction_id").html(ar[2]);
 				sign = ar[14];
 				if(sign>""){
 					$("#signature_adviser").attr("src","/users" + sign + "?times=" + (new Date().getTime()));
