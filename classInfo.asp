@@ -1392,7 +1392,7 @@
 					$("#btnSchedule").show();
 					$("#save").show();
 				}
-				if((checkPermission("adviser")) && currHost==""){
+				if((checkRole("adviser")) && currHost==""){
 					$("#archived").prop("disabled",false);
 					$("#save").show();
 				}
