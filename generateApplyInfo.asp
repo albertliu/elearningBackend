@@ -1115,7 +1115,7 @@
 						arr.push("<td class='left'>" + ar1[39] + "</td>");
 						photo_type = ar1[34].substr(ar1[34].indexOf("."));
 						photo_size = ar1[36];
-						if(photo_size > 99 || (photo_type !== ".jpg" && photo_type !== ".jpeg")){	//根据照片类型或文件大小，显示不同背景颜色
+						if(photo_size > 99 || photo_size ==0 || (photo_type !== ".jpg" && photo_type !== ".jpeg")){	//根据照片类型或文件大小，显示不同背景颜色
 							h = " style='background-color:#FFFFAA;'";
 						}else{
 							h = "";
