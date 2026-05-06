@@ -98,10 +98,10 @@
 	}
 
 	function getRptSalesDetailList(sales, k, mark){
-		if(sales>""){
+		// if(sales>""){
 			_rptSales_sales = sales;
 			_rptSales_kind = k;
-		}
+		// }
 		$.getJSON(uploadURL + "/public/getRptDetailList?op=sales&sales=" + _rptSales_sales + "&mark=" + mark + "&host=znxf&kind=" + _rptSales_kind + "&startDate=" + $("#rptSalesStartDate").val() + "&endDate=" + $("#rptSalesEndDate").val(),function(data){
 			// jAlert(data);
 			if(data==""){
