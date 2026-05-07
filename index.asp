@@ -208,7 +208,20 @@
 			});*/
 			// showSignatureInfo(33612);
 			// window.open("test_pay.asp", "_blank");
-			alert("排尔哈提�阿卜力孜" + "排尔哈提•阿卜力孜" + "排尔哈提�阿卜力孜".replace("�","•"))
+			jConfirm("确定通知这些人复训吗？","确认",function(r){
+				if(r){
+					var x = prompt("请输入标识号：","");
+					if(x && x>""){
+						$.post(uploadURL + "/public/send_message_review_alert",{SMS:1, batchID: x, registerID: currUser} ,function(data){
+							if(data["re"]>0){
+								jAlert(data["re"] + "份通知发送成功。");
+							}else{
+								jAlert("没有可供处理的数据。");
+							}
+						});
+					}
+				}
+			});
 		});
 		
 		window.setInterval(function () {
