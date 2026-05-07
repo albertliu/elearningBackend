@@ -817,7 +817,7 @@
 			//$("#btnEntryform").show();
 			//$("#btnFiremanMaterials").show();
 			$("#btnPrint").show();
-			if(checkPermission("salesChange") && $("#fromID").val() != "public."){
+			if(checkPermission("salesChange")){
 				$("#fromID").prop("disabled",false);
 			}
 			let certID = $("#certID").val();
