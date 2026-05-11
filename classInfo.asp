@@ -446,6 +446,22 @@
 				});
 			}
 		});
+		
+		$("#btnPriceChange").click(function(){
+			getSelCart("visitstockchk");
+			if(selCount==0){
+				jAlert("请选择要操作的名单。");
+				return false;
+			}
+			if(confirm("确定要更改这" + selCount + "个学员的价格吗？")){
+				var x = prompt("请输入删除原因：","");
+				if(x && x>""){
+					$.post(uploadURL + "/public/postCommInfo", {proc:"setClassPrice", params:{price: x, selList: selList, classID: $("#classID").val(), mark:"B", registerID:currUser}}, function(data){
+						jAlert("操作成功","信息提示");
+					});
+				}
+			}
+		});
 
 		$("#btnCloseStudentCourse").click(function(){
 			getSelCart("visitstockchk");
@@ -1344,6 +1360,7 @@
 		$("#generateEntryZip").hide();
 		$("#btnClassChange").hide();
 		$("#btnPaynowChange").hide();
+		$("#btnPriceChange").hide();
 		$("#btnRebuildStudentLesson").hide();
 		$("#btnAutoSetClassSNo").hide();
 		$("#btnInvoiceGroup").hide();
@@ -1382,6 +1399,7 @@
 					$("#generateEntryZip").show();
 					$("#btnClassChange").show();
 					$("#btnPaynowChange").show();
+					$("#btnPriceChange").show();
 					$("#btnClassCall").show();
 				}
 				if(checkPermission("teacherAdd") && s < 2){
@@ -1420,6 +1438,7 @@
 			if((checkPermission("studentAdd") || checkRole("adviser")) && s < 2){
 				$("#btnClassChange").show();
 				$("#btnPaynowChange").show();
+				$("#btnPriceChange").show();
 				$("#doImport").show();
 				$("#btnCloseStudentCourse").show();
 				$("#btnSetSource").show();
@@ -1629,6 +1648,7 @@
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnSel" value="全选/取消" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassChange" value="更换班级" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnPaynowChange" value="更换支付" /></span>
+			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnPriceChange" value="修改价格" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassCall" value="开课通知" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassAlert" value="进度提醒" /></span>
 			<span>&nbsp;&nbsp;<input class="button" type="button" id="btnClassExamDeny" value="不考试通知" /></span>
