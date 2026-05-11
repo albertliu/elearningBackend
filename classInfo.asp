@@ -454,7 +454,7 @@
 				return false;
 			}
 			if(confirm("确定要更改这" + selCount + "个学员的价格吗？")){
-				var x = prompt("请输入删除原因：","");
+				var x = prompt("请输入收费价格：","");
 				if(x && x>""){
 					$.post(uploadURL + "/public/postCommInfo", {proc:"setClassPrice", params:{price: x, selList: selList, classID: $("#classID").val(), mark:"B", registerID:currUser}}, function(data){
 						jAlert("操作成功","信息提示");
