@@ -1022,7 +1022,7 @@
 							if(ar1[87]==3){h=ar1[88]}
 						}
 						if(agencyID == 6){
-							h = ar1[88];
+							h = ar1[88].replace("未考","");
 						}
 						arr.push("<td class='left'" + (fire==1 && (ar1[87]==2 || ar1[87]==3)?" style='background-color:#FFFFAA;'":"") + ">" + (fire==0?"<a href='javascript:showStudentExamPaper(" + ar1[0] + ",\"" + ar1[2] + "\");'>":"") + nullNoDisp(h) + (fire==0?"</a>":"") + "</td>");
 						if(ar1[64]>""){
