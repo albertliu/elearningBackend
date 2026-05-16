@@ -212,6 +212,15 @@
 			showLoadFile("student_social",$("#username").val(),"student",$("#host").val());
 			getNodeInfo(nodeID,refID);
 		});
+		$("#del_img_photo").click(function(){
+			delStudentMaterial("student_photo");
+		});
+		$("#del_img_cardA").click(function(){
+			delStudentMaterial("student_IDcardA");
+		});
+		$("#del_img_cardB").click(function(){
+			delStudentMaterial("student_IDcardB");
+		});
 		$("#del_img_education").click(function(){
 			delStudentMaterial("student_education");
 		});
@@ -377,10 +386,10 @@
 				//$("#upload1").html("<a href='javascript:showLoadFile(\"student_education\",\"" + ar[1] + "\",\"student\",\"\");' style='padding:3px;'>上传</a>");
 				//<a href='/users" + ar[21] + "' target='_blank'></a>
 				arr = [];
-				$("[tag='pulus']").hide();
+				$("[tag='plus']").hide();
 				$("[tag='minus']").hide();
 				if(checkPermission("photo_overwrite")){
-					$("[tag='pulus']").show();
+					$("[tag='plus']").show();
 				}
 				if(checkPermission("photo_delete")){
 					$("[tag='minus']").show();
