@@ -388,11 +388,11 @@
 				arr = [];
 				$("[tag='plus']").hide();
 				$("[tag='minus']").hide();
-				if(checkPermission("photo_overwrite")){
-					$("[tag='plus']").show();
-				}
 				if(checkPermission("photo_delete")){
 					$("[tag='minus']").show();
+				}
+				if(checkPermission("photo_overwrite")){
+					$("[tag='plus']").show();
 				}
 				if(ar[21] > ""){
 					$("#img_photo").attr("src","/users" + ar[21] + "?times=" + (new Date().getTime()));
@@ -686,7 +686,6 @@
 		$("#btnUnitTaxConfirm").hide();
 		$("#enter").hide();
 		$("#username").prop("disabled",true);
-		$("*[tag='plus'").hide();
 		$("#sex").prop("disabled",true);
 		$("#birthday").prop("disabled",true);
 		$("#scanPhoto").checkbox({readonly:true});
