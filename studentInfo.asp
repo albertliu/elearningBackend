@@ -377,6 +377,14 @@
 				//$("#upload1").html("<a href='javascript:showLoadFile(\"student_education\",\"" + ar[1] + "\",\"student\",\"\");' style='padding:3px;'>上传</a>");
 				//<a href='/users" + ar[21] + "' target='_blank'></a>
 				arr = [];
+				$("[tag='pulus']").hide();
+				$("[tag='minus']").hide();
+				if(checkPermission("photo_overwrite")){
+					$("[tag='pulus']").show();
+				}
+				if(checkPermission("photo_delete")){
+					$("[tag='minus']").show();
+				}
 				if(ar[21] > ""){
 					$("#img_photo").attr("src","/users" + ar[21] + "?times=" + (new Date().getTime()));
 					$("#img_photo").attr("value","/users" + ar[21] + "?times=" + (new Date().getTime()));
@@ -384,6 +392,9 @@
 				}else{
 					$("#img_photo").attr("src","images/blank_photo.png" + "?times=" + (new Date().getTime()));
 					arr.push("," + "photo");
+					if(checkPermission("studentPhoto")){
+						$("#add_img_photo").show();
+					}
 					hasPhoto = 0;
 				}
 				if(ar[22] > ""){
@@ -392,6 +403,9 @@
 				}else{
 					$("#img_cardA").attr("src","images/blank_cardA.png" + "?times=" + (new Date().getTime()));
 					arr.push("," + "cardA");
+					if(checkPermission("studentPhoto")){
+						$("#add_img_cardA").show();
+					}
 				}
 				if(ar[23] > ""){
 					$("#img_cardB").attr("src","/users" + ar[23] + "?times=" + (new Date().getTime()));
@@ -399,42 +413,63 @@
 				}else{
 					$("#img_cardB").attr("src","images/blank_cardB.png" + "?times=" + (new Date().getTime()));
 					arr.push("," + "cardB");
+					if(checkPermission("studentPhoto")){
+						$("#add_img_cardB").show();
+					}
 				}
 				if(ar[24] > ""){
 					$("#img_education").attr("src","/users" + ar[24] + "?times=" + (new Date().getTime()));
 					$("#img_education").attr("value","/users" + ar[24] + "?times=" + (new Date().getTime()));
 				}else{
 					$("#img_education").attr("src","images/blank_education.png" + "?times=" + (new Date().getTime()));
+					if(checkPermission("studentPhoto")){
+						$("#add_img_education").show();
+					}
 				}
 				if(ar[43] > ""){
 					$("#img_CHESICC").attr("src","/users" + ar[43] + "?times=" + (new Date().getTime()));
 					$("#img_CHESICC").attr("value","/users" + ar[43] + "?times=" + (new Date().getTime()));
 				}else{
 					$("#img_CHESICC").attr("src","images/blank_CHESICC.png" + "?times=" + (new Date().getTime()));
+					if(checkPermission("studentPhoto")){
+						$("#add_img_CHESICC").show();
+					}
 				}
 				if(ar[44] > ""){
 					$("#img_employment").attr("src","/users" + ar[44] + "?times=" + (new Date().getTime()));
 					$("#img_employment").attr("value","/users" + ar[44] + "?times=" + (new Date().getTime()));
 				}else{
 					$("#img_employment").attr("src","images/blank_employment.png" + "?times=" + (new Date().getTime()));
+					if(checkPermission("studentPhoto")){
+						$("#add_img_employment").show();
+					}
 				}
 				if(ar[45] > ""){
 					$("#img_jobCertificate").attr("src","/users" + ar[45] + "?times=" + (new Date().getTime()));
 					$("#img_jobCertificate").attr("value","/users" + ar[45] + "?times=" + (new Date().getTime()));
 				}else{
 					$("#img_jobCertificate").attr("src","images/blank_jobCertificate.png" + "?times=" + (new Date().getTime()));
+					if(checkPermission("studentPhoto")){
+						$("#add_img_jobCertificate").show();
+					}
 				}
 				if(ar[50] > ""){
 					$("#img_promise").attr("src","/users" + ar[50] + "?times=" + (new Date().getTime()));
 					$("#img_promise").attr("value","/users" + ar[50] + "?times=" + (new Date().getTime()));
 				}else{
 					$("#img_promise").attr("src","images/blank_promise.png" + "?times=" + (new Date().getTime()));
+					if(checkPermission("studentPhoto")){
+						$("#add_img_promise").show();
+					}
 				}
 				if(ar[51] > ""){
 					$("#img_social").attr("src","/users" + ar[51] + "?times=" + (new Date().getTime()));
 					$("#img_social").attr("value","/users" + ar[51] + "?times=" + (new Date().getTime()));
 				}else{
 					$("#img_social").attr("src","images/blank_social.png" + "?times=" + (new Date().getTime()));
+					if(checkPermission("studentPhoto")){
+						$("#add_img_social").show();
+					}
 				}
 				//$("#photo").html(c);
 				//getDownloadFile("studentID");
@@ -651,7 +686,6 @@
 		}
 		if(op==1){
 			$("#save").show();
-			$("#add_img_education").hide();
 			$("#username").prop("disabled",false);
 			// $("#Tai").prop("disabled",false);
 			setEmpty();
@@ -671,10 +705,6 @@
 			if(checkPermission("studentEdit")){
 				$("#save").show();
 				$("#reset").show();
-			}
-			if(checkPermission("studentPhoto")){
-				//$("#upload1").show();
-				$("*[tag='plus'").show();
 			}
 			if(checkPermission("studentDel")){
 				$("#close").show();
@@ -1169,6 +1199,7 @@
 		<tr>
 			<td align="right" style="width:15%;">
 				<img id="add_img_photo" src="images/plus0.png" tag="plus" />
+				<img id="del_img_photo" src="images/minus.png" tag="minus" />
 				<div style="padding-top:5px;"><input class="easyui-checkbox" id="scanPhoto" name="scanPhoto" />识</div>
 			</td>
 			<td id="td_img_photo" align="center" style="width:85%;" title="照片">
@@ -1176,13 +1207,19 @@
 			</td>
 		</tr>
 		<tr>
-			<td align="right" style="width:15%;"><img id="add_img_cardA" src="images/plus0.png" tag="plus" /></td>
+			<td align="right" style="width:15%;">
+				<img id="add_img_cardA" src="images/plus0.png" tag="plus" />
+				<img id="del_img_cardA" src="images/minus.png" tag="minus" />
+			</td>
 			<td id="td_img_cardA" style="width:85%;" title="身份证正面">
 				<img id="img_cardA" tag="student_IDcardA" src="" value="" style='width:150px;border:none;' />
 			</td>
 		</tr>
 		<tr>
-			<td align="right" style="width:15%;"><img id="add_img_cardB" src="images/plus0.png" tag="plus" /></td>
+			<td align="right" style="width:15%;">
+				<img id="add_img_cardB" src="images/plus0.png" tag="plus" />
+				<img id="del_img_cardB" src="images/minus.png" tag="minus" />
+			</td>
 			<td id="td_img_cardB" style="width:85%;" title="身份证背面">
 				<img id="img_cardB" tag="student_IDcardB" src="" value="" style='width:150px;border:none;' />
 			</td>
