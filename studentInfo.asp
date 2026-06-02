@@ -285,18 +285,40 @@
 				window.open($("#img_social").attr("value"));
 			}
 		});
+
 		$("#kindID").change(function(){
 			setDeptList($("#companyID").val(),1,$("#kindID").val());
 			$("#dept2").empty();
 			setDeptList($("#dept1").val(),2,$("#kindID").val());
 		});
+
 		$("#companyID").change(function(){
 			setZNXF();
 			setDeptList($("#companyID").val(),1,$("#kindID").val());
 		});
+
 		$("#dept1").change(function(){
 			setDeptList($("#dept1").val(),2,$("#kindID").val());
 		});
+
+		$("#scanPhoto").checkbox({
+			onChange: function(checked){
+				let lock = "解锁";
+				let scan = 0;
+				if(checked){
+					lock = "锁定";
+					scan = 1;
+				}
+				$.messager.confirm('确认对话框', '确定要' + lock + '照片吗?', function(r) {
+					if(r){
+						$.post(uploadURL + "/public/postCommInfo", {proc:"setPhotoLock", params:{username:$("#username").val(), scan:scan, registerID:currUser}}, function(data){
+							$.messager.alert("提示","操作成功。","info");
+						});
+					}
+				});
+			}
+		});
+
 		if(op==1){
 			setButton();
 			if($("#companyID").val()>0){
@@ -711,6 +733,7 @@
 				$("#add").show();
 			}
 			if(checkPermission("studentEdit")){
+				$("#scanPhoto").checkbox({readonly:false});
 				$("#save").show();
 				$("#reset").show();
 			}
@@ -1208,7 +1231,7 @@
 			<td align="right" style="width:15%;">
 				<img id="add_img_photo" src="images/plus0.png" tag="plus" />
 				<img id="del_img_photo" src="images/minus.png" tag="minus" />
-				<div style="padding-top:5px;"><input class="easyui-checkbox" id="scanPhoto" name="scanPhoto" />识</div>
+				<div style="padding-top:5px;"><input class="easyui-checkbox" id="scanPhoto" name="scanPhoto" />锁</div>
 			</td>
 			<td id="td_img_photo" align="center" style="width:85%;" title="照片">
 				<img id="img_photo" tag="student_photo" src="" value="" style='width:100px;border:none;' />
