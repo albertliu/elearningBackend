@@ -91,7 +91,7 @@
 					arr.push("<td>" + i + "</td>");
 					arr.push("<td align='left'>" + val["name"] + "</td>");
 					arr.push("<td align='center'>" + val["pOffline"] + "</td>");
-					arr.push("<td align='left'><a href='javascript:showCompletionList(" + val["enterID"] + ",0,0,0);'>" + val["completion"] + "</a></td>");
+					arr.push("<td align='left' title='标准/辅导'><a href='javascript:showCompletionList(" + val["enterID"] + ",0,0,0);'>" + val["completion"] + (val["completion1"]>0?'/'+val["completion1"]:'') + "</a></td>");
 					arr.push("<td align='center' title='应知/应会/最好成绩'><a style='text-decoration: none;' href='javascript:showExamList(" + val["enterID"] + ",\"" + val["name"] + "\");'>" + val["examTimes"] + "&nbsp;/&nbsp;" + val["examTimes1"] + "&nbsp;/&nbsp;" + val["bestScore"] + "</a></td>");
 					arr.push("<td align='center' title='应知/应会'>" + val["goodRate"] + "&nbsp;/&nbsp;" + val["goodRate1"] + "</td>");
 					arr.push("<td align='center' title='应知/应会'>" + val["goodRateLast"] + "&nbsp;/&nbsp;" + val["goodRate1Last"] + "</td>");
