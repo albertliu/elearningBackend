@@ -33,9 +33,10 @@ $(document).ready(function (){
 			arr.push("<table cellpadding='5' cellspacing='2' border='0' id='courseLessonTab' width='98%'>");
 			arr.push("<tr align='center'>");
 			arr.push("<td align='center' width='10%'>编号</td>");
-			arr.push("<td align='center' width='70%'>课节名称</td>");
+			arr.push("<td align='center' width='60%'>课节名称</td>");
 			arr.push("<td align='center' width='10%'>序号</td>");
 			arr.push("<td align='center' width='10%'>课时</td>");
+			arr.push("<td align='center' width='10%'>类型</td>");
 			arr.push("</tr>");
 			var i = 0;
 			var c = 0;
@@ -51,6 +52,7 @@ $(document).ready(function (){
 					arr.push("<td align='left'><a href='javascript:showLessonInfo(" + ar1[0] + ",0,0,1);'>" + ar1[2] + "</a></td>");
 					arr.push("<td align='center'>" + ar1[8] + "</td>");
 					arr.push("<td align='center'>" + ar1[3] + "</td>");
+					arr.push("<td align='center'>" + ar1[13] + "</td>");
 					arr.push("</tr>");
 				});
 			}

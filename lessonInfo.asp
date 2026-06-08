@@ -37,6 +37,7 @@
 		
 		getComList("courseID","courseInfo","courseID","courseName","status=0 order by courseID",1);
 		getDicList("statusEffect","status",0);
+		getDicList("lessonKind","kindID",0);
 		
 		$.ajaxSetup({ 
 			async: false 
@@ -82,7 +83,7 @@
 	
 	function saveNode(){
 		//alert($("#lessonID").val() + "&item=" + ($("#memo").val()));
-		$.get("lessonControl.asp?op=update&nodeID=" + $("#ID").val() + "&lessonID=" + $("#lessonID").val() + "&lessonName=" + escape($("#lessonName").val()) + "&hours=" + $("#hours").val() + "&courseID=" + $("#courseID").val() + "&seq=" + $("#seq").val() + "&kindID=0&status=" + $("#status").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("lessonControl.asp?op=update&nodeID=" + $("#ID").val() + "&lessonID=" + $("#lessonID").val() + "&lessonName=" + escape($("#lessonName").val()) + "&hours=" + $("#hours").val() + "&courseID=" + $("#courseID").val() + "&seq=" + $("#seq").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -145,12 +146,15 @@
 			<tr>
 				<td align="right">编号</td><input id="ID" type="hidden" />
 				<td><input type="text" id="lessonID" size="25" /></td>
-				<td align="right">课表名称</td><input id="kindID" type="hidden" />
+				<td align="right">课表名称</td>
 				<td><input type="text" id="lessonName" size="28" /></td>
 			</tr>
 			<tr>
 				<td align="right">状态</td>
-				<td><select id="status" style="width:100px;"></select></td>
+				<td>
+					<select id="status" style="width:60px;"></select>
+					&nbsp;&nbsp;类型&nbsp;<select id="kindID" style="width:60px;"></select>
+				</td>
 				<td align="right">课时</td>
 				<td><input type="text" id="hours" size="15" />小时</td>
 			</tr>

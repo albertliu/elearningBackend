@@ -34,7 +34,7 @@ if(op == "getLessonList"){
 	while (!rs.EOF){
 		result += "%%" + rs("ID").value + "|" + rs("lessonID").value + "|" + rs("lessonName").value + "|" + rs("hours").value + "|" + rs("kindID").value + "|" + rs("status").value + "|" + rs("statusName").value;
 		//7
-		result += "|" + rs("courseID").value + "|" + rs("seq").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value;
+		result += "|" + rs("courseID").value + "|" + rs("seq").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("kindName").value;
 		rs.MoveNext();
 	}
 /**/
@@ -48,7 +48,7 @@ if(op == "getNodeInfo"){
 	if (!rs.EOF){
 		result =  rs("ID").value + "|" + rs("lessonID").value + "|" + rs("lessonName").value + "|" + rs("hours").value + "|" + rs("kindID").value + "|" + rs("status").value + "|" + rs("statusName").value;
 		//7
-		result += "|" + rs("courseID").value + "|" + rs("seq").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value;
+		result += "|" + rs("courseID").value + "|" + rs("seq").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("kindName").value;
 		execSQL(sql);
 	}
 	rs.Close();
