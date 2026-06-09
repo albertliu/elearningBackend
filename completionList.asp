@@ -113,7 +113,7 @@
 				"lengthChange": false,      //禁掉表格自带的选择每页条数的下拉框
 				"searching": false,
 				"columnDefs": [
-					{ "visible": false, "targets": [5] }
+					{ "visible": false, "targets": [6] }
 				]
 			});
 
@@ -133,7 +133,7 @@
 
 					// Show the child row for detail
 					// information
-					getChildRow(row.data()[5], function(data){
+					getChildRow(row.data()[6], function(data){
 						row.child(data).show();
 					});
 
