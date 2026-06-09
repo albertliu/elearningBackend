@@ -1240,7 +1240,7 @@ if(op == "rebuildLessonByClass"){
 
 if(op == "getStudentLessonList"){
 	result = "";
-	sql = "select *, dbo.getVideoShots(ID) as shots from v_studentLessonList where refID=" + refID + " order by seq";
+	sql = "select *, dbo.getVideoShots(ID) as shots from v_studentLessonList where refID=" + refID + " order by lessonKindID,seq";
 	
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
