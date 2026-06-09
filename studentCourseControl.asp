@@ -1244,7 +1244,7 @@ if(op == "getStudentLessonList"){
 	
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
-		result += "%%" + rs("ID").value + "|" + rs("lessonName").value + "|" + rs("hours").value + "|" + rs("completion").value + "|" + rs("shots").value;
+		result += "%%" + rs("ID").value + "|" + rs("lessonName").value + "|" + rs("hours").value + "|" + rs("completion").value + "|" + rs("shots").value + "|" + rs("lessonKindName").value;
 		rs.MoveNext();
 	}
 	rs.Close();

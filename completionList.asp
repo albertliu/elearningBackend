@@ -51,8 +51,9 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='5%'>No</th>");
-			arr.push("<th width='50%'>课节名称</th>");
-			arr.push("<th width='15%'>额定课时</th>");
+			arr.push("<th width='45%'>课节名称</th>");
+			arr.push("<th width='10%'>课时</th>");
+			arr.push("<th width='10%'>类型</th>");
 			arr.push("<th width='15%'>完成率%</th>");
 			arr.push("<th width='15%'>人脸检测</th>");
 			arr.push("<th width='0%'></th>");
@@ -71,6 +72,7 @@
 					arr.push("<td class='center'>" + i + "</td>");
 					arr.push("<td class='left'>" + ar1[1] + "</td>");
 					arr.push("<td class='left'>" + ar1[2] + "</td>");
+					arr.push("<td class='left'>" + ar1[5] + "</td>");
 					arr.push("<td class='left'>" + ar1[3] + "</td>");
 					arr.push("<td class='details-control' style='color:blue;text-align:center;'>" + nullNoDisp(ar1[4]) + "</td>");
 					arr.push("<td class='left'>" + ar1[0] + "</td>");
@@ -80,6 +82,7 @@
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
