@@ -697,7 +697,6 @@
 	
 	function setProjectByUser(){
 		let x = "dbo.getStudentProjectRestList('" + refID + "','" + $("#host").val() + "','" + courseID + "')";
-		alert(x)
 		getComList("projectID",x,"projectID","projectName","1=1 order by projectID desc",1);
 	}
 	
