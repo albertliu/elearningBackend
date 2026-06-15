@@ -114,6 +114,7 @@
 				}else{
 					$("#img_photo").attr("src","images/blank_photo.png");
 				}
+				$("#img_E_stamp").hide();
 				if(keyID ==5){
 					$("#img_A").attr("src","/users" + ar["IDa_filename"] + "?times=" + (new Date().getTime()));
 					$("#img_B").attr("src","/users" + ar["IDb_filename"] + "?times=" + (new Date().getTime()));

@@ -74,7 +74,7 @@
 					$("#IDK1").prop("checked",true);
 				}
 				$("#mobile").html(ar["mobile"]);
-				$("#regNo").html(ar["mobile"]);
+				$("#regNo").html(ar["regNo"]);
 				$("#agent").html(ar["linker"] + "&nbsp;" + ar["agent_ID"]);
 				$("#agent_phone").html(ar["phone"]);
 				$("#kind" + ar["kind"]).prop("checked",true);
