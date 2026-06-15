@@ -135,8 +135,8 @@ ul li:before{
 ul li{
 	padding-left: 15px;
 }
-.ef1p1 { font-family:宋体; font-size:1.1em;}
-.ef1p2 { font-family:宋体; font-size:0.9em;}
+.ef1p1 { font-family:宋体; font-size:1.1em; background-color:#fff;}
+.ef1p2 { font-family:宋体; font-size:0.9em; background-color:#fff;}
 .agreep{
 	font-size:1.3em;
 	text-indent:20px;

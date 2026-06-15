@@ -39,7 +39,6 @@
 	var agencyID = 0;
 	var imgFile = "<img src='images/attachment.png' style='width:15px;'>";
 	var imgFileRed = "<img src='images/attachmentRed.png' style='width:15px;'>";
-	var imgFileBlue = "<img src='images/attachmentBlue.png' style='width:15px;'>";
 	var timer1 = null;
 	let allowUpload = false;
 	<!--#include file="js/commFunction.js"-->
@@ -432,7 +431,7 @@
 					return false;
 				}
 				$.post(uploadURL + "/public/postCommInfo", {proc:"checkClassSchedule", params:{classID:nodeID}}, function(data){
-					let ar = data[0]
+					let ar = data[0];
 					if(ar["msg"] > ""){
 						$.messager.alert("提示","不能创建，请检查以下事项：\n" + ar["msg"],"warning");
 					}else{
@@ -705,7 +704,7 @@
 		});
 	
 		$("#generateEntryDoc1").click(function(){
-			generateEntryDoc(1);
+			// generateEntryDoc(1);
 		});
 	
 		$("#generateZip").click(function(){
@@ -901,7 +900,7 @@
 				$("#list").html("<a href=''>申报名单</a>");
 				$("#diplomaSign").html("<a href=''>证书签收单</a>");
 				if(ar[7] > ""){
-					$("#proof").html("<a href='/users" + ar[7] + "?" + (new Date().getTime()) + "' target='_blank' style='text-decoration:none;color:green;'>&nbsp;&nbsp;班级培训证明</a>");
+					$("#proof").html("<a href='/users" + ar[7] + "?" + (new Date().getTime()) + "' target='_blank' style='text-decoration:none;color:green;'>&nbsp;&nbsp;培训证明</a>");
 				}
 				if(ar[17] > ""){
 					$("#scoreResult").html("<a href='/users" + ar[17] + "' target='_blank'>成绩单</a>");
@@ -1040,16 +1039,16 @@
 			arr.push("<th width='7%'>申报</th>");
 			if(reexamine > 0){
 				arr.push("<th width='5%'>照片</th>");
-				arr.push("<th width='8%'>换证日期</th>");
+				arr.push("<th width='11%'>换证日期</th>");
 			}
 			if(photo == 0){
-				arr.push("<th width='6%'>来源</th>");
-				// arr.push("<th width='6%'>上传</th>");
+				arr.push("<th width='5%'>来源</th>");
+				arr.push("<th width='5%'>上传</th>");
 				arr.push("<th width='4%'>证</th>");
 				arr.push("<th width='4%'>委</th>");
-				arr.push("<th width='12%'>考试时间</th>");
-				arr.push("<th width='7%'>成绩</th>");
-				arr.push("<th width='7%'>结果</th>");
+				arr.push("<th width='10%'>考试时间</th>");
+				arr.push("<th width='5%'>成绩</th>");
+				arr.push("<th width='5%'>结果</th>");
 			}else{
 				arr.push("<th width='10%'>报名备注</th>");
 				arr.push("<th width='6%'>照片</th>");
@@ -1058,6 +1057,7 @@
 				arr.push("<th width='10%'>单位代码</th>");
 			}
 			arr.push("<th width='12%'>备注</th>");
+			// arr.push("<th width='7%'>补考</th>");
 			arr.push("<th width='1%'>评</th>");
 			arr.push("<th width='1%'>材</th>");
 			arr.push("</tr>");
@@ -1095,18 +1095,9 @@
 					}
 					if(photo == 0){
 						arr.push("<td class='left'>" + ar1[41] + "</td>");	//source
-						// arr.push("<td class='left'>" + (ar1[30]==1?imgChk:'&nbsp;') + "</td>");	// 上传报名表
-						if(ar1[53]==''){
-							arr.push("<td class='center'></td>");
-						}else{
-							arr.push("<td class='center'><a href='javascript:void(0);' title='培训证明' onclick='showPic(\"" + ar1[53] + "\",0);'>" + (ar1[55]>0?imgFileBlue:imgFile) + "</a></td>");  //个人证明
-						}
-						if(ar1[54]==''){
-							arr.push("<td class='center'></td>");
-						}else{
-							arr.push("<td class='center'><a href='javascript:void(0);' title='培训证明' onclick='showPic(\"" + ar1[54] + "\",0);'>" + (ar1[56]>0?imgFileBlue:imgFile) + "</a></td>");  //委托书
-						}
-						arr.push("<td class='left'>" + ar1[18] + "</td>");	// 考试时间
+						arr.push("<td class='left'>" + (ar1[30]==1?imgChk:'&nbsp;') + "</td>");	// 上传报名表
+						arr.push("<td class='center'><a href='javascript:void(0);' title='培训证明' onclick='showPic(\"" + ar1[53] + "\");'>" + imgFile + "</a></td>");  //个人证明
+						arr.push("<td class='left'>" + ar1[18] + "</td>");
 						h = ar1[19];
 						if(agencyID == "1"){
 							h = ar1[20].replace(".00","") + "/" + ar1[21].replace(".00","");
@@ -1166,7 +1157,7 @@
 					if(ar1[25]==''){
 						arr.push("<td class='center'></td>");
 					}else{
-						arr.push("<td class='center'><a href='javascript:void(0);' title='申报材料' onclick='showPic(\"" + ar1[25] + "\", 1);' title='申报材料'>" + (ar1[30]>0?imgFileBlue:imgFile) + "</a></td>");
+						arr.push("<td class='center'><a href='javascript:void(0);' title='申报材料' onclick='showPic(\"" + ar1[25] + "\");'>" + imgFile + "</a></td>");
 					}
 					arr.push("</tr>");
 				});
@@ -1189,12 +1180,12 @@
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
-			if(reexamine >0){
+			if(reexamine > 1){
 				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
 			}
 			if(photo == 0){
-				// arr.push("<th>&nbsp;</th>");
+				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
 			}
 			arr.push("</tr>");
@@ -1248,25 +1239,6 @@
 	}
 
 	function generateEntryDoc(k){
-		//k: 0 普通  1 带培训证明
-		getSelCart("");
-		if(selCount==0){
-			$.messager.alert("提示","请选择要操作的名单。","info");
-			return false;
-		}
-		if(confirm("确定要生成这" + selCount + "个报名表吗？")){
-			$.post(uploadURL + "/outfiles/generate_emergency_exam_materials_byclass?refID=" + nodeID + "&keyID=5&registerID=" + currUser + "&kindID=" + k + "&host=" + currHost, {selList:selList}, function(data){
-				if(data>"0"){
-					$.messager.alert("提示","已生成" + data + "份文档","info");
-					getApplyList();
-				}else{
-					$.messager.alert("提示","没有可供处理的数据。","info");
-				}
-			});
-		}
-	}
-
-	function generateEntryDoc(k){
 		//班级的归档/报名表/培训证明/授权委托书 k: 2/5/6/7
 		let f = ['','','班级归档资料.pdf','','','报名表.jpg','培训证明','授权委托书'];
 		getSelCart("");
@@ -1286,8 +1258,8 @@
 		}
 	}
 
-	function showPic(path, k){
-		showImage(path,2.2,2.2,0,k);
+	function showPic(path){
+		showImage(path,2.2,2.2,0,1);
 	}
 	
 	function setButton(){
@@ -1407,7 +1379,7 @@
 			}
 		}
 	}
-	
+
 	function setEmpty(){
 		//$("#title").val("中石化从业人员安全知识考核");
 		$("#title").val("");
