@@ -66,7 +66,8 @@
 				$("#username").html(ar["username"]);
 				$("#name").html(ar["name"]);
 				$("#certName").html("操作项目：" + ar["certName"]);
-				$("#R" + ar["reexamine"]).prop("checked",true);
+				let r = ar["reexamine"]==0?0:2;
+				$("#R" + r).prop("checked",true);
 				if(ar["username"].length==18){
 					$("#IDK0").prop("checked",true);
 				}else{
