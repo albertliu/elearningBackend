@@ -196,7 +196,7 @@
 				</div>
 				<div style="position: absolute; z-index:10;">
 				<div style="float:center; text-align:center;">
-					<span><img id="stamp" src="" style="width:180px;margin:0px 0px 8px 150px;padding-left:30px;padding-top:420px;opacity:0.7;"></span>
+					<span><img id="stamp" src="" style="width:180px;margin:0px 0px 8px 200px;padding-left:30px;padding-top:420px;opacity:0.7;"></span>
 				</div>
 				</div>
 			</div>
