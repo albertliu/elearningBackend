@@ -55,7 +55,7 @@ if(op == "getNodeInfo"){
 	if (!rs.EOF){
 		result = rs("ID").value + "|" + rs("videoID").value + "|" + rs("videoName").value + "|" + rs("minutes").value + "|" + rs("kindID").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("filename").value;
 		//8
-		result += "|" + rs("lessonID").value + "|" + rs("type").value + "|" + rs("author").value + "|" + rs("proportion").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value;
+		result += "|" + rs("lessonID").value + "|" + rs("type").value + "|" + rs("author").value + "|" + rs("proportion").value + "|" + rs("memo").value + "|" + rs("regDate").value + "|" + rs("registerID").value + "|" + rs("registerName").value + "|" + rs("vod").value;
 		execSQL(sql);
 	}
 	rs.Close();
@@ -65,7 +65,7 @@ if(op == "getNodeInfo"){
 if(op == "update"){
 	result = 0;
 	if(result == 0){
-		sql = "exec updateVideoInfo " + nodeID + ",'" + String(Request.QueryString("videoID")) + "','" + unescape(String(Request.QueryString("videoName"))) + "','" + String(Request.QueryString("minutes")) + "','" + String(Request.QueryString("proportion")) + "','" + String(Request.QueryString("type")) + "','" + String(Request.QueryString("author")) + "','" + refID + "'," + kindID + "," + status + ",'" + memo + "','" + currUser + "'";
+		sql = "exec updateVideoInfo " + nodeID + ",'" + String(Request.QueryString("videoID")) + "','" + unescape(String(Request.QueryString("videoName"))) + "','" + String(Request.QueryString("vod")) + "','" + String(Request.QueryString("minutes")) + "','" + String(Request.QueryString("proportion")) + "','" + String(Request.QueryString("type")) + "','" + String(Request.QueryString("author")) + "','" + refID + "'," + kindID + "," + status + ",'" + memo + "','" + currUser + "'";
 
 		execSQL(sql);
 		if(nodeID == 0){

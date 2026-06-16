@@ -626,25 +626,6 @@
 			updateCount += 1;
 		});
 	
-		$("#generateClassDoc").click(function(){
-			getSelCart("");
-			if(selCount==0){
-				$.messager.alert("提示","请选择要操作的名单。","info");
-				return false;
-			}
-			if(confirm("确定要生成这" + selCount + "个存档资料吗？")){
-				$.post(uploadURL + "/outfiles/generate_emergency_exam_materials_byclass?refID=" + nodeID + "&keyID=2&mrk=A&registerID=" + currUser, {selList:selList}, function(data){
-					if(data>"0"){
-						// generateZip("e");
-						alert("已生成" + data + "份文档");
-						getApplyList();
-					}else{
-						alert("没有可供处理的数据。");
-					}
-				});
-			}
-		});
-	
 		$("#btnEvalution").click(function(){
 			getSelCart("");
 			if(selCount==0){
@@ -690,6 +671,10 @@
 					});
 				});
 			}
+		});
+	
+		$("#generateClassDoc").click(function(){
+			generateEntryDoc(2);
 		});
 	
 		$("#generateEntryDoc").click(function(){
@@ -1245,25 +1230,6 @@
 				alert("没有可供处理的数据。");
 			}
 		});
-	}
-
-	function generateEntryDoc(k){
-		//k: 0 普通  1 带培训证明
-		getSelCart("");
-		if(selCount==0){
-			$.messager.alert("提示","请选择要操作的名单。","info");
-			return false;
-		}
-		if(confirm("确定要生成这" + selCount + "个报名表吗？")){
-			$.post(uploadURL + "/outfiles/generate_emergency_exam_materials_byclass?refID=" + nodeID + "&keyID=5&registerID=" + currUser + "&kindID=" + k + "&host=" + currHost, {selList:selList}, function(data){
-				if(data>"0"){
-					$.messager.alert("提示","已生成" + data + "份文档","info");
-					getApplyList();
-				}else{
-					$.messager.alert("提示","没有可供处理的数据。","info");
-				}
-			});
-		}
 	}
 
 	function generateEntryDoc(k){

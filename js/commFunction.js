@@ -920,7 +920,7 @@
 			url:"videoInfo.asp?nodeID=" + nodeID + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "视频",
 			width: 600,
-			height: 380,
+			height: 440,
 			cover : {
 	          //透明度
 	          opacity : 0,

@@ -70,6 +70,7 @@
 				$("#kindID").val(ar[4]);
 				$("#status").val(ar[5]);
 				$("#filename").val(ar[7]);
+				$("#vod").val(ar[16]);
 				$("#lessonID").val(ar[8]);
 				$("#type").val(ar[9]);
 				$("#author").val(ar[10]);
@@ -96,7 +97,7 @@
 	
 	function saveNode(){
 		//alert($("#videoID").val() + "&item=" + ($("#memo").val()));
-		$.get("videoControl.asp?op=update&nodeID=" + $("#ID").val() + "&videoID=" + $("#videoID").val() + "&videoName=" + escape($("#videoName").val()) + "&minutes=" + $("#minutes").val() + "&type=" + $("#type").val() + "&refID=" + $("#lessonID").val() + "&proportion=" + $("#proportion").val() + "&author=" + $("#author").val() + "&kindID=0&status=" + $("#status").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("videoControl.asp?op=update&nodeID=" + $("#ID").val() + "&videoID=" + $("#videoID").val() + "&videoName=" + escape($("#videoName").val()) + "&minutes=" + $("#minutes").val() + "&type=" + $("#type").val() + "&refID=" + $("#lessonID").val() + "&proportion=" + $("#proportion").val() + "&author=" + $("#author").val() + "&vod=" + $("#vod").val() + "&kindID=0&status=" + $("#status").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -196,7 +197,11 @@
 			</tr>
 			<tr>
 				<td align="right">视频文件</td>
-				<td colspan="5"><input class="readOnly" type="text" id="filename" style="padding:2px; width:100%;" readOnly="true" /></td>
+				<td><input class="readOnly" type="text" id="filename" style="padding:2px; width:100%;" readOnly="true" /></td>
+			</tr>
+			<tr>
+				<td align="right">视频文件</td>
+				<td colspan="3"><input type="text" id="vod" style="padding:2px; width:100%;" /></td>
 			</tr>
 			</table>
 			</form>
