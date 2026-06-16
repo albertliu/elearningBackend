@@ -456,9 +456,9 @@
 		
 		$("#doApplyUploadPOA").linkbutton({
 			iconCls:'icon-upload',
-			width:85,
+			width:80,
 			height:25,
-			text:'个人证明',
+			text:'委托书',
 			onClick:function() {
 				getSelCart("");
 				if(selCount==0){
