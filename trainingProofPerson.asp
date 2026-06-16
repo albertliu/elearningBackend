@@ -81,8 +81,6 @@
 				}
 				$("#unit").html(ar["hostName"]);
 				$("#stamp").attr("src","/users/upload/companies/stamp/" + ar["host"] + ".png" + "?times=" + (new Date().getTime()));
-				// $("#unit").html("上海智能消防学校");
-				// $("#stamp").attr("src","/users/upload/companies/stamp/znxf.png" + "?times=" + (new Date().getTime()));
 			}else{
 				alert("没有找到培训信息。");
 				return false;

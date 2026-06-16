@@ -409,6 +409,96 @@
 			}
 		});
 		
+		$("#doApplyUploadProofPerson").linkbutton({
+			iconCls:'icon-upload',
+			width:85,
+			height:25,
+			text:'个人证明',
+			onClick:function() {
+				getSelCart("");
+				if(selCount==0){
+					$.messager.alert("提示","请选择要上传的人员。","info");
+					return false;
+				}
+				if($("#applyID").val()==""){
+					$.messager.alert("提示","请填写开班编号并保存。","info");
+					return false;
+				}
+				// jConfirm('确定要为这' + selCount + '个人报名吗?', "确认对话框",function(r){
+				$.messager.confirm('确认对话框','确定要为这' + selCount + '个人上传个人证明吗?<br>可能要花几分钟时间，请稍候...', function(r){
+					if(r){
+						var start = performance.now(); 
+						$.ajax({
+							url: uploadURL + "/public/applyEnter?SMS=1&reexamine=9A&register=" + currUserName + "&host=znxf&classID=" + $("#applyID").val() + "&courseName=" + $("#courseName").val() + "&reex=" + (reexamine==0?"初证":"复审"),
+							type: "post",
+							data: {"selList":selList},
+							beforeSend: function() {   
+								$.messager.progress();	// 显示进度条
+							},
+							success: function(data){
+								if(data.count_s>0){
+									var end = performance.now(); 
+									$.messager.alert("提示","成功上传数量：" + data.count_s + "; &nbsp;失败数量：" + data.count_e + "; &nbsp;耗时：" + ((end-start)/1000).toFixed(2) + "秒","info");
+								}else{
+									$.messager.alert("提示","操作失败，请稍后再试。" + data.errMsg,"info");
+								}
+								getApplyList();
+								$.messager.progress('close');	// 如果提交成功则隐藏进度条 
+							},
+							error: function () {
+								$.messager.progress('close');
+							}
+						});
+					}
+				});
+			}
+		});
+		
+		$("#doApplyUploadPOA").linkbutton({
+			iconCls:'icon-upload',
+			width:85,
+			height:25,
+			text:'个人证明',
+			onClick:function() {
+				getSelCart("");
+				if(selCount==0){
+					$.messager.alert("提示","请选择要上传的人员。","info");
+					return false;
+				}
+				if($("#applyID").val()==""){
+					$.messager.alert("提示","请填写开班编号并保存。","info");
+					return false;
+				}
+				// jConfirm('确定要为这' + selCount + '个人报名吗?', "确认对话框",function(r){
+				$.messager.confirm('确认对话框','确定要为这' + selCount + '个人上传委托书吗?<br>可能要花几分钟时间，请稍候...', function(r){
+					if(r){
+						var start = performance.now(); 
+						$.ajax({
+							url: uploadURL + "/public/applyEnter?SMS=1&reexamine=9B&register=" + currUserName + "&host=znxf&classID=" + $("#applyID").val() + "&courseName=" + $("#courseName").val() + "&reex=" + (reexamine==0?"初证":"复审"),
+							type: "post",
+							data: {"selList":selList},
+							beforeSend: function() {   
+								$.messager.progress();	// 显示进度条
+							},
+							success: function(data){
+								if(data.count_s>0){
+									var end = performance.now(); 
+									$.messager.alert("提示","成功上传数量：" + data.count_s + "; &nbsp;失败数量：" + data.count_e + "; &nbsp;耗时：" + ((end-start)/1000).toFixed(2) + "秒","info");
+								}else{
+									$.messager.alert("提示","操作失败，请稍后再试。" + data.errMsg,"info");
+								}
+								getApplyList();
+								$.messager.progress('close');	// 如果提交成功则隐藏进度条 
+							},
+							error: function () {
+								$.messager.progress('close');
+							}
+						});
+					}
+				});
+			}
+		});
+		
 		$("#doApplyUploadSchedule").linkbutton({
 			iconCls:'icon-upload',
 			width:85,
@@ -1287,6 +1377,8 @@
 		$("#btnCheck").hide();
 		$("#btnStorage").hide();
 		$("#btnUpload").hide();
+		$("#btnUploadProofPerson").hide();
+		$("#btnUploadPOA").hide();
 		if(currHost=="" && !checkRole("sniper")){
 			$("#item_btn1").show();
 			$("#item_btn2").show();
@@ -1348,6 +1440,8 @@
 				if(agencyID==1){
 					$("#doApplyEnter").show();	// 应急局项目可以自动报名
 					$("#doApplyUpload").show();	// 
+					$("#btnUploadProofPerson").show();	// 
+					$("#btnUploadPOA").show();	// 
 					$("#doApplyDownload").show();	// 
 					if($("#planID").val()==""){
 						$("#doApplyUploadSchedule").show();	// 
@@ -1552,6 +1646,8 @@
 		<a class="easyui-linkbutton" id="doApplyEnter" href="javascript:void(0)"></a>
 		<a class="easyui-linkbutton" id="doApplyUpload" href="javascript:void(0)"></a>
 		<a class="easyui-linkbutton" id="doApplyUploadPhoto" href="javascript:void(0)"></a>
+		<a class="easyui-linkbutton" id="doApplyUploadProofPerson" href="javascript:void(0)"></a>
+		<a class="easyui-linkbutton" id="doApplyUploadPOA" href="javascript:void(0)"></a>
 		<a class="easyui-linkbutton" id="doApplyUploadSchedule" href="javascript:void(0)"></a>
 		<a class="easyui-linkbutton" id="doApplyDownloadExamDate" href="javascript:void(0)"></a>
 		<a class="easyui-linkbutton" id="doApplyDownload" href="javascript:void(0)"></a>

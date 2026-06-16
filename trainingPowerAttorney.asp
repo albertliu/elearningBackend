@@ -74,9 +74,6 @@
 					$("#IDK1").prop("checked",true);
 				}
 				$("#mobile").html(ar["mobile"]);
-				$("#regNo").html(ar["regNo"]);
-				$("#agent").html(ar["linker"] + "&nbsp;" + ar["agent_ID"]);
-				$("#agent_phone").html(ar["phone"]);
 				$("#kind" + ar["kind"]).prop("checked",true);
 				$("#industry").html("行业类别：" + ar["item"]);
 				if(ar["kind"]==1){
@@ -92,9 +89,21 @@
 				// $("#unit").html(ar["hostName"]);
 				// $("#stamp").attr("src","/users/upload/companies/stamp/" + ar["host"] + ".png" + "?times=" + (new Date().getTime()));
 				// $("#f_sign2").attr("src","/users/upload/companies/signature/host_" + ar["host"] + ".png" + "?times=" + (new Date().getTime()));
-				$("#unit").html("上海智能消防学校");
-				$("#stamp").attr("src","/users/upload/companies/stamp/znxf.png" + "?times=" + (new Date().getTime()));
-				$("#f_sign2").attr("src","/users/upload/companies/signature/poa_znxf.png" + "?times=" + (new Date().getTime()));
+				if(ar["certID"]!=="C27"){
+					$("#regNo").html(ar["regNo"]);
+					$("#agent").html(ar["linker"] + "&nbsp;" + ar["agent_ID"]);
+					$("#agent_phone").html(ar["phone"]);
+					$("#unit").html("上海智能消防学校");
+					$("#stamp").attr("src","/users/upload/companies/stamp/znxf.png" + "?times=" + (new Date().getTime()));
+					$("#f_sign2").attr("src","/users/upload/companies/signature/poa_znxf.png" + "?times=" + (new Date().getTime()));
+				}else{	// 高压电工
+					$("#regNo").html("52310101425030678A");
+					$("#agent").html("吴一凡&nbsp;&nbsp;&nbsp;&nbsp;310107199406303428");
+					$("#agent_phone").html("021-53080081");
+					$("#unit").html("上海黄浦区文华职业技术培训学校");
+					$("#stamp").attr("src","/users/upload/companies/stamp/c27.png" + "?times=" + (new Date().getTime()));
+					$("#f_sign2").attr("src","/users/upload/companies/signature/poa_c27.png" + "?times=" + (new Date().getTime()));
+				}
 			}else{
 				alert("没有找到培训信息。");
 				return false;
