@@ -1460,7 +1460,7 @@
 				if(agencyID==1){
 					$("#doApplyEnter").show();	// 应急局项目可以自动报名
 					$("#doApplyUpload").show();	// 
-					// $("#doApplyUploadPhoto").show();	// 
+					$("#doApplyUploadPhoto").show();	// 
 					// $("#doApplyUploadSchedule").show();	//  
 					$("#doApplyUploadProofPerson").show();	//   
 					$("#doApplyUploadPOA").show();	// 
@@ -1469,9 +1469,6 @@
 					$("#doApplyDownload").show();	// 
 					if($("#planID").val()==""){
 						$("#doApplyUploadSchedule").show();	// 
-					}
-					if(reexamine==1){
-						$("#doApplyUploadPhoto").show();	// 复训的可上传照片
 					}
 				}
 				$("#btnSchedule").show();	// 

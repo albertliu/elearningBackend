@@ -80,17 +80,20 @@
 					$("#type" + ar["type"]).prop("checked",true);
 				}
 				let b = "&nbsp;&nbsp;&nbsp;&nbsp;";
-				let y = (ar["dateEnd"]>""?ar["dateEnd"].substring(0,4):b);
-				let m = (ar["dateEnd"]>""?ar["dateEnd"].substring(5,7):b);
-				let d = (ar["dateEnd"]>""?ar["dateEnd"].substring(8,10):b);
-				$("#dateY1").html(y);
-				$("#dateM1").html(m);
-				$("#dateD1").html(d);
+				// let y = (ar["dateEnd"]>""?ar["dateEnd"].substring(0,4):b);
+				// let m = (ar["dateEnd"]>""?ar["dateEnd"].substring(5,7):b);
+				// let d = (ar["dateEnd"]>""?ar["dateEnd"].substring(8,10):b);
+				let y = today.substring(0,4);
+				let m = today.substring(5,7);
+				let d = today.substring(8,10);
 				$("#f_sign1").attr("src","/users" + ar["signature"] + "?times=" + (new Date().getTime()));
 				// $("#unit").html(ar["hostName"]);
 				// $("#stamp").attr("src","/users/upload/companies/stamp/" + ar["host"] + ".png" + "?times=" + (new Date().getTime()));
 				// $("#f_sign2").attr("src","/users/upload/companies/signature/host_" + ar["host"] + ".png" + "?times=" + (new Date().getTime()));
 				if(ar["certID"]!=="C27"){
+					$("#dateY1").html(y);
+					$("#dateM1").html(m);
+					$("#dateD1").html(d);
 					$("#dateY2").html(y);
 					$("#dateM2").html(m);
 					$("#dateD2").html(d);
@@ -101,6 +104,9 @@
 					$("#stamp").attr("src","/users/upload/companies/stamp/znxf.png" + "?times=" + (new Date().getTime()));
 					$("#f_sign2").attr("src","/users/upload/companies/signature/poa_znxf.png" + "?times=" + (new Date().getTime()));
 				}else{	// 高压电工
+					$("#dateY1").html(b);
+					$("#dateM1").html(b);
+					$("#dateD1").html(b);
 					$("#dateY2").html(b);
 					$("#dateM2").html(b);
 					$("#dateD2").html(b);
