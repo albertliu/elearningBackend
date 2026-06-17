@@ -1134,11 +1134,12 @@
 			if(photo == 0){
 				arr.push("<th width='6%'>来源</th>");
 				// arr.push("<th width='6%'>上传</th>");
-				arr.push("<th width='4%'>证</th>");
-				arr.push("<th width='4%'>委</th>");
-				arr.push("<th width='12%'>考试时间</th>");
-				arr.push("<th width='7%'>成绩</th>");
-				arr.push("<th width='7%'>结果</th>");
+				arr.push("<th width='3%'>时</th>");
+				arr.push("<th width='3%'>证</th>");
+				arr.push("<th width='3%'>委</th>");
+				arr.push("<th width='11%'>考试时间</th>");
+				arr.push("<th width='6%'>成绩</th>");
+				arr.push("<th width='6%'>结果</th>");
 			}else{
 				arr.push("<th width='10%'>报名备注</th>");
 				arr.push("<th width='6%'>照片</th>");
@@ -1184,6 +1185,7 @@
 					}
 					if(photo == 0){
 						arr.push("<td class='left'>" + ar1[41] + "</td>");	//source
+						arr.push("<td class='left' " + (ar1[58]>=ar1[57] ? "style='background:#00FFFF;'" : "") + " title='应修课时" + ar1[57] + "'>" + ar1[58] + "</td>");	//实修课时
 						// arr.push("<td class='left'>" + (ar1[30]==1?imgChk:'&nbsp;') + "</td>");	// 上传报名表
 						if(ar1[53]==''){
 							arr.push("<td class='center'></td>");
@@ -1283,7 +1285,7 @@
 				arr.push("<th>&nbsp;</th>");
 			}
 			if(photo == 0){
-				// arr.push("<th>&nbsp;</th>");
+				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
 			}
 			arr.push("</tr>");
