@@ -83,6 +83,7 @@
 				// let y = (ar["dateEnd"]>""?ar["dateEnd"].substring(0,4):b);
 				// let m = (ar["dateEnd"]>""?ar["dateEnd"].substring(5,7):b);
 				// let d = (ar["dateEnd"]>""?ar["dateEnd"].substring(8,10):b);
+				let today = ar["today"];
 				let y = today.substring(0,4);
 				let m = today.substring(5,7);
 				let d = today.substring(8,10);

@@ -42,7 +42,7 @@
 	var imgChk = "<img src='images/green_check.png' />";
 	var imgChkGray = "<img src='images/gray_check.png' />";
 	var imgChkPink = "<img src='images/pink_check.png' />";
-	var today = new Date().format("yyyy-MM-dd");
+	// var today = new Date().format("yyyy-MM-dd");
 	
 	var pickupID = 0;			//选择项目编号
 	var pickupName = "";	//选择项目名称
