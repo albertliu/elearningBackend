@@ -794,6 +794,14 @@
 		$("#generateEntryZip").click(function(){
 			generateZip("e");
 		});
+	
+		$("#generateProofZip").click(function(){
+			generateZip("proof");
+		});
+	
+		$("#generatePOAZip").click(function(){
+			generateZip("poa");
+		});
 		
 		$("#btnSchedule").click(function(){
 			if($("#startDate").val()==""){
@@ -983,13 +991,19 @@
 				}
                 $("#diplomaSign").show();
 				if(ar[33] > ""){
-					$("#zip").html("<a href='/users" + ar[33] + "?times=" + (new Date().getTime()) + "' target='_blank'>归档压缩包</a>");
+					$("#zip").html("<a href='/users" + ar[33] + "?times=" + (new Date().getTime()) + "' target='_blank'>归档</a>");
 				}
 				if(ar[34] > ""){
-					$("#pzip").html("<a href='/users" + ar[34] + "?times=" + (new Date().getTime()) + "' target='_blank'>照片压缩包</a>");
+					$("#pzip").html("<a href='/users" + ar[34] + "?times=" + (new Date().getTime()) + "' target='_blank'>照片</a>");
 				}
 				if(ar[35] > ""){
-					$("#ezip").html("<a href='/users" + ar[35] + "?times=" + (new Date().getTime()) + "' target='_blank'>报名表压缩包</a>");
+					$("#ezip").html("<a href='/users" + ar[35] + "?times=" + (new Date().getTime()) + "' target='_blank'>报名表</a>");
+				}
+				if(ar[60] > ""){
+					$("#proofzip").html("<a href='/users" + ar[60] + "?times=" + (new Date().getTime()) + "' target='_blank'>个人证明</a>");
+				}
+				if(ar[61] > ""){
+					$("#poazip").html("<a href='/users" + ar[61] + "?times=" + (new Date().getTime()) + "' target='_blank'>委托书</a>");
 				}
 				//getDownloadFile("generateDiplomaID");
 				// 未存档的可以添加删除附件
@@ -1362,7 +1376,11 @@
 		$("#btnRemove").hide();
 		$("#btnResit").hide();
 		$("#btnSchedule").hide();
+		$("#doApplyUploadPhoto").hide();
+		$("#doApplyUpload").hide();
 		$("#doApplyUploadSchedule").hide();
+		$("#doApplyUploadProofPerson").hide();
+		$("#doApplyUploadPOA").hide();
 		$("#s_needResit").hide();
 		$("#generateZip").hide();
 		$("#generatePhotoZip").hide();
@@ -1440,6 +1458,10 @@
 				if(agencyID==1){
 					$("#doApplyEnter").show();	// 应急局项目可以自动报名
 					$("#doApplyUpload").show();	// 
+					// $("#doApplyUploadPhoto").show();	// 
+					// $("#doApplyUploadSchedule").show();	//  
+					$("#doApplyUploadProofPerson").show();	//   
+					$("#doApplyUploadPOA").show();	// 
 					$("#btnUploadProofPerson").show();	// 
 					$("#btnUploadPOA").show();	// 
 					$("#doApplyDownload").show();	// 
@@ -1535,6 +1557,8 @@
 					<span id="zip" style="margin-left:10px;"></span>
 					<span id="pzip" style="margin-left:10px;"></span>
 					<span id="ezip" style="margin-left:10px;"></span>
+					<span id="proofzip" style="margin-left:10px;"></span>
+					<span id="poazip" style="margin-left:10px;"></span>
 				</td>
 				<td align="right">考试地址</td>
 				<td><input type="text" id="address" style="width:100%;" /></td>
@@ -1625,16 +1649,20 @@
 		<input class="button" type="button" id="sendMsgScore" value="成绩通知" />&nbsp;
 		<input class="button" type="button" id="btnInvoiceGroup" value="团体发票" />&nbsp;
 		<input class="button" type="button" id="btnInvoiceGroupCancel" value="发票解绑" />&nbsp;
-		<input class="button" type="button" id="generateClassDoc" value="生成归档文件" />&nbsp;
-		<input class="button" type="button" id="generateEntryDoc" value="生成报名表" />&nbsp;
-		<input class="button" type="button" id="generateEntryDoc1" value="生成报名表带培训证明" />&nbsp;
-		<input class="button" type="button" id="btnProof" value="班级证明" />&nbsp;
-		<input class="button" type="button" id="btnProofPerson" value="个人证明" />&nbsp;
+		&nbsp;生成：
+		<input class="button" type="button" id="generateClassDoc" value="归档文件" />
+		<input class="button" type="button" id="generateEntryDoc" value="报名表" />
+		<input class="button" type="button" id="generateEntryDoc1" value="生成报名表带培训证明" />
+		<input class="button" type="button" id="btnProof" value="班级证明" />
+		<input class="button" type="button" id="btnProofPerson" value="个人证明" />
 		<input class="button" type="button" id="btnPowerAttorney" value="委托书" />&nbsp;
-		<input class="button" type="button" id="generateZip" value="归档压缩包" />&nbsp;
-		<input class="button" type="button" id="generatePhotoZip" value="照片压缩包" />&nbsp;
-		<input class="button" type="button" id="generateEntryZip" value="报名表压缩包" />&nbsp;
-		<input class="button" type="button" id="btnCheck" value="审批" />&nbsp;
+		&nbsp;打包：
+		<input class="button" type="button" id="generateZip" value="归档" />
+		<input class="button" type="button" id="generatePhotoZip" value="照片" />
+		<input class="button" type="button" id="generateEntryZip" value="报名表" />
+		<input class="button" type="button" id="generateProofZip" value="个人证明" />
+		<input class="button" type="button" id="generatePOAZip" value="委托书" />&nbsp;
+		&nbsp;<input class="button" type="button" id="btnCheck" value="审批" />&nbsp;
 		<input class="button" type="button" id="btnStorage" value="存档" />&nbsp;
 		<input class="button" type="button" id="lock" value="锁定" />&nbsp;
 		<input class="button" type="button" id="close" value="结束" />&nbsp;

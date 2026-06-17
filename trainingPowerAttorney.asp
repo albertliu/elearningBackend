@@ -79,17 +79,21 @@
 				if(ar["kind"]==1){
 					$("#type" + ar["type"]).prop("checked",true);
 				}
-				$("#dateY1").html(ar["dateEnd"].substring(0,4));
-				$("#dateM1").html(ar["dateEnd"].substring(5,7));
-				$("#dateD1").html(ar["dateEnd"].substring(8,10));
-				$("#dateY2").html(ar["dateEnd"].substring(0,4));
-				$("#dateM2").html(ar["dateEnd"].substring(5,7));
-				$("#dateD2").html(ar["dateEnd"].substring(8,10));
+				let b = "&nbsp;&nbsp;&nbsp;&nbsp;";
+				let y = (ar["dateEnd"]>""?ar["dateEnd"].substring(0,4):b);
+				let m = (ar["dateEnd"]>""?ar["dateEnd"].substring(5,7):b);
+				let d = (ar["dateEnd"]>""?ar["dateEnd"].substring(8,10):b);
+				$("#dateY1").html(y);
+				$("#dateM1").html(m);
+				$("#dateD1").html(d);
 				$("#f_sign1").attr("src","/users" + ar["signature"] + "?times=" + (new Date().getTime()));
 				// $("#unit").html(ar["hostName"]);
 				// $("#stamp").attr("src","/users/upload/companies/stamp/" + ar["host"] + ".png" + "?times=" + (new Date().getTime()));
 				// $("#f_sign2").attr("src","/users/upload/companies/signature/host_" + ar["host"] + ".png" + "?times=" + (new Date().getTime()));
 				if(ar["certID"]!=="C27"){
+					$("#dateY2").html(y);
+					$("#dateM2").html(m);
+					$("#dateD2").html(d);
 					$("#regNo").html(ar["regNo"]);
 					$("#agent").html(ar["linker"] + "&nbsp;" + ar["agent_ID"]);
 					$("#agent_phone").html(ar["phone"]);
@@ -97,12 +101,15 @@
 					$("#stamp").attr("src","/users/upload/companies/stamp/znxf.png" + "?times=" + (new Date().getTime()));
 					$("#f_sign2").attr("src","/users/upload/companies/signature/poa_znxf.png" + "?times=" + (new Date().getTime()));
 				}else{	// 高压电工
+					$("#dateY2").html(b);
+					$("#dateM2").html(b);
+					$("#dateD2").html(b);
 					$("#regNo").html("52310101425030678A");
-					$("#agent").html("吴一凡&nbsp;&nbsp;&nbsp;&nbsp;310107199406303428");
+					$("#agent").html("吴一凡&nbsp;&nbsp;310107199406303428");
 					$("#agent_phone").html("021-53080081");
 					$("#unit").html("上海黄浦区文华职业技术培训学校");
-					$("#stamp").attr("src","/users/upload/companies/stamp/c27.png" + "?times=" + (new Date().getTime()));
-					$("#f_sign2").attr("src","/users/upload/companies/signature/poa_c27.png" + "?times=" + (new Date().getTime()));
+					// $("#stamp").attr("src","/users/upload/companies/stamp/c27.png" + "?times=" + (new Date().getTime()));
+					// $("#f_sign2").attr("src","/users/upload/companies/signature/poa_c27.png" + "?times=" + (new Date().getTime()));
 				}
 			}else{
 				alert("没有找到培训信息。");
@@ -213,7 +220,7 @@
 					<tr>
 						<td align="center" class='table_resume_title'>考试类型</td>
 						<td align="left" class="ef1p1" style="padding-left:10px;">
-							<input type="checkbox" id="R0" />初次取证&nbsp;&nbsp; <input type="checkbox" id="R2" />换证
+							<input type="checkbox" id="R0" />&nbsp;初次取证&nbsp;&nbsp; <input type="checkbox" id="R2" />&nbsp;换证
 						</td>
 					</tr>
 					<tr>

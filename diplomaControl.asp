@@ -1223,6 +1223,8 @@ if(op == "getGenerateApplyNodeInfo"){
 		result += "|" + rs("archiveDate").value + "|" + rs("summary").value + "|" + rs("planID").value + "|" + rs("planQty").value + "|" + rs("notes").value + "|" + rs("endDate").value;
 		//54
 		result += "|" + rs("checkerID").value + "|" + rs("checkDate").value + "|" + rs("checkerName").value + "|" + rs("storagerID").value + "|" + rs("storagerName").value + "|" + rs("storageDate").value;
+		//60
+		result += "|" + rs("proofzip").value + "|" + rs("poazip").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));
