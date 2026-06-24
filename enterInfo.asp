@@ -553,6 +553,10 @@
 				if(ar[27]=="" && ar[26]>""){
 					getComList("classID","[dbo].[getClassListByProject]('" + ar[26] + "')","classID","classIDName"," status=0 order by batchID desc",1);
 				}
+				// auto generate form for signature showing
+				if(ar[83]==""){
+					generateEntryFormSign();
+				}
 
 				setButton();
 			}else{
