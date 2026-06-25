@@ -1009,7 +1009,7 @@
 							arr.push("<td class='left'>" + ar1[86] + "</td>");
 						}else{
 							//申报
-							if((angencyID==1 && ar1[65]>0) || (angencyID>1 && ar1[53]>0)){
+							if((agencyID==1 && ar1[65]>0) || (agencyID>1 && ar1[53]>0)){
 								arr.push("<td class='center'>" + imgChk + "</td>");	//申报/准考证
 							}else{
 								arr.push("<td class='center'>&nbsp;</td>");
