@@ -506,6 +506,7 @@
 				$("#result").val(ar[95]);
 				$("#examDate").val(ar[98]);
 				$("#tax").val(ar[100]);
+				$("#attendance").val(ar[101] + "/" + ar[9]);
 				ref_id = ar[96];
 				$("#examTimes").html("&nbsp;<a style='text-decoration: none;' href='javascript:showExamList(" + ar[0] + ",\"" + ar[2] + "\");'>" + ar[42] + "次</a>");
 				entryform = ar[35];
@@ -949,9 +950,10 @@
 						<form style="width:99%;float:right;margin:1px;padding-left:2px;background:#f8f8ee;">
 						<table>
 						<tr>
-							<td align="right">在线进度</td>
+							<td align="right">在线</td>
 							<td colspan="3">
 								<input id="completion" name="completion" class="readOnly" size="4" readOnly="true" />&nbsp;%
+								&nbsp;课时<input id="attendance" class="readOnly" size="4" readOnly="true" />&nbsp;
 								&nbsp;<input class="button" type="button" id="btnShowCompletion" value="在线考勤" />
 								&nbsp;<input class="button" type="button" id="btnShowEnterCheckin" value="线下考勤" />
 								&nbsp;<input class="button" type="button" id="btnProof" value="培训证明" />
