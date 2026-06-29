@@ -91,7 +91,7 @@
 					arr.push("<tr class='grade0'>");
 					arr.push("<td>" + i + "</td>");
 					arr.push("<td align='left'>" + val["name"] + "</td>");
-					arr.push("<td align='center' title='完成课时:线上/线下'><a href='javascript:showAttendanceList(" + val["enterID"] + ");'>" + val["attendance"] + ":" + val["attendanceOnline"] + "/" + val["attendanceOffline"] + "</a></td>");	//课时
+					arr.push("<td align='center' " + (val["attendance"]>=val["hours"] ? "style='background:#00FFFF;'" : "") + " title='完成课时:线上/线下'>" + val["attendance"] + ":" + val["attendanceOnline"] + "/" + val["attendanceOffline"] + "</td>");	//课时
 					arr.push("<td align='center'>" + val["pOffline"] + "</td>");	//考勤
 					arr.push("<td align='left' title='标准/辅导'><a href='javascript:showCompletionList(" + val["enterID"] + ",0,0,0);'>" + val["completion"] + (val["completion1"]>0?'/'+val["completion1"]:'') + "</a></td>");
 					arr.push("<td align='center' title='应知/应会/最好成绩'><a style='text-decoration: none;' href='javascript:showExamList(" + val["enterID"] + ",\"" + val["name"] + "\");'>" + val["examTimes"] + "&nbsp;/&nbsp;" + val["examTimes1"] + "&nbsp;/&nbsp;" + val["bestScore"] + "</a></td>");
