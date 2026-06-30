@@ -137,8 +137,8 @@
 			<tr>
 				<td align="right">上传资料</td>
 				<td>
-					上传照片<input type="checkbox" id="upload" />
-					<input type="checkbox" id="uploadPhoto" />
+					<input type="checkbox" id="upload" />
+					&nbsp;&nbsp;上传照片&nbsp;<input type="checkbox" id="uploadPhoto" />
 				</td>
 				<td align="right">考试地址</td>
 				<td><input type="text" id="examAddress" size="25" /></td>
