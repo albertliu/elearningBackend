@@ -72,10 +72,10 @@
 		}
 
 		$("#sendMsgExam").click(function(){
-			if(address==""){
-				jAlert("请填写考试地址并保存。");
-				return false;
-			}
+			// if(address==""){
+			// 	jAlert("请填写考试地址并保存。");
+			// 	return false;
+			// }
 			jConfirm("确定向这批考生发送考试通知吗？","确认",function(r){
 				if(r){
 					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
@@ -908,6 +908,67 @@
 				}
 			});
 		});
+		// 初始化弹窗内容
+		$("#pop").html(
+			"<div style='padding:15px;'>" +
+				"<div style='margin-bottom:10px;'>" +
+					"考试时间：<input type='text' id='examDate' style='width:180px;' />" +
+				"</div>" +
+				"<div style='margin-bottom:15px;'>" +
+					"考试地点：<input type='text' id='examAddress' style='width:180px;' />" +
+				"</div>" +
+				"<div style='text-align:center;'>" +
+					"<input type='button' id='popOk' value='确定' /> " +
+					"<input type='button' id='popCancel' value='取消' />" +
+				"</div>" +
+			"</div>"
+		);
+
+		// 点击按钮打开小窗口
+		$("#btnExamInfo").click(function () {
+			$("#examDate").val("");
+			$("#examAddress").val("");
+
+			$("#pop").dialog({
+				title: "填写信息",
+				width: 320,
+				height: 210,
+				modal: true,
+				closed: false
+			});
+		});
+
+		// 确定
+		$("#popOk").click(function () {
+			var examDate = $("#examDate").val();
+			var examAddress = $("#examAddress").val();
+			getSelCart("");
+			if(selCount==0){
+				$.messager.alert("提示","请选择要操作的名单。","info");
+				return false;
+			}
+			if(examDate.trim() === "" || examAddress.trim() === "") {
+				$.messager.alert("提示","请填写考试时间和考试地点。","info");
+				return false;
+			}
+			if(confirm("确定要修改这" + selCount + "个学员的考试信息吗？")){
+				$.post(uploadURL + "/public/postCommInfo", {proc:"setExamDateList", params:{selList:selList, kindID:"A", classID:"",examDate:examDate, examAddress:examAddress, registerID:currUser}}, function(data){
+					//alert(unescape(re));
+					let ar = data[0]
+					// alert(ar)
+					if(ar["re"] == "0"){
+						$.messager.alert("提示","操作成功","info");
+						getApplyList();
+					}
+					$("#pop").dialog("close");
+				});
+			}
+		});
+
+		// 取消
+		$("#popCancel").click(function () {
+			$("#pop").dialog("close");
+		});
 
 	  	<!--#include file="commLoadFileReady.asp"-->
 	});
@@ -1389,6 +1450,7 @@
 		$("#generateEntryZip").hide();
 		$("#btnInvoiceGroup").hide();
 		$("#btnInvoiceGroupCancel").hide();
+		$("#btnExamInfo").hide();
 		$("#item_btn1").hide();
 		$("#item_btn2").hide();
 		$("#btnArchive").hide();
@@ -1479,6 +1541,7 @@
 			}
 			if(checkPermission("checkClass") && $("#archived").prop("checked") && $("#checkDate").val()==""){
 				$("#btnCheck").show();
+				$("#btnExamInfo").show();
 			}
 			if(checkPermission("storageClass") && $("#checkDate").val()>"" && $("#storageDate").val()==""){
 				$("#btnStorage").show();
@@ -1648,6 +1711,7 @@
 		<input class="button" type="button" id="sendMsgScore" value="成绩通知" />&nbsp;
 		<input class="button" type="button" id="btnInvoiceGroup" value="团体发票" />&nbsp;
 		<input class="button" type="button" id="btnInvoiceGroupCancel" value="发票解绑" />&nbsp;
+		<input class="button" type="button" id="btnExamInfo" value="考试信息" />&nbsp;
 		&nbsp;生成：
 		<input class="button" type="button" id="generateClassDoc" value="归档文件" />
 		<input class="button" type="button" id="generateEntryDoc" value="报名表" />
@@ -1704,5 +1768,6 @@
 	<hr size="1" noshadow />
 	<div id="cover" style="float:top;margin:3px;background:#f8fff8;">
 	</div>
+	<div id="pop" style="display:none;"></div>
 </div>
 </body>
