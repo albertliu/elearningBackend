@@ -1254,7 +1254,7 @@ if(op == "getApplyNodeInfo"){
 		//5
 		result += "|" + rs("unit").value + "|" + rs("examDate").value + "|" + rs("step").value + "|" + rs("age").value + "|" + rs("IDdateEnd").value;
 		//10
-		result += "|" + rs("score").value + "|" + rs("score1").value + "|" + rs("score2").value + "|" + rs("status").value + "|" + rs("memo_enter").value;
+		result += "|" + rs("score").value + "|" + rs("score1").value + "|" + rs("score2").value + "|" + rs("status").value + "|" + rs("memo_enter").value + "|" + rs("examAddress").value;
 	}
 	rs.Close();
 	Response.Write(escape(result));

@@ -66,6 +66,7 @@
 				$("#IDdateEnd").val(ar[9]);
 				$("#unit").val(ar[5]);
 				$("#memo_enter").val(ar[14]);
+				$("#examAddress").val(ar[15]);
 				if(ar[3]==1){
 					$("#upload").prop("checked",true);
 				}else{
@@ -94,7 +95,7 @@
 		if($("#uploadPhoto").prop("checked")){
 			uploadPhoto = 1;
 		}
-		$.post(uploadURL + "/public/postCommInfo", {proc:"updateApplyInfo", params:{ID:nodeID,status:$("#status").val(),examDate:$("#examDate").val(),step:$("#step").val(), memo:$("#memo").val(), memo1:$("#memo1").val(), score1:$("#score1").val(), score2:$("#score2").val(),upload:upload,uploadPhoto:uploadPhoto,registerID:currUser}}, function(data){
+		$.post(uploadURL + "/public/postCommInfo", {proc:"updateApplyInfo", params:{ID:nodeID,status:$("#status").val(),examDate:$("#examDate").val(),examAddress:$("#examAddress").val(),step:$("#step").val(), memo:$("#memo").val(), memo1:$("#memo1").val(), score1:$("#score1").val(), score2:$("#score2").val(),upload:upload,uploadPhoto:uploadPhoto,registerID:currUser}}, function(data){
 			getNodeInfo();
 			jAlert("保存成功！","信息提示");
 			updateCount += 1;
@@ -135,9 +136,12 @@
 			</tr>
 			<tr>
 				<td align="right">上传资料</td>
-				<td><input type="checkbox" id="upload" /></td>
-				<td align="right">上传照片</td>
-				<td><input type="checkbox" id="uploadPhoto" /></td>
+				<td>
+					上传照片<input type="checkbox" id="upload" />
+					<input type="checkbox" id="uploadPhoto" />
+				</td>
+				<td align="right">考试地址</td>
+				<td><input type="text" id="examAddress" size="25" /></td>
 			</tr>
 			<tr>
 				<td align="right">应知成绩</td>
