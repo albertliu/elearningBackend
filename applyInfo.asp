@@ -67,6 +67,7 @@
 				$("#unit").val(ar[5]);
 				$("#memo_enter").val(ar[14]);
 				$("#examAddress").val(ar[15]);
+				$("#passNo").val(ar[16]);
 				if(ar[3]==1){
 					$("#upload").prop("checked",true);
 				}else{
@@ -95,7 +96,7 @@
 		if($("#uploadPhoto").prop("checked")){
 			uploadPhoto = 1;
 		}
-		$.post(uploadURL + "/public/postCommInfo", {proc:"updateApplyInfo", params:{ID:nodeID,status:$("#status").val(),examDate:$("#examDate").val(),examAddress:$("#examAddress").val(),step:$("#step").val(), memo:$("#memo").val(), memo1:$("#memo1").val(), score1:$("#score1").val(), score2:$("#score2").val(),upload:upload,uploadPhoto:uploadPhoto,registerID:currUser}}, function(data){
+		$.post(uploadURL + "/public/postCommInfo", {proc:"updateApplyInfo", params:{ID:nodeID,status:$("#status").val(),examDate:$("#examDate").val(),examAddress:$("#examAddress").val(),step:$("#step").val(), passNo:$("#passNo").val(), memo:$("#memo").val(), memo1:$("#memo1").val(), score1:$("#score1").val(), score2:$("#score2").val(),upload:upload,uploadPhoto:uploadPhoto,registerID:currUser}}, function(data){
 			getNodeInfo();
 			jAlert("保存成功！","信息提示");
 			updateCount += 1;
@@ -148,6 +149,10 @@
 				<td><input type="text" id="score1" size="3" />&nbsp;&nbsp;应会&nbsp;<input type="text" id="score2" size="3" /></td>
 				<td align="right">结果</td>
 				<td><select id="status" style="width:100px;"></select></td>
+			</tr>
+			<tr>
+				<td align="right">证书编号</td>
+				<td colspan="3"><input type="text" id="passNo" style="width:100%;" /></td>
 			</tr>
 			<tr>
 				<td align="right">申报备注</td>
