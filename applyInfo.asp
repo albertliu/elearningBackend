@@ -105,7 +105,7 @@
 	
 	function setButton(){
 		$("#btnSave").hide();
-		if(checkPermission("applyEdit")){
+		if(checkPermission("applyEdit") || checkPermission("studentAdd")){
 			$("#btnSave").show();
 		}
 	}
