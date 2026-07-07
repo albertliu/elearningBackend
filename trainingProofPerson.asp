@@ -70,8 +70,8 @@
 				$("#certKind").html(ar["certKind"]);
 				$("#reexamine").html(ar["reexamine"]==0?"初次取证":"换证");
 				$("#kind").html(ar["username"].length==18?"身份证":"港澳台通行证/护照");
-				$("#attendance").html(ar["attendance"]);
-				// $("#attendance").html(ar["hours"]);
+				// $("#attendance").html(ar["attendance"]);
+				$("#attendance").html(ar["hours"]);
 				$("#hours").html(ar["hours"]);
 				$("#date").html(ar["dateStart"] + "至" + ar["dateEnd"]);
 				$("#date1").html(ar["dateEnd"]);
