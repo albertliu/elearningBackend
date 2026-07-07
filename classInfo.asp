@@ -1001,7 +1001,7 @@
 							arr.push("<td class='left' title='" + ar1[12] + "'>" + ar1[13].substr(0,12) + "</td>");
 						}
 						if(agencyID==1){
-							arr.push("<td class='left' " + (ar1[95]>=ar1[9] ? "style='background:#00FFFF;'" : "") + " title='应修课时" + ar1[9] + " 实修:线上/线下'>" + ar1[95] + ":" + (ar1[95]-ar1[96]).toFixed(2) + "/" + ar1[96] + "</td>");	//实修课时
+							arr.push("<td class='left' " + (parseInt(ar1[95])>=parseInt(ar1[9]) ? "style='background:#00FFFF;'" : "") + " title='应修课时" + ar1[9] + " 实修:线上/线下'>" + ar1[95] + ":" + (ar1[95]-ar1[96]).toFixed(2) + "/" + ar1[96] + "</td>");	//实修课时
 						}else{
 							c = ar1[10];
 							if(c>0){
