@@ -301,7 +301,7 @@ if(op == "getStudentCourseList"){
 	sql = " FROM v_studentCourseList " + where;
 	result = getBasketTip(sql,"");
 	ssql = "SELECT SNo,username,name,sexName,age,educationName,(case when host<>'spc' and host<>'shm' then unit else hostName end),(case when host<>'spc' and host<>'shm' then dept else dept1Name end),(case when host='znxf' then '' else dept2Name end),job,mobile,phone,address,checkName,projectID+projectName,classID,statusName,currDiplomaDate,price,pay_typeName,pay_kindName,datePay,invoice,completion,(case when examScore=0 then '' else cast(cast(examScore as int) as varchar) end),cast(score as varchar),cast(score2 as varchar),resultName,examDate,diplomaID,diploma_startDate,diploma_endDate,salerName,memo,regDate" + sql + " order by SNo";
-	sql = "SELECT top 1000 *,[dbo].[getMissingItems](ID) as missingItems" + sql + " order by SNo";
+	sql = "SELECT top 1000 *,[dbo].[getMissingItems](ID) as missingItems, dbo.getEnterAttendance(ID) as attendance, dbo.getEnterAttendanceOffline(ID) as attendanceOffline" + sql + " order by SNo";
 	
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
@@ -333,7 +333,7 @@ if(op == "getStudentCourseList"){
 		//85
 		result += "|" + rs("photo_size").value + "|" + rs("examDate").value + "|" + rs("result").value + "|" + rs("resultName").value + "|" + rs("entryform").value + "|" + rs("source").value;
 		//91
-		result += "|" + rs("social_filename").value + "|" + rs("job_filename").value + "|" + rs("evalution").value + "|" + rs("currDiplomaID").value;
+		result += "|" + rs("social_filename").value + "|" + rs("job_filename").value + "|" + rs("evalution").value + "|" + rs("currDiplomaID").value + "|" + rs("attendance").value + "|" + rs("attendanceOffline").value;
 		rs.MoveNext();
 	}
 	rs.Close();

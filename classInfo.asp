@@ -938,7 +938,11 @@
 			arr.push("<th width='6%'>支付</th>");
 			if(photo == 0){
 				arr.push("<th width='10%'>单位</th>");
-				arr.push("<th width='5%'>进度%</th>");
+				if(agencyID==1){
+					arr.push("<th width='5%'>课时</th>");
+				}else{
+					arr.push("<th width='5%'>进度%</th>");
+				}
 				arr.push("<th width='7%'>模拟</th>");
 				if(fire==1){
 					arr.push("<th width='6%'>考试日期</th>");
@@ -996,13 +1000,18 @@
 						}else{
 							arr.push("<td class='left' title='" + ar1[12] + "'>" + ar1[13].substr(0,12) + "</td>");
 						}
-						c = ar1[10];
-						if(c>0){
-							c = c;
+						if(agencyID==1){
+							arr.push("<td class='left' " + (ar1[95]>=ar1[9] ? "style='background:#00FFFF;'" : "") + " title='应修课时" + ar1[9] + " 实修:线上/线下'>" + ar1[95] + ":" + (ar1[95]-ar1[96]).toFixed(2) + "/" + ar1[96] + "</td>");	//实修课时
 						}else{
-							c = "";
+							c = ar1[10];
+							if(c>0){
+								c = c;
+							}else{
+								c = "";
+							}
+							arr.push("<td class='center'>" + c + "</td>");	//学习进度
 						}
-						arr.push("<td class='center'>" + c + "</td>");	//学习进度
+						
 						arr.push("<td title='最好成绩' class='link1' onclick='showExamList(" + ar1[0] + ",\"" + ar1[2] + "\",0,0);'>" + nullNoDisp(ar1[15]) + "</td>");
 						
 						if(fire==1){
