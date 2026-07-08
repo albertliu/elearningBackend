@@ -70,6 +70,9 @@
 			// $("#keyItem6").hide();
 			$("#keyItem7").hide();
 		}
+		if(keyID==2){	//培训协议不带报名表
+			$("#item0").hide();
+		}
 		// if(keyID>1){
 			$("#pageTitle").hide();
 		// }
@@ -207,12 +210,15 @@
 						getNeed2know(nodeID);
 						getAgreement(ar[1],ar[2],course,sign,sDate,price,price,agreement);
 					}
-					if(keyID != 4){
+					if(keyID != 4 && keyID != 2){
 						getMaterials(ar[1],sign,p,k);
 					}
 				}
 				if(keyID == 4){
 					getAgreement(ar[1],ar[2],course,"","",price,price,agreement);	//无签名
+				}
+				if(keyID == 2){
+					getAgreement(ar[1],ar[2],course,sign,sDate,price,price,agreement);
 				}
 				if(keyID==1){
 					resumePrint();
@@ -265,7 +271,7 @@
 			<input class="button" type="button" id="print" value="打印" />&nbsp;
 		</div>
 		<div id="resume_print" style="border:none;width:100%;margin:1px;background:#ffffff;line-height:18px;">
-			<div style="position: relative;width:800px;height:99%;">
+			<div id="item0" style="position: relative;width:800px;height:99%;">
 				<div style="position: absolute; z-index:10;">
 					<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>上海市高危行业负责人及安全生产管理人员安全知识和管理能力</h3></div>
 					<div style='text-align:center; margin:10px 0 20px 0;'><h3 style='font-size:1.45em;'>考核申请表</h3></div>

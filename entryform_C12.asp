@@ -47,7 +47,7 @@
 	$(document).ready(function (){
 		nodeID = "<%=nodeID%>";		//enterID
 		refID = "<%=refID%>";		//username
-		keyID = "<%=keyID%>";		//0 预览  1 打印  2 归档材料  4 仅报名表（不显示身份证，签名时展示给学员)   5 报名表
+		keyID = "<%=keyID%>";		//0 预览  1 打印  2 培训协议  4 仅报名表（不显示身份证，签名时展示给学员)   5 报名表
 		op = "<%=op%>";
 		kindID = "<%=kindID%>";		// 0 普通  1 带培训证明
 		classID = "<%=status%>";		//classID
@@ -68,6 +68,9 @@
 		}else{
 			$("#keyItem5").hide();
 			$("#keyItem7").hide();
+		}
+		if(keyID==2){	//培训协议不带报名表
+			$("#item0").hide();
 		}
 		getNodeInfo(nodeID, refID);
 	});
@@ -153,7 +156,7 @@
 				}
 
 				var p = 0;
-				if(keyID < 3){
+				if(keyID < 2){
 					//打印学历证明、身份证
 					p = 1;
 					s = 0;
@@ -210,7 +213,7 @@
 	
 	<div style="width:1000;float:left;margin:0;">
 		<div id="resume_print" style="border:none;width:100%;margin:1px;line-height:18px;">
-			<div style="position: relative; width:800px;height:99%;">
+			<div id="item0" style="position: relative; width:800px;height:99%;">
 				<div style="position: absolute; z-index:10; width:100%;">
 					<div style='text-align:center; margin:5px 0 10px 0;'><h3 id="reexamine" style='font-size:1.55em; font-family: 幼圆;'></h3></div>
 					<div style='text-align:left; margin:15px 10 10px 30px;'><p style='font-size:1.5em; font-family: 幼圆;'>申请类别：<input type="checkbox" id="R0" />&nbsp;初次取证&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="R2" />&nbsp;换证</p></div>

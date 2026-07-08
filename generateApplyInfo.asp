@@ -1052,7 +1052,7 @@
 				}
                 $("#diplomaSign").show();
 				if(ar[33] > ""){
-					$("#zip").html("<a href='/users" + ar[33] + "?times=" + (new Date().getTime()) + "' target='_blank'>归档</a>");
+					$("#zip").html("<a href='/users" + ar[33] + "?times=" + (new Date().getTime()) + "' target='_blank'>协议</a>");
 				}
 				if(ar[34] > ""){
 					$("#pzip").html("<a href='/users" + ar[34] + "?times=" + (new Date().getTime()) + "' target='_blank'>照片</a>");
@@ -1401,7 +1401,7 @@
 
 	function generateEntryDoc(k){
 		//班级的归档/报名表/培训证明/授权委托书 k: 2/5/6/7
-		let f = ['','','班级归档资料.pdf','','','报名表.jpg','培训证明','授权委托书'];
+		let f = ['','','培训协议.pdf','','','报名表.jpg','培训证明','授权委托书'];
 		getSelCart("");
 		if(selCount==0){
 			$.messager.alert("提示","请选择要操作的名单。","info");
@@ -1714,14 +1714,14 @@
 		<input class="button" type="button" id="btnInvoiceGroupCancel" value="发票解绑" />&nbsp;
 		<input class="button" type="button" id="btnExamInfo" value="考试信息" />&nbsp;
 		&nbsp;生成：
-		<input class="button" type="button" id="generateClassDoc" value="归档文件" />
+		<input class="button" type="button" id="generateClassDoc" value="协议" />
 		<input class="button" type="button" id="generateEntryDoc" value="报名表" />
 		<input class="button" type="button" id="generateEntryDoc1" value="生成报名表带培训证明" />
 		<input class="button" type="button" id="btnProof" value="班级证明" />
 		<input class="button" type="button" id="btnProofPerson" value="个人证明" />
 		<input class="button" type="button" id="btnPowerAttorney" value="委托书" />&nbsp;
 		&nbsp;打包：
-		<input class="button" type="button" id="generateZip" value="归档" />
+		<input class="button" type="button" id="generateZip" value="协议" />
 		<input class="button" type="button" id="generatePhotoZip" value="照片" />
 		<input class="button" type="button" id="generateEntryZip" value="报名表" />
 		<input class="button" type="button" id="generateProofZip" value="个人证明" />
