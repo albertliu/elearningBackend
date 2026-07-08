@@ -1509,7 +1509,7 @@
 					$("#sendMsgDiploma").show();
 				}
 			}
-			if((checkRole("adviser") || checkPermission("scoreUpload")) && s < 2){
+			if((checkRole("adviser") || checkPermission("scoreUpload"))){
 				$("#save").show();
 				$("#generateZip").show();
 				$("#generatePhotoZip").show();
