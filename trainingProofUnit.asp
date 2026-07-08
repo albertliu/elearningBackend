@@ -70,7 +70,7 @@
 				$("#yy").html(ar["dateEnd"].substring(0,4));
 				$("#mm").html(ar["dateEnd"].substring(5,7));
 				$("#dd").html(ar["dateEnd"].substring(8,10));
-				$("#reexamine1").html("（" + (ar["reexamine"]==0?"初次取证":"复审") + "）");
+				$("#reexamine1").html("（" + (ar["reexamine"]==0?"初次取证":"换证") + "）");
 				$("#unit").html("上海智能消防学校");
 				$("#stamp").attr("src","/users/upload/companies/stamp/znxf.png" + "?times=" + (new Date().getTime()));
 				$("#f_sign").attr("src","/users/upload/companies/signature/host_znxf.png" + "?times=" + (new Date().getTime()));
