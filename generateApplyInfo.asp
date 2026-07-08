@@ -1509,8 +1509,12 @@
 					$("#sendMsgDiploma").show();
 				}
 			}
-			if(checkRole("adviser") && s < 2){
+			if((checkRole("adviser") || checkPermission("scoreUpload")) && s < 2){
 				$("#save").show();
+				$("#generateZip").show();
+				$("#generatePhotoZip").show();
+				$("#generateEntryZip").show();
+				$("#btnSetSource").show();
 			}
 			if(checkPermission("scoreUpload") && s == 1){
 				$("#doImportScore").show();
