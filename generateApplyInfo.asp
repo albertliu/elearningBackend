@@ -1196,9 +1196,10 @@
 				arr.push("<th width='6%'>来源</th>");
 				// arr.push("<th width='6%'>上传</th>");
 				arr.push("<th width='5%'>课时</th>");
-				arr.push("<th width='3%'>证</th>");
-				arr.push("<th width='3%'>委</th>");
-				arr.push("<th width='11%'>考试时间</th>");
+				arr.push("<th width='3%'>证明</th>");
+				arr.push("<th width='3%'>委托</th>");
+				arr.push("<th width='3%'>协议</th>");
+				arr.push("<th width='10%'>考试时间</th>");
 				arr.push("<th width='6%'>成绩</th>");
 				arr.push("<th width='6%'>结果</th>");
 			}else{
@@ -1208,7 +1209,7 @@
 				arr.push("<th width='6%'>证明</th>");
 				arr.push("<th width='10%'>单位代码</th>");
 			}
-			arr.push("<th width='12%'>备注</th>");
+			arr.push("<th width='10%'>备注</th>");
 			arr.push("<th width='1%'>评</th>");
 			arr.push("<th width='1%'>材</th>");
 			arr.push("</tr>");
@@ -1257,6 +1258,11 @@
 							arr.push("<td class='center'></td>");
 						}else{
 							arr.push("<td class='center'><a href='javascript:void(0);' title='培训证明' onclick='showPic(\"" + ar1[54] + "\",0);'>" + (ar1[56]>0?imgFileBlue:imgFile) + "</a></td>");  //委托书
+						}
+						if(ar1[24]==''){
+							arr.push("<td class='center'></td>");
+						}else{
+							arr.push("<td class='center'><a href='javascript:void(0);' title='培训协议' onclick='showPDF(\"" + ar1[24] + "\",0,0,0);'>" + imgFile + "</a></td>");  //协议
 						}
 						arr.push("<td class='left'>" + ar1[18] + "</td>");	// 考试时间
 						h = ar1[19];
@@ -1472,6 +1478,7 @@
 			//$("#save").focus();
 		}else{
 			if(checkPermission("applyEdit") && currHost==""){
+				$("#doImportApply").show();
 				if(s==0){		//考前可以删除申报、调整人员
 					$("#save").show();
 					$("#del").show();
@@ -1483,7 +1490,6 @@
 				}
 				if(s==1){		//锁定后可以导入申报结果，发考试通知，上传成绩，发成绩通知，安排补考
 					$("#save").show();
-					$("#doImportApply").show();
 					// $("#sendMsgExam").show();
 				}
 				if(s==2){
