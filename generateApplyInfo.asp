@@ -72,14 +72,14 @@
 		}
 
 		$("#sendMsgExam").click(function(){
-			// if(address==""){
-			// 	jAlert("请填写考试地址并保存。");
-			// 	return false;
-			// }
+			getSelCart("");
+			if(selCount==0){
+				jAlert("请选择要通知的人员。");
+				return false;
+			}
 			jConfirm("确定向这批考生发送考试通知吗？","确认",function(r){
 				if(r){
-					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
-					$.getJSON(uploadURL + "/public/send_message_exam_apply?SMS=1&batchID=" + nodeID + "&registerID=" + currUser ,function(data){
+					$.post(uploadURL + "/public/send_message_exam_apply?SMS=1&batchID=" + nodeID + "&registerID=" + currUser,{"selList":selList} ,function(data){
 						if(data>""){
 							jAlert("通知发送成功。");
 							getNodeInfo(nodeID);
@@ -92,10 +92,15 @@
 		});
 
 		$("#sendMsgScore").click(function(){
+			getSelCart("");
+			if(selCount==0){
+				jAlert("请选择要通知的人员。");
+				return false;
+			}
 			jConfirm("确定向这批考生发送成绩单吗？","确认",function(r){
 				if(r){
 					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
-					$.getJSON(uploadURL + "/public/send_message_score_apply?SMS=1&batchID=" + nodeID + "&registerID=" + currUser ,function(data){
+					$.post(uploadURL + "/public/send_message_score_apply?SMS=1&batchID=" + nodeID + "&registerID=" + currUser,{"selList":selList} ,function(data){
 						if(data>""){
 							jAlert("通知发送成功。");
 							getNodeInfo(nodeID);
@@ -1248,7 +1253,6 @@
 					if(photo == 0){
 						arr.push("<td class='left'>" + ar1[41] + "</td>");	//source
 						arr.push("<td class='left' " + (ar1[58]>=ar1[57] ? "style='background:#00FFFF;'" : "") + " title='应修课时" + ar1[57] + " 实修:线上/线下'>" + ar1[58] + ":" + (ar1[58]-ar1[59]).toFixed(2) + "/" + ar1[59] + "</td>");	//实修课时
-						// arr.push("<td class='left'>" + (ar1[30]==1?imgChk:'&nbsp;') + "</td>");	// 上传报名表
 						if(ar1[53]==''){
 							arr.push("<td class='center'></td>");
 						}else{
@@ -1264,7 +1268,7 @@
 						}else{
 							arr.push("<td class='center'><a href='javascript:void(0);' title='培训协议' onclick='showPDF(\"" + ar1[24] + "\",0,0,0);'>" + imgFile + "</a></td>");  //协议
 						}
-						arr.push("<td class='left'>" + ar1[18] + "</td>");	// 考试时间
+						arr.push("<td class='link1'><a href='javascript:showApplyDetail(" + ar1[0] + ",0,1);'>" + ar1[18] + "</a></td>");	// 考试时间
 						h = ar1[19];
 						if(agencyID == "1"){
 							h = ar1[20].replace(".00","") + "/" + ar1[21].replace(".00","");
@@ -1300,11 +1304,6 @@
 						arr.push("<td class='left'>" + (ar1[49]>""?imgChk:'&nbsp;') + ar1[45] + "</td>");	//tax
 					}
 					arr.push("<td class='link1'><a href='javascript:showMsg(\"" + ar1[33] + "\",\"历史数据\");'>" + ar1[10] + "</a></td>");	// 备注
-					// if(ar1[7]>0){
-					// 	arr.push("<td class='center'>" + imgChk + "</td>");	//补考
-					// }else{
-					// 	arr.push("<td class='center'>&nbsp;</td>");
-					// }
 					bc = "";
 					if(ar1[28]==1 && ar1[29]<2){	//有复训日期且没有结束课程的
 						if(ar1[27]>""){
@@ -1314,7 +1313,6 @@
 							if(x>60){bc = backcolor[3]}
 						}
 					}
-					// arr.push("<td class='left'>" + ar1[27] + "</td>");
 					arr.push("<td class='left'>" + (ar1[52]==1?imgChkGray:(ar1[52]==2?imgChk:"&nbsp;")) + "</td>");	//评议表
 					if(s==0){
 						k = ar1[0];
