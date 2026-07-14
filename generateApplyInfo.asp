@@ -77,7 +77,7 @@
 				jAlert("请选择要通知的人员。");
 				return false;
 			}
-			jConfirm("确定向这批考生发送考试通知吗？","确认",function(r){
+			jConfirm("确定向这" + selCount + "个考生发送考试通知吗？","确认",function(r){
 				if(r){
 					$.post(uploadURL + "/public/send_message_exam_apply?SMS=1&batchID=" + nodeID + "&registerID=" + currUser,{"selList":selList} ,function(data){
 						if(data>""){
@@ -97,7 +97,7 @@
 				jAlert("请选择要通知的人员。");
 				return false;
 			}
-			jConfirm("确定向这批考生发送成绩单吗？","确认",function(r){
+			jConfirm("确定向这" + selCount + "个考生发送成绩单吗？","确认",function(r){
 				if(r){
 					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
 					$.post(uploadURL + "/public/send_message_score_apply?SMS=1&batchID=" + nodeID + "&registerID=" + currUser,{"selList":selList} ,function(data){
@@ -118,7 +118,7 @@
 				jAlert("请选择要通知的人员。");
 				return false;
 			}
-			jConfirm("确定通知这些人领证吗？","确认",function(r){
+			jConfirm("确定通知这" + selCount + "个人领证吗？","确认",function(r){
 				if(r){
 					//alert($("#searchStudentNeedDiplomaCert").val() + "&host=" + $("#searchStudentNeedDiplomaHost").val() + "&username=" + currUser);
 					$.post(uploadURL + "/public/send_message_diploma_apply?SMS=1&batchID=" + nodeID + "&registerID=" + currUser,{"selList":selList} ,function(data){
