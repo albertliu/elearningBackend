@@ -36,7 +36,6 @@
 
 	function getApplyDetail(){
 		$.post(uploadURL + "/public/postCommInfo", {proc:"getApplyDetail", params:{applyID: nodeID}}, function(data){
-			arr = [];
 			if (data.length === 0) {
 				$("#cover").html("无考试信息");
 				return;
@@ -50,14 +49,15 @@
 			arr.push("<th width='18%'>准考证号</th>");
 			arr.push("<th width='18%'>考试日期</th>");
 			arr.push("<th width='26%'>考试地点</th>");
-			arr.push("<th width='12%'>考试类型</th>");
+			arr.push("<th width='12%'>类型</th>");
 			arr.push("<th width='12%'>成绩</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
+			var i = 0;
+			var c = 0;
 			$.each(data,function(iNum,val){
-				var i = 0;
-				var c = 0;
+				i += 1;
 				arr.push("<tr class='grade" + c + "'>");
 				arr.push("<td class='center'>" + i + "</td>");
 				arr.push("<td class='link1'><a href='javascript:showApplyDetailInfo(" + val["ID"] + ",0,1);'>" + val["examNo"] + "</a></td>");
@@ -86,12 +86,11 @@
 				"bFilter": true,
 				"bPaginate": true,
 				"bLengthChange": true,
-				"aLengthMenu":[15,30,50,100],
-				"iDisplayLength": 100,
+				"aLengthMenu":[15,30,50],
+				"iDisplayLength": 30,
 				"bInfo": true,
 				"aoColumnDefs": []
 			});
-			$("#cover").html(arr.join(""));
  		});
 	}
 </script>

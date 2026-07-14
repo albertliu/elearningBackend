@@ -2153,8 +2153,8 @@
 			id: "applyDetail",
 			url:"applyDetail.asp?nodeID=" + nodeID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "申报信息",
-			width: 600,
-			height: 600,
+			width: 700,
+			height: 620,
 			cover : {
 	          //透明度
 	          opacity : 0,
@@ -2169,8 +2169,8 @@
 	//nodeID: ID; op: 0 浏览 1 新增  2 编辑  3 删除  4 审批; mark: 0 不动作  1 有修改时刷新列表  2 有修改时刷新对象
 	function showApplyDetailInfo(nodeID,op,mark){
 		asyncbox.open({
-			id: "applyDetail",
-			url:"applyDetail.asp?nodeID=" + nodeID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
+			id: "applyDetailInfo",
+			url:"applyDetailInfo.asp?nodeID=" + nodeID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "申报信息",
 			width: 500,
 			height: 500,
