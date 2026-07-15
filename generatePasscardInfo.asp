@@ -640,7 +640,7 @@
 			$("#certID").prop("disabled",false);
 			//$("#save").focus();
 		}else{
-			if(checkPermission("studentAdd")){
+			if(checkPermission("studentAdd") || checkPermission("examOpen")){
 				if(s==0){		//考前可以删除考试、调整人员
 					$("#save").show();
 					$("#del").show();
@@ -663,7 +663,7 @@
 					$("#close").show();
 				}
 			}
-			if(checkPermission("scoreUpload") && s == 1 && $("#startDate").val().substring(0,10) <= (new Date().format("yyyy-MM-dd"))){
+			if((checkPermission("scoreUpload") || checkPermission("examOpen")) && s == 1 && $("#startDate").val().substring(0,10) <= (new Date().format("yyyy-MM-dd"))){
 				$("#doImportScore").show();
 				$("#doConfirmScore").show();
 			}
