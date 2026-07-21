@@ -36,7 +36,7 @@
 	var sDate = "";
 	var price = 0;
 	var k = 0;
-	let agreement = "A0";
+	let agreement = "A3";
 	<!--#include file="js/commFunction.js"-->
 	<!--#include file="agreement.js"-->
 	<!--#include file="materials_emergency.js"-->

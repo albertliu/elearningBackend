@@ -435,7 +435,7 @@
 					}
 					arr.push("<td class='left' " + (ar1[57]==1 && bc>"" ? "style='background:" + bc + ";'" : "") + ">" + ar1[83] + "</td>");	// 复训日期
 					/*申报*/
-					if(ar1[65]>0 || ar1[53]>0){
+					if((ar1[97]==1 && ar1[65]>0) || (ar1[97]>1 && ar1[53]>0)){
 						arr.push("<td class='center'>" + imgChk + "</td>");	//申报/准考证
 					}else{
 						arr.push("<td class='center'>&nbsp;</td>");

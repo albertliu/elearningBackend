@@ -35,7 +35,7 @@
 	var course = "";
 	var sDate = "";
 	var price = 0;
-	let agreement = "A1";
+	let agreement = "A0";
 	var updateCount = 1;
 	<!--#include file="js/commFunction.js"-->
 	<!--#include file="need2know.js"-->
