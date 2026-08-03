@@ -1207,6 +1207,7 @@
 				arr.push("<th width='10%'>考试时间</th>");
 				arr.push("<th width='6%'>成绩</th>");
 				arr.push("<th width='6%'>结果</th>");
+				arr.push("<th width='6%'>考次</th>");
 			}else{
 				arr.push("<th width='10%'>报名备注</th>");
 				arr.push("<th width='6%'>照片</th>");
@@ -1268,13 +1269,14 @@
 						}else{
 							arr.push("<td class='center'><a href='javascript:void(0);' title='培训协议' onclick='showPDF(\"" + ar1[24] + "\",0,0,0);'>" + imgFile + "</a></td>");  //协议
 						}
-						arr.push("<td class='link1'><a href='javascript:showApplyDetail(" + ar1[0] + ",0,1);'>" + ar1[18] + "</a></td>");	// 考试时间
+						arr.push("<td class='link1'><a href='javascript:showApplyDetailList(" + ar1[0] + ",0,1);'>" + ar1[18] + "</a></td>");	// 考试时间
 						h = ar1[19];
 						if(agencyID == "1"){
 							h = ar1[20].replace(".00","") + "/" + ar1[21].replace(".00","");
 						}
 						arr.push("<td class='left'>" + h + "</td>");
 						arr.push("<td class='left'>" + ar1[9] + "</td>");
+						arr.push("<td class='link1' title='考试次数：理论/实操/收费'><a href='javascript:showApplyDetailList(" + ar1[0] + ",0,1);'>" + ar1[60] + "</a></td>");
 					}else{
 						arr.push("<td class='left'>" + ar1[39] + "</td>");
 						photo_type = ar1[34].substr(ar1[34].indexOf("."));
@@ -1351,6 +1353,8 @@
 				arr.push("<th>&nbsp;</th>");
 			}
 			if(photo == 0){
+				arr.push("<th>&nbsp;</th>");
+				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
 				arr.push("<th>&nbsp;</th>");
 			}

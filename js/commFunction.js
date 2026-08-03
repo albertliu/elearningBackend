@@ -1688,7 +1688,7 @@
 	//nodeID: ID; op: 0 浏览 1 新增; mark: 0 不动作  1 有修改时刷新列表; re:0 normal  1 big window
 	function showEnterInfo(nodeID,refID,op,mark,companyID,re){
 		var w = 750;
-		var h = 690;
+		var h = 700;
 		if(re==1){
 			w = 1000;
 			h = 960;
@@ -2148,13 +2148,13 @@
 	}
 	
 	//nodeID: applyID; op: 0 浏览 1 新增  2 编辑  3 删除  4 审批; mark: 0 不动作  1 有修改时刷新列表  2 有修改时刷新对象
-	function showApplyDetail(nodeID,op,mark){
+	function showApplyDetailList(nodeID,op,mark){
 		asyncbox.open({
-			id: "applyDetail",
-			url:"applyDetail.asp?nodeID=" + nodeID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
+			id: "applyDetailList",
+			url:"applyDetailList.asp?nodeID=" + nodeID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "申报信息",
-			width: 700,
-			height: 620,
+			width: 780,
+			height: 750,
 			cover : {
 	          //透明度
 	          opacity : 0,
@@ -2167,10 +2167,10 @@
 	}
 	
 	//nodeID: ID; op: 0 浏览 1 新增  2 编辑  3 删除  4 审批; mark: 0 不动作  1 有修改时刷新列表  2 有修改时刷新对象
-	function showApplyDetailInfo(nodeID,op,mark){
+	function showApplyDetailInfo(nodeID,refID,op,mark){
 		asyncbox.open({
 			id: "applyDetailInfo",
-			url:"applyDetailInfo.asp?nodeID=" + nodeID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
+			url:"applyDetailInfo.asp?nodeID=" + nodeID  + "&refID=" + refID + "&op=" + op + "&p=1&times=" + (new Date().getTime()),
 			title: "申报信息",
 			width: 500,
 			height: 500,
@@ -2185,7 +2185,7 @@
 			callback : function(action,iframe){
 				var re = iframe.updateCount;
 				if(re>0 && mark==1){
-					getApplyDetail();
+					getApplyDetailList();
 				}
 			}
 		});

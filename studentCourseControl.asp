@@ -579,7 +579,8 @@ if(op == "getStudentListByProject"){
 
 if(op == "getNodeInfo"){
 	result = "";
-	sql = "SELECT *,[dbo].[getPassCondition](ID) as pass_condition,[dbo].[getMissingItems](ID) as missingItems,[dbo].[getCourseInvoice](ID) as invoicePDF,dbo.getEnterAttendance(ID) as attendance FROM v_studentCourseList where ID=" + nodeID;
+	sql = "SELECT *,[dbo].[getPassCondition](ID) as pass_condition,[dbo].[getMissingItems](ID) as missingItems,[dbo].[getCourseInvoice](ID) as invoicePDF,dbo.getEnterAttendance(ID) as attendance FROM v_studentCourseList a where a.ID=" + nodeID;	
+	/*, b.resitCount0, b.resitCount1, b.resitCountFee, [dbo].[getApplyDetailCount](" + nodeID + ") b */
 	rs = conn.Execute(sql);
 	if(!rs.EOF){
 		result = rs("ID").value + "|" + rs("username").value + "|" + rs("name").value + "|" + rs("status").value + "|" + rs("statusName").value + "|" + rs("courseID").value + "|" + rs("courseName").value;
@@ -609,6 +610,8 @@ if(op == "getNodeInfo"){
 		result += "|" + rs("check_pass").value + "|" + rs("noReceive").value + "|" + rs("invoicePDF").value + "|" + rs("invoice_amount").value + "|" + rs("priceStandard").value + "|" + rs("receipt").value;
 		//93
 		result += "|" + rs("score").value + "|" + rs("score2").value + "|" + rs("result").value + "|" + rs("refID").value + "|" + rs("source").value + "|" + rs("examDate").value + "|" + rs("fromKind").value + "|" + rs("tax").value + "|" + rs("attendance").value;
+		//102
+		/* result += "|" + rs("resitCount0").value + "|" + rs("resitCount1").value + "|" + rs("resitCountFee").value; */
 	}
 	rs.Close();
 	Response.Write(escape(result));

@@ -26,14 +26,17 @@
 
 <script language="javascript">
 	var nodeID = 0;
+	let refID = 0;
 	var op = 0;
 	var updateCount = 0;
 	<!--#include file="js/commFunction.js"-->
 	$(document).ready(function (){
-		nodeID = "<%=nodeID%>";
+		nodeID = "<%=nodeID%>";		//ID
+		refID = "<%=refID%>";		//applyID
 		op = "<%=op%>";
 		
 		getDicList("scheduleKind","kind",0);
+		getDicList("statusNo","free",0);
 		
 		$.ajaxSetup({ 
 			async: false 
@@ -42,10 +45,19 @@
 		if(op==0){
 			getNodeInfo();
 		}
+		if(op==1){
+			setButton();
+		}
 		setButton();
 		
 		$("#btnSave").click(function(){
 			saveNode();
+		});
+		
+		$("#kind").change(function(){
+			if(op==1){
+			getNewSeq();
+			}
 		});
 	});
 
@@ -53,13 +65,19 @@
 		$.post(uploadURL + "/public/postCommInfo", {proc:"getApplyDetailInfo", params:{ID: nodeID}}, function(data){
 			let ar = data[0];
 			if(ar > ""){
+				refID = ar["applyID"];
 				$("#examNo").val(ar["examNo"]);
 				$("#examDate").val(ar["examDate"]);
 				$("#examAddress").val(ar["examAddress"]);
 				$("#kind").val(ar["kind"]);
+				$("#seq").val(ar["seq"]);
+				$("#free").val(ar["free"]);
 				$("#score").val(ar["score"]);
+				$("#classID").val(ar["classID"]);
 				$("#memo").val(ar["memo"]);
-				$("#regDate").val(ar["regDate"] + " " + ar["registerName"] + " / " + ar["dateScore"] + " " + ar["scoreCheckerName"]);
+				$("#regDate").val(ar["regDate"] + " " + ar["registerName"]);
+				$("#dateScore").val(ar["dateScore"] + " " + ar["scoreCheckerName"]);
+				$("#dateExam").val(ar["dateExam"] + " " + ar["examCheckerName"]);
 				
 				setButton();
 			}else{
@@ -69,10 +87,17 @@
 	}
 	
 	function saveNode(){
-		$.post(uploadURL + "/public/postCommInfo", {proc:"updateApplyDetailInfo", params:{ID:nodeID,examNo:$("#examNo").val(),examDate:$("#examDate").val(),examAddress:$("#examAddress").val(),score:$("#score").val(), kind:$("#kind").val(), memo:$("#memo").val(),registerID:currUser}}, function(data){
+		// alert(nodeID + "," + refID + "," + $("#examNo").val() + "," + $("#examDate").val() + "," + $("#examAddress").val() + "," + $("#score").val() + "," + $("#kind").val() + "," + $("#free").val() + "," + $("#seq").val() + "," + $("#memo").val());
+		$.post(uploadURL + "/public/postCommInfo", {proc:"updateApplyDetailInfo", params:{ID:nodeID,applyID:refID,examNo:$("#examNo").val(),examDate:$("#examDate").val(),examAddress:$("#examAddress").val(),score:$("#score").val(), kind:$("#kind").val(), free:$("#free").val(), seq:$("#seq").val(), memo:$("#memo").val(),registerID:currUser}}, function(data){
 			getNodeInfo();
 			jAlert("保存成功！","信息提示");
 			updateCount += 1;
+		});
+	}
+	
+	function getNewSeq(){
+		$.post(uploadURL + "/public/postCommInfo", {proc:"getApplyDetailNewSeq1", params:{applyID:refID,kindID:$("#kind").val()}}, function(data){
+			$("#seq").val(data[0]["seq"]);
 		});
 	}
 	
@@ -81,6 +106,24 @@
 		if(checkPermission("applyEdit") || checkPermission("studentAdd")){
 			$("#btnSave").show();
 		}
+		if(op==1){
+			$("#classID").prop("disabled",true);
+			setEmpty();
+		}else{
+			$("#classID").prop("disabled",false);
+		}
+	}
+	function setEmpty(){
+		$("#examNo").val("");
+		$("#examDate").val("");
+		$("#examAddress").val("");
+		$("#kind").val(0);
+		getNewSeq();
+		$("#free").val(0);
+		$("#score").val("");
+		$("#classID").val('');
+		$("#memo").val('');
+		nodeID = 0;
 	}
 	
 	function getUpdateCount(){
@@ -100,7 +143,7 @@
 			<table>
 			<tr>
 				<td align="right">准考证号</td>
-				<td colspan="3"><input type="text" id="examNo" style="width:100%;" readOnly="true" /></td>
+				<td colspan="3"><input type="text" id="examNo" style="width:100%;" /></td>
 			</tr>
 			<tr>
 				<td align="right">考试日期</td>
@@ -111,17 +154,35 @@
 				<td colspan="3"><input type="text" id="examAddress" style="width:100%;" /></td>
 			</tr>
 			<tr>
+				<td align="right">开班编号</td>
+				<td colspan="3"><input type="text" id="classID" style="width:100%;" /></td>
+			</tr>
+			<tr>
 				<td align="right">类型</td>
 				<td><select id="kind" style="width:100px;"></select></td>
 				<td align="right">成绩</td>
 				<td><input type="text" id="score" style="width:100%;" /></td>
 			</tr>
 			<tr>
+				<td align="right">收费</td>
+				<td><select id="free" style="width:100px;"></select></td>
+				<td align="right">第</td>
+				<td><input type="text" id="seq" style="width:30%;" />次考试</td>
+			</tr>
+			<tr>
 				<td align="right">备注</td>
 				<td colspan="3"><input type="text" id="memo" style="width:100%;" /></td>
 			</tr>
 			<tr>
-				<td align="right">导入日期</td>
+				<td align="right">考试导入</td>
+				<td colspan="3"><input class="readOnly" type="text" id="dateExam" readOnly="true" style="width:100%;" /></td>
+			</tr>
+			<tr>
+				<td align="right">成绩导入</td>
+				<td colspan="3"><input class="readOnly" type="text" id="dateScore" readOnly="true" style="width:100%;" /></td>
+			</tr>
+			<tr>
+				<td align="right">登记人</td>
 				<td colspan="3"><input class="readOnly" type="text" id="regDate" readOnly="true" style="width:100%;" /></td>
 			</tr>
 			</table>

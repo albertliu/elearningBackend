@@ -29,13 +29,17 @@
 		
 		$.ajaxSetup({ 
 			async: false 
-		}); 
+		});
+		
+		$("#btnAdd").click(function(){
+			showApplyDetailInfo(0,nodeID,1,1);
+		});
 
-		getApplyDetail();
+		getApplyDetailList();
 	});
 
-	function getApplyDetail(){
-		$.post(uploadURL + "/public/postCommInfo", {proc:"getApplyDetail", params:{applyID: nodeID}}, function(data){
+	function getApplyDetailList(){
+		$.post(uploadURL + "/public/postCommInfo", {proc:"getApplyDetailList", params:{applyID: nodeID}}, function(data){
 			if (data.length === 0) {
 				$("#cover").html("无考试信息");
 				return;
@@ -46,11 +50,12 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='4%'>No</th>");
-			arr.push("<th width='18%'>准考证号</th>");
+			arr.push("<th width='12%'>类型</th>");
 			arr.push("<th width='18%'>考试日期</th>");
 			arr.push("<th width='26%'>考试地点</th>");
-			arr.push("<th width='12%'>类型</th>");
+			arr.push("<th width='18%'>准考证号</th>");
 			arr.push("<th width='12%'>成绩</th>");
+			arr.push("<th width='12%'>收费</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
@@ -60,16 +65,22 @@
 				i += 1;
 				arr.push("<tr class='grade" + c + "'>");
 				arr.push("<td class='center'>" + i + "</td>");
-				arr.push("<td class='link1'><a href='javascript:showApplyDetailInfo(" + val["ID"] + ",0,1);'>" + val["examNo"] + "</a></td>");
+				arr.push("<td class='link1'><a href='javascript:showApplyDetailInfo(" + val["ID"] + "," + nodeID + ",0,1);'>" + val["kindName"] + "</a></td>");
 				arr.push("<td class='left'>" + val["examDate"] + "</td>");
 				arr.push("<td class='left'>" + val["examAddress"] + "</td>");
 				arr.push("<td class='left'>" + val["kindName"] + "</td>");
 				arr.push("<td class='left'>" + val["score"] + "</td>");
+				if(val["feeEnterID"]>""){
+					arr.push("<td class='link1'><a href='javascript:showEnterInfo(" + val["feeEnterID"] + ",\"\",0,1);'>" + (val["free"]==1 ? "是" : "") + "</a></td>");
+				}else{
+					arr.push("<td class='left'>" + (val["free"]==1 ? "是" : "") + "</td>");
+				}
 				arr.push("</tr>");
 			});
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
@@ -99,7 +110,10 @@
 
 <body>
 
-<div id='layout' align='left' style="background:#f0f0f0;">	
+<div id='layout' align='left' style="background:#f0f0f0;">
+	<div style="padding:5px 30px;">
+		<input class="button" type="button" id="btnAdd" value="添加" />
+	</div>
 	<div id="cover" style="float:left;width:100%;">
 	</div>
 </div>

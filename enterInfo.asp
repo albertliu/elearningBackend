@@ -161,6 +161,10 @@
 			printEntryform(0);
 		});
 
+		$("#btnResit").click(function(){
+			showApplyDetailList(nodeID,0,0);
+		});
+
 		$("#host").change(function(){
 			setProjectByUser();
 			$("#project0").hide();
@@ -507,6 +511,9 @@
 				$("#examDate").val(ar[98]);
 				$("#tax").val(ar[100]);
 				$("#attendance").val(ar[101] + "/" + ar[9]);
+				// $("#resitCount0").val(ar[102]);
+				// $("#resitCount1").val(ar[103]);
+				// $("#resitCountFee").val(ar[104]);
 				ref_id = ar[96];
 				$("#examTimes").html("&nbsp;<a style='text-decoration: none;' href='javascript:showExamList(" + ar[0] + ",\"" + ar[2] + "\");'>" + ar[42] + "次</a>");
 				entryform = ar[35];
@@ -724,6 +731,7 @@
 		$("#btnPrint").hide();
 		$("#btnRebuildStudentLesson").hide();
 		$("#btnSaveScore").hide();
+		$("#applyDetailItem").hide();
 		$("#amount").prop("disabled",true);
 		// $("#btnViewInvoice").prop("disabled",true);
 		$("#check_pass").checkbox({readonly:true});
@@ -964,12 +972,20 @@
 							</td>
 						</tr>
 						<tr>
-							<td align="right">应复训日期</td>
+							<td align="right">换证日期</td>
 							<td colspan="3">
 								<input type="text" id="currDiplomaDate" style="width:80px;" />&nbsp;&nbsp;
 								证书查询&nbsp;<input type="text" id="currDiplomaID" style="width:140px;" />&nbsp;&nbsp;
 								销售&nbsp;<select id="fromID" style="width:85px;"></select>&nbsp;&nbsp;
 								资源&nbsp;<select id="fromKind" style="width:60px"></select>
+							</td>
+						</tr>
+						<tr id="applyDetailItem">
+							<td align="right"><input class="button" type="button" id="btnResit" value="补考" /></td>
+							<td colspan="3">
+								理论&nbsp;<input type="text" id="resitCount0" style="width:140px;" />&nbsp;次&nbsp;
+								实操&nbsp;<input type="text" id="resitCount1" style="width:140px;" />&nbsp;次&nbsp;
+								收费&nbsp;<input type="text" id="resitCountFee" style="width:140px;" />&nbsp;次&nbsp;
 							</td>
 						</tr>
 						<tr>

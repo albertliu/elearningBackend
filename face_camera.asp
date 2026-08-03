@@ -112,6 +112,7 @@
     var start = 0;
     let refID = 0;
     let classID = 0;
+    let loadTimes = 0;
 
     $(document).ready(function (){
       $("#confidence").numberbox("setValue", 65);
@@ -155,6 +156,10 @@
           start = 0;
           $("#tip").html('考勤已结束。');
         }
+      });
+
+      $("#btnSel").click(function(){
+        setSel("");
       });
 
       $('#dg1').datagrid({
@@ -380,9 +385,10 @@
             arr.push("<td class='left'>" + ar2[1] + "</td>");
             arr.push("<td class='left'>" + ar2[2] + "</td>");
             arr.push("<td class='left'>" + ar2[3] + "</td>");
-            arr.push("<td class='left'>" + "<input id='chk" + ar1[0] + "' style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchk' />" + "</td>");
+            arr.push("<td class='left'>" + "<input id='chk" + ar1[0] + "'" + (loadTimes==0?" checked":"") + " style='BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none' type='checkbox' value='" + ar1[0] + "' name='visitstockchk' />" + "</td>");
             arr.push("</tr>");
           });
+          loadTimes += 1;
         }
         arr.push("</tbody>");
         arr.push("<tfoot>");
@@ -517,6 +523,7 @@
         <div>
           <span><a class="easyui-linkbutton" id="btnStart" href="javascript:void(0)"></a></span>&nbsp;&nbsp;
           <span><a class="easyui-linkbutton" id="btnStop" href="javascript:void(0)"></a></span>&nbsp;&nbsp;
+          <span><input class="button" type="button" id="btnSel" value="全选/取消" /></span>&nbsp;&nbsp;
           <span class="tip">识别参数：<input id="confidence" name="confidence" class="easyui-numberbox" data-options="min:0,height:22,width:50" />&nbsp;45-75&nbsp;&nbsp;</span>&nbsp;&nbsp;
           <span id="res" class="tip-box1" style="padding-left: 50px;"></span>
         </div>
