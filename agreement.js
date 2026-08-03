@@ -4,7 +4,7 @@
 		let top1 = 0;
 		let top2 = 0;
 		let arr = new Array();
-		if(keyID == 4){
+		if(keyID == 4 || (keyID==1 && fmt=="A0")){
 			arr.push('<div style="page-break-after:always">&nbsp;</div>');
 		}
 		arr.push('<div style="">');
@@ -140,13 +140,13 @@
 			top1 = 1320;
 			top2 = 1380;
 			arr.push('		<tr>');
-			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;line-height:50px;">1、乙方自主选择[' + course + ']培训项目，该项目培训费为：' + priceStandard + '元（包括培训费、申报考试鉴定费等），乙方缴纳' + price + '元（由单位支付培训费的部分无需缴纳）。</p></td>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">1、乙方自主选择[' + course + ']培训项目，该项目培训费为：' + priceStandard + '元（包括培训费、申报考试鉴定费等），乙方缴纳' + price + '元（由单位支付培训费的部分无需缴纳）。</p></td>');
 			arr.push('		</tr>');
 			arr.push('		<tr>');
 			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">2、乙方已详细阅读甲方报名处公示的各项内容（属于单位集体报名的学员，开班当天须本人到报名处阅读各项公示内容，如有不解之处可向报名处工作人员咨询）。</p></td>');
 			arr.push('		</tr>');
 			arr.push('		<tr>');
-			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">3、该培训项目实行考培分离制度，学校负责培训，乙方自行向相关鉴定机构申报考试，若乙方在申报时遇到困难，可向甲方提出协助。</p></td>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">3、该培训项目实行考培分离制度，学校负责培训，乙方自行向相关鉴定机构申报考试，若申报时遇到困难，可向甲方提出协助。</p></td>');
 			arr.push('		</tr>');
 			arr.push('		<tr>');
 			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">4、甲方按课表提供师资、课程及教学场地。</p></td>');
@@ -188,7 +188,7 @@
 			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:3.5em;">4)  乙方申请退学须携带缴费票据原件和身份证，填写退款申请，未提供缴费票据原件的不予退费。</p></td>');
 			arr.push('		</tr>');
 			arr.push('		<tr>');
-			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">9、培训期间乙方资料遗失需要再次补发，需按规定支付相应费用，书本费按照书本实际标价支付，实操资料手册按照20元/本支付。</p></td>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">9、培训期间乙方资料遗失需要再次补发，需按规定支付相应费用，书本费按照书本实际标价支付，实操手册按照20元/本支付。</p></td>');
 			arr.push('		</tr>');
 			arr.push('		<tr>');
 			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">10、乙方上课期间必须自觉履行签到考勤制度，如本人没有签到，不来上课，做缺课处理，因缺课所产生的一切相关后果，均由乙方自行承担全部责任。</p></td>');
@@ -209,7 +209,7 @@
 			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">2）根据消防行业职业技能鉴定指导中心相关公告《消防设施操作员国家职业标准（2026年版）》，将于2026年10月1日正式施行。新政施行后消防设施操作员职业将不再区分维保、监控两个职业方向，实现两证合一，所有考生将统一按照新政《消防设施操作员职业技能鉴定考核大纲（2026年版）》开展考核鉴定工作。</p></td>');
 			arr.push('		</tr>');
 			arr.push('		<tr>');
-			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">3）乙方现阶段报名培训并计划参加考试，属于新、旧《标准》交替过渡阶段，考生按照现在考核大纲只能参加一次考试，如果考试不合格未能取得职业资格证书，需重新申报按新政考纲的要求考试。届时乙方如需补充学习新政考纲要求的考核内容，可选择报名甲方针对新政考核内容设置的实操补充培训。重新培训报名前双方需要重新签署培训协议，明确补充培训内容、双方权利义务。补充培训的具体内容、收费标准，以甲方报名处公示的正式培训价格为准，乙方报名前可向甲方咨询完整公示内容，确认无误后再行报名。</p></td>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">3）现阶段报名培训并计划参加考试，属于新、旧《标准》交替过渡阶段，考生按照现在考核大纲只能参加一次考试，如果考试不合格未能取得职业资格证书，需重新申报按新政考纲的要求考试。届时乙方如需补充学习新政考纲要求的考核内容，可选择报名甲方针对新政考核内容设置的实操补充培训。重新培训报名前双方需要重新签署培训协议，明确补充培训内容、双方权利义务。补充培训的具体内容、收费标准，以甲方报名处公示的正式培训价格为准，乙方报名前可向甲方咨询完整公示内容，确认无误后再行报名。</p></td>');
 			arr.push('		</tr>');
 		}
 		if(fmt==="A1"){
@@ -360,13 +360,13 @@
 		arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;"></p></td>');
 		arr.push('		</tr>');
 		arr.push('		<tr>');
-		arr.push('			<td  style="height:50px;"><p style="font-size:1em;text-indent:2em;">甲方：上海智能消防学校</p></td>');
+		arr.push('			<td  style="height:50px;"><p style="font-size:1em;text-indent:2em;">甲方：上海智能消防学校（盖章）</p></td>');
 		arr.push('			<td  style="height:50px;"><p style="font-size:1em;">乙方（签字）：</p></td>');
 		arr.push('		</tr>');
-		arr.push('		<tr>');
-		arr.push('			<td style="height:50px;"><p style="font-size:1em;text-indent:2em;">（盖章）</p></td>');
-		arr.push('			<td></td>');
-		arr.push('		</tr>');
+		// arr.push('		<tr>');
+		// arr.push('			<td style="height:50px;"><p style="font-size:1em;text-indent:2em;">（盖章）</p></td>');
+		// arr.push('			<td></td>');
+		// arr.push('		</tr>');
 		arr.push('		<tr>');
 		arr.push('			<td style="height:25px;"><p style="font-size:1em;text-indent:2em;">日&nbsp;&nbsp;&nbsp;&nbsp;期：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;年&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;日</p></td>');
 		arr.push('			<td style="height:25px;"><p style="font-size:1em;">日&nbsp;&nbsp;&nbsp;&nbsp;期：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + signDate + '</p></td>');
@@ -376,25 +376,29 @@
 		
 		if(path>""){
 			// let a_ml = (kyeID==2?350:250);
-			let a_ml = 300;
+			let a_ml = 350;
 			let a_tk = 935;
-			if(keyID==2){
+			// if(keyID==2){
 				if(fmt==="A1"){
-					a_tk = 935;
+					top1 = 915;
+					top2 = 935;
+					a_ml = 370;
+					if(keyID==2){
+						top2 = 950;
+					}
 				}
 				if(fmt==="A2"){
-					a_ml = 350;
-					a_tk = 100;
+					a_ml = 280;
+					top1 = 850;
+					top2 = 930;
 				}
 				if(fmt==="A3"){
-					a_ml = 350;
-					a_tk = 100;
+					top1 = 935;
+					top2 = 935;
 				}
-			}
-			top1 = a_tk;
-			top2 = a_tk;
-			alert(keyID);
-			arr.push('<div style="position: relative;width:100%;height:70%;">');
+			// }
+			// alert(keyID + fmt);
+			arr.push('<div style="position: relative;width:100%;height:80%;">');
 			arr.push('<div style="position: absolute; z-index:10; width:200px;">');
 			// arr.push('	<span><img src="/users/upload/companies/stamp/znxf.png" style="opacity:0.6; width:200px;margin:0px 0px 8px 50px;padding-left:80px;padding-top:' + top2 + 'px;"></span>');
 			arr.push('<img src="/users/upload/companies/stamp/znxf.png" style="opacity:0.6; width:200px;margin:0px 0px 8px 50px;padding-left:50px;padding-top:' + top1 + 'px;">');
