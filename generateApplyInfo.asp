@@ -570,42 +570,31 @@
 			height:25,
 			text:'下载成绩',
 			onClick:function() {
-				getSelCart("");
-				if(selCount==0){
-					$.messager.alert("提示","请选择要下载成绩的人员。","info");
-					return false;
-				}
-				if($("#applyID").val()==""){
-					$.messager.alert("提示","请填写开班编号并保存。","info");
-					return false;
-				}
-				// jConfirm('确定要为这' + selCount + '个人报名吗?', "确认对话框",function(r){
-				$.messager.confirm('确认对话框','确定要为这' + selCount + '个人下载成绩吗?<br>可能要花几分钟时间，请稍候...', function(r){
-					if(r){
-						var start = performance.now(); 
-						$.ajax({
-							url: uploadURL + "/public/applyEnter?SMS=1&reexamine=10&register=" + currUserName + "&host=znxf&classID=" + $("#applyID").val() + "&courseName=" + $("#courseName").val() + "&reex=" + (reexamine==0?"初证":"换证"),
-							type: "post",
-							data: {"selList":selList},
-							beforeSend: function() {   
-								$.messager.progress();	// 显示进度条
-							},
-							success: function(data){
-								//jAlert(data);
-								if(data.err==0){
-									var end = performance.now(); 
-									jAlert("成功下载数量：" + data.count_s + "; &nbsp;失败数量：" + data.count_e + "; &nbsp;耗时：" + ((end-start)/1000).toFixed(2) + "秒","信息提示");
-								}else{
-									jAlert("操作失败，请稍后再试。" + data.errMsg,"信息提示");
-								}
-								getApplyList();
-								$.messager.progress('close');	// 如果提交成功则隐藏进度条 
-							},
-							error: function () {
-								$.messager.progress('close');
+				// $.messager.prompt(title:'提示', msg:'请输入开班编号:', value:$("#applyID").val(), function(btn, value){
+				jPrompt('请输入开班编号:', $("#applyID").val(), '提示', function(r){
+					var start = performance.now(); 
+					$.ajax({
+						url: uploadURL + "/public/applyEnter?SMS=1&reexamine=12&register=" + currUserName + "&host=znxf&classID=" + $("#applyID").val() + "&courseName=" + $("#courseName").val() + "&reex=" + (reexamine==0?"初证":"换证"),
+						type: "post",
+						data: {"selList":""},
+						beforeSend: function() {   
+							$.messager.progress();	// 显示进度条
+						},
+						success: function(data){
+							//jAlert(data);
+							if(data.err==0){
+								var end = performance.now(); 
+								jAlert("成功下载数量：" + data.count_s + "; &nbsp;失败数量：" + data.count_e + "; &nbsp;耗时：" + ((end-start)/1000).toFixed(2) + "秒","信息提示");
+							}else{
+								jAlert("操作失败，请稍后再试。" + data.errMsg,"信息提示");
 							}
-						});
-					}
+							getApplyList();
+							$.messager.progress('close');	// 如果提交成功则隐藏进度条 
+						},
+						error: function () {
+							$.messager.progress('close');
+						}
+					});
 				});
 			}
 		});
