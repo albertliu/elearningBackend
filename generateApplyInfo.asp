@@ -571,33 +571,32 @@
 			text:'下载成绩',
 			onClick:function() {
 				// $.messager.prompt(title:'提示', msg:'请输入开班编号:', value:$("#applyID").val(), function(btn, value){
-				jPrompt('请输入开班编号:', $("#applyID").val(), '提示', function(r){
-					if(r==""){
-						r = "xxx";
-					}
-					var start = performance.now(); 
-					$.ajax({
-						url: uploadURL + "/public/applyEnter?SMS=1&reexamine=12&register=" + currUserName + "&host=znxf&classID=" + r + "&courseName=" + $("#courseName").val() + "&reex=" + $("#courseID").val(),
-						type: "post",
-						data: {"selList":"1"},
-						beforeSend: function() {   
-							$.messager.progress();	// 显示进度条
-						},
-						success: function(data){
-							//jAlert(data);
-							if(data.err==0){
-								var end = performance.now(); 
-								jAlert("成功下载数量：" + data.count_s + "; &nbsp;失败数量：" + data.count_e + "; &nbsp;耗时：" + ((end-start)/1000).toFixed(2) + "秒","信息提示");
-							}else{
-								jAlert("操作失败，请稍后再试。" + data.errMsg,"信息提示");
+				jPrompt('请输入开班编号:\n<p style="color:red;">* 所有班级 ** 所有课程</p>', $("#applyID").val(), '提示', function(r){
+					if(r){
+						var start = performance.now(); 
+						$.ajax({
+							url: uploadURL + "/public/applyEnter?SMS=1&reexamine=12&register=" + currUserName + "&host=znxf&classID=" + r + "&courseName=" + $("#courseName").val() + "&reex=" + $("#courseID").val(),
+							type: "post",
+							data: {"selList":"1"},
+							beforeSend: function() {   
+								$.messager.progress();	// 显示进度条
+							},
+							success: function(data){
+								//jAlert(data);
+								if(data.err==0){
+									var end = performance.now(); 
+									jAlert("成功下载数量：" + data.count_s + "; &nbsp;失败数量：" + data.count_e + "; &nbsp;耗时：" + ((end-start)/1000).toFixed(2) + "秒","信息提示");
+								}else{
+									jAlert("操作失败，请稍后再试。" + data.errMsg,"信息提示");
+								}
+								getApplyList();
+								$.messager.progress('close');	// 如果提交成功则隐藏进度条 
+							},
+							error: function () {
+								$.messager.progress('close');
 							}
-							getApplyList();
-							$.messager.progress('close');	// 如果提交成功则隐藏进度条 
-						},
-						error: function () {
-							$.messager.progress('close');
-						}
-					});
+						});
+					}
 				});
 			}
 		});
