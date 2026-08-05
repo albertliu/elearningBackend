@@ -572,11 +572,14 @@
 			onClick:function() {
 				// $.messager.prompt(title:'提示', msg:'请输入开班编号:', value:$("#applyID").val(), function(btn, value){
 				jPrompt('请输入开班编号:', $("#applyID").val(), '提示', function(r){
+					if(r==""){
+						r = "xxx";
+					}
 					var start = performance.now(); 
 					$.ajax({
-						url: uploadURL + "/public/applyEnter?SMS=1&reexamine=12&register=" + currUserName + "&host=znxf&classID=" + $("#applyID").val() + "&courseName=" + $("#courseName").val() + "&reex=" + (reexamine==0?"初证":"换证"),
+						url: uploadURL + "/public/applyEnter?SMS=1&reexamine=12&register=" + currUserName + "&host=znxf&classID=" + r + "&courseName=" + $("#courseName").val() + "&reex=" + $("#courseID").val(),
 						type: "post",
-						data: {"selList":""},
+						data: {"selList":"1"},
 						beforeSend: function() {   
 							$.messager.progress();	// 显示进度条
 						},
