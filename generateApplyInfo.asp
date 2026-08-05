@@ -1267,7 +1267,7 @@
 						}
 						arr.push("<td class='left'>" + h + "</td>");
 						arr.push("<td class='left'>" + ar1[9] + "</td>");
-						arr.push("<td class='link1' title='考试次数：理论/实操/收费'><a href='javascript:showApplyDetailList(" + ar1[0] + ",0,1);'>" + ar1[60] + "</a></td>");
+						arr.push("<td class='link1' title='考试次数：理论/实操/收费'" + (ar1[61] == 0 ? " style='background-color:#FFFFAA;'" : "") + "><a href='javascript:showApplyDetailList(" + ar1[0] + ",0,1);'>" + ar1[60] + "</a></td>");
 					}else{
 						arr.push("<td class='left'>" + ar1[39] + "</td>");
 						photo_type = ar1[34].substr(ar1[34].indexOf("."));
