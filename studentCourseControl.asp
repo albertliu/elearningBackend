@@ -213,7 +213,7 @@ if(op == "getStudentCourseList"){
 	}
 	//未做准考证/申报
 	if(String(Request.QueryString("passcard")) == "0"){
-		s = "passcardID=0 and applyID=0";
+		s = "((agencyID<>1 and passcardID=0) or (agencyID=1 and applyID=0))";
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
@@ -222,7 +222,7 @@ if(op == "getStudentCourseList"){
 	}
 	//已做准考证/申报
 	if(String(Request.QueryString("passcard")) == "1"){
-		s = "(passcardID>0 or applyID>0)";
+		s = "((agencyID<>1 and passcardID>0) or (agencyID=1 and applyID>0))";
 		if(where > ""){
 			where = where + " and " + s;
 		}else{
