@@ -28,7 +28,7 @@ if(op == "getLessonList"){
 	}
 
 	sql = " FROM v_lessonInfo " + where;
-	sql = "SELECT *" + sql + " order by lessonID, seq";
+	sql = "SELECT *" + sql + " order by seq";
 
 	rs = conn.Execute(sql);
 	while (!rs.EOF){
