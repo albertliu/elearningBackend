@@ -53,6 +53,7 @@
 		getDicList("payNow","payNow",0);
 		getDicList("examResult","result",1);
 		getDicList("fromKind","fromKind",0);
+		getDicList("SE","oldNo",0);
         getComList("fromID","userInfo","username","realName","username in(select username from roleUserList where roleID='saler') order by realName",1);
 		getComList("host","hostInfo","hostNo","title","status=0 order by hostName",1);
 		$("#datePay").click(function(){WdatePicker();});
@@ -92,28 +93,11 @@
 		}
 
 		$("#projectID").change(function(){
-			if($("#projectID").val()>""){
-				var id=$("#projectID").val();
-				setClassList(id);
-				$.get("projectControl.asp?op=getPrice&refID=" + id + "&keyID=" + $("#fromID").val() + "&times=" + (new Date().getTime()),function(re){
-					var ar = re.split("|");
-					$("#price").val(ar[0]);
-					$("#kindID").val(ar[1]);
-				});
-			}
-			
+			setProjectChange();
 		});
 
 		$("#fromID").change(function(){
-			if($("#projectID").val()>""){
-				var id=$("#projectID").val();
-				$.get("projectControl.asp?op=getPrice&refID=" + id + "&keyID=" + $("#fromID").val() + "&times=" + (new Date().getTime()),function(re){
-					var ar = re.split("|");
-					$("#price").val(ar[0]);
-					$("#kindID").val(ar[1]);
-				});
-			}
-			
+			setProjectChange();
 		});
 
 		$("#save").click(function(){
@@ -511,6 +495,9 @@
 				$("#examDate").val(ar[98]);
 				$("#tax").val(ar[100]);
 				$("#attendance").val(ar[101] + "/" + ar[9]);
+				if(courseID=="L14"){
+					$("#oldNo").val(ar[102]);
+				}
 				// $("#resitCount0").val(ar[102]);
 				// $("#resitCount1").val(ar[103]);
 				// $("#resitCountFee").val(ar[104]);
@@ -618,7 +605,7 @@
 			}
 			
 			//@username,@classID,@price,@invoice,@projectID,@kindID,@type,@status,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo,@registerID
-			$.get("studentCourseControl.asp?op=doEnter&nodeID=" + nodeID + "&username=" + $("#username").val() + "&classID=" + $("#classID").val() + "&overdue=" + over + "&express=" + express + "&needInvoice=" + needInvoice + "&host=" + $("#host").val() + "&fromID=" + $("#fromID").val() + "&fromKind=" + $("#fromKind").val() + "&price=" + $("#price").val() + "&amount=" + $("#amount").val() + "&invoice=" + $("#invoice").val() + "&receipt=" + $("#receipt").val() + "&invoice_amount=" + $("#invoice_amount").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&payNow=" + $("#payNow").val() + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#statusPay").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&pay_memo=" + escape($("#pay_memo").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+			$.get("studentCourseControl.asp?op=doEnter&nodeID=" + nodeID + "&username=" + $("#username").val() + "&classID=" + $("#classID").val() + "&oldNo=" + $("#oldNo").val() + "&overdue=" + over + "&express=" + express + "&needInvoice=" + needInvoice + "&host=" + $("#host").val() + "&fromID=" + $("#fromID").val() + "&fromKind=" + $("#fromKind").val() + "&price=" + $("#price").val() + "&amount=" + $("#amount").val() + "&invoice=" + $("#invoice").val() + "&receipt=" + $("#receipt").val() + "&invoice_amount=" + $("#invoice_amount").val() + "&projectID=" + $("#projectID").val() + "&item=" + escape($("#title").val()) + "&payNow=" + $("#payNow").val() + "&kindID=" + $("#kindID").val() + "&type=" + $("#type").val() + "&status=" + $("#statusPay").val() + "&datePay=" + $("#datePay").val() + "&dateInvoice=" + $("#dateInvoice").val() + "&dateInvoicePick=" + $("#dateInvoicePick").val() + "&currDiplomaID=" + $("#currDiplomaID").val() + "&currDiplomaDate=" + $("#currDiplomaDate").val() + "&pay_memo=" + escape($("#pay_memo").val()) + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 				//jAlert(unescape(re));
 				let ar = new Array();
 				ar = unescape(re).split("|");
@@ -710,6 +697,28 @@
 	function setProjectByUser(){
 		let x = "dbo.getStudentProjectRestList('" + refID + "','" + $("#host").val() + "','" + courseID + "')";
 		getComList("projectID",x,"projectID","projectName","1=1 order by projectID desc",1);
+	}
+	
+	function setProjectChange(){
+		if($("#projectID").val()>""){
+			let id=$("#projectID").val();
+			setClassList(id);
+			$.get("projectControl.asp?op=getPrice&refID=" + id + "&keyID=" + $("#fromID").val() + "&times=" + (new Date().getTime()),function(re){
+				let ar = re.split("|");
+				$("#price").val(ar[0]);
+				$("#kindID").val(ar[1]);
+			});
+			$.post(uploadURL + "/public/postCommInfo", {proc:"getProjectInfo", params:{projectID:id}}, function(data){
+				let ar4 = data[0];
+				if(ar4["courseID"]=="L14"){
+					$("#reexamineItem").hide();
+					$("#oldNoItem").show();
+				}else{
+					$("#reexamineItem").show();
+					$("#oldNoItem").hide();
+				}
+			});
+		}
 	}
 	
 	function setButton(){
@@ -841,6 +850,13 @@
 			if(checkPermission("firemanScore")){
 				$("#btnSaveScore").show();
 			}
+			if(courseID=="L14"){
+				$("#reexamineItem").hide();
+				$("#oldNoItem").show();
+			}else{
+				$("#reexamineItem").show();
+				$("#oldNoItem").hide();
+			}
 		}
 	}
 	function setEmpty(){
@@ -949,7 +965,9 @@
 				<div>
 					<span id="project1">招生批次&nbsp;<select id="projectID" style="width:250px"></select>&nbsp;&nbsp;</span>
 					<span id="project0">招生批次&nbsp;<input class="readOnly" type="text" id="projectName" style="width:250px" readOnly="true" />&nbsp;&nbsp;</span>
-					类别&nbsp;<input class="readOnly" type="text" id="reexamineName" style="width:50px" readOnly="true" />&nbsp;&nbsp;<input type="checkbox" id="overdue" />复审过期
+					类别&nbsp;
+					<span id="reexamineItem"><input class="readOnly" type="text" id="reexamineName" style="width:50px" readOnly="true" />&nbsp;&nbsp;<input type="checkbox" id="overdue" />复审过期</span>
+					<span id="oldNoItem"><select id="oldNo" style="width:180px"></select></span>
 					<br>
 					<span id="class1">所属班级&nbsp;<select id="classID" style="width:250px"></select>&nbsp;&nbsp;</span>
 					<span id="class0">所属班级&nbsp;<input class="readOnly" type="text" id="className" style="width:250px" readOnly="true" />&nbsp;&nbsp;经办人&nbsp;<input class="readOnly" type="text" id="submiterName" style="width:50px" readOnly="true" />&nbsp;&nbsp;</span>

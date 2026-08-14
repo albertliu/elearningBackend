@@ -7,7 +7,7 @@ if(op == "getStudentCourseList"){
 	var d = 0;
 	//如果有条件，按照条件查询
 	if(where > ""){ // 有条件
-		where = "(name like('%" + where + "%') or username='" + where + "' or courseName like('%" + where + "%'))";
+		where = "(name like('%" + where + "%') or username='" + where + "' or courseName like('%" + where + "%') or SNo='" + where + "')";
 		d += 1;
 	}
 	//如果有公司
@@ -611,6 +611,8 @@ if(op == "getNodeInfo"){
 		//93
 		result += "|" + rs("score").value + "|" + rs("score2").value + "|" + rs("result").value + "|" + rs("refID").value + "|" + rs("source").value + "|" + rs("examDate").value + "|" + rs("fromKind").value + "|" + rs("tax").value + "|" + rs("attendance").value;
 		//102
+		result += "|" + rs("oldNo").value;
+		//102
 		/* result += "|" + rs("resitCount0").value + "|" + rs("resitCount1").value + "|" + rs("resitCountFee").value; */
 	}
 	rs.Close();
@@ -1195,7 +1197,7 @@ if(op == "updateEnterClass"){
 
 if(op == "doEnter"){
 	//@username varchar(50),@classID varchar(50),@price int,@invoice varchar(50),@projectID varchar(50),@kindID varchar(50),@type int,@status int,@datePay varchar(50),@dateInvoice varchar(50),@dateInvoicePick varchar(50),@memo,@registerID
-	sql = "exec doEnter '" + nodeID + "','" + String(Request.QueryString("username")) + "','" + String(Request.QueryString("classID")) + "','" + String(Request.QueryString("price")) + "','" + String(Request.QueryString("amount")) + "','" + String(Request.QueryString("invoice")) + "','" + String(Request.QueryString("receipt")) + "','" + String(Request.QueryString("invoice_amount")) + "','" + String(Request.QueryString("projectID")) + "','" + item + "'," + String(Request.QueryString("payNow")) + "," + String(Request.QueryString("needInvoice")) + "," + kindID + "," + String(Request.QueryString("type")) + "," + status + ",'" + String(Request.QueryString("datePay")) + "','" + String(Request.QueryString("dateInvoice")) + "','" + String(Request.QueryString("dateInvoicePick")) + "','" + unescape(String(Request.QueryString("pay_memo"))) + "','" + String(Request.QueryString("currDiplomaID")) + "','" + String(Request.QueryString("currDiplomaDate")) + "'," + String(Request.QueryString("overdue")) + "," + String(Request.QueryString("express")) + ",'" + String(Request.QueryString("fromID"))  + "','" + String(Request.QueryString("fromKind"))  + "','" + String(Request.QueryString("source"))  + "',0,'" + memo + "','" + host + "','" + currUser + "'";
+	sql = "exec doEnter '" + nodeID + "','" + String(Request.QueryString("username")) + "','" + String(Request.QueryString("classID")) + "','" + String(Request.QueryString("price")) + "','" + String(Request.QueryString("amount")) + "','" + String(Request.QueryString("invoice")) + "','" + String(Request.QueryString("receipt")) + "','" + String(Request.QueryString("invoice_amount")) + "','" + String(Request.QueryString("projectID")) + "','" + item + "'," + String(Request.QueryString("payNow")) + "," + String(Request.QueryString("needInvoice")) + "," + kindID + "," + String(Request.QueryString("type")) + "," + status + ",'" + String(Request.QueryString("datePay")) + "','" + String(Request.QueryString("dateInvoice")) + "','" + String(Request.QueryString("dateInvoicePick")) + "','" + unescape(String(Request.QueryString("pay_memo"))) + "','" + String(Request.QueryString("currDiplomaID")) + "','" + String(Request.QueryString("currDiplomaDate")) + "'," + String(Request.QueryString("overdue")) + "," + String(Request.QueryString("express")) + ",'" + String(Request.QueryString("fromID"))  + "','" + String(Request.QueryString("fromKind"))  + "','" + String(Request.QueryString("source"))  + "'," + String(Request.QueryString("oldNo")) + ",'" + memo + "','" + host + "','" + currUser + "'";
 	
 	rs = conn.Execute(sql);
 	if (!rs.EOF){

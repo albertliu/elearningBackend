@@ -1,20 +1,99 @@
 ﻿
-	function getAgreement(username,name,course,path,signDate,price,priceStandard,fmt,priceExam=0){
+	function getAgreement(username,name,course,path,signDate,price,priceStandard,fmt,priceExam='0'){
 		price = (price==0 ? price="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;":price);
 		let top1 = 0;
 		let top2 = 0;
 		let arr = new Array();
-		if(keyID == 4 || (keyID==1 && fmt=="A0")){
+		if(keyID == 4 || (keyID==1 && (fmt=="A0" || fmt=="A4"))){
 			arr.push('<div style="page-break-after:always">&nbsp;</div>');
 		}
-		arr.push('<div style="">');
-		arr.push('	<div style="text-align:center; margin:25px 0 0 0;"><h2 style="font-size:1.7em;">培训协议书</h2></div>');
-		arr.push('</div>');
-		arr.push('<div style="float:left;width:100%;">');
-		arr.push('	<table style="width:100%; padding-left:10px;margin-top:25px;">');
-		arr.push('		<tr>');
-		arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">为了确保培训学员[' + name + ']身份证号[' + username + ']（乙方）和上海智能消防学校（甲方）的权益，明确甲乙双方的义务，经平等、自愿、协商签订本“培训协议书”。具体约定如下：</p></td>');
-		arr.push('		</tr>');
+		if(fmt==="A4"){
+			arr.push('<div style="">');
+			arr.push('	<div style="text-align:center; margin:20px 0 20px 0;"><h2 style="font-size:1.7em;">特种设备安全管理和作业人员证复审委托协议</h2></div>');
+				arr.push('	<div style="text-align:left; "><span style="font-size:1.1em;">甲方（受托方）： 上海智能消防学校</span></div>');
+				arr.push('	<div style="text-align:left; "><span style="font-size:1.1em;">乙方（委托方）： <span style="font-size:1.1em;">' + name + '&nbsp;&nbsp;身份证号[' + username + ']</span></span></div>');
+			arr.push('</div>');
+			arr.push('<div style="float:left;width:100%;">');
+			arr.push('	<table style="width:100%; padding-left:10px;margin-top:25px;">');
+			arr.push('		<tr>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">鉴于乙方持有由市场监督管理部门颁发的《特种设备安全管理和作业人员证》（以下简称“证书”），且该证书即将到期。为确保乙方证书持续有效，乙方委托甲方办理证书复审事宜。根据《中华人民共和国特种设备安全法》及《特种设备作业人员监督管理办法》等相关法律法规，甲乙双方本着平等、自愿、诚实信用的原则，双方达成如下协议：</p></td>');
+			arr.push('		</tr>');
+		}else{
+			arr.push('<div style="">');
+			arr.push('	<div style="text-align:center; margin:25px 0 0 0;"><h2 style="font-size:1.7em;">培训协议书</h2></div>');
+			arr.push('</div>');
+			arr.push('<div style="float:left;width:100%;">');
+			arr.push('	<table style="width:100%; padding-left:10px;margin-top:25px;">');
+			arr.push('		<tr>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">为了确保培训学员[' + name + ']身份证号[' + username + ']（乙方）和上海智能消防学校（甲方）的权益，明确甲乙双方的义务，经平等、自愿、协商签订本“培训协议书”。具体约定如下：</p></td>');
+			arr.push('		</tr>');
+		}
+		if(fmt==="A4"){
+			// 特种设备
+			let t = 475;
+			top1 = 1270 - t;
+			top2 = 1300 - t;
+			arr.push('		<tr>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1.2em;line-height:50px;">一、委托复审证书信息</p></td>');
+			arr.push('		</tr>');
+			arr.push('		<tr>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">1、证书名称：' + course + '</p></td>');
+			arr.push('		</tr>');
+			arr.push('		<tr>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">2、作业项目代号：' + priceExam + '</p></td>');
+			arr.push('		</tr>');
+			arr.push('		<tr>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1.2em;line-height:50px;">二、办理期限与时效</p></td>');
+			arr.push('		</tr>');
+			arr.push('		<tr>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">乙方应于其证书有效期届满前3个月前，启动并完成复审申请流程，逾期不能办理。</p></td>');
+			arr.push('		</tr>');
+			arr.push('		<tr>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1.2em;line-height:50px;">三、甲方责任</p></td>');
+			arr.push('		</tr>');
+			arr.push('		<tr>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">1、负责统筹复审工作，指导乙方准备复审所需材料，并及时提交复审申请。</p></td>');
+			arr.push('		</tr>');
+			arr.push('		<tr>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">2、收到乙方齐全、合规的材料及复审费用后，及时提交复审申请。</p></td>');
+			arr.push('		</tr>');
+			arr.push('		<tr>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1.2em;line-height:50px;">四、乙方责任</p></td>');
+			arr.push('		</tr>');
+			arr.push('		<tr>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">1、按照甲方对复审要求和时间节点，及时向甲方提供复审人员的复审材料。</p></td>');
+			arr.push('		</tr>');
+			arr.push('		<tr>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">2、配合甲方做好复审申报工作。</p></td>');
+			arr.push('		</tr>');
+			arr.push('		<tr>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">3、如因乙方原因复审不合格，由乙方承担相关责任。</p></td>');
+			arr.push('		</tr>');
+			arr.push('		<tr>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1.2em;line-height:50px;">五、申报材料</p></td>');
+			arr.push('		</tr>');
+			arr.push('		<tr>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">1、身份证正反面彩色照片。</p></td>');
+			arr.push('		</tr>');
+			arr.push('		<tr>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">2、2寸白底彩色证件照。</p></td>');
+			arr.push('		</tr>');
+			arr.push('		<tr>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">3、参保人员城镇职工基本养老保险缴费情况。</p></td>');
+			arr.push('		</tr>');
+			arr.push('		<tr>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">4、特种设备作业人员复审申请表（填写完整，签字并加盖单位公章）。</p></td>');
+			arr.push('		</tr>');
+			arr.push('		<tr>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1.2em;line-height:50px;">六、费用及支付方式</p></td>');
+			arr.push('		</tr>');
+			arr.push('		<tr>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">1、复审相关费用为：400元。</p></td>');
+			arr.push('		</tr>');
+			arr.push('		<tr>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">2、支付方式：于复审申报前一次性向甲方付清，甲方收款后应向乙方出具相应的增值税普通发票。</p></td>');
+			arr.push('		</tr>');
+		}
 		if(fmt==="A3"){
 			// 人社项目
 			let t = 475;
@@ -395,6 +474,14 @@
 				if(fmt==="A3"){
 					top1 = 935;
 					top2 = 935;
+				}
+				if(fmt==="A4"){
+					a_ml = 330;
+					if(keyID==1){
+						a_ml = 280;
+					}
+					// top1 = 935;
+					// top2 = 935;
 				}
 			// }
 			// alert(keyID + fmt);

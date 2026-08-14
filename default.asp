@@ -59,7 +59,7 @@ if (String(Request.QueryString("msg")) != "undefined" &&
 		event = "<%=event%>";
 		msg = "<%=msg%>";
 		if(event == "logout" && msg > ""){
-			jAlert(msg);
+			// jAlert(msg);
 		}
 		//alert(md5("123456"));
 		$("#username").focus();

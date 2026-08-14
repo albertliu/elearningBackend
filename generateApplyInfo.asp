@@ -527,7 +527,7 @@
 					return false;
 				}
 				$.post(uploadURL + "/public/postCommInfo", {proc:"checkClassSchedule", params:{classID:nodeID}}, function(data){
-					let ar = data[0]
+					let ar = data[0];
 					if(ar["msg"] > ""){
 						$.messager.alert("提示","不能创建，请检查以下事项：\n" + ar["msg"],"warning");
 					}else{
