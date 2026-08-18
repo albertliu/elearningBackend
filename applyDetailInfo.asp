@@ -99,7 +99,7 @@
 		$.post(uploadURL + "/public/postCommInfo", {proc:"getApplyDetailNewSeq1", params:{applyID:refID,kindID:$("#kind").val()}}, function(data){
 			let seq = [3,5,7,9,11,13,15,17,19,21];
 			$("#seq").val(data[0]["seq"]);
-			if(op==1 && seq.includes(data[0]["seq"])){
+			if(op==1 && $("#kind").val()==0 && seq.includes(data[0]["seq"])){
 				jAlert("本次考试可能需要收费","信息提示");
 				$("#free").val(1);
 			}
