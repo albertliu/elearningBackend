@@ -388,11 +388,11 @@
 		$.post(uploadURL + "/public/postCommInfo", {proc:"getExamPlaceFreeCount", params:{}}, function(data){
 			let re = data[0]["re"];
 			if(re > 0){
-				$("#menu12A").html("考试申报(" + re + ")");
-				$("#btnSearchGenerateApplyPlace").prop("value", "考位 " + re);
+				$("#menu12A").html("考试申报(<font color='red'>" + re + "</font>)");
+				$("#btnSearchGenerateApplyPlace").prop("value", " 考位 " + re);
 			}else{
 				$("#menu12A").html("考试申报");
-				$("#btnSearchGenerateApplyPlace").prop("value", "考位");
+				$("#btnSearchGenerateApplyPlace").prop("value", " 考位 ");
 			}
 		});
 	}
