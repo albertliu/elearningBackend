@@ -228,6 +228,10 @@
 			chkUserActive();
 			//refreshMsg();
     	}, 30000);
+		
+		window.setInterval(function () {
+			chkExamPlace();
+    	}, 5000);
 		document.getElementById("lightFloat").style.display="none";
 		document.getElementById("fadeFloat").style.display="none";
 		$('#container-1').triggerTab(0); // disables third tab
@@ -375,8 +379,21 @@
 		asyncbox.open({
 			url:'archiveChart.asp?nodeID=' + id + '&p=1&times=' + (new Date().getTime()),
 			title: '统计图表',
-　　　width : 780,
-　　　height : 500
+			width : 780,
+			height : 500
+		});
+	}
+
+	function chkExamPlace(){
+		$.post(uploadURL + "/public/postCommInfo", {proc:"getExamPlaceFreeCount", params:{}}, function(data){
+			let re = data[0]["re"];
+			if(re > 0){
+				$("#menu12A").html("(" + re + ")");
+				$("#btnSearchGenerateApplyPlace").prop("value", "考位 " + re);
+			}else{
+				$("#menu12A").html("");
+				$("#btnSearchGenerateApplyPlace").prop("value", "考位");
+			}
 		});
 	}
 	
@@ -431,7 +448,7 @@
 						<li id="menu10"><a href="#fragment-10"><span>报名管理</span></a></li>
 						<li id="menu9"><a href="#fragment-9"><span>班级管理</span></a></li>
 						<li id="menu2"><a href="#fragment-2"><span>预报名管理</span></a></li>
-						<li id="menu12"><a href="#fragment-12"><span>考试申报</span></a></li>
+						<li id="menu12"><a href="#fragment-12"><span>考试申报</span><span id="menu12A" style="color:red;"></span></a></li>
 						<li id="menu3"><a href="#fragment-3"><span>证书管理</span></a></li>
 						<li id="menu4"><a href="#fragment-4"><span>课程管理</span></a></li>
 						<li id="menu5"><a href="#fragment-5"><span>题库管理</span></a></li>

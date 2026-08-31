@@ -49,6 +49,10 @@
 		$("#btnSearchGenerateApplyAdd").click(function(){
 			showGenerateApplyInfo(0,0,1,1);
 		});
+		
+		$("#btnSearchGenerateApplyPlace").click(function(){
+			showExamPlaceList();
+		});
 		//getGenerateApplyList();
 	});
 

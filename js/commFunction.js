@@ -2292,6 +2292,26 @@
 	}
 	
 	//nodeID: ID; op: 0 浏览 1 新增  2 编辑  3 删除  4 审批; mark: 0 不动作  1 有修改时刷新列表  2 有修改时刷新对象
+	function showExamPlaceList(){
+		asyncbox.open({
+			id: "examPlaceList",
+			url:"examPlaceList.asp?times=" + (new Date().getTime()),
+			title: "考位情况",
+			width: 500,
+			height: 500,
+			drag: false,
+			cover : {
+	          //透明度
+	          opacity : 0,
+	          //背景颜色
+	           background : '#000'
+	          },
+
+			btnsbar : false
+		});
+	}
+	
+	//nodeID: ID; op: 0 浏览 1 新增  2 编辑  3 删除  4 审批; mark: 0 不动作  1 有修改时刷新列表  2 有修改时刷新对象
 	function showSalerUnitList(){
 		asyncbox.open({
 			id: "salerUnitList",
