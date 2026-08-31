@@ -54,6 +54,14 @@
 			saveNode();
 		});
 		
+		$("#btnDel").click(function(){
+			jConfirm('确定要删除这个申报记录吗?', '确认对话框', function(r) {
+				if(r){
+					delNode();
+				}
+			});
+		});
+		
 		$("#kind").change(function(){
 			if(op==1){
 				getNewSeq();
@@ -91,6 +99,15 @@
 		$.post(uploadURL + "/public/postCommInfo", {proc:"updateApplyDetailInfo", params:{ID:nodeID,applyID:refID,examNo:$("#examNo").val(),examDate:$("#examDate").val(),examAddress:$("#examAddress").val(),score:$("#score").val(), kind:$("#kind").val(), free:$("#free").val(), seq:$("#seq").val(), memo:$("#memo").val(),registerID:currUser}}, function(data){
 			getNodeInfo();
 			jAlert("保存成功！","信息提示");
+			updateCount += 1;
+		});
+	}
+	
+	function delNode(){
+		// alert(nodeID + "," + refID + "," + $("#examNo").val() + "," + $("#examDate").val() + "," + $("#examAddress").val() + "," + $("#score").val() + "," + $("#kind").val() + "," + $("#free").val() + "," + $("#seq").val() + "," + $("#memo").val());
+		$.post(uploadURL + "/public/postCommInfo", {proc:"deleteApplyDetailInfo", params:{ID:nodeID,registerID:currUser}}, function(data){
+			getNodeInfo();
+			jAlert("删除成功！","信息提示");
 			updateCount += 1;
 		});
 	}
@@ -199,6 +216,7 @@
 	<div style="width:100%;float:left;margin:10;height:4px;"></div>
   	<div class="comm" align="center" style="width:99%;float:top;margin:1px;background:#fccffc;">
   	<input class="button" type="button" id="btnSave" value="保存" />&nbsp;
+  	<input class="button" type="button" id="btnDel" value="删除" />&nbsp;
   </div>
 </div>
 </body>
