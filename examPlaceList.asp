@@ -34,7 +34,7 @@
 
 	function getExamPlaceList(){
 		//alert(refID + ":" + nodeID);
-		$.post(uploadURL + "/public/postCommInfo", {proc:"getExamPlaceFreeCount", params:{}}, function(data){
+		$.post(uploadURL + "/public/postCommInfo", {proc:"getExamPlaceFreeList", params:{}}, function(data){
 			//alert(unescape(data));
 			$("#cover").empty();
 			arr = [];					
@@ -44,9 +44,9 @@
 			arr.push("<th width='4%'>No</th>");
 			arr.push("<th width='26%'>考试项目</th>");
 			arr.push("<th width='30%'>考点名称</th>");
-			arr.push("<th width='20%'>考试日期</th>");
-			arr.push("<th width='10%'>总位</th>");
-			arr.push("<th width='10%'>空位</th>");
+			arr.push("<th width='18%'>考试日期</th>");
+			arr.push("<th width='11%'>总位</th>");
+			arr.push("<th width='11%'>空位</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");

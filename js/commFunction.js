@@ -2297,8 +2297,8 @@
 			id: "examPlaceList",
 			url:"examPlaceList.asp?times=" + (new Date().getTime()),
 			title: "考位情况",
-			width: 500,
-			height: 500,
+			width: 700,
+			height: 600,
 			drag: false,
 			cover : {
 	          //透明度

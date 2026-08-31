@@ -13,7 +13,7 @@
 				          	<input type="text" id="searchGenerateApplyStart" size="8" title="起始日期" style="background:#AAFFAA;" />
 				          	-
 				          	<input type="text" id="searchGenerateApplyEnd" size="8" title="截止日期" style="background:#AAFFAA;" />&nbsp;&nbsp;
-				          	<input class="button" type="button" id="btnSearchGenerateApplyPlace" value="考位" />
+				          	<input class="button" type="button" id="btnSearchGenerateApplyPlace" value=" 考位 " />
 						    <span style="float:right;">
 								<input class="button" type="button" onClick="outputFloat(106,'file')" value="下载" />
 							</span>
