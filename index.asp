@@ -63,7 +63,7 @@
     let sound = null;
     const startVol = 0.1;     //起始小声
     const targetVol = 1;      //正常音量
-    const fadeMs = 1000;      //3秒淡入
+    const fadeMs = 3000;      //3秒淡入
     let audioUnlocked = false;//音频是否解锁
 	let isAudioPlaying = false; //音频是否正在播放
 	// =============================

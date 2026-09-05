@@ -27,15 +27,24 @@
 		
 		$.ajaxSetup({ 
 			async: false 
-		}); 
+		});
+		
+		$("#btnSave").click(function(){
+			saveNode();
+		});
 
 		getExamPlaceList();
 	});
 
 	function getExamPlaceList(){
-		//alert(refID + ":" + nodeID);
+		$.post(uploadURL + "/public/postCommInfo", {proc:"getWarningCourseList", params:{}}, function(data1){
+			if(data1.length > 0){
+				$.each(data1,function(iNum,ar){
+					$("#" + ar["certID"]).prop("checked",ar["warning"]==0);
+				});
+			}
+		});
 		$.post(uploadURL + "/public/postCommInfo", {proc:"getExamPlaceFreeList", params:{}}, function(data){
-			//alert(unescape(data));
 			$("#cover").empty();
 			arr = [];					
 			arr.push("<table cellpadding='0' cellspacing='0' border='0' class='display' id='cardTab' width='100%'>");
@@ -95,13 +104,42 @@
 			});
 		});
 	}
+	
+	function saveNode(){
+		let C12 = $("#C12").prop("checked") ? 0 : 1;
+		let C15 = $("#C15").prop("checked") ? 0 : 1;
+		let C24 = $("#C24").prop("checked") ? 0 : 1;
+		let C25A = $("#C25A").prop("checked") ? 0 : 1;
+		let C16 = $("#C16").prop("checked") ? 0 : 1;
+		let C17 = $("#C17").prop("checked") ? 0 : 1;
+		$.post(uploadURL + "/public/postCommInfo", {proc:"updatetWarningCourse", params:{C12:C12,C15:C15,C24:C24,C25A:C25A,C16:C16,C17:C17}}, function(data){
+			jAlert("保存成功！","信息提示");
+		});
+	}
+	
+	function setButton(){
+		$("#btnSave").hide();
+		if(checkPermission("applyEdit") || checkPermission("studentAdd")){
+			$("#btnSave").show();
+		}
+	}
 </script>
 
 </head>
 
 <body>
 
-<div id='layout' align='left' style="background:#f0f0f0;">	
+<div id='layout' align='left' style="background:#f0f0f0;">
+	<div style="text-align: center; color: #7e7d7d; font-size: 1.2em;">警告项目&nbsp;&nbsp;<input class="button" type="button" id="btnSave" value=" 保存 " /></div>
+	<div id="warning-cover" style="float:left;width:100%; padding-left:30px; margin-top:5px; margin-bottom:5px;">
+		<input style="border:0px;" type="checkbox" id="C12" value="" />&nbsp;低压电工&nbsp;&nbsp;
+		<input style="border:0px;" type="checkbox" id="C15" value="" />&nbsp;高处作业&nbsp;&nbsp;
+		<input style="border:0px;" type="checkbox" id="C24" value="" />&nbsp;焊工&nbsp;&nbsp;
+		<input style="border:0px;" type="checkbox" id="C25A" value="" />&nbsp;涉氨制冷&nbsp;&nbsp;
+		<input style="border:0px;" type="checkbox" id="C16" value="" />&nbsp;负责人&nbsp;&nbsp;
+		<input style="border:0px;" type="checkbox" id="C17" value="" />&nbsp;管理人员&nbsp;&nbsp;
+	</div>
+	<hr size="1" noshadow />
 	<div id="cover" style="float:left;width:100%;">
 	</div>
 </div>
