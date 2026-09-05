@@ -45,6 +45,7 @@
 	<script type="text/javascript" src="js/ajax.js"></script>
 	<script type="text/javascript" src="js/tab-view.js"></script>
 	<script type="text/javascript" src="js/bootstrap-treeview.min.js"></script>
+	<script type="text/javascript" src="js/howler.min.js"></script>
 <script src="js/jQuery.print.js" type="text/javascript"></script>
 <!--#include file="js/clickMenu.js"-->
 
@@ -58,6 +59,14 @@
 	let currSales = "";
 	var iEditMemo = 0;	//检测是否有备忘录更新
 	var iSelProject = [0,0,0,0,0,0,0,0,0];	//指定项目展开属性(共计8个属性)
+	// ========== 音频配置 ==========
+    let sound = null;
+    const startVol = 0.1;     //起始小声
+    const targetVol = 1;      //正常音量
+    const fadeMs = 1000;      //3秒淡入
+    let audioUnlocked = false;//音频是否解锁
+	let isAudioPlaying = false; //音频是否正在播放
+	// =============================
 	
 	<!--#include file="js/commFunction.js"-->
 	<!--#include file="feedbackListIncReady.js"-->
@@ -231,7 +240,7 @@
 		
 		window.setInterval(function () {
 			chkExamPlace();
-    	}, 5000);
+    	}, 10000);
 		document.getElementById("lightFloat").style.display="none";
 		document.getElementById("fadeFloat").style.display="none";
 		$('#container-1').triggerTab(0); // disables third tab
@@ -338,6 +347,9 @@
 		if(checkRole("emergency")){
 			$("#menu6").hide();		//统计
 		}
+		// 给整个页面绑定点击事件
+    	document.addEventListener('click', unlockAudio);
+
 		<!--#include file="commLoadFileReady.asp"-->
 	    refreshMsg();
 	});
@@ -391,6 +403,7 @@
 				$("#menu12A").html("<font color='red'>考试申报 " + re + "</font>");
 				$("#btnSearchGenerateApplyPlace").prop("value", " 考位 " + re + " ");
 				$("#btnSearchGenerateApplyPlace").css("color", "red");
+				playAlertSound(); //播放提示音
 			}else{
 				$("#menu12A").html("考试申报");
 				$("#btnSearchGenerateApplyPlace").prop("value", " 考位 ");
@@ -399,6 +412,55 @@
 		});
 	}
 	
+	function playAlertSound(){
+        if(!audioUnlocked){
+            // alert("⚠️你还没有先点击解锁声音！无法自动播放");
+            return;
+        }
+
+        // 核心判断：如果音频还没播放完，直接退出，不播放
+        if(isAudioPlaying){
+            console.log("🔇音频尚未播放完毕，本次跳过播放");
+            return;
+        }
+
+        isAudioPlaying = true;
+        sound.volume(startVol);
+        sound.play();
+        sound.fade(startVol, targetVol, fadeMs);
+    }
+
+	// ========== 全局任意鼠标点击解锁 ==========
+    function unlockAudio() {
+      if (audioUnlocked) return; // 已经解锁过就不再执行
+
+      if(!sound){
+        sound = new Howl({
+          src: ['output/alert.mp3'],
+          volume: startVol,
+          preload: true,
+          autoplay: false
+        });
+
+        // 音频播放完毕，解除占用标记，允许下一次播放
+        sound.on('end', ()=>{
+            isAudioPlaying = false;
+        });
+      }
+
+      // 解锁 trick：播放立刻暂停
+      sound.play();
+      sound.once('play', ()=>{
+          sound.pause();
+          sound.seek(0);
+      })
+
+      audioUnlocked = true;
+      // 解锁成功后移除全局点击监听，防止后续重复触发
+      document.removeEventListener('click', unlockAudio);
+      console.log("✅音频权限解锁成功，等待数据触发播放");
+    }
+
 	function mSubstr(str,slen)
 	{ 
 		var tmp = 0;

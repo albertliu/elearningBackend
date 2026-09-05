@@ -42,34 +42,36 @@
 			arr.push("<thead>");
 			arr.push("<tr align='center'>");
 			arr.push("<th width='4%'>No</th>");
-			arr.push("<th width='26%'>考试项目</th>");
+			arr.push("<th width='16%'>考试项目</th>");
 			arr.push("<th width='30%'>考点名称</th>");
 			arr.push("<th width='18%'>考试日期</th>");
 			arr.push("<th width='11%'>总位</th>");
 			arr.push("<th width='11%'>空位</th>");
+			arr.push("<th width='10%'>报警</th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
 			arr.push("<tbody id='tbody'>");
 			if(data.length > 0){
 				var i = 0;
 				var c = 0;
-				var imgChk = "<img src='images/green_check.png'>";
 				$.each(data,function(iNum,ar){
 					i += 1;
 					c = 0;
 					arr.push("<tr class='grade" + c + "'>");
 					arr.push("<td class='center'>" + i + "</td>");
-					arr.push("<td class='left'>" + ar["courseName"] + "</td>");
+					arr.push("<td class='link1'><a href='javascript:showExamPlaceInfo(" + ar["ID"] + ",0,1);'>" + ar["courseName"] + "</a></td>");
 					arr.push("<td class='left'>" + ar["examAddress"] + "</td>");
 					arr.push("<td class='left'>" + ar["examDate"] + "</td>");
 					arr.push("<td class='left'>" + ar["s_all"] + "</td>");
 					arr.push("<td class='left'>" + ar["s_free"] + "</td>");
+					arr.push("<td class='left'>" + (ar["warning"] == 0 ? imgChk : "") + "</td>");
 					arr.push("</tr>");
 				});
 			}
 			arr.push("</tbody>");
 			arr.push("<tfoot>");
 			arr.push("<tr>");
+			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
 			arr.push("<th>&nbsp;</th>");
