@@ -112,7 +112,7 @@
 		let C25A = $("#C25A").prop("checked") ? 0 : 1;
 		let C16 = $("#C16").prop("checked") ? 0 : 1;
 		let C17 = $("#C17").prop("checked") ? 0 : 1;
-		$.post(uploadURL + "/public/postCommInfo", {proc:"updatetWarningCourse", params:{C12:C12,C15:C15,C24:C24,C25A:C25A,C16:C16,C17:C17}}, function(data){
+		$.post(uploadURL + "/public/postCommInfo", {proc:"updatetWarningCourse", params:{C12:C12,C15:C15,C24:C24,C25A:C25A,C16:C16,C17:C17,registerID:currUser}}, function(data){
 			jAlert("保存成功！","信息提示");
 		});
 	}
