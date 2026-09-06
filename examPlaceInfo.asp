@@ -77,7 +77,7 @@
 		if($("#warning").prop("checked")){
 			warning = 0;
 		}
-		alert("warning:" + warning);
+		// alert("warning:" + warning + "ID:" + nodeID);
 		$.post(uploadURL + "/public/postCommInfo", {proc:"updateExamPlaceInfo", params:{ID:nodeID,warning:warning,registerID:currUser}}, function(data){
 			getNodeInfo();
 			jAlert("保存成功！","信息提示");

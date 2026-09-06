@@ -2166,7 +2166,7 @@
 			callback : function(action,iframe){
 				var re = iframe.updateCount;
 				if(re>0 && mark==1){
-					getApplyList();
+					getExamPlaceList();
 				}
 			}
 		});

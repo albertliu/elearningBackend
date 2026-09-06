@@ -403,7 +403,9 @@
 				$("#menu12A").html("<font color='red'>考试申报 " + re + "</font>");
 				$("#btnSearchGenerateApplyPlace").prop("value", " 考位 " + re + " ");
 				$("#btnSearchGenerateApplyPlace").css("color", "red");
-				playAlertSound(); //播放提示音
+				if(checkPermission("applyEdit")){
+					playAlertSound(); //播放提示音
+				}
 			}else{
 				$("#menu12A").html("考试申报");
 				$("#btnSearchGenerateApplyPlace").prop("value", " 考位 ");
