@@ -143,7 +143,7 @@
 			jConfirm('确定将与这个学员共用一个发票的人解绑吗?',"确认",function(r){
 				if(r){
 					$.post(uploadURL + "/public/setInvoiceGroupCancel", {classID:$("#ID").val(), kind: "B", selList: selList, registerID: currUser} ,function(data){
-						alert(data.msg);
+						alert(data.msg + "。共更新了" + data.qty + "个学员发票。");
 					});
 				}
 			});
