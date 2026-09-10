@@ -59,7 +59,7 @@
 
 	function getNodeInfo(id){
 		$.get("courseControl.asp?op=getNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
-			//jAlert(unescape(re));
+			// jAlert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar > ""){
@@ -201,7 +201,7 @@
 			</tr>
 			<tr>
 				<td align="right">考试费</td>
-				<td><select id="price1" style="width:180px;"></select></td>
+				<td><input type="text" id="price1" size="25" />&nbsp;元</td>
 				<td align="right">补考费</td>
 				<td><input type="text" id="priceExam" size="25" />&nbsp;元</td>
 			</tr>
