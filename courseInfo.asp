@@ -82,6 +82,8 @@
 				$("#price").val(ar[20]);
 				$("#reexamine").val(ar[21]);
 				$("#shortName").val(ar[23]);
+				$("#price1").val(ar[24]);
+				$("#priceExam").val(ar[25]);
 				
 				//getDownloadFile("courseID");
 				setButton();
@@ -94,7 +96,7 @@
 	
 	function saveNode(){
 		//alert("nodeID=" + $("#ID").val() + "&courseID=" + $("#courseID").val() + "&courseName=" + ($("#courseName").val()) + "&hours=" + $("#hours").val() + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&status=" + $("#status").val() + "&memo=" + ($("#memo").val()));
-		$.get("courseControl.asp?op=update&nodeID=" + $("#ID").val() + "&courseID=" + $("#courseID").val() + "&price=" + $("#price").val() + "&reexamine=" + $("#reexamine").val() + "&courseName=" + escape($("#courseName").val()) + "&shortName=" + escape($("#shortName").val()) + "&hours=" + $("#hours").val() + "&completionPass=" + $("#completionPass").val() + "&deadline=" + $("#deadline").val() + "&period=" + $("#period").val() + "&deadday=" + $("#deadday").val() + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&refID=" + $("#certID").val() + "&status=" + $("#status").val() + "&mark=" + $("#mark").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
+		$.get("courseControl.asp?op=update&nodeID=" + $("#ID").val() + "&courseID=" + $("#courseID").val() + "&price=" + $("#price").val() + "&price1=" + $("#price1").val() + "&priceExam=" + $("#priceExam").val() + "&reexamine=" + $("#reexamine").val() + "&courseName=" + escape($("#courseName").val()) + "&shortName=" + escape($("#shortName").val()) + "&hours=" + $("#hours").val() + "&completionPass=" + $("#completionPass").val() + "&deadline=" + $("#deadline").val() + "&period=" + $("#period").val() + "&deadday=" + $("#deadday").val() + "&host=" + $("#host").val() + "&kindID=" + $("#kindID").val() + "&refID=" + $("#certID").val() + "&status=" + $("#status").val() + "&mark=" + $("#mark").val() + "&memo=" + escape($("#memo").val()) + "&times=" + (new Date().getTime()),function(re){
 			//alert(unescape(re));
 			var ar = new Array();
 			ar = unescape(re).split("|");
@@ -196,6 +198,12 @@
 				<td><select id="mark" style="width:180px;"></select></td>
 				<td align="right">收费标准</td>
 				<td><input type="text" id="price" size="25" />&nbsp;元</td>
+			</tr>
+			<tr>
+				<td align="right">考试费</td>
+				<td><select id="price1" style="width:180px;"></select></td>
+				<td align="right">补考费</td>
+				<td><input type="text" id="priceExam" size="25" />&nbsp;元</td>
 			</tr>
 			<tr>
 				<td align="right">说明</td>
