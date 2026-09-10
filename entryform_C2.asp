@@ -67,6 +67,7 @@
 					$("#img_signature").attr("src","images/blank_signature.png");
 				}
 				courseID = ar[5];
+				agreement = ar[103];
 				sign = (ar[52]==1?ar[48]:"");
 				course = ar[56];
 				sDate = ar[49];
@@ -105,6 +106,8 @@
 					var p = 1;
 					var s = 1;	//社保证明
 					getMaterials(ar[1],sign,p,k,s);
+				}else{
+					$("#materialsCover").hide();
 				}
 				getAgreement(ar[1],ar[2],course,(keyID==4?"":sign),sDate,price,price,agreement);
 
