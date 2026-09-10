@@ -35,6 +35,7 @@
 	var course = "";
 	var sDate = "";
 	var price = 0;
+	var price1 = 0;
 	var k = 0;
 	let agreement = "A0";
 	<!--#include file="js/commFunction.js"-->
@@ -56,7 +57,7 @@
 	function getNodeInfo(id,ref){
 		$.get("studentCourseControl.asp?op=getNodeInfo&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
 			//alert(unescape(re));
-			var ar = new Array();
+			let ar = new Array();
 			ar = unescape(re).split("|");
 			if(ar > "0"){
 				$("#SNo").html(ar[25] + "&nbsp;&nbsp;班级：" + ar[34]);
@@ -67,11 +68,17 @@
 					$("#img_signature").attr("src","images/blank_signature.png");
 				}
 				courseID = ar[5];
-				agreement = ar[103];
 				sign = (ar[52]==1?ar[48]:"");
 				course = ar[56];
 				sDate = ar[49];
 				price = ar[53];
+				$.post(uploadURL + "/public/postCommInfo", {proc:"getCourseInfo", params:{courseID: courseID}}, function(data){
+					let ar1 = data[0];
+					if(ar1 > ""){
+						agreement = ar1["agreement"];
+						price1 = ar1["price1"];
+					}
+				});
 			}else{
 				//alert("没有找到要打印的内容。");
 				return false;
@@ -109,7 +116,7 @@
 				}else{
 					$("#materialsCover").hide();
 				}
-				getAgreement(ar[1],ar[2],course,(keyID==4?"":sign),sDate,price,price,agreement);
+				getAgreement(ar[1],ar[2],course,(keyID==4?"":sign),sDate,price,price1,agreement);
 
 				if(keyID==1){
 					resumePrint();

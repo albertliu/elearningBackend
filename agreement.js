@@ -115,7 +115,7 @@
 			arr.push('			<td colspan="2" style="height:20px;"><p style="font-size:1em;text-indent:2em;">乙方已知悉本次报名的课程内容，并承诺按照甲方的教学计划及协议约定参加培训，遵守甲方的“学员守则及相关管理要求”。乙方需如实填写学员相关信息，提交本人真实资料。</p></td>');
 			arr.push('		</tr>');
 			arr.push('		<tr>');
-			arr.push('			<td colspan="2" style="height:20px;"><p style="font-size:1em;text-indent:2em;">1、收费方式: 乙方应支付培训考试费总额为 (人民币): ' + priceStandard + '元，其中：培训费' + (priceStandard - priceExam) + '元，考试费' + priceExam + '元 (以申报年度社会培训评价组织有关操作事项的通知为准，考试费包括理论知识、操作技能一次考试费用)。</p></td>');
+			arr.push('			<td colspan="2" style="height:20px;"><p style="font-size:1em;text-indent:2em;">1、收费方式: 乙方应支付培训考试费总额为 (人民币): ' + price + '元，其中：培训费' + (price - priceStandard) + '元，考试费' + priceStandard + '元 (以申报年度社会培训评价组织有关操作事项的通知为准，考试费包括理论知识、操作技能一次考试费用)。</p></td>');
 			arr.push('		</tr>');
 			arr.push('		<tr>');
 			arr.push('			<td colspan="2" style="height:20px;"><p style="font-size:1em;text-indent:2em;">2、退费规定</p></td>');

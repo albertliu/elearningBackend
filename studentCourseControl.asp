@@ -611,7 +611,7 @@ if(op == "getNodeInfo"){
 		//93
 		result += "|" + rs("score").value + "|" + rs("score2").value + "|" + rs("result").value + "|" + rs("refID").value + "|" + rs("source").value + "|" + rs("examDate").value + "|" + rs("fromKind").value + "|" + rs("tax").value + "|" + rs("attendance").value;
 		//102
-		result += "|" + rs("oldNo").value + "|" + rs("agreement").value;
+		result += "|" + rs("oldNo").value;
 		//102
 		/* result += "|" + rs("resitCount0").value + "|" + rs("resitCount1").value + "|" + rs("resitCountFee").value; */
 	}
