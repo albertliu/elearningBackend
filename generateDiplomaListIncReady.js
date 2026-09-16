@@ -81,8 +81,8 @@
 			arr.push("<th width='8%'>照片移交</th>");
 			arr.push("<th width='8%'>打印日期</th>");
 			arr.push("<th width='8%'>发放日期</th>");
-			arr.push("<th width='20%'>说明</th>");
-			arr.push("<th width='10%'>证书制作</th>");
+			arr.push("<th width='18%'>说明</th>");
+			arr.push("<th width='12%'>证书制作</th>");
 			arr.push("<th width='4%'></th>");
 			arr.push("</tr>");
 			arr.push("</thead>");
