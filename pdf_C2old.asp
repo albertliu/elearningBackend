@@ -16,8 +16,6 @@
 <script language="javascript">
 	var item = "";
 	var updateCount = 0;
-	var uploadURL = "<%=uploadURL%>";
-	var backendURL = "<%=backendURL%>";
 	$(document).ready(function (){
 		item = "<%=kindID%>";
 		$.ajaxSetup({ 
@@ -29,28 +27,30 @@
 	});
 
 	function getNodeInfo(){
-		var ar = new Array();
-		//var c = "";
-		ar = item.split(",");
-		if(ar > ""){
-			$("#diplomaID").html(ar[0]);
-			$("#name").html(ar[1]);
-			$("#username").html(ar[2]);
-			$("#hostName").html(ar[5]);
-			$("#job").html(ar[6]);
-			$("#startDate").html(ar[7]);
-			$("#term").html(ar[11] + '年');
-			$("#title").html(ar[9]);
-			if(ar[10]==''){
-				$("#photo_filename").attr("src","/images/blankphoto.png");
-			}else{
-				$("#photo_filename").attr("src","/users" + ar[10]);
-			}
-			$("#stamp").attr("src","/users" + "/upload/companies/stamp/znxf.png");
-			$("#sexName").html(ar[12]);
-			$("#diplomaNo").html(ar[13]);
-			$("#qr").attr("src", uploadURL + '/public/get_qr_img?size=10&text=' + backendURL + '/help.asp?msg=users/upload/students/diplomas/' + ar[0] + '.pdf');
-		}
+		//$.get("diplomaControl.asp?op=getNodeInfoShort&nodeID=" + id + "&times=" + (new Date().getTime()),function(re){
+			var ar = new Array();
+			//var c = "";
+			ar = item.split(",");
+			if(ar > ""){
+				$("#diplomaID").html(ar[0]);
+				$("#name").html(ar[1]);
+				$("#username").html(ar[2]);
+				$("#hostName").html(ar[5]);
+				$("#job").html(ar[6]);
+				$("#startDate").html(ar[7]);
+				$("#term").html(ar[11] + '年');
+				$("#title").html(ar[9]);
+				if(ar[10]==''){
+					$("#photo_filename").attr("src","/images/blankphoto.png");
+				}else{
+					$("#photo_filename").attr("src","/users" + ar[10]);
+				}
+				$("#stamp").attr("src","/users" + "/upload/companies/stamp/znxf.png");
+				$("#logo").attr("src","/users" + "/upload/companies/logo/znxf.png");
+				$("#sexName").html(ar[12]);
+				$("#diplomaNo").html(ar[13]);
+			}/**/
+		//});
 	}
 </script>
 
@@ -106,16 +106,16 @@
 					<td ><h4>上海智能消防学校</h4></td>
 				</tr>
 				<tr>
-					<td style="height:85px;" colspan="2"><h4 style="float:left;padding-left:80mm;" id="diplomaNo"></h4></td>
+					<td style="height:85px;" colspan="2"><h4 style="float:left;padding-left:20px;" id="diplomaNo"></h4></td>
 				</tr>
 			</table>
 		</div>
 	</div>
-	<div style="position: absolute; z-index:30;padding-top:175mm;padding-left:15mm;">
+	<div style="position: absolute; z-index:30;padding-top:175mm;padding-left:75mm;">
 		<img id="stamp" src="" style="opacity:0.7; width:70mm;max-height:70mm;">
 	</div>
-	<div style="position: absolute; z-index:30;padding-top:170mm;padding-left:110mm;">
-		<img id="qr" src="" style="width:45mm;max-height:45mm;">
+	<div style="position: absolute; z-index:30;padding-top:125mm;padding-left:120mm;">
+		<img id="logo" src="" style="opacity:0.15; width:50mm;max-height:80mm;">
 	</div>
 	</div>
 </section>

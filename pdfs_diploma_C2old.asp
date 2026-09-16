@@ -18,7 +18,6 @@
 	var kindID = 0;
 	var updateCount = 0;
 	var uploadURL = "<%=uploadURL%>";
-	var backendURL = "<%=backendURL%>";
 	$(document).ready(function (){
 		refID = "<%=refID%>";
 		kindID = "<%=kindID%>";		//diplomaFontSize  0 normal  1 big
@@ -48,8 +47,6 @@
 				}
 				$.each(data,function(iNum,val){
 					k += 1;
-					let text = uploadURL + '/public/get_qr_img?size=10&text=' + backendURL + '/help.asp?msg=users/upload/students/diplomas/' + val["diplomaID"] + '.pdf';
-
 					if(i == 0){
 						arr.push('<table style="margin-top:35mm;margin-left:15mm;display:inline-block; *display:inline; zoom:1;">');
 					}
@@ -63,6 +60,7 @@
 					arr.push('<div style="float:left;width:100%;">');
 					arr.push('	<table style="width:100%; padding-left:10mm;padding-top:1mm;">');
 					arr.push('		<tr>');
+					//arr.push('			<td style="height:80px;width:28%;"><h4>岗位：</h4></td>');
 					arr.push('			<td style="height:80px;width:100%;text-align: center;" colspan="2"><h4' + diplomaFontSize + '>' + val["title"] + '</h4' + diplomaFontSize + '></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
@@ -98,14 +96,11 @@
 					arr.push('			<td><h4' + diplomaFontSize + '>' + val["term"] + '年</h4' + diplomaFontSize + '></td>');
 					arr.push('		</tr>');
 					arr.push('		<tr>');
-					arr.push('			<td style="height:80px;" colspan="2"><h4 style="float:left;padding-left:20px;">（发证机关印章）</h4><h4' + diplomaFontSize + ' style="float:left;padding-left:50px;">' + val["diplomaNo"] + '</h4' + diplomaFontSize + '>');
-					arr.push('			</td>');
+					arr.push('			<td style="height:80px;" colspan="2"><h4' + diplomaFontSize + ' style="float:left;padding-left:20px;">' + val["diplomaNo"] + '</h4' + diplomaFontSize + '>');
+					arr.push('			<h4 style="float:right;padding-right:100px;">（发证机关印章）</h4></td>');
 					arr.push('		</tr>');
 					arr.push('	</table>');
 					arr.push('</div>');
-					arr.push('</div>');
-					arr.push('<div style="position: absolute; z-index:30;padding-top:160mm;padding-left:110mm;">');
-					arr.push('	<img id="qr" src="' + text + '" style="width:45mm;max-height:45mm;">');
 					arr.push('</div>');
 					arr.push('</div>');
 					arr.push('</section>');
