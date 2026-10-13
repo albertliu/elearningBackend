@@ -48,7 +48,7 @@
 	var price = 0;
 	var k = 0;
 	let priceStandard = 0;
-	let agreement = "A2";
+	let agreement = "";
 	<!--#include file="js/commFunction.js"-->
 	<!--#include file="agreement.js"-->
 	<!--#include file="materials_emergency.js"-->
@@ -116,6 +116,7 @@
 				sDate = ar[49];
 				price = ar[53];
 				priceStandard = ar[91];
+				// agreement = ar[103];
 				if(kindID=="C20A"){
 					$("#fire_kind4_0").prop("disabled",true);
 				}else{
