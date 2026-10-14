@@ -356,10 +356,13 @@
 			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">1）消防设施操作员的考试由官方鉴定站统一安排，考试时间以考生收到短信通知为准。报名资料审核机制具有阶段性差异，乙方须依照消防职业技能鉴定考试网官方发布的具体要求，配合提供所需的各类资料。乙方务必要关注消防鉴定考试网，若因鉴定站官方对报名资格、资料等事项要求进行调整，由于乙方未关注而导致乙方不符合报名条件无法正常参加考试，由此产生的一切损失，均由乙方自行承担。</p></td>');
 			arr.push('		</tr>');
 			arr.push('		<tr>');
-			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">2）根据消防行业职业技能鉴定指导中心相关公告《消防设施操作员国家职业标准（2026年版）》，将于2026年10月1日正式施行。新政施行后消防设施操作员职业将不再区分维保、监控两个职业方向，实现两证合一，所有考生将统一按照新政《消防设施操作员职业技能鉴定考核大纲（2026年版）》开展考核鉴定工作。</p></td>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">2）自正式开班之日起甲方提供为期12个月的服务。出现以下情形时，服务自动终止：</p></td>');
 			arr.push('		</tr>');
 			arr.push('		<tr>');
-			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">3）现阶段报名培训并计划参加考试，属于新、旧《标准》交替过渡阶段，考生按照现在考核大纲只能参加一次考试，如果考试不合格未能取得职业资格证书，需重新申报按新政考纲的要求考试。届时乙方如需补充学习新政考纲要求的考核内容，可选择报名甲方针对新政考核内容设置的实操补充培训。重新培训报名前双方需要重新签署培训协议，明确补充培训内容、双方权利义务。补充培训的具体内容、收费标准，以甲方报名处公示的正式培训价格为准，乙方报名前可向甲方咨询完整公示内容，确认无误后再行报名。</p></td>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:3.5em;">① 乙方考试合格；② 乙方未申报考试；③ 两次考试均不合格；④ 乙方未完成补考；</p></td>');
+			arr.push('		</tr>');
+			arr.push('		<tr>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">3）服务期内，乙方两次考试甲方均提供线上学习、刷题系统使用、线下实操练习及指导服务。注：一次考试包括正考两门，通过一门的有一次补考机会。</p></td>');
 			arr.push('		</tr>');
 		}
 		if(fmt==="A1"){
@@ -437,16 +440,16 @@
 			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">15、协议期限：</p></td>');
 			arr.push('		</tr>');
 			arr.push('		<tr>');
-			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">按照应急部19号令考试规则，理论考试（1次正考1次补考）合格后方可参加实操考试；实操最多10次（5次正考5次补考）考核机会。</p></td>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">按照应急部19号令考试规则，理论考试（1次正考1次补考）合格后方可参加实操考试；实操最多10次（5次正考5次补考）考核机会。乙方自考试申请通过之日起3年内需完成考试，且考试时不得超出年龄上限。</p></td>');
 			arr.push('		</tr>');
 			arr.push('		<tr>');
-			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:3.5em;">1）本培训协议服务期限自本协议签订当日起生效，有效期一年。乙方须在一年服务期内足额完成全部培训课时，且完成考试申报手续。若乙方未在上述期限内完成课时培训及考试申报，服务期届满时本协议自动终止，甲方已收取的培训费不予退还。</p></td>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:3.5em;">1）本培训协议有效期一年。乙方须在服务期内足额完成全部培训课时，且完成考试申报手续。未完成的，已收取的培训费不予退还。</p></td>');
 			arr.push('		</tr>');
 			arr.push('		<tr>');
-			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:3.5em;">2）乙方理论考试2次（初考+补考）均不合格，本次培训服务结束。</p></td>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:3.5em;">2）乙方理论考试2次（1次正考1次补考）均不合格，本次培训服务结束。</p></td>');
 			arr.push('		</tr>');
 			arr.push('		<tr>');
-			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:3.5em;">3）乙方培训结束，理论考试通过后，实操考试2次（正考1次+补考1次）后，本次培训服务结束，不再享受免费的实操培训及实操开放日服务。</p></td>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:3.5em;">3）实操考试2次（正考1次+补考1次）后，本次培训服务结束，不再享受免费的实操培训及实操开放日服务。</p></td>');
 			arr.push('		</tr>');
 		}
 		if(fmt==="A0"){
