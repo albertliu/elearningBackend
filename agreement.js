@@ -443,7 +443,7 @@
 			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:2em;">按照应急部19号令考试规则，理论考试（1次正考1次补考）合格后方可参加实操考试；实操最多10次（5次正考5次补考）考核机会。乙方自考试申请通过之日起3年内需完成考试，且考试时不得超出年龄上限。</p></td>');
 			arr.push('		</tr>');
 			arr.push('		<tr>');
-			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:3.5em;">1）本培训协议有效期一年。乙方须在服务期内足额完成全部培训课时，且完成考试申报手续。未完成的，已收取的培训费不予退还。</p></td>');
+			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:3.5em;">1）本培训协议有效期一年。乙方须在服务期内足额完成全部培训课时，且完成考试申报手续。由于乙方原因逾期未完成的，甲方已收取的培训费不予退还。</p></td>');
 			arr.push('		</tr>');
 			arr.push('		<tr>');
 			arr.push('			<td colspan="2" style="height:25px;"><p style="font-size:1em;text-indent:3.5em;">2）乙方理论考试2次（1次正考1次补考）均不合格，本次培训服务结束。</p></td>');
@@ -543,7 +543,12 @@
 				if(fmt==="A2"){
 					a_ml = 280;
 					top1 = 850;
-					top2 = 930;
+					top2 = 915;
+				}
+				if(fmt==="A2A"){
+					a_ml = 280;
+					top1 = 850;
+					top2 = 905;
 				}
 				if(fmt==="A3"){
 					a_ml = 280;
