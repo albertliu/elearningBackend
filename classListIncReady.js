@@ -10,7 +10,7 @@
 		}
 		if(currHost==""){
 			getComList("searchClassPartner","hostInfo","hostNo","title","status=0 and kindID=1 order by ID",1);
-			getComList("searchClassCert","certificateInfo","certID","shortName","status=0 and type=0" + w + " order by certID",1);
+			getComList("searchClassCert","certificateInfo","certID","shortName","status<2 and type=0" + w + " order by certID",1);
 			getComList("searchClassAdviser","v_classAdviser","adviserID","adviserName","1=1",1);
 		}else{
 			getComList("searchClassPartner","hostInfo","hostNo","title","status=0 and kindID=1 and hostNo='" + currHost + "' order by ID",0);
@@ -46,9 +46,9 @@
 		
 		$("#searchClassAdviser").change(function(){
 			if($("#searchClassAdviser").val()>""){
-				getComList("searchClassCert","certificateInfo","certID","shortName","status=0 and type=0 and certID in(select certID from classInfo where adviserID='" + $("#searchClassAdviser").val() + "') order by certID",1);
+				getComList("searchClassCert","certificateInfo","certID","shortName","status<2 and type=0 and certID in(select certID from classInfo where adviserID='" + $("#searchClassAdviser").val() + "') order by certID",1);
 			}else{
-				getComList("searchClassCert","certificateInfo","certID","shortName","status=0 and type=0 order by certID",1);
+				getComList("searchClassCert","certificateInfo","certID","shortName","status<2 and type=0 order by certID",1);
 			}
 			getClassList();
 		});
